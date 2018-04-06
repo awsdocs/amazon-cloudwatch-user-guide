@@ -18,5 +18,5 @@ You can search within all the metrics in your account using targeted search term
 
    1. To view one of the resources in its console, choose the resource ID and then choose **Jump to resource**\.
 
-   1. To view help for a metric, select the metric name and choose **What is this?**  
+   1. To view help for a metric, select the metric name and choose **What is this?**\.  
 ![\[View the resulting metrics for a search term\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metrics_search_results.png)

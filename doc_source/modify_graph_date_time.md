@@ -1,6 +1,6 @@
 # Modify the Time Range or Time Zone Format for a Graph<a name="modify_graph_date_time"></a>
 
-You can change the time range or the time zone format of a graph\.\.
+You can change the time range or the time zone format of a graph\.
 
 ## Relative Time Ranges<a name="set-relative-time-range"></a>
 
@@ -38,7 +38,7 @@ You can specify whether the graph uses UTC time or your local time\.
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Choose **custom** menu and then choose **UTC** or **Local timezone**\.
+1. Choose the **custom** menu and then choose **UTC** or **Local timezone**\.
 
 ## Zoom in on a Graph<a name="zoom-graph"></a>
 

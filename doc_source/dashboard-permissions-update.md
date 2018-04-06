@@ -10,7 +10,7 @@ On April 1, 2018, the permissions required to access CloudWatch dashboards will 
 
 + **cloudwatch:DeleteDashboards**
 
-To check whether you will have access to CloudWatch dashboards after the change, choose **Check permissions** in update messages in the CloudWatch console \. If that check shows that you will not have these permissions after the update, you should use the IAM console to fix your permissions before April 1\.
+To check whether you will have access to CloudWatch dashboards after the change, choose **Check permissions** in update messages in the CloudWatch console\. If that check shows that you will not have these permissions after the update, you should use the IAM console to fix your permissions before April 1\.
 
 To retain access to CloudWatch dashboards, you need one of the following:
 

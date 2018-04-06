@@ -10,3 +10,4 @@ Metric data is kept for a period of 15 months, enabling you to view both up\-to\
 + [Get Statistics for a Metric](getting-metric-statistics.md)
 + [Graph Metrics](graph_metrics.md)
 + [Publish Custom Metrics](publishingMetrics.md)
++ [Use Metric Math](using-metric-math.md)

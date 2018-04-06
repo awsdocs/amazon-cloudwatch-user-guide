@@ -1,6 +1,6 @@
 # Create the CloudWatch Agent Configuration File with the Wizard<a name="create-cloudwatch-agent-configuration-file-wizard"></a>
 
-The wizard asks a series of questions, including the following:
+The agent configuration file wizard, `amazon-cloudwatch-agent-config-wizard`, asks a series of questions, including the following:
 
 + Are you installing the agent on an Amazon EC2 instance or an on\-premises server?
 
@@ -12,7 +12,7 @@ The wizard asks a series of questions, including the following:
 
 + Are you migrating from an existing SSM Agent?
 
-The wizard can autodetect the credentials and AWS region to use, if you have the AWS credentials and configuration files in place before you start the wizard\. For more information about these files, see [ Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html.html) in the *AWS Systems Manager User Guide*\.
+The wizard can autodetect the credentials and AWS region to use, if you have the AWS credentials and configuration files in place before you start the wizard\. For more information about these files, see [ Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) in the *AWS Systems Manager User Guide*\.
 
 The wizard looks for an `AmazonCloudWatchAgent` section such as this in the credentials file:
 
@@ -93,3 +93,5 @@ The wizard is configured with pre\-defined sets of metrics, with different detai
 1. Answer the questions to customize the configuration file for your server\.
 
 1. If you are going to use Systems Manager to install and configure the agent, be sure to answer **Yes** when prompted whether to store the file in Systems Manager Parameter Store\. You can also choose to store the file in Parameter Store even if you aren't using the SSM Agent to install the CloudWatch agent\. To be able to store the file in Parameter Store, you must use an IAM role with sufficient permissions\. For more information, see [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\.
+
+   If you are storing the configuration file locally, you can store it anywhere\. You will then specify the file location when you start the agent\.

@@ -50,6 +50,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Modify the Y Axis for a Graph](switch_graph_axes.md)
       + [Create an Alarm from a Metric on a Graph](create_alarm_metric_graph.md)
    + [Publish Custom Metrics](publishingMetrics.md)
+   + [Use Metric Math](using-metric-math.md)
 + [Collect Metrics and Logs from Amazon EC2 Instances and On-Premises Servers with the CloudWatch Agent](Install-CloudWatch-Agent.md)
    + [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)
    + [Install the CloudWatch Agent on an Amazon EC2 Instance](install-CloudWatch-Agent-on-EC2-Instance.md)

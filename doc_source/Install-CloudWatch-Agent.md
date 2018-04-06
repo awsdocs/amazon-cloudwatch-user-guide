@@ -38,7 +38,7 @@ The general flow of installing the CloudWatch agent is as follows:
 
 1. Create the IAM roles and users that you need for the CloudWatch agent\. They enable CloudWatch to collect metrics from the server, and to integrate with AWS Systems Manager\.
 
-1. If you are installing on an Amazon EC2 instance, attach an IAM role to the instance\. If you are installing on an on\-premises server, create an IAM user for CloudWatch agent\. 
+1. If you are installing on an Amazon EC2 instance, attach an IAM role to the instance\. If you are installing on an on\-premises server, create an IAM user to enable the CloudWatch agent to write information to CloudWatch\. 
 
 1. Download the agent package, using either AWS Systems Manager Run Command or a public Amazon S3 download link\.
 

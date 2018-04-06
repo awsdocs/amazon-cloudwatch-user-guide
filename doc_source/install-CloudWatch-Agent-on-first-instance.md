@@ -13,9 +13,9 @@ To download and install the CloudWatch agent on a running Amazon EC2 instance, y
 
 An IAM role for the instance profile is required when you install the CloudWatch agent on an Amazon EC2 instance\. This role enables the CloudWatch agent to perform actions on the instance\. Use one of the roles you created earlier\. For more information about creating these roles, see [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\. You can scroll through the list to find them, or use the search box\.
 
-If you are going to use this instance to create the CloudWatch agent configuration file and copy it to Systems Manager Parameter Store, use the role you created that has permissions to write to Parameter Store\. This role may be called **CloudWatchAgentAdminPolicy**\.
+If you are going to use this instance to create the CloudWatch agent configuration file and copy it to Systems Manager Parameter Store, use the role you created that has permissions to write to Parameter Store\. This role may be called **CloudWatchAgentAdminRole**\.
 
-For all other instances, select the role that includes just the permissions needed to install and run the agent\. This role may be called **CloudWatchAgentServerPolicy**\.
+For all other instances, select the role that includes just the permissions needed to install and run the agent\. This role may be called **CloudWatchAgentServerRole**\.
 
 Attach this role to the instance on which you install the CloudWatch agent\. For more information, see [Attaching an IAM Role to an Instance](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -37,11 +37,19 @@ For information about installing or updating the SSM Agent, see [ Installing and
 
 #### \(Optional\) Verify Systems Manager Prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-first"></a>
 
-Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Systems Manager Prerequisites](http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html) in the *AWS Systems Manager User Guide*\.
+Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Systems Manager Prerequisites](http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html#systems-manager-prereqs) in the *AWS Systems Manager User Guide*\.
 
 #### Verify Internet Access<a name="install-CloudWatch-Agent-internet-access-first"></a>
 
 Your Amazon EC2 instances must have outbound internet access in order to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
+
+The endpoints and ports to configure on your proxy are as follows:
+
++ If you are using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch](http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
+
++ If you are using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch Logs](http://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
+
++ If you are using SSM to install the agent or Parameter Store to store your configuration file, you must whitelist the SSM endpoints for the appropriate regions\. These endpoints are listed in [AWS Systems Manager](http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
 
 ### Download the CloudWatch Agent Package Using Run Command<a name="install-CloudWatch-Agent-EC2-first"></a>
 

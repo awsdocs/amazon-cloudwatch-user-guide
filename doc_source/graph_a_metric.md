@@ -38,7 +38,7 @@ You can view your data at different granularities\. For example, you can choose 
 
    Repeat these steps to add multiple horizontal annotations to the same graph\.
 
-   To hide an annotation, clear the checkbox in the left column for that annotation\.
+   To hide an annotation, clear the check box in the left column for that annotation\.
 
    To delete an annotation, choose **x** in the **Actions** column\.
 
@@ -72,7 +72,7 @@ You can view your data at different granularities\. For example, you can choose 
 
    Repeat these steps to add multiple horizontal annotations to the same graph\.
 
-   To hide an annotation, clear the checkbox in the left column for that annotation\.
+   To hide an annotation, clear the check box in the left column for that annotation\.
 
    To delete an annotation, choose **x** in the **Actions** column\.
 

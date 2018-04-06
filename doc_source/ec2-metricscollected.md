@@ -4,9 +4,9 @@ Amazon Elastic Compute Cloud \(Amazon EC2\) sends metrics to CloudWatch for your
 
 For more information about how to monitor Amazon EC2, see [Monitoring Your Instances with CloudWatch](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-## Metric Collection and Calculation on C5 and M5 \(Nitro\) Instances<a name="ec2-metrics-nitro-differences"></a>
+## Metric Collection and Calculation on C5 and M5 Instances<a name="ec2-metrics-nitro-differences"></a>
 
-Because C5 and M5 instances use the Nitro hypervisor, they publish CloudWatch metrics differently than other instances\. All other Amazon EC2 instance types use a Xen\-based hypervisor\. For more information, see [Nitro Hypervisor](https://aws.amazon.com/ec2/faqs/#ec2-hypervisor)\.
+Because C5 and M5 instances use the Nitro hypervisor, they publish CloudWatch metrics differently than other instances, which use a Xen\-based hypervisor\. For more information, see [Nitro Hypervisor](https://aws.amazon.com/ec2/faqs/#ec2-hypervisor)\.
 
 In basic monitoring for EC2 instances, seven pre\-selected metrics are available at the five\-minute frequency\. When you use basic monitoring on any type of EC2 instance \(using either hypervisor\), the hypervisor measures five separate samples per metric during each five\-minute interval\. The way that these data points are published to CloudWatch depends on the type of hypervisor used by the instance\. 
 

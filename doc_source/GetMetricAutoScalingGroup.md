@@ -1,6 +1,6 @@
 # Aggregate Statistics by Auto Scaling Group<a name="GetMetricAutoScalingGroup"></a>
 
-You can aggregate statistics for the EC2 instances in an Auto Scaling group\. Amazon CloudWatch cannot aggregate data across regions\. Metrics are completely separate between regions\.
+You can aggregate statistics for the EC2 instances in an Auto Scaling group\. Amazon CloudWatch cannot aggregate data across Regions\. Metrics are completely separate between Regions\.
 
 This example shows you how to get the total bytes written to disk for one Auto Scaling group\. The total is computed for one\-minute periods for a 24\-hour interval across all EC2 instances in the specified Auto Scaling group\.
 

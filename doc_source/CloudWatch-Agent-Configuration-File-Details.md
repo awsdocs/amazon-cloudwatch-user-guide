@@ -10,6 +10,8 @@ The CloudWatch agent configuration file is a JSON file with three sections: agen
 
 The following sections explain the structure and fields of this JSON file\. You can also view the schema definition for this configuration file\. The schema definition is located at `installation-directory/doc/amazon-cloudwatch-agent-schema.json` on Linux servers, and at `installation-directory/amazon-cloudwatch-agent-schema.json` on servers running Windows Server\.
 
+If you create or edit the JSON file manually, you can give it any name\. For simplicity in troubleshooting, we suggest you name it `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json` on Linux server and `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent.json` on servers running Windows Server\.
+
 ## CloudWatch Agent Configuration File: Agent Section<a name="CloudWatch-Agent-Configuration-File-Agentsection"></a>
 
 The **agent** section can include the fields listed below\. The wizard does not create an `agent` section\. Instead, the wizard omits it and uses the default values for all fields in this section\.
@@ -28,7 +30,7 @@ The **agent** section can include the fields listed below\. The wizard does not 
 
 + **debug** – Optional\. Specifies running the CloudWatch agent with debug log messages\. The default is `false`\. 
 
-+ **logfile** – Specifies the location to where the CloudWatch agent writes log messages\. If you specify an empty string, the log goes to stderr\. If you don't specify this option, the default locations are the following:
++ **logfile** – Specifies the location where the CloudWatch agent writes log messages\. If you specify an empty string, the log goes to stderr\. If you don't specify this option, the default locations are the following:
 
   + Linux: `/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log`
 
@@ -221,7 +223,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
 + **processes** – Optional\. Specifies that process metrics are to be collected\. This section is valid only for Linux instances\. This section can include one field:
 
-  + **measurement** – Specifies the array of processes metrics to be collected\. Possible values are `blocked`, `dead`, `idle`, `paging`, `running`, `sleeping`, `stopped`, `total`, `total_threads`, `wait`, and `zombie`\. This field is required if you include `processes`\.
+  + **measurement** – Specifies the array of processes metrics to be collected\. Possible values are `blocked`, `dead`, `idle`, `paging`, `running`, `sleeping`, `stopped`, `total`, `total_threads`, `wait`, and `zombies`\. This field is required if you include `processes`\.
 
     For all `processes` metrics, the default unit is `Count`\.
 
@@ -383,7 +385,7 @@ The following is an example `metrics` section for use on Windows Server:
       "InstanceType": "${aws:InstanceType}",
       "AutoScalingGroupName": "${aws:AutoScalingGroupName}"
     },
-    "aggregation_dimensions" : [["ImageId"], ["InstanceId", "InstanceType"], ["d1"],[]],
+    "aggregation_dimensions" : [["ImageId"], ["InstanceId", "InstanceType"], ["d1"],[]]
     }
   }
 ```
@@ -392,7 +394,7 @@ The following is an example `metrics` section for use on Windows Server:
 
 The **logs** section includes the following fields:
 
-+ **logs\_collected** – Required if the **logs** section is included\. Specifies which log file and Windows event logs are to be collected from the server\. It can include two fields, **files** and **windows\_events**\.
++ **logs\_collected** – Required if the **logs** section is included\. Specifies which log files and Windows event logs are to be collected from the server\. It can include two fields, **files** and **windows\_events**\.
 
   + **files** specifies which regular log files are to be collected by the CloudWatch agent\. It contains one field, **collect\_list**, which further defines these files\.
 
@@ -400,9 +402,13 @@ The **logs** section includes the following fields:
 
       + **file\_path** – Specifies the path of the log file to upload to CloudWatch Logs\. Standard Unix glob matching rules are accepted, with the addition of `**` as a *super asterisk*\. For example, specifying `/var/log/**.log` causes all `.log` files in the `/var/log` directory tree to be collected\. For more examples, see [Glob Library](https://github.com/gobwas/glob)\.
 
-      + **log\_group\_name** – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. If this is not specified, the file path up to the final dot is used as the log group name\. For example, if the file path is `/tmp/TestLogFile.log.2017-07-11-14`, the log group name is `/tmp/TestLogFile.log`\. This field is recommended to prevent confusion\.
+      + **log\_group\_name** – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. Allowed characters include a\-z, A\-Z, 0\-9, '\_' \(underscore\), '\-' \(hyphen\), '/' \(forward slash\), and '\.' \(period\)\.
 
-      + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, and `{ip_address}` as variables within the name\. If you omit this field, the default of `{instance_id}` is used\.
+        We recommend that you specify this field to prevent confusion\. If you omit this field, the file path up to the final dot is used as the log group name\. For example, if the file path is `/tmp/TestLogFile.log.2017-07-11-14`, the log group name is `/tmp/TestLogFile.log`\. 
+
+      + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
+
+        If you omit this field, the default of `{instance_id}` is used\. A log stream is created automatically if it does not already exist\.
 
       + **timestamp\_format** – Optional\. Specifies the time stamp format, using plain text and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the following as part of the format:   
 **%y**  
@@ -446,21 +452,33 @@ Time zone, for example `PST`
 **%z**  
 Time zone, expressed as the offset between the local time zone and UTC\. For example, `-0700`\.
 
-      + **multi\_line\_start\_pattern** – If you omit this field, multi\-line mode is disabled\. If you include this field, you can specify `{timestamp_format}` to use the same regular expression as your time stamp format\. Otherwise, you can specify a different regular expression for CloudWatch Logs to use to determine the start lines of multi\-line entries\.
+      + **multi\_line\_start\_pattern** – Specifies the pattern for identifying the start of a log message\. A log message is made of a line that matches the pattern and any following lines that don't match the pattern\.
+
+        If you omit this field, multi\-line mode is disabled, and any line that begins with a non\-whitespace character closes the previous log message and starts a new log message\.
+
+        If you include this field, you can specify `{timestamp_format}` to use the same regular expression as your time stamp format\. Otherwise, you can specify a different regular expression for CloudWatch Logs to use to determine the start lines of multi\-line entries\.
+
+      + **encoding** – Specified the encoding of the log file so that it can be read correctly\. If you specify an incorrect coding, there might be data loss because characters than cannot be decoded are replaced with other characters\.
+
+        The default is utf\-8\. Below are all possible values:
+
+         `ascii, big5, euc-jp, euc-kr, gbk, gb18030, ibm866, iso2022-jp, iso8859-2, iso8859-3, iso8859-4, iso8859-5, iso8859-6, iso8859-7, iso8859-8, iso8859-8-i, iso8859-10, iso8859-13, iso8859-14, iso8859-15, iso8859-16, koi8-r, koi8-u, macintosh, shift_jis, utf-8, utf-16, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic` 
 
 + The **windows\_events** section specifies the type of Windows events to collect from servers running Windows Server\. It includes the following fields:
 
   + **collect\_list** – Required if **windows\_events** is included\. Specifies the types and levels of Windows events to be collected\. Each log to be collected has an entry in this section, which can include the following fields:
 
-    + **event\_name** – Specifies the type of Windows events to log\. Possible values include `System`, `Security`, `Application`, `Setup`, and `Forwarded Events`\. This field is required for each type of Windows event to log\.
+    + **event\_name** – Specifies the type of Windows events to log\. Possible values include `System`, `Security`, and `Application`\. This field is required for each type of Windows event to log\.
 
     + **event\_levels** – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, and `SUCCESS`\. This field is required for each type of Windows event to log\.
 
     + **log\_group\_name** – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
 
-    + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, and `{ip_address}` as variables within the name\. If you omit this field, the default of `{instance_id}` is used\.
+    + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
 
-+ **log\_stream\_name** – Required\. Specified the default log stream name to be used for any logs or Windows events that do not have individual log stream names defined in their entry in **collect\_list**\.
+      If you omit this field, the default of `{instance_id}` is used\. A log stream is created automatically if it does not already exist\.
+
++ **log\_stream\_name** – Required\. Specifies the default log stream name to be used for any logs or Windows events that do not have individual log stream names defined in their entry in **collect\_list**\.
 
 The following is an example of a `logs` section:
 
