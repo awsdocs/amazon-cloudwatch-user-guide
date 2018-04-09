@@ -163,6 +163,8 @@ aws_access_key_id=my_access_key
 aws_secret_access_key=my_secret_key
 ```
 
+WARNING - NEVER hard-code your access key and secret key as you see demonstrated here.  Instead, associate the required permissions with the Role associated with your EC2 instance.  See the first step above.
+
 For `my_access_key` and `my_secret_key`, use the keys from the IAM user that does not have the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for CloudWatch agent, see [Create IAM Users to Use with CloudWatch Agent on On\-premises Servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
 
 Following is an example of the profile for the configuration file:
