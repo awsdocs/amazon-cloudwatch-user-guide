@@ -10,6 +10,6 @@ Any time you change the agent configuration file, you must then restart the agen
 
 After you have created a configuration file, you can store it in Systems Manager Parameter Store\. This enables you to use the same agent configuration on other servers\.
 
-
+**Topics**
 + [Create the CloudWatch Agent Configuration File with the Wizard](create-cloudwatch-agent-configuration-file-wizard.md)
 + [Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)

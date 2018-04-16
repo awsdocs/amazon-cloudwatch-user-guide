@@ -52,9 +52,7 @@ You can also add alarms to a dashboard\. For more information, see [Add or Remov
 1. In the navigation pane, choose **Topics**, and then select the ARN for your notification list \(topic\)\.
 
 1. Do one of the following:
-
    + To add an email address, choose **Create subscription**\. For **Protocol**, choose **Email**\. For **Endpoint**, type the email address of the new recipient\. Choose **Create subscription**\.
-
    + To remove an email address, choose the **Subscription ID**\. Choose **Other subscription actions**, **Delete subscriptions**\.
 
 1. Choose **Publish to topic**\.

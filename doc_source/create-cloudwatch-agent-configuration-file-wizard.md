@@ -1,15 +1,10 @@
 # Create the CloudWatch Agent Configuration File with the Wizard<a name="create-cloudwatch-agent-configuration-file-wizard"></a>
 
 The agent configuration file wizard, `amazon-cloudwatch-agent-config-wizard`, asks a series of questions, including the following:
-
 + Are you installing the agent on an Amazon EC2 instance or an on\-premises server?
-
 + Is the server running Linux or Windows Server?
-
 + Do you want the agent to also send log files to CloudWatch Logs? If so, do you have an existing CloudWatch Logs agent configuration file? If yes, the CloudWatch agent can use this file to determine the logs to collect from the server\.
-
 + If you are going to collect metrics from the server, do you want to monitor one of the default sets of metrics, or customize the list of metrics that you collect?
-
 + Are you migrating from an existing SSM Agent?
 
 The wizard can autodetect the credentials and AWS region to use, if you have the AWS credentials and configuration files in place before you start the wizard\. For more information about these files, see [ Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) in the *AWS Systems Manager User Guide*\.
@@ -35,7 +30,7 @@ region=us-west-1
 
 ## CloudWatch Agent Predefined Metric Sets<a name="cloudwatch-agent-preset-metrics"></a>
 
-The wizard is configured with pre\-defined sets of metrics, with different detail levels\. These sets of metrics are shown in the following tables\. For more information about these metrics, see [Metrics Collected by the CloudWatch Agent](CW_Support_For_AWS.md#metrics-collected-by-CloudWatch-agent)\. 
+The wizard is configured with pre\-defined sets of metrics, with different detail levels\. These sets of metrics are shown in the following tables\. For more information about these metrics, see [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\. 
 
 **Amazon EC2 instances running Linux**
 

@@ -6,7 +6,7 @@ Billing metric data is stored in the US East \(N\. Virginia\) Region and reflect
 
 You can choose to receive alerts by email when charges have exceeded a certain threshold\. These alerts are triggered by CloudWatch and messages are sent using Amazon Simple Notification Service \(Amazon SNS\)\.
 
-
+**Topics**
 + [Step 1: Enable Billing Alerts](#gs_turning_on_billing_metrics)
 + [Step 2: Create a Billing Alarm](#gs_creating_billing_alarm)
 + [Step 3: Check the Alarm Status](#gs_checking_billing_alarm)
@@ -20,9 +20,7 @@ Before you can create an alarm for your estimated charges, you must enable billi
 After you enable billing alerts for the first time, it takes about 15 minutes before you can view billing data and set billing alarms\.
 
 **Requirements**
-
 + You must be signed in using root account credentials; IAM users cannot enable billing alerts for your AWS account\.
-
 + For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account as well as for the consolidated account\.
 
 **To enable monitoring of your estimated charges**

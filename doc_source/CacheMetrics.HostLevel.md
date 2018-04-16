@@ -3,9 +3,7 @@
 The `AWS/ElastiCache` namespace includes the following host\-level metrics for individual cache nodes\.
 
 **See Also**
-
 + [Metrics for Memcached](CacheMetrics.Memcached.md)
-
 + [Metrics for Redis](CacheMetrics.Redis.md)
 
 

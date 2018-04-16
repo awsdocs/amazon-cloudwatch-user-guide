@@ -15,17 +15,11 @@ CloudWatch uses the service\-linked role named **AWSServiceRoleForCloudWatchEven
 The AWSServiceRoleForCloudWatchEvents service\-linked role trusts the CloudWatch Events service to assume the role\. CloudWatch Events invokes the terminate, stop, or reboot instance actions when called upon by the alarm\.
 
 The AWSServiceRoleForCloudWatchEvents service\-linked role permissions policy allows CloudWatch Events to complete the following actions on Amazon EC2 instances:
-
 + `ec2:StopInstances`
-
 +  `ec2:TerminateInstances`
-
 + `ec2:RecoverInstances`
-
 +  `ec2:DescribeInstanceRecoveryAttribute`
-
 + `ec2:DescribeInstances`
-
 +  `ec2:DescribeInstanceStatus`
 
 ## Creating a Service\-Linked Role for CloudWatch Alarms<a name="create-service-linked-role"></a>

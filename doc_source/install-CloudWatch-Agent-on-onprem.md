@@ -1,6 +1,6 @@
 # Installing CloudWatch Agent on Additional Servers Using Your Agent Configuration<a name="install-CloudWatch-Agent-on-onprem"></a>
 
-
+**Topics**
 + [Download the CloudWatch Agent on an On\-Premises Server](#download-CloudWatch-Agent-onprem)
 + [Modify the Common Configuration and Named Profile for CloudWatch Agent](#CloudWatch-Agent-profile-onprem)
 + [Start the CloudWatch Agent](#start-CloudWatch-Agent-on-premise-SSM-onprem)
@@ -104,9 +104,7 @@ The default `common-config.toml` is as follows:
 ```
 
 All lines are commented out initially\. To set the credential profile or proxy settings, remove the `#` from that line and specify a value\. You can edit this file manually, or by using the `RunShellScript` Run Command in Systems Manager:
-
 + **shared\_credential\_profile** You can specify a name for the named profile that CloudWatch agent is to look for in the AWS credentials and AWS config files\. If you don't specify a name here, the CloudWatch agent looks for the default profile name, `AmazonCloudWatchAgent`\.
-
 + **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
 After modifying `common-config.toml`, you should make sure that the profile name specified, or the default profile name of `AmazonCloudWatchAgent`, exists in the root user's AWS credentials and config files\. This profile is used for credential and region information during CloudWatch agent setup\. Following is an example of this profile in the credentials file:
@@ -133,7 +131,6 @@ The named profile in the configuration file specifies the region to which the Cl
 Following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-
 + Type the following command and follow the prompts:
 
   ```
@@ -171,7 +168,6 @@ You can start the CloudWatch agent using either Systems Manager Run Command or t
    The agent starts with the configuration you specified in the configuration file\.
 
 **To use the command line to start the CloudWatch agent on an on\-premises server**
-
 + On a Linux server, type the following if you saved the agent configuration file in Parameter Store:
 
   ```

@@ -5,7 +5,6 @@ The `AWS/ElastiCache` namespace includes the following metrics that are derived 
 For complete documentation of the Memcached stats command, go to [ https://github\.com/memcached/memcached/blob/master/doc/protocol\.txt](https://github.com/memcached/memcached/blob/master/doc/protocol.txt)\. 
 
 **See Also**
-
 + [Host\-Level Metrics](CacheMetrics.HostLevel.md)
 
 

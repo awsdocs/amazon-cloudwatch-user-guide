@@ -4,9 +4,11 @@ You can monitor your estimated AWS charges using Amazon CloudWatch\. When you en
 
 Billing metric data is stored in the US East \(N\. Virginia\) region and represents worldwide charges\. This data includes the estimated charges for every service in AWS that you use, in addition to the estimated overall total of your AWS charges\.
 
-You can choose to receive alerts by email when charges have exceeded a certain threshold\. These alerts are triggered by CloudWatch and messages are sent using Amazon SNS\.
+The alarm triggers when your account billing exceeds the threshold you specify\. It triggers only when actual billing exceeds the threshold\. It does not use projections based on your usage so far in the month\.
 
+If you create a billing alarm at a time when your charges have already exceeded the threshold, the alarm goes to ALARM state immediately\.
 
+**Topics**
 + [Enable Billing Alerts](#turning_on_billing_metrics)
 + [Create a Billing Alarm](#creating_billing_alarm_with_wizard)
 + [Check the Alarm Status](#checking_billing_alarm)
@@ -19,9 +21,7 @@ Before you can create an alarm for your estimated charges, you must enable billi
 After you enable billing alerts for the first time, it takes about 15 minutes before you can view billing data and set billing alarms\.
 
 **Requirements**
-
 + You must be signed in using AWS account root user credentials; IAM users cannot enable billing alerts for your AWS account\.
-
 + For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account in addition to the consolidated account\.
 
 **To enable the monitoring of estimated charges**

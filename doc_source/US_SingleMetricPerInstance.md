@@ -3,9 +3,7 @@
 The following example shows you how to determine the maximum CPU utilization of a specific EC2 instance\.
 
 **Requirements**
-
 + You must have the ID of the instance\. You can get the instance ID using the Amazon EC2 console or the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
-
 + By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To display the average CPU utilization for a specific instance using the console**

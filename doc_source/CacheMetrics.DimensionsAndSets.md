@@ -5,11 +5,7 @@
 Each metric is published under a single set of dimensions\. When retrieving metrics, you must supply both the `CacheClusterId` and `CacheNodeId` dimensions\. 
 
 **Contents**
-
 + [Host\-Level Metrics](CacheMetrics.HostLevel.md)
-
 + [Metrics for Memcached](CacheMetrics.Memcached.md)
-
 + [Metrics for Redis](CacheMetrics.Redis.md)
-
 + [Which Metrics Should I Monitor?](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheMetrics.WhichShouldIMonitor.html)

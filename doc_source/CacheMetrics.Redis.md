@@ -7,7 +7,6 @@ With the exception of `ReplicationLag`, these metrics are derived from the Redis
 For complete documentation of the Redis info command, go to [ http://redis\.io/commands/info](http://redis.io/commands/info)\. 
 
 **See Also**
-
 + [Host\-Level Metrics](CacheMetrics.HostLevel.md)
 
 
@@ -17,7 +16,7 @@ For complete documentation of the Redis info command, go to [ http://redis\.io/c
 | CacheHits | The number of successful key lookups\. | Count | 
 | CacheMisses | The number of unsuccessful key lookups\. | Count | 
 | CurrConnections | The number of client connections, excluding connections from read replicas\. ElastiCache uses two to three of the connections to monitor the cluster in each case\. | Count | 
-| EngineCPUUtilization | CPU utilization of the single core that Redis is running on\. Since Redis is single threaded, this is the percent of your thread's capacity that is being used\. This metric is available on clusters created or replaced after November 1, 2017\. | Percent | 
+| EngineCPUUtilization | CPU utilization of the single core that Redis is running on\. Since Redis is single threaded, this is the percent of your thread's capacity that is being used\. For more information, see the following table, "EngineCPUUtilization availability"\. | Percent | 
 | Evictions | The number of keys that have been evicted due to the maxmemory limit\. | Count | 
 | HyperLogLogBasedCmds | The total number of HyperLogLog based commands\. This is derived from the Redis commandstats statistic by summing all of the pf type of commands \(pfadd, pfcount, pfmerge\)\. | Count | 
 | NewConnections | The total number of connections that have been accepted by the server during this period\. | Count | 
@@ -25,6 +24,32 @@ For complete documentation of the Redis info command, go to [ http://redis\.io/c
 | ReplicationBytes | For primaries with attached replicas, ReplicationBytes reports the number of bytes that the primary is sending to all of its replicas\. This metric is representative of the write load on the replication group\. For replicas and standalone primaries, ReplicationBytes is always 0\.  | Bytes | 
 | ReplicationLag | This metric is only applicable for a node running as a read replica\. It represents how far behind, in seconds, the replica is in applying changes from the primary node\. | Seconds | 
 | SaveInProgress | This binary metric returns 1 whenever a background save \(forked or forkless\) is in progress, and 0 otherwise\. A background save process is typically used during snapshots and syncs\. These operations can cause degraded performance\. Using the  SaveInProgress metric, you can diagnose whether or not degraded performance was caused by a background save process\. | Count | 
+
+**EngineCPUUtilization availability**  
+Nodes in a region created or replaced after the date and time specified in the following table will include the `EngineCPUUtilization` metric\.
+
+
+| Region | Region name |  EngineCPUUtilization availability  | 
+| --- | --- | --- | 
+| us\-east\-2 | US East \(Ohio\) | February 16, 2017 | 17:21 \(UTC\) | 
+| us\-east\-1 | US East \(N\. Virginia\) | February 8, 2017 | 21:20 \(UTC\) | 
+| us\-west\-1 | US West \(N\. California\) | February 14, 2017 | 22:23 \(UTC\) | 
+| us\-west\-2 | US West \(Oregon\) | Febrary 20, 2017 | 19:20 \(UTC\) | 
+| ap\-northeast\-1 | Asia Pacific \(Tokyo\) | February 14, 2017 | 19:58 \(UTC\) | 
+| ap\-northeast\-2 | Asia Pacific \(Seoul\) | Available on all nodes\. | 
+| ap\-northeast\-3 | Asia Pacific \(Osaka\-Local\) | Available on all nodes\. | 
+| ap\-south\-1 | Asia Pacific \(Mumbai\) | February 7, 2017 | 02:51 \(UTC\) | 
+| ap\-southeast\-1 | Asia Pacific \(Singapore\) | February 13, 2017 | 23:40 \(UTC\) | 
+| ap\-southeast\-2 | Asia Pacific \(Sydney\) | February 14, 2017 | 03:33 \(UTC\) | 
+| ca\-central\-1 | Canada \(Central\) | Available on all nodes\. | 
+| cn\-north\-1 | China \(Beijing\) | February 16, 2017 | 22:39 \(UTC\) | 
+| cn\-northwest\-2 | China \(Ningxia\) | Available on all nodes\. | 
+| eu\-central\-1 | EU \(Frankfurt\) | February 15, 2017 | 00:46 \(UTC\) | 
+| eu\-west\-1 | EU \(Ireland\) | February 7, 2017 | 21:30 \(UTC\) | 
+| eu\-west\-2 | EU \(London\) | February 16, 2017 | 18:58 \(UTC\) | 
+| eu\-west\-3 | EU \(Paris\) | Available on all nodes\. | 
+| sa\-east\-1 | South America \(São Paulo\) | February 7, 2017 | 04:35 \(UTC\) | 
+| us\-gov\-west\-1 | AWS GovCloud \(US\) | February 16, 2017 | 20:11 \(UTC\) | 
 
 These are aggregations of certain kinds of commands, derived from info commandstats:
 

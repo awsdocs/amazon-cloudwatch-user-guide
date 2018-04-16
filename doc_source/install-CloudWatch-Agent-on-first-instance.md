@@ -2,7 +2,7 @@
 
 To download and install the CloudWatch agent on a running Amazon EC2 instance, you can use either AWS Systems Manager or the command line\. With either method, you must first create an IAM role and attach it to the instance\.
 
-
+**Topics**
 + [Attach an IAM Role to the Instance](#install-CloudWatch-Agent-iam_permissions-first)
 + [Download the CloudWatch Agent Package on an Amazon EC2 Instance](#download-CloudWatch-Agent-on-EC2-Instance-first)
 + [\(Optional\) Modify the Common Configuration and Named Profile for CloudWatch Agent](#CloudWatch-Agent-profile-instance-first)
@@ -44,11 +44,8 @@ Before you use Systems Manager Run Command to install and configure the CloudWat
 Your Amazon EC2 instances must have outbound internet access in order to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
 The endpoints and ports to configure on your proxy are as follows:
-
 + If you are using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch](http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
-
 + If you are using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch Logs](http://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
-
 + If you are using SSM to install the agent or Parameter Store to store your configuration file, you must whitelist the SSM endpoints for the appropriate regions\. These endpoints are listed in [AWS Systems Manager](http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
 
 ### Download the CloudWatch Agent Package Using Run Command<a name="install-CloudWatch-Agent-EC2-first"></a>
@@ -148,22 +145,12 @@ When you install the CloudWatch agent on an Amazon EC2 instance, you need to mod
 ```
 
 All lines are commented out initially\. To set the credential profile or proxy settings, remove the `#` from that line and specify a value\. You can edit this file manually, or by using the `RunShellScript` Run Command in Systems Manager:
-
++ **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 + **shared\_credential\_profile** To have the CloudWatch agent send metrics to CloudWatch in the same region where the instance is located, you don't need to modify this line if you have attached an IAM role with the proper permissions to the instance, and you don't need to use the `aws configure` command to create a named profile for the agent\.
 
-  Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS credentials and AWS config files\. If you do so, CloudWatch agent uses the credential and the region settings in that named profile\.
+  Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS config file\. If you do so, CloudWatch agent uses the the region settings in that named profile\.
 
-+ **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
-
-After modifying `common-config.toml`, if you need to specify credential and region information for CloudWatch agent, create a named profile for the CloudWatch agent in the AWS credentials and AWS config files\. When you create this profile, do so as the root or administrator\. Following is an example of this profile in the credentials file:
-
-```
-[AmazonCloudWatchAgent]
-aws_access_key_id=my_access_key
-aws_secret_access_key=my_secret_key
-```
-
-For `my_access_key` and `my_secret_key`, use the keys from the IAM user that does not have the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for CloudWatch agent, see [Create IAM Users to Use with CloudWatch Agent on On\-premises Servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
+After modifying `common-config.toml`, if you need to specify region information for CloudWatch agent, create a named profile for the CloudWatch agent in the AWS config file\. When you create this profile, do so as the root or administrator\. 
 
 Following is an example of the profile for the configuration file:
 
@@ -172,10 +159,11 @@ Following is an example of the profile for the configuration file:
 region=us-west-1
 ```
 
+To be able to send the CloudWatch data to a different region, make sure the IAM role that you attached to this instance has permissions to write the CloudWatch data in that region\.
+
 Following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-
 + Type the following command and follow the prompts:
 
   ```
@@ -227,7 +215,6 @@ Follow these steps to start the agent using Systems Manager Run Command\.
 Follow these steps to use the command line to install the CloudWatch agent on an Amazon EC2 instance\.
 
 **To use the command line to start the CloudWatch agent on an Amazon EC2 instance**
-
 + On a Linux server, type the following if you saved the configuration file in the Systems Manager Parameter Store:
 
   ```

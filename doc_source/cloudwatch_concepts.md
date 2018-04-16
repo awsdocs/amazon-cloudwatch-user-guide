@@ -1,17 +1,11 @@
 # Amazon CloudWatch Concepts<a name="cloudwatch_concepts"></a>
 
 The following terminology and concepts are central to your understanding and use of Amazon CloudWatch:
-
 + [Namespaces](#Namespace)
-
 + [Metrics](#Metric)
-
 + [Dimensions](#Dimension)
-
 + [Statistics](#Statistic)
-
 + [Percentiles](#Percentiles)
-
 + [Alarms](#CloudWatchAlarms)
 
 ## Namespaces<a name="Namespace"></a>
@@ -45,13 +39,9 @@ CloudWatch alarms check metrics based on the current time in UTC\. Custom metric
 ### Metrics Retention<a name="metrics-retention"></a>
 
 CloudWatch retains metric data as follows:
-
 + Data points with a period of less than 60 seconds are available for 3 hours\. These data points are high\-resolution custom metrics\. 
-
 + Data points with a period of 60 seconds \(1 minute\) are available for 15 days
-
 + Data points with a period of 300 seconds \(5 minute\) are available for 63 days
-
 + Data points with a period of 3600 seconds \(1 hour\) are available for 455 days \(15 months\)
 
 Data points that are initially published with a shorter period are aggregated together for long\-term storage\. For example, if you collect data using a period of 1 minute, the data remains available for 15 days with 1\-minute resolution\. After 15 days this data is still available, but is aggregated and is retrievable only with a resolution of 5 minutes\. After 63 days, the data is further aggregated and is available with a resolution of 1 hour\. 
@@ -66,7 +56,7 @@ Every metric has specific characteristics that describe it, and you can think of
 
 AWS services that send data to CloudWatch attach dimensions to each metric\. You can use dimensions to filter the results that CloudWatch returns\. For example, you can get statistics for a specific EC2 instance by specifying the `InstanceId` dimension when you search for metrics\.
 
-For metrics produced by certain AWS services, such as Amazon EC2, CloudWatch can aggregate data across dimensions\. For example, search for metrics in the `AWS/EC2` namespace but do not specify any dimensions, CloudWatch aggregates all data for the specified metric to create the statistic that you requested\. CloudWatch does not aggregate across dimensions for your custom metrics\.
+For metrics produced by certain AWS services, such as Amazon EC2, CloudWatch can aggregate data across dimensions\. For example, if you search for metrics in the `AWS/EC2` namespace but do not specify any dimensions, CloudWatch aggregates all data for the specified metric to create the statistic that you requested\. CloudWatch does not aggregate across dimensions for your custom metrics\.
 
 ### Dimension Combinations<a name="dimension-combinations"></a>
 
@@ -82,23 +72,15 @@ Dimensions: Server=Beta, Domain=Rio,       Unit: Count, Timestamp: 2016-10-31T12
 ```
 
 If you publish only those four metrics, you can retrieve statistics for these combinations of dimensions:
-
 + `Server=Prod,Domain=Frankfurt`
-
 + `Server=Prod,Domain=Rio`
-
 + `Server=Beta,Domain=Frankfurt`
-
 + `Server=Beta,Domain=Rio`
 
 You can't retrieve statistics for the following dimensions or if you specify no dimensions:
-
 + `Server=Prod`
-
 + `Server=Beta`
-
 + `Domain=Frankfurt`
-
 + `Domain=Rio`
 
 ## Statistics<a name="Statistic"></a>
@@ -148,17 +130,11 @@ Amazon CloudWatch doesn't differentiate the source of a metric\. If you publish 
 ## Percentiles<a name="Percentiles"></a>
 
 A *percentile* indicates the relative standing of a value in a dataset\. For example, the 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value\. Percentiles help you get a better understanding of the distribution of your metric data\. You can use percentiles with the following services:
-
 + Amazon EC2
-
 + Amazon RDS
-
 + Kinesis
-
 + Application Load Balancer
-
 + Elastic Load Balancing
-
 + API Gateway
 
 Percentiles are often used to isolate anomalies\. In a typical distribution, 95 percent of the data is within two standard deviations from the mean and 99\.7 percent of the data is within three standard deviations from the mean\. Any data that falls outside three standard deviations is often considered to be an anomaly because it differs so greatly from the average value\. For example, suppose that you are monitoring the CPU utilization of your EC2 instances to ensure that your customers have a good experience\. If you monitor the average, this can hide anomalies\. If you monitor the maximum, a single anomaly can skew the results\. Using percentiles, you can monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load\.
@@ -166,9 +142,7 @@ Percentiles are often used to isolate anomalies\. In a typical distribution, 95 
 You can monitor your system and applications using percentiles as you would use the other CloudWatch statistics \(Average, Minimum, Maximum, and Sum\)\. For example, when you create an alarm, you can use percentiles as the statistical function\. You can specify the percentile with up to two decimal places \(for example, p95\.45\)\.
 
 CloudWatch needs raw data points to calculate percentiles\. If you publish data using a statistic set instead, you can only retrieve percentile statistics for this data when one of the following conditions is true:
-
 + The SampleCount of the statistic set is 1\.
-
 + The Min and the Max of the statistic set are equal\.
 
 ## Alarms<a name="CloudWatchAlarms"></a>

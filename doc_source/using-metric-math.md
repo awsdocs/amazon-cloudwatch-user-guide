@@ -41,11 +41,8 @@ In the following tables, every example in the **Examples** column is an expressi
 ### Data Type Abbreviations<a name="metric-math-syntax-datatypes"></a>
 
 Some functions are valid for only certain types of data\. The abbreviations in the following list are used in the tables of functions to represent the types of data supported for each function\. 
-
 + **S** represents a scalar number, such as 2, \-5, or 50\.25\.
-
 + **TS** is a time series \(a series of values for a single CloudWatch metric over time\)\. For example, the **CPUUtilization** metric for instance `i-1234567890abcdef0` over the last three days\.
-
 + **TS\[\]** is an array of time series, such as the time series for multiple metrics\.
 
 ### The METRICS\(\) Function<a name="metric-math-syntax-metrics-function"></a>

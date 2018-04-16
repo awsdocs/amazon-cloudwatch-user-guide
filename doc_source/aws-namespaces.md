@@ -57,6 +57,7 @@ CloudWatch namespaces are containers for metrics\. Metrics in different namespac
 |  Amazon Simple Workflow Service  |  `AWS/SWF`  | 
 |  AWS Step Functions  |  `AWS/States`  | 
 |  AWS Storage Gateway  |  `AWS/StorageGateway`  | 
+| Amazon Translate | `AWS/Translate` | 
 |  Amazon VPC  |  `AWS/NATGateway` \(NAT gateway\)  | 
 | Amazon VPC | `AWS/VPN` \(VPN\) | 
 |  AWS WAF  |  `WAF`  | 

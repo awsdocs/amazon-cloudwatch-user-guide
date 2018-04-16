@@ -15,11 +15,8 @@ For more information about creating a dashboard using the API, see [PutDashboard
 1. In the **Create new dashboard** dialog box, type a name for the dashboard and choose **Create dashboard**\.
 
 1. Do one of the following in the **Add to this dashboard** dialog box:
-
    + To add a graph to your dashboard, choose **Line** or **Stacked area** and then choose **Configure**\. In the **Add metric graph** dialog box, select the metrics to graph and choose **Create widget**\.
-
    + To add a number displaying a metric to the dashboard, choose **Number**, **Configure**\. In the **Add metric graph** dialog box, select the metrics to graph and choose **Create widget**\.
-
    + To add a text block to your dashboard, choose **Text**, **Configure**\. In the **New text widget** dialog box, for **Markdown**, add and format your text using [Markdown](http://docs.aws.amazon.com/general/latest/gr/aws-markdown.html), and then choose **Create widget**\.
 
 1. Optionally, choose **Add widget** and repeat step 4 to add another widget to the dashboard\. You can repeat this step as much as you want\.

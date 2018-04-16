@@ -9,9 +9,7 @@ For more information about how to monitor Amazon EC2, see [Monitoring Your Insta
 Because C5 and M5 instances use the Nitro hypervisor, they publish CloudWatch metrics differently than other instances, which use a Xen\-based hypervisor\. For more information, see [Nitro Hypervisor](https://aws.amazon.com/ec2/faqs/#ec2-hypervisor)\.
 
 In basic monitoring for EC2 instances, seven pre\-selected metrics are available at the five\-minute frequency\. When you use basic monitoring on any type of EC2 instance \(using either hypervisor\), the hypervisor measures five separate samples per metric during each five\-minute interval\. The way that these data points are published to CloudWatch depends on the type of hypervisor used by the instance\. 
-
 + On Xen instances, these five samples are aggregated and reported to CloudWatch as a single data point at the end of the five\-minute interval, with a time stamp corresponding to the beginning of the five\-minute interval\. The statistic set for this data point includes a `SampleCount` of 1\. Because this is treated as a single sample, the `Sum`, `Minimum`, and `Maximum` are all equal to the `Average`\.
-
 + On Nitro instances, the data point is published to CloudWatch immediately after the first sample is taken during the interval\. When each subsequent sample within the interval occurs, the statistic set for that data point is updated to reflect all the samples taken so far, but the time stamp remains the same\. If you are graphing or monitoring the data as it is reported, the statistics for the current data point can appear to change as each sample is taken during the five\-minute interval\. Each of the five samples taken during the interval are included in the `SampleCount` statistic\. 
 
 
@@ -30,7 +28,7 @@ Because of the way that Nitro instances collect and calculate the data, we recom
 
 ## Amazon EC2 Metrics<a name="ec2-metrics"></a>
 
-The following metrics are available by default from each EC2 instance\. You can enable additional metrics by installing the CloudWatch agent on the instance\. For more information about installing the CloudWatch agent on an instance, see [Collect Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](Install-CloudWatch-Agent.md)\. For more information about the additional metrics that can be collected, see [Metrics Collected by the CloudWatch Agent](CW_Support_For_AWS.md#metrics-collected-by-CloudWatch-agent)\.
+The following metrics are available by default from each EC2 instance\. You can enable additional metrics by installing the CloudWatch agent on the instance\. For more information about installing the CloudWatch agent on an instance, see [Collect Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](Install-CloudWatch-Agent.md)\. For more information about the additional metrics that can be collected, see [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
 
 The `AWS/EC2` namespace includes the following CPU credit metrics for your T2 instances\.
 

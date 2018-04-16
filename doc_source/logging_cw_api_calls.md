@@ -4,7 +4,7 @@ AWS CloudTrail is a service that captures API calls made by or on behalf of your
 
 To learn more about CloudTrail, including how to configure and enable it, see the [What is AWS CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html) in the *AWS CloudTrail User Guide*\.
 
-
+**Topics**
 + [CloudWatch Information in CloudTrail](#cw_info_in_ct)
 + [Understanding Log File Entries](#understanding_cw_log_file_entries)
 
@@ -13,11 +13,8 @@ To learn more about CloudTrail, including how to configure and enable it, see th
 If CloudTrail logging is turned on, calls made to API actions are captured in log files\. Every log file entry contains information about who generated the request\. For example, if a request is made to create or update a CloudWatch alarm \(`PutMetricAlarm`\), CloudTrail logs the user identity of the person or service that made the request\.
 
 The user identity information in the log entry helps you determine the following:
-
 + Whether the request was made with root or IAM user credentials
-
 + Whether the request was made with temporary security credentials for a role or federated user
-
 + Whether the request was made by another AWS service
 
 For more information, see the [CloudTrail userIdentity Element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html) in the *AWS CloudTrail User Guide*\.
@@ -31,97 +28,56 @@ You can also aggregate Amazon CloudWatch Logs log files from multiple AWS region
 When logging is turned on, the following API actions are written to CloudTrail:
 
 **CloudWatch** 
-
 + DeleteAlarms
-
 + DescribeAlarmHistory
-
 + DescribeAlarms
-
 + DescribeAlarmsForMetric
-
 + DisableAlarmActions
-
 + EnableAlarmActions
-
 + PutMetricAlarm
-
 + SetAlarmState
 
 The CloudWatch `GetMetricStatistics`, `ListMetrics`, and `PutMetricData` API actions are not supported\. For more information about all of these actions, see the [Amazon CloudWatch API Reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\.
 
 **CloudWatch Events** 
-
 + DeleteRule
-
 + DescribeRule
-
 + DisableRule
-
 + EnableRule
-
 + ListRuleNamesByTarget
-
 + ListRules
-
 + ListTargetsByRule
-
 + PutRule
-
 + PutTargets
-
 + RemoveTargets
-
 + TestEventPattern
 
 For more information about these actions, see the [Amazon CloudWatch Events API Reference](http://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/)\.
 
 **CloudWatch Logs** Request and response elements are logged for these API actions: 
-
 + CancelExportTask
-
 + CreateExportTask
-
 + CreateLogGroup
-
 + CreateLogStream
-
 + DeleteDestination
-
 + DeleteLogGroup
-
 + DeleteLogStream
-
 + DeleteMetricFilter
-
 + DeleteRetentionPolicy
-
 + DeleteSubscriptionFilter
-
 + PutDestination
-
 + PutDestinationPolicy
-
 + PutMetricFilter
-
 + PutRetentionPolicy
-
 + PutSubscriptionFilter
-
 + TestMetricFilter
 
 Only Request elements are logged for these API actions:
-
 + DescribeDestinations
-
 + DescribeExportTasks
-
 + DescribeLogGroups
-
 + DescribeLogStreams
-
 + DescribeMetricFilters
-
 + DescribeSubscriptionFilters
 
 The CloudWatch Logs `GetLogEvents`, `PutLogEvents`, and `FilterLogEvents` API actions are not supported\. For more information about these actions, see the [Amazon CloudWatch Logs API Reference](http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/)\.

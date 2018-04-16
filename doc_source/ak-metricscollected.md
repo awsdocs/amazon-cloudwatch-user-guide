@@ -2,7 +2,7 @@
 
 Kinesis Data Streams sends metrics to CloudWatch at two levels; the stream level and, optionally, the shard level\. Stream\-level metrics are for most common monitoring use cases in normal conditions\. Shard\-level metrics are for specific monitoring tasks, usually related to troubleshooting\. For more information, see [Monitoring Amazon Kinesis with Amazon CloudWatch](http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html) in the *Amazon Kinesis Developer Guide*\.
 
-
+**Topics**
 + [Basic Stream\-level Metrics](#kinesis-metrics-stream)
 + [Enhanced Shard\-level Metrics](#kinesis-metrics-shard)
 + [Dimensions for Amazon Kinesis Metrics](#ak-metric-dimensions)

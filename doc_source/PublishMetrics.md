@@ -2,7 +2,7 @@
 
 In this scenario, you'll use the AWS Command Line Interface \(AWS CLI\) to publish a single metric for a hypothetical application named *GetStarted*\. If you haven't already installed and configured the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
-
+**Topics**
 + [Step 1: Define the Data Configuration](#define-data-domain)
 + [Step 2: Add Metrics to CloudWatch](#add-metrics-to-scenario)
 + [Step 3: Get Statistics from CloudWatch](#GetStatistics)
@@ -13,11 +13,8 @@ In this scenario, you'll use the AWS Command Line Interface \(AWS CLI\) to publi
 In this scenario, you'll publish data points that track the request latency for the application\. Choose names for your metric and namespace that make sense to you\. For this example, name the metric *RequestLatency* and place all of the data points into the *GetStarted* namespace\. 
 
 You'll publish several data points that collectively represent three hours of latency data\. The raw data comprises fifteen request latency readings distributed over three hours\. Each reading is in milliseconds: 
-
 + Hour one: 87, 51, 125, 235
-
 + Hour two: 121, 113, 189, 65, 89
-
 + Hour three: 100, 47, 133, 98, 100, 328
 
 You can publish data to CloudWatch as single data points or as an aggregated set of data points called a *statistic set*\. You can aggregate metrics to a granularity as low as one minute\. You can publish the aggregated data points to CloudWatch as a set of statistics with four predefined keys: `Sum`, `Minimum`, `Maximum`, and `SampleCount`\.

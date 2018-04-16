@@ -4,7 +4,7 @@ You can publish your own metrics to CloudWatch using the AWS CLI or an API\. You
 
  CloudWatch stores data about a metric as a series of data points\. Each data point has an associated time stamp\. You can even publish an aggregated set of data points called a *statistic set*\.
 
-
+**Topics**
 + [High\-Resolution Metrics](#high-resolution-metrics)
 + [Using Dimensions](#usingDimensions)
 + [Publish Single Data Points](#publishingDataPoints)
@@ -14,9 +14,7 @@ You can publish your own metrics to CloudWatch using the AWS CLI or an API\. You
 ## High\-Resolution Metrics<a name="high-resolution-metrics"></a>
 
 Each metric is one of the following:
-
 + Standard resolution, with data having a one\-minute granularity
-
 + High resolution, with data at a granularity of one second
 
 Metrics produced by AWS services are standard resolution by default\. When you publish a custom metric, you can define it as either standard resolution or high resolution\. When you publish a high\-resolution metric, CloudWatch stores it with a resolution of 1 second, and you can read and retrieve it with a period of 1 second, 5 seconds, 10 seconds, 30 seconds, or any multiple of 60 seconds\.
@@ -104,9 +102,7 @@ aws cloudwatch put-metric-data --metric-name PageViewCount --namespace MyService
 ```
 
 CloudWatch needs raw data points to calculate percentiles\. If you publish data using a statistic set instead, you cannot retrieve percentile statistics for this data unless one of the following conditions is true:
-
 + The SampleCount of the statistic set is 1\.
-
 + The Min and the Max of the statistic set are equal\.
 
 ## Publish the Value Zero<a name="publishingZero"></a>

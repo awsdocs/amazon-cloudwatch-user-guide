@@ -8,15 +8,10 @@ You can use AWS\-wide condition keys in your CloudWatch policies to express cond
 To specify an action, use the `cloudwatch:` prefix followed by the API operation name\. For example: `cloudwatch:GetMetricStatistics`, `cloudwatch:ListMetrics`, or `cloudwatch:*` \(for all CloudWatch actions\)\.
 
 **Tables**
-
 + [CloudWatch API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-permissions-table)
-
 + [CloudWatch Events API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cwe-permissions-table)
-
 + [CloudWatch Logs API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cwl-permissions-table)
-
 + [Amazon EC2 API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-ec2-permissions-table)
-
 + [Auto Scaling API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-as-permissions-table)
 
 

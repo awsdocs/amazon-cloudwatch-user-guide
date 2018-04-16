@@ -2,7 +2,7 @@
 
 After you have a CloudWatch agent configuration saved in Parameter Store, you can use it when you install the agent on other servers\.
 
-
+**Topics**
 + [Create an IAM Role for Systems Manager and the CloudWatch Agent](#install-CloudWatch-Agent-iam_permissions-fleet)
 + [Download the CloudWatch Agent Package on an Amazon EC2 Instance](#download-CloudWatch-Agent-on-EC2-Instance-fleet)
 + [\(Optional\) Modify the Common Configuration and Named Profile for CloudWatch Agent](#CloudWatch-Agent-profile-instance-fleet)
@@ -135,11 +135,9 @@ When you install the CloudWatch agent on an Amazon EC2 instance, you need to mod
 ```
 
 All lines are commented out initially\. To set the credential profile or proxy settings, remove the `#` from that line and specify a value\. You can edit this file manually, or by using the `RunShellScript` Run Command in Systems Manager:
-
 + **shared\_credential\_profile** To have the CloudWatch agent send metrics to CloudWatch in the same region where the instance is located, you don't need to modify this line if you have attached an IAM role with the proper permissions to the instance\. You also don't need to use the `aws configure` command to create a named profile for the agent\.
 
   Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS credentials and AWS config files\. If you do so, CloudWatch agent uses the credential and the region settings in that named profile\.
-
 + **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
 After modifying `common-config.toml`, if you need to specify credential and region information for CloudWatch agent, create a named profile for the CloudWatch agent in the AWS credentials and AWS config files\. When you create this profile, do so as the root or administrator\. Following is an example of this profile in the credentials file:
@@ -162,7 +160,6 @@ region=us-west-1
 Following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-
 + Type the following command and follow the prompts:
 
   ```
@@ -210,7 +207,6 @@ Follow these steps to start the agent using Systems Manager Run Command\.
 Follow these steps to use the command line to install the CloudWatch agent on an Amazon EC2 instance\.
 
 **To use the command line to start the CloudWatch agent on an Amazon EC2 instance**
-
 + On a Linux server, type the following if you saved the configuration file in the Systems Manager Parameter Store:
 
   ```

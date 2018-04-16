@@ -2,7 +2,7 @@
 
 The following sections outline how to complete some common configuration and customization tasks when using the CloudWatch agent\. 
 
-
+**Topics**
 + [Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-adding-custom-dimensions)
 + [Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-aggregating-metrics)
 + [Collecting High\-Resolution Metrics With the CloudWatch agent](#CloudWatch-Agent-collect-high-resolution-metrics)

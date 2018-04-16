@@ -12,11 +12,8 @@ If you create a dashboard with graphs that contain close to 100 or more high\-re
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
 1. Do one of the following:
-
    + Select one of the predefined ranges shown, which span from 1 hour to 1 week: 1h, 3h, 12h, 1d, 3d, or 1w\.
-
    + Choose **custom**, **Relative**\. Select one of the predefined ranges, which span from 1 minute to 15 months\.
-
    + Choose **custom**, **Absolute**\. Use the calendar picker or the text fields to specify the time range\.
 
 **Note**  

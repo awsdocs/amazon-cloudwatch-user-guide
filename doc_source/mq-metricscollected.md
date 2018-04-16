@@ -27,7 +27,7 @@ The `AWS/AmazonMQ` namespace includes the following metrics\.
 
 | Dimension | Description | 
 | --- | --- | 
-| Broker | The name of the broker\. | 
+| Broker |  The name of the broker\. A single\-instance broker has the suffix `-1`\. An active\-standby broker for high availability has the suffixes `-1` and `-2` for its redundant pair\.  | 
 
 ## Destination \(Queue and Topic\) Metrics<a name="destination-queue-topic-metrics"></a>
 
@@ -56,5 +56,5 @@ The following metrics record only values since CloudWatch polled the metrics las
 
 | Dimension | Description | 
 | --- | --- | 
-| Broker | The name of the broker\. | 
+| Broker |  The name of the broker\. A single\-instance broker has the suffix `-1`\. An active\-standby broker for high availability has the suffixes `-1` and `-2` for its redundant pair\.  | 
 | Topic or Queue | The name of the topic or queue\. | 

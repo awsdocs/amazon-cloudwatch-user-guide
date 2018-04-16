@@ -22,22 +22,17 @@ You can create alarms using the CloudWatch console or the Amazon EC2 console\. T
 
 **Permissions**  
 If you are using an AWS Identity and Access Management \(IAM\) account to create or modify an alarm, you must have the following permissions:
-
 + `iam:CreateServiceLinkedRole` for all alarms with Amazon EC2 actions
-
 + `ec2:DescribeInstanceStatus` and `ec2:DescribeInstances` — For all alarms on Amazon EC2 instance status metrics
-
 + `ec2:StopInstances` — For alarms with stop actions
-
 + `ec2:TerminateInstances` — For alarms with terminate actions
-
 + `ec2:DescribeInstanceRecoveryAttribute` and `ec2:RecoverInstances` — For alarms with recover actions
 
 If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the instance\. However, if you are later granted permission to use the associated Amazon EC2 API actions, the alarm actions you created earlier will be performed\. For more information, see [Permissions and Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
 
 If you want to use an IAM role to stop, terminate, or reboot an instance using an alarm action, you can only use the AWSServiceRoleForCloudWatchEvents role\. Other IAM roles are not supported\. However, you can still see the alarm state and perform any other actions such as Amazon SNS notifications or Amazon EC2 Auto Scaling policies\.
 
-
+**Topics**
 + [Adding Stop Actions to Amazon CloudWatch Alarms](#AddingStopActions)
 + [Adding Terminate Actions to Amazon CloudWatch Alarms](#AddingTerminateActions)
 + [Adding Reboot Actions to Amazon CloudWatch Alarms](#AddingRebootActions)
@@ -178,23 +173,15 @@ When the `StatusCheckFailed_System` alarm is triggered, and the recover action i
 The recover action can be used only with `StatusCheckFailed_System`, not with `StatusCheckFailed_Instance`\.
 
 Examples of problems that cause system status checks to fail include:
-
 + Loss of network connectivity
-
 + Loss of system power
-
 + Software issues on the physical host
-
 + Hardware issues on the physical host
 
 The recover action is only supported on:
-
 + The C3, C4, C5, M3, M4, R3, R4, T2, and X1 instance types
-
 + Instances in a VPC
-
 + Instances with shared tenancy \(the tenancy attribute is set to `default`\)
-
 + Instances that use Amazon EBS storage exclusively
 
 If your instance has a public IP address, it will retain the same public IP address after recovery\.

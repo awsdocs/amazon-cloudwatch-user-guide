@@ -4,7 +4,7 @@ Metrics are data about the performance of your systems\. By default, several ser
 
 Metric data is kept for a period of 15 months, enabling you to view both up\-to\-the\-minute data and historical data\.
 
-
+**Topics**
 + [View Available Metrics](viewing_metrics_with_cloudwatch.md)
 + [Search for Available Metrics](finding_metrics_with_cloudwatch.md)
 + [Get Statistics for a Metric](getting-metric-statistics.md)
