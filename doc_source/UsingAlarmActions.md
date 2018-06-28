@@ -14,9 +14,6 @@ To create the service\-linked role for CloudWatch Events, use the following comm
 aws iam create-service-linked-role --aws-service-name events.amazonaws.com
 ```
 
-**Note**  
-The AWSServiceRoleForCloudWatchEvents role is not needed for the recover action\.
-
 **Console Support**  
 You can create alarms using the CloudWatch console or the Amazon EC2 console\. The procedures in this documentation use the CloudWatch console\. For procedures that use the Amazon EC2 console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -179,7 +176,7 @@ Examples of problems that cause system status checks to fail include:
 + Hardware issues on the physical host that impact network reachability
 
 The recover action is only supported on:
-+ The C3, C4, C5, `i3.metal`, M3, M4, M5, R3, R4, T2, and X1 instance types
++ The C3, C4, C5, M3, M4, M5, R3, R4, T2, and X1 instance types
 + Instances in a VPC
 + Instances with `default` or `dedicated` instance tenancy
 + Instances that use Amazon EBS volumes only \(do not configure instance store volumes\)

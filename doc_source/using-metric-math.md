@@ -88,7 +88,7 @@ In the following table, every example in the **Examples** column is an expressio
 |  STDDEV |  TS TS\[\]  |  S TS  | The **STDDEV** of a single time series returns a scalar representing the standard deviation of all data points in the metric\. The **STDDEV** of an array of time series returns a single time series\.  |  m1/STDDEV\(m1\) STDDEV\(METRICS\(\)\)  | 
 |  SUM |  TS TS\[\]  |  S TS  | The **SUM** of a single time series returns a scalar representing the sum of the values of all data points in the metric\. The **SUM** of an array of time series returns a single time series\.  |  SUM\(METRICS\(\)\)/SUM\(m1\) SUM\(\[m1,m2\]\) SUM\(METRICS\("errors"\)\)/SUM\(METRICS\("requests"\)\)\*100  | 
 
-**\***Using only a function that returns a scalar number is not valid, as all final results of expressions must be a single time series\. Instead, use these functions as part of a larger expression that returns a time series\.
+**\***Using only a function that returns a scalar number is not valid, as all final results of expressions must be a single time series or an array of time series\. Instead, use these functions as part of a larger expression that returns a time series\.
 
 ## Using Metric Math with the GetMetricData API Operation<a name="using-metrics-expression-api"></a>
 

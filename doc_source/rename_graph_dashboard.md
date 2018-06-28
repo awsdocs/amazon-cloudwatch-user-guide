@@ -12,4 +12,4 @@ You can change the default name that CloudWatch assigns to a graph on your dashb
 
 1. On the **Edit graph** screen, near the top, choose the title of the graph\.
 
-1. For **Title**, type a new name, choose **Ok** \(check mark\), and then in the lower\-right corner of the **Edit graph** screen, choose **Update widget**\.
+1. For **Title**, type a new name and choose **Ok** \(check mark\)\. In the lower\-right corner of the **Edit graph** screen, choose **Update widget**\.

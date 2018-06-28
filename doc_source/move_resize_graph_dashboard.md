@@ -8,7 +8,7 @@ You can arrange and resize graphs on your CloudWatch dashboard\.
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Hover over the title of the graph until the selection icon appears, and then select and drag the graph to a new location on the dashboard\.
+1. Hover over the title of the graph until the selection icon appears\. Select and drag the graph to a new location on the dashboard\.
 
 1. Choose **Save dashboard**\.
 

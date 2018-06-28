@@ -330,6 +330,10 @@ The **logs** section includes the following fields:
   + **files** specifies which regular log files are to be collected by the CloudWatch agent\. It contains one field, **collect\_list**, which further defines these files\.
     + **collect\_list** – Required if **files** is included\. Contains an array of entries, each of which specifies one log file to collect\. Each of these entries can include the following fields:
       + **file\_path** – Specifies the path of the log file to upload to CloudWatch Logs\. Standard Unix glob matching rules are accepted, with the addition of `**` as a *super asterisk*\. For example, specifying `/var/log/**.log` causes all `.log` files in the `/var/log` directory tree to be collected\. For more examples, see [Glob Library](https://github.com/gobwas/glob)\.
+
+        The standard asterisk can also be used as a standard wildcard\. For example, `/var/log/system.log*` matches files such as `system.log_1111`, `system.log_2222` and so on in `/var/log`\.
+
+        Only the latest file is pushed to CloudWatch Logs based on file modification time\. We recommend that you use wildcards to specify a series of files of the same type, such as `access_log.2018-06-01-01` and `access_log.2018-06-01-02`, but not multiple kinds of files, such as `access_log_80` and `access_log_443`\. To specify multiple kinds of files, add another log stream entry to the agent configuration file so each kind of log file goes to a different log stream\.
       + **log\_group\_name** – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. Allowed characters include a\-z, A\-Z, 0\-9, '\_' \(underscore\), '\-' \(hyphen\), '/' \(forward slash\), and '\.' \(period\)\.
 
         We recommend that you specify this field to prevent confusion\. If you omit this field, the file path up to the final dot is used as the log group name\. For example, if the file path is `/tmp/TestLogFile.log.2017-07-11-14`, the log group name is `/tmp/TestLogFile.log`\. 

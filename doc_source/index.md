@@ -137,6 +137,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](UsingAlarmActions.md)
    + [Create a Billing Alarm to Monitor Your Estimated AWS Charges](monitor_estimated_charges_with_cloudwatch.md)
    + [Hide Auto Scaling Alarms](hide-autoscaling-alarms.md)
++ [Using CloudWatch with Interface VPC Endpoints](cloudwatch-and-interface-VPC.md)
 + [Authentication and Access Control for Amazon CloudWatch](auth-and-access-control-cw.md)
    + [CloudWatch Dashboard Permissions Update](dashboard-permissions-update.md)
    + [Overview of Managing Access Permissions to Your CloudWatch Resources](iam-access-control-overview-cw.md)
