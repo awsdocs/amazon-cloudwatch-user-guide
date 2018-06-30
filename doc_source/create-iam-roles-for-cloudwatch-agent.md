@@ -71,7 +71,7 @@ The second procedure creates the IAM user that you can use when creating the Clo
 
 1. Choose **Attach existing policies directly**\.
 
-1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. se the search box to find the policy, if necessary\.
+1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. Use the search box to find the policy, if necessary\.
 
 1. If you will use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you will start and configure the agent only through the command line\.
 
