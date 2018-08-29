@@ -34,6 +34,7 @@ CloudWatch namespaces are containers for metrics\. Metrics in different namespac
 |  Amazon EMR  |  `AWS/ElasticMapReduce`  | 
 |  Amazon GameLift  |  `AWS/GameLift`  | 
 |  Amazon Inspector |  `AWS/Inspector`  | 
+|  AWS Glue | `AWS/Glue`  | 
 |  AWS IoT  |  `AWS/IoT`  | 
 |  AWS Key Management Service  |  `AWS/KMS`  | 
 |  Amazon Kinesis Data Analytics  |  `AWS/KinesisAnalytics`  | 
