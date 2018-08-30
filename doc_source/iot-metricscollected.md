@@ -1,10 +1,10 @@
 # AWS IoT Metrics and Dimensions<a name="iot-metricscollected"></a>
 
-When you interact with AWS IoT, it sends the following metrics to CloudWatch every minute\.
+When you interact with AWS IoT, it sends the following metrics to CloudWatch every minute, in the `AWS/IoT` namespace\.
 
 ## AWS IoT Metrics<a name="aws-iot-metrics"></a>
 
-AWS IoT sends the following metrics to CloudWatch once per received request\.
+The `AWS/IoT` namespace includes the following metrics\. AWS IoT sends the following metrics to CloudWatch once per received request\.
 
 
 **IoT Metrics**  
@@ -95,6 +95,23 @@ The device shadow metrics are displayed in the AWS IoT console under **Protocol 
 |  RejectedJobExecutionCount  |  The number of job executions whose status has changed to `REJECTED` within a time period that is determined by CloudWatch\. \(For more information about CloudWatch metrics, see [Amazon CloudWatch Metrics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric)\.\) The `JobId` dimension contains the ID of the job\.  | 
 |  RemovedJobExecutionCount  |  The number of job executions whose status has changed to `REMOVED` within a time period that is determined by CloudWatch\. \(For more information about CloudWatch metrics, see [Amazon CloudWatch Metrics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric)\.\) The `JobId` dimension contains the ID of the job\.  | 
 
+
+**Device Defender Audit Metrics**  
+
+| Metric | Description | 
+| --- | --- | 
+|  NonCompliantResources  |  The number of resources that were found to be non\-compliant with a check\. The system will report the number of resources which were out of compliance for each check of each audit performed\.   | 
+|  ResourcesEvaluated  |  The number of resources that were evaluated for compliance\. The system will report the number of resources which were evaluated for each check of each audit performed\.   | 
+
+
+**Device Defender Detect Metrics**  
+
+| Metric | Description | 
+| --- | --- | 
+|  Violations   |  The number of new violations of security profile behaviors that have been found since the last time an evaluation was performed\. The system will report the number of new violations for the account, for a specific security profile, and for a specific behavior of a specific security profile\.   | 
+|  ViolationsCleared   |  The number of violations of security profile behaviors that have resolved since the last time an evaluation was performed\. The system will report the number of resolved violations for the account, for a specific security profile, and for a specific behavior of a specific security profile\.   | 
+|  ViolationsInvalidated   |  The number of violations of security profile behaviors for which information is no longer available since the last time an evaluation was performed \(because the reporting device stopped reporting, or is no longer being monitored for some reason\)\. The system will report the number of invalidated violations for the entire account, for a specific security profile, and for a specific behavior of a specific security profile\.   | 
+
 ## Dimensions for Metrics<a name="aws-iot-metricdimensions"></a>
 
 Metrics use the namespace and provide metrics for the following dimension\(s\):
@@ -106,3 +123,8 @@ Metrics use the namespace and provide metrics for the following dimension\(s\):
 |  Protocol  |  The protocol used to make the request\. Valid values are: MQTT or HTTP  | 
 |  RuleName  |  The name of the rule triggered by the request\.  | 
 |  JobId  |  The ID of the job whose progress or message connection success/failure is being monitored\.  | 
+|  TaskType  |  The type of Device Defender Audit whose check results are being monitored\. One of "SCHEDULED\_AUDIT\_TASK" or "ON\_DEMAND\_AUDIT\_TASK"\.  | 
+|  CheckName  |  The name of the Device Defender audit check whose results are being monitored\.  | 
+|  ScheduledAuditName  |  The name of the Device Defender scheduled audit whose check results are being monitored\. This will have the value "OnDemand" if the results reported are for an audit that was performed on\-demand\.  | 
+|  SecurityProfileName  |  The name of the Device Defender Detect security profile whose behaviors are being monitored\.  | 
+|  BehaviorName  |  The name of the Device Defender Detect security profile behavior which is being monitored\.  | 

@@ -15,6 +15,7 @@ CloudWatch namespaces are containers for metrics\. Metrics in different namespac
 |  Amazon CloudSearch  |  `AWS/CloudSearch`  | 
 |  Amazon CloudWatch Events  |  `AWS/Events`  | 
 |  Amazon CloudWatch Logs  |  `AWS/Logs`  | 
+|  AWS CodeBuild  |  `AWS/CodeBuild`  | 
 |  Amazon Connect  |  `AWS/Connect`  | 
 |  AWS Database Migration Service  |  `AWS/DMS`  | 
 |  AWS Direct Connect  |  `AWS/DX`  | 
@@ -33,9 +34,10 @@ CloudWatch namespaces are containers for metrics\. Metrics in different namespac
 |  Amazon Elasticsearch Service  |  `AWS/ES`  | 
 |  Amazon EMR  |  `AWS/ElasticMapReduce`  | 
 |  Amazon GameLift  |  `AWS/GameLift`  | 
+|  AWS Glue  |  `AWS/Glue`  | 
 |  Amazon Inspector |  `AWS/Inspector`  | 
-|  AWS Glue | `AWS/Glue`  | 
 |  AWS IoT  |  `AWS/IoT`  | 
+|  AWS IoT Analytics  |  `AWS/IoTAnalytics`  | 
 |  AWS Key Management Service  |  `AWS/KMS`  | 
 |  Amazon Kinesis Data Analytics  |  `AWS/KinesisAnalytics`  | 
 |  Amazon Kinesis Data Firehose  |  `AWS/Firehose`  | 
@@ -44,6 +46,7 @@ CloudWatch namespaces are containers for metrics\. Metrics in different namespac
 |  AWS Lambda  |  `AWS/Lambda`  | 
 |  Amazon Lex  |  `AWS/Lex`  | 
 |  Amazon Machine Learning  |  `AWS/ML`  | 
+|  Amazon MQ  |  `AWS/AmazonMQ`  | 
 |  AWS OpsWorks  |  `AWS/OpsWorks`  | 
 |  Amazon Polly  |  `AWS/Polly`  | 
 |  Amazon Redshift  |  `AWS/Redshift`  | 
@@ -59,6 +62,7 @@ CloudWatch namespaces are containers for metrics\. Metrics in different namespac
 |  AWS Step Functions  |  `AWS/States`  | 
 |  AWS Storage Gateway  |  `AWS/StorageGateway`  | 
 | Amazon Translate | `AWS/Translate` | 
+| AWS Trusted Advisor | `AWS/TrustedAdvisor` | 
 |  Amazon VPC  |  `AWS/NATGateway` \(NAT gateway\)  | 
 | Amazon VPC | `AWS/VPN` \(VPN\) | 
 |  AWS WAF  |  `WAF`  | 

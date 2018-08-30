@@ -12,6 +12,7 @@ For complete documentation of the Redis info command, go to [ http://redis\.io/c
 
 | Metric  | Description  | Unit  | 
 | --- | --- | --- | 
+| ActiveDefragHits | The number of value reallocations per minute performed by the active defragmentation process\. | Number | 
 | BytesUsedForCache | The total number of bytes allocated by Redis\. | Bytes | 
 | CacheHits | The number of successful key lookups\. | Count | 
 | CacheMisses | The number of unsuccessful key lookups\. | Count | 

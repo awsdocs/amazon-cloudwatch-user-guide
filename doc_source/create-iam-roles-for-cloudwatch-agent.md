@@ -95,7 +95,7 @@ The following procedure creates the IAM user that can also write to Parameter St
 
 1. Choose **Attach existing policies directly**\.
 
-1. In the list of policies, select the check box next to **CloudWatchAgentAdminPolicy**\. se the search box to find the policy, if necessary\.
+1. In the list of policies, select the check box next to **CloudWatchAgentAdminPolicy**\. Use the search box to find the policy, if necessary\.
 
 1. If you will use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you will start and configure the agent only through the command line\.
 

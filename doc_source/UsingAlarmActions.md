@@ -19,7 +19,7 @@ You can create alarms using the CloudWatch console or the Amazon EC2 console\. T
 
 **Permissions**  
 If you are using an AWS Identity and Access Management \(IAM\) account to create or modify an alarm, you must have the following permissions:
-+ `iam:CreateServiceLinkedRole` for all alarms with Amazon EC2 actions
++ `iam:CreateServiceLinkedRole`, `iam:GetPolicy`, `iam:GetPolicyVersion`, and `iam:GetRole` — For all alarms with Amazon EC2 actions
 + `ec2:DescribeInstanceStatus` and `ec2:DescribeInstances` — For all alarms on Amazon EC2 instance status metrics
 + `ec2:StopInstances` — For alarms with stop actions
 + `ec2:TerminateInstances` — For alarms with terminate actions

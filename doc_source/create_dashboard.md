@@ -15,7 +15,7 @@ For more information about creating a dashboard using the API, see [PutDashboard
 1. In the **Create new dashboard** dialog box, type a name for the dashboard and choose **Create dashboard**\.
 
 1. Do one of the following in the **Add to this dashboard** dialog box:
-   + To add a graph to your dashboard, choose **Line** or **Stacked area** and choose **Configure**\. In the **Add metric graph** dialog box, select the metrics to graph and choose **Create widget**\.
+   + To add a graph to your dashboard, choose **Line** or **Stacked area** and choose **Configure**\. In the **Add metric graph** dialog box, select the metrics to graph and choose **Create widget**\. If a specific metric does not appear in the dialog box because it has not published data in more than 14 days, you can add it manually\. For more information, see [Graph Metrics Manually on a CloudWatch Dashboard](add_old_metrics_to_graph.md)\.
    + To add a number displaying a metric to the dashboard, choose **Number**, **Configure**\. In the **Add metric graph** dialog box, select the metrics to graph and choose **Create widget**\.
    + To add a text block to your dashboard, choose **Text**, **Configure**\. In the **New text widget** dialog box, for **Markdown**, add and format your text using [Markdown](http://docs.aws.amazon.com/general/latest/gr/aws-markdown.html)\. Choose **Create widget**\.
 

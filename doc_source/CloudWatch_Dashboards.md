@@ -14,6 +14,7 @@ You can create dashboards by using the console, the AWS CLI, or by using the `Pu
 + [Add or Remove a Graph](add_remove_graph_dashboard.md)
 + [Move or Resize a Graph](move_resize_graph_dashboard.md)
 + [Edit a Graph](edit_graph_dashboard.md)
++ [Graph Metrics Manually on a CloudWatch Dashboard](add_old_metrics_to_graph.md)
 + [Rename a Graph](rename_graph_dashboard.md)
 + [Add or Remove a Text Widget](add_remove_text_dashboard.md)
 + [Add or Remove an Alarm](add_remove_alarm_dashboard.md)

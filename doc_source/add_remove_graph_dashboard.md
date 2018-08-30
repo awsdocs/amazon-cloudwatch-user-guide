@@ -12,7 +12,7 @@ You can add graphs containing one or more metrics to your dashboard for the reso
 
 1. Choose either **Line** or **Stacked area** and choose **Configure**\.
 
-1. In the **All metrics** tab, select the metrics to graph\.
+1. In the **All metrics** tab, select the metrics to graph\. If a specific metric does not appear in the dialog box because it has not published data in more than 14 days, you can add it manually\. For more information, see [Graph Metrics Manually on a CloudWatch Dashboard](add_old_metrics_to_graph.md)\.
 
 1. <a name="horizontal-annotations2"></a>\(Optional\) As you choose metrics to graph, you can change their color on the graph\. To do so, choose **Graphed metrics** and select the color square next to the metric to display a color picker box\. Choose another color square in the color picker\. Click outside the color picker to see your new color on the graph\. Alternatively, in the color picker, you can type the six\-digit standard HTML hex color code for the color you want and press ENTER\.
 

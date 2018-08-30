@@ -1,6 +1,12 @@
 # Document History<a name="DocumentHistory"></a>
 
-The following table describes the important changes to the Amazon CloudWatch User Guide\.
+The following table describes important changes in each release of the CloudWatch User Guide, beginning in June 2018\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
+
+| Change | Description | Date | 
+| --- |--- |--- |
+| Support for Amazon VPC endpoints | You can now establish a private connection between your VPC and CloudWatch\. For more information, see [Using CloudWatch with Interface VPC Endpoints](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-and-interface-VPC.html) in the *Amazon CloudWatch User Guide*\. | June 28, 2018 | 
+
+The following table describes important changes to the Amazon CloudWatch User Guide before June 2018\.
 
 
 | Change | Description | Release Date | 
@@ -40,7 +46,7 @@ The following table describes the important changes to the Amazon CloudWatch Use
 |  New feature: Amazon EC2 instance recovery alarm actions  |  Updated alarm actions to include new EC2 instance recovery action\. For more information, see [Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](UsingAlarmActions.md)\.   | 12 March 2015 | 
 |  Added Amazon CloudFront and Amazon CloudSearch metrics and dimensions  |  Added Amazon CloudFront and Amazon CloudSearch metrics and dimensions\. For more information, see [Amazon CloudFront Metrics and Dimensions](cf-metricscollected.md) and [Amazon CloudSearch Metrics and Dimensions](cs-metricscollected.md)\.   | 6 March 2015 | 
 |  Added Amazon Simple Workflow Service metrics and dimensions  |  Added Amazon Simple Workflow Service metrics and dimensions\. For more information, see [Amazon SWF Metrics and Dimensions](swf-metricscollected.md)\.   | 9 May 2014 | 
-|  Updated guide to add support for AWS CloudTrail  |  Added a new topic to explain how you can use AWS CloudTrail to log activity in Amazon CloudWatch\. For more information, see [Logging Amazon CloudWatch API Calls in AWS CloudTrail](logging_cw_api_calls.md)\.  | 30 April 2014 | 
+|  Updated guide to add support for AWS CloudTrail  |  Added a new topic to explain how you can use AWS CloudTrail to log activity in Amazon CloudWatch\. For more information, see [Logging Amazon CloudWatch API Calls with AWS CloudTrail](logging_cw_api_calls.md)\.  | 30 April 2014 | 
 |  Updated guide to use the new AWS Command Line Interface \(AWS CLI\)  |  The AWS CLI is a cross\-service CLI with a simplified installation, unified configuration, and consistent command line syntax\. The AWS CLI is supported on Linux/Unix, Windows, and Mac\. The CLI examples in this guide have been updated to use the new AWS CLI\. For information about how to install and configure the new AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.  | 21 February 2014 | 
 |  Added Amazon Redshift and AWS OpsWorks metrics and dimensions  |  Added Amazon Redshift and AWS OpsWorks metrics and dimensions\. For more information, see [Amazon Redshift Metrics and Dimensions](rs-metricscollected.md) and [AWS OpsWorks Metrics and Dimensions](ops-metricscollected.md)\.   | 16 July 2013 | 
 |  Added Amazon Route 53 metrics and dimensions  |  Added Amazon Route 53 metrics and dimensions\. For more information, see [Route 53 Metrics and Dimensions](r53-metricscollected_shared.md)\.   | 26 June 2013 | 

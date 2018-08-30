@@ -1,13 +1,13 @@
 # Creating Amazon CloudWatch Alarms<a name="AlarmThatSendsEmail"></a>
 
-You can create a CloudWatch alarm that watches a single metric\. The alarm performs one or more actions based on the value of the metric relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Auto Scaling action, or a notification sent to an Amazon SNS topic\. You can also add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
+You can create a CloudWatch alarm that watches a single metric\. The alarm performs one or more actions based on the value of the metric relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Amazon EC2 Auto Scaling action, or a notification sent to an Amazon SNS topic\. You can also add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
 
 Alarms invoke actions for sustained state changes only\. CloudWatch alarms do not invoke actions simply because they are in a particular state, the state must have changed and been maintained for a specified number of periods\. 
 
-After an alarm invokes an action due to a change in state, its subsequent behavior depends on the type of action that you have associated with the alarm\. For Auto Scaling actions, the alarm continues to invoke the action for every period that the alarm remains in the new state\. For Amazon SNS notifications, no additional actions are invoked\.
+After an alarm invokes an action due to a change in state, its subsequent behavior depends on the type of action that you have associated with the alarm\. For Amazon EC2 Auto Scaling actions, the alarm continues to invoke the action for every period that the alarm remains in the new state\. For Amazon SNS notifications, no additional actions are invoked\.
 
 **Note**  
-CloudWatch doesn't test or validate the actions that you specify, nor does it detect any Auto Scaling or Amazon SNS errors resulting from an attempt to invoke nonexistent actions\. Make sure that your actions exist\.
+CloudWatch doesn't test or validate the actions that you specify, nor does it detect any Amazon EC2 Auto Scaling or Amazon SNS errors resulting from an attempt to invoke nonexistent actions\. Make sure that your actions exist\.
 
 ## Alarm States<a name="alarm-states"></a>
 

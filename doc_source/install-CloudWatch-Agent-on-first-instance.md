@@ -215,25 +215,27 @@ Follow these steps to start the agent using Systems Manager Run Command\.
 Follow these steps to use the command line to install the CloudWatch agent on an Amazon EC2 instance\.
 
 **To use the command line to start the CloudWatch agent on an Amazon EC2 instance**
-+ On a Linux server, type the following if you saved the configuration file in the Systems Manager Parameter Store:
++ In this command, `-a fetch-config` causes the agent to load the latest version of the CloudWatch agent configuration file, and `-s` starts the agent\.
+
+  Linux: type the following if you saved the configuration file in the Systems Manager Parameter Store:
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
-  On a Linux server, type the following if you saved the configuration file on the local computer:
+  Linux: type the following if you saved the configuration file on the local computer:
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
   ```
 
-  On a server running Windows Server, type the following if you saved the configuration file in Systems Manager Parameter Store:
+  Windows Server: if you saved the agent configuration file in Systems Manager Parameter Store, use the following command\. From the Powershell console, type the following:
 
   ```
   amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
-  On a server running Windows Server, type the following if you saved the configuration file on the local computer:
+  Windows Server: if you saved the agent configuration file on the local computer, use the following command\. From the Powershell console, type the following:
 
   ```
   amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s

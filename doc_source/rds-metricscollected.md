@@ -1,6 +1,6 @@
 # Amazon RDS Metrics and Dimensions<a name="rds-metricscollected"></a>
 
-Amazon Relational Database Service sends metrics to CloudWatch for each active database instance every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring a DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Monitoring.html) in the *Amazon Relational Database Service User Guide*\.
+Amazon Relational Database Service sends metrics to CloudWatch for each active database instance every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring a DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Monitoring.html) in the *Amazon RDS User Guide*\.
 
 ## Amazon RDS Metrics<a name="rds-metrics"></a>
 
@@ -95,6 +95,17 @@ The `AWS/RDS` namespace includes the following metrics that apply to database en
 |  `WriteIOPS`  |  The average number of disk I/O operations per second\.  Aurora PostgreSQL reports read and write IOPS separately, on 1\-minute intervals\.  | Aurora PostgreSQL | 
 |  `WriteLatency`  |  The average amount of time taken per disk I/O operation\.  | Aurora PostgreSQL | 
 |  `WriteThroughput`  |  The average number of bytes written to disk per second\.  | Aurora PostgreSQL | 
+
+## Amazon RDS Performance Insights Metrics<a name="performance-insights-metrics"></a>
+
+The `AWS/RDS` namespace includes the following metrics that apply to database entities running Amazon RDS Performance Insights\.
+
+
+| Metric | Description | 
+| --- | --- | 
+|  `DBLoad`  |  The average number of active sessions for the DB engine\.  | 
+|  `DBLoadCPU`  |  The number of active sessions where the wait event type is CPU\.  | 
+|  `DBLoadNonCPU`  |  The number of active sessions where the wait event type is not CPU\.  | 
 
 ## Dimensions for RDS Metrics<a name="rds-metric-dimensions"></a>
 

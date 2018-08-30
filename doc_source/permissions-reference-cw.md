@@ -12,7 +12,7 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 + [CloudWatch Events API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cwe-permissions-table)
 + [CloudWatch Logs API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cwl-permissions-table)
 + [Amazon EC2 API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-ec2-permissions-table)
-+ [Auto Scaling API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-as-permissions-table)
++ [Amazon EC2 Auto Scaling API Operations and Required Permissions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-as-permissions-table)
 
 
 **CloudWatch API Operations and Required Permissions for Actions**  
@@ -98,9 +98,9 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [TerminateInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html)  |  `ec2:TerminateInstances` Required to terminate an EC2 instance\.  | 
 
 
-**Auto Scaling API Operations and Required Permissions for Actions**  
+**Amazon EC2 Auto Scaling API Operations and Required Permissions for Actions**  
 
-| Auto Scaling API Operations | Required Permissions \(API Actions\) | 
+| Amazon EC2 Auto Scaling API Operations | Required Permissions \(API Actions\) | 
 | --- | --- | 
 |  Scaling  |  `autoscaling:Scaling` Required to scale an Auto Scaling group\.  | 
 |  Trigger  |  `autoscaling:Trigger` Required to trigger an Auto Scaling action\.  | 

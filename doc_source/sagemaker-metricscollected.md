@@ -9,11 +9,12 @@ The `AWS/SageMaker` namespace includes the following request metrics\.
 
 | Metric | Description | 
 | --- | --- | 
-| ModelLatency |  The latency of the model's response, as viewed from Amazon SageMaker\. Units: Microseconds Valid statistics: Average, Sum, Min, Max, Sample Count  | 
 | Invocation4XXErrors |  The number of `InvokeEndpoint` requests where the model returned a 4xx HTTP response code\. For each 4xx response, 1 is sent; otherwise, 0 is sent\. Units: Count Valid statistics: Average, Sum  | 
 | Invocation5XXErrors |  The number of `InvokeEndpoint` requests where the model returned a 5xx HTTP response code\. For each 5xx response, 1 is sent; otherwise, 0 is sent\. Units: Count Valid statistics: Average, Sum  | 
 | Invocations |  The `number of InvokeEndpoint` requests sent to a model\.  To get the total number of requests to the endpoint variant, use the Sum statistic\. Units: Count Valid statistics: Sum, Sample Count  | 
 | InvocationsPerInstance | The number of invocations sent to a model, normalized by `InstanceCount` in each ProductionVariant\. 1/`numberOfInstances` is sent as the value on each request, where `numberOfInstances` is the number of active instances for the ProductionVariant behind the endpoint at the time of the request\.Units: CountValid statistics: Sum | 
+| ModelLatency |  The interval of time taken by a model to respond as viewed from \. This interval includes the local communication times taken to send the request and to fetch the response from container of a model and the time taken to complete the inference in the container\. Units: Microseconds Valid statistics: Average, Sum, Min, Max, Sample Count  | 
+| OverheadLatency |  The interval of time added to the time taken to respond to a client request by overheads\. This interval is measured from the time receives the request until it returns a response to the client, minus the `ModelLatency`\. Overhead latency can vary depending on multiple factors, including request and response payload sizes, request frequency, and authentication/authorization of the request\. Units: Microseconds Valid statistics: Average, Sum, Min, Max, Sample Count  | 
 
 **Dimensions for Invocation Metrics**
 

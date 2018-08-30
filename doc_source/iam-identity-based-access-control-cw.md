@@ -54,84 +54,84 @@ If you create an IAM policy that is more restrictive than the minimum required p
 You don't need to allow minimum console permissions for users that are making calls only to the AWS CLI or the CloudWatch API\.
 
 The full set of permissions required to work with the CloudWatch console are listed below:
-+ applicationautoscaling:describeScalingPolicies
-+ autoscaling:describeAutoScalingGroups
-+ autoscaling:describePolicies
-+ cloudtrail:describeTrails
-+ cloudwatch:deleteAlarms
-+ cloudwatch:describeAlarmHistory
-+ cloudwatch:describeAlarms
-+ cloudwatch:getMetricData
-+ cloudwatch:getMetricStatistics
-+ cloudwatch:listMetrics
-+ cloudwatch:putMetricAlarm
-+ cloudwatch:putMetricData
-+ ec2:describeInstances
-+ ec2:describeTags
-+ ec2:describeVolumes
-+ es:describeElasticsearchDomain
-+ es:listDomainNames
-+ events:deleteRule
-+ events:describeRule
-+ events:disableRule
-+ events:enableRule
-+ events:listRules
-+ events:putRule
-+ iam:attachRolePolicy
-+ iam:createRole
-+ iam:getPolicy
-+ iam:getPolicyVersion
-+ iam:getRole
-+ iam:listAttachedRolePolicies
-+ iam:listRoles
-+ kinesis:describeStreams
-+ kinesis:listStreams
-+ lambda:addPermission
-+ lambda:createFunction
-+ lambda:getFunctionConfiguration
-+ lambda:listAliases
-+ lambda:listFunctions
-+ lambda:listVersionsByFunction
-+ lambda:removePermission
-+ logs:cancelExportTask
-+ logs:createExportTask
-+ logs:createLogGroup
-+ logs:createLogStream
-+ logs:deleteLogGroup
-+ logs:deleteLogStream
-+ logs:deleteMetricFilter
-+ logs:deleteRetentionPolicy
-+ logs:deleteSubscriptionFilter
-+ logs:describeExportTasks
-+ logs:describeLogGroups
-+ logs:describeLogStreams
-+ logs:describeMetricFilters
-+ logs:describeSubscriptionFilters
-+ logs:filterLogEvents
-+ logs:getLogEvents
-+ logs:putMetricFilter
-+ logs:putRetentionPolicy
-+ logs:putSubscriptionFilter
-+ logs:testMetricFilter
-+ s3:createBucket
-+ s3:listBuckets
-+ sns:createTopic
-+ sns:getTopicAttributes
-+ sns:listSubscriptions
-+ sns:listTopics
-+ sns:setTopicAttributes
-+ sns:subscribe
-+ sns:unsubscribe
-+ sqs:getQueueAttributes
-+ sqs:getQueueUrl
-+ sqs:listQueues
-+ sqs:setQueueAttributes
-+ swf:createAction
-+ swf:describeAction
-+ swf:listActionTemplates
-+ swf:registerAction
-+ swf:registerDomain
-+ swf:updateAction
++ application\-autoscaling:DescribeScalingPolicies
++ autoscaling:DescribeAutoScalingGroups
++ autoscaling:DescribePolicies
++ cloudtrail:DescribeTrails
++ cloudwatch:DeleteAlarms
++ cloudwatch:DescribeAlarmHistory
++ cloudwatch:DescribeAlarms
++ cloudwatch:GetMetricData
++ cloudwatch:GetMetricStatistics
++ cloudwatch:ListMetrics
++ cloudwatch:PutMetricAlarm
++ cloudwatch:PutMetricData
++ ec2:DescribeInstances
++ ec2:DescribeTags
++ ec2:DescribeVolumes
++ es:DescribeElasticsearchDomain
++ es:ListDomainNames
++ events:DeleteRule
++ events:DescribeRule
++ events:DisableRule
++ events:EnableRule
++ events:ListRules
++ events:PutRule
++ iam:AttachRolePolicy
++ iam:CreateRole
++ iam:GetPolicy
++ iam:GetPolicyVersion
++ iam:GetRole
++ iam:ListAttachedRolePolicies
++ iam:ListRoles
++ kinesis:DescribeStream
++ kinesis:ListStreams
++ lambda:AddPermission
++ lambda:CreateFunction
++ lambda:GetFunctionConfiguration
++ lambda:ListAliases
++ lambda:ListFunctions
++ lambda:ListVersionsByFunction
++ lambda:RemovePermission
++ logs:CancelExportTask
++ logs:CreateExportTask
++ logs:CreateLogGroup
++ logs:CreateLogStream
++ logs:DeleteLogGroup
++ logs:DeleteLogStream
++ logs:DeleteMetricFilter
++ logs:DeleteRetentionPolicy
++ logs:DeleteSubscriptionFilter
++ logs:DescribeExportTasks
++ logs:DescribeLogGroups
++ logs:DescribeLogStreams
++ logs:DescribeMetricFilters
++ logs:DescribeSubscriptionFilters
++ logs:FilterLogEvents
++ logs:GetLogEvents
++ logs:PutMetricFilter
++ logs:PutRetentionPolicy
++ logs:PutSubscriptionFilter
++ logs:TestMetricFilter
++ s3:CreateBucket
++ s3:ListBucket
++ sns:CreateTopic
++ sns:GetTopicAttributes
++ sns:ListSubscriptions
++ sns:ListTopics
++ sns:SetTopicAttributes
++ sns:Subscribe
++ sns:Unsubscribe
++ sqs:GetQueueAttributes
++ sqs:GetQueueUrl
++ sqs:ListQueues
++ sqs:SetQueueAttributes
++ swf:CreateAction
++ swf:DescribeAction
++ swf:ListActionTemplates
++ swf:RegisterAction
++ swf:RegisterDomain
++ swf:UpdateAction
 
 ## AWS Managed \(Predefined\) Policies for CloudWatch<a name="managed-policies-cloudwatch"></a>
 
@@ -158,7 +158,7 @@ In this section, you can find example user policies that grant permissions for v
 
 ### Example 1: Allow User Full Access to CloudWatch<a name="full-access-example-cw"></a>
 
-The following policy allows a user to access all CloudWatch actions, CloudWatch Logs actions, Amazon SNS actions, and read\-only access to Auto Scaling\.
+The following policy allows a user to access all CloudWatch actions, CloudWatch Logs actions, Amazon SNS actions, and read\-only access to Amazon EC2 Auto Scaling\.
 
 ```
 {
@@ -180,7 +180,7 @@ The following policy allows a user to access all CloudWatch actions, CloudWatch 
 
 ### Example 2: Allow Read\-Only Access to CloudWatch<a name="read-only-access-example-cw"></a>
 
-The following policy allows a user read\-only access to CloudWatch and view Auto Scaling actions, CloudWatch metrics, CloudWatch Logs data, and alarm\-related Amazon SNS data\.
+The following policy allows a user read\-only access to CloudWatch and view Amazon EC2 Auto Scaling actions, CloudWatch metrics, CloudWatch Logs data, and alarm\-related Amazon SNS data\.
 
 ```
 {

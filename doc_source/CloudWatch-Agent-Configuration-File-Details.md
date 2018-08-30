@@ -342,45 +342,45 @@ The **logs** section includes the following fields:
         If you omit this field, the default of `{instance_id}` is used\. A log stream is created automatically if it does not already exist\.
       + **timezone** – Optional\. Specifies the time zone to use when putting time stamps on log events\. The valid values are `UTC` and `Local`\. The default is `Local`\.
       + **timestamp\_format** – Optional\. Specifies the time stamp format, using plain text and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the following as part of the format:   
-**%y**  
+`%y`  
 Year without century as a zero\-padded decimal number  
-**%Y**  
+`%Y`  
 Year with century as a decimal number  
-**%b**  
+`%b`  
 Month as the locale's abbreviated name  
-**%B**  
+`%B`  
 Month as the locale's full name  
-**%m**  
+`%m`  
 Month as a zero\-padded decimal number  
-**%\-m**  
+`%-m`  
 Month as a decimal number \(not zero\-padded\)  
-**%d**  
+`%d`  
 Day of the month as a zero\-padded decimal number  
-**%\-d**  
+`%-d`  
 Day of the month as a decimal number \(not zero\-padded\)  
-**%A**  
+`%A`  
 Full name of weekday, such as `Monday`  
-**%a**  
+`%a`  
 Abbreviation of weekday, such as `Mon`  
-**%H**  
+`%H`  
 Hour \(in a 24\-hour clock\) as a zero\-padded decimal number  
-**%l**  
+`%I`  
 Hour \(in a 12\-hour clock\) as a zero\-padded decimal number  
-**%\-l**  
+`%-I`  
 Hour \(in a 12\-hour clock\) as decimal number \(not zero\-padded\)  
-**%p**  
+`%p`  
 AM or PM  
-**%M**  
+`%M`  
 Minutes as a zero\-padded decimal number  
-**%\-M**  
+`%-M`  
 Minutes as a decimal number \(not zero\-padded\)  
-**%S**  
+`%S`  
 Seconds as a zero\-padded decimal number  
-**%\-S**  
+`%-S`  
 Seconds as a decimal number \(not zero padded\)  
-**%Z**  
+`%Z`  
 Time zone, for example `PST`  
-**%z**  
+`%z`  
 Time zone, expressed as the offset between the local time zone and UTC\. For example, `-0700`\. Only this format is supported\. For example, `-07:00` is not a valid format\.
       + **multi\_line\_start\_pattern** – Specifies the pattern for identifying the start of a log message\. A log message is made of a line that matches the pattern and any following lines that don't match the pattern\.
 
@@ -395,7 +395,7 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
 + The **windows\_events** section specifies the type of Windows events to collect from servers running Windows Server\. It includes the following fields:
   + **collect\_list** – Required if **windows\_events** is included\. Specifies the types and levels of Windows events to be collected\. Each log to be collected has an entry in this section, which can include the following fields:
     + **event\_name** – Specifies the type of Windows events to log\. For example, `System`, `Security`, `Application`, and so on\. This field is required for each type of Windows event to log\.
-    + **event\_levels** – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, and `SUCCESS`\. This field is required for each type of Windows event to log\.
+    + **event\_levels** – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, `CRITICAL`, and `VERBOSE`\. This field is required for each type of Windows event to log\.
     + **log\_group\_name** – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
     + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
 
@@ -429,7 +429,7 @@ The following is an example of a `logs` section:
                "event_name":"System",
                "event_levels":[
                   "INFORMATION",
-                  "SUCCESS"
+                  "ERROR"
                ],
                "log_group_name":"System",
                "log_stream_name":"System"
@@ -438,7 +438,7 @@ The following is an example of a `logs` section:
                "event_name":"Application",
                "event_levels":[
                   "INFORMATION",
-                  "SUCCESS"
+                  "ERROR"
                ],
                "log_group_name":"Application",
                "log_stream_name":"Application"
@@ -691,7 +691,7 @@ The following is an example of a complete agent configuration file for a server 
                 "event_name": "System",
                 "event_levels": [
                   "INFORMATION",
-                  "SUCCESS"
+                  "ERROR"
                 ],
                 "log_group_name": "System",
                 "log_stream_name": "System",

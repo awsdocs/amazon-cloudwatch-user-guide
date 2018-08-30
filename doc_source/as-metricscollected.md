@@ -1,10 +1,10 @@
-# Auto Scaling Metrics and Dimensions<a name="as-metricscollected"></a>
+# Amazon EC2 Auto Scaling Metrics and Dimensions<a name="as-metricscollected"></a>
 
-Auto Scaling sends metrics for instances and groups to CloudWatch\. For Auto Scaling instances, you can enable detailed \(one\-minute\) monitoring or basic \(five\-minute\) monitoring\. For Auto Scaling groups, you can enable group metrics\. For more information, see [Monitoring Your Auto Scaling Instances and Groups](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+Amazon EC2 Auto Scaling sends metrics for instances and groups to CloudWatch\. For Auto Scaling instances, you can enable detailed \(one\-minute\) monitoring or basic \(five\-minute\) monitoring\. For Auto Scaling groups, you can enable group metrics\. For more information, see [Monitoring Your Auto Scaling Instances and Groups](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 ## Auto Scaling Group Metrics<a name="as-group-metrics"></a>
 
-If you enable group metrics, Auto Scaling sends aggregated data to CloudWatch every minute\.
+If you enable group metrics, Amazon EC2 Auto Scaling sends aggregated data to CloudWatch every minute\.
 
 The `AWS/AutoScaling` namespace includes the following metrics\.
 

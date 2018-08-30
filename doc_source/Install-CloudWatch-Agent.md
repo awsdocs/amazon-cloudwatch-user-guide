@@ -17,9 +17,10 @@ The steps in this section explain how to install the unified CloudWatch agent on
 
 The CloudWatch agent is supported on the following operating systems:
 + Amazon Linux version 2014\.03\.02 or later
++ Amazon Linux 2
 + Ubuntu Server version 16\.04 and 14\.04
 + CentOS version 7\.0 and 6\.5
-+ Red Hat Enterprise Linux \(RHEL\) version 7\.4, 7\.0, and 6\.5
++ Red Hat Enterprise Linux \(RHEL\) version 7\.5, 7\.4, 7\.0, and 6\.5
 + Debian 8\.0
 + SUSE Linux Enterprise Server \(SLES\) 12 or later
 + 64\-bit versions of Windows Server 2016, Windows Server 2012, and Windows Server 2008\. 

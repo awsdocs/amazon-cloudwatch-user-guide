@@ -55,37 +55,51 @@ The `GameLift` namespace includes the following metrics related to activity acro
 
 | Metric | Description | 
 | --- | --- | 
-| `AverageWaitTime` | Average amount of time that game session placement requests in the queue with status PENDING have been waiting to be fulfilled\. Units: Seconds Relevant CloudWatch statistics: Average, Minimum, Maximum | 
-| `PlacementsCanceled` |  Game session placement requests that were canceled before timing out since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum | 
-| `PlacementsStarted` |  New game session placement requests that were added to the queue since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum | 
-| `PlacementsSucceeded` | Game session placement requests that resulted in a new game session since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum | 
-| `PlacementsTimedOut` |  Game session placement requests that reached the queue's timeout limit without being fulfilled since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum | 
-| `QueueDepth` | Number of game session placement requests in the queue with status PENDING\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum | 
+| `AverageWaitTime` | Average amount of time that game session placement requests in the queue with status PENDING have been waiting to be fulfilled\. Units: Seconds Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| FirstChoiceNotViable | Game sessions that were successfully placed but NOT in the first\-choice fleet, because that fleet was considered not viable \(such as a spot fleet with a high interruption rate\)\. The first\-choice fleet is either the first fleet listed in the queue or—when a placement request includes player latency data—it is the first fleet chosen by [ prioritization](http://docs.aws.amazon.com/gamelift/latest/developerguide/queues-design.html#queues-design-fleetiq)\.Units: CountRelevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| FirstChoiceOutOfCapacity | Game sessions that were successfully placed but NOT in the first\-choice fleet, because that fleet had no available resources\. The first\-choice fleet is either the first fleet listed in the queue or—when a placement request includes player latency data —it is the first fleet chosen by [ prioritization](http://docs.aws.amazon.com/gamelift/latest/developerguide/queues-design.html#queues-design-fleetiq)\.Units: CountRelevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| LowestLatencyPlacement | Game sessions that were successfully placed in a region that offers the queue's lowest possible latency for the players\. This metric is emitted only when player latency data is included in the placement request, which triggers [ prioritization](http://docs.aws.amazon.com/gamelift/latest/developerguide/queues-design.html#queues-design-fleetiq)\. Units: CountRelevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| LowestPricePlacement | Game sessions that were successfully placed in a fleet with the queue's lowest possible price for the chosen region\. \([ prioritization](http://docs.aws.amazon.com/gamelift/latest/developerguide/queues-design.html#queues-design-fleetiq) first chooses the region with the lowest latency for the players and then finds the lowest cost fleet within that region\.\) This fleet can be either a spot fleet or an on\-demand instance if the queue has no spot instances\. This metric is emitted only when player latency data is included in the placement request\. Units: CountRelevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| Placement <region name> | Game sessions that are successfully placed in fleets located in the specified region\. This metric breaks down the PlacementsSucceeded metric by region\.Units: CountRelevant CloudWatch statistics: Sum | 
+| `PlacementsCanceled` | Game session placement requests that were canceled before timing out since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| PlacementsFailed |  Game session placement requests that failed for any reason since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum  | 
+| `PlacementsStarted` |  New game session placement requests that were added to the queue since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| `PlacementsSucceeded` | Game session placement requests that resulted in a new game session since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| `PlacementsTimedOut` |  Game session placement requests that reached the queue's timeout limit without being fulfilled since the last report\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
+| `QueueDepth` | Number of game session placement requests in the queue with status PENDING\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
 
 ## Amazon GameLift Metrics for Matchmaking<a name="gamelift-metrics-match"></a>
 
-The `GameLift` namespace includes the following metrics related to matchmaking activity\. The Amazon GameLift service sends metrics to CloudWatch every minute\.
+The `GameLift` namespace includes metrics on matchmaking activity for matchmaking configurations and matchmaking rules\. The Amazon GameLift service sends metrics to CloudWatch every minute\.
 
 For more information on the sequence of matchmaking activity, see [How Amazon GameLift FlexMatch Works](http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-match-howitworks.html)\.
+
+### Matchmaking Configurations<a name="gamelift-metrics-match-configs"></a>
 
 
 | Metric | Description | 
 | --- | --- | 
-| `CurrentTickets` | Matchmaking requests currently being processed or waiting to be processed\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum | 
+| `CurrentTickets` | Matchmaking requests currently being processed or waiting to be processed\. Units: Count Relevant CloudWatch statistics: Average, Minimum, Maximum, Sum | 
 | `MatchAcceptancesTimedOut` | For matchmaking configurations that require acceptance, the potential matches that timed out during acceptance since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `MatchesAccepted` | For matchmaking configurations that require acceptance, the potential matches that were accepted since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `MatchesCreated` | Potential matches that were created since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `MatchesPlaced` | Matches that were successfully placed into a game session since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `MatchesRejected` | For matchmaking configurations that require acceptance, the potential matches that were rejected by at least one player since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `PlayersStarted` | Players in matchmaking tickets that were added since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
-| `RuleEvaluationsPassed` | Rule evaluations during the matchmaking process that passed since the last report\. This metric is limited to the top 50 rules\.Units: CountRelevant CloudWatch statistics: Sum | 
-| `RuleEvaluationsFailed` | Rule evaluations during matchmaking that failed since the last report\. This metric is limited to the top 50 rules\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `TicketsFailed` |  Matchmaking requests that resulted in failure since the last report\.  Units: Count Relevant CloudWatch statistics: Sum  | 
 | `TicketsStarted` |  New matchmaking requests that were created since the last report\. Units: Count Relevant CloudWatch statistics: Sum  | 
 | `TicketsTimedOut` | Matchmaking requests that reached the timeout limit since the last report\. Units: Count Relevant CloudWatch statistics: Sum | 
 | `TimeToMatch` | For matchmaking requests that were put into a potential match before the last report, the amount of time between ticket creation and potential match creation\. Units: Seconds Relevant CloudWatch statistics: Data Samples, Average, Minimum, Maximum, p99 | 
 | `TimeToTicketCancel` |  For matchmaking requests that were canceled before the last report, the amount of time between ticket creation and cancellation\. Units: Seconds Relevant CloudWatch statistics: Data Samples, Average, Minimum, Maximum, p99 | 
 | `TimeToTicketSuccess` | For matchmaking requests that succeeded before the last report, the amount of time between ticket creation and successful match placement\. Units: Seconds Relevant CloudWatch statistics: Data Samples, Average, Minimum, Maximum, p99 | 
+
+### Matchmaking Rules<a name="gamelift-metrics-match-rules"></a>
+
+
+| Metric | Description | 
+| --- | --- | 
+| `RuleEvaluationsPassed` | Rule evaluations during the matchmaking process that passed since the last report\. This metric is limited to the top 50 rules\.Units: CountRelevant CloudWatch statistics: Sum | 
+| `RuleEvaluationsFailed` | Rule evaluations during matchmaking that failed since the last report\. This metric is limited to the top 50 rules\. Units: Count Relevant CloudWatch statistics: Sum | 
 
 ## Dimensions for Amazon GameLift Metrics<a name="billing-metricdimensions-fleet"></a>
 
@@ -95,7 +109,7 @@ Amazon GameLift supports filtering metrics by the following dimensions\.
 | Dimension | Description | 
 | --- | --- | 
 |  `FleetId`  |  Unique identifier for a single fleet\. This dimension is used with all metrics for instances, server processes, game sessions, and player sessions\. It is not used with metrics for queues and matchmaking\.  | 
-|  `FleetMetricsGroup`  |  Unique identifier for a collection of fleets\. A fleet is included in a fleet metric group by adding the metric group name to the fleet's attributes \(see [UpdateFleetAttributes\(\)](http://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetAttributes.html)\)\. This dimension is used with all metrics for instances, server processes, game sessions, and player sessions\. It is not used with metrics for queues and matchmaking\.  | 
+|  `MetricGroup`  |  Unique identifier for a collection of fleets\. A fleet is included in a fleet metric group by adding the metric group name to the fleet's attributes \(see [UpdateFleetAttributes\(\)](http://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetAttributes.html)\)\. This dimension is used with all metrics for instances, server processes, game sessions, and player sessions\. It is not used with metrics for queues and matchmaking\.  | 
 |  `QueueName`  |  Unique identifier for a single queue\. This dimension is used with metrics for game session placement queues only\.   | 
 |  `MatchmakingConfigurationName`  |  Unique identifier for a single matchmaking configuration\. This dimension is used with metrics for matchmaking only\.   | 
 |  `MatchmakingConfigurationName-RuleName`  |  Unique identifier for the intersect of a matchmaking configuration and a matchmaking rule\. This dimension is used with metrics for matchmaking only\.   | 

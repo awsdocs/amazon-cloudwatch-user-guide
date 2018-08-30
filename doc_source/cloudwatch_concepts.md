@@ -143,7 +143,7 @@ Percentiles are often used to isolate anomalies\. In a typical distribution, 95 
 
 You can monitor your system and applications using percentiles as you would use the other CloudWatch statistics \(Average, Minimum, Maximum, and Sum\)\. For example, when you create an alarm, you can use percentiles as the statistical function\. You can specify the percentile with up to two decimal places \(for example, p95\.45\)\.
 
-Percentile statistics are not available for metrics when any of the metric values are negative numbers\.
+Percentile statistics are available for custom metrics as well as metrics from AWS services, as long as you publish the raw, unsummarized data points for your custom metric\. Percentile statistics are not available for metrics when any of the metric values are negative numbers\.
 
 CloudWatch needs raw data points to calculate percentiles\. If you publish data using a statistic set instead, you can only retrieve percentile statistics for this data when one of the following conditions is true:
 + The SampleCount of the statistic set is 1\.
