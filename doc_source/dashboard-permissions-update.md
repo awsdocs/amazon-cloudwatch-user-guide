@@ -16,8 +16,8 @@ To retain access to CloudWatch dashboards, you need one of the following:
   + `cloudwatch:PutDashboard` to be able to create or modify dashboards
   + `cloudwatch:DeleteDashboards` to be able to delete dashboards
 
-For more information for changing permissions for an IAM user using policies, see [Changing Permissions for an IAM User](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
+For more information for changing permissions for an IAM user using policies, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
 
 For more information about CloudWatch permissions, see [Amazon CloudWatch Permissions Reference](permissions-reference-cw.md)\.
 
-For more information about dashboard API operations, see [PutDashboard](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutDashboard.html) in the Amazon CloudWatch API Reference\.
+For more information about dashboard API operations, see [PutDashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutDashboard.html) in the Amazon CloudWatch API Reference\.

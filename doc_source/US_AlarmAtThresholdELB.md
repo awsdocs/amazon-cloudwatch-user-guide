@@ -44,13 +44,13 @@ Use these steps to use the AWS CLI to create a load balancer latency alarm\.
 
 1. Set up an SNS topic\. For more information, see [Set Up Amazon SNS Notifications](US_SetupSNS.md)\.
 
-1. Create the alarm using the [put\-metric\-alarm](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command as follows:
+1. Create the alarm using the [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command as follows:
 
    ```
    1. aws cloudwatch put-metric-alarm --alarm-name lb-mon --alarm-description "Alarm when Latency exceeds 100s" --metric-name Latency --namespace AWS/ELB --statistic Average --period 60 --threshold 100 --comparison-operator GreaterThanThreshold --dimensions Name=LoadBalancerName,Value=my-server --evaluation-periods 3 --alarm-actions arn:aws:sns:us-east-1:111122223333:my-topic --unit Seconds
    ```
 
-1. Test the alarm by forcing an alarm state change using the [set\-alarm\-state](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command\.
+1. Test the alarm by forcing an alarm state change using the [set\-alarm\-state](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command\.
 
    1. Change the alarm state from `INSUFFICIENT_DATA` to `OK`: 
 

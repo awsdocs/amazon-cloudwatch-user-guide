@@ -20,7 +20,7 @@ This example shows you how to get the total bytes written to disk for one Auto S
 1. To change the period, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
 **To get DiskWriteBytes for the instances in an Auto Scaling group using the AWS CLI**  
-Use the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows:
+Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows:
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name DiskWriteBytes  

@@ -1,6 +1,6 @@
 # AWS Step Functions Metrics and Dimensions<a name="sfn-metricscollected"></a>
 
-The following metrics are available for AWS Step Functions\. For more information, see [Monitoring Step Functions Using CloudWatch](http://docs.aws.amazon.com/step-functions/latest/dg/procedure-cw-metrics.html) in the *AWS Step Functions Developer Guide*\.
+The following metrics are available for AWS Step Functions\. For more information, see [Monitoring Step Functions Using CloudWatch](https://docs.aws.amazon.com/step-functions/latest/dg/procedure-cw-metrics.html) in the *AWS Step Functions Developer Guide*\.
 
 ## Execution Metrics<a name="cloudwatch-step-functions-execution-metrics"></a>
 
@@ -10,7 +10,7 @@ The `AWS/States` namespace includes the following metrics for Step Functions exe
 | Metric | Description | 
 | --- | --- | 
 | ExecutionTime | The interval, in milliseconds, between the time the execution starts and the time it closes\. | 
-| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Limits Related to State Throttling](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-api-state-throttling) in the AWS Step Functions Developer Guide\. | 
+| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Limits Related to State Throttling](https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-api-state-throttling) in the AWS Step Functions Developer Guide\. | 
 | ExecutionsAborted | The number of aborted or terminated executions\. | 
 | ExecutionsFailed | The number of failed executions\. | 
 | ExecutionsStarted | The number of started executions\. | 

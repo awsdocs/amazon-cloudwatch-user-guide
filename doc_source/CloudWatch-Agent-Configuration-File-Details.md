@@ -1,18 +1,18 @@
 # Manually Create or Edit the CloudWatch Agent Configuration File<a name="CloudWatch-Agent-Configuration-File-Details"></a>
 
 The CloudWatch agent configuration file is a JSON file with three sections: agent, metrics, and logs\.
-+ The **agent** section includes fields for overall configuration of the agent\. If you use the wizard, it does not create an `agent` section\. 
++ The **agent** section includes fields for the overall configuration of the agent\. If you use the wizard, it does not create an `agent` section\. 
 + The **metrics** section specifies the custom metrics for collection and publishing to CloudWatch\. If you are using the agent only to collect logs, you can omit the metrics section from the file\.
 + The **logs** section specifies what log files are published to CloudWatch Logs\. This can include events from the Windows Event Log, if the server runs Windows Server\.
 
 The following sections explain the structure and fields of this JSON file\. You can also view the schema definition for this configuration file\. The schema definition is located at `installation-directory/doc/amazon-cloudwatch-agent-schema.json` on Linux servers, and at `installation-directory/amazon-cloudwatch-agent-schema.json` on servers running Windows Server\.
 
-If you create or edit the JSON file manually, you can give it any name\. For simplicity in troubleshooting, we suggest you name it `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json` on Linux server and `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent.json` on servers running Windows Server\.
+If you create or edit the JSON file manually, you can give it any name\. For simplicity in troubleshooting, we recommend that you name it `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json` on a Linux server and `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent.json` on servers running Windows Server\.
 
 ## CloudWatch Agent Configuration File: Agent Section<a name="CloudWatch-Agent-Configuration-File-Agentsection"></a>
 
 The **agent** section can include the fields listed below\. The wizard does not create an `agent` section\. Instead, the wizard omits it and uses the default values for all fields in this section\.
-+ **metrics\_collection\_interval** – Optional\. Specifies how often all metrics specified in this configuration file are to be collected\. This value can be overriden for specific types of metrics\.
++ **metrics\_collection\_interval** – Optional\. Specifies how often all metrics specified in this configuration file are to be collected\. This value can be overridden for specific types of metrics\.
 
   This is specified in seconds\. For example, specifying 10 sets metrics to be collected every 10 seconds, and setting it to 300 specifies metrics to be collected every 5 minutes\.
 
@@ -22,6 +22,8 @@ The **agent** section can include the fields listed below\. The wizard does not 
 + **region** – Specifies the region to use for the CloudWatch endpoint, when an Amazon EC2 instance is being monitored\. The metrics collected are sent to this region, such as `us-west-1`\. If you omit this field, the agent sends metrics to the region where the Amazon EC2 instance is located\.
 
   If you are monitoring an on\-premises server, this field is not used, and the agent reads the region from the `awscloudwatchagent` profile of the AWS configuration file\.
++ **credentials** – Specifies an IAM role to use when sending metrics and logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
+  + **role\_arn** – Specifies the ARN of an IAM role to use for authentication when sending metrics and logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different AWS Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\.
 + **debug** – Optional\. Specifies running the CloudWatch agent with debug log messages\. The default is `false`\. 
 + **logfile** – Specifies the location where the CloudWatch agent writes log messages\. If you specify an empty string, the log goes to stderr\. If you don't specify this option, the default locations are the following:
   + Linux: `/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log`
@@ -43,32 +45,37 @@ The following is an example of an `agent` section:
 ## CloudWatch Agent Configuration File: Metrics Section<a name="CloudWatch-Agent-Configuration-File-Metricssection"></a>
 
 On servers running either Linux or Windows Server, the **metrics** section includes the following fields:
-+ **namespace** – Optional\. The namespace to use for the metrics collected by the agent\. The default is `CWAgent`\. 
++ **namespace** – Optional\. The namespace to use for the metrics collected by the agent\. The default is `CWAgent`\. The maximum length is 255 characters\.
 + **append\_dimensions** – Optional\. Adds Amazon EC2 metric dimensions to all metrics collected by the agent\. For each dimension, you must specify a key\-value pair, where the key matches an Amazon EC2 dimension: `ImageID:image-id`, `InstanceId:instance-id`, `InstanceType:instance-type`, or `AutoScalingGroupName:AutoScaling-group-name`\. 
 
-  If you specify a value that depends on Amazon EC2 metadata, and you use proxies, you must make sure that the server can access the endpoint for Amazon EC2\. For more information about these endpoints, see [Amazon Elastic Compute Cloud \(Amazon EC2\)](http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
+  If you specify a value that depends on Amazon EC2 metadata, and you use proxies, you must make sure that the server can access the endpoint for Amazon EC2\. For more information about these endpoints, see [Amazon Elastic Compute Cloud \(Amazon EC2\)](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
 + **aggregation\_dimensions** – Specifies the dimensions on which collected metrics are to be aggregated\. For example, if you roll up metrics on the `AutoScalingGroupName` dimension, the metrics from all instances in each Auto Scaling group are aggregated and can be viewed as a whole\.
 
-  You can roll up metrics along single or multiple dimensions\. For example, specifying `[["InstanceId"], ["InstanceType"], ["InstanceId","InstanceType"]]` aggregates metrics for Instance ID singly, Instance Type singly, and for the combination of the two dimensions\.
+  You can roll up metrics along single or multiple dimensions\. For example, specifying `[["InstanceId"], ["InstanceType"], ["InstanceId","InstanceType"]]` aggregates metrics for instance ID singly, instance type singly, and for the combination of the two dimensions\.
 
   You can also specify `[]` to roll up all metrics into one collection, disregarding all dimensions\.
-+ **metrics\_collected** – Required\. Specifies which metrics are to be collected\. This section includes several subsections\. 
++ **metrics\_collected** – Required\. Specifies which metrics are to be collected, including custom metrics collected through StatsD or collectd\. This section includes several subsections\. 
 
   The contents of the `metrics_collected` section depend on whether this configuration file is for a server running Linux or Windows Server\.
++ **credentials** – Specifies an IAM role to use when sending metrics to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
+  + **role\_arn** – Specifies the ARN of an IAM role to use for authentication when sending metrics to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different AWS Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\. If specified here, this overrides the `role_arn` specified in the `agent` section of the configuration file, if any\.
 
 ### Linux<a name="CloudWatch-Agent-Linux-section"></a>
 
 On servers running Linux, the **metrics\_collected** section of the configuration file can also contain the following fields:
++ **collectd** – Optional\. Specifies that you want to retrieve custom metrics using the collectd protocol\. You use collectd software to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)\. 
 + **cpu** – Optional\. Specifies that cpu metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
   + **resources** – Optional\. Specifies that per\-cpu metrics are to be collected\. The only allowed value is `*`\. If you include this field and value, per\-cpu metrics are collected\. 
   + **totalcpu** – Optional\. Specifies whether to report cpu metrics aggregated across all cpu cores\. The default is true\.
+
+    If you use the wizard to create your configuration file, the wizard sets this option to false\.
   + **measurement** – Specifies the array of cpu metrics to be collected\. Possible values are `time_active`, `time_guest`, `time_guest_nice`, `time_idle`, `time_iowait`, `time_irq`, `time_nice`, `time_softirq`, `time_steal`, `time_system`, `time_user`, `usage_active`, `usage_guest`, `usage_guest_nice`, `usage_idle`, `usage_iowait`, `usage_irq`, `usage_nice`, `usage_softirq`, `usage_steal`, `usage_system`, and `usage_user`\. This field is required if you include `cpu`\.
 
     By default, the unit for `cpu_usage_*` metrics is `Percent`, and `cpu_time_*` metrics do not have a unit\.
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the cpu metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\. For example, specifying 10 sets metrics to be collected every 10 seconds, and setting it to 300 specifies metrics to be collected every 5 minutes\.
@@ -83,14 +90,14 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **ignore\_file\_system\_types** – Specifies file system types to exclude when collecting disk metrics\. Valid values include `sysfs`, `devtmpfs`, and so on\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the disk metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\.
 
-    If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information about high\-resolution metrics, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
-  + **append\_dimensions** – Optional\. Additional dimensions to use for only the disk metrics\. If you specify this field, it is used in addition to dimensions specified in the `append_dimensions` field that is used for all types of metrics collected by the agent
+    If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
+  + **append\_dimensions** – Optional\. Additional dimensions to use for only the disk metrics\. If you specify this field, it is used in addition to dimensions specified in the `append_dimensions` field that is used for all types of metrics collected by the agent\.
 + **diskio** – Optional\. Specifies that diskio metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as two fields:
   + **resources** – Optional\. If you specify an array of devices, CloudWatch collects metrics from only those devices\. Otherwise, metrics for all devices are collected\. You can also specify \* as the value to collect metrics from all devices\.
   + **measurement** – Specifies the array of diskio metrics to be collected\. Possible values are `reads`, `writes`, `read_bytes`, `write_bytes`, `read_time`, `write_time`, `io_time`, and `iops_in_progress`\. This field is required if you include `diskio`\.
@@ -99,7 +106,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the diskio metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\.
@@ -113,13 +120,13 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the swap metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\. 
 
     If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information about high\-resolution metrics, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
-  + **append\_dimensions** Optional\. Additional dimensions to use for only the swap metrics\. If you specify this field, it is used in addition to dimensions specified in the global `append_dimensions` field that is used for all types of metrics collected by the agent\. is collected as a high\-resolution metric\. 
+  + **append\_dimensions** Optional\. Additional dimensions to use for only the swap metrics\. If you specify this field, it is used in addition to dimensions specified in the global `append_dimensions` field that is used for all types of metrics collected by the agent\. It is collected as a high\-resolution metric\. 
 + **mem** – Optional\. Specifies that memory metrics are to be collected\. This section is valid only for Linux instances\. This section can include one field:
   + **measurement** – Specifies the array of swap metrics to be collected\. Possible values are `active`, `available`, `available_percent`, `buffered`, `cached`, `free`, `inactive`, `total`, `used`, and `used_percent`\. This field is required if you include `mem`\.
 
@@ -127,7 +134,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the mem metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\.
@@ -142,7 +149,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the net metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\. For example, specifying 10 sets metrics to be collected every 10 seconds, and setting it to 300 specifies metrics to be collected every 5 minutes\.
@@ -156,7 +163,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the netstat metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\.
@@ -170,19 +177,21 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.
-    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+    + **unit** – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the processes metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This is specified in seconds\. For example, specifying 10 sets metrics to be collected every 10 seconds, and setting it to 300 specifies metrics to be collected every 5 minutes\.
 
     If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
   + **append\_dimensions** – Optional\. Additional dimensions to use for only the process metrics\. If you specify this field, it is used in addition to dimensions specified in the `append_dimensions` field that is used for all types of metrics collected by the agent\.
++ **statsd** – Optional\. Specifies that you want to retrieve custom metrics using the StatsD protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard StatsD client to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\. 
 
-The following is an example of a `metrics` section for a Linux server:
+The following is an example of a `metrics` section for a Linux server\. In this example, three CPU metrics, three netstat metrics, and three process metrics are collected, and the agent is set up to receive additional metrics from a collectd client\.
 
 ```
   "metrics": {
     "metrics_collected": {
+      "collectd": {},
       "cpu": {
         "resources": [
           "*"
@@ -241,13 +250,16 @@ Within each object section, you can also specify the following optional fields:
 
 Within each counter section, you can also specify the following optional fields:
 + **rename** – Specifies a different name to be used in CloudWatch for this metric\.
-+ **unit** – Specifies the unit to use for this metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
++ **unit** – Specifies the unit to use for this metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
 
-The following is an example `metrics` section for use on Windows Server:
+To retrieve custom metrics using StatsD, you include a **StatsD** subsection in **metrics\_collected**\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard StatsD client to send the metrics to the CloudWatch agent\.
+
+The following is an example `metrics` section for use on Windows Server\. In this example, many Windows metrics are collected, and the computer is also set to receive additional metrics from a StatsD client\.
 
 ```
 "metrics": {
     "metrics_collected": {
+      "statsd": {},
       "Processor": {
         "measurement": [
           {"name": "% Idle Time", "rename": "CPU_IDLE", "unit": "Percent"},
@@ -331,7 +343,7 @@ The **logs** section includes the following fields:
     + **collect\_list** – Required if **files** is included\. Contains an array of entries, each of which specifies one log file to collect\. Each of these entries can include the following fields:
       + **file\_path** – Specifies the path of the log file to upload to CloudWatch Logs\. Standard Unix glob matching rules are accepted, with the addition of `**` as a *super asterisk*\. For example, specifying `/var/log/**.log` causes all `.log` files in the `/var/log` directory tree to be collected\. For more examples, see [Glob Library](https://github.com/gobwas/glob)\.
 
-        The standard asterisk can also be used as a standard wildcard\. For example, `/var/log/system.log*` matches files such as `system.log_1111`, `system.log_2222` and so on in `/var/log`\.
+        The standard asterisk can also be used as a standard wildcard\. For example, `/var/log/system.log*` matches files such as `system.log_1111`, `system.log_2222`, and so on in `/var/log`\.
 
         Only the latest file is pushed to CloudWatch Logs based on file modification time\. We recommend that you use wildcards to specify a series of files of the same type, such as `access_log.2018-06-01-01` and `access_log.2018-06-01-02`, but not multiple kinds of files, such as `access_log_80` and `access_log_443`\. To specify multiple kinds of files, add another log stream entry to the agent configuration file so each kind of log file goes to a different log stream\.
       + **log\_group\_name** – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. Allowed characters include a\-z, A\-Z, 0\-9, '\_' \(underscore\), '\-' \(hyphen\), '/' \(forward slash\), and '\.' \(period\)\.
@@ -341,7 +353,7 @@ The **logs** section includes the following fields:
 
         If you omit this field, the default of `{instance_id}` is used\. A log stream is created automatically if it does not already exist\.
       + **timezone** – Optional\. Specifies the time zone to use when putting time stamps on log events\. The valid values are `UTC` and `Local`\. The default is `Local`\.
-      + **timestamp\_format** – Optional\. Specifies the time stamp format, using plain text and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the following as part of the format:   
+      + **timestamp\_format** – Optional\. Specifies the time stamp format, using plaintext and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the following as part of the format:   
 `%y`  
 Year without century as a zero\-padded decimal number  
 `%Y`  
@@ -367,7 +379,7 @@ Hour \(in a 24\-hour clock\) as a zero\-padded decimal number
 `%I`  
 Hour \(in a 12\-hour clock\) as a zero\-padded decimal number  
 `%-I`  
-Hour \(in a 12\-hour clock\) as decimal number \(not zero\-padded\)  
+Hour \(in a 12\-hour clock\) as a decimal number \(not zero\-padded\)  
 `%p`  
 AM or PM  
 `%M`  
@@ -387,7 +399,7 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
         If you omit this field, multi\-line mode is disabled, and any line that begins with a non\-whitespace character closes the previous log message and starts a new log message\.
 
         If you include this field, you can specify `{timestamp_format}` to use the same regular expression as your time stamp format\. Otherwise, you can specify a different regular expression for CloudWatch Logs to use to determine the start lines of multi\-line entries\.
-      + **encoding** – Specified the encoding of the log file so that it can be read correctly\. If you specify an incorrect coding, there might be data loss because characters than cannot be decoded are replaced with other characters\.
+      + **encoding** – Specified the encoding of the log file so that it can be read correctly\. If you specify an incorrect coding, there might be data loss because characters that cannot be decoded are replaced with other characters\.
 
         The default is utf\-8\. Below are all possible values:
 
@@ -399,9 +411,11 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
     + **log\_group\_name** – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
     + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
 
-      If you omit this field, the default of `{instance_id}` is used\. A log stream is created automatically if it does not already exist\.
-    + **event\_format** – Optional\. Specifies the format to use when storing Windows events in CloudWatch Logs\. `xml` uses the XML format as in Windows Event Viewer\. `text` uses legacy CloudWatch Logs agent format\.
+      If you omit this field, the default of `{instance_id}` is used\. If a log stream does not already exist, it is created automatically \.
+    + **event\_format** – Optional\. Specifies the format to use when storing Windows events in CloudWatch Logs\. `xml` uses the XML format as in Windows Event Viewer\. `text` uses the legacy CloudWatch Logs agent format\.
 + **log\_stream\_name** – Required\. Specifies the default log stream name to be used for any logs or Windows events that do not have individual log stream names defined in their entry in **collect\_list**\.
++ **credentials** – Specifies an IAM role to use when sending logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
+  + **role\_arn** – Specifies the ARN of an IAM role to use for authentication when sending logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different AWS Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\. If specified here, this overrides the `role_arn` specified in the `agent` section of the configuration file, if any\.
 
 The following is an example of a `logs` section:
 

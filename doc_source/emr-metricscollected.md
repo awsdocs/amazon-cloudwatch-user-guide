@@ -1,6 +1,6 @@
 # Amazon EMR Metrics and Dimensions<a name="emr-metricscollected"></a>
 
-Amazon EMR \(Amazon EMR\) sends metrics to CloudWatch\. All Amazon EMR job flows automatically send metrics in five\-minute intervals\. Metrics are archived for 15 months; after that period, the data is discarded\. For more information, see [Monitor Metrics with Amazon CloudWatch](http://docs.aws.amazon.com/emr/latest/DeveloperGuide/UsingEMR_ViewingMetrics.html) in the *Amazon EMR Developer Guide*\.
+Amazon EMR \(Amazon EMR\) sends metrics to CloudWatch\. All Amazon EMR job flows automatically send metrics in five\-minute intervals\. Metrics are archived for 15 months; after that period, the data is discarded\. For more information, see [Monitor Metrics with Amazon CloudWatch](https://docs.aws.amazon.com/emr/latest/DeveloperGuide/UsingEMR_ViewingMetrics.html) in the *Amazon EMR Developer Guide*\.
 
 ## Amazon EMR Metrics<a name="emr-metricsdata"></a>
 

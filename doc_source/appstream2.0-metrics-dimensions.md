@@ -1,6 +1,6 @@
 # AppStream 2\.0 Metrics and Dimensions<a name="appstream2.0-metrics-dimensions"></a>
 
-The metrics and dimensions that AppStream 2\.0 sends to Amazon CloudWatch are listed below\. For more information, see [Monitor Amazon AppStream 2\.0 With Amazon CloudWatch](http://docs.aws.amazon.com/appstream2/latest/developerguide/monitoring.html) in the *Amazon AppStream 2\.0 Developer Guide*\.
+The metrics and dimensions that AppStream 2\.0 sends to Amazon CloudWatch are listed below\. For more information, see [Monitor Amazon AppStream 2\.0 With Amazon CloudWatch](https://docs.aws.amazon.com/appstream2/latest/developerguide/monitoring.html) in the *Amazon AppStream 2\.0 Developer Guide*\.
 
 ## Amazon AppStream 2\.0 Metrics<a name="appstream-metrics"></a>
 

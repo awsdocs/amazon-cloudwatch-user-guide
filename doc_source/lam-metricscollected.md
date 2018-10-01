@@ -1,6 +1,6 @@
 # AWS Lambda Metrics and Dimensions<a name="lam-metricscollected"></a>
 
-AWS Lambda sends metrics to CloudWatch every minute\. For more information, see [Troubleshooting and Monitoring AWS Lambda Functions with Amazon CloudWatch](http://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html) in the *AWS Lambda Developer Guide*\.
+AWS Lambda sends metrics to CloudWatch every minute\. For more information, see [Troubleshooting and Monitoring AWS Lambda Functions with Amazon CloudWatch](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html) in the *AWS Lambda Developer Guide*\.
 
 ## AWS Lambda CloudWatch Metrics<a name="lambda-cloudwatch-metrics"></a>
 

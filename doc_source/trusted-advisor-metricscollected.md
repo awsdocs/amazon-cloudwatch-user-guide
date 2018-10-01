@@ -1,6 +1,6 @@
 # AWS Trusted Advisor Metrics and Dimensions<a name="trusted-advisor-metricscollected"></a>
 
-Trusted Advisor sends metrics to CloudWatch\. For more information, see [Creating Trusted Advisor Metrics in CloudWatch](http://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-metrics-ta.html) in the *AWS Support User Guide*\.
+Trusted Advisor sends metrics to CloudWatch\. For more information, see [Creating Trusted Advisor Metrics in CloudWatch](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-metrics-ta.html) in the *AWS Support User Guide*\.
 
 The `AWS/TrustedAdvisor` namespace includes the following metrics\.
 

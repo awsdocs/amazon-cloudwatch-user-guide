@@ -28,7 +28,7 @@ Only the AWS services that you're using send metrics to Amazon CloudWatch\.
 ![\[View the metrics for Amazon EC2\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_view_metrics.png)
 
 **To view available metrics by namespace, dimension, or metric using the AWS CLI**  
-Use the [list\-metrics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list CloudWatch metrics\. For a list of all service namespaces, see [AWS Namespaces](aws-namespaces.md)\. For lists of the metrics and dimensions for each service, see [Amazon CloudWatch Metrics and Dimensions Reference](CW_Support_For_AWS.md)\.
+Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list CloudWatch metrics\. For a list of all service namespaces, see [AWS Namespaces](aws-namespaces.md)\. For lists of the metrics and dimensions for each service, see [Amazon CloudWatch Metrics and Dimensions Reference](CW_Support_For_AWS.md)\.
 
 The following example specifies the `AWS/EC2` namespace to view all the metrics for Amazon EC2:
 

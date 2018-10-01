@@ -2,7 +2,7 @@
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) sends metrics to CloudWatch for your EC2 instances\. Basic \(five\-minute\) monitoring is enabled by default\. You can enable detailed \(one\-minute\) monitoring\. For information about additional metrics for Amazon EC2 instances that are in an Auto Scaling group, see [Amazon EC2 Auto Scaling Metrics and Dimensions](as-metricscollected.md)\.
 
-For more information about how to monitor Amazon EC2, see [Monitoring Your Instances with CloudWatch](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+For more information about how to monitor Amazon EC2, see [Monitoring Your Instances with CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 ## Metric Collection and Calculation on C5 and M5 Instances<a name="ec2-metrics-nitro-differences"></a>
 
@@ -55,7 +55,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | `NetworkPacketsIn` |  The number of packets received on all network interfaces by the instance\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 | `NetworkPacketsOut` |  The number of packets sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 
-The `AWS/EC2` namespace includes the following status checks metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
+The `AWS/EC2` namespace includes the following status checks metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
 
 
 | Metric | Description | 

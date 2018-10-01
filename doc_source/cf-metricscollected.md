@@ -1,6 +1,6 @@
 # Amazon CloudFront Metrics and Dimensions<a name="cf-metricscollected"></a>
 
-Amazon CloudFront sends metrics to Amazon CloudWatch for web distributions\. Metrics and dimensions are not available for RTMP distributions\. For more information, see [Monitoring CloudFront Activity Using CloudWatch](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html) in the *Amazon CloudFront Developer Guide*\.
+Amazon CloudFront sends metrics to Amazon CloudWatch for web distributions\. Metrics and dimensions are not available for RTMP distributions\. For more information, see [Monitoring CloudFront Activity Using CloudWatch](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html) in the *Amazon CloudFront Developer Guide*\.
 
 ## Amazon CloudFront Metrics<a name="cloudfront-metrics"></a>
 

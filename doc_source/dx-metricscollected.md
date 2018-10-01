@@ -1,6 +1,6 @@
 # AWS Direct Connect Metrics and Dimensions<a name="dx-metricscollected"></a>
 
-By default, CloudWatch provides AWS Direct Connect metric data in 5\-minute intervals\. You can optionally view data in 1\-minute intervals\. For more information, see [Monitoring with CloudWatch](http://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html) in the *AWS Direct Connect User Guide*\.
+By default, CloudWatch provides AWS Direct Connect metric data in 5\-minute intervals\. You can optionally view data in 1\-minute intervals\. For more information, see [Monitoring with CloudWatch](https://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html) in the *AWS Direct Connect User Guide*\.
 
 ## AWS Direct Connect Metrics<a name="dx-metrics"></a>
 

@@ -62,6 +62,8 @@ You can edit a graph to change the title, statistic, or period, or to add or rem
 
 1. To hide or change the position of the graph legend, hover over the title of the graph and choose **Widget actions**, **Edit**\. Hover over **Legend** and choose **Hidden**, **Bottom**, or **Right**\.
 
+1. To customize the Y\-axis, choose **Graph options**\. You can type a custom label in **Label** under **Left Y Axis**\. If the graph also displays values on the right Y\-axis, you can customize that label as well\. You can also set minimums and maximums on the Y\-axis values, and the graph displays only the value range you specify\.
+
 1. When you're finished with your changes, choose **Update widget**\.
 
 **To temporarily hide metrics for a graph on a dashboard**

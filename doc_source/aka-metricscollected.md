@@ -1,6 +1,6 @@
 # Amazon Kinesis Data Analytics Metrics<a name="aka-metricscollected"></a>
 
-Kinesis Data Analytics sends metrics to CloudWatch\. For more information, see [Monitoring with Amazon CloudWatch Metrics](http://docs.aws.amazon.com/kinesisanalytics/latest/dev/monitoring-with-cloudwatch-metrics.html) in the *Amazon Kinesis Data Analytics Developer Guide*\.
+Kinesis Data Analytics sends metrics to CloudWatch\. For more information, see [Monitoring with Amazon CloudWatch Metrics](https://docs.aws.amazon.com/kinesisanalytics/latest/dev/monitoring-with-cloudwatch-metrics.html) in the *Amazon Kinesis Data Analytics Developer Guide*\.
 
 ## Metrics<a name="kinesis-analytics-metrics"></a>
 

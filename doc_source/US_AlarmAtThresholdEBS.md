@@ -46,7 +46,7 @@ Use these steps to use the AWS CLI to create an alarm based on Amazon EBS throug
    1. aws cloudwatch put-metric-alarm --alarm-name ebs-mon --alarm-description "Alarm when EBS volume exceeds 100MB throughput" --metric-name VolumeReadBytes --namespace AWS/EBS --statistic Average --period 300 --threshold 100000000 --comparison-operator GreaterThanThreshold --dimensions Name=VolumeId,Value=my-volume-id --evaluation-periods 3 --alarm-actions arn:aws:sns:us-east-1:111122223333:my-alarm-topic --insufficient-data-actions arn:aws:sns:us-east-1:111122223333:my-insufficient-data-topic
    ```
 
-1. Test the alarm by forcing an alarm state change using the [set\-alarm\-state](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command\.
+1. Test the alarm by forcing an alarm state change using the [set\-alarm\-state](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command\.
 
    1. Change the alarm state from `INSUFFICIENT_DATA` to `OK`:
 

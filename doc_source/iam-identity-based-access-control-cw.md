@@ -29,7 +29,7 @@ The following shows an example of a permissions policy\.
 14. }
 ```
 
-This sample policy has one statement that grants permissions to a group for two CloudWatch actions \(`cloudwatch:GetMetricStatisticsdata`, and `cloudwatch:ListMetrics`\), but only if the group uses SSL with the request \(`"aws:SecureTransport":"true"`\)\. For more information about the elements within an IAM policy statement, see [Specifying Policy Elements: Actions, Effects, and Principals](iam-access-control-overview-cw.md#actions-effects-principals-cw) and [IAM Policy Elements Reference](http://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html) in *IAM User Guide*\.
+This sample policy has one statement that grants permissions to a group for two CloudWatch actions \(`cloudwatch:GetMetricStatisticsdata`, and `cloudwatch:ListMetrics`\), but only if the group uses SSL with the request \(`"aws:SecureTransport":"true"`\)\. For more information about the elements within an IAM policy statement, see [Specifying Policy Elements: Actions, Effects, and Principals](iam-access-control-overview-cw.md#actions-effects-principals-cw) and [IAM Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html) in *IAM User Guide*\.
 
 ## Permissions Required to Use the CloudWatch Console<a name="console-permissions-cw"></a>
 
@@ -135,7 +135,7 @@ The full set of permissions required to work with the CloudWatch console are lis
 
 ## AWS Managed \(Predefined\) Policies for CloudWatch<a name="managed-policies-cloudwatch"></a>
 
-AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
+AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
 
 The following AWS managed policies, which you can attach to users in your account, are specific to CloudWatch:
 + **CloudWatchFullAccess** – Grants full access to CloudWatch\.

@@ -1,6 +1,6 @@
 # Amazon WorkSpaces Metrics and Dimensions<a name="wsp-metricscollected"></a>
 
-Amazon WorkSpaces sends data points to CloudWatch for several metrics every five minutes \(five\-minute metrics\)\. Detailed monitoring, or one\-minute metrics, is currently unavailable for Amazon WorkSpaces\. For more information, see [Monitoring Amazon WorkSpaces](http://docs.aws.amazon.com/workspaces/latest/adminguide/monitoring.html) in the *Amazon WorkSpaces Administration Guide*\.
+Amazon WorkSpaces sends data points to CloudWatch for several metrics every five minutes \(five\-minute metrics\)\. Detailed monitoring, or one\-minute metrics, is currently unavailable for Amazon WorkSpaces\. For more information, see [Monitoring Amazon WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/monitoring.html) in the *Amazon WorkSpaces Administration Guide*\.
 
 ## Amazon WorkSpaces Metrics<a name="wsp-metrics"></a>
 

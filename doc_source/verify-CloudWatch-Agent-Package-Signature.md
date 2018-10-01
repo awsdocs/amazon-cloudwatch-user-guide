@@ -38,7 +38,7 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
 
    After you have verified the fingerprint, you can use it to verify the signature of the CloudWatch agent package\.
 
-1. Download the package signature file\.
+1. Download the package signature file using wget\. To determine the correct signature file, see [CloudWatch Agent Download Links](install-CloudWatch-Agent-on-onprem.md#agent-download-link-table)\.
 
    ```
    wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.sig
@@ -99,11 +99,7 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
 
    After you have verified the fingerprint, you can use it to verify the signature of the CloudWatch agent package\.
 
-1. Download the package signature file\.
-
-   ```
-   wget https://s3.amazonaws.com/amazoncloudwatch-agent/windows/amd64/latest/AmazonCloudWatchAgent.sig
-   ```
+1. Download the package signature file using wget\. To determine the correct signature file, see [CloudWatch Agent Download Links](install-CloudWatch-Agent-on-onprem.md#agent-download-link-table)\.
 
 1. To verify the signature, run `gpg --verify`\.
 

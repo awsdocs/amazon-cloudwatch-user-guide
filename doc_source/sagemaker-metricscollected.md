@@ -1,6 +1,6 @@
 # Amazon SageMaker Metrics and Dimensions<a name="sagemaker-metricscollected"></a>
 
-Amazon SageMaker sends metrics to CloudWatch\. For more information, see [Monitoring Amazon SageMaker with Amazon CloudWatch](http://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html) in the *Amazon SageMaker Developer Guide*\.
+Amazon SageMaker sends metrics to CloudWatch\. For more information, see [Monitoring Amazon SageMaker with Amazon CloudWatch](https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html) in the *Amazon SageMaker Developer Guide*\.
 
 **Invocation Metrics**
 

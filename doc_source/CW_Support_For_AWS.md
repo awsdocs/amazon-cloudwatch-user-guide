@@ -49,6 +49,7 @@ This reference includes all the namespaces, dimensions, and metrics that you can
 + [Amazon RDS](rds-metricscollected.md)
 + [Route 53](r53-metricscollected_shared.md)
 + [Amazon SageMaker](sagemaker-metricscollected.md)
++ [AWS Service Catalog](service-catalog-metricscollected.md)
 + [Amazon SES](ses-metricscollected.md)
 + [Amazon SNS](sns-metricscollected.md)
 + [Amazon SQS](sqs-metricscollected.md)

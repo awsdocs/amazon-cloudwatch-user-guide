@@ -92,4 +92,4 @@ In the following table, every example in the **Examples** column is an expressio
 
 ## Using Metric Math with the GetMetricData API Operation<a name="using-metrics-expression-api"></a>
 
-You can use **GetMetricData** to perform calculations using math expressions, as well as to retrieve large batches of metric data in one API call\. For more information, see [GetMetricData](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)\.
+You can use **GetMetricData** to perform calculations using math expressions, as well as to retrieve large batches of metric data in one API call\. For more information, see [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)\.

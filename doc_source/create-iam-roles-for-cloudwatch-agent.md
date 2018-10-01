@@ -7,13 +7,13 @@ One role and one user enable CloudWatch agent to be installed on a server and se
 The ability to write to Parameter Store is a broad and powerful permission, and should be used only when you need it, and should not be attached to multiple instances in your deployment\. If you are going to store your CloudWatch agent configuration in Parameter Store, you should set up one instance where you perform this configuration, and use the IAM role with permissions to write to Parameter Store only on this instance, and only while you are working with and saving the CloudWatch agent configuration file\.
 
 **Note**  
-We recently modified the following procedures by using new **CloudWatchAgentServerPolicy** and **CloudWatchAgentAdminPolicy** policies created by Amazon, instead of requiring customers to create these policies themselves\. For writing files to and downloading files from the Parameter Store, the policies created by Amazon support only files with names that start with "AmazonCloudWatch\-" If you have a CloudWatch agent configuration file with a filename that does not start with `AmazonCloudWatch-`, these policies cannot be used to write the file to Parameter Store or download it from Parameter Store\.
+We recently modified the following procedures by using new **CloudWatchAgentServerPolicy** and **CloudWatchAgentAdminPolicy** policies created by Amazon, instead of requiring customers to create these policies themselves\. For writing files to and downloading files from the Parameter Store, the policies created by Amazon support only files with names that start with "AmazonCloudWatch\-"\. If you have a CloudWatch agent configuration file with a filename that does not start with `AmazonCloudWatch-`, these policies cannot be used to write the file to Parameter Store or download it from Parameter Store\.
 
 ## Create IAM Roles to Use with CloudWatch Agent on Amazon EC2 Instances<a name="create-iam-roles-for-cloudwatch-agent-roles"></a>
 
-The first procedure creates the IAM role that you need to attach to each Amazon EC2 instance that runs the CloudWatch agent\. This role provides permissions for reading information from the instance and writing it to CloudWatch\.
+The first procedure creates the IAM role that you must attach to each Amazon EC2 instance that runs the CloudWatch agent\. This role provides permissions for reading information from the instance and writing it to CloudWatch\.
 
-The second procedure creates the IAM role that you need to attach to the Amazon EC2 instance being used to create the CloudWatch agent configuration file, if you are going to store this file in Systems Manager Parameter Store so that other servers can use it\. This role provides permissions for writing to Parameter Store, in addition to the permissions for reading information from the instance and writing it to CloudWatch\. This role includes permissions sufficient to run the CloudWatch agent as well as to write to Parameter Store\.
+The second procedure creates the IAM role that you must attach to the Amazon EC2 instance being used to create the CloudWatch agent configuration file, if you are going to store this file in Systems Manager Parameter Store so that other servers can use it\. This role provides permissions for writing to Parameter Store, in addition to the permissions for reading information from the instance and writing it to CloudWatch\. This role includes permissions sufficient to run the CloudWatch agent as well as to write to Parameter Store\.
 
 **To create the IAM role necessary for each server to run CloudWatch agent**
 
@@ -25,9 +25,9 @@ The second procedure creates the IAM role that you need to attach to the Amazon 
 
 1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. Use the search box to find the policy, if necessary\. 
 
-1. If you will use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you will start and configure the agent only through the command line\.
+1. To use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you start and configure the agent only through the command line\.
 
-1. Choose **Next: Review**
+1. Choose **Next: Review**\.
 
 1. Confirm that **CloudWatchAgentServerPolicy** and optionally **AmazonEC2RoleforSSM** appear next to **Policies**\. In **Role name**, type a name for the role, such as CloudWatchAgentServerRole\. Optionally give it a description, and choose **Create role**\.
 
@@ -45,9 +45,9 @@ The following procedure creates the IAM role that can also write to Parameter St
 
 1. In the list of policies, select the check box next to **CloudWatchAgentAdminPolicy**\. Use the search box to find the policy, if necessary\. 
 
-1. If you will use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you will start and configure the agent only through the command line\.
+1. To use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you start and configure the agent only through the command line\.
 
-1. Choose **Next: Review**
+1. Choose **Next: Review**\.
 
 1. Confirm that **CloudWatchAgentAdminPolicy** and optionally **AmazonEC2RoleforSSM** appear next to **Policies**\. In **Role name**, type a name for the role, such as CloudWatchAgentAdminRole\. Optionally give it a description, and choose **Create role**\.
 
@@ -73,7 +73,7 @@ The second procedure creates the IAM user that you can use when creating the Clo
 
 1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. Use the search box to find the policy, if necessary\.
 
-1. If you will use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you will start and configure the agent only through the command line\.
+1. To use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you start and configure the agent only through the command line\.
 
 1. Choose **Next: Review**\.
 
@@ -97,7 +97,7 @@ The following procedure creates the IAM user that can also write to Parameter St
 
 1. In the list of policies, select the check box next to **CloudWatchAgentAdminPolicy**\. Use the search box to find the policy, if necessary\.
 
-1. If you will use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you will start and configure the agent only through the command line\.
+1. To use SSM to install or configure the CloudWatch agent, select the check box next to **AmazonEC2RoleforSSM**\. Use the search box to find the policy, if necessary\. This policy is not necessary if you start and configure the agent only through the command line\.
 
 1. Choose **Next: Review**\.
 

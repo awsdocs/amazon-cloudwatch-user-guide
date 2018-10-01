@@ -1,6 +1,6 @@
 # AWS Elastic Beanstalk Metrics and Dimensions<a name="aeb-metricscollected"></a>
 
-AWS Elastic Beanstalk sends metrics to Amazon CloudWatch\. For more information, see [Publishing Amazon CloudWatch Custom Metrics for an Environment](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-cloudwatch.html) in the *AWS Elastic Beanstalk Developer Guide*\.
+AWS Elastic Beanstalk sends metrics to Amazon CloudWatch\. For more information, see [Publishing Amazon CloudWatch Custom Metrics for an Environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-cloudwatch.html) in the *AWS Elastic Beanstalk Developer Guide*\.
 
 ## Elastic Beanstalk Metrics<a name="beanstalk-metrics"></a>
 

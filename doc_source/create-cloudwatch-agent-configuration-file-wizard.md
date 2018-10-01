@@ -5,9 +5,10 @@ The agent configuration file wizard, `amazon-cloudwatch-agent-config-wizard`, as
 + Is the server running Linux or Windows Server?
 + Do you want the agent to also send log files to CloudWatch Logs? If so, do you have an existing CloudWatch Logs agent configuration file? If yes, the CloudWatch agent can use this file to determine the logs to collect from the server\.
 + If you are going to collect metrics from the server, do you want to monitor one of the default sets of metrics, or customize the list of metrics that you collect?
++ Do you want to collect custom metrics from your applications or services, using StatsD or collectd?
 + Are you migrating from an existing SSM Agent?
 
-The wizard can autodetect the credentials and AWS region to use, if you have the AWS credentials and configuration files in place before you start the wizard\. For more information about these files, see [ Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) in the *AWS Systems Manager User Guide*\.
+The wizard can autodetect the credentials and AWS Region to use, if you have the AWS credentials and configuration files in place before you start the wizard\. For more information about these files, see [ Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) in the *AWS Systems Manager User Guide*\.
 
 The wizard looks for an `AmazonCloudWatchAgent` section such as this in the credentials file:
 
@@ -19,7 +20,7 @@ aws_secret_access_key=my_access_key
 
 If this section exists, the wizard uses these credentials for the CloudWatch agent\.
 
-For `my_access_key` and `my_secret_key`, use the keys from the IAM user that has the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for CloudWatch agent, see [Create IAM Users to Use with CloudWatch Agent on On\-premises Servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
+For `my_access_key` and `my_secret_key`, use the keys from the IAM user that has the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for the CloudWatch agent, see [Create IAM Users to Use with CloudWatch Agent on On\-premises Servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
 
 In the configuration file, you can specify what region the agent sends metrics to, if it is different than the region in the `[default]` section\. The default is to publish the metrics to region where the Amazon EC2 instance is located\. If the metrics should be published to a different region, specify the region here\. In the following example, the metrics are published to the `us-west-1` region\.
 
@@ -89,4 +90,4 @@ The wizard is configured with pre\-defined sets of metrics, with different detai
 
 1. If you are going to use Systems Manager to install and configure the agent, be sure to answer **Yes** when prompted whether to store the file in Systems Manager Parameter Store\. You can also choose to store the file in Parameter Store even if you aren't using the SSM Agent to install the CloudWatch agent\. To be able to store the file in Parameter Store, you must use an IAM role with sufficient permissions\. For more information, see [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\.
 
-   If you are storing the configuration file locally, you can store it anywhere\. You will then specify the file location when you start the agent\.
+   If you are storing the configuration file locally, you can store it anywhere\. You then specify the file location when you start the agent\.

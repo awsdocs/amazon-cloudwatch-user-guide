@@ -1,6 +1,6 @@
 # Amazon Machine Learning Metrics and Dimensions<a name="ml-metricscollected"></a>
 
-Amazon Machine Learning sends metrics to CloudWatch every five minutes\. For more information, see [Monitoring Amazon ML with Amazon CloudWatch Metrics](http://docs.aws.amazon.com/machine-learning/latest/dg/cw-doc.html) in the *Amazon Machine Learning Developer Guide*\.
+Amazon Machine Learning sends metrics to CloudWatch every five minutes\. For more information, see [Monitoring Amazon ML with Amazon CloudWatch Metrics](https://docs.aws.amazon.com/machine-learning/latest/dg/cw-doc.html) in the *Amazon Machine Learning Developer Guide*\.
 
 ## Amazon ML Metrics<a name="machinelearning-metrics"></a>
 

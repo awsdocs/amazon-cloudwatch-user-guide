@@ -1,6 +1,6 @@
 # Amazon VPC NAT Gateway Metrics and Dimensions<a name="nat-gateway-metricscollected"></a>
 
-NAT gateway metric data is provided at 1\-minute frequency\. For more information, see [Monitoring Your NAT Gateway with Amazon CloudWatch](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway-cloudwatch.html) in the *Amazon VPC User Guide*\.
+NAT gateway metric data is provided at 1\-minute frequency\. For more information, see [Monitoring Your NAT Gateway with Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway-cloudwatch.html) in the *Amazon VPC User Guide*\.
 
 ## NAT Gateway Metrics<a name="nat-gateway-metrics"></a>
 

@@ -1,6 +1,6 @@
 # Amazon EC2 Spot Fleet Metrics and Dimensions<a name="ec2spot-metricscollected"></a>
 
-Amazon Elastic Compute Cloud \(Amazon EC2\) sends information about your Spot fleet to CloudWatch\. For more information, see [CloudWatch Metrics for Spot Fleet](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Amazon Elastic Compute Cloud \(Amazon EC2\) sends information about your Spot fleet to CloudWatch\. For more information, see [CloudWatch Metrics for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 ## Amazon EC2 Spot Fleet Metrics<a name="ec2spot-metrics"></a>
 

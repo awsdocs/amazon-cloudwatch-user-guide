@@ -3,8 +3,8 @@
 The following example shows you how to determine the maximum CPU utilization of a specific EC2 instance\.
 
 **Requirements**
-+ You must have the ID of the instance\. You can get the instance ID using the Amazon EC2 console or the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
-+ By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ You must have the ID of the instance\. You can get the instance ID using the Amazon EC2 console or the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
++ By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To display the average CPU utilization for a specific instance using the console**
 
@@ -27,7 +27,7 @@ The following example shows you how to determine the maximum CPU utilization of 
 1. To change the period, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
 **To get the CPU utilization per EC2 instance using the AWS CLI**  
-Use the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows to get the **CPUUtilization** metric for the specified instance:
+Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows to get the **CPUUtilization** metric for the specified instance:
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization \

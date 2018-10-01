@@ -1,6 +1,6 @@
 # Aggregate Statistics by Amazon Machine Image \(AMI\)<a name="US_SingleMetricPerAMI"></a>
 
-You can aggregate statistics for the EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can aggregate statistics for the EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 This example shows you how to determine average CPU utilization for all instances that use the specified AMI\. The average is over 60\-second time intervals for a one\-day period\.
 
@@ -20,7 +20,7 @@ This example shows you how to determine average CPU utilization for all instance
 1. To change the period, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
 **To get the average CPU utilization by AMI using the AWS CLI**  
-Use the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows:
+Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows:
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization \

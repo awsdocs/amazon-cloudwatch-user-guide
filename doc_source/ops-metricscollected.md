@@ -1,6 +1,6 @@
 # AWS OpsWorks Metrics and Dimensions<a name="ops-metricscollected"></a>
 
-AWS OpsWorks sends metrics to CloudWatch for each active stack every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring](http://docs.aws.amazon.com/opsworks/latest/userguide/monitoring.html) in the *AWS OpsWorks User Guide*\.
+AWS OpsWorks sends metrics to CloudWatch for each active stack every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring](https://docs.aws.amazon.com/opsworks/latest/userguide/monitoring.html) in the *AWS OpsWorks User Guide*\.
 
 ## AWS OpsWorks Stacks Metrics<a name="opsworks-metrics-dimensions"></a>
 

@@ -1,6 +1,6 @@
 # Amazon CloudSearch Metrics and Dimensions<a name="cs-metricscollected"></a>
 
-Amazon CloudSearch sends metrics to Amazon CloudWatch\. For more information, see [Monitoring an Amazon CloudSearch Domain with Amazon CloudWatch](http://docs.aws.amazon.com/cloudsearch/latest/developerguide/cloudwatch-monitoring.html) in the *Amazon CloudSearch Developer Guide*\.
+Amazon CloudSearch sends metrics to Amazon CloudWatch\. For more information, see [Monitoring an Amazon CloudSearch Domain with Amazon CloudWatch](https://docs.aws.amazon.com/cloudsearch/latest/developerguide/cloudwatch-monitoring.html) in the *Amazon CloudSearch Developer Guide*\.
 
 ## Amazon CloudSearch Metrics<a name="cloudsearch-metrics"></a>
 

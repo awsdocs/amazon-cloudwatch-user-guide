@@ -1,6 +1,6 @@
 # AWS Glue Metrics and Dimensions<a name="glue-metrics-dimensions"></a>
 
-AWS Glue sends metrics to CloudWatch\. For more information, see [Monitoring AWS Glue Using CloudWatch Metrics](http://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html) in the AWS Glue Developer Guide\.
+AWS Glue sends metrics to CloudWatch\. For more information, see [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html) in the AWS Glue Developer Guide\.
 
 ## AWS Glue Metrics<a name="awsglue-metrics"></a>
 
@@ -34,6 +34,6 @@ AWS Glue metrics use the AWS Glue namespace and provide metrics for the followin
 
 | Dimension | Description | 
 | --- | --- | 
-|  `JobName`  |  Filters for metrics of all job runs of a specific job\.  | 
-|  `JobRunId`  |  Filters for metrics of a specific job run\.  | 
-|  `Type`  |  Filters for metrics of a specified type\.  | 
+|  `JobName`  |  This dimension filters for metrics of all job runs of a specific AWS Glue job\.  | 
+|  `JobRunId`  |  This dimension filters for metrics of a specific AWS Glue job run by a JobRun ID, or `ALL`\.  | 
+|  `Type`  |  This dimension filters for metrics by either `count` \(an aggregate number\) or `gauge` \(a value at a point in time\)\.  | 

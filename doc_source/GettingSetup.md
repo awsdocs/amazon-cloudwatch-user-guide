@@ -34,6 +34,6 @@ This might be unavailable in your browser if you previously signed into the AWS 
 
 You can use the AWS CLI or the Amazon CloudWatch CLI to perform CloudWatch commands\. Note that the AWS CLI replaces the CloudWatch CLI; we include new CloudWatch features only in the AWS CLI\.
 
-For information about how to install and configure the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
+For information about how to install and configure the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
-For information about how to install and configure the Amazon CloudWatch CLI, see [Set Up the Command Line Interface](http://docs.aws.amazon.com/AmazonCloudWatch/latest/cli/SetupCLI.html) in the *Amazon CloudWatch CLI Reference*\.
+For information about how to install and configure the Amazon CloudWatch CLI, see [Set Up the Command Line Interface](https://docs.aws.amazon.com/AmazonCloudWatch/latest/cli/SetupCLI.html) in the *Amazon CloudWatch CLI Reference*\.

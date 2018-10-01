@@ -1,6 +1,6 @@
 # Set Up Amazon SNS Notifications<a name="US_SetupSNS"></a>
 
-Amazon CloudWatch uses Amazon SNS to send email\. First, create and subscribe to an SNS topic\. When you create a CloudWatch alarm, you can add this SNS topic to send an email notification when the alarm changes state\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](http://docs.aws.amazon.com/sns/latest/gsg/)\.
+Amazon CloudWatch uses Amazon SNS to send email\. First, create and subscribe to an SNS topic\. When you create a CloudWatch alarm, you can add this SNS topic to send an email notification when the alarm changes state\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](https://docs.aws.amazon.com/sns/latest/gsg/)\.
 
 **Note**  
 Alternatively, if you plan to create your CloudWatch alarm using the AWS Management Console, you can skip this procedure because you can create the topic through the **Create Alarm Wizard**\.
@@ -57,7 +57,7 @@ First you create an SNS topic, and then publish a message directly to the topic 
 
 **To set up an SNS topic**
 
-1. Create the topic using the [create\-topic](http://docs.aws.amazon.com/cli/latest/reference/sns/create-topic.html) command as follows\.
+1. Create the topic using the [create\-topic](https://docs.aws.amazon.com/cli/latest/reference/sns/create-topic.html) command as follows\.
 
    ```
    1. aws sns create-topic --name my-topic
@@ -71,7 +71,7 @@ First you create an SNS topic, and then publish a message directly to the topic 
    3. }
    ```
 
-1. Subscribe your email address to the topic using the [subscribe](http://docs.aws.amazon.com/cli/latest/reference/sns/subscribe.html) command\. If the subscription request succeeds, you receive a confirmation email message\.
+1. Subscribe your email address to the topic using the [subscribe](https://docs.aws.amazon.com/cli/latest/reference/sns/subscribe.html) command\. If the subscription request succeeds, you receive a confirmation email message\.
 
    ```
    1. aws sns subscribe --topic-arn arn:aws:sns:us-east-1:111122223333:my-topic --protocol email --notification-endpoint my-email-address
@@ -89,7 +89,7 @@ First you create an SNS topic, and then publish a message directly to the topic 
 
    Your web browser displays a confirmation response from Amazon Simple Notification Service\.
 
-1. Check the subscription using the [list\-subscriptions\-by\-topic](http://docs.aws.amazon.com/cli/latest/reference/sns/list-subscriptions-by-topic.html) command\.
+1. Check the subscription using the [list\-subscriptions\-by\-topic](https://docs.aws.amazon.com/cli/latest/reference/sns/list-subscriptions-by-topic.html) command\.
 
    ```
    1. aws sns list-subscriptions-by-topic --topic-arn arn:aws:sns:us-east-1:111122223333:my-topic
@@ -111,7 +111,7 @@ First you create an SNS topic, and then publish a message directly to the topic 
    11. }
    ```
 
-1. \(Optional\) Publish a test message to the topic using the [publish](http://docs.aws.amazon.com/cli/latest/reference/sns/publish.html) command\.
+1. \(Optional\) Publish a test message to the topic using the [publish](https://docs.aws.amazon.com/cli/latest/reference/sns/publish.html) command\.
 
    ```
    1. aws sns publish --message "Verification" --topic arn:aws:sns:us-east-1:111122223333:my-topic

@@ -101,7 +101,7 @@ You can add pre\-calculated statistics\. Instead of data point values, you speci
 
 ### Units<a name="Unit"></a>
 
-Each statistic has a unit of measure\. Example units include `Bytes`, `Seconds`, `Count`, and `Percent`\. For the complete list of the units that CloudWatch supports, see the [MetricDatum](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html) data type in the *Amazon CloudWatch API Reference*\.
+Each statistic has a unit of measure\. Example units include `Bytes`, `Seconds`, `Count`, and `Percent`\. For the complete list of the units that CloudWatch supports, see the [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html) data type in the *Amazon CloudWatch API Reference*\.
 
 You can specify a unit when you create a custom metric\. If you do not specify a unit, CloudWatch uses `None` as the unit\. Units help provide conceptual meaning to your data\. Though CloudWatch attaches no significance to a unit internally, other applications can derive semantic information based on the unit\.
 

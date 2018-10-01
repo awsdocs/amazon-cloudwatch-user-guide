@@ -1,6 +1,6 @@
 # Amazon Simple Email Service Metrics and Dimensions<a name="ses-metricscollected"></a>
 
-Amazon Simple Email Service sends certain data points to CloudWatch\. These data points track important metrics related to your email sending activities\. For more information, see [Retrieving Amazon SES Event Data from CloudWatch](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/event-publishing-retrieving-cloudwatch.html) in the *Amazon Simple Email Service Developer Guide*\.
+Amazon Simple Email Service sends certain data points to CloudWatch\. These data points track important metrics related to your email sending activities\. For more information, see [Retrieving Amazon SES Event Data from CloudWatch](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/event-publishing-retrieving-cloudwatch.html) in the *Amazon Simple Email Service Developer Guide*\.
 
 ## Amazon SES Metrics<a name="ses-event-metrics"></a>
 
@@ -22,4 +22,4 @@ The following metrics are available from Amazon SES\.
 
 ## Dimensions for Amazon SES Metrics<a name="ses-metric-dimensions"></a>
 
- CloudWatch uses the dimension names that you specify when you add a CloudWatch event destination to a configuration set in Amazon SES\. For more information, see [Set Up a CloudWatch Event Destination for Amazon SES Event Publishing](http://docs.aws.amazon.com/ses/latest/DeveloperGuide//event-publishing-add-event-destination-cloudwatch.html)\. 
+ CloudWatch uses the dimension names that you specify when you add a CloudWatch event destination to a configuration set in Amazon SES\. For more information, see [Set Up a CloudWatch Event Destination for Amazon SES Event Publishing](https://docs.aws.amazon.com/ses/latest/DeveloperGuide//event-publishing-add-event-destination-cloudwatch.html)\. 

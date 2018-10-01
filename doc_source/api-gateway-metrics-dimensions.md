@@ -1,6 +1,6 @@
 # Amazon API Gateway Metrics and Dimensions<a name="api-gateway-metrics-dimensions"></a>
 
-The metrics and dimensions that API Gateway sends to Amazon CloudWatch are listed below\. For more information, see [Monitor API Execution with Amazon CloudWatch](http://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html) in the *Amazon API Gateway Developer Guide*\.
+The metrics and dimensions that API Gateway sends to Amazon CloudWatch are listed below\. For more information, see [Monitor API Execution with Amazon CloudWatch](https://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html) in the *Amazon API Gateway Developer Guide*\.
 
 ## API Gateway Metrics<a name="api-gateway-metrics"></a>
 
@@ -27,5 +27,5 @@ You can use the dimensions in the following table to filter API Gateway metrics\
 | Dimension | Description | 
 | --- | --- | 
 |  ApiName  |  Filters API Gateway metrics for an API of the specified API name\.  | 
-|  ApiName, Method, Resource, Stage  |  Filters API Gateway metrics for an API method of the specified API, stage, resource, and method\. API Gateway will not send such metrics unless you have explicitly enabled detailed CloudWatch metrics\. You can do this in the console by selecting **Enable CloudWatch Metrics** under a stage **Settings** tab\. Alternatively, you can call the [stage:update](http://docs.aws.amazon.com/apigateway/api-reference/link-relation/stage-update/) action of the API Gateway REST API to update the `metricsEnabled` property to `true`\.  Enabling such metrics will incur additional charges to your account\. For pricing information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.  | 
+|  ApiName, Method, Resource, Stage  |  Filters API Gateway metrics for an API method of the specified API, stage, resource, and method\. API Gateway will not send such metrics unless you have explicitly enabled detailed CloudWatch metrics\. You can do this in the console by selecting **Enable CloudWatch Metrics** under a stage **Settings** tab\. Alternatively, you can call the [stage:update](https://docs.aws.amazon.com/apigateway/api-reference/link-relation/stage-update/) action of the API Gateway REST API to update the `metricsEnabled` property to `true`\.  Enabling such metrics will incur additional charges to your account\. For pricing information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.  | 
 |  ApiName, Stage  |  Filters API Gateway metrics for an API stage of the specified API and stage\.  | 

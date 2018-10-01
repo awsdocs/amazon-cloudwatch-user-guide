@@ -15,7 +15,7 @@ aws iam create-service-linked-role --aws-service-name events.amazonaws.com
 ```
 
 **Console Support**  
-You can create alarms using the CloudWatch console or the Amazon EC2 console\. The procedures in this documentation use the CloudWatch console\. For procedures that use the Amazon EC2 console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can create alarms using the CloudWatch console or the Amazon EC2 console\. The procedures in this documentation use the CloudWatch console\. For procedures that use the Amazon EC2 console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Permissions**  
 If you are using an AWS Identity and Access Management \(IAM\) account to create or modify an alarm, you must have the following permissions:
@@ -25,7 +25,7 @@ If you are using an AWS Identity and Access Management \(IAM\) account to create
 + `ec2:TerminateInstances` — For alarms with terminate actions
 + No specific permissions are needed for alarms with recover actions
 
-If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the instance\. However, if you are later granted permission to use the associated Amazon EC2 API actions, the alarm actions you created earlier will be performed\. For more information, see [Permissions and Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
+If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the instance\. However, if you are later granted permission to use the associated Amazon EC2 API actions, the alarm actions you created earlier will be performed\. For more information, see [Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
 
 If you want to use an IAM role to stop, terminate, or reboot an instance using an alarm action, you can only use the AWSServiceRoleForCloudWatchEvents role\. Other IAM roles are not supported\. However, you can still see the alarm state and perform any other actions such as Amazon SNS notifications or Amazon EC2 Auto Scaling policies\.
 
@@ -80,7 +80,7 @@ Amazon EC2 instances that use an Amazon Elastic Block Store volume as the root d
 
 ## Adding Terminate Actions to Amazon CloudWatch Alarms<a name="AddingTerminateActions"></a>
 
-You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don't need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information about enabling and disabling termination protection for an instance, see [Enabling Termination Protection for an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don't need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information about enabling and disabling termination protection for an instance, see [Enabling Termination Protection for an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To create an alarm to terminate an idle instance using the Amazon CloudWatch console**
 
@@ -122,7 +122,7 @@ You can create an alarm that terminates an EC2 instance automatically when a cer
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically reboots the instance\. The reboot alarm action is recommended for Instance Health Check failures \(as opposed to the recover alarm action, which is suited for System Health Check failures\)\. An instance reboot is equivalent to an operating system reboot\. In most cases, it takes only a few minutes to reboot your instance\. When you reboot an instance, it remains on the same physical host, so your instance keeps its public DNS name, private IP address, and any data on its instance store volumes\.
 
-Rebooting an instance doesn't start a new instance billing hour, unlike stopping and restarting your instance\. For more information about rebooting an instance, see [Reboot Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Rebooting an instance doesn't start a new instance billing hour, unlike stopping and restarting your instance\. For more information about rebooting an instance, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Important**  
 To avoid a race condition between the reboot and recover actions, avoid setting the same evaluation period for both a reboot alarm and a recover alarm\. We recommend that you set reboot alarms to three evaluation periods of one minute each\. 

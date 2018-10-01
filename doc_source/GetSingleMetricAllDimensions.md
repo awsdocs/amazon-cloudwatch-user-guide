@@ -2,7 +2,7 @@
 
 You can aggregate the metrics for AWS resources across multiple resources\. Amazon CloudWatch cannot aggregate data across Regions\. Metrics are completely separate between Regions\.
 
-For example, you can aggregate statistics for your EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included\. Therefore, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+For example, you can aggregate statistics for your EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included\. Therefore, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 This example shows you how to get the average CPU usage for your EC2 instances\. Because no dimension is specified, CloudWatch returns statistics for all dimensions in the `AWS/EC2` namespace\. To get statistics for other metrics, see [Amazon CloudWatch Metrics and Dimensions Reference](CW_Support_For_AWS.md)\.
 
@@ -25,7 +25,7 @@ This technique for retrieving all dimensions across an AWS namespace does not wo
 1. To change the period, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
 **To get average CPU utilization across your EC2 instances using the AWS CLI**  
-Use the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-staticstics.html) command as follows:
+Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-staticstics.html) command as follows:
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --statistics "Average" "SampleCount" \

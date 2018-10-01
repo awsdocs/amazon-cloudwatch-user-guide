@@ -4,6 +4,7 @@ The unified CloudWatch agent enables you to do the following:
 + Collect more system\-level metrics from Amazon EC2 instances, including in\-guest metrics, in addition to the metrics listed in [Amazon EC2 Metrics and Dimensions](ec2-metricscollected.md)\. The additional metrics are listed in [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
 + Collect system\-level metrics from on\-premises servers\. These can include servers in a hybrid environment as well as servers not managed by AWS\.
 + Collect logs from Amazon EC2 instances and on\-premises servers, running either Linux or Windows Server\.
++ Retrieve custom metrics from your applications or services using the StatsD and collectd protocols\. StatsD is supported on both Linux servers and servers running Windows Server\. collectd is supported only on Linux servers\.
 
 You can store and view the metrics you collect with the CloudWatch agent in CloudWatch just as you can with any other CloudWatch metrics\. The default namespace for metrics collected by the CloudWatch agent is `CWAgent`, although you can specify a different namespace when you configure the agent\.
 
@@ -35,7 +36,7 @@ The general flow of installing the CloudWatch agent is as follows:
 
 1. Download the agent package, using either AWS Systems Manager Run Command or a public Amazon S3 download link\.
 
-1. Modify the CloudWatch agent configuration files, and create a named profile for CloudWatch agent\. Creating the named profile is optional when installing the agent on an Amazon EC2 instance\.
+1. Modify the CloudWatch agent configuration files, and create a named profile for the CloudWatch agent\. Creating the named profile is optional when installing the agent on an Amazon EC2 instance\.
 
 1. Start the agent, using either Systems Manager Run Command or the command line\.
 
@@ -44,5 +45,7 @@ The general flow of installing the CloudWatch agent is as follows:
 + [Install the CloudWatch Agent on an Amazon EC2 Instance](install-CloudWatch-Agent-on-EC2-Instance.md)
 + [Install the CloudWatch Agent on an On\-Premises Server](install-CloudWatch-Agent-on-premise.md)
 + [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
++ [Retrieve Custom Metrics with StatsD](CloudWatch-Agent-custom-metrics-statsd.md)
++ [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)
 + [Common Scenarios with CloudWatch Agent](CloudWatch-Agent-common-scenarios.md)
 + [Troubleshooting the CloudWatch Agent](troubleshooting-CloudWatch-Agent.md)

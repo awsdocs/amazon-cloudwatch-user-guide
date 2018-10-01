@@ -1,6 +1,6 @@
 # Amazon ECS Metrics and Dimensions<a name="ecs-metricscollected"></a>
 
-Amazon Elastic Container Service \(Amazon ECS\) sends metrics to Amazon CloudWatch\. For more information, see [Amazon ECS CloudWatch Metrics](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-metrics.html) in the *Amazon Elastic Container Service Developer Guide*\.
+Amazon Elastic Container Service \(Amazon ECS\) sends metrics to Amazon CloudWatch\. For more information, see [Amazon ECS CloudWatch Metrics](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-metrics.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
 ## Amazon ECS Metrics<a name="ecs-metrics"></a>
 

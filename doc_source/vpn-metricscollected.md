@@ -1,6 +1,6 @@
 # Amazon VPC VPN Metrics and Dimensions<a name="vpn-metricscollected"></a>
 
-Amazon VPN sends data to CloudWatch as it becomes available\. For more information, see [Monitoring with CloudWatch](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/monitoring-cloudwatch.html) in the *Amazon VPC User Guide*\.
+Amazon VPN sends data to CloudWatch as it becomes available\. For more information, see [Monitoring with CloudWatch](https://docs.aws.amazon.com/vpc/latest/userguide/monitoring-cloudwatch.html) in the *Amazon VPC User Guide*\.
 
 ## VPN Metrics<a name="vpn-metrics"></a>
 

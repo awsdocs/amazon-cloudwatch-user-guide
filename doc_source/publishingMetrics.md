@@ -27,7 +27,7 @@ If you set an alarm on a high\-resolution metric, you can specify a high\-resolu
 
 In custom metrics, the `--dimensions` parameter is common\. A dimension further clarifies what the metric is, and what data it stores\. You can have up to 10 dimensions in one metric, and each dimension is defined by a Name and Value pair\.
 
-How you specify a dimension is different when you use different commands\. With [put\-metric\-data](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html), you specify each dimension as *MyName*=*MyValue*, while with [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) or [put\-metric\-alarm](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) you use the format `Name=`*MyName*, `Value=`*MyValue*\. For example, the following command publishes a "Buffers" metric with two dimensions named InstanceId and InstanceType\.
+How you specify a dimension is different when you use different commands\. With [put\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html), you specify each dimension as *MyName*=*MyValue*, while with [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) or [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) you use the format `Name=`*MyName*, `Value=`*MyValue*\. For example, the following command publishes a "Buffers" metric with two dimensions named InstanceId and InstanceType\.
 
 ```
 aws cloudwatch put-metric-data --metric-name Buffers --namespace MyNameSpace --unit Bytes --value 231434333 --dimensions InstanceId=1-23456789,InstanceType=m1.small
@@ -39,17 +39,17 @@ This command retrieves statistics for that same metric\. Separate the Name and V
 aws cloudwatch get-metric-statistics --metric-name Buffers --namespace MyNameSpace --dimensions Name=InstanceId,Value=1-23456789 Name=InstanceType,Value=m1.small --start-time 2016-10-15T04:00:00Z --end-time 2016-10-19T07:00:00Z --statistics Average --period 60
 ```
 
-If a single metric includes multiple dimensions, you must specify a value for every defined dimension when you use [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html)\. For example, the Amazon S3 metric `BucketSizeBytes` includes the dimensions `BucketName` and `StorageType`, so you must specify both dimensions with [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html)\.
+If a single metric includes multiple dimensions, you must specify a value for every defined dimension when you use [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html)\. For example, the Amazon S3 metric `BucketSizeBytes` includes the dimensions `BucketName` and `StorageType`, so you must specify both dimensions with [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html)\.
 
 ```
 aws cloudwatch get-metric-statistics --metric-name BucketSizeBytes --start-time 2017-01-23T14:23:00Z --end-time 2017-01-26T19:30:00Z --period 3600 --namespace AWS/S3 --statistics Maximum --dimensions Name=BucketName,Value=MyBucketName Name=StorageType,Value=StandardStorage --output table
 ```
 
-You can see what dimensions are defined for a metric by using the [list\-metrics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
+You can see what dimensions are defined for a metric by using the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
 
 ## Publish Single Data Points<a name="publishingDataPoints"></a>
 
-To publish a single data point for a new or existing metric, use the [put\-metric\-data](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html) command with one value and time stamp\. For example, the following actions each publish one data point:
+To publish a single data point for a new or existing metric, use the [put\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html) command with one value and time stamp\. For example, the following actions each publish one data point:
 
 ```
 aws cloudwatch put-metric-data --metric-name PageViewCount --namespace MyService --value 2 --timestamp 2016-10-20T12:00:00.000Z
@@ -60,7 +60,7 @@ aws cloudwatch put-metric-data --metric-name PageViewCount --namespace MyService
 If you call this command with a new metric name, CloudWatch creates a metric for you\. Otherwise, CloudWatch associates your data with the existing metric that you specified\.
 
 **Note**  
-When you create a metric, it can take up to two minutes before you can retrieve statistics for the new metric using the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command\. However, it can take up to fifteen minutes before the new metric appears in the list of metrics retrieved using the [list\-metrics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
+When you create a metric, it can take up to two minutes before you can retrieve statistics for the new metric using the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command\. However, it can take up to fifteen minutes before the new metric appears in the list of metrics retrieved using the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
 
 Although you can publish data points with time stamps as granular as one\-thousandth of a second, CloudWatch aggregates the data to a minimum granularity of one minute\. CloudWatch records the average \(sum of all items divided by number of items\) of the values received for every 1\-minute period, as well as the number of samples, maximum value, and minimum value for the same time period\. For example, the `PageViewCount` metric from the previous examples contains three data points with time stamps just seconds apart\. CloudWatch aggregates the three data points because they all have time stamps within a one\-minute period\. 
 

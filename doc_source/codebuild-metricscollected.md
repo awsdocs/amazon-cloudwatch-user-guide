@@ -1,6 +1,6 @@
 # AWS CodeBuild Metrics<a name="codebuild-metricscollected"></a>
 
-AWS CodeBuild sends metrics to CloudWatch\. For more information, see [Monitoring AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html) in the *AWS CodeBuild User Guide*\.
+AWS CodeBuild sends metrics to CloudWatch\. For more information, see [Monitoring AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html) in the *AWS CodeBuild User Guide*\.
 
 ## AWS CodeBuild CloudWatch Metrics<a name="cloudwatch_metrics-codebuild"></a>
 

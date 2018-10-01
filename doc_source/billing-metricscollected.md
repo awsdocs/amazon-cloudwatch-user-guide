@@ -1,6 +1,6 @@
 # AWS Billing and Cost Management Dimensions and Metrics<a name="billing-metricscollected"></a>
 
-The AWS Billing and Cost Management service sends metrics to CloudWatch\. For more information, see [Monitoring Charges with Alerts and Notifications](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
+The AWS Billing and Cost Management service sends metrics to CloudWatch\. For more information, see [Monitoring Charges with Alerts and Notifications](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
 
 ## AWS Billing and Cost Management Metrics<a name="billing-metrics"></a>
 

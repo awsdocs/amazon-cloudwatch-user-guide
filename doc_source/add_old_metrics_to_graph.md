@@ -44,6 +44,6 @@ If a metric has not published data in the past 14 days, you cannot find it when 
    [ "MyNamespace", "MyMetricName", "DimensionName", "DimensionValue" ]
    ```
 
-   For more information about the formatting of metrics in JSON, see [ Properties of a Metric Widget Object](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html#CloudWatch-Dashboard-Properties-Metric-Widget-Object)\.
+   For more information about the formatting of metrics in JSON, see [ Properties of a Metric Widget Object](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html#CloudWatch-Dashboard-Properties-Metric-Widget-Object)\.
 
 1. Choose **Update**\.

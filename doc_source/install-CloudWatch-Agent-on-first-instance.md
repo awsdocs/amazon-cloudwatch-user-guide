@@ -17,7 +17,7 @@ If you are going to use this instance to create the CloudWatch agent configurati
 
 For all other instances, select the role that includes just the permissions needed to install and run the agent\. This role may be called **CloudWatchAgentServerRole**\.
 
-Attach this role to the instance on which you install the CloudWatch agent\. For more information, see [Attaching an IAM Role to an Instance](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
+Attach this role to the instance on which you install the CloudWatch agent\. For more information, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Download the CloudWatch Agent Package on an Amazon EC2 Instance<a name="download-CloudWatch-Agent-on-EC2-Instance-first"></a>
 
@@ -31,28 +31,28 @@ Before you can use Systems Manager to install the CloudWatch agent, you must mak
 
 On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install the SSM Agent on the instance if you haven't already done so\. 
 
-For information about installing or updating the SSM Agent on an instance running Linux, see [ Installing and Configuring the SSM Agent on Linux Instances](http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-agent.html) in the *AWS Systems Manager User Guide*\.
+For information about installing or updating the SSM Agent on an instance running Linux, see [ Installing and Configuring the SSM Agent on Linux Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
-For information about installing or updating the SSM Agent, see [ Installing and Configuring the SSM Agent](http://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
+For information about installing or updating the SSM Agent, see [ Installing and Configuring the SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
 #### \(Optional\) Verify Systems Manager Prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-first"></a>
 
-Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Systems Manager Prerequisites](http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html#systems-manager-prereqs) in the *AWS Systems Manager User Guide*\.
+Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html#systems-manager-prereqs) in the *AWS Systems Manager User Guide*\.
 
 #### Verify Internet Access<a name="install-CloudWatch-Agent-internet-access-first"></a>
 
-Your Amazon EC2 instances must have outbound internet access in order to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
+Your Amazon EC2 instances must have outbound internet access in order to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
 The endpoints and ports to configure on your proxy are as follows:
-+ If you are using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch](http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
-+ If you are using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch Logs](http://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
-+ If you are using SSM to install the agent or Parameter Store to store your configuration file, you must whitelist the SSM endpoints for the appropriate regions\. These endpoints are listed in [AWS Systems Manager](http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
++ If you are using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch](https://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
++ If you are using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate regions\. These endpoints are listed in [Amazon CloudWatch Logs](https://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
++ If you are using SSM to install the agent or Parameter Store to store your configuration file, you must whitelist the SSM endpoints for the appropriate regions\. These endpoints are listed in [AWS Systems Manager](https://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
 
-### Download the CloudWatch Agent Package Using Run Command<a name="install-CloudWatch-Agent-EC2-first"></a>
+#### Download the CloudWatch Agent Package<a name="install-CloudWatch-Agent-EC2-first"></a>
 
 Systems Manager Run Command enables you to manage the configuration of your instances\. You specify a Systems Manager document, specify parameters, and execute the command on one or more instances\. The SSM Agent on the instance processes the command and configures the instance as specified\.
 
-**To download the CloudWatch agent using Run Command**
+**To download the CloudWatch agent using Systems Manager**
 
 1. Open the Systems Manager console at [https://console\.aws\.amazon\.com/systems\-manager/](https://console.aws.amazon.com/systems-manager/)\.
 
@@ -66,7 +66,7 @@ Systems Manager Run Command enables you to manage the configuration of your inst
 
 1. In the **Command document** list, choose **AWS\-ConfigureAWSPackage**\.
 
-1. In the **Targets** area, choose the instance on which to install the CloudWatch agent\. If you do not see a specific instance, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/systems-manager-setting-up.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+1. In the **Targets** area, choose the instance on which to install the CloudWatch agent\. If you do not see a specific instance, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/systems-manager-setting-up.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 1. In the **Action** list, choose **Install**\.
 
@@ -78,18 +78,29 @@ Systems Manager Run Command enables you to manage the configuration of your inst
 
 1. Optionally, in the **Targets and outputs** areas, select the button next to an instance name and choose **View output**\. Systems Manager should show that the agent was successfully installed\.
 
-### Download the CloudWatch Agent Package on an Amazon EC2 Instance Using a Download Link<a name="download-CloudWatch-Agent-on-EC2-Instance-commandline-first"></a>
+### Download the CloudWatch Agent Package on an Amazon EC2 Instance Using an S3 Download Link<a name="download-CloudWatch-Agent-on-EC2-Instance-commandline-first"></a>
 
-You can use an Amazon S3 download link to download the CloudWatch agent package on an Amazon EC2 instance server\.
+You can use an Amazon S3 download link to download the CloudWatch agent package on an Amazon EC2 instance server\. Choose the download link from this table, depending on your architecture and platform\.
+
+
+| Arch | Platform | Download Link | Signature File Link | 
+| --- | --- | --- | --- | 
+|  amd64 |  Amazon Linux and Amazon Linux 2  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  Centos  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/centos/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/centos/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  Redhat  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  SUSE  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  Debian  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
+|  amd64 |  Ubuntu  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
+|  amd64 |  Windows  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/AmazonCloudWatchAgent\.zip  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/AmazonCloudWatchAgent\.zip\.sig  | 
 
 **To use the command line to install the CloudWatch agent on an Amazon EC2 instance**
 
 1. Make a directory for downloading and unzipping the agent package\. For example, `tmp/AmazonCloudWatchAgent`\. Then change into that directory\.
 
-1. Download the CloudWatch agent\. For a Linux server, type the following:
+1. Download the CloudWatch agent\. Use a download link from the previous table\. For a Linux server, type the following:
 
    ```
-   wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
+   wget download-link
    ```
 
    For a server running Windows Server, download the following file:
@@ -100,7 +111,7 @@ You can use an Amazon S3 download link to download the CloudWatch agent package 
 
 1. After you have downloaded the package, you can optionally use a GPG signature file to verify the package signature\. For more information, see [Verify the Signature of the CloudWatch Agent Package](verify-CloudWatch-Agent-Package-Signature.md)\.
 
-1. Unzip the package\.
+1. If you downloaded a \.zip package, unzip the package\.
 
    ```
    unzip AmazonCloudWatchAgent.zip
@@ -120,7 +131,7 @@ The CloudWatch agent package you have downloaded includes a configuration file c
 
 The default `common-config.toml` is as follows:
 
-When you install the CloudWatch agent on an Amazon EC2 instance, you need to modify this file only if you need to specify proxy settings or if the agent should send metrics to CloudWatch in a different region than where the instance is located\.
+When you install the CloudWatch agent on an Amazon EC2 instance, modify this file only if you need to specify proxy settings or if the agent should send metrics to CloudWatch in a different region than where the instance is located\.
 
 ```
 # This common-config is used to configure items used for both ssm and cloudwatch access
@@ -132,6 +143,7 @@ When you install the CloudWatch agent on an Amazon EC2 instance, you need to mod
 ##            AmazonCloudWatchAgent profile is used for onPremise case by default.
 # [credentials]
 #    shared_credential_profile = "{profile_name}"
+#    shared_credential_file= "{file_name}"
  
 ## Configuration for proxy.
 ## System-wide environment-variable will be read if it is absent here.
@@ -148,9 +160,10 @@ All lines are commented out initially\. To set the credential profile or proxy s
 + **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 + **shared\_credential\_profile** To have the CloudWatch agent send metrics to CloudWatch in the same region where the instance is located, you don't need to modify this line if you have attached an IAM role with the proper permissions to the instance, and you don't need to use the `aws configure` command to create a named profile for the agent\.
 
-  Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS config file\. If you do so, CloudWatch agent uses the the region settings in that named profile\.
+  Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS config file\. If you do so, CloudWatch agent uses the region settings in that named profile\.
++ **shared\_credential\_file** Use this line to specify a path to a file containing credentials to use, if you don't want to use the default path\.
 
-After modifying `common-config.toml`, if you need to specify region information for CloudWatch agent, create a named profile for the CloudWatch agent in the AWS config file\. When you create this profile, do so as the root or administrator\. 
+After modifying `common-config.toml`, if you need to specify region information for the CloudWatch agent, create a named profile for the CloudWatch agent in the AWS config file\. When you create this profile, do so as the root or administrator\. 
 
 Following is an example of the profile for the configuration file:
 
@@ -229,13 +242,13 @@ Follow these steps to use the command line to install the CloudWatch agent on an
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
   ```
 
-  Windows Server: if you saved the agent configuration file in Systems Manager Parameter Store, use the following command\. From the Powershell console, type the following:
+  Windows Server: if you saved the agent configuration file in Systems Manager Parameter Store, use the following command\. From the PowerShell console, type the following:
 
   ```
   amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
-  Windows Server: if you saved the agent configuration file on the local computer, use the following command\. From the Powershell console, type the following:
+  Windows Server: if you saved the agent configuration file on the local computer, use the following command\. From the PowerShell console, type the following:
 
   ```
   amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s

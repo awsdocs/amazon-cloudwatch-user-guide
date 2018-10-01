@@ -4,7 +4,7 @@ The `AWS/ElastiCache` namespace includes the following Redis metrics\.
 
 With the exception of `ReplicationLag`, these metrics are derived from the Redis info command\. Each metric is calculated at the cache node level\.
 
-For complete documentation of the Redis info command, go to [ http://redis\.io/commands/info](http://redis.io/commands/info)\. 
+For complete documentation of the Redis info command, see [ http://redis\.io/commands/info](http://redis.io/commands/info)\. 
 
 **See Also**
 + [Host\-Level Metrics](CacheMetrics.HostLevel.md)

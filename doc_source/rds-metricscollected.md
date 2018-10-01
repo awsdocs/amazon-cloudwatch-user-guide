@@ -1,6 +1,6 @@
 # Amazon RDS Metrics and Dimensions<a name="rds-metricscollected"></a>
 
-Amazon Relational Database Service sends metrics to CloudWatch for each active database instance every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring a DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Monitoring.html) in the *Amazon RDS User Guide*\.
+Amazon Relational Database Service sends metrics to CloudWatch for each active database instance every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring a DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Monitoring.html) in the *Amazon RDS User Guide*\.
 
 ## Amazon RDS Metrics<a name="rds-metrics"></a>
 
@@ -27,7 +27,7 @@ The `AWS/RDS` namespace includes the following metrics\.
 | ReadThroughput |  The average number of bytes read from disk per second\. Units: Bytes/Second  | 
 | ReplicaLag |  The amount of time a Read Replica DB instance lags behind the source DB instance\. Applies to MySQL, MariaDB, and PostgreSQL Read Replicas\. Units: Seconds  | 
 | ReplicationSlotDiskUsage |  The disk space used by replication slot files\. Applies to PostgreSQL\. Units: Megabytes  | 
-| SwapUsage |  The amount of swap space used on the DB instance\. Units: Bytes  | 
+| SwapUsage |  The amount of swap space used on the DB instance\. This metric is not available for SQL Server\. Units: Bytes  | 
 | TransactionLogsDiskUsage |  The disk space used by transaction logs\. Applies to PostgreSQL\. Units: Megabytes  | 
 | TransactionLogsGeneration |  The size of transaction logs generated per second\. Applies to PostgreSQL\. Units: Megabytes/second  | 
 | WriteIOPS |  The average number of disk write I/O operations per second\. Units: Count/Second  | 
@@ -90,8 +90,8 @@ The `AWS/RDS` namespace includes the following metrics that apply to database en
 |  `UpdateLatency`  |  The amount of latency for update queries, in milliseconds\.  | Aurora MySQL | 
 |  `UpdateThroughput`  |  The average number of update queries per second\.  | Aurora MySQL | 
 | `VolumeBytesUsed` |  The amount of storage used by your Aurora DB instance, in bytes\. This value affects the cost of the Aurora DB cluster \(for pricing information, see the [Amazon RDS product page](http://aws.amazon.com/rds/#pricing)\)\.  | Aurora MySQL and Aurora PostgreSQL | 
-|  `VolumeReadIOPs`  |  The average number of billed read I/O operations from a cluster volume, reported at 5\-minute intervals\. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the Aurora DB cluster, and then reported at 5\-minute intervals\. The value is calculated by taking the value of the **Read operations** metric over a 5\-minute period\. You can determine the amount of billed read operations per second by taking the value of the **Billed read operations** metric and dividing by 300 seconds\. For example, if the **Billed read operations** returns 13,686, then the billed read operations per second is 45 \(13,686 / 300 = 45\.62\)\.  You accrue billed read operations for queries that request database pages that aren't in the buffer cache and therefore must be loaded from storage\. You might see spikes in billed read operations as query results are read from storage and then loaded into the buffer cache\.   | Aurora MySQL and Aurora PostgreSQL | 
-|  `VolumeWriteIOPs`  |  The average number of write disk I/O operations to the cluster volume, reported at 5\-minute intervals\. See the description of VolumeReadIOPS above for a detailed description of how billed write operations are calculated\.  | Aurora MySQL and Aurora PostgreSQL | 
+|  `VolumeReadIOPs`  |  The number of billed read I/O operations from a cluster volume, reported at 5\-minute intervals\. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the Aurora DB cluster, and then reported at 5\-minute intervals\. The value is calculated by taking the value of the **Read operations** metric over a 5\-minute period\. You can determine the amount of billed read operations per second by taking the value of the **Billed read operations** metric and dividing by 300 seconds\. For example, if the **Billed read operations** returns 13,686, then the billed read operations per second is 45 \(13,686 / 300 = 45\.62\)\.  You accrue billed read operations for queries that request database pages that aren't in the buffer cache and therefore must be loaded from storage\. You might see spikes in billed read operations as query results are read from storage and then loaded into the buffer cache\.   | Aurora MySQL and Aurora PostgreSQL | 
+|  `VolumeWriteIOPs`  |  The number of write disk I/O operations to the cluster volume, reported at 5\-minute intervals\. See the description of VolumeReadIOPS above for a detailed description of how billed write operations are calculated\.  | Aurora MySQL and Aurora PostgreSQL | 
 |  `WriteIOPS`  |  The average number of disk I/O operations per second\.  Aurora PostgreSQL reports read and write IOPS separately, on 1\-minute intervals\.  | Aurora PostgreSQL | 
 |  `WriteLatency`  |  The average amount of time taken per disk I/O operation\.  | Aurora PostgreSQL | 
 |  `WriteThroughput`  |  The average number of bytes written to disk per second\.  | Aurora PostgreSQL | 

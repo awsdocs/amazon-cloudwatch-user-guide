@@ -1,6 +1,6 @@
 # Amazon SWF Metrics and Dimensions<a name="swf-metricscollected"></a>
 
-The `AWS/SWF` namespace includes the metrics in the following table\. For more information, see [Amazon SWF Metrics for CloudWatch](http://docs.aws.amazon.com/amazonswf/latest/developerguide/cw-metrics.html) in the *AWS Storage Gateway User Guide*\.
+The `AWS/SWF` namespace includes the metrics in the following table\. For more information, see [Amazon SWF Metrics for CloudWatch](https://docs.aws.amazon.com/amazonswf/latest/developerguide/cw-metrics.html) in the *AWS Storage Gateway User Guide*\.
 
 
 |  Metric  |  Description  | 

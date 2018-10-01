@@ -51,13 +51,13 @@ Use these steps to use the AWS CLI to create a CPU usage alarm\.
 
 1. Set up an SNS topic\. For more information, see [Set Up Amazon SNS Notifications](US_SetupSNS.md)\.
 
-1. Create an alarm using the [put\-metric\-alarm](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command as follows\. 
+1. Create an alarm using the [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command as follows\. 
 
    ```
    aws cloudwatch put-metric-alarm --alarm-name cpu-mon --alarm-description "Alarm when CPU exceeds 70%" --metric-name CPUUtilization --namespace AWS/EC2 --statistic Average --period 300 --threshold 70 --comparison-operator GreaterThanThreshold --dimensions  Name=InstanceId,Value=i-12345678 --evaluation-periods 2 --alarm-actions arn:aws:sns:us-east-1:111122223333:my-topic --unit Percent
    ```
 
-1. Test the alarm by forcing an alarm state change using the [set\-alarm\-state](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command\.
+1. Test the alarm by forcing an alarm state change using the [set\-alarm\-state](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command\.
 
    1. Change the alarm state from `INSUFFICIENT_DATA` to `OK`: 
 

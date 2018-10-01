@@ -1,6 +1,6 @@
 # Amazon Redshift Metrics and Dimensions<a name="rs-metricscollected"></a>
 
-Amazon Redshift sends metrics to CloudWatch for each active cluster every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring Amazon Redshift Cluster Performance](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics.html) in the *Amazon Redshift Cluster Management Guide*\.
+Amazon Redshift sends metrics to CloudWatch for each active cluster every minute\. Detailed monitoring is enabled by default\. For more information, see [Monitoring Amazon Redshift Cluster Performance](https://docs.aws.amazon.com/redshift/latest/mgmt/metrics.html) in the *Amazon Redshift Cluster Management Guide*\.
 
 ## Amazon Redshift Metrics<a name="redshift-metrics"></a>
 

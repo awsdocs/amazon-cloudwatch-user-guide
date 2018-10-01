@@ -1,6 +1,6 @@
 # Amazon Kinesis Data Firehose Metrics<a name="akf-metricscollected"></a>
 
-Kinesis Data Firehose sends metrics to CloudWatch\. For more information, see [Monitoring with Amazon CloudWatch Metrics](http://docs.aws.amazon.com/firehose/latest/dev/monitoring-with-cloudwatch-metrics.html) in the *Amazon Kinesis Data Firehose Developer Guide*\.
+Kinesis Data Firehose sends metrics to CloudWatch\. For more information, see [Monitoring with Amazon CloudWatch Metrics](https://docs.aws.amazon.com/firehose/latest/dev/monitoring-with-cloudwatch-metrics.html) in the *Amazon Kinesis Data Firehose Developer Guide*\.
 
 ## Service\-level CloudWatch Metrics<a name="fh-metrics-cw"></a>
 
@@ -26,6 +26,7 @@ The `AWS/Firehose` namespace includes the following service\-level metrics\.
 | DeliveryToS3\.Records |  The number of records delivered to Amazon S3 over the specified time period\. Units: Count  | 
 | DeliveryToS3\.Success |  The sum of successful Amazon S3 put commands over the sum of all Amazon S3 put commands\.  | 
 | DeliveryToSplunk\.Bytes |  The number of bytes delivered to Splunk over the specified time period\. Units: Bytes  | 
+| DeliveryToSplunk\.DataAckLatency |  The approximate duration it takes to receive an acknowledgement from Splunk after Kinesis Data Firehose sends it data\. The increasing or decreasing trend for this metric is more useful than the absolute approximate value\. Increasing trends can indicate slower indexing and acknowledgement rates from Splunk indexers\. Units: Seconds  | 
 | DeliveryToSplunk\.DataFreshness |  Age \(from getting into Kinesis Data Firehose to now\) of the oldest record in Kinesis Data Firehose\. Any record older than this age has been delivered to Splunk\. Units: Seconds  | 
 | DeliveryToSplunk\.Records |  The number of records delivered to Splunk over the specified time period\. Units: Count  | 
 | DeliveryToSplunk\.Success |  The sum of the successfully indexed records over the sum of records that were attempted\.  | 

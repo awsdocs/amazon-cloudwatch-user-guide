@@ -18,10 +18,13 @@ The `AWS/AmazonMQ` namespace includes the following metrics\.
 | --- | --- | --- | 
 | CpuCreditBalance | Credits \(vCPU\-minutes\) |   This metric is available only for the `mq.t2.micro` broker instance type\. CPU credit metrics are available only at five\-minute intervals\.  The number of earned CPU credits that an instance has accrued since it was launched or started \(including the number of launch credits\)\. The credit balance is available for the broker instance to spend on bursts beyond the baseline CPU utilization\. Credits are accrued in the credit balance after they're earned and removed from the credit balance after they're spent\. The credit balance has a maximum limit\. Once the limit is reached, any newly earned credits are discarded\.  | 
 | CpuUtilization | Percent | The percentage of allocated EC2 compute units that the broker currently uses\. | 
+| CurrentConnectionsCount | Count | The current number of active connections on the current broker\. | 
 | HeapUsage | Percent | The percentage of the ActiveMQ JVM memory limit that the broker currently uses\. | 
 | NetworkIn | Bytes | The volume of incoming traffic for the broker\. | 
 | NetworkOut | Bytes | The volume of outgoing traffic for the broker\. | 
+| TotalConsumerCount | Count | The number of message consumers subscribed to destinations on the current broker\. | 
 | TotalMessageCount | Count | The number of messages stored on the broker\. | 
+| TotalProducerCount | Count | The number of message producers active on destinations on the current broker\. | 
 
 ### Dimension for Broker Metrics<a name="broker-metrics-dimensions"></a>
 

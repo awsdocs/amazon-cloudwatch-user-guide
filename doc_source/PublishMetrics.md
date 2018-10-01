@@ -1,6 +1,6 @@
 # Scenario: Publish Metrics to CloudWatch<a name="PublishMetrics"></a>
 
-In this scenario, you'll use the AWS Command Line Interface \(AWS CLI\) to publish a single metric for a hypothetical application named *GetStarted*\. If you haven't already installed and configured the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
+In this scenario, you'll use the AWS Command Line Interface \(AWS CLI\) to publish a single metric for a hypothetical application named *GetStarted*\. If you haven't already installed and configured the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
 **Topics**
 + [Step 1: Define the Data Configuration](#define-data-domain)
@@ -37,7 +37,7 @@ After you have defined your data configuration, you are ready to add data\.
 
 **To publish data points to CloudWatch**
 
-1. At a command prompt, run the following [put\-metric\-data](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html) commands to add data for the first hour\. Replace the example time stamp with a time stamp that is two hours in the past, in Universal Coordinated Time \(UTC\)\.
+1. At a command prompt, run the following [put\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html) commands to add data for the first hour\. Replace the example time stamp with a time stamp that is two hours in the past, in Universal Coordinated Time \(UTC\)\.
 
    ```
    aws cloudwatch put-metric-data --metric-name RequestLatency --namespace GetStarted \
@@ -66,7 +66,7 @@ After you have defined your data configuration, you are ready to add data\.
 
 ## Step 3: Get Statistics from CloudWatch<a name="GetStatistics"></a>
 
-Now that you have published metrics to CloudWatch, you can retrieve statistics based on those metrics using the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows\. Be sure to specify `--start-time` and `--end-time` far enough in the past to cover the earliest time stamp that you published\.
+Now that you have published metrics to CloudWatch, you can retrieve statistics based on those metrics using the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows\. Be sure to specify `--start-time` and `--end-time` far enough in the past to cover the earliest time stamp that you published\.
 
 ```
 aws cloudwatch get-metric-statistics --namespace GetStarted --metric-name RequestLatency --statistics Average \

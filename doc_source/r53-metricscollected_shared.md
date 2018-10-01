@@ -1,6 +1,6 @@
 # Route 53 Metrics and Dimensions<a name="r53-metricscollected_shared"></a>
 
-Route 53 sends metrics to CloudWatch\. CloudWatch provides detailed monitoring of Route 53 by default\. Route 53 sends one\-minute metrics to CloudWatch\. For more information, see [Monitoring Health Checks Using Amazon CloudWatch](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-monitor-view-status.html#monitoring-health-checks) in the *Amazon Route 53 Developer Guide*\.
+Route 53 sends metrics to CloudWatch\. CloudWatch provides detailed monitoring of Route 53 by default\. Route 53 sends one\-minute metrics to CloudWatch\. For more information, see [Monitoring Health Checks Using Amazon CloudWatch](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-monitor-view-status.html#monitoring-health-checks) in the *Amazon Route 53 Developer Guide*\.
 
 **Note**  
 To get Route 53 metrics using CloudWatch, you must choose US East \(N\. Virginia\) as the region\. Route 53 metrics are not available if you select any other region\. You can also optionally specify a `Region` dimension\. For more information, see [Dimensions for Route 53 Metrics](#route-53-metrics-dimensions)\.
@@ -25,4 +25,4 @@ Route 53 metrics use the `AWS/Route53` namespace and provide metrics for `Healt
 
 In addition, for `ConnectionTime`, `SSLHandshakeTime`, and `TimeToFirstByte`, you can optionally specify `Region`\. If you omit `Region`, CloudWatch returns metrics across all regions\. If you include `Region`, CloudWatch returns metrics only for the specified region\.
 
-For more information, see [Monitoring Health Checks Using CloudWatch](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/monitoring-health-checks.html) in the *Amazon Route 53 Developer Guide*\.
+For more information, see [Monitoring Health Checks Using CloudWatch](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/monitoring-health-checks.html) in the *Amazon Route 53 Developer Guide*\.
