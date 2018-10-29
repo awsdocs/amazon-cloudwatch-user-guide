@@ -117,10 +117,16 @@ You can use an Amazon S3 download link to download the CloudWatch agent package 
    unzip AmazonCloudWatchAgent.zip
    ```
 
-1. Install the package\. On a Linux server, change to the directory containing the package and type:
+1. Install the package\. If you downloaded an RPM package on a Linux server, change to the directory containing the package and type:
 
    ```
-   sudo ./install.sh
+   rpm -U ./amazon-cloudwatch-agent.rpm
+   ```
+
+   If you downloaded a DEB package on a Linux server, change to the directory containing the package and type:
+
+   ```
+   dpkg -i -E ./amazon-cloudwatch-agent.deb
    ```
 
    On a server running Windows Server, open PowerShell, change to the directory containing the unzipped package, and use the `install.ps1` script to install it\.
@@ -245,11 +251,11 @@ Follow these steps to use the command line to install the CloudWatch agent on an
   Windows Server: if you saved the agent configuration file in Systems Manager Parameter Store, use the following command\. From the PowerShell console, type the following:
 
   ```
-  amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
+  ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
   Windows Server: if you saved the agent configuration file on the local computer, use the following command\. From the PowerShell console, type the following:
 
   ```
-  amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s
+  ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s
   ```

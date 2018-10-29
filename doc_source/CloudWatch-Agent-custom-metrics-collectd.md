@@ -25,7 +25,7 @@ Optional parameters are also available\. If you are using collectd and you do no
   `user1: user1_password`
 
   `user2: user2_password`
-+ **collectd\_types\_db:** A list of one or more files that contain the dataset descriptions\. The list must be surrounded by brackets, even if there is just one entry in the list\. Each entry in the list must be surrounded by double quotes\. If there are multiple entries, separate them with commas\. The default is `["/user/share/collectd/types.db"]`\. For more information, see [https://collectd.org/documentation/manpages/types.db.5.shtml](https://collectd.org/documentation/manpages/types.db.5.shtml)\.
++ **collectd\_types\_db:** A list of one or more files that contain the dataset descriptions\. The list must be surrounded by brackets, even if there is just one entry in the list\. Each entry in the list must be surrounded by double quotes\. If there are multiple entries, separate them with commas\. The default is `["/usr/share/collectd/types.db"]`\. For more information, see [https://collectd.org/documentation/manpages/types.db.5.shtml](https://collectd.org/documentation/manpages/types.db.5.shtml)\.
 + **metrics\_aggregation\_interval:** How often in seconds CloudWatch aggregates metrics into single data points\. The default is 60 seconds\. The range is 0 to 172,000\. Setting it to 0 disables the aggregation of collectd metrics\.
 
 The following is an example of the collectd section of the agent configuration file\.

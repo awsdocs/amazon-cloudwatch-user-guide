@@ -17,9 +17,9 @@ You can use any StatsD client that follows this format to send the metrics to th
 The basic configuration for collecting these custom metrics with the CloudWatch agent is to add a **"statsd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
 
 The StatsD default configuration works for most users\. There are three optional fields you can add to the **statsd** section of the agent configuration file as needed:
-+ **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `ip:port`\. If you omit the IP address, the local host `127.0.0.1` is used for the IP address\. Only the UDP format is supported, so you do not need to specify a UDP prefix\. 
++ **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `ip:port`\. If you omit the IP address, the agent listens on all available interfaces\. Only the UDP format is supported, so you do not need to specify a UDP prefix\. 
 
-  The default is `:8125`, which translates to the 8125 port of the local host\.
+  The default is `:8125`\.
 + **metrics\_collection\_interval:** How often in seconds that the StatsD plugin runs and collects metrics\. The default is 10 seconds\. The range is 1 to 172,000\.
 + **metrics\_aggregation\_interval:** How often in seconds CloudWatch aggregates metrics into single data points\. The default is 60 seconds\.
 

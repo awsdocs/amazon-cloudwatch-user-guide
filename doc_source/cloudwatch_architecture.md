@@ -4,7 +4,7 @@ Amazon CloudWatch is basically a metrics repository\. An AWS service—such as A
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/CW-Overview.png)
 
-You can use metrics to calculate statistics and then present the data graphically in the CloudWatch console\. For more information about the other AWS resources that generate and send metrics to CloudWatch, see [Amazon CloudWatch Metrics and Dimensions Reference](CW_Support_For_AWS.md)\.
+You can use metrics to calculate statistics and then present the data graphically in the CloudWatch console\. For more information about the other AWS resources that generate and send metrics to CloudWatch, see [AWS Services that Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 
 You can configure alarm actions to stop, start, or terminate an Amazon EC2 instance when certain criteria are met\. In addition, you can create alarms that initiate Amazon EC2 Auto Scaling and Amazon Simple Notification Service \(Amazon SNS\) actions on your behalf\. For more information about creating CloudWatch alarms, see [Alarms](cloudwatch_concepts.md#CloudWatchAlarms)\.
 

@@ -14,8 +14,8 @@ The wizard looks for an `AmazonCloudWatchAgent` section such as this in the cred
 
 ```
 [AmazonCloudWatchAgent]
-aws_access_key_id=my_secret_key
-aws_secret_access_key=my_access_key
+aws_access_key_id = my_secret_key
+aws_secret_access_key = my_access_key
 ```
 
 If this section exists, the wizard uses these credentials for the CloudWatch agent\.
@@ -90,4 +90,4 @@ The wizard is configured with pre\-defined sets of metrics, with different detai
 
 1. If you are going to use Systems Manager to install and configure the agent, be sure to answer **Yes** when prompted whether to store the file in Systems Manager Parameter Store\. You can also choose to store the file in Parameter Store even if you aren't using the SSM Agent to install the CloudWatch agent\. To be able to store the file in Parameter Store, you must use an IAM role with sufficient permissions\. For more information, see [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\.
 
-   If you are storing the configuration file locally, you can store it anywhere\. You then specify the file location when you start the agent\.
+   If you are storing the configuration file locally, the configuration file `config.json` is stored in the current working directory\. You then specify this file location when you start the agent\.

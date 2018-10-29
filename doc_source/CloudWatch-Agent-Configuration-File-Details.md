@@ -67,8 +67,6 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 + **cpu** – Optional\. Specifies that cpu metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
   + **resources** – Optional\. Specifies that per\-cpu metrics are to be collected\. The only allowed value is `*`\. If you include this field and value, per\-cpu metrics are collected\. 
   + **totalcpu** – Optional\. Specifies whether to report cpu metrics aggregated across all cpu cores\. The default is true\.
-
-    If you use the wizard to create your configuration file, the wizard sets this option to false\.
   + **measurement** – Specifies the array of cpu metrics to be collected\. Possible values are `time_active`, `time_guest`, `time_guest_nice`, `time_idle`, `time_iowait`, `time_irq`, `time_nice`, `time_softirq`, `time_steal`, `time_system`, `time_user`, `usage_active`, `usage_guest`, `usage_guest_nice`, `usage_idle`, `usage_iowait`, `usage_irq`, `usage_nice`, `usage_softirq`, `usage_steal`, `usage_system`, and `usage_user`\. This field is required if you include `cpu`\.
 
     By default, the unit for `cpu_usage_*` metrics is `Percent`, and `cpu_time_*` metrics do not have a unit\.
@@ -101,8 +99,6 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 + **diskio** – Optional\. Specifies that diskio metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as two fields:
   + **resources** – Optional\. If you specify an array of devices, CloudWatch collects metrics from only those devices\. Otherwise, metrics for all devices are collected\. You can also specify \* as the value to collect metrics from all devices\.
   + **measurement** – Specifies the array of diskio metrics to be collected\. Possible values are `reads`, `writes`, `read_bytes`, `write_bytes`, `read_time`, `write_time`, `io_time`, and `iops_in_progress`\. This field is required if you include `diskio`\.
-
-    To see the default units for each `diskio` metric, see [Amazon EC2 Metrics and Dimensions](ec2-metricscollected.md)\.
 
     Within the entry for each individual metric, you may optionally specify one or both of the following:
     + **rename** – Specifies a different name for this metric\.

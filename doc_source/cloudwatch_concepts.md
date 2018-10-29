@@ -14,7 +14,7 @@ A *namespace* is a container for CloudWatch metrics\. Metrics in different names
 
 There is no default namespace\. You must specify a namespace for each data point you publish to CloudWatch\. You can specify a namespace name when you create a metric\. These names must contain valid XML characters, and be fewer than 256 characters in length\. Possible characters are: alphanumeric characters \(0\-9A\-Za\-z\), period \(\.\), hyphen \(\-\), underscore \(\_\), forward slash \(/\), hash \(\#\), and colon \(:\)\.
 
-The AWS namespaces use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Namespaces](aws-namespaces.md)\.
+The AWS namespaces use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Services that Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 
 ## Metrics<a name="Metric"></a>
 

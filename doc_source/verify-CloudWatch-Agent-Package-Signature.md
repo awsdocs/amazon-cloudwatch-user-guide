@@ -47,7 +47,7 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
 1. To verify the signature, run `gpg --verify`\.
 
    ```
-   shell$ gpg --verify AmazonCloudWatchAgent.sig AmazonCloudWatchAgent.zip
+   shell$ gpg --verify sig-filename agent-download-filename
    gpg: Signature made Wed 29 Nov 2017 03:00:59 PM PST using RSA key ID 3B789C72
    gpg: Good signature from "Amazon CloudWatch Agent"
    gpg: WARNING: This key is not certified with a trusted signature!
@@ -104,7 +104,7 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
 1. To verify the signature, run `gpg --verify`\.
 
    ```
-   PS> gpg --verify AmazonCloudWatchAgent.sig AmazonCloudWatchAgent.zip
+   PS> gpg --verify sig-filename agent-download-filename
    gpg: Signature made 11/29/17 23:00:45 Coordinated Universal Time
    gpg:                using RSA key D58167303B789C72
    gpg: Good signature from "Amazon CloudWatch Agent" [unknown]
