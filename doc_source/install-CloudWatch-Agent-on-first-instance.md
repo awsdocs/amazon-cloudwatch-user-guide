@@ -66,7 +66,7 @@ Systems Manager Run Command enables you to manage the configuration of your inst
 
 1. In the **Command document** list, choose **AWS\-ConfigureAWSPackage**\.
 
-1. In the **Targets** area, choose the instance on which to install the CloudWatch agent\. If you do not see a specific instance, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/systems-manager-setting-up.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+1. In the **Targets** area, choose the instance on which to install the CloudWatch agent\. If you do not see a specific instance, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-prereqs.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 1. In the **Action** list, choose **Install**\.
 
