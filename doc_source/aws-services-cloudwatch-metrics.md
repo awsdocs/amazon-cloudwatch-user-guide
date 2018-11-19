@@ -13,6 +13,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon CloudWatch Events  |  `AWS/Events`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatch-Events-Monitoring-CloudWatch-Metrics.html)  | 
 |  Amazon CloudWatch Logs  |  `AWS/Logs`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html)  | 
 |  AWS CodeBuild  |  `AWS/CodeBuild`  |  [Monitoring AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html)  | 
+|  Amazon Cognito  |  `AWS/Cognito`  |  [Viewing Advanced Security Metrics](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-viewing-advanced-security-metrics.html)  | 
 |  Amazon Connect  |  `AWS/Connect`  |  [Monitoring Amazon Connect in Amazon CloudWatch Metrics](https://docs.aws.amazon.com/connect/latest/adminguide/monitoring-cloudwatch.html)  | 
 |  AWS Database Migration Service  |  `AWS/DMS`  |  [Monitoring AWS DMS Tasks](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)  | 
 |  AWS Direct Connect  |  `AWS/DX`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html)  | 
