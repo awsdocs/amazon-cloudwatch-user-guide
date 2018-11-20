@@ -100,7 +100,7 @@ You can use an Amazon S3 download link to download the CloudWatch agent package 
 1. Download the CloudWatch agent\. Use a download link from the previous table\. For a Linux server, type the following:
 
    ```
-   wget download-link
+  wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
    ```
 
    For a server running Windows Server, download the following file:
