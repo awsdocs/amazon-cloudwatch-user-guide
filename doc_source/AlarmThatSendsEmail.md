@@ -1,6 +1,8 @@
-# Creating Amazon CloudWatch Alarms<a name="AlarmThatSendsEmail"></a>
+# Using Amazon CloudWatch Alarms<a name="AlarmThatSendsEmail"></a>
 
-You can create a CloudWatch alarm that watches a single metric\. The alarm performs one or more actions based on the value of the metric relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Amazon EC2 Auto Scaling action, or a notification sent to an Amazon SNS topic\. You can also add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
+You can create a CloudWatch alarm that watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Amazon EC2 Auto Scaling action, or a notification sent to an Amazon SNS topic\.
+
+You can also add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
 
 Alarms invoke actions for sustained state changes only\. CloudWatch alarms do not invoke actions simply because they are in a particular state, the state must have changed and been maintained for a specified number of periods\. 
 
@@ -12,15 +14,15 @@ CloudWatch doesn't test or validate the actions that you specify, nor does it de
 ## Alarm States<a name="alarm-states"></a>
 
 An alarm has the following possible states:
-+ *`OK`*—The metric is within the defined threshold\.
-+ *`ALARM`*—The metric is outside of the defined threshold\.
++ *`OK`*—The metric or expression is within the defined threshold\.
++ *`ALARM`*—The metric or expression is outside of the defined threshold\.
 + *`INSUFFICIENT_DATA`*—The alarm has just started, the metric is not available, or not enough data is available for the metric to determine the alarm state\.
 
 ## Evaluating an Alarm<a name="alarm-evaluation"></a>
 
 When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
-+ **Period** is the length of time to evaluate the metric to create each individual data point for a metric\. It is expressed in seconds\. If you choose one minute as the period, there is one datapoint every minute\.
-+ **Evaluation Period** is the number of the most recent data points to evaluate when determining alarm state\.
++ **Period** is the length of time to evaluate the metric or expression to create each individual data point for an alarm\. It is expressed in seconds\. If you choose one minute as the period, there is one datapoint every minute\.
++ **Evaluation Period** is the number of the most recent periods, or data points, to evaluate when determining alarm state\.
 + **Datapoints to Alarm** is the number of data points within the evaluation period that must be breaching to cause the alarm to go to the `ALARM` state\. The breaching data points do not have to be consecutive, they just must all be within the last number of data points equal to **Evaluation Period**\.
 
 In the following figure, the alarm threshold is set to three units\. The alarm is configured to go to the `ALARM` state and both **Evaluation Period** and **Datapoints to Alarm** are 3\. That is, when all three datapoints in the most recent three consecutive periods are above the threshold, the alarm goes to the `ALARM` state\. In the figure, this happens in the third through fifth time periods\. At period six, the value dips below the threshold, so one of the periods being evaluated is not breaching, and the alarm state changes to `OK`\. During the ninth time period, the threshold is breached again, but for only one period\. Consequently, the alarm state remains `OK`\.
@@ -96,6 +98,16 @@ If data points are missing soon after you create an alarm, and the metric was be
 
  If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publish Custom Metrics](publishingMetrics.md)\.
 
+## Alarms on Math Expressions<a name="alarms-on-metric-math-expressions"></a>
+
+ You can set an alarm on the result of a math expression that is based on one or more CloudWatch metrics\. A math expression used for an alarm can include as many as 10 metrics\. Each metric must be using the same period\.
+
+For an alarm based on a math expression, you can specify how you want CloudWatch to treat missing data points for the underlying metrics when evaluating the alarm\. 
+
+Alarms based on math expressions cannot perform Amazon EC2 actions\.
+
+For more information about metric math expressions and syntax, see [Use Metric Math](using-metric-math.md)\.
+
 ## Percentile\-Based CloudWatch Alarms and Low Data Samples<a name="percentiles-with-low-samples"></a>
 
 When you set a percentile as the statistic for an alarm, you can specify what to do when there is not enough data for a good statistical assessment\. You can choose to have the alarm evaluate the statistic anyway and possibly change the alarm state\. Or, you can have the alarm ignore the metric while the sample size is low, and wait to evaluate it until there is enough data to be statistically significant\.
@@ -111,7 +123,7 @@ The following features apply to all CloudWatch alarms:
 + You can disable and enable alarms by using `DisableAlarmActions` and `EnableAlarmActions` \(`mon-disable-alarm-actions` and `mon-enable-alarm-actions`\)\.
 + You can test an alarm by setting it to any state using `SetAlarmState` \(`mon-set-alarm-state`\)\. This temporary state change lasts only until the next alarm comparison occurs\.
 + You can create an alarm using `PutMetricAlarm` \(`mon-put-metric-alarm`\) before you've created a custom metric\. For the alarm to be valid, you must include all of the dimensions for the custom metric in addition to the metric namespace and metric name in the alarm definition\.
-+ You can view an alarm's history using `DescribeAlarmHistory` \(`mon-describe-alarm-history`\)\. CloudWatch preserves alarm history for two weeks\. Each state transition is marked with a unique time stamp\. In rare cases, your history might show more than one notification for a state change\. The time stamp enables you to confirm unique state changes\.
++ You can view an alarm's history using `DescribeAlarmHistory` \(`mon-describe-alarm-history`\)\. CloudWatch preserves alarm history for two weeks\. Each state transition is marked with a unique timestamp\. In rare cases, your history might show more than one notification for a state change\. The timestamp enables you to confirm unique state changes\.
 + The number of evaluation periods for an alarm multiplied by the length of each evaluation period cannot exceed one day\.
 
 **Note**  

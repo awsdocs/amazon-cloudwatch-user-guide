@@ -44,6 +44,7 @@ The general flow of installing the CloudWatch agent is as follows:
 + [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)
 + [Install the CloudWatch Agent on an Amazon EC2 Instance](install-CloudWatch-Agent-on-EC2-Instance.md)
 + [Install the CloudWatch Agent on an On\-Premises Server](install-CloudWatch-Agent-on-premise.md)
++ [Install the CloudWatch Agent on New Instances Using AWS CloudFormation](Install-CloudWatch-Agent-New-Instances-CloudFormation.md)
 + [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
 + [Retrieve Custom Metrics with StatsD](CloudWatch-Agent-custom-metrics-statsd.md)
 + [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)

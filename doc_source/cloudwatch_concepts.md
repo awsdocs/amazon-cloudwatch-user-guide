@@ -159,4 +159,4 @@ When creating an alarm, select a period that is greater than or equal to the fre
 
  If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publish Custom Metrics](publishingMetrics.md)\.
 
-For more information, see [Creating Amazon CloudWatch Alarms](AlarmThatSendsEmail.md) and [Create an Alarm from a Metric on a Graph](create_alarm_metric_graph.md)\.
+For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md) and [Create an Alarm from a Metric on a Graph](create_alarm_metric_graph.md)\.

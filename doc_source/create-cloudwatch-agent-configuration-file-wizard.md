@@ -26,7 +26,7 @@ In the configuration file, you can specify what region the agent sends metrics t
 
 ```
 [AmazonCloudWatchAgent]
-region=us-west-1
+region = us-west-1
 ```
 
 ## CloudWatch Agent Predefined Metric Sets<a name="cloudwatch-agent-preset-metrics"></a>

@@ -28,9 +28,9 @@ Use these steps to use the AWS Management Console to create a load balancer late
 
 1. Under **Additional settings**, for **Treat missing data as**, choose **ignore \(maintain alarm state\)** so that missing data points do not trigger alarm state changes\.
 
-   For **Percentiles with low samples** choose **ignore \(maintain the alarm state\)** so that the alarm evaluates only situations with adequate numbers of data samples\. 
+   For **Percentiles with low samples**, choose **ignore \(maintain the alarm state\)** so that the alarm evaluates only situations with adequate numbers of data samples\. 
 
-1. Under **Actions**, for **Whenever this alarm**, choose **State is ALARM**\. For **Send notification to** choose an existing SNS topic or create a new one\.
+1. Under **Actions**, for **Whenever this alarm**, choose **State is ALARM**\. For **Send notification to**, choose an existing SNS topic or create a new one\.
 
    To create an SNS topic, choose **New list**\. For **Send notification to**, type a name for the SNS topic \(for example, **myHighCpuAlarm**\), and for **Email list**, type a comma\-separated list of email addresses to be notified when the alarm changes to the `ALARM` state\. Each email address is sent a topic subscription confirmation email\. You must confirm the subscription before notifications can be sent\.
 

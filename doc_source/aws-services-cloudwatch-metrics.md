@@ -33,6 +33,9 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon ElastiCache for Redis  |  `AWS/ElastiCache`  |  [Monitoring Use with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.html)  | 
 |  Amazon Elasticsearch Service  |  `AWS/ES`  |  [Monitoring Cluster Metrics and Statistics with CloudWatch](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-cloudwatchmetrics)  | 
 |  Amazon EMR  |  `AWS/ElasticMapReduce`  |  [Monitor Metrics with CloudWatch](https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_ViewingMetrics.html)  | 
+|  AWS Elemental MediaConvert  |  `AWS/MediaConvert`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediaconvert/latest/ug/MediaConvert-metrics.html)  | 
+|  AWS Elemental MediaConvert  |  `AWS/MediaPackage`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch.html#metrics)  | 
+|  AWS Elemental MediaTailor  |  `AWS/MediaTailor`  |  [Monitoring AWS Elemental MediaTailor with Amazon CloudWatch](https://docs.aws.amazon.com/mediatailor/latest/ug/monitoring-cloudwatch.html)  | 
 |  Amazon GameLift  |  `AWS/GameLift`  |  [Monitor Amazon GameLift with CloudWatch](https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AWS Glue  |  `AWS/Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 
 |  Amazon Inspector |  `AWS/Inspector`  |  [Monitoring Amazon Inspector Using CloudWatch](https://docs.aws.amazon.com/inspector/latest/userguide/using-cloudwatch.html)  | 

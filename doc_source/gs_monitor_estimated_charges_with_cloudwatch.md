@@ -15,12 +15,12 @@ You can choose to receive alerts by email when charges have exceeded a certain t
 
 ## Step 1: Enable Billing Alerts<a name="gs_turning_on_billing_metrics"></a>
 
-Before you can create an alarm for your estimated charges, you must enable billing alerts, so that you can monitor your estimated AWS charges and create an alarm using billing metric data\. After you enable billing alerts, you cannot disable data collection, but you can delete any billing alarms you created\.
+Before you can create an alarm for your estimated charges, you must enable billing alerts, so that you can monitor your estimated AWS charges and create an alarm using billing metric data\. After you enable billing alerts, you cannot disable data collection, but you can delete any billing alarms that you created\.
 
 After you enable billing alerts for the first time, it takes about 15 minutes before you can view billing data and set billing alarms\.
 
 **Requirements**
-+ You must be signed in using root account credentials; IAM users cannot enable billing alerts for your AWS account\.
++ You must be signed in using AWS account root user credentials\. IAM users cannot enable billing alerts for your AWS account\.
 + For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account as well as for the consolidated account\.
 
 **To enable monitoring of your estimated charges**
@@ -45,18 +45,21 @@ This procedure uses the simple options\. To use the advanced options, see [Creat
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. If necessary, change the region to US East \(N\. Virginia\)\. Billing metric data is stored in this region and reflects worldwide charges\.
+1. If necessary, change the Region to US East \(N\. Virginia\)\. Billing metric data is stored in this Region and reflects worldwide charges\.
 
-1. In the navigation pane, choose **Alarms**, **Billing**\.
+1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
+
+1. Choose **Select metric**, **Billing**, **Total Estimated Charge**\.
+
+1. Select the checkbox next to **EstimatedCharges** and choose **Select metric**
 
 1. For **Whenever my total AWS charges for the month exceed**, specify the monetary amount \(for example, 200\) that must be exceeded to trigger the alarm and send an email notification\.
 **Tip**  
-Under **Alarm Preview**, there is an estimate of your charges that you can use to set an appropriate amount\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/billing_alarm_page.png)
+The graph shows a current estimate of your charges that you can use to set an appropriate amount\.
 
 1. For **send a notification to**, choose an existing notification list or create a new one\.
 
-   To create a list, choose **New list** and type a comma\-separated list of email addresses to be notified when the alarm changes to the ALARM state\. Each email address will be sent a subscription confirmation email\. The recipient must confirm the subscription before notifications can be sent to the email address\.
+   To create a list, choose **New list** and type a comma\-separated list of email addresses to be notified when the alarm changes to the ALARM state\. Each email address is sent a subscription confirmation email\. The recipient must confirm the subscription before notifications can be sent to the email address\.
 
 1. Choose **Create Alarm**\. 
 
@@ -68,25 +71,25 @@ Now, check the status of the billing alarm that you just created\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. If necessary, change the region to US East \(N\. Virginia\)\. Billing metric data is stored in this region and reflects worldwide charges\.
+1. If necessary, change the Region to US East \(N\. Virginia\)\. Billing metric data is stored in this Region and reflects worldwide charges\.
 
-1. In the navigation pane, choose **Alarms**, **Billing**\.
+1. In the navigation pane, choose **Alarms**\.
 
-1. Select the check box next to the alarm\. Note that until the subscription is confirmed, it is shown as "Pending confirmation"\. After the subscription is confirmed, refresh the console to show the updated status\.
+1. Select the check box next to the alarm\. Until the subscription is confirmed, it is shown as "Pending confirmation"\. After the subscription is confirmed, refresh the console to show the updated status\.
 
 ## Step 4: Edit a Billing Alarm<a name="gs_editing_billing_alarm"></a>
 
-Let's say that you want to increase the amount money you spend with AWS each month from $200 to $400\. You can edit your existing billing alarm and increase the monetary amount that must be exceeded before the alarm is triggered\.
+For example, you may want to increase the amount of money you spend with AWS each month from $200 to $400\. You can edit your existing billing alarm and increase the monetary amount that must be exceeded before the alarm is triggered\.
 
 **To edit a billing alarm**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. If necessary, change the region to US East \(N\. Virginia\)\. Billing metric data is stored in this region and reflects worldwide charges\.
+1. If necessary, change the Region to US East \(N\. Virginia\)\. Billing metric data is stored in this Region and reflects worldwide charges\.
 
-1. In the navigation pane, choose **Alarms**, **Billing**\.
+1. In the navigation pane, choose **Alarms**\.
 
-1. Select the check box next to the alarm and then choose **Actions**, **Modify**\.
+1. Select the check box next to the alarm and choose **Actions**, **Modify**\.
 
 1. For **Whenever my total AWS charges for the month exceed**, specify the new amount that must be exceeded to trigger the alarm and send an email notification\.
 
@@ -94,16 +97,16 @@ Let's say that you want to increase the amount money you spend with AWS each mon
 
 ## Step 5: Delete a Billing Alarm<a name="gs_deleting_billing_alarm"></a>
 
-You can delete your billing alarm if you no longer need it\.
+If you no longer need your billing alarm, you can delete it\.
 
 **To delete a billing alarm**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. If necessary, change the region to US East \(N\. Virginia\)\. Billing metric data is stored in this region and reflects worldwide charges\.
+1. If necessary, change the Region to US East \(N\. Virginia\)\. Billing metric data is stored in this Region and reflects worldwide charges\.
 
-1. In the navigation pane, choose **Alarms**, **Billing**\.
+1. In the navigation pane, choose **Alarms**\.
 
-1. Select the check box next to the alarm and then choose **Actions**, **Delete**\.
+1. Select the check box next to the alarm and choose **Actions**, **Delete**\.
 
 1. When prompted for confirmation, choose **Yes, Delete**\.

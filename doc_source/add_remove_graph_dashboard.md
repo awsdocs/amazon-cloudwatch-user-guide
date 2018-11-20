@@ -24,7 +24,7 @@ You can add graphs containing one or more metrics to your dashboard for the reso
 
 1. \(Optional\) To change the time range shown on the graph, choose either **custom** at the top of the graph, or one of the time periods to the left of **custom**\.
 
-1. <a name="horizontal-annotations"></a> \(Optional\) Horizontal annotations can help dashboard users quickly see when a metric has spiked to a certain level, or whether the metric is within a predefined range\. To add a horizontal annotation, choose **Graph options**, **Add horizontal annotation**:
+1. <a name="horizontal-annotations"></a> \(Optional\) Horizontal annotations help dashboard users quickly see when a metric has spiked to a certain level, or whether the metric is within a predefined range\. To add a horizontal annotation, choose **Graph options**, **Add horizontal annotation**:
 
    1. For **Label**, type a label for the annotation\.
 

@@ -33,7 +33,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 1. For **Endpoint**, type an email address that you can use to receive the notification, and then choose **Create subscription**\.
 
-1. From your email application and open the message from AWS Notifications and confirm your subscription\.
+1. From your email application, open the message from AWS Notifications and confirm your subscription\.
 
    Your web browser displays a confirmation response from Amazon SNS\.
 
@@ -85,7 +85,7 @@ First you create an SNS topic, and then publish a message directly to the topic 
    3. }
    ```
 
-1. From your email application and open the message from AWS Notifications and confirm your subscription\.
+1. From your email application, open the message from AWS Notifications and confirm your subscription\.
 
    Your web browser displays a confirmation response from Amazon Simple Notification Service\.
 

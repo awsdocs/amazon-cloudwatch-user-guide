@@ -1,6 +1,19 @@
 # Verify the Signature of the CloudWatch Agent Package<a name="verify-CloudWatch-Agent-Package-Signature"></a>
 
-GPG signature files are included for CloudWatch Agent assets compressed in ZIP archives\. The public key is here: [ https://s3.amazonaws.com/amazoncloudwatch-agent/assets/amazon-cloudwatch-agent.gpg]( https://s3.amazonaws.com/amazoncloudwatch-agent/assets/amazon-cloudwatch-agent.gpg)\. You can use the public key to verify that the agent's ZIP archive is original and unmodified\. First, import the public key with [https://gnupg.org/index.html](https://gnupg.org/index.html)\.
+GPG signature files are included for CloudWatch Agent packages\. You can use the public key to verify that the agent download file is original and unmodified\. First, import the public key with [https://gnupg.org/index.html](https://gnupg.org/index.html)\.
+
+To find the correct signature file, see the following table: 
+
+
+| Arch | Platform | Download Link | Signature File Link | 
+| --- | --- | --- | --- | 
+|  amd64 |  Amazon Linux and Amazon Linux 2  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  Centos  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/centos/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/centos/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  Redhat  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  SUSE  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  amd64 |  Debian  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
+|  amd64 |  Ubuntu  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
+|  amd64 |  Windows  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi\.sig  | 
 
 **To verify the CloudWatch agent package on a Linux server**
 
@@ -38,16 +51,16 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
 
    After you have verified the fingerprint, you can use it to verify the signature of the CloudWatch agent package\.
 
-1. Download the package signature file using wget\. To determine the correct signature file, see [CloudWatch Agent Download Links](install-CloudWatch-Agent-on-onprem.md#agent-download-link-table)\.
+1. Download the package signature file using wget\. To determine the correct signature file, see the preceding table\.
 
    ```
-   wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.sig
+   wget Signature File Link
    ```
 
 1. To verify the signature, run `gpg --verify`\.
 
    ```
-   shell$ gpg --verify sig-filename agent-download-filename
+   shell$ gpg --verify signature-filename agent-download-filename
    gpg: Signature made Wed 29 Nov 2017 03:00:59 PM PST using RSA key ID 3B789C72
    gpg: Good signature from "Amazon CloudWatch Agent"
    gpg: WARNING: This key is not certified with a trusted signature!
@@ -55,7 +68,7 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
    Primary key fingerprint: 9376 16F3 450B 7D80 6CBD  9725 D581 6730 3B78 9C72
    ```
 
-   If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid unzipping the downloaded agent archive\.
+   If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid using the downloaded file\.
 
    Note the warning about trust\. A key is only trusted if you or someone that you trust has signed it\. This does not mean that the signature is invalid, only that you have not verified the public key\.
 
@@ -113,6 +126,6 @@ GPG signature files are included for CloudWatch Agent assets compressed in ZIP a
    Primary key fingerprint: 9376 16F3 450B 7D80 6CBD  9725 D581 6730 3B78 9C72
    ```
 
-   If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid unzipping the downloaded agent archive\.
+   If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid using the downloaded file\.
 
    Note the warning about trust\. A key is only trusted if you or someone that you trust has signed it\. This does not mean that the signature is invalid, only that you have not verified the public key\.

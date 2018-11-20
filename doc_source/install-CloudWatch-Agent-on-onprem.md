@@ -33,7 +33,7 @@ For information about updating the SSM Agent on a server running Windows Server,
 
 1. In the **Command document** list, select the button next to **AWS\-ConfigureAWSPackage**\.
 
-1. In the **Targets** area, select the server on which to install the CloudWatch agent\. If you do not see a specific server, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/systems-manager-setting-up.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+1. In the **Targets** area, select the server on which to install the CloudWatch agent\. If you do not see a specific server, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-prereqs.html) in the *AWS Systems Manager User Guide*\.
 
 1. In the **Action** list, choose **Install**\.
 
@@ -58,11 +58,11 @@ To use the command line to download the agent, first choose the download link fr
 |  amd64 |  SUSE  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
 |  amd64 |  Debian  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
 |  amd64 |  Ubuntu  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
-|  amd64 |  Windows  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/AmazonCloudWatchAgent\.zip  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/AmazonCloudWatchAgent\.zip\.sig  | 
+|  amd64 |  Windows  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi\.sig  | 
 
 **To use the command line to download the CloudWatch agent on an on\-premises server**
 
-1. Make a directory for downloading and unzipping the agent package\. For example, `tmp/AmazonCloudWatchAgent`\. Then change into that directory\.
+1. Make a directory for downloading the agent package\. For example, `tmp/AmazonCloudWatchAgent`\. Then change into that directory\.
 
 1. Download the CloudWatch agent\. Use a download link from the previous table\. For a Linux server, type the following:
 
@@ -73,30 +73,30 @@ To use the command line to download the agent, first choose the download link fr
    For a server running Windows Server, download the following file:
 
    ```
-   https://s3.amazonaws.com/amazoncloudwatch-agent/windows/amd64/latest/AmazonCloudWatchAgent.zip
+   https://s3.amazonaws.com/amazoncloudwatch-agent/windows/amd64/latest/amazon-cloudwatch-agent.msi
    ```
 
 1. After you have downloaded the package, you can optionally use a GPG signature file to verify the package signature\. For more information, see [Verify the Signature of the CloudWatch Agent Package](verify-CloudWatch-Agent-Package-Signature.md)\.
 
-1. Unzip the package\.
+1. Install the package\. If you downloaded an RPM package on a Linux server, change to the directory containing the package and type the following:
 
    ```
-   unzip AmazonCloudWatchAgent.zip
+   sudo rpm -U ./amazon-cloudwatch-agent.rpm
    ```
 
-1. Install the package\. If you downloaded an RPM package on a Linux server, change to the directory containing the package and type:
+   If you downloaded a DEB package on a Linux server, change to the directory containing the package and type the following:
 
    ```
-   rpm -U ./amazon-cloudwatch-agent.rpm
+   sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
    ```
 
-   If you downloaded a DEB package on a Linux server, change to the directory containing the package and type:
+   If you downloaded an MSI package on a server running Windows Server, change to the directory containing the package, and type the following:
 
    ```
-   dpkg -i -E ./amazon-cloudwatch-agent.deb
+   msiexec /i amazon-cloudwatch-agent.msi
    ```
 
-   On a server running Windows Server, open PowerShell, change to the directory containing the unzipped package, and use the `install.ps1` script to install it\.
+   This command also works from within PowerShell\. For more information about MSI command options, see [Command\-Line Options](https://docs.microsoft.com/en-us/windows/desktop/Msi/command-line-options) in the Microsoft Windows documentation\.
 
 ## Modify the Common Configuration and Named Profile for CloudWatch Agent<a name="CloudWatch-Agent-profile-onprem"></a>
 
@@ -146,7 +146,7 @@ The following is an example of the profile for the configuration file:
 
 ```
 [AmazonCloudWatchAgent]
-region=us-west-1
+region = us-west-1
 ```
 
 The named profile in the credentials file contains the credentials to be used for the CloudWatch agent\. These credentials are used for permissions to write metric data to CloudWatch, and to download information from Systems Manager Parameter Store during the CloudWatch agent installation\. You can obtain the credentials to use for this section by creating an IAM user for the CloudWatch agent, as explained previously in this section\.
@@ -159,7 +159,7 @@ Following is an example of using the `aws configure` command to create a named p
 + Type the following command and follow the prompts:
 
   ```
-  aws configure --profile AmazonCloudWatchAgent
+  sudo aws configure --profile AmazonCloudWatchAgent
   ```
 
 ## Start the CloudWatch Agent<a name="start-CloudWatch-Agent-on-premise-SSM-onprem"></a>

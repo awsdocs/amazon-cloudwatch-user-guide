@@ -31,7 +31,7 @@ This service\-linked role can appear in your account if you completed an action 
 
 For more information, see [Creating a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#create-service-linked-role) in the *IAM User Guide*\.
 
-## Creating a Service\-Linked Role for CloudWatch Alarms<a name="edit-service-linked-role"></a>
+## Editing a Service\-Linked Role for CloudWatch Alarms<a name="edit-service-linked-role"></a>
 
 CloudWatch does not allow you to edit the **AWSServiceRoleForCloudWatchEvents** role\. After you create the role, you cannot change the name of the role because various entities might reference the role\. However, you can edit the description of the **AWSServiceRoleForCloudWatchEvents** role using IAM\. 
 
