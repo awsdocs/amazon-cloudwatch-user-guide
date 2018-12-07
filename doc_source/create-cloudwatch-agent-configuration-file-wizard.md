@@ -22,7 +22,7 @@ If this section exists, the wizard uses these credentials for the CloudWatch age
 
 For `my_access_key` and `my_secret_key`, use the keys from the IAM user that has the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for the CloudWatch agent, see [Create IAM Users to Use with CloudWatch Agent on On\-premises Servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
 
-In the configuration file, you can specify what region the agent sends metrics to, if it is different than the region in the `[default]` section\. The default is to publish the metrics to region where the Amazon EC2 instance is located\. If the metrics should be published to a different region, specify the region here\. In the following example, the metrics are published to the `us-west-1` region\.
+In the configuration file, you can specify the Region to which the agent sends metrics, if it is different than the `[default]` section\. The default is to publish the metrics to the Region where the Amazon EC2 instance is located\. If the metrics should be published to a different Region, specify the Region here\. In the following example, the metrics are published to the `us-west-1` Region\.
 
 ```
 [AmazonCloudWatchAgent]

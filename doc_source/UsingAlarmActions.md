@@ -175,8 +175,8 @@ Examples of problems that cause system status checks to fail include:
 + Software issues on the physical host
 + Hardware issues on the physical host that impact network reachability
 
-The recover action is only supported on:
-+ The C3, C4, C5, M3, M4, M5, R3, R4, T2, and X1 instance types
+The recover action is supported only on:
++ The A1, C3, C4, C5, C5n, M3, M4, M5, M5a, R3, R4, R5, R5a, T2, T3, X1, and X1e instance types
 + Instances in a VPC
 + Instances with `default` or `dedicated` instance tenancy
 + Instances that use Amazon EBS volumes only \(do not configure instance store volumes\)

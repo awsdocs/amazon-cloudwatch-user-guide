@@ -46,6 +46,7 @@ The general flow of installing the CloudWatch agent is as follows:
 + [Install the CloudWatch Agent on an On\-Premises Server](install-CloudWatch-Agent-on-premise.md)
 + [Install the CloudWatch Agent on New Instances Using AWS CloudFormation](Install-CloudWatch-Agent-New-Instances-CloudFormation.md)
 + [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
++ [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)
 + [Retrieve Custom Metrics with StatsD](CloudWatch-Agent-custom-metrics-statsd.md)
 + [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)
 + [Common Scenarios with CloudWatch Agent](CloudWatch-Agent-common-scenarios.md)

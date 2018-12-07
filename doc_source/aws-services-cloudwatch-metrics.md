@@ -25,6 +25,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Elastic Block Store  |  `AWS/EBS`  |  [Monitoring the Status of Your Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html)  | 
 |  Amazon Elastic Container Service  |  `AWS/ECS`  |  [Amazon ECS CloudWatch Metrics](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-metrics.html)  | 
 |  Amazon Elastic File System  |  `AWS/EFS`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/efs/latest/ug/monitoring-cloudwatch.html)  | 
+|  Amazon Elastic Inference  |  `AWS/ElasticInference`  |  [Using CloudWatch Metrics to Monitor Amazon EI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cloudwatch-metrics-ei.html)  | 
 |  Elastic Load Balancing  |  `AWS/ApplicationELB`  |  [CloudWatch Metrics for Your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html)  | 
 |  Elastic Load Balancing  |  `AWS/ELB`  |  [CloudWatch Metrics for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html)  | 
 |  Elastic Load Balancing  |  `AWS/NetworkELB`  |  [CloudWatch Metrics for Your Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-cloudwatch-metrics.html)  | 
@@ -34,7 +35,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Elasticsearch Service  |  `AWS/ES`  |  [Monitoring Cluster Metrics and Statistics with CloudWatch](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-cloudwatchmetrics)  | 
 |  Amazon EMR  |  `AWS/ElasticMapReduce`  |  [Monitor Metrics with CloudWatch](https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_ViewingMetrics.html)  | 
 |  AWS Elemental MediaConvert  |  `AWS/MediaConvert`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediaconvert/latest/ug/MediaConvert-metrics.html)  | 
-|  AWS Elemental MediaConvert  |  `AWS/MediaPackage`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch.html#metrics)  | 
+|  AWS Elemental MediaPackage  |  `AWS/MediaPackage`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch.html#metrics)  | 
 |  AWS Elemental MediaTailor  |  `AWS/MediaTailor`  |  [Monitoring AWS Elemental MediaTailor with Amazon CloudWatch](https://docs.aws.amazon.com/mediatailor/latest/ug/monitoring-cloudwatch.html)  | 
 |  Amazon GameLift  |  `AWS/GameLift`  |  [Monitor Amazon GameLift with CloudWatch](https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AWS Glue  |  `AWS/Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 

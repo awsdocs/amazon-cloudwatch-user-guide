@@ -61,7 +61,7 @@ After the procedure for installing the agent, the tutorial continues with how to
    + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM Roles to Use with CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
    + **InstanceAMI**: Choose an AMI that is valid in the Region where you are going to launch your stack\.
    + **InstanceType**: Choose a valid instance type\.
-   + **KeyName**: To enable SSH access to the new instance, choose an existing Amazon EC2 key pair \. If you don't already have an Amazon EC2 key pair, you can create one in the AWS Management Console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+   + **KeyName**: To enable SSH access to the new instance, choose an existing Amazon EC2 key pair\. If you don't already have an Amazon EC2 key pair, you can create one in the AWS Management Console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
    + **SSHLocation**: Specifies the IP address range that can be used to connect to the instance using SSH\. The default allows access from any IP address\.
 
 1. On the **Options** page, you can choose to tag your stack resources\. Choose **Next**\.
@@ -184,7 +184,7 @@ The next procedure demonstrates using AWS CloudFormation to update the CloudWatc
 
 ## Troubleshooting Using the CloudWatch Agent With AWS CloudFormation<a name="CloudWatch-Agent-CloudFormation-troubleshooting"></a>
 
-This section can help you troubleshoot issues with installing and updating the CloudWatch agent using AWS CloudFormation\.
+This section helps you troubleshoot issues with installing and updating the CloudWatch agent using AWS CloudFormation\.
 
 ### Detecting When an Update Fails<a name="CloudWatch-Agent-troubleshooting-Detecting-CloudFormation-update-issues"></a>
 
@@ -192,4 +192,4 @@ If you use AWS CloudFormation to update your CloudWatch agent configuration, and
 
 ### Metrics Are Missing<a name="CloudWatch-Agent-troubleshooting-Cloudformation-missing-metrics"></a>
 
-If you do not see metrics that you expect to see after installing or updating the agent, confirm that the agent is configured to collect that metric\. To do this, check the `amazon-cloudwatch-agent.json` file to make sure the metric you want is listed, and that you are looking in the correct metric namespace\. For more information, see [CloudWatch Agent Files and Locations](troubleshooting-CloudWatch-Agent.md#CloudWatch-Agent-files-and-locations)\.
+If you do not see metrics that you expect to see after installing or updating the agent, confirm that the agent is configured to collect that metric\. To do this, check the `amazon-cloudwatch-agent.json` file to make sure that the metric is listed, and that you are looking in the correct metric namespace\. For more information, see [CloudWatch Agent Files and Locations](troubleshooting-CloudWatch-Agent.md#CloudWatch-Agent-files-and-locations)\.

@@ -29,6 +29,6 @@ CloudWatch currently supports VPC endpoints in the following Regions:
 
 ## Create a VPC Endpoint for CloudWatch<a name="create-VPC-endpoint-for-CloudWatch"></a>
 
-To start using CloudWatch with your VPC, create an interface VPC endpoint for CloudWatch\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint.html) in the *Amazon VPC User Guide*\.
+To start using CloudWatch with your VPC, create an interface VPC endpoint for CloudWatch\. The endpoint name will be `com.amazonaws.Region.monitoring`\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint.html) in the *Amazon VPC User Guide*\.
 
 You do not need to change the settings for CloudWatch\. CloudWatch calls other AWS services using either public endpoints or private interface VPC endpoints, whichever are in use\. For example, if you create an interface VPC endpoint for CloudWatch, and you already have a metrics flowing to CloudWatch from resources located on your VPC, these metrics begin flowing through the interface VPC endpoint by default\.

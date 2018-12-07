@@ -19,9 +19,9 @@ The **agent** section can include the fields listed below\. The wizard does not 
   If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information about high\-resolution metrics, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
 
   The default is 60\. 
-+ **region** – Specifies the region to use for the CloudWatch endpoint, when an Amazon EC2 instance is being monitored\. The metrics collected are sent to this region, such as `us-west-1`\. If you omit this field, the agent sends metrics to the region where the Amazon EC2 instance is located\.
++ **region** – Specifies the Region to use for the CloudWatch endpoint, when an Amazon EC2 instance is being monitored\. The metrics collected are sent to this Region, such as `us-west-1`\. If you omit this field, the agent sends metrics to the Region where the Amazon EC2 instance is located\.
 
-  If you are monitoring an on\-premises server, this field is not used, and the agent reads the region from the `awscloudwatchagent` profile of the AWS configuration file\.
+  If you are monitoring an on\-premises server, this field is not used, and the agent reads the Region from the `awscloudwatchagent` profile of the AWS configuration file\.
 + **credentials** – Specifies an IAM role to use when sending metrics and logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
   + **role\_arn** – Specifies the ARN of an IAM role to use for authentication when sending metrics and logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different AWS Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\.
 + **debug** – Optional\. Specifies running the CloudWatch agent with debug log messages\. The default is `false`\. 
@@ -54,9 +54,15 @@ On servers running either Linux or Windows Server, the **metrics** section inclu
   You can roll up metrics along single or multiple dimensions\. For example, specifying `[["InstanceId"], ["InstanceType"], ["InstanceId","InstanceType"]]` aggregates metrics for instance ID singly, instance type singly, and for the combination of the two dimensions\.
 
   You can also specify `[]` to roll up all metrics into one collection, disregarding all dimensions\.
++ **endpoint\_override** – Specifies a FIPS endpoint or private link to use as the endpoint where the agent sends metrics\. Specifying this and setting a private link enables you to send the metrics to an Amazon VPC endpoint\. For more information, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)\. 
+
+  The value of `endpoint_override` must be a string that is a URL\.
 + **metrics\_collected** – Required\. Specifies which metrics are to be collected, including custom metrics collected through StatsD or collectd\. This section includes several subsections\. 
 
   The contents of the `metrics_collected` section depend on whether this configuration file is for a server running Linux or Windows Server\.
++ **force\_flush\_interval** – Specifies in seconds the maximum amount of time that metrics remain in the memory buffer before being sent to the server\. No matter the setting for this, if the size of the metrics in the buffer reaches 40KB or 20 different metrics, the metrics are immediately sent to the server\.
+
+  The default is 60\.
 + **credentials** – Specifies an IAM role to use when sending metrics to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
   + **role\_arn** – Specifies the ARN of an IAM role to use for authentication when sending metrics to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different AWS Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\. If specified here, this overrides the `role_arn` specified in the `agent` section of the configuration file, if any\.
 
@@ -180,6 +186,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
 
     If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
   + **append\_dimensions** – Optional\. Additional dimensions to use for only the process metrics\. If you specify this field, it is used in addition to dimensions specified in the `append_dimensions` field that is used for all types of metrics collected by the agent\.
++ **procstat** – Optional\. Specifies that you want to retrieve metrics from individual processes\. For more information, see [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)\. 
 + **statsd** – Optional\. Specifies that you want to retrieve custom metrics using the StatsD protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard StatsD client to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\. 
 
 The following is an example of a `metrics` section for a Linux server\. In this example, three CPU metrics, three netstat metrics, and three process metrics are collected, and the agent is set up to receive additional metrics from a collectd client\.
@@ -234,7 +241,7 @@ The following is an example of a `metrics` section for a Linux server\. In this 
 
 In the **metrics\_collected** section for Windows Server, you can have subsections for each Windows performance object, such as `Memory`, `Processor`, and `LogicalDisk`\. For information about what objects and counters are available, see the Microsoft Windows documentation\.
 
-Within the subsection for each object, you specify a `measurement` array of the counters to collect\. The `measurement` array is required for each object that you specify in the configuration file\. You can also specify a `resources` field to name the instances from which to collect metrics\. You can also specify `*` for `resources`, to collect separate metrics for every instance\. If you omit `resources`, the data for all instances is aggregated into one set\.
+Within the subsection for each object, you specify a `measurement` array of the counters to collect\. The `measurement` array is required for each object that you specify in the configuration file\. You can also specify a `resources` field to name the instances from which to collect metrics\. You can also specify `*` for `resources`, to collect separate metrics for every instance\. If you omit `resources`, the data for all instances is aggregated into one set\. For objects which do not have instances, you should omit `resources`\.
 
 Within each object section, you can also specify the following optional fields:
 + **metrics\_collection\_interval** – Optional\. Specifies how often to collect the metrics for this object, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
@@ -248,7 +255,9 @@ Within each counter section, you can also specify the following optional fields:
 + **rename** – Specifies a different name to be used in CloudWatch for this metric\.
 + **unit** – Specifies the unit to use for this metric\. The unit you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
 
-To retrieve custom metrics using StatsD, you include a **StatsD** subsection in **metrics\_collected**\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard StatsD client to send the metrics to the CloudWatch agent\.
+There are two other sections you can include in `metrics_collected`:
++ **statsd** – enables you to retrieve custom metrics using the StatsD protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard StatsD client to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\.
++ **procstat** – enables you to retrieve metrics from individual processes\. For more information, see [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)\.
 
 The following is an example `metrics` section for use on Windows Server\. In this example, many Windows metrics are collected, and the computer is also set to receive additional metrics from a StatsD client\.
 
@@ -335,7 +344,7 @@ The following is an example `metrics` section for use on Windows Server\. In thi
 
 The **logs** section includes the following fields:
 + **logs\_collected** – Required if the **logs** section is included\. Specifies which log files and Windows event logs are to be collected from the server\. It can include two fields, **files** and **windows\_events**\.
-  + **files** specifies which regular log files are to be collected by the CloudWatch agent\. It contains one field, **collect\_list**, which further defines these files\.
+  + **files** – Specifies which regular log files are to be collected by the CloudWatch agent\. It contains one field, **collect\_list**, which further defines these files\.
     + **collect\_list** – Required if **files** is included\. Contains an array of entries, each of which specifies one log file to collect\. Each of these entries can include the following fields:
       + **file\_path** – Specifies the path of the log file to upload to CloudWatch Logs\. Standard Unix glob matching rules are accepted, with the addition of `**` as a *super asterisk*\. For example, specifying `/var/log/**.log` causes all `.log` files in the `/var/log` directory tree to be collected\. For more examples, see [Glob Library](https://github.com/gobwas/glob)\.
 
@@ -347,9 +356,9 @@ The **logs** section includes the following fields:
         We recommend that you specify this field to prevent confusion\. If you omit this field, the file path up to the final dot is used as the log group name\. For example, if the file path is `/tmp/TestLogFile.log.2017-07-11-14`, the log group name is `/tmp/TestLogFile.log`\. 
       + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
 
-        If you omit this field, the default of `{instance_id}` is used\. A log stream is created automatically if it does not already exist\.
-      + **timezone** – Optional\. Specifies the time zone to use when putting time stamps on log events\. The valid values are `UTC` and `Local`\. The default is `Local`\.
-      + **timestamp\_format** – Optional\. Specifies the time stamp format, using plaintext and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the following as part of the format:   
+        If you omit this field, the default of `{instance_id}` is used\. If a log stream does not already exist, it is created automatically\.
+      + **timezone** – Optional\. Specifies the time zone to use when putting timestamps on log events\. The valid values are `UTC` and `Local`\. The default is `Local`\.
+      + **timestamp\_format** – Optional\. Specifies the timestamp format, using plaintext and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the following as part of the format:   
 `%y`  
 Year without century as a zero\-padded decimal number  
 `%Y`  
@@ -394,22 +403,26 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
 
         If you omit this field, multi\-line mode is disabled, and any line that begins with a non\-whitespace character closes the previous log message and starts a new log message\.
 
-        If you include this field, you can specify `{timestamp_format}` to use the same regular expression as your time stamp format\. Otherwise, you can specify a different regular expression for CloudWatch Logs to use to determine the start lines of multi\-line entries\.
+        If you include this field, you can specify `{timestamp_format}` to use the same regular expression as your timestamp format\. Otherwise, you can specify a different regular expression for CloudWatch Logs to use to determine the start lines of multi\-line entries\.
       + **encoding** – Specified the encoding of the log file so that it can be read correctly\. If you specify an incorrect coding, there might be data loss because characters that cannot be decoded are replaced with other characters\.
 
         The default is utf\-8\. Below are all possible values:
 
          `ascii, big5, euc-jp, euc-kr, gbk, gb18030, ibm866, iso2022-jp, iso8859-2, iso8859-3, iso8859-4, iso8859-5, iso8859-6, iso8859-7, iso8859-8, iso8859-8-i, iso8859-10, iso8859-13, iso8859-14, iso8859-15, iso8859-16, koi8-r, koi8-u, macintosh, shift_jis, utf-8, utf-16, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic` 
-+ The **windows\_events** section specifies the type of Windows events to collect from servers running Windows Server\. It includes the following fields:
-  + **collect\_list** – Required if **windows\_events** is included\. Specifies the types and levels of Windows events to be collected\. Each log to be collected has an entry in this section, which can include the following fields:
-    + **event\_name** – Specifies the type of Windows events to log\. For example, `System`, `Security`, `Application`, and so on\. This field is required for each type of Windows event to log\.
-    + **event\_levels** – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, `CRITICAL`, and `VERBOSE`\. This field is required for each type of Windows event to log\.
-    + **log\_group\_name** – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
-    + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
+  + The **windows\_events** section specifies the type of Windows events to collect from servers running Windows Server\. It includes the following fields:
+    + **collect\_list** – Required if **windows\_events** is included\. Specifies the types and levels of Windows events to be collected\. Each log to be collected has an entry in this section, which can include the following fields:
+      + **event\_name** – Specifies the type of Windows events to log\. For example, `System`, `Security`, `Application`, and so on\. This field is required for each type of Windows event to log\.
+      + **event\_levels** – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, `CRITICAL`, and `VERBOSE`\. This field is required for each type of Windows event to log\.
+      + **log\_group\_name** – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
+      + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
 
-      If you omit this field, the default of `{instance_id}` is used\. If a log stream does not already exist, it is created automatically \.
-    + **event\_format** – Optional\. Specifies the format to use when storing Windows events in CloudWatch Logs\. `xml` uses the XML format as in Windows Event Viewer\. `text` uses the legacy CloudWatch Logs agent format\.
+        If you omit this field, the default of `{instance_id}` is used\. If a log stream does not already exist, it is created automatically\.
+      + **event\_format** – Optional\. Specifies the format to use when storing Windows events in CloudWatch Logs\. `xml` uses the XML format as in Windows Event Viewer\. `text` uses the legacy CloudWatch Logs agent format\.
 + **log\_stream\_name** – Required\. Specifies the default log stream name to be used for any logs or Windows events that do not have individual log stream names defined in their entry in **collect\_list**\.
++ **endpoint\_override** – Specifies a FIPS endpoint or private link to use as the endpoint where the agent sends logs\. Specifying this and setting a private link enables you to send the logs to an Amazon VPC endpoint\. For more information, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)\. 
+
+  The value of `endpoint_override` must be a string that is a URL\.
++ **force\_flush\_interval** – Specifies in seconds the maximum amount of time that logs remain in the memory buffer before being sent to the server\. No matter the setting for this, if the size of the logs in the buffer reaches 1MB, the logs are immediately sent to the server\. The default is 5\.
 + **credentials** – Specifies an IAM role to use when sending logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
   + **role\_arn** – Specifies the ARN of an IAM role to use for authentication when sending logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different AWS Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\. If specified here, this overrides the `role_arn` specified in the `agent` section of the configuration file, if any\.
 
@@ -568,7 +581,8 @@ The following is an example of a complete agent configuration file for a Linux s
           "InstanceType": "${aws:InstanceType}",
           "AutoScalingGroupName": "${aws:AutoScalingGroupName}"
         },
-        "aggregation_dimensions" : [["ImageId"], ["InstanceId", "InstanceType"], ["d1"],[]]
+        "aggregation_dimensions" : [["ImageId"], ["InstanceId", "InstanceType"], ["d1"],[]],
+        "force_flush_interval" : 30
       },
       "logs": {
         "logs_collected": {
@@ -589,7 +603,8 @@ The following is an example of a complete agent configuration file for a Linux s
             ]
           }
         },
-        "log_stream_name": "my_log_stream_name"
+        "log_stream_name": "my_log_stream_name",
+        "force_flush_interval" : 15
       }
     }
 ```

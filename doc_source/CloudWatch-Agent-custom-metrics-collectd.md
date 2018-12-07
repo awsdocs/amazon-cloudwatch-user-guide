@@ -1,13 +1,13 @@
 # Retrieve Custom Metrics with collectd<a name="CloudWatch-Agent-custom-metrics-collectd"></a>
 
-You can retrieve custom metrics from your applications or services using the CloudWatch agent with the collectd protocol\. collectd is supported only on Linux servers\. You use collectd software to send the metrics to the CloudWatch agent\.
+You can retrieve custom metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. You use the collectd software to send the metrics to the CloudWatch agent\.
 
-collectd software is not installed automatically on every server\. For more information about collectd and downloading collectd software, see the [Download page for collectd\.](https://collectd.org/download.shtml) 
+The collectd software is not installed automatically on every server\. For more information, see the [Download page for collectd\.](https://collectd.org/download.shtml) 
 
 Basic configuration for collecting these custom metrics with the CloudWatch agent is to add a **"collectd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
 
 Optional parameters are also available\. If you are using collectd and you do not use `/etc/collectd/auth_file` as your **collectd\_auth\_file**, you must set some of these options\. 
-+ **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `"udp://ip:port`\. The default is `udp://127.0.0.1:25826`
++ **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `"udp://ip:port`\. The default is `udp://127.0.0.1:25826`\.
 + **name\_prefix:** A prefix to attach to the beginning of the name of each collectd metric\. The default is `collectd_`\. The maximum length is 255 characters\.
 + **collectd\_security\_level:** Sets the security level for network communication\. The default is **Encrypt**\.
 
@@ -16,7 +16,7 @@ Optional parameters are also available\. If you are using collectd and you do no
   For more information, see [Client setup](https://collectd.org/wiki/index.php/Networking_introduction#Client_setup) and [Possible interactions](https://collectd.org/wiki/index.php/Networking_introduction#Possible_interactions) in the collectd Wiki\.
 + **collectd\_auth\_file** Sets a file in which user names are mapped to passwords\. These passwords are used to verify signatures and to decrypt encrypted network packets\. If given, signed data is verified and encrypted packets are decrypted\. Otherwise, signed data is accepted without checking the signature and encrypted data cannot be decrypted\.
 
-  The default is `/etc/collectd/auth_file`
+  The default is `/etc/collectd/auth_file`\.
 
    If **collectd\_security\_level** is set to **None**, this is optional\. If you set **collectd\_security\_level** to `Encrypt` or **Sign**, you must specify **collectd\_auth\_file**\.
 

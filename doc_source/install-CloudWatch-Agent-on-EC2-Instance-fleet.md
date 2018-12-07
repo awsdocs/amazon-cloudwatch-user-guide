@@ -82,10 +82,13 @@ You can use an Amazon S3 download link to download the CloudWatch agent package 
 |  amd64 |  Debian  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
 |  amd64 |  Ubuntu  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
 |  amd64 |  Windows  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi\.sig  | 
+|  arm64 |  Amazon Linux 2  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/arm64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/arm64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  arm64 |  Redhat  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/arm64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/arm64/latest/amazon\-cloudwatch\-agent\.rpm\.sig   | 
+|  arm64 |  Ubuntu  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/arm64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/arm64/latest/amazon\-cloudwatch\-agent\.deb\.sig   | 
 
 **To use the command line to install the CloudWatch agent on an Amazon EC2 instance**
 
-1. Download the CloudWatch agent\. Use a download link from the previous table\. For a Linux server, type the following:
+1. Download the CloudWatch agent\. For a Linux server, type the following\. For *download\-link*, use the appropriate download link from the previous table\.
 
    ```
    wget download-link
@@ -121,11 +124,11 @@ You can use an Amazon S3 download link to download the CloudWatch agent package 
 
 ## \(Optional\) Modify the Common Configuration and Named Profile for CloudWatch Agent<a name="CloudWatch-Agent-profile-instance-fleet"></a>
 
-The CloudWatch agent package you have downloaded includes a configuration file called `common-config.toml`\. You can use this file to specify proxy, credential, and region information\. On a server running Linux, this file is in the `/opt/aws/amazon-cloudwatch-agent/etc` directory\. On a server running Windows Server, this file is in the `C:\ProgramData\Amazon\AmazonCloudWatchAgent` directory\.
+The CloudWatch agent package you have downloaded includes a configuration file called `common-config.toml`\. You can use this file to specify proxy, credential, and Region information\. On a server running Linux, this file is in the `/opt/aws/amazon-cloudwatch-agent/etc` directory\. On a server running Windows Server, this file is in the `C:\ProgramData\Amazon\AmazonCloudWatchAgent` directory\.
 
 The default `common-config.toml` is as follows:
 
-When you install the CloudWatch agent on an Amazon EC2 instance, you need to modify this file only if you need to specify proxy settings or if the agent should send metrics to CloudWatch in a different region than where the instance is located\.
+When you install the CloudWatch agent on an Amazon EC2 instance, modify this file only if you need to specify proxy settings or if the agent should send metrics to CloudWatch in a different Region than where the instance is located\.
 
 ```
 # This common-config is used to configure items used for both ssm and cloudwatch access
@@ -151,13 +154,13 @@ When you install the CloudWatch agent on an Amazon EC2 instance, you need to mod
 ```
 
 All lines are commented out initially\. To set the credential profile or proxy settings, remove the `#` from that line and specify a value\. You can edit this file manually, or by using the `RunShellScript` Run Command in Systems Manager:
-+ **shared\_credential\_profile** To have the CloudWatch agent send metrics to CloudWatch in the same region where the instance is located, you don't need to modify this line if you have attached an IAM role with the proper permissions to the instance\. You also don't need to use the `aws configure` command to create a named profile for the agent\.
++ **shared\_credential\_profile** To have the CloudWatch agent send metrics to CloudWatch in the same Region where the instance is located, modify this line or attach an IAM role with the proper permissions to the instance\. If you attach the IAM role, you don't need to use the `aws configure` command to create a named profile for the agent\.
 
-  Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS credentials and AWS config files\. If you do so, CloudWatch agent uses the credential and the region settings in that named profile\.
+  Otherwise, you can use this line to specify the named profile that CloudWatch agent is to use in the AWS credentials and AWS config files\. If you do so, CloudWatch agent uses the credential and the Region settings in that named profile\.
 + **shared\_credential\_file** Use this line to specify a path to a file containing credentials to use, if you don't want to use the default path\.
 + **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
-After modifying `common-config.toml`, if you need to specify credential and region information for the CloudWatch agent, create a named profile for the CloudWatch agent in the AWS credentials and AWS config files\. When you create this profile, do so as the root or administrator\. Following is an example of this profile in the credentials file:
+After modifying `common-config.toml`, if you need to specify credential and Region information for the CloudWatch agent, create a named profile for the CloudWatch agent in the AWS credentials and AWS config files\. When you create this profile, do so as the root or administrator\. Following is an example of this profile in the credentials file:
 
 ```
 [AmazonCloudWatchAgent]
@@ -226,25 +229,25 @@ Follow these steps to use the command line to install the CloudWatch agent on an
 **To use the command line to start the CloudWatch agent on an Amazon EC2 instance**
 + In this command, `-a fetch-config` causes the agent to load the latest version of the CloudWatch agent configuration file, and `-s` starts the agent\.
 
-  Linux: type the following if you saved the configuration file in the Systems Manager Parameter Store:
+  Linux: Type the following if you saved the configuration file in the Systems Manager Parameter Store:
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
-  Linux: type the following if you saved the configuration file on the local computer:
+  Linux: Type the following if you saved the configuration file on the local computer:
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
   ```
 
-  Windows Server: if you saved the agent configuration file in Systems Manager Parameter Store, use the following command\. From the PowerShell console, type the following:
+  Windows Server: If you saved the agent configuration file in Systems Manager Parameter Store, use the following command\. From the PowerShell console, type the following:
 
   ```
   ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
-  Windows Server: if you saved the agent configuration file on the local computer, use the following command\. From the PowerShell console, type the following:
+  Windows Server: If you saved the agent configuration file on the local computer, use the following command\. From the PowerShell console, type the following:
 
   ```
   ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s

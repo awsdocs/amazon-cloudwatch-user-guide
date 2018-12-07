@@ -19,22 +19,22 @@ The metrics that you can collect with the CloudWatch agent on Linux instances ar
 | --- | --- | 
 |  cpu\_time\_active |  The amount of time that the CPU is active in any capacity\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_guest |  The amount of time that the CPU is running a virtual CPU for a guest operating system\. This metric is measured in hundredths of a second\. Unit: None  | 
-|  cpu\_time\_guest\_nice |  The amount of time that the CPU is running a virtual CPU for a guest operating system which is low\-priority and can be interrupted by other processes\. This metric is measured in hundredths of a second\. Unit: None  | 
+|  cpu\_time\_guest\_nice |  The amount of time that the CPU is running a virtual CPU for a guest operating system, which is low\-priority and can be interrupted by other processes\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_idle |  The amount of time that the CPU is idle\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_iowait |  The amount of time that the CPU is waiting for I/O operations to complete\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_irq |  The amount of time that the CPU is servicing interrupts\. This metric is measured in hundredths of a second\. Unit: None  | 
-|  cpu\_time\_nice |  The amount of time that the CPU is in user mode with low\-priority processes which can easily be interrupted by higher\-priority processes\. This metric is measured in hundredths of a second\. Unit: None  | 
+|  cpu\_time\_nice |  The amount of time that the CPU is in user mode with low\-priority processes, which can easily be interrupted by higher\-priority processes\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_softirq |  The amount of time that the CPU is servicing software interrupts\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_steal |  The amount of time that the CPU is in *stolen time*, which is time spent in other operating systems in a virtualized environment\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_system |  The amount of time that the CPU is in system mode\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_time\_user |  The amount of time that the CPU is in user mode\. This metric is measured in hundredths of a second\. Unit: None  | 
 |  cpu\_usage\_active |  The percentage of time that the CPU is active in any capacity\. Unit: Percent  | 
 |  cpu\_usage\_guest |  The percentage of time that the CPU is running a virtual CPU for a guest operating system\. Unit: Percent  | 
-|  cpu\_usage\_guest\_nice |  The percentage of time that the CPU is running a virtual CPU for a guest operating system which is low\-priority and can be interrupted by other processes\. Unit: Percent  | 
+|  cpu\_usage\_guest\_nice |  The percentage of time that the CPU is running a virtual CPU for a guest operating system, which is low\-priority and can be interrupted by other processes\. Unit: Percent  | 
 |  cpu\_usage\_idle |  The percentage of time that the CPU is idle\. Unit: Percent  | 
 |  cpu\_usage\_iowait |  The percentage of time that the CPU is waiting for I/O operations to complete\. Unit: Percent  | 
 |  cpu\_usage\_irq |  The percentage of time that the CPU is servicing interrupts\. Unit: Percent  | 
-|  cpu\_usage\_nice |  The percentage of time that the CPU is in user mode with low\-priority processes which can easily be interrupted by higher\-priority processes\. Unit: Percent  | 
+|  cpu\_usage\_nice |  The percentage of time that the CPU is in user mode with low\-priority processes, which can easily be interrupted by higher\-priority processes\. Unit: Percent  | 
 |  cpu\_usage\_softirq |  The percentage of time that the CPU is servicing software interrupts\. Unit: Percent  | 
 |  cpu\_usage\_steal |  The percentage of time that the CPU is in *stolen time*, which is time spent in other operating systems in a virtualized environment\. Unit: Percent  | 
 |  cpu\_usage\_system |  The percentage of time that the CPU is in system mode\. Unit: Percent  | 
@@ -66,8 +66,8 @@ The metrics that you can collect with the CloudWatch agent on Linux instances ar
 |  mem\_used\_percent |  The percentage of memory currently in use\. Unit: Percent  | 
 |  net\_bytes\_recv |  The number of bytes received by the network interface\. Unit: Bytes  | 
 |  net\_bytes\_sent |  The number of bytes sent by the network interface\. Unit: Bytes  | 
-|  net\_drop\_in |  The number of packets received by this network interface which were dropped\. Unit: Count  | 
-|  net\_drop\_out |  The number of packets transmitted by this network interface which were dropped\. Unit: Count  | 
+|  net\_drop\_in |  The number of packets received by this network interface that were dropped\. Unit: Count  | 
+|  net\_drop\_out |  The number of packets transmitted by this network interface that were dropped\. Unit: Count  | 
 |  net\_err\_in |  The number of receive errors detected by this network interface\. Unit: Count  | 
 |  net\_err\_out |  The number of transmit errors detected by this network interface\. Unit: Count  | 
 |  net\_packets\_sent |  The number of packets sent by this network interface\. Unit: Count  | 
@@ -83,7 +83,7 @@ The metrics that you can collect with the CloudWatch agent on Linux instances ar
 |  netstat\_tcp\_none |  The number of TCP connections with inactive clients\. Unit: Count  | 
 |  netstat\_tcp\_syn\_sent |  The number of TCP connections waiting for a matching connection request after having sent a connection request\. Unit: Count  | 
 |  netstat\_tcp\_syn\_recv |  The number of TCP connections waiting for connection request acknowledgement after having sent and received a connection request\. Unit: Count  | 
-|  netstat\_tcp\_time\_wait |  The number of TCP connections currently waiting to ensure the client received the acknowledgement of its connection termination request\. Unit: Count  | 
+|  netstat\_tcp\_time\_wait |  The number of TCP connections currently waiting to ensure that the client received the acknowledgement of its connection termination request\. Unit: Count  | 
 |  netstat\_udp\_socket |  The number of current UDP connections\. Unit: Count  | 
 |  processes\_blocked |  The number of processes that are blocked\. Unit: Count  | 
 |  processes\_dead |  The number of processes that are "dead," which is indicated by the X state code on Linux\. Unit: Count  | 
