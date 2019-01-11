@@ -9,16 +9,16 @@ Basic configuration for collecting these custom metrics with the CloudWatch agen
 Optional parameters are also available\. If you are using collectd and you do not use `/etc/collectd/auth_file` as your **collectd\_auth\_file**, you must set some of these options\. 
 + **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `"udp://ip:port`\. The default is `udp://127.0.0.1:25826`\.
 + **name\_prefix:** A prefix to attach to the beginning of the name of each collectd metric\. The default is `collectd_`\. The maximum length is 255 characters\.
-+ **collectd\_security\_level:** Sets the security level for network communication\. The default is **Encrypt**\.
++ **collectd\_security\_level:** Sets the security level for network communication\. The default is **encrypt**\.
 
-  **Encrypt** specifies that only encrypted data is accepted\. **Sign** specifies that only signed and encrypted data is accepted\. **None** specifies that all data is accepted\. If you specify a value for **collectd\_auth\_file**, encrypted data is decrypted if possible\.
+  **encrypt** specifies that only encrypted data is accepted\. **sign** specifies that only signed and encrypted data is accepted\. **none** specifies that all data is accepted\. If you specify a value for **collectd\_auth\_file**, encrypted data is decrypted if possible\.
 
   For more information, see [Client setup](https://collectd.org/wiki/index.php/Networking_introduction#Client_setup) and [Possible interactions](https://collectd.org/wiki/index.php/Networking_introduction#Possible_interactions) in the collectd Wiki\.
 + **collectd\_auth\_file** Sets a file in which user names are mapped to passwords\. These passwords are used to verify signatures and to decrypt encrypted network packets\. If given, signed data is verified and encrypted packets are decrypted\. Otherwise, signed data is accepted without checking the signature and encrypted data cannot be decrypted\.
 
   The default is `/etc/collectd/auth_file`\.
 
-   If **collectd\_security\_level** is set to **None**, this is optional\. If you set **collectd\_security\_level** to `Encrypt` or **Sign**, you must specify **collectd\_auth\_file**\.
+   If **collectd\_security\_level** is set to **none**, this is optional\. If you set **collectd\_security\_level** to **encrypt** or **sign**, you must specify **collectd\_auth\_file**\.
 
   For the format of the auth file, each line is a user name followed by a colon and any number of spaces followed by the password\. For example:
 
