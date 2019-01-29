@@ -93,7 +93,7 @@ The following example `procstat` section monitors all processes with command lin
         "metrics_collected": {
             "procstat": [
                 {
-                    "exe": "config",
+                    "pattern": "config",
                     "measurement": [
                         "rlimit_memory_data_hard",
                         "rlimit_memory_data_soft",
@@ -102,7 +102,7 @@ The following example `procstat` section monitors all processes with command lin
                     ]
                 },
                 {
-                    "exe": "-c",
+                    "pattern": "-c",
                     "measurement": [
                         "rlimit_memory_data_hard",
                         "rlimit_memory_data_soft",
