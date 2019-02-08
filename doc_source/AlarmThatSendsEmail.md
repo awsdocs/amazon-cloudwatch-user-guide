@@ -73,12 +73,12 @@ Column 2 shows how many of these 5 data points are missing and may need to be fi
 
 | Data points | \# of missing data points | MISSING | IGNORE | BREACHING | NOT BREACHING | 
 | --- | --- | --- | --- | --- | --- | 
-|  0 \- X \- X  |  0  |  OK  |  OK  |  OK  |  OK  | 
-|  0 \- \- \- \-  |  2  |  OK  |  OK  |  OK  |  OK  | 
-|  \- \- \- \- \-  |  3  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
-|  0 X X \- X  |  0  |  ALARM  |  ALARM  |  ALARM  |  ALARM  | 
-|  \- \- \- \- X  |  2  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
-|  X \- \- \- \-  |  2  |  ALARM  |  Retain current state  |  ALARM  |  OK  | 
+|  0 \- X \- X  |  2  |  OK  |  OK  |  OK  |  OK  | 
+|  0 \- \- \- \-  |  4  |  OK  |  OK  |  OK  |  OK  | 
+|  \- \- \- \- \-  |  5  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
+|  0 X X \- X  |  1  |  ALARM  |  ALARM  |  ALARM  |  ALARM  | 
+|  \- \- \- \- X  |  4  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
+|  X \- \- \- \-  |  4  |  ALARM  |  Retain current state  |  ALARM  |  OK  | 
 
 In the second row of the preceding table, the alarm stays OK even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to ALARM, as that non\-breaching data point will no longer be among the 5 most recent data points retrieved\. In the fourth row, the alarm goes to ALARM state in all cases because there are enough real data points so that the setting for how to treat missing data does not need to be considered\. In the sixth row, the alarm goes to ALARM state even if missing data is treated as missing, because the oldest evaluated data point is breaching and there aren't any non\-breaching data points.
 
@@ -87,11 +87,11 @@ In the next table, the **Period** is again set to 5 minutes, and **Datapoints to
 
 | Data points | \# of missing data points | MISSING | IGNORE | BREACHING | NOT BREACHING | 
 | --- | --- | --- | --- | --- | --- | 
-|  0 \- X \- X  |  0  |  ALARM  |  ALARM  |  ALARM  |  ALARM  | 
+|  0 \- X \- X  |  2  |  ALARM  |  ALARM  |  ALARM  |  ALARM  | 
 |  0 0 X 0 X  |  0  |  ALARM  |  ALARM  |  ALARM  |  ALARM  | 
-|  0 \- X \- \-  |  1  |  OK  |  OK  |  ALARM  |  OK  | 
-|  \- \- \- \- 0  |  2  |  OK  |  OK  |  ALARM  |  OK  | 
-|  \- \- \- \- X  |  2  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
+|  0 \- X \- \-  |  3  |  OK  |  OK  |  ALARM  |  OK  | 
+|  \- \- \- \- 0  |  4  |  OK  |  OK  |  ALARM  |  OK  | 
+|  \- \- \- \- X  |  4  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
 
 If data points are missing soon after you create an alarm, and the metric was being reported to CloudWatch before you created the alarm, CloudWatch retrieves the most recent data points from before the alarm was created when evaluating the alarm\.
 
