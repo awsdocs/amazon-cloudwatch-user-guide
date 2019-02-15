@@ -4,7 +4,7 @@ You can aggregate the metrics for AWS resources across multiple resources\. Amaz
 
 For example, you can aggregate statistics for your EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included\. Therefore, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-This example shows you how to get the average CPU usage for your EC2 instances\. Because no dimension is specified, CloudWatch returns statistics for all dimensions in the `AWS/EC2` namespace\. To get statistics for other metrics, see [AWS Services that Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
+This example shows you how to get the average CPU usage for your EC2 instances\. Because no dimension is specified, CloudWatch returns statistics for all dimensions in the `AWS/EC2` namespace\. To get statistics for other metrics, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 
 **Important**  
 This technique for retrieving all dimensions across an AWS namespace does not work for custom namespaces that you publish to Amazon CloudWatch\. With custom namespaces, you must specify the complete set of dimensions that are associated with any given data point to retrieve statistics that include the data point\. 

@@ -1,16 +1,17 @@
 # Document History<a name="DocumentHistory"></a>
 
-The following table describes important changes in each release of the CloudWatch User Guide, beginning in June 2018\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
+The following table describes important changes in each release of the *Amazon CloudWatch User Guide*, beginning in June 2018\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [AWS SDK Metrics for Enterprise Support](#DocumentHistory) | SDK Metrics helps you assess the health of your AWS services and diagnose latency caused by reaching your account usage limits or by a service outage\. For more information, see [ Monitor Applications Using AWS SDK Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-SDK-Metrics.html) in the *Amazon CloudWatch User Guide*\. | December 11, 2018 | 
 | [Alarms on math expressions](#DocumentHistory) | CloudWatch supports creating alarms based on metric math expressions\. For more information, see [ Alarms on Math Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-on-metric-math-expressions) in the *Amazon CloudWatch User Guide*\. | November 20, 2018 | 
 | [New CloudWatch console home page](#DocumentHistory) | Amazon has created a new home page in the CloudWatch console, which automatically displays key metrics and alarms for all the AWS services you are using\. For more information, see [ Getting Started with Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GettingStarted.html) in the *Amazon CloudWatch User Guide*\. | November 19, 2018 | 
 | [AWS CloudFormation templates for the CloudWatch Agent](#DocumentHistory) | Amazon has uploaded AWS CloudFormation templates that you can use to install and update the CloudWatch agent\. For more information, see [ Install the CloudWatch Agent on New Instances Using AWS CloudFormation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent-New-Instances-CloudFormation.html) in the *Amazon CloudWatch User Guide*\. | November 9, 2018 | 
 | [Enhancements to the CloudWatch Agent](#DocumentHistory) | The CloudWatch agent has been updated to work with both the StatsD and collectd protocols\. It also has improved cross\-account support\. For more information, see [Retrieve Custom Metrics with StatsD](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html), [Retrieve Custom Metrics with collectd](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-collectd.html), and [ Sending Metrics and Logs to a Different AWS Account](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-common-scenarios.html#CloudWatch-Agent-send-to-different-AWS-account) in the *Amazon CloudWatch User Guide*\. | September 28, 2018 | 
 | [Support for Amazon VPC endpoints](#DocumentHistory) | You can now establish a private connection between your VPC and CloudWatch\. For more information, see [Using CloudWatch with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-and-interface-VPC.html) in the *Amazon CloudWatch User Guide*\. | June 28, 2018 | 
 
-The following table describes important changes to the Amazon CloudWatch User Guide before June 2018\.
+The following table describes important changes to the *Amazon CloudWatch User Guide* before June 2018\.
 
 
 | Change | Description | Release Date | 

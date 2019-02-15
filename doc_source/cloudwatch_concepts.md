@@ -14,7 +14,7 @@ A *namespace* is a container for CloudWatch metrics\. Metrics in different names
 
 There is no default namespace\. You must specify a namespace for each data point you publish to CloudWatch\. You can specify a namespace name when you create a metric\. These names must contain valid XML characters, and be fewer than 256 characters in length\. Possible characters are: alphanumeric characters \(0\-9A\-Za\-z\), period \(\.\), hyphen \(\-\), underscore \(\_\), forward slash \(/\), hash \(\#\), and colon \(:\)\.
 
-The AWS namespaces use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Services that Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
+The AWS namespaces use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 
 ## Metrics<a name="Metric"></a>
 
@@ -24,7 +24,7 @@ AWS services send metrics to CloudWatch, and you can send your own custom metric
 
 Metrics exist only in the region in which they are created\. Metrics cannot be deleted, but they automatically expire after 15 months if no new data is published to them\. Data points older than 15 months expire on a rolling basis; as new data points come in, data older than 15 months is dropped\.
 
-Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\.  Each data point in a metric has a time stamp and \(optionally\) a unit of measure\.  Statistics may be retrieved from CloudWatch for any metric.
+Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\. Each data point in a metric has a time stamp, and \(optionally\) a unit of measure\. You can retrieve statistics from CloudWatch for any metric\.
 
 For more information, see [View Available Metrics](viewing_metrics_with_cloudwatch.md) and [Publish Custom Metrics](publishingMetrics.md)\.
 
@@ -50,9 +50,9 @@ CloudWatch started retaining 5\-minute and 1\-hour metric data as of 9 July 2016
 
 ## Dimensions<a name="Dimension"></a>
 
-A *dimension* is a name/value pair that is a part of the identity of a metric\. You can assign up to 10 dimensions to a metric\.
+A *dimension* is a name/value pair that is part of the identity of a metric\. You can assign up to 10 dimensions to a metric\.
 
-Every metric has specific characteristics that describe it, and you can think of dimensions as categories for those characteristics\. Dimensions help you design a structure for your statistics plan\. Because dimensions are part of the unique identifier for a metric, whenever you add a unique name/value pair to one of your metrics, you are creating a new metric\.
+Every metric has specific characteristics that describe it, and you can think of dimensions as categories for those characteristics\. Dimensions help you design a structure for your statistics plan\. Because dimensions are part of the unique identifier for a metric, whenever you add a unique name/value pair to one of your metrics, you are creating a new variation of that metric\.
 
 AWS services that send data to CloudWatch attach dimensions to each metric\. You can use dimensions to filter the results that CloudWatch returns\. For example, you can get statistics for a specific EC2 instance by specifying the `InstanceId` dimension when you search for metrics\.
 

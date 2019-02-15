@@ -32,6 +32,11 @@ CloudWatch supports logging the following actions as events in CloudTrail log fi
 + [PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html)
 + [SetAlarmState](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_SetAlarmState.html)
 
+Additionally, you can log the following AWS SDK Metrics actions in CloudTrail log files\. These actions are used only by SDK Metrics and are not available for use in your code\. For more information, see [Monitor Applications Using AWS SDK Metrics](CloudWatch-Agent-SDK-Metrics.md)\.
++ **GetPublishingConfiguration** – Used by SDK Metrics to determine how to publish metrics\.
++ **GetPublishingSchema** – Used by SDK Metrics to determine how to publish metrics\.
++ **PutPublishingMetrics** – Used by SDK Metrics to send CloudWatch Agent health metrics to AWS Support\.
+
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
 + Whether the request was made with root or AWS Identity and Access Management \(IAM\) user credentials\.
 + Whether the request was made with temporary security credentials for a role or federated user\.

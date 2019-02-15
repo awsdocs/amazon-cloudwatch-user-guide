@@ -1,10 +1,10 @@
 # Retrieve Custom Metrics with collectd<a name="CloudWatch-Agent-custom-metrics-collectd"></a>
 
-You can retrieve custom metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. You use the collectd software to send the metrics to the CloudWatch agent\.
+You can retrieve custom metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. You use the collectd software to send the metrics to the CloudWatch agent\. For the collectd metrics, the CloudWatch agent acts as the server while the collectd plug\-in acts as the client\.
 
 The collectd software is not installed automatically on every server\. For more information, see the [Download page for collectd\.](https://collectd.org/download.shtml) 
 
-Basic configuration for collecting these custom metrics with the CloudWatch agent is to add a **"collectd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+To collect these custom metrics, add a **"collectd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
 
 Optional parameters are also available\. If you are using collectd and you do not use `/etc/collectd/auth_file` as your **collectd\_auth\_file**, you must set some of these options\. 
 + **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `"udp://ip:port`\. The default is `udp://127.0.0.1:25826`\.
@@ -18,7 +18,7 @@ Optional parameters are also available\. If you are using collectd and you do no
 
   The default is `/etc/collectd/auth_file`\.
 
-   If **collectd\_security\_level** is set to **none**, this is optional\. If you set **collectd\_security\_level** to **encrypt** or **sign**, you must specify **collectd\_auth\_file**\.
+   If **collectd\_security\_level** is set to **none**, this is optional\. If you set **collectd\_security\_level** to `encrypt` or **sign**, you must specify **collectd\_auth\_file**\.
 
   For the format of the auth file, each line is a user name followed by a colon and any number of spaces followed by the password\. For example:
 

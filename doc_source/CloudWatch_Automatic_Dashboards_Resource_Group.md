@@ -1,6 +1,6 @@
 # Focus on Metrics and Alarms in a Resource Group<a name="CloudWatch_Automatic_Dashboards_Resource_Group"></a>
 
-You can focus your view to display metrics and alarms from a single resource group\. Using resource groups enables you to use tags to organize projects, focus on a subset of your architecture, or distinguish between your production and development environments\. They also enable you to focus on each of these resource groups on the CloudWatch overview\. For more information, see [What Is AWS Resource Groups?](welcome.html)\.
+You can focus your view to display metrics and alarms from a single resource group\. Using resource groups enables you to use tags to organize projects, focus on a subset of your architecture, or distinguish between your production and development environments\. They also enable you to focus on each of these resource groups on the CloudWatch overview\. For more information, see [What Is AWS Resource Groups?](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)\.
 
 When you focus on a resource group, the display changes to show only the services where you have tagged resources as part of this resource group\. The recent alarms area shows only alarms related to the resource group\. Additionally, if you have created a dashboard with the name **CloudWatch\-Default\-*ResourceGroupName***, it is displayed in the **Default dashboard** area\.
 

@@ -68,7 +68,9 @@ A particular case of this behavior is that CloudWatch alarms may repeatedly re\-
 
 The following tables illustrate examples of the alarm evaluation behavior\. In the first table, **Datapoints to Alarm** and **Evaluation Periods** are both 3\. CloudWatch retrieves the 5 most recent data points when evaluating the alarm\.
 
-Column 2 shows how many of these 5 data points are missing and may need to be filled in using the setting for how to treat missing data\. Columns 3\-6 show the alarm state that would be set for each setting of how missing data should be treated, shown at the top of each column\. In the data points column, 0 is a non\-breaching data point, X is a breaching data point, and \- is a missing data point\.
+Column 2 shows how many of the 3 necessary data points are missing\. Even though the most recent 5 data points are evaluated, only 3 \(the setting for **Evaluation Periods**\) are necessary to evaluate the alarm state\. The number of data points in Column 2 is the number of data points that must be "filled in", using the setting for how missing data is being treated\. 
+
+Columns 3\-6 show the alarm state that would be set for each setting of how missing data should be treated, shown at the top of each column\. In the data points column, 0 is a non\-breaching data point, X is a breaching data point, and \- is a missing data point\.
 
 
 | Data points | \# of missing data points | MISSING | IGNORE | BREACHING | NOT BREACHING | 
@@ -78,9 +80,8 @@ Column 2 shows how many of these 5 data points are missing and may need to be fi
 |  \- \- \- \- \-  |  3  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
 |  0 X X \- X  |  0  |  ALARM  |  ALARM  |  ALARM  |  ALARM  | 
 |  \- \- \- \- X  |  2  |  Insufficient data  |  Retain current state  |  ALARM  |  OK  | 
-|  X \- \- \- \-  |  2  |  ALARM  |  Retain current state  |  ALARM  |  OK  | 
 
-In the second row of the preceding table, the alarm stays OK even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to ALARM, as that non\-breaching data point will no longer be among the 5 most recent data points retrieved\. In the fourth row, the alarm goes to ALARM state in all cases because there are enough real data points so that the setting for how to treat missing data does not need to be considered\. In the sixth row, the alarm goes to ALARM state even if missing data is treated as missing, because the oldest evaluated data point is breaching and there aren't any non\-breaching data points.
+In the second row of the preceding table, the alarm stays OK even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to ALARM, as that non\-breaching data point will no longer be among the 5 most recent data points retrieved\. In the fourth row, the alarm goes to ALARM state in all cases because there are enough real data points so that the setting for how to treat missing data does not need to be considered\.
 
 In the next table, the **Period** is again set to 5 minutes, and **Datapoints to Alarm** is only 2 while **Evaluation Periods** is 3\. This is a 2 out of 3, M out of N alarm\.
 

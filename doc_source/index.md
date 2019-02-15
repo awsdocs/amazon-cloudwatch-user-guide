@@ -1,7 +1,7 @@
 # Amazon CloudWatch User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -35,7 +35,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Monitor Resources in Multiple Regions Using a CloudWatch Dashboard](cross_region_dashboard.md)
    + [Link and Unlink Graphs on a CloudWatch Dashboard](link_unlink_graph_dashboard.md)
    + [Add a Dashboard to Your Favorites List](add-dashboard-to-favorites.md)
-   + [Change the Refresh Interval for the CloudWatch Dashboard](change_dashboard_refresh_interval.md)
+   + [Change the Period Override Setting or Refresh Interval for the CloudWatch Dashboard](change_dashboard_refresh_interval.md)
    + [Change the Time Range or Time Zone Format of a CloudWatch Dashboard](change_dashboard_time_format.md)
 + [Using Amazon CloudWatch Metrics](working_with_metrics.md)
    + [View Available Metrics](viewing_metrics_with_cloudwatch.md)
@@ -82,7 +82,11 @@ Amazon's trademarks and trade dress may not be used in
    + [Common Scenarios with CloudWatch Agent](CloudWatch-Agent-common-scenarios.md)
    + [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)
    + [Troubleshooting the CloudWatch Agent](troubleshooting-CloudWatch-Agent.md)
-+ [AWS Services that Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)
++ [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)
++ [Monitor Applications Using AWS SDK Metrics](CloudWatch-Agent-SDK-Metrics.md)
+   + [Metrics and Data Collected by AWS SDK Metrics for Enterprise Support](metrics-collected-by-SDK-Metrics.md)
+   + [Configure the CloudWatch Agent for SDK Metrics](Configure-CloudWatch-Agent-SDK-Metrics.md)
+   + [Set IAM Permissions for SDK Metrics](Set-IAM-Permissions-For-SDK-Metrics.md)
 + [CloudWatch Tutorials](CloudWatch-tutorials.md)
    + [Scenario: Monitor Your Estimated Charges Using CloudWatch](gs_monitor_estimated_charges_with_cloudwatch.md)
    + [Scenario: Publish Metrics to CloudWatch](PublishMetrics.md)

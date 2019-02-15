@@ -21,5 +21,5 @@ You can create dashboards by using the console, the AWS CLI, or by using the `Pu
 + [Monitor Resources in Multiple Regions](cross_region_dashboard.md)
 + [Link and Unlink Graphs](link_unlink_graph_dashboard.md)
 + [Add a Dashboard to Your Favorites List](add-dashboard-to-favorites.md)
-+ [Change the Refresh Interval](change_dashboard_refresh_interval.md)
++ [Change the Period Override Setting or Refresh Interval](change_dashboard_refresh_interval.md)
 + [Change the Time Range or Time Zone Format](change_dashboard_time_format.md)

@@ -15,7 +15,7 @@ The overview displays the following items, refreshed automatically\.
 
   If you use fewer than six AWS services, the cross\-service dashboard is shown automatically on this page\.
 
-From this overview, you can focus your view to a specific resource group or a specific AWS service\. This enables you to narrow your view to a subset of resources in which you are interested\. Using resource groups enables you to use tags to organize projects, focus on a subset of your architecture, or just distinguish between your production and development environments\. For more information, see [What Is AWS Resource Groups?](welcome.html)\.
+From this overview, you can focus your view to a specific resource group or a specific AWS service\. This enables you to narrow your view to a subset of resources in which you are interested\. Using resource groups enables you to use tags to organize projects, focus on a subset of your architecture, or just distinguish between your production and development environments\. For more information, see [What Is AWS Resource Groups?](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)\.
 
 **Topics**
 + [See Key Metrics From All AWS Services](CloudWatch_Automatic_Dashboards_Cross_Service.md)

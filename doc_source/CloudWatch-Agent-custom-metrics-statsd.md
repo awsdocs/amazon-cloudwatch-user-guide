@@ -14,7 +14,7 @@ MetricName:value|type|@sample_rate|#tag1:
 
 You can use any StatsD client that follows this format to send the metrics to the CloudWatch agent\. For more information about some of the available StatsD clients, see the [StatsD client page on GitHub](https://github.com/etsy/statsd/wiki#client-implementations)\. 
 
-The basic configuration for collecting these custom metrics with the CloudWatch agent is to add a **"statsd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+To collect these custom metrics, add a **"statsd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
 
 The StatsD default configuration works for most users\. There are three optional fields you can add to the **statsd** section of the agent configuration file as needed:
 + **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `ip:port`\. If you omit the IP address, the agent listens on all available interfaces\. Only the UDP format is supported, so you do not need to specify a UDP prefix\. 

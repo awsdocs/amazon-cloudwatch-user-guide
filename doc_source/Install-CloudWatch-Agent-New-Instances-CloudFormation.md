@@ -81,7 +81,7 @@ After the procedure for installing the agent, the tutorial continues with how to
    Use the following command to confirm that the agent is running:
 
    ```
-   ps aux |grep amazon-cloudwatch-agent
+   ps aux | grep amazon-cloudwatch-agent
    ```
 
 The next procedure demonstrates using AWS CloudFormation to update the CloudWatch agent using an inline template\. The default inline template collects the `mem_used_percent` metric\. In this tutorial, you change the agent configuration to stop collecting that metric\.
@@ -159,7 +159,7 @@ After the procedure for installing the agent, the tutorial continues with how to
    Use the following command to confirm that the agent is running:
 
    ```
-   ps aux |grep amazon-cloudwatch-agent
+   ps aux | grep amazon-cloudwatch-agent
    ```
 
 The next procedure demonstrates using AWS CloudFormation to update the CloudWatch agent, using an agent configuration that you saved in Parameter Store\.

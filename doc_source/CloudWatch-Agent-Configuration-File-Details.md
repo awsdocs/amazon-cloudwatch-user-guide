@@ -411,7 +411,7 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
          `ascii, big5, euc-jp, euc-kr, gbk, gb18030, ibm866, iso2022-jp, iso8859-2, iso8859-3, iso8859-4, iso8859-5, iso8859-6, iso8859-7, iso8859-8, iso8859-8-i, iso8859-10, iso8859-13, iso8859-14, iso8859-15, iso8859-16, koi8-r, koi8-u, macintosh, shift_jis, utf-8, utf-16, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic` 
   + The **windows\_events** section specifies the type of Windows events to collect from servers running Windows Server\. It includes the following fields:
     + **collect\_list** – Required if **windows\_events** is included\. Specifies the types and levels of Windows events to be collected\. Each log to be collected has an entry in this section, which can include the following fields:
-      + **event\_name** – Specifies the type of Windows events to log\. For example, `System`, `Security`, `Application`, and so on\. This field is required for each type of Windows event to log\.
+      + **event\_name** – Specifies the type of Windows events to log\. This is equivalent to the Windows event log channel name\. For example, `System`, `Security`, `Application`, and so on\. This field is required for each type of Windows event to log\.
       + **event\_levels** – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, `CRITICAL`, and `VERBOSE`\. This field is required for each type of Windows event to log\.
       + **log\_group\_name** – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
       + **log\_stream\_name** – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, while `{local_hostname}` uses the hostname from the network configuration file\.
@@ -429,47 +429,48 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
 The following is an example of a `logs` section:
 
 ```
-"logs":{
-   "logs_collected":{
-      "files":{
-         "collect_list":[
-            {
-               "file_path":"c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log",
-               "log_group_name":"amazon-cloudwatch-agent.log",
-               "log_stream_name":"my_log_stream_name_1",
-               "timestamp_format":"%H:%M:%S %y %b %-d"
-            },
-            {
-               "file_path":"c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\test.log",
-               "log_group_name":"test.log",
-               "log_stream_name":"my_log_stream_name_2"
-            }
-         ]
-      },
-      "windows_events":{
-         "collect_list":[
-            {
-               "event_name":"System",
-               "event_levels":[
-                  "INFORMATION",
-                  "ERROR"
-               ],
-               "log_group_name":"System",
-               "log_stream_name":"System"
-            },
-            {
-               "event_name":"Application",
-               "event_levels":[
-                  "INFORMATION",
-                  "ERROR"
-               ],
-               "log_group_name":"Application",
-               "log_stream_name":"Application"
-            }
-         ]
-      }
-   },
-   "log_stream_name":"my_log_stream_name"
+"logs":
+   {
+       "logs_collected": {
+           "files": {
+               "collect_list": [
+                   {
+                       "file_path": "c: \\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log",
+                       "log_group_name": "amazon-cloudwatch-agent.log",
+                       "log_stream_name": "my_log_stream_name_1",
+                       "timestamp_format": "%H: %M: %S%y%b%-d"
+                   },
+                   {
+                       "file_path": "c: \\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\test.log",
+                       "log_group_name": "test.log",
+                       "log_stream_name": "my_log_stream_name_2"
+                   }
+               ]
+           },
+           "windows_events": {
+               "collect_list": [
+                   {
+                       "event_name": "System",
+                       "event_levels": [
+                           "INFORMATION",
+                           "ERROR"
+                       ],
+                       "log_group_name": "System",
+                       "log_stream_name": "System"
+                   },
+                   {
+                       "event_name": "CustomizedName",
+                       "event_levels": [
+                           "INFORMATION",
+                           "ERROR"
+                       ],
+                       "log_group_name": "CustomizedLogGroup",
+                       "log_stream_name": "CustomizedLogStream"
+                   }
+               ]
+           }
+       },
+       "log_stream_name": "my_log_stream_name"
 }
 ```
 
@@ -723,13 +724,13 @@ The following is an example of a complete agent configuration file for a server 
                 "event_format": "xml"
               },
               {
-                "event_name": "Application",
+                "event_name": "CustomizedName",
                 "event_levels": [
                   "WARNING",
                   "ERROR"
                 ],
-                "log_group_name": "Application",
-                "log_stream_name": "Application",
+                "log_group_name": "CustomizedLogGroup",
+                "log_stream_name": "CustomizedLogStream",
                 "event_format": "xml"
               }
             ]

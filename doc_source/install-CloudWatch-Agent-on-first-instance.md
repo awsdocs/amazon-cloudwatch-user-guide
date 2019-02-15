@@ -184,10 +184,16 @@ To be able to send the CloudWatch data to a different Region, make sure that the
 Following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-+ Type the following command and follow the prompts:
++ On Linux servers, type the following command and follow the prompts:
 
   ```
   sudo aws configure --profile AmazonCloudWatchAgent
+  ```
+
+  On Windows Server, open Powershell as an administrator, type the following command and follow the prompts\.
+
+  ```
+  aws configure --profile AmazonCloudWatchAgent
   ```
 
 ## Create the Agent Configuration File on Your First Instance<a name="CW-Agent-Instance-Create-Configuration-File-first"></a>

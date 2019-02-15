@@ -4,6 +4,7 @@ The following sections outline how to complete some common configuration and cus
 
 **Topics**
 + [Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-adding-custom-dimensions)
++ [Multiple Agent Configuration Files](#CloudWatch-Agent-multiple-config-files)
 + [Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-aggregating-metrics)
 + [Collecting High\-Resolution Metrics With the CloudWatch agent](#CloudWatch-Agent-collect-high-resolution-metrics)
 + [Sending Metrics and Logs to a Different AWS Account](#CloudWatch-Agent-send-to-different-AWS-account)
@@ -45,6 +46,87 @@ For example, the following example section of the configuration file adds a cust
 ```
 
 Remember that any time you change the agent configuration file, you must then restart the agent to have the changes take effect\.
+
+## Multiple Agent Configuration Files<a name="CloudWatch-Agent-multiple-config-files"></a>
+
+You can set up the CloudWatch agent to use multiple configuration files\. For example, you can use a common configuration file that collects a set of metrics and logs that you always want to collect from all servers in your infrastructure\. You can then use additional configuration files that collect metrics from certain applications or in certain situations\.
+
+To set this up, first create the configuration files you want to use\. Any configuration files that will be used together on the same server must have different filenames\. You can store the configuration files on servers or in Parameter Store\.
+
+Start the CloudWatch agent using the `fetch-config` option and specify the first configuration file\. To append the second configuration file to the running agent, use the same command but with the `append-config` option\. All metrics and logs listed in either configuration file are collected\. The following example Linux commands illustrate this scenario using configurations stores as files\. The first line starts the agent using the `infrastructure.json` configuration file, and the second line appends the `app.json` configuration file\.
+
+```
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/tmp/infrastructure.json -s
+```
+
+```
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a append-config -m ec2 -c file:/tmp/app.json -s
+```
+
+The following example configuration files illustrate a use for this feature\. The first configuration file is used for all servers in the infrastructure, and the second collects only logs from a certain application and is appended to servers running that application\.
+
+**infrastructure\.json**
+
+```
+{
+  "metrics": {
+    "metrics_collected": {
+      "cpu": {
+        "resources": [
+          "*"
+        ],
+        "measurement": [
+          "usage_active"
+        ],
+        "totalcpu": true
+      },
+      "mem": {
+         "measurement": [
+           "used_percent"
+        ]
+      }
+}
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log",
+            "log_group_name": "amazon-cloudwatch-agent.log"
+          },
+          {
+            "file_path": "/var/log/messages",
+            "log_group_name": "/var/log/messages"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+**app\.json**
+
+```
+{
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/app/app.log*",
+            "log_group_name": "/app/app.log"
+          }
+        ]
+      }
+    }
+  }
+```
+
+Any configuration files appended to the configuration must have different filenames from each other and from the initial configuration file\. If you use `append-config` with a configuration file with the same filename as a configuration file the agent is already using, the append command will overwrite the information from the first configuration file, instead of appending to it\. This is true even if the two configuration files with the same filename are on different file paths\.
+
+The preceding example shows the use of two configuration files, but there is no limit to the number of configuration files you can append to the agent configuration\. You can also mix the use of configuration files located on servers and configurations located in Parameter Store\.
 
 ## Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-aggregating-metrics"></a>
 
@@ -130,7 +212,7 @@ Remember that any time you change the agent configuration file, you must then re
 
 ## Sending Metrics and Logs to a Different AWS Account<a name="CloudWatch-Agent-send-to-different-AWS-account"></a>
 
-To have the CloudWatch agent send the metrics, logs, or both to a different AWS account, specify a `role_arn` parameter in the agent configuration file on the sending server\. The `role_arn` value specifies an IAM role in the sending account that the agent uses when sending data to the target account\. This role enables the sending account to assume a corresponding role in the target account when delivering the metrics or logs to the target account\.
+To have the CloudWatch agent send the metrics, logs, or both to a different AWS account, specify a `role_arn` parameter in the agent configuration file on the sending server\. The `role_arn` value specifies an IAM role in the target account that the agent uses when sending data to the target account\. This role enables the sending account to assume a corresponding role in the target account when delivering the metrics or logs to the target account\.
 
 You can also specify two separate `role_arn` strings in the agent configuration file: one to use when sending metrics, and another for sending logs\.
 

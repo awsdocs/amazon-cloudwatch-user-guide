@@ -159,10 +159,16 @@ The named profile in the configuration file specifies the Region to which the Cl
 Following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-+ Type the following command and follow the prompts:
++ On Linux servers, type the following command and follow the prompts:
 
   ```
   sudo aws configure --profile AmazonCloudWatchAgent
+  ```
+
+  On Windows Server, open Powershell as an administrator, type the following command and follow the prompts\.
+
+  ```
+  aws configure --profile AmazonCloudWatchAgent
   ```
 
 ## Start the CloudWatch Agent<a name="start-CloudWatch-Agent-on-premise-SSM-onprem"></a>

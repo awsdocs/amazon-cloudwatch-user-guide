@@ -138,7 +138,14 @@ The default `common-config.toml` is as follows:
 
 All lines are commented out initially\. To set the credential profile or proxy settings, remove the `#` from that line and specify a value\. You can edit this file manually, or by using the `RunShellScript` Run Command in Systems Manager:
 + **shared\_credential\_profile** You can specify a name for the named profile that CloudWatch agent is to look for in the AWS credentials and AWS config files\. If you don't specify a name here, the CloudWatch agent looks for the default profile name, `AmazonCloudWatchAgent`\.
-+ **shared\_credential\_file** If you don't want to use the default path, use this line to specify a path to a file containing credentials to use\.
++ **shared\_credential\_file** The CloudWatch agent looks for credential and region information in the following locations\. 
+  +  `/root/.aws` on Linux servers
+  + `$SystemDrive\\Users\\Administrator\\.aws` on Windows Server 2008 and Windows Server 2012
+  + `$SystemDrive\\Documents and Settings\\Administrator\\.aws` on Windows Server 2003
+
+    `$SystemDrive` is usually C:
+
+  If you don't want to use this default path, use `shared_credential_file` to specify a path to a different file containing credentials to use\.
 + **proxy settings** If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
 After modifying `common-config.toml`, you should make sure the profile name that you specified, or the default profile name of `AmazonCloudWatchAgent`, exists in the root user's AWS credentials and config files\. This profile is used for credential and Region information during CloudWatch agent setup\. Following is an example of this profile in the credentials file:
@@ -165,10 +172,16 @@ The named profile in the configuration file specifies the Region to which the Cl
 Following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-+ Type the following command and follow the prompts:
++ On Linux servers, type the following command and follow the prompts:
 
   ```
   sudo aws configure --profile AmazonCloudWatchAgent
+  ```
+
+  On Windows Server, open Powershell as an administrator, type the following command and follow the prompts\.
+
+  ```
+  aws configure --profile AmazonCloudWatchAgent
   ```
 
 ## Create the CloudWatch Agent Configuration File<a name="CloudWatch-Agent-configuration-file-onpremises-first"></a>
