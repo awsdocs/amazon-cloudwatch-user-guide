@@ -18,19 +18,19 @@ The AWS namespaces use the following naming convention: `AWS/service`\. For exam
 
 ## Metrics<a name="Metric"></a>
 
-*Metrics* are the fundamental concept in CloudWatch\. A metric represents a time\-ordered set of data points that are published to CloudWatch\. Think of a metric as a variable to monitor, and the data points represent the values of that variable over time\. For example, the CPU usage of a particular EC2 instance is one metric provided by Amazon EC2\. The data points themselves can come from any application or business activity from which you collect data\.
+*Metrics* are the fundamental concept in CloudWatch\. A metric represents a time\-ordered set of data points that are published to CloudWatch\. Think of a metric as a variable to monitor, and the data points as representing the values of that variable over time\. For example, the CPU usage of a particular EC2 instance is one metric provided by Amazon EC2\. The data points themselves can come from any application or business activity from which you collect data\.
 
 AWS services send metrics to CloudWatch, and you can send your own custom metrics to CloudWatch\. You can add the data points in any order, and at any rate you choose\. You can retrieve statistics about those data points as an ordered set of time\-series data\.
 
 Metrics exist only in the region in which they are created\. Metrics cannot be deleted, but they automatically expire after 15 months if no new data is published to them\. Data points older than 15 months expire on a rolling basis; as new data points come in, data older than 15 months is dropped\.
 
-Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\. Each data point has a time stamp, and \(optionally\) a unit of measure\. When you request statistics, the returned data stream is identified by namespace, metric name, dimension, and \(optionally\) the unit\.
+Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\.  Each data point in a metric has a time stamp and \(optionally\) a unit of measure\.  Statistics may be retrieved from CloudWatch for any metric.
 
 For more information, see [View Available Metrics](viewing_metrics_with_cloudwatch.md) and [Publish Custom Metrics](publishingMetrics.md)\.
 
 ### Time Stamps<a name="about_timestamp"></a>
 
-Each metric data point must be marked with a time stamp\. The time stamp can be up to two weeks in the past and up to two hours into the future\. If you do not provide a time stamp, CloudWatch creates a time stamp for you based on the time the data point was received\. 
+Each metric data point must be associated with a time stamp\. The time stamp can be up to two weeks in the past and up to two hours into the future\. If you do not provide a time stamp, CloudWatch creates a time stamp for you based on the time the data point was received\. 
 
 Time stamps are `dateTime` objects, with the complete date plus hours, minutes, and seconds \(for example, 2016\-10\-31T23:59:59Z\)\. For more information, see [dateTime](http://www.w3.org/TR/xmlschema-2/#dateTime)\. Although it is not required, we recommend that you use Coordinated Universal Time \(UTC\)\. When you retrieve statistics from CloudWatch, all times are in UTC\.
 
@@ -50,9 +50,9 @@ CloudWatch started retaining 5\-minute and 1\-hour metric data as of 9 July 2016
 
 ## Dimensions<a name="Dimension"></a>
 
-A *dimension* is a name/value pair that uniquely identifies a metric\. You can assign up to 10 dimensions to a metric\.
+A *dimension* is a name/value pair that is a part of the identity of a metric\. You can assign up to 10 dimensions to a metric\.
 
-Every metric has specific characteristics that describe it, and you can think of dimensions as categories for those characteristics\. Dimensions help you design a structure for your statistics plan\. Because dimensions are part of the unique identifier for a metric, whenever you add a unique name/value pair to one of your metrics, you are creating a new variation of that metric\.
+Every metric has specific characteristics that describe it, and you can think of dimensions as categories for those characteristics\. Dimensions help you design a structure for your statistics plan\. Because dimensions are part of the unique identifier for a metric, whenever you add a unique name/value pair to one of your metrics, you are creating a new metric\.
 
 AWS services that send data to CloudWatch attach dimensions to each metric\. You can use dimensions to filter the results that CloudWatch returns\. For example, you can get statistics for a specific EC2 instance by specifying the `InstanceId` dimension when you search for metrics\.
 
