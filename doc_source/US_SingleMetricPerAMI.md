@@ -28,7 +28,7 @@ aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtiliz
 --start-time 2016-10-10T00:00:00 --end-time 2016-10-11T00:00:00 --period 3600
 ```
 
-The operation returns statistics that are one\-minute values for the one\-day interval\. Each value represents an average CPU utilization percentage for EC2 instances running the specified AMI\. The following is example output:
+The operation returns statistics that are one\-hour values for the one\-day interval\. Each value represents an average CPU utilization percentage for EC2 instances running the specified AMI\. The following is example output:
 
 ```
 {
