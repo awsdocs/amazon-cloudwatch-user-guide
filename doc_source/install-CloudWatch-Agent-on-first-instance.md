@@ -43,7 +43,7 @@ Before you use Systems Manager Run Command to install and configure the CloudWat
 
 Your Amazon EC2 instances must have either outbound internet access or your VPC must be configured to use the CloudWatch logs interface VPC endpoint\. 
 
-For more information on how to configure the CloudWatch logs endpoint, see [Using CloudWatch Logs with Interface VPC Endpoints] (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html).
+For more information on how to configure the CloudWatch logs endpoint, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html).
 
 For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
