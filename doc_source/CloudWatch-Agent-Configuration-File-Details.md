@@ -130,7 +130,7 @@ On servers running Linux, the **metrics\_collected** section of the configuratio
     If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information about high\-resolution metrics, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
   + **append\_dimensions** Optional\. Additional dimensions to use for only the swap metrics\. If you specify this field, it is used in addition to dimensions specified in the global `append_dimensions` field that is used for all types of metrics collected by the agent\. It is collected as a high\-resolution metric\. 
 + **mem** – Optional\. Specifies that memory metrics are to be collected\. This section is valid only for Linux instances\. This section can include one field:
-  + **measurement** – Specifies the array of swap metrics to be collected\. Possible values are `active`, `available`, `available_percent`, `buffered`, `cached`, `free`, `inactive`, `total`, `used`, and `used_percent`\. This field is required if you include `mem`\.
+  + **measurement** – Specifies the array of memory metrics to be collected\. Possible values are `active`, `available`, `available_percent`, `buffered`, `cached`, `free`, `inactive`, `total`, `used`, and `used_percent`\. This field is required if you include `mem`\.
 
     To see the default units for each `mem` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
