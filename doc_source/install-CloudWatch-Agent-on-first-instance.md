@@ -39,9 +39,13 @@ For information about installing or updating the SSM Agent, see [ Installing and
 
 Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html#systems-manager-prereqs) in the *AWS Systems Manager User Guide*\.
 
-#### Verify Internet Access<a name="install-CloudWatch-Agent-internet-access-first"></a>
+#### Verify Access<a name="install-CloudWatch-Agent-access-first"></a>
 
-Your Amazon EC2 instances must have outbound internet access in order to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
+Your Amazon EC2 instances must have either outbound internet access or your VPC must be configured to use the CloudWatch logs interface VPC endpoint\. 
+
+For more information on how to configure the CloudWatch logs endpoint, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html).
+
+For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
 The endpoints and ports to configure on your proxy are as follows:
 + If you are using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch](https://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
