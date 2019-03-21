@@ -9,25 +9,26 @@ The template location is [ Deploy CloudWatch Agent to EC2 instances by AWS Cloud
 
   ```
   {
-                    "metrics": {
-                      "append_dimensions": {
-                        "AutoScalingGroupName": "${!aws:AutoScalingGroupName}",
-                        "ImageId": "${!aws:ImageId}",
-                        "InstanceId": "${!aws:InstanceId}",
-                        "InstanceType": "${!aws:InstanceType}"
-                      },
-                      "metrics_collected": {
-                        "mem": {
-                          "measurement": [
-                            "mem_used_percent"
-                          ]
-                        },
-                        "swap": {
-                          "measurement": [
-                            "swap_used_percent"
-                          ]
-                        }
-                      }
+    "metrics": {
+      "append_dimensions": {
+        "AutoScalingGroupName": "${!aws:AutoScalingGroupName}",
+        "ImageId": "${!aws:ImageId}",
+        "InstanceId": "${!aws:InstanceId}",
+        "InstanceType": "${!aws:InstanceType}"
+      },
+      "metrics_collected": {
+        "mem": {
+          "measurement": [
+            "mem_used_percent"
+          ]
+        },
+        "swap": {
+          "measurement": [
+            "swap_used_percent"
+          ]
+        }
+      }
+    }
   }
   ```
 **Note**  
@@ -92,11 +93,10 @@ The next procedure demonstrates using AWS CloudFormation to update the CloudWatc
 
    ```
    "mem": {
-                           
-        "measurement": [
-            "mem_used_percent"
-          ]
-    },
+     "measurement": [
+       "mem_used_percent"
+     ]
+   },
    ```
 
 1. Open the AWS CloudFormation console at [https://console\.aws\.amazon\.com/cloudformation](https://console.aws.amazon.com/cloudformation/)\.

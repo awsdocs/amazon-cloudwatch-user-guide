@@ -81,11 +81,11 @@ The following example configuration files illustrate a use for this feature\. Th
         "totalcpu": true
       },
       "mem": {
-         "measurement": [
-           "used_percent"
+        "measurement": [
+          "used_percent"
         ]
       }
-}
+    }
   },
   "logs": {
     "logs_collected": {
@@ -122,6 +122,7 @@ The following example configuration files illustrate a use for this feature\. Th
       }
     }
   }
+}
 ```
 
 Any configuration files appended to the configuration must have different filenames from each other and from the initial configuration file\. If you use `append-config` with a configuration file with the same filename as a configuration file the agent is already using, the append command will overwrite the information from the first configuration file, instead of appending to it\. This is true even if the two configuration files with the same filename are on different file paths\.
@@ -232,18 +233,18 @@ The following example of part of the `agent` section of the configuration file s
 Alternatively, the following example sets different roles for the sending account to use for sending metrics and logs:
 
 ```
-"metrics": {
+  "metrics": {
     "credentials": {
-        "role_arn": "RoleToSendMetrics"
-     },
+      "role_arn": "RoleToSendMetrics"
+    },
     "metrics_collected": {....
 ```
 
 ```
-"logs": {
+  "logs": {
     "credentials": {
-        "role_arn": "RoleToSendLogs"
-     },
+      "role_arn": "RoleToSendLogs"
+    },
     ....
 ```
 
