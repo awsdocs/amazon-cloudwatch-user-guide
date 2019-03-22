@@ -96,4 +96,4 @@ After you have published metrics to CloudWatch, you can use the CloudWatch conso
 
 1. Select the check box for the **RequestLatency** metric\. A graph of the metric data is displayed in the upper pane\.
 
-For more information, see [Graph Metrics](graph_metrics.md)\.
+For more information, see [Graphing Metrics](graph_metrics.md)\.

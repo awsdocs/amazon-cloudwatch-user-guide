@@ -48,7 +48,7 @@ For each alarm, you can specify CloudWatch to treat missing data points as any o
 + `breaching`—Missing data points are treated as breaching the threshold
 + `ignore`—The current alarm state is maintained
 
-The best choice depends on the type of metric\. For a metric that continually reports data, such as `CPUUtilization` of an instance, you might want to treat missing data points as `breaching`, because they may indicate thatsomething is wrong\. But for a metric that generates data points only when an error occurs, such as `ThrottledRequests` in Amazon DynamoDB, you would want to treat missing data as `notBreaching`\. The default behavior is `missing`\.
+The best choice depends on the type of metric\. For a metric that continually reports data, such as `CPUUtilization` of an instance, you might want to treat missing data points as `breaching`, because they may indicate that something is wrong\. But for a metric that generates data points only when an error occurs, such as `ThrottledRequests` in Amazon DynamoDB, you would want to treat missing data as `notBreaching`\. The default behavior is `missing`\.
 
 Choosing the best option for your alarm prevents unnecessary and misleading alarm condition changes, and also more accurately indicates the health of your system\.
 
@@ -98,7 +98,7 @@ If data points are missing soon after you create an alarm, and the metric was be
 
 ## High\-Resolution Alarms<a name="high-resolution-alarms"></a>
 
- If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publish Custom Metrics](publishingMetrics.md)\.
+ If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing Custom Metrics](publishingMetrics.md)\.
 
 ## Alarms on Math Expressions<a name="alarms-on-metric-math-expressions"></a>
 
@@ -108,7 +108,7 @@ For an alarm based on a math expression, you can specify how you want CloudWatch
 
 Alarms based on math expressions cannot perform Amazon EC2 actions\.
 
-For more information about metric math expressions and syntax, see [Use Metric Math](using-metric-math.md)\.
+For more information about metric math expressions and syntax, see [Using Metric Math](using-metric-math.md)\.
 
 ## Percentile\-Based CloudWatch Alarms and Low Data Samples<a name="percentiles-with-low-samples"></a>
 

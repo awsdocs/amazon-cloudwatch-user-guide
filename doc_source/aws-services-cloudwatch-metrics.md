@@ -7,7 +7,9 @@ The following AWS services publish metrics to CloudWatch\. For information about
 | --- | --- | --- | 
 |  Amazon API Gateway  |  `AWS/ApiGateway`  |  [Monitor API Execution with Amazon CloudWatch](https://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AppStream 2\.0  |  `AWS/AppStream`  |  [Monitoring Amazon AppStream 2\.0 Resources](https://docs.aws.amazon.com/appstream2/latest/developerguide/monitoring.html)  | 
+|  Amazon Athena  |  `AWS/Athena`  |  [Monitoring Athena Queries with CloudWatch Metrics](https://docs.aws.amazon.com/athena/latest/ug/query-metrics-viewing.html)  | 
 |  AWS Billing and Cost Management  |  `AWS/Billing`  |  [Monitoring Charges with Alerts and Notifications](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html)  | 
+|  ACM Private CA  |  `AWS/ACMPrivateCA`  |  [Supported CloudWatch Metrics](https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCloudWatch.html)  | 
 |  Amazon CloudFront  |  `AWS/CloudFront`  |  [Monitoring CloudFront Activity Using CloudWatch](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html)  | 
 |  Amazon CloudSearch  |  `AWS/CloudSearch`  |  [Monitoring an Amazon CloudSearch Domain with Amazon CloudWatch](https://docs.aws.amazon.com/cloudsearch/latest/developerguide/cloudwatch-monitoring.html)  | 
 |  Amazon CloudWatch Events  |  `AWS/Events`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatch-Events-Monitoring-CloudWatch-Metrics.html)  | 

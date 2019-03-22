@@ -1,6 +1,6 @@
 # Configure the CloudWatch Agent for SDK Metrics<a name="Configure-CloudWatch-Agent-SDK-Metrics"></a>
 
-Before you begin, install the CloudWatch agent on an EC2 instance running an application for which you'd like to receive metrics\. Be sure to use the most recent version of the CloudWatch agent to ensure the best results\. For more information, see [Install the CloudWatch Agent on an Amazon EC2 Instance](install-CloudWatch-Agent-on-EC2-Instance.md)\.
+Before you begin, install the CloudWatch agent on an EC2 instance running an application for which you'd like to receive metrics\. For more information, see [Install the CloudWatch Agent on an Amazon EC2 Instance](install-CloudWatch-Agent-on-EC2-Instance.md)\.
 
 After installing the CloudWatch agent, you need to configure it to work with SDK Metrics\. The easiest way is to use AWS Systems Manager, but you can also do it manually\.
 

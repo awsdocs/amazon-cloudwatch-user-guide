@@ -1,8 +1,8 @@
-# Modify the Time Range or Time Zone Format for a Graph<a name="modify_graph_date_time"></a>
+# Modifying the Time Range or Time Zone Format for a Graph<a name="modify_graph_date_time"></a>
 
 You can change the time range or the time zone format of a graph\.
 
-## Relative Time Ranges<a name="set-relative-time-range"></a>
+## Setting a Relative Time Range<a name="set-relative-time-range"></a>
 
 You can set a relative time range for your graph\.
 
@@ -16,7 +16,7 @@ You can set a relative time range for your graph\.
 
 1. For more predefined ranges, choose the **custom** menu and then choose **Relative**\. Select one of the predefined ranges, which span from 5 minutes to 15 months ago\.
 
-## Absolute Time Ranges<a name="set-absolute-time-range"></a>
+## Setting an Absolute Time Range<a name="set-absolute-time-range"></a>
 
 You can set an absolute time range for your graph\.
 
@@ -40,7 +40,7 @@ You can specify whether the graph uses UTC time or your local time\.
 
 1. Choose the **custom** menu and then choose **UTC** or **Local timezone**\.
 
-## Zoom in on a Graph<a name="zoom-graph"></a>
+## Zooming In on a Graph<a name="zoom-graph"></a>
 
 You can change the granularity of a graph and zoom in to see data over a shorter time period\.
 
@@ -50,6 +50,6 @@ You can change the granularity of a graph and zoom in to see data over a shorter
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Choose and drag on the graph area, and then release the drag\.
+1. Choose and drag on the graph area and then release the drag\.
 
 1. To reset a zoomed\-in graph, choose the **Reset zoom** icon\.

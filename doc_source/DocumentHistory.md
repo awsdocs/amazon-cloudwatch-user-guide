@@ -4,6 +4,7 @@ The following table describes important changes in each release of the *Amazon C
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [SEARCH function added to metric math expressions](#DocumentHistory) | You can now use a SEARCH function in metric math expressions\. This enables you to create dashboards that update automatically as new resources are created that match the search query\. For more information, see [ Using Search Expressions in Graphs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-search-expressions.html) in the *Amazon CloudWatch User Guide*\. | March 21, 2019 | 
 | [AWS SDK Metrics for Enterprise Support](#DocumentHistory) | SDK Metrics helps you assess the health of your AWS services and diagnose latency caused by reaching your account usage limits or by a service outage\. For more information, see [ Monitor Applications Using AWS SDK Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-SDK-Metrics.html) in the *Amazon CloudWatch User Guide*\. | December 11, 2018 | 
 | [Alarms on math expressions](#DocumentHistory) | CloudWatch supports creating alarms based on metric math expressions\. For more information, see [ Alarms on Math Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-on-metric-math-expressions) in the *Amazon CloudWatch User Guide*\. | November 20, 2018 | 
 | [New CloudWatch console home page](#DocumentHistory) | Amazon has created a new home page in the CloudWatch console, which automatically displays key metrics and alarms for all the AWS services you are using\. For more information, see [ Getting Started with Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GettingStarted.html) in the *Amazon CloudWatch User Guide*\. | November 19, 2018 | 
@@ -16,7 +17,7 @@ The following table describes important changes to the *Amazon CloudWatch User G
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
-|  Metric math  |  You can now perform math expressions on CloudWatch metrics, producing new time series that you can add to graphs on your dashboard\. For more information, see [Use Metric Math](using-metric-math.md)\.  | 4 April 2018 | 
+|  Metric math  |  You can now perform math expressions on CloudWatch metrics, producing new time series that you can add to graphs on your dashboard\. For more information, see [Using Metric Math](using-metric-math.md)\.  | 4 April 2018 | 
 |  "M out of N" alarms  |  You can now configure an alarm to trigger based on "M out of N" datapoints in any alarm evaluation interval\. For more information, see [Evaluating an Alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.  | 8 December 2017 | 
 |  CloudWatch agent  |  A new unified CloudWatch agent was released\. You can use the unified multi\-platform agent to collect custom both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The new agent supports both Windows and Linux and enables customization of metrics collected, including sub\-resource metrics such as per\-CPU core\. For more information, see [Collect Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](Install-CloudWatch-Agent.md)\.  | 7 September 2017 | 
 |  NAT gateway metrics  |  Added metrics for Amazon VPC NAT gateway\.  | 7 September 2017 | 
@@ -61,7 +62,7 @@ The following table describes important changes to the *Amazon CloudWatch User G
 |  New metrics  |  You can now access six new Elastic Load Balancing metrics that provide counts of various HTTP response codes\.   | 19 October 2011 | 
 |  New feature  |  You can now access metrics from Amazon EMR\.   | 30 June 2011 | 
 |  New feature  |  You can now access metrics from Amazon Simple Notification Service and Amazon Simple Queue Service\.   | 14 July 2011 | 
-|  New Feature  |  Added information about using the `PutMetricData` API to publish custom metrics\. For more information, see [Publish Custom Metrics](publishingMetrics.md)\.  | 10 May 2011 | 
+|  New Feature  |  Added information about using the `PutMetricData` API to publish custom metrics\. For more information, see [Publishing Custom Metrics](publishingMetrics.md)\.  | 10 May 2011 | 
 |  Updated metrics retention  |  Amazon CloudWatch now retains the history of an alarm for two weeks rather than six weeks\. With this change, the retention period for alarms matches the retention period for metrics data\.  | 07 April 2011 | 
 |  New feature  |  Added ability to send Amazon Simple Notification Service or Auto Scaling notifications when a metric has crossed a threshold\. For more information, see [Alarms](cloudwatch_concepts.md#CloudWatchAlarms)\.  | 02 December 2010 | 
 |  New feature  |  A number of CloudWatch actions now include the MaxRecords and NextToken parameters, which enable you to control pages of results to display\.  | 02 December 2010 | 

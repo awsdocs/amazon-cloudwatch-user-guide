@@ -26,7 +26,7 @@ Metrics exist only in the region in which they are created\. Metrics cannot be d
 
 Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\. Each data point in a metric has a time stamp, and \(optionally\) a unit of measure\. You can retrieve statistics from CloudWatch for any metric\.
 
-For more information, see [View Available Metrics](viewing_metrics_with_cloudwatch.md) and [Publish Custom Metrics](publishingMetrics.md)\.
+For more information, see [Viewing Available Metrics](viewing_metrics_with_cloudwatch.md) and [Publishing Custom Metrics](publishingMetrics.md)\.
 
 ### Time Stamps<a name="about_timestamp"></a>
 
@@ -157,6 +157,6 @@ Alarms invoke actions for sustained state changes only\. CloudWatch alarms do no
 
 When creating an alarm, select a period that is greater than or equal to the frequency of the metric to be monitored\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances every 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
 
- If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publish Custom Metrics](publishingMetrics.md)\.
+ If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing Custom Metrics](publishingMetrics.md)\.
 
-For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md) and [Create an Alarm from a Metric on a Graph](create_alarm_metric_graph.md)\.
+For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md) and [Creating an Alarm from a Metric on a Graph](create_alarm_metric_graph.md)\.

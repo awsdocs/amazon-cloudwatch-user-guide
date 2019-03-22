@@ -34,8 +34,6 @@ On the CloudWatch home page, you can focus the view to a single AWS service\. Yo
 
 1. Alarms are always refreshed one time per minute\. To refresh the view, choose the refresh icon \(two curved arrows\) at the top right of the screen\. To change the automatic refresh rate for items on the screen other than alarms, choose the down arrow next to the refresh icon and choose a refresh ratet\. You can also choose to turn off automatic refresh\.
 
-   Alarms are always refreshed one time per minute\.
-
 1. To change the time range shown in all graphs and alarms currently displayed, next to **Time range** at the top of the screen, choose the range \. To select from more time range options than those displayed by default, choose **custom**\.
 
 1. To return to the cross\-service dashboard, choose **Overview** in the list at the top of the screen that currently shows the service you are focusing on\.

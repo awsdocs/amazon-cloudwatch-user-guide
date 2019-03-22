@@ -1,4 +1,4 @@
-# View Available Metrics<a name="viewing_metrics_with_cloudwatch"></a>
+# Viewing Available Metrics<a name="viewing_metrics_with_cloudwatch"></a>
 
 Metrics are grouped first by namespace, and then by the various dimension combinations within each namespace\. For example, you can view all EC2 metrics, EC2 metrics grouped by instance, or EC2 metrics grouped by Auto Scaling group\.
 
@@ -10,10 +10,10 @@ Only the AWS services that you're using send metrics to Amazon CloudWatch\.
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Select a metric namespace \(for example, EC2\)\.  
+1. Select a metric namespace \(for example, **EC2**\)\.  
 ![\[View the metrics namespaces\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_view_categories.png)
 
-1. Select a metric dimension \(for example, Per\-Instance Metrics\)\.  
+1. Select a metric dimension \(for example, **Per\-Instance Metrics**\)\.  
 ![\[View the metric dimensions for Amazon EC2\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_view_metric_category.png)
 
 1. The **All metrics** tab displays all metrics for that dimension in the namespace\. You can do the following:
@@ -30,13 +30,13 @@ Only the AWS services that you're using send metrics to Amazon CloudWatch\.
 **To view available metrics by namespace, dimension, or metric using the AWS CLI**  
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list CloudWatch metrics\. For a list of the namespaces, metrics, and dimensions for all services that publish metrics, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 
-The following example specifies the `AWS/EC2` namespace to view all the metrics for Amazon EC2:
+The following example specifies the `AWS/EC2` namespace to view all the metrics for Amazon EC2\.
 
 ```
 aws cloudwatch list-metrics --namespace AWS/EC2
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 {
