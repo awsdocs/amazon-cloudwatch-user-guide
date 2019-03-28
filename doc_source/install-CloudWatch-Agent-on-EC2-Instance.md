@@ -1,7 +1,9 @@
-# Install the CloudWatch Agent on an Amazon EC2 Instance<a name="install-CloudWatch-Agent-on-EC2-Instance"></a>
+# Installing the CloudWatch Agent<a name="install-CloudWatch-Agent-on-EC2-Instance"></a>
 
-When you first start using CloudWatch agent, you download it to a server and configure the agent\. You can then use the agent with that configuration directly on that server, and if you save the configuration in AWS Systems Manager Parameter Store, you can also use the same configuration when you install the CloudWatch agent on other servers\.
+You can download and install the CloudWatch agent using either the command line with an Amazon S3 download link, using SSM, or using an AWS CloudFormation template\.
 
 **Topics**
-+ [Getting Started: Installing the CloudWatch Agent on Your First Instance](install-CloudWatch-Agent-on-first-instance.md)
-+ [Installing CloudWatch Agent on Additional Instances Using Your Agent Configuration](install-CloudWatch-Agent-on-EC2-Instance-fleet.md)
++ [Installing the CloudWatch Agent Using the Command Line](installing-cloudwatch-agent-commandline.md)
++ [Installing the CloudWatch Agent Using SSM](installing-cloudwatch-agent-ssm.md)
++ [Installing the CloudWatch Agent Using AWS CloudFormation](Install-CloudWatch-Agent-New-Instances-CloudFormation.md)
++ [Verifying the Signature of the CloudWatch Agent Package](verify-CloudWatch-Agent-Package-Signature.md)

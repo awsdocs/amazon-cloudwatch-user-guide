@@ -1,11 +1,11 @@
-# Verify the Signature of the CloudWatch Agent Package<a name="verify-CloudWatch-Agent-Package-Signature"></a>
+# Verifying the Signature of the CloudWatch Agent Package<a name="verify-CloudWatch-Agent-Package-Signature"></a>
 
-GPG signature files are included for CloudWatch Agent packages\. You can use the public key to verify that the agent download file is original and unmodified\. First, import the public key with [https://gnupg.org/index.html](https://gnupg.org/index.html)\.
+GPG signature files are included for CloudWatch agent packages\. You can use the public key to verify that the agent download file is original and unmodified\. First, import the public key with [https://gnupg.org/index.html](https://gnupg.org/index.html)\.
 
-To find the correct signature file, see the following table: 
+To find the correct signature file, see the following table\.
 
 
-| Arch | Platform | Download Link | Signature File Link | 
+| Architecture | Platform | Download Link | Signature File Link | 
 | --- | --- | --- | --- | 
 |  amd64 |  Amazon Linux and Amazon Linux 2  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
 |  amd64 |  Centos  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/centos/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/centos/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
@@ -50,7 +50,7 @@ To find the correct signature file, see the following table:
 
    `9376 16F3 450B 7D80 6CBD 9725 D581 6730 3B78 9C72`
 
-   If the fingerprint string does not match, do not install the agent, and contact Amazon Web Services\.
+   If the fingerprint string doesn't match, don't install the agent\. Contact Amazon Web Services\.
 
    After you have verified the fingerprint, you can use it to verify the signature of the CloudWatch agent package\.
 
@@ -60,7 +60,7 @@ To find the correct signature file, see the following table:
    wget Signature File Link
    ```
 
-1. To verify the signature, run `gpg --verify`\.
+1. To verify the signature, run gpg \-\-verify\.
 
    ```
    shell$ gpg --verify signature-filename agent-download-filename
@@ -73,13 +73,13 @@ To find the correct signature file, see the following table:
 
    If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid using the downloaded file\.
 
-   Note the warning about trust\. A key is only trusted if you or someone that you trust has signed it\. This does not mean that the signature is invalid, only that you have not verified the public key\.
+   Note the warning about trust\. A key is trusted only if you or someone who you trust has signed it\. This doesn't mean that the signature is invalid, only that you have not verified the public key\.
 
 **To verify the CloudWatch agent package on a server running Windows Server**
 
 1. Download and install GnuPG for Windows from [https://gnupg.org/download/](https://gnupg.org/download/)\. When installing, include the **Shell Extension \(GpgEx\)** option\.
 
-   The remaining steps can be performed in Windows PowerShell\.
+   You can perform the remaining steps in Windows PowerShell\.
 
 1. Download the public key\.
 
@@ -96,7 +96,7 @@ To find the correct signature file, see the following table:
    gpg: imported: 1 (RSA: 1)
    ```
 
-   Make a note of the key value, as you need it in the next step\. In the preceding example, the key value is `3B789C72`\.
+   Make a note of the key value because you need it in the next step\. In the preceding example, the key value is `3B789C72`\.
 
 1. Verify the fingerprint by running the following command, replacing *key\-value* with the value from the preceding step:
 
@@ -111,13 +111,13 @@ To find the correct signature file, see the following table:
 
    `9376 16F3 450B 7D80 6CBD 9725 D581 6730 3B78 9C72`
 
-   If the fingerprint string does not match, do not install the agent, and contact Amazon Web Services\.
+   If the fingerprint string doesn't match, don't install the agent\. Contact Amazon Web Services\.
 
    After you have verified the fingerprint, you can use it to verify the signature of the CloudWatch agent package\.
 
-1. Download the package signature file using wget\. To determine the correct signature file, see [CloudWatch Agent Download Links](install-CloudWatch-Agent-on-onprem.md#agent-download-link-table)\.
+1. Download the package signature file using wget\. To determine the correct signature file, see [CloudWatch Agent Download Links](download-cloudwatch-agent-commandline.md#agent-download-link-table)\.
 
-1. To verify the signature, run `gpg --verify`\.
+1. To verify the signature, run gpg \-\-verify\.
 
    ```
    PS> gpg --verify sig-filename agent-download-filename
@@ -131,4 +131,4 @@ To find the correct signature file, see the following table:
 
    If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid using the downloaded file\.
 
-   Note the warning about trust\. A key is only trusted if you or someone that you trust has signed it\. This does not mean that the signature is invalid, only that you have not verified the public key\.
+   Note the warning about trust\. A key is trusted only if you or someone who you trust has signed it\. This doesn't mean that the signature is invalid, only that you have not verified the public key\.

@@ -1,13 +1,14 @@
-# Common Scenarios with CloudWatch Agent<a name="CloudWatch-Agent-common-scenarios"></a>
+# Common Scenarios with the CloudWatch Agent<a name="CloudWatch-Agent-common-scenarios"></a>
 
 The following sections outline how to complete some common configuration and customization tasks when using the CloudWatch agent\. 
 
 **Topics**
 + [Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-adding-custom-dimensions)
-+ [Multiple Agent Configuration Files](#CloudWatch-Agent-multiple-config-files)
++ [Multiple CloudWatch Agent Configuration Files](#CloudWatch-Agent-multiple-config-files)
 + [Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-aggregating-metrics)
 + [Collecting High\-Resolution Metrics With the CloudWatch agent](#CloudWatch-Agent-collect-high-resolution-metrics)
-+ [Sending Metrics and Logs to a Different AWS Account](#CloudWatch-Agent-send-to-different-AWS-account)
++ [Sending Metrics and Logs to a Different Account](#CloudWatch-Agent-send-to-different-AWS-account)
++ [Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent](#CloudWatch-Agent-logs-timestamp-differences)
 
 ## Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-adding-custom-dimensions"></a>
 
@@ -45,13 +46,13 @@ For example, the following example section of the configuration file adds a cust
 }
 ```
 
-Remember that any time you change the agent configuration file, you must then restart the agent to have the changes take effect\.
+Remember that any time you change the agent configuration file, you must restart the agent to have the changes take effect\.
 
-## Multiple Agent Configuration Files<a name="CloudWatch-Agent-multiple-config-files"></a>
+## Multiple CloudWatch Agent Configuration Files<a name="CloudWatch-Agent-multiple-config-files"></a>
 
 You can set up the CloudWatch agent to use multiple configuration files\. For example, you can use a common configuration file that collects a set of metrics and logs that you always want to collect from all servers in your infrastructure\. You can then use additional configuration files that collect metrics from certain applications or in certain situations\.
 
-To set this up, first create the configuration files you want to use\. Any configuration files that will be used together on the same server must have different filenames\. You can store the configuration files on servers or in Parameter Store\.
+To set this up, first create the configuration files that you want to use\. Any configuration files that will be used together on the same server must have different file names\. You can store the configuration files on servers or in Parameter Store\.
 
 Start the CloudWatch agent using the `fetch-config` option and specify the first configuration file\. To append the second configuration file to the running agent, use the same command but with the `append-config` option\. All metrics and logs listed in either configuration file are collected\. The following example Linux commands illustrate this scenario using configurations stores as files\. The first line starts the agent using the `infrastructure.json` configuration file, and the second line appends the `app.json` configuration file\.
 
@@ -124,13 +125,13 @@ The following example configuration files illustrate a use for this feature\. Th
   }
 ```
 
-Any configuration files appended to the configuration must have different filenames from each other and from the initial configuration file\. If you use `append-config` with a configuration file with the same filename as a configuration file the agent is already using, the append command will overwrite the information from the first configuration file, instead of appending to it\. This is true even if the two configuration files with the same filename are on different file paths\.
+Any configuration files appended to the configuration must have different file names from each other and from the initial configuration file\. If you use `append-config` with a configuration file with the same file name as a configuration file that the agent is already using, the append command overwrites the information from the first configuration file instead of appending to it\. This is true even if the two configuration files with the same file name are on different file paths\.
 
-The preceding example shows the use of two configuration files, but there is no limit to the number of configuration files you can append to the agent configuration\. You can also mix the use of configuration files located on servers and configurations located in Parameter Store\.
+The preceding example shows the use of two configuration files, but there is no limit to the number of configuration files that you can append to the agent configuration\. You can also mix the use of configuration files located on servers and configurations located in Parameter Store\.
 
 ## Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-aggregating-metrics"></a>
 
-To aggregate or "roll up" metrics collected by the agent, add an `aggregation_dimensions` field to the section for that metric in the agent configuration file\.
+To aggregate or roll up metrics collected by the agent, add an `aggregation_dimensions` field to the section for that metric in the agent configuration file\.
 
 For example, the following configuration file snippet rolls up metrics on the `AutoScalingGroupName` dimension\. The metrics from all instances in each Auto Scaling group are aggregated and can be viewed as a whole\.
 
@@ -142,7 +143,7 @@ For example, the following configuration file snippet rolls up metrics on the `A
 }
 ```
 
-To roll up along the combination of each `InstanceId` and `InstanceType` dimensions in addition to rolling up on the Auto Scaling group name, add the following:
+To roll up along the combination of each `InstanceId` and `InstanceType` dimensions in addition to rolling up on the Auto Scaling group name, add the following\.
 
 ```
 "metrics": {
@@ -162,13 +163,13 @@ To roll up metrics into one collection instead, use `[]`\.
 }
 ```
 
-Remember that any time you change the agent configuration file, you must then restart the agent to have the changes take effect\.
+Remember that any time you change the agent configuration file, you must restart the agent to have the changes take effect\.
 
 ## Collecting High\-Resolution Metrics With the CloudWatch agent<a name="CloudWatch-Agent-collect-high-resolution-metrics"></a>
 
 The `metrics_collection_interval` field specifies the time interval for the metrics collected, in seconds\. By specifying a value of less than 60 for this field, the metrics are collected as high\-resolution metrics\.
 
-For example, if your metrics should all be high\-resolution and collected every 10 seconds, specify 10 as the value for `metrics_collection_interval` under the `agent` section as a global metrics collection interval:
+For example, if your metrics should all be high\-resolution and collected every 10 seconds, specify 10 as the value for `metrics_collection_interval` under the `agent` section as a global metrics collection interval\.
 
 ```
 "agent": {
@@ -176,7 +177,7 @@ For example, if your metrics should all be high\-resolution and collected every 
 }
 ```
 
-Alternatively, the following example sets the `cpu` metrics to be collected every second, while all other metrics are collected every minute\.
+Alternatively, the following example sets the `cpu` metrics to be collected every second, and all other metrics are collected every minute\.
 
 ```
 "agent":{  
@@ -208,15 +209,15 @@ Alternatively, the following example sets the `cpu` metrics to be collected ever
 }
 ```
 
-Remember that any time you change the agent configuration file, you must then restart the agent to have the changes take effect\.
+Remember that any time you change the agent configuration file, you must restart the agent to have the changes take effect\.
 
-## Sending Metrics and Logs to a Different AWS Account<a name="CloudWatch-Agent-send-to-different-AWS-account"></a>
+## Sending Metrics and Logs to a Different Account<a name="CloudWatch-Agent-send-to-different-AWS-account"></a>
 
-To have the CloudWatch agent send the metrics, logs, or both to a different AWS account, specify a `role_arn` parameter in the agent configuration file on the sending server\. The `role_arn` value specifies an IAM role in the target account that the agent uses when sending data to the target account\. This role enables the sending account to assume a corresponding role in the target account when delivering the metrics or logs to the target account\.
+To have the CloudWatch agent send the metrics, logs, or both to a different account, specify a `role_arn` parameter in the agent configuration file on the sending server\. The `role_arn` value specifies an IAM role in the target account that the agent uses when sending data to the target account\. This role enables the sending account to assume a corresponding role in the target account when delivering the metrics or logs to the target account\.
 
-You can also specify two separate `role_arn` strings in the agent configuration file: one to use when sending metrics, and another for sending logs\.
+You can also specify two separate `role_arn` strings in the agent configuration file: one to use when sending metrics and another for sending logs\.
 
-The following example of part of the `agent` section of the configuration file sets the agent to use `CrossAccountAgentRole` when sending metrics and logs to a different AWS account\.
+The following example of part of the `agent` section of the configuration file sets the agent to use `CrossAccountAgentRole` when sending metrics and logs to a different account\.
 
 ```
 {
@@ -249,9 +250,9 @@ Alternatively, the following example sets different roles for the sending accoun
 
 **Policies Needed**
 
-When you specify a `role_arn` in the agent configuration file, you must also make sure the IAM roles of the sending and target accounts have certain policies\. The roles in both the sending and target accounts should have **CloudWatchAgentServerPolicy**\. For more information about assigning this policy to a role, see [Create IAM Roles to Use with CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
+When you specify a `role_arn` in the agent configuration file, you must also make sure the IAM roles of the sending and target accounts have certain policies\. The roles in both the sending and target accounts should have `CloudWatchAgentServerPolicy`\. For more information about assigning this policy to a role, see [Creat IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
 
-The role in the sending account also must include the following policy\. You add this policy in the **Permissions** tab in the IAM console when you edit the role\.
+The role in the sending account also must include the following policy\. You add this policy on the **Permissions** tab in the IAM console when you edit the role\.
 
 ```
 {
@@ -270,7 +271,7 @@ The role in the sending account also must include the following policy\. You add
 }
 ```
 
-The role in the target account must include the following policy, so that it recognizes the IAM role used by the sending account\. You add this policy in the **Trust relationships** tab in the IAM console when you edit the role\. The role in the target account where you add this policy is the role you created in [Create IAM Roles to Use with CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\. This role is the role specified in `agent-role-in-target-account` in the policy used by the sending account\.
+The role in the target account must include the following policy so that it recognizes the IAM role used by the sending account\. You add this policy on the **Trust relationships** tab in the IAM console when you edit the role\. The role in the target account where you add this policy is the role you created in [Creat IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\. This role is the role specified in `agent-role-in-target-account` in the policy used by the sending account\.
 
 ```
 {
@@ -288,3 +289,14 @@ The role in the target account must include the following policy, so that it rec
   ]
 }
 ```
+
+## Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent<a name="CloudWatch-Agent-logs-timestamp-differences"></a>
+
+The CloudWatch agent supports a different set of symbols for timestamp formats, compared to the older CloudWatch Logs agent\. These differences are shown in the following table\.
+
+
+| Symbols Supported by Both Agents | Symbols Supported Only by Unified CloudWatch Agent | Symbols Supported Only by Older CloudWatch Logs Agent | 
+| --- | --- | --- | 
+|  %A, %a, %b, %B, %d, %H, %l, %m, %M, %p, %S, %y, %Y, %Z, %z  |  %\-d, %\-l, %\-m, %\-M, %\-S  |  %c, %f, %j, %U, %W, %w  | 
+
+For more information about the meanings of the symbols supported by the new CloudWatch agent, see [ CloudWatch Agent Configuration File: Logs Section](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html#CloudWatch-Agent-Configuration-File-Logssection) in the *Amazon CloudWatch User Guide*\. For information about symbols supported by the CloudWatch Logs agent, see [Agent Configuration File](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html#agent-configuration-file) in the *Amazon CloudWatch Logs User Guide*\.
