@@ -43,10 +43,10 @@ Similar to how each alarm is always in one of three states, each specific data p
 + Missing
 
 For each alarm, you can specify CloudWatch to treat missing data points as any of the following:
-+ `missing`—The alarm does not consider missing data points when evaluating whether to change state
-+ `notBreaching`—Missing data points are treated as being within the threshold
-+ `breaching`—Missing data points are treated as breaching the threshold
++ `good (notBreaching the threshold`—Missing data points are treated as being within the threshold
++ `bad (breaching the threshold)`—Missing data points are treated as breaching the threshold
 + `ignore`—The current alarm state is maintained
++ `missing`—The alarm does not consider missing data points when evaluating whether to change state
 
 The best choice depends on the type of metric\. For a metric that continually reports data, such as `CPUUtilization` of an instance, you might want to treat missing data points as `breaching`, because they may indicate that something is wrong\. But for a metric that generates data points only when an error occurs, such as `ThrottledRequests` in Amazon DynamoDB, you would want to treat missing data as `notBreaching`\. The default behavior is `missing`\.
 

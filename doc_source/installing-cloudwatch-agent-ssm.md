@@ -1,6 +1,6 @@
-# Installing the CloudWatch Agent Using SSM<a name="installing-cloudwatch-agent-ssm"></a>
+# Installing the CloudWatch Agent Using AWS Systems Manager<a name="installing-cloudwatch-agent-ssm"></a>
 
-Use the following topics to install and run the CloudWatch agent using SSM\.
+Use the following topics to install and run the CloudWatch agent using AWS Systems Manager\.
 
 **Topics**
 + [Create IAM Roles and Users for Use with the CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)

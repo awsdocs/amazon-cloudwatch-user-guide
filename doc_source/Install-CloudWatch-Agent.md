@@ -1,7 +1,7 @@
 # Collecting Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent<a name="Install-CloudWatch-Agent"></a>
 
 The unified CloudWatch agent enables you to do the following:
-+ Collect more system\-level metrics from Amazon EC2 instances across operatins systems\. The metrics can include in\-guest metrics, in addition to the metrics for EC2 instances\. The additional metrics that can be collected are listed in [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
++ Collect more system\-level metrics from Amazon EC2 instances across operating systems\. The metrics can include in\-guest metrics, in addition to the metrics for EC2 instances\. The additional metrics that can be collected are listed in [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
 + Collect system\-level metrics from on\-premises servers\. These can include servers in a hybrid environment as well as servers not managed by AWS\.
 + Retrieve custom metrics from your applications or services using the `StatsD` and `collectd` protocols\. `StatsD` is supported on both Linux servers and servers running Windows Server\. `collectd` is supported only on Linux servers\.
 + Collect logs from Amazon EC2 instances and on\-premises servers, running either Linux or Windows Server\.
@@ -16,15 +16,20 @@ The steps in this section explain how to install the unified CloudWatch agent on
 
 **Supported Operating Systems**
 
-The CloudWatch agent is supported on the following operating systems:
+The CloudWatch agent is supported on AMD64 architecture on the following operating systems:
 + Amazon Linux version 2014\.03\.02 or later
 + Amazon Linux 2
 + Ubuntu Server versions 18\.04, 16\.04, and 14\.04
-+ CentOS versions 7\.6, 7\.0, and 6\.5
-+ Red Hat Enterprise Linux \(RHEL\) version 7\.5, 7\.4, 7\.2, 7\.0, and 6\.5
++ CentOS versions 7\.6, 7\.2, 7\.0, 6\.8, and 6\.5
++ Red Hat Enterprise Linux \(RHEL\) versions 7\.6, 7\.5, 7\.4, 7\.2, 7\.0, and 6\.5
 + Debian 8\.0
 + SUSE Linux Enterprise Server \(SLES\) 12 or later
 + 64\-bit versions of Windows Server 2016, Windows Server 2012, and Windows Server 2008
+
+The agent is supported on ARM64 architecture on the following operating systems:
++ Amazon Linux 2
++ Ubuntu Server version 18\.04
++ Red Hat Enterprise Linux \(RHEL\) version 7\.6
 
 **Installation Process Overview**
 

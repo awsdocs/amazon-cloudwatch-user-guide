@@ -7,7 +7,7 @@ SDK Metrics is available only to customers with an Enterprise Support subscripti
 
 You can use SDK Metrics with any application that directly calls AWS services and that was built using an AWS SDK that is one of the versions listed in the following section\.
 
-SDK Metrics instruments calls made by the AWS SDK and uses the CloudWatch agent running in the same environment as a client application that is using an AWS SDK\. The following section explains the steps necessary to enable the CloudWatch agent to emit SDK Metrics data\. For information about what you need to configure in your SDK, see your SDK documentation\.
+SDK Metrics monitors calls that are made by the AWS SDK and uses the CloudWatch agent running in the same environment as a client application\. The following section explains the steps necessary to enable the CloudWatch agent to emit SDK Metrics data\. For information about what you need to configure in your SDK, see your SDK documentation\.
 
 **Topics**
 + [Metrics and Data Collected by AWS SDK Metrics for Enterprise Support](metrics-collected-by-SDK-Metrics.md)
@@ -24,7 +24,7 @@ Additionally, you must be using one of the following versions of an AWS SDK\.
 + AWS CLI 1\.16\.84 or later
 + AWS SDK for C\+\+ 1\.7\.47 or later
 + AWS SDK for Go 1\.16\.18 or later
-+ AWS SDK for Java 1\.11\.482 or later
++ AWS SDK for Java 1\.11\.523 or later \(AWS SDK for Java 2\.x is not yet supported\)
 + AWS SDK for JavaScript in Node\.js 2\.387 or later
 + AWS SDK for \.NET 3\.3\.440 or later
 + AWS SDK for PHP 3\.85\.0 or later

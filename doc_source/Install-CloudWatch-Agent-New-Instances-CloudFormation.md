@@ -59,7 +59,7 @@ After the procedure for installing the agent, the tutorial continues with how to
 
 1. On the **Specify Details** page, fill out the following parameters and choose **Next**:
    + **Stack name**: Choose a stack name for your AWS CloudFormation stack\. 
-   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Creat IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
+   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
    + **InstanceAMI**: Choose an AMI that is valid in the Region where you're going to launch your stack\.
    + **InstanceType**: Choose a valid instance type\.
    + **KeyName**: To enable SSH access to the new instance, choose an existing Amazon EC2 key pair\. If you don't already have an Amazon EC2 key pair, you can create one in the AWS Management Console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
@@ -120,7 +120,7 @@ After the procedure for installing the agent, the tutorial continues with how to
 
 **To use AWS CloudFormation to install the CloudWatch agent on a new instance using a configuration from Parameter Store**
 
-1. If you haven't done so already, download the CloudWatch agent package to one of your computers so that you can create the agent configuration file\. For more information and downloading the agent using Parameter Store, see [](download-CloudWatch-Agent-on-EC2-Instance-SSM-first.md)\. For more information on downloading the package using the command line, see [Download and Configure the CloudWatch Agent Using the Command Line](download-cloudwatch-agent-commandline.md)\.
+1. If you haven't done so already, download the CloudWatch agent package to one of your computers so that you can create the agent configuration file\. For more information and downloading the agent using Parameter Store, see [Download and Configure the CloudWatch Agent](download-CloudWatch-Agent-on-EC2-Instance-SSM-first.md)\. For more information on downloading the package using the command line, see [Download and Configure the CloudWatch Agent Using the Command Line](download-cloudwatch-agent-commandline.md)\.
 
 1. Create the agent configuration file and save it in Parameter Store\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
 
@@ -138,7 +138,7 @@ After the procedure for installing the agent, the tutorial continues with how to
 
 1. On the **Specify Details** page, fill out the following parameters accordingly and choose **Next**:
    + **Stack name**: Choose a stack name for your AWS CloudFormation stack\. 
-   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Creat IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
+   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
    + **InstanceAMI**: Choose an AMI that is valid in the Region where you're going to launch your stack\.
    + **InstanceType**: Choose a valid instance type\.
    + **KeyName**: To enable SSH access to the new instance, choose an existing Amazon EC2 key pair\. If you don't already have an Amazon EC2 key pair, you can create one in the AWS Management Console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.

@@ -10,11 +10,11 @@ You can download the CloudWatch agent package using either Systems Manager Run C
 
 To use Systems Manager Run Command, you must register your on\-premises server with Amazon EC2 Systems Manager\. For more information, see [ Setting Up Systems Manager in Hybrid Environments](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html) in the *AWS Systems Manager User Guide*\.
 
-If you have already registered your server, update your SSM Agent to the latest version\.
+If you have already registered your server, update SSM Agent to the latest version\.
 
-For information about updating the SSM Agent on a server running Linux, see [ Install the SSM Agent on Servers and VMs in Your Linux Hybrid Environment](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html#sysman-install-managed-linux) in the *AWS Systems Manager User Guide*\.
+For information about updating SSM Agent on a server running Linux, see [Install SSM Agent for a Hybrid Environment \(Linux\)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html#sysman-install-managed-linux) in the *AWS Systems Manager User Guide*\.
 
-For information about updating the SSM Agent on a server running Windows Server, see [ Install the SSM Agent on Servers and VMs in Your Windows Hybrid Environment](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html#sysman-install-managed-win) in the *AWS Systems Manager User Guide*\.
+For information about updating the SSM Agent on a server running Windows Server, see [ Install SSM Agent for a Hybrid Environment \(Windows\)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html#sysman-install-managed-win) in the *AWS Systems Manager User Guide*\.
 
 **To use the SSM Agent to download the CloudWatch agent package on an on\-premises server**
 
@@ -111,14 +111,28 @@ All lines are commented out initially\. To set the credential profile or proxy s
 + `shared_credential_profile` – For on\-premises servers, this line specifies the IAM user credential profile to use to send data to CloudWatch\. If you keep this line commented out, `AmazonCloudWatchAgent` is used\. For more information about creating this profile, see [\(Installing on an On\-Premises Server\) Specify IAM Credentials and AWS Region](#install-CloudWatch-Agent-iam_user-SSM-onprem)\. 
 
   On an EC2 instance, you can use this line to have the CloudWatch agent send data from this instance to CloudWatch in a different AWS Region\. To do so, specify a named profile that includes a `region` field specifying the name of the Region to send to\.
-+ `shared_credential_file` – To have the agent look for credentials in a file located in a path other than the default path, specify that complete path and file name here\. If you use this option, be sure that the `shared_credential_profile` option is commented out\.
+
+  If you specify a `shared_credential_profile`, you must also remove the `#` from the beginning of the `[credentials]` line\.
++ `shared_credential_file` – To have the agent look for credentials in a file located in a path other than the default path, specify that complete path and file name here\. The default path is `/root/.aws` on Linux and is `C:\\Users\\Administrator\\.aws` on Windows Server\.
+
+  The first example below shows the syntax of a valid `shared_credential_file` line for Linux servers, and the second example is valid for Windows Server\. On Windows Server, you must escape the \\ characters\.
+
+  ```
+  shared_credential_file= "C:\\Documents and Settings\\username\\.aws\\credentials"
+  ```
+
+  ```
+  shared_credential_file= "/usr/username/credentials"
+  ```
+
+  If you specify a `shared_credential_file`, you must also remove the `#` from the beginning of the `[credentials]` line\.
 + Proxy settings – If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
 ## Starting the CloudWatch Agent<a name="start-CloudWatch-Agent-on-premise-SSM-onprem"></a>
 
 You can start the CloudWatch agent using either Systems Manager Run Command or the command line\.
 
-**To use the SSM Agent to start the CloudWatch agent on an on\-premises server**
+**To use SSM Agent to start the CloudWatch agent on an on\-premises server**
 
 1. Open the Systems Manager console at [https://console\.aws\.amazon\.com/systems\-manager/](https://console.aws.amazon.com/systems-manager/)\.
 

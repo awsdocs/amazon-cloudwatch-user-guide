@@ -1,6 +1,6 @@
 # Set IAM Permissions for SDK Metrics<a name="Set-IAM-Permissions-For-SDK-Metrics"></a>
 
-To configure permissions so you can use SDK Metrics, you must create an IAM policy to allow the SDK Metrics process and attach it to the role or user managing the EC2 instance\.
+To configure permissions so you can use SDK Metrics, you must create an IAM policy to allow the SDK Metrics process and attach it to the role or user that is attached to the EC2 instance running the CloudWatch agent\.
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -27,4 +27,4 @@ To configure permissions so you can use SDK Metrics, you must create an IAM poli
 
 1. Name the policy **AmazonSDKMetrics**\.
 
-1. Attach the policy to the IAM user or role that manages the EC2 instances that you want to monitor\.
+1. Attach the policy to the IAM user or role that is attached to the EC2 instance that is running the CloudWatch agent\.

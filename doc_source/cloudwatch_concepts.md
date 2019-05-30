@@ -132,12 +132,12 @@ Amazon CloudWatch doesn't differentiate the source of a metric\. If you publish 
 ## Percentiles<a name="Percentiles"></a>
 
 A *percentile* indicates the relative standing of a value in a dataset\. For example, the 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value\. Percentiles help you get a better understanding of the distribution of your metric data\. You can use percentiles with the following services:
-+ Amazon EC2
-+ Amazon RDS
-+ Kinesis
-+ Application Load Balancer
-+ Elastic Load Balancing
 + API Gateway
++ Application Load Balancer
++ Amazon EC2
++ Elastic Load Balancing
++ Kinesis
++ Amazon RDS
 
 Percentiles are often used to isolate anomalies\. In a typical distribution, 95 percent of the data is within two standard deviations from the mean and 99\.7 percent of the data is within three standard deviations from the mean\. Any data that falls outside three standard deviations is often considered to be an anomaly because it differs so greatly from the average value\. For example, suppose that you are monitoring the CPU utilization of your EC2 instances to ensure that your customers have a good experience\. If you monitor the average, this can hide anomalies\. If you monitor the maximum, a single anomaly can skew the results\. Using percentiles, you can monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load\.
 

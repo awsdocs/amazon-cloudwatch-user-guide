@@ -20,7 +20,7 @@ Before you can create an alarm for your estimated charges, you must enable billi
 After you enable billing alerts for the first time, it takes about 15 minutes before you can view billing data and set billing alarms\.
 
 **Requirements**
-+ You must be signed in using AWS account root user credentials\. IAM users cannot enable billing alerts for your AWS account\.
++ You must be signed in as either an AWS account root user or an IAM user whose access to the Billing and Cost Management console has been activated\.
 + For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account as well as for the consolidated account\.
 
 **To enable monitoring of your estimated charges**

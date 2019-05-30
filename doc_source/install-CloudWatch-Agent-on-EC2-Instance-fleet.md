@@ -22,13 +22,13 @@ You can download the CloudWatch agent package using either Systems Manager Run C
 
 Before you can use Systems Manager to install the CloudWatch agent, you must make sure that the instance is configured correctly for Systems Manager\.
 
-#### Installing or Updating the SSM Agent<a name="update-SSM-Agent-EC2instance-fleet"></a>
+#### Installing or Updating SSM Agent<a name="update-SSM-Agent-EC2instance-fleet"></a>
 
-On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install the SSM Agent on the instance if you haven't already done so\. 
+On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install SSM Agent on the instance if you haven't already done so\. 
 
-For information about installing or updating the SSM Agent on an instance running Linux, see [ Installing and Configuring the SSM Agent on Linux Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-agent.html) in the *AWS Systems Manager User Guide*\.
+For information about installing or updating SSM Agent on an instance running Linux, see [Installing and Configuring the SSM Agent on Linux Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
-For information about installing or updating the SSM Agent, see [ Installing and Configuring SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
+For information about installing or updating SSM Agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
 #### \(Optional\) Verify Systems Manager Prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-fleet"></a>
 
@@ -40,7 +40,7 @@ Your Amazon EC2 instances must have outbound internet access in order to send da
 
 #### Download the CloudWatch Agent Package<a name="install-CloudWatch-Agent-EC2-fleet"></a>
 
-Systems Manager Run Command enables you to manage the configuration of your instances\. You specify a Systems Manager document, specify parameters, and execute the command on one or more instances\. The SSM Agent on the instance processes the command and configures the instance as specified\.
+Systems Manager Run Command enables you to manage the configuration of your instances\. You specify a Systems Manager document, specify parameters, and execute the command on one or more instances\. SSM Agent on the instance processes the command and configures the instance as specified\.
 
 **To download the CloudWatch agent using Run Command**
 
@@ -103,7 +103,21 @@ All lines are commented out initially\. To set the credential profile or proxy s
 + `shared_credential_profile` – For on\-premises servers, this line specifies the IAM user credential profile to use to send data to CloudWatch\. If you keep this line commented out, `AmazonCloudWatchAgent` is used\. 
 
   On an EC2 instance, you can use this line to have the CloudWatch agent send data from this instance to CloudWatch in a different AWS Region\. To do so, specify a named profile that includes a `region` field specifying the name of the Region to send to\.
-+ `shared_credential_file` – To have the agent look for credentials in a file located in a path other than the default path, specify that complete path and file name here\. If you use this option, be sure that the `shared_credential_profile` option is commented out\.
+
+  If you specify a `shared_credential_profile`, you must also remove the `#` from the beginning of the `[credentials]` line\.
++ `shared_credential_file` – To have the agent look for credentials in a file located in a path other than the default path, specify that complete path and file name here\. The default path is `/root/.aws` on Linux and is `C:\\Users\\Administrator\\.aws` on Windows Server\.
+
+  The first example below shows the syntax of a valid `shared_credential_file` line for Linux servers, and the second example is valid for Windows Server\. On Windows Server, you must escape the \\ characters\.
+
+  ```
+  shared_credential_file= "C:\\Documents and Settings\\username\\.aws\\credentials"
+  ```
+
+  ```
+  shared_credential_file= "/usr/username/credentials"
+  ```
+
+  If you specify a `shared_credential_file`, you must also remove the `#` from the beginning of the `[credentials]` line\.
 + Proxy settings – If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
 ## Start the CloudWatch Agent<a name="start-CloudWatch-Agent-EC2-fleet"></a>

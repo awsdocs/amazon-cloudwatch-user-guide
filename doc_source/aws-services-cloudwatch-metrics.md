@@ -11,6 +11,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  AWS Billing and Cost Management  |  `AWS/Billing`  |  [Monitoring Charges with Alerts and Notifications](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html)  | 
 |  ACM Private CA  |  `AWS/ACMPrivateCA`  |  [Supported CloudWatch Metrics](https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCloudWatch.html)  | 
 |  Amazon CloudFront  |  `AWS/CloudFront`  |  [Monitoring CloudFront Activity Using CloudWatch](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html)  | 
+|  AWS CloudHSM  |  `AWS/CloudHSM`  |  [Getting CloudWatch Metrics](https://docs.aws.amazon.com/cloudhsm/latest/userguide/hsm-metrics-cw.html)  | 
 |  Amazon CloudSearch  |  `AWS/CloudSearch`  |  [Monitoring an Amazon CloudSearch Domain with Amazon CloudWatch](https://docs.aws.amazon.com/cloudsearch/latest/developerguide/cloudwatch-monitoring.html)  | 
 |  Amazon CloudWatch Events  |  `AWS/Events`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatch-Events-Monitoring-CloudWatch-Metrics.html)  | 
 |  Amazon CloudWatch Logs  |  `AWS/Logs`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html)  | 
@@ -19,6 +20,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Connect  |  `AWS/Connect`  |  [Monitoring Amazon Connect in Amazon CloudWatch Metrics](https://docs.aws.amazon.com/connect/latest/adminguide/monitoring-cloudwatch.html)  | 
 |  AWS Database Migration Service  |  `AWS/DMS`  |  [Monitoring AWS DMS Tasks](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)  | 
 |  AWS Direct Connect  |  `AWS/DX`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html)  | 
+|  Amazon DocumentDB  |  `AWS/DocDB`  |  [Amazon DocumentDB Metrics](https://docs.aws.amazon.com//documentdb/latest/developerguide/cloud-watch.html#metrics-list)  | 
 |  Amazon DynamoDB  |  `AWS/DynamoDB`  |  [Monitoring DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/MonitoringDynamoDB.html)  | 
 |  Amazon EC2  |  `AWS/EC2`  |  [Monitoring Your Instances Using CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)  | 
 |  Amazon EC2 Spot Fleet  |  `AWS/EC2Spot`  |  [CloudWatch Metrics for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html)  | 
@@ -62,8 +64,10 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Polly  |  `AWS/Polly`  |  [Integrating CloudWatch with Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/cloud-watch.html)  | 
 |  Amazon Redshift  |  `AWS/Redshift`  |  [Amazon Redshift Performance Data](https://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
 |  Amazon Relational Database Service  |  `AWS/RDS`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MonitoringOverview.html#monitoring-cloudwatch)  | 
+|  AWS RoboMaker  |  `AWS/Robomaker`  |  [Monitoring AWS RoboMaker with Amazon CloudWatch](https://docs.aws.amazon.com/robomaker/latest/dg/monitoring-aws-robomaker-cloudwatch.html)  | 
 |  Amazon Route 53  |  `AWS/Route53`  |  [Monitoring Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/monitoring-overview.html)  | 
 |  Amazon SageMaker  |  `AWS/SageMaker`  |  [Monitoring Amazon SageMaker with CloudWatch](https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html)  | 
+|  AWS SDK Metrics for Enterprise Support  |  `AWS/SDKMetrics`  |  [Metrics and Data Collected by AWS SDK Metrics for Enterprise Support](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-SDK-Metrics.html)  | 
 |  AWS Shield Advanced  |  `AWS/DDoSProtection`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  Amazon Simple Email Service  |  `AWS/SES`  |  [Retrieving Amazon SES Event Data from CloudWatch](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/event-publishing-retrieving-cloudwatch.html)  | 
 |  Amazon Simple Notification Service  |  `AWS/SNS`  |  [Monitoring Amazon SNS with CloudWatch](https://docs.aws.amazon.com/sns/latest/dg/MonitorSNSwithCloudWatch.html)  | 
@@ -79,4 +83,5 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon VPC  |  `AWS/TransitGateway`  |  [CloudWatch Metrics for Your Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-cloudwatch-metrics.html)  | 
 |  Amazon VPC  |  `AWS/VPN`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/vpc/latest/userguide/monitoring-cloudwatch-vpn.html)  | 
 |  AWS WAF  |  `WAF`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html)  | 
+|  Amazon WorkMail  |  `AWS/WorkMail`  |  [Monitoring Amazon WorkMail with Amazon CloudWatch](https://docs.aws.amazon.com/workmail/latest/adminguide/cloudwatch-metrics.html)  | 
 |  Amazon WorkSpaces  |  `AWS/WorkSpaces`  |  [Monitor Your WorkSpaces Using CloudWatch Metrics](https://docs.aws.amazon.com/workspaces/latest/adminguide/cloudwatch-metrics.html)  | 

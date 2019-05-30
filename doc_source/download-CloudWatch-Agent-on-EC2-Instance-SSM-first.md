@@ -2,13 +2,13 @@
 
 This section explains how to use Systems Manager to download the agent and then how to create your agent configuration file\. Before you can use Systems Manager to download the agent, you must make sure that the instance is configured correctly for Systems Manager\.
 
-## Installing or Updating the SSM Agent<a name="update-SSM-Agent-EC2instance-first"></a>
+## Installing or Updating SSM Agent<a name="update-SSM-Agent-EC2instance-first"></a>
 
-On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install the SSM Agent on the instance if you haven't already done so\. 
+On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install SSM Agent on the instance if you haven't already done so\. 
 
-For information about installing or updating the SSM Agent on an instance running Linux, see [ Installing and Configuring the SSM Agent on Linux Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-agent.html) in the *AWS Systems Manager User Guide*\.
+For information about installing or updating SSM Agent on an instance running Linux, see [ Installing and Configuring SSM Agent on Linux Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
-For information about installing or updating the SSM Agent, see [ Installing and Configuring the SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
+For information about installing or updating the SSM Agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
 ## \(Optional\) Verify Systems Manager Prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-first"></a>
 
@@ -21,7 +21,7 @@ Your Amazon EC2 instances must have outbound internet access to send data to Clo
 The endpoints and ports to configure on your proxy are as follows:
 + If you're using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch](https://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
 + If you're using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch Logs](https://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
-+ If you're using SSM to install the agent or Parameter Store to store your configuration file, you must whitelist the SSM endpoints for the appropriate Regions\. These endpoints are listed in [AWS Systems Manager](https://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
++ If you're using Systems Manager to install the agent or Parameter Store to store your configuration file, you must whitelist the Systems Manager endpoints for the appropriate Regions\. These endpoints are listed in [AWS Systems Manager](https://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
 
 Use the following steps to download the CloudWatch agent package using Systems Manager\.
 

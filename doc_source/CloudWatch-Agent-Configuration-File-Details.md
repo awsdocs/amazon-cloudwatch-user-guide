@@ -21,15 +21,16 @@ The `agent` section can include the following fields\. The wizard doesn't create
   The default value is 60\. 
 + `region` – Specifies the Region to use for the CloudWatch endpoint when an Amazon EC2 instance is being monitored\. The metrics collected are sent to this Region, such as `us-west-1`\. If you omit this field, the agent sends metrics to the Region where the Amazon EC2 instance is located\.
 
-  If you are monitoring an on\-premises server, this field isn't used, and the agent reads the Region from the `awscloudwatchagent` profile of the AWS configuration file\.
+  If you are monitoring an on\-premises server, this field isn't used, and the agent reads the Region from the `AmazonCloudWatchAgent` profile of the AWS configuration file\.
 + `credentials` – Specifies an IAM role to use when sending metrics and logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
   + `role_arn` – Specifies the Amazon Resource Name \(ARN\) of an IAM role to use for authentication when sending metrics and logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\.
 + `debug` – Optional\. Specifies running the CloudWatch agent with debug log messages\. The default value is `false`\. 
 + `logfile` – Specifies the location where the CloudWatch agent writes log messages\. If you specify an empty string, the log goes to stderr\. If you don't specify this option, the default locations are the following:
   + Linux: `/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log`
-  + Windows Server versions later than Windows Server 2003: `c:\\ProgramData\\Amazon\\CloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log` 
+  + Windows Server: `c:\\ProgramData\\Amazon\\CloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log` 
 
-  The CloudWatch agent automatically rotates the log file that it creates\. A log file is rotated out when it reaches 100 MB in size or is seven days old\. The agent keeps as many as five backup log files that have been rotated out\. Backup log files have a timestamp appended to their filename\. The timestamp shows the date and time that the file was rotated out: for example, `amazon-cloudwatch-agent-2018-06-08T21-01-50.247.log.gz`\.
+  The CloudWatch agent automatically rotates the log file that it creates\. A log file is rotated out when it reaches 100 MB in size\. The agent keeps the rotated log files for up to seven days, and it keeps as many as five backup log files that have been rotated out\. Backup log files have a timestamp appended to their filename\. The timestamp shows the date and time that the file was rotated out: for example, `amazon-cloudwatch-agent-2018-06-08T21-01-50.247.log.gz`\.
++ `omit_hostname` – Optional\. By default, the hostname is published as a dimension of metrics that are collected by the agent\. Set this value to `true` to prevent the hostname from being published as a dimension\. The default value is `false`\. 
 
 The following is an example of an `agent` section\.
 
@@ -68,7 +69,9 @@ On servers running either Linux or Windows Server, the `metrics` section include
 
 ### Linux<a name="CloudWatch-Agent-Linux-section"></a>
 
-On servers running Linux, the metrics\_collected section of the configuration file can also contain the following fields:
+On servers running Linux, the metrics\_collected section of the configuration file can also contain the following fields\.
+
+ Many of these fields can include a `measurement` sections that lists the metrics you want to collect for that resource\. These `measurement` sections can either specify the complete metric name such as `swap_used`, or just the part of the metric name that will be appended to the type of resource\. For example, specifying `reads` in the `measurement` section of the `diskio` section causes the `diskio_reads` metric to be collected\.
 + `collectd` – Optional\. Specifies that you want to retrieve custom metrics using the `collectd` protocol\. You use `collectd` software to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)\. 
 + `cpu` – Optional\. Specifies that CPU metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
   + `resources` – Optional\. Specifies that per\-cpu metrics are to be collected\. The only allowed value is `*`\. If you include this field and value, per\-cpu metrics are collected\. 
@@ -351,7 +354,11 @@ The `logs` section includes the following fields:
         You can also use the standard asterisk as a standard wildcard\. For example, `/var/log/system.log*` matches files such as `system.log_1111`, `system.log_2222`, and so on in `/var/log`\.
 
         Only the latest file is pushed to CloudWatch Logs based on file modification time\. We recommend that you use wildcards to specify a series of files of the same type, such as `access_log.2018-06-01-01` and `access_log.2018-06-01-02`, but not multiple kinds of files, such as `access_log_80` and `access_log_443`\. To specify multiple kinds of files, add another log stream entry to the agent configuration file so that each kind of log file goes to a different log stream\.
-      + `log_group_name` – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. Allowed characters include a–z, A–Z, 0–9, '\_' \(underscore\), '\-' \(hyphen\), '/' \(forward slash\), and '\.' \(period\)\.
+      + `log_group_name` – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.
+
+        If you use these variables to create many different log groups, keep in mind the limit of 5000 log groups per account per Region\.
+
+        Allowed characters include a–z, A–Z, 0–9, '\_' \(underscore\), '\-' \(hyphen\), '/' \(forward slash\), and '\.' \(period\)\.
 
         We recommend that you specify this field to prevent confusion\. If you omit this field, the file path up to the final dot is used as the log group name\. For example, if the file path is `/tmp/TestLogFile.log.2017-07-11-14`, the log group name is `/tmp/TestLogFile.log`\. 
       + `log_stream_name` – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.
@@ -477,6 +484,10 @@ The following is an example of a `logs` section\.
 ## CloudWatch Agent Configuration File: Complete Examples<a name="CloudWatch-Agent-Configuration-File-Complete-Example"></a>
 
 The following is an example of a complete CloudWatch agent configuration file for a Linux server\.
+
+The items listed in the `measurement` sections for the metrics you want to collect can either specify the complete metric name such or just the part of the metric name that will be appended to the type of resource\. For example, specifying either `reads` or `diskio_reads` in the `measurement` section of the `diskio` section will cause the `diskio_reads` metric to be collected\.
+
+This example includes both ways of specifying metrics in the `measurement` section\.
 
 ```
     {
