@@ -13,7 +13,7 @@ You can specify how the period setting of graphs added to this dashboard are ret
    + Choose **Do not override** to ensure that the period setting of each graph is always obeyed\.
    + Choose one of the other options to cause graphs added to the dashboard to always adapt that chosen time as their period setting\.
 
-   The **Period override** always reverts to **Auto** when the dashboard is closed or the browser is refreshed\. Different settings for **Period override** cannot be saved\.
+   The **Period override** always reverts to **Auto** when the dashboard is closed or the browser is refreshed\. Different settings for **Period override** can't be saved\.
 
 You can change how often the data on your CloudWatch dashboard is refreshed or set it to automatically refresh\.
 
@@ -23,7 +23,7 @@ You can change how often the data on your CloudWatch dashboard is refreshed or s
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. On the **Refresh options** menu \(upper right corner\), choose **10 Seconds**, **1 Minute**, **2 Minutes**, **5 Minutes**, or **15 Minutes**\.
+1. On the **Refresh options** menu \(upper\-right corner\), choose **10 Seconds**, **1 Minute**, **2 Minutes**, **5 Minutes**, or **15 Minutes**\.
 
 **To automatically refresh the dashboard**
 
@@ -31,4 +31,4 @@ You can change how often the data on your CloudWatch dashboard is refreshed or s
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Choose **Refresh options**, **Auto refresh**\.
+1. Choose **Refresh options** and then **Auto refresh**\.

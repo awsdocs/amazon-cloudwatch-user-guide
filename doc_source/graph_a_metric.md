@@ -22,6 +22,10 @@ You can view your data at different granularities\. For example, you can choose 
 
 1. To graph one or more metrics, select the check box next to each metric\. To select all metrics, select the check box in the heading row of the table\.
 
+1. \(Optional\) As you choose metrics to graph, you can specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics** and then **Dynamic labels**\.
+
+   By default, the dynamic values you add to the label appear at the beginning of the label\. You can then click the **Label** value for the metric to edit the label\. For more information, see [Using Dynamic Labels](graph-dynamic-labels.md)\.
+
 1. To view more information about the metric being graphed, hover over the legend\.
 
 1. Horizontal annotations can help graph users quickly see when a metric has spiked to a certain level, or whether the metric is within a predefined range\. To add a horizontal annotation, choose **Graph options** and then **Add horizontal annotation**:

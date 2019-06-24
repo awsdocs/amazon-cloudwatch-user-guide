@@ -30,7 +30,7 @@ For information about updating the SSM Agent on a server running Windows Server,
 
 1. In the **Command document** list, select the button next to **AWS\-ConfigureAWSPackage**\.
 
-1. In the **Targets** area, select the server to install the CloudWatch agent on\. If you don't see a specific server, it might not be configured for Run Command\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-prereqs.html) in the *AWS Systems Manager User Guide*\.
+1. In the **Targets** area, select the server to install the CloudWatch agent on\. If you don't see a specific server, it might not be configured for Run Command\. For more information, see [Setting Up AWS Systems Manager for Hybrid Environments](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html) in the *AWS Systems Manager User Guide*\.
 
 1. In the **Action** list, choose **Install**\.
 

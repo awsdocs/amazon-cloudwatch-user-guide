@@ -10,7 +10,7 @@ A text widget contains a block of text in [Markdown](https://docs.aws.amazon.com
 
 1. Choose **Add widget**\.
 
-1. Choose **Text**, **Configure**\.
+1. Choose **Text** and then **Configure**\.
 
 1. For **Markdown**, add and format your text using [Markdown](https://docs.aws.amazon.com/general/latest/gr/aws-markdown.html) and choose **Create widget**\.
 
@@ -22,7 +22,7 @@ A text widget contains a block of text in [Markdown](https://docs.aws.amazon.com
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Hover over the upper\-right corner of the text block and choose **Widget actions**, **Edit**\.
+1. Hover over the upper\-right corner of the text block and choose **Widget actions** and then **Edit**\.
 
 1. Update the text as needed and choose **Update widget**\.
 
@@ -34,6 +34,6 @@ A text widget contains a block of text in [Markdown](https://docs.aws.amazon.com
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Hover over the upper\-right corner of the text block and choose **Widget actions**, **Delete**\.
+1. Hover over the upper\-right corner of the text block and choose **Widget actions** and then **Delete**\.
 
 1. Choose **Save dashboard**\.

@@ -1,14 +1,14 @@
 # Graph Metrics Manually on a CloudWatch Dashboard<a name="add_old_metrics_to_graph"></a>
 
-If a metric has not published data in the past 14 days, you cannot find it when searching for metrics to add to a graph on a CloudWatch dashboard\. Use the following steps to add any metric manually to an existing graph\.
+If a metric hasn't published data in the past 14 days, you can't find it when searching for metrics to add to a graph on a CloudWatch dashboard\. Use the following steps to add any metric manually to an existing graph\.
 
-**To add a metric that you cannot find in search to a graph**
+**To add a metric that you can't find in search to a graph**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. The dashboard must already contain a graph where you want to add the metric\. If it does not already, create the graph and add any metric to it\. For more information, see [Add or Remove a Graph from a CloudWatch Dashboard](add_remove_graph_dashboard.md)\.
+1. The dashboard must already contain a graph where you want to add the metric\. If it doesn't, create the graph and add any metric to it\. For more information, see [Add or Remove a Graph from a CloudWatch Dashboard](add_remove_graph_dashboard.md)\.
 
 1. Choose **Actions**, **View/edit source**\.
 
@@ -37,7 +37,7 @@ If a metric has not published data in the past 14 days, you cannot find it when 
    [ "AWS/EBS", "VolumeReadOps", "VolumeId", "vol-1234567890abcdef0" ]
    ```
 
-1. Add a comma after the end bracket if there is not already one, and then add a similar bracketed section after the comma\. In this new section, specify the namespace, metric name, and any necessary dimensions of the metric you are adding to the graph\. The following is an example:
+1. Add a comma after the end bracket if there isn't already one and then add a similar bracketed section after the comma\. In this new section, specify the namespace, metric name, and any necessary dimensions of the metric that you're adding to the graph\. The following is an example\.
 
    ```
    [ "AWS/EBS", "VolumeReadOps", "VolumeId", "vol-1234567890abcdef0" ],

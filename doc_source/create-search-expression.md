@@ -18,6 +18,10 @@ On the CloudWatch console, you can access search capability when you add a graph
 
 1. \(Optional\) To add another search expression or math expression to the graph, choose **Add a math expression**
 
+1. \(Optional\) After you add a search expression, you can specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics** and then **Dynamic labels**\.
+
+   By default, the dynamic values you add to the label appear at the beginning of the label\. You can then click the **Label** value for the metric to edit the label\. For more information, see [Using Dynamic Labels](graph-dynamic-labels.md)\.
+
 1. \(Optional\) To add a single metric to the graph, choose the **All metrics** tab and drill down to the metric you want\.
 
 1. \(Optional\) To change the time range shown on the graph, choose either **custom** at the top of the graph or one of the time periods to the left of **custom**\.

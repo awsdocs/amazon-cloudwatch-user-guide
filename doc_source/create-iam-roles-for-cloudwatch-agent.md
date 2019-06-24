@@ -2,9 +2,9 @@
 
 Access to AWS resources requires permissions\. You can create IAM roles and users that include the permissions that you need for the CloudWatch agent to write metrics to CloudWatch and for the CloudWatch agent to communicate with Amazon EC2 and AWS Systems Manager\. You use IAM roles on Amazon EC2 instances, and you use IAM users with on\-premises servers\.
 
-One role or user enables CloudWatch agent to be installed on a server and send metrics to CloudWatch\. The other role or user is needed to store your CloudWatch agent configuration in Systems Manager Parameter Store\.Parameter Store enables multiple servers to use one CloudWatch agent configuration\.
+One role or user enables CloudWatch agent to be installed on a server and send metrics to CloudWatch\. The other role or user is needed to store your CloudWatch agent configuration in Systems Manager Parameter Store\. Parameter Store enables multiple servers to use one CloudWatch agent configuration\.
 
-The ability to write to Parameter Store is a broad and powerful permission\. You should use it only when you need it, and it shouldn't be attached to multiple instances in your deployment\. If you store your CloudWatch agent configuration in Parameter Store, we recommend the following:\.
+The ability to write to Parameter Store is a broad and powerful permission\. You should use it only when you need it, and it shouldn't be attached to multiple instances in your deployment\. If you store your CloudWatch agent configuration in Parameter Store, we recommend the following:
 + Set up one instance where you perform this configuration\.
 + Use the IAM role with permissions to write to Parameter Store only on this instance\.
 + Use the IAM role with permissions to write to Parameter Store only while you are working with and saving the CloudWatch agent configuration file\.
@@ -16,7 +16,7 @@ We recently modified the following procedures by using new `CloudWatchAgentServe
 
 The first procedure creates the IAM role that you must attach to each Amazon EC2 instance that runs the CloudWatch agent\. This role provides permissions for reading information from the instance and writing it to CloudWatch\.
 
-The second procedure creates the IAM role that you must attach to the Amazon EC2 instance being used to create the CloudWatch agent configuration file, if you're going to store this file in Systems Manager Parameter Store so that other servers can use it\. This role provides permissions for writing to Parameter Store, in addition to the permissions for reading information from the instance and writing it to CloudWatch\. This role includes permissions sufficient to run the CloudWatch agent as well as to write to Parameter Store\.
+The second procedure creates the IAM role that you must attach to the Amazon EC2 instance being used to create the CloudWatch agent configuration file\. This step is necessary if you're going to store this file in Systems Manager Parameter Store so that other servers can use it\. This role provides permissions for writing to Parameter Store, in addition to the permissions for reading information from the instance and writing it to CloudWatch\. This role includes permissions sufficient to run the CloudWatch agent as well as to write to Parameter Store\.
 
 **To create the IAM role necessary for each server to run the CloudWatch agent**
 
@@ -28,13 +28,13 @@ The second procedure creates the IAM role that you must attach to the Amazon EC2
 
 1. Immediately under **Choose the service that will use this role**, choose **EC2**,and then choose **Next: Permissions**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentServerPolicy**\. If necessary, use the search box to find the policy\. 
+1. In the list of policies, select the box next to **CloudWatchAgentServerPolicy**\. \(If necessary, use the search box to find the policy\.\) 
 
-1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.
+1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
 
 1. Choose **Next: Tags**\.
 
-1. \(Optional\) Add one or more tag key/\-value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
+1. \(Optional\) Add one or more tag\-key value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
 
 1. For **Role name**, enter a name for your new role, such as **CloudWatchAgentServerRole** or another name that you prefer\.
 
@@ -60,13 +60,13 @@ The permissions for writing to Parameter Store provide broad access\. This role 
 
 1. Immediately under **Choose the service that will use this role**, choose **EC2**, and then choose **Next: Permissions**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentAdminPolicy**\. If necessary, use the search box to find the policy\. 
+1. In the list of policies, select the box next to **CloudWatchAgentAdminPolicy**\. \(If necessary, use the search box to find the policy\. \)
 
-1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.
+1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
 
 1. Choose **Next: Tags**\.
 
-1. \(Optional\) Add one or more tag key/\-value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
+1. \(Optional\) Add one or more tag\-key value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
 
 1. For **Role name**, enter a name for your new role, such as **CloudWatchAgentAdminRole** or another name that you prefer\.
 
@@ -96,13 +96,13 @@ The second procedure creates the IAM user that you can use when creating the Clo
 
 1. For **Set permissions**, choose **Attach existing policies directly**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentServerPolicy**\. If necessary, use the search box to find the policy\.
+1. In the list of policies, select the box next to **CloudWatchAgentServerPolicy**\. \(If necessary, use the search box to find the policy\.\)
 
-1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.
+1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
 
 1. Choose **Next: Tags**\.
 
-1. \(Optional\) Add one or more tag key/\-value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
+1. \(Optional\) Add one or more tag\-key value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
 
 1. Confirm that the correct policies are listed, and then choose **Create user**\.
 
@@ -124,11 +124,11 @@ The following procedure creates the IAM user that can also write to Parameter St
 
 1. In the list of policies, select the box next to **CloudWatchAgentAdminPolicy**\. If necessary, use the search box to find the policy\.
 
-1. To use Systems Manager to install or configure the CloudWatch agent, select the check box next to **AmazonSSMManagedInstanceCore**\. If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.
+1. To use Systems Manager to install or configure the CloudWatch agent, select the check box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
 
 1. Choose **Next: Tags**\.
 
-1. \(Optional\) Add one or more tag key/\-value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
+1. \(Optional\) Add one or more tag\-key value pairs to organize, track, or control access for this role, and then choose **Next: Review**\.
 
 1. Confirm that the correct policies are listed, and then choose **Create user**\.
 

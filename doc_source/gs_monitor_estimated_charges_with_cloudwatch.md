@@ -25,7 +25,7 @@ After you enable billing alerts for the first time, it takes about 15 minutes be
 
 **To enable monitoring of your estimated charges**
 
-1. Open the Billing and Cost Management console at [https://console\.aws\.amazon\.com/billing/home?\#](https://console.aws.amazon.com/billing/home?#/)\.
+1. Open the Billing and Cost Management console at [https://console\.aws\.amazon\.com/billing/](https://console.aws.amazon.com/billing/home?#/)\.
 
 1. In the navigation pane, choose **Preferences**\.
 
@@ -39,7 +39,7 @@ After you enable billing alerts for the first time, it takes about 15 minutes be
 After you've enabled billing alerts, you can create a billing alarm\. In this scenario, you create an alarm that sends an email message when your estimated charges for AWS exceed a specified threshold\.
 
 **Note**  
-This procedure uses the simple options\. To use the advanced options, see [Create a Billing Alarm](monitor_estimated_charges_with_cloudwatch.md#creating_billing_alarm_with_wizard) in *Create a Billing Alarm to Monitor Your Estimated AWS Charges*\.
+This procedure uses the simple options\. To use the advanced options, see [Creating a Billing Alarm](monitor_estimated_charges_with_cloudwatch.md#creating_billing_alarm_with_wizard) in *Create a Billing Alarm to Monitor Your Estimated AWS Charges*\.
 
 **To create a billing alarm**
 

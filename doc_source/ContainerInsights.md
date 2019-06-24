@@ -5,7 +5,7 @@
 
 |  | 
 | --- |
-| CloudWatch Container Insights isn't released yet\. It's in preview and is subject to change\. The preview is open to all AWS accounts\. You do not need to request access\. | 
+| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
 
 If you use Amazon Elastic Container Service for Kubernetes or other Kubernetes \(K8s\) platforms on Amazon EC2, you can use CloudWatch Container Insights to collect, aggregate, and summarize metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Container Insights also provides diagnostic information, such as container restart failures, to help you isolate issues and resolve them quickly\. You can also set CloudWatch alarms on metrics that Container Insights collects\.
 
@@ -20,6 +20,7 @@ This preview release currently supports Container Insights only in the following
 + US West \(N\. California\)
 + US West \(Oregon\)
 + EU \(Frankfurt\)
++ EU \(Ireland\)
 + EU \(Paris\)
 + Asia Pacific \(Mumbai\)
 + Asia Pacific \(Singapore\)

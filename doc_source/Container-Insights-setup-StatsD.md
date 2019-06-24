@@ -5,7 +5,7 @@
 
 |  | 
 | --- |
-| CloudWatch Container Insights isn't released yet\. It's in preview and is subject to change\. The preview is open to all AWS accounts\. You do not need to request access\. | 
+| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
 
 This section explains how to set up and configure the CloudWatch agent as a StatsD endpoint on an Amazon EKS cluster or K8s cluster to collect StatsD metrics from the containers and publish them to CloudWatch\. You might want to do this if you're already using StatsD\.
 
@@ -70,7 +70,7 @@ To deploy the CloudWatch agent to send StatsD metrics, use the steps in one of t
 
 ### Option 1: Deploy a Single CloudWatch Agent in the Cluster<a name="Container-Insights-setup-StatsD-single"></a>
 
-This section explains how to deploy a single CloudWatch agent in a cluster to send StatsD metrics to CloudWatch\. When the deployment is complete and the agent is running, it starts listening on the URL `cloudwatch-agent-statsd.default.svc:8125`\. Your application inside the cluster can emit StatsD metrics to this URL\.
+This section explains how to deploy a single CloudWatch agent in a cluster to send StatsD metrics to CloudWatch\. When the deployment is complete and the agent is running, it starts listening on the URL `cloudwatch-agent-statsd.amazon-cloudwatch.svc:8125`\. Your application inside the cluster can emit StatsD metrics to this URL\.
 
 **To deploy a single CloudWatch agent in a cluster**
 

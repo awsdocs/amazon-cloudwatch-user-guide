@@ -1,11 +1,11 @@
-# Set Up Amazon SNS Notifications<a name="US_SetupSNS"></a>
+# Setting Up Amazon SNS Notifications<a name="US_SetupSNS"></a>
 
 Amazon CloudWatch uses Amazon SNS to send email\. First, create and subscribe to an SNS topic\. When you create a CloudWatch alarm, you can add this SNS topic to send an email notification when the alarm changes state\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](https://docs.aws.amazon.com/sns/latest/gsg/)\.
 
 **Note**  
 Alternatively, if you plan to create your CloudWatch alarm using the AWS Management Console, you can skip this procedure because you can create the topic through the **Create Alarm Wizard**\.
 
-## Set Up an Amazon SNS Topic Using the AWS Management Console<a name="set-up-sns-topic-console"></a>
+## Setting Up an Amazon SNS Topic Using the AWS Management Console<a name="set-up-sns-topic-console"></a>
 
 First, create a topic, then subscribe to it\. You can optionally publish a test message to the topic\.
 
@@ -15,7 +15,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 1. On the Amazon SNS dashboard, under **Common actions**, choose **Create Topic**\. 
 
-1. In the **Create new topic** dialog box, for **Topic name**, type a name for the topic \(for example, my\-topic\)\.
+1. In the **Create new topic** dialog box, for **Topic name**, enter a name for the topic \(for example, **my\-topic**\)\.
 
 1. Choose **Create topic**\.
 
@@ -31,7 +31,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 1. For **Protocol**, choose **Email**\.
 
-1. For **Endpoint**, type an email address that you can use to receive the notification, and then choose **Create subscription**\.
+1. For **Endpoint**, enter an email address that you can use to receive the notification, and then choose **Create subscription**\.
 
 1. From your email application, open the message from AWS Notifications and confirm your subscription\.
 
@@ -45,15 +45,15 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 1. On the **Topics** page, select a topic and choose **Publish to topic**\.
 
-1. In the **Publish a message** page, for **Subject**, type a subject line for your message, and for **Message**, type a brief message\.
+1. In the **Publish a message** page, for **Subject**, enter a subject line for your message, and for **Message**, enter a brief message\.
 
 1. Choose **Publish Message**\.
 
 1. Check your email to confirm that you received the message\.
 
-## Set Up an SNS Topic Using the AWS CLI<a name="set-up-sns-topic-cli"></a>
+## Setting Up an SNS Topic Using the AWS CLI<a name="set-up-sns-topic-cli"></a>
 
-First you create an SNS topic, and then publish a message directly to the topic to test that you have properly configured it\.
+First, you create an SNS topic, and then you publish a message directly to the topic to test that you have properly configured it\.
 
 **To set up an SNS topic**
 
@@ -117,7 +117,7 @@ First you create an SNS topic, and then publish a message directly to the topic 
    1. aws sns publish --message "Verification" --topic arn:aws:sns:us-east-1:111122223333:my-topic
    ```
 
-   Amazon SNS returns the following:
+   Amazon SNS returns the following\.
 
    ```
    1. {

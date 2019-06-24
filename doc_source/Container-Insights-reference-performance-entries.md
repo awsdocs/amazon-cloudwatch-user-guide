@@ -5,7 +5,7 @@
 
 |  | 
 | --- |
-| CloudWatch Container Insights isn't released yet\. It's in preview and is subject to change\. The preview is open to all AWS accounts\. You do not need to request access\. | 
+| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
 
 The containerized CloudWatch agent emits data as performance log events\. This enables CloudWatch to ingest and store high\-cardinality data\. CloudWatch uses the data in the performance log events to create aggregated CloudWatch metrics at the cluster\-, node\-, and pod\-level without the need to lose granular details\.
 

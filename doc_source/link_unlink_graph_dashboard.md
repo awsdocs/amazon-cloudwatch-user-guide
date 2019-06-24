@@ -8,7 +8,7 @@ You can link the graphs on your dashboard together, so that when you zoom in or 
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Choose **Actions**, **Link graphs**\.
+1. Choose **Actions** and then **Link graphs**\.
 
 **To unlink the graphs on a dashboard**
 
@@ -16,4 +16,4 @@ You can link the graphs on your dashboard together, so that when you zoom in or 
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Clear **Actions**, **Link graphs**\.
+1. Clear **Actions** and then **Link graphs**\.

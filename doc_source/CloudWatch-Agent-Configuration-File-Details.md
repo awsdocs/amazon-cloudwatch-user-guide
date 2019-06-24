@@ -31,6 +31,9 @@ The `agent` section can include the following fields\. The wizard doesn't create
 
   The CloudWatch agent automatically rotates the log file that it creates\. A log file is rotated out when it reaches 100 MB in size\. The agent keeps the rotated log files for up to seven days, and it keeps as many as five backup log files that have been rotated out\. Backup log files have a timestamp appended to their filename\. The timestamp shows the date and time that the file was rotated out: for example, `amazon-cloudwatch-agent-2018-06-08T21-01-50.247.log.gz`\.
 + `omit_hostname` – Optional\. By default, the hostname is published as a dimension of metrics that are collected by the agent\. Set this value to `true` to prevent the hostname from being published as a dimension\. The default value is `false`\. 
++ `run_as_user` – Optional\. Specifies a user to use to run the CloudWatch agent\. If you don't specify this parameter, the root user is used\. This option is valid only on Linux servers\.
+
+  If you specify this option, the user must exist before you start the CloudWatch agent\. For more information, see [Running the CloudWatch Agent as a Different User](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-run-as-user)\.
 
 The following is an example of an `agent` section\.
 
@@ -39,7 +42,8 @@ The following is an example of an `agent` section\.
    "metrics_collection_interval": 60,
    "region": "us-west-1",
    "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log",
-   "debug": false
+   "debug": false,
+   "run_as_user": "cwagent"
   }
 ```
 

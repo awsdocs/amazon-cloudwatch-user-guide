@@ -14,7 +14,7 @@ You can monitor AWS resources in multiple Regions using a single CloudWatch dash
 
 1. For **Actions**, choose **Add to dashboard**\.
 
-1. For **Add to**, type a name for the new dashboard and choose **Add to dashboard**\.
+1. For **Add to**, enter a name for the new dashboard and choose **Add to dashboard**\.
 
    Alternatively, to add to an existing dashboard, choose **Existing dashboard**, select a dashboard, and then choose **Add to dashboard**\.
 

@@ -5,7 +5,7 @@
 
 |  | 
 | --- |
-| CloudWatch Container Insights isn't released yet\. It's in preview and is subject to change\. The preview is open to all AWS accounts\. You do not need to request access\. | 
+| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
 
 Before you install Container Insights, verify the following:
 + You have a functional Amazon EKS cluster or K8s cluster with nodes attached in one of the Regions that supports the Container Insights preview\. For the list of supported Regions, see [Using Container Insights](ContainerInsights.md)\.

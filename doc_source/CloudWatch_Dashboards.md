@@ -7,7 +7,7 @@ With dashboards, you can create the following:
 + An operational playbook that provides guidance for team members during operational events about how to respond to specific incidents\.
 + A common view of critical resource and application measurements that can be shared by team members for faster communication flow during operational events\.
 
-You can create dashboards by using the console, the AWS CLI, or by using the `PutDashboard` API\.
+You can create dashboards by using the console, the AWS CLI, or the `PutDashboard` API\.
 
 **Topics**
 + [Create a Dashboard](create_dashboard.md)

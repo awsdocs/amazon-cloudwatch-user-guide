@@ -3,12 +3,69 @@
 The following sections outline how to complete some common configuration and customization tasks when using the CloudWatch agent\. 
 
 **Topics**
++ [Running the CloudWatch Agent as a Different User](#CloudWatch-Agent-run-as-user)
 + [Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-adding-custom-dimensions)
 + [Multiple CloudWatch Agent Configuration Files](#CloudWatch-Agent-multiple-config-files)
 + [Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-aggregating-metrics)
 + [Collecting High\-Resolution Metrics With the CloudWatch agent](#CloudWatch-Agent-collect-high-resolution-metrics)
 + [Sending Metrics and Logs to a Different Account](#CloudWatch-Agent-send-to-different-AWS-account)
 + [Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent](#CloudWatch-Agent-logs-timestamp-differences)
+
+## Running the CloudWatch Agent as a Different User<a name="CloudWatch-Agent-run-as-user"></a>
+
+On Linux servers, the CloudWatch runs as the root user by default\. To have the agent run as a different user, use the `run_as_user` parameter in the `agent` section in the CloudWatch agent configuration file\. This option is available only on Linux servers\.
+
+If you're already running the agent with the root user and want to change to using a different user, use one of the following procedures\.
+
+**To run the CloudWatch agent as a different user on an EC2 instance running Linux**
+
+1. Download and install a new CloudWatch agent package\. For more information, see [Download the CloudWatch Agent Package Using an S3 Download Link](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+
+1. Create a new Linux user or use the default user named `cwagent` that the RPM or DEB file created\.
+
+1. Provide credentials for this user in one of these ways:
+   + If the file `/home/root/.aws/credentials` exists, you must create a credentials file for the user you are going to use to run the CloudWatch agent\. This credentials file will be `/home/username/.aws/credentials`\. Then set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the Common Configuration for Proxy or Region Information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
+   + If the file `/home/root/.aws/credentials` does not exist, you can do one of the following:
+     + Create a credentials file for the user you are going to use to run the CloudWatch agent\. This credentials file will be `/home/username/.aws/credentials`\. Then set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the Common Configuration for Proxy or Region Information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
+     + Instead of creating a credentials file, attach an IAM role to the instance\. The agent uses this role as the credential provider\.
+
+1. In the CloudWatch agent configuration file, add the following line in the `agent` section:
+
+   ```
+   "run_as_user": "username"
+   ```
+
+   Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
+
+1. Start the agent with the configuration file that you just modified\.
+
+   ```
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
+   ```
+
+**To run the CloudWatch agent as a different user on an on\-premises server running Linux**
+
+1. Download and install a new CloudWatch agent package\. For more information, see [Download the CloudWatch Agent Package Using an S3 Download Link](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+
+1. Create a new Linux user or use the default user named `cwagent` that the RPM or DEB file created\.
+
+1. Store the credentials of this user to a path that the user can access, such as `/home/username/.aws/credentials`\.
+
+1. Set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the Common Configuration for Proxy or Region Information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
+
+1. In the CloudWatch agent configuration file, add the following line in the `agent` section:
+
+   ```
+   "run_as_user": "username"
+   ```
+
+   Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
+
+1. Start the agent with the configuration file that you just modified\.
+
+   ```
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
+   ```
 
 ## Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-adding-custom-dimensions"></a>
 
