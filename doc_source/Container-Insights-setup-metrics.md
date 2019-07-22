@@ -15,13 +15,13 @@ Use the following steps to create a Kubernetes namespace called `amazon-cloudwat
 
 **To create a namespace for CloudWatch**
 
-1. Download the namespace YAML to your `kubectl` client host by running the following command:
+1. Download the namespace YAML to your `kubectl` client host by running the following command\.
 
    ```
    curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/kubernetes-monitoring/cloudwatch-namespace.yaml
    ```
 
-1. Run the following command to create the `amazon-cloudwatch` namespace:
+1. Run the following command to create the `amazon-cloudwatch` namespace\.
 
    ```
    kubectl apply -f cloudwatch-namespace.yaml
@@ -33,7 +33,7 @@ Use the following steps to create a service account for the CloudWatch agent, if
 
 **To create a service account for the CloudWatch agent**
 
-1. Download the service account YAML to your `kubectl` client host by running the following command:
+1. Download the service account YAML to your `kubectl` client host by running the following command\.
 
    ```
    curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/kubernetes-monitoring/cwagent-serviceaccount.yaml
@@ -45,7 +45,7 @@ Use the following steps to create a service account for the CloudWatch agent, if
    kubectl apply -f cwagent-serviceaccount.yaml
    ```
 
-If you didn't follow the previous steps but instead you already have a service account for the CloudWatch agent that you want to use, you must ensure that it has the following rules\. Additionally, in the rest of the steps in the Container Insights installation you must use the name of that service account instead of `cloudwatch-agent`\.
+If you didn't follow the previous steps, but you already have a service account for the CloudWatch agent that you want to use, you must ensure that it has the following rules\. Additionally, in the rest of the steps in the Container Insights installation, you must use the name of that service account instead of `cloudwatch-agent`\.
 
 ```
 rules:
@@ -70,7 +70,7 @@ rules:
 
 Use the following steps to create a ConfigMap for the CloudWatch agent\.
 
-**To create a service account for the CloudWatch agent**
+**To create a ConfigMap for the CloudWatch agent**
 
 1. Download the ConfigMap YAML to your `kubectl` client host by running the following command:
 
@@ -83,9 +83,9 @@ Use the following steps to create a ConfigMap for the CloudWatch agent\.
 
 1. \(Optional\) Make further changes to the ConfigMap based on your monitoring requirements, as follows:
    + **metrics\_collection\_interval** – In the `kubernetes` section, you can specify how often the agent collects metrics\. The default is 60 seconds\. The default cadvisor collection interval in kubelet is 15 seconds, so don't set this value to less than 15 seconds\.
-   + **endpoint\_override**– In the `structuredlogs` section, you can specify the CloudWatch Logs endpoint if you want to override the default endpoint\. You might want to do this if you are publishing from a cluster in a VPC and you want the data to go to a VPC endpoint\.
-   + **force\_flush\_interval**– In the `structuredlogs` section, you can specify the interval for batching log events before they are published to CloudWatch Logs\. The default is 5 seconds
-   + **region**– By default, the agent published metrics to the Region where the worker node is located\. To override this, you can add a `region` field in the `agent` section\. For example, `"region":"us-west-2"`
+   + **endpoint\_override** – In the `structuredlogs` section, you can specify the CloudWatch Logs endpoint if you want to override the default endpoint\. You might want to do this if you're publishing from a cluster in a VPC and you want the data to go to a VPC endpoint\.
+   + **force\_flush\_interval** – In the `structuredlogs` section, you can specify the interval for batching log events before they are published to CloudWatch Logs\. The default is 5 seconds\.
+   + **region** – By default, the agent published metrics to the Region where the worker node is located\. To override this, you can add a `region` field in the `agent` section: for example, `"region":"us-west-2"`\.
    + **statsd** section – If you want the CloudWatch Logs agent to also run as a StatsD listener in each worker node of your cluster, you can add a `statsd` section to the `metrics` section, as in the following example\. For information on other StatsD options for this section, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\.
 
      ```
@@ -98,7 +98,7 @@ Use the following steps to create a ConfigMap for the CloudWatch agent\.
      }
      ```
 
-     A full example of the JSON section is as follows:
+     A full example of the JSON section is as follows\.
 
      ```
      {
@@ -135,9 +135,9 @@ Use the following steps to create a ConfigMap for the CloudWatch agent\.
 
 To finish the installation of the CloudWatch agent and begin collecting container metrics, use the following steps\.
 
-**To deploy the CloudWatch agent as a Daemonset**
+**To deploy the CloudWatch agent as a DaemonSet**
 
-1. Download the DaemonSet YAML to your `kubectl` client host by running the following command:
+1. Download the DaemonSet YAML to your `kubectl` client host by running the following command\.
 
    ```
    curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/kubernetes-monitoring/cwagent-daemonset.yaml
@@ -158,7 +158,7 @@ To finish the installation of the CloudWatch agent and begin collecting containe
    kubectl apply -f cwagent-daemonset.yaml
    ```
 
-1. Validate that the agent is deployed by running the following command:
+1. Validate that the agent is deployed by running the following command\.
 
    ```
    kubectl get pods -n amazon-cloudwatch
@@ -177,9 +177,9 @@ If the agent doesn't deploy correctly, try the following:
 + Run the following command and check the events at the bottom of the output\.
 
   ```
-  kubectl describe pod-name -n amazon-cloudwatch
+  kubectl describe pod pod-name -n amazon-cloudwatch
   ```
-+ Run the following command to check the logs:
++ Run the following command to check the logs\.
 
   ```
   kubectl logs pod-name  -n amazon-cloudwatch

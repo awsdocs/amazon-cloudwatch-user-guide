@@ -52,13 +52,25 @@ This procedure uses the advanced options\. For more information about using the 
 
 1. Select the check box next to **EstimatedCharges**, and choose **Select metric**\.
 
-1. Under **Alarm Threshold**, replace the default name for the alarm \(for example, My Estimated Charges\) and a description for the alarm \(for example, Estimated Monthly Charges\)\. Alarm names must contain only ASCII characters\.
+1. Under **Conditions**, choose **Static**\.
 
-1. Under **When my total AWS charges for the month exceed**, enter the monetary amount \(for example, **200**\) that must be exceeded to trigger the alarm and send an email\.
+1. For **Whenever EstimatedCharges is**, choose **Greater**\.
+
+1. For **than**, enter the monetary amount \(for example, **200**\) that must be exceeded to trigger the alarm\.
 **Note**  
 The preview graph displays your current charges for the month\.
 
-1. Choose **Create Alarm**\.
+1. Choose **Next**\.
+
+1. Under **Notification**, select an SNS topic to notify when the alarm is in `ALARM` state\.
+
+   To have the alarm send multiple notifications for the same alarm state or for different alarm states, choose **Add notification**\.
+
+1. When finished, choose **Next**\.
+
+1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. Then choose **Next**\.
+
+1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
 
 ## Deleting a Billing Alarm<a name="deleting_billing_alarm"></a>
 

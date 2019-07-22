@@ -1,4 +1,4 @@
-# Creating a CloudWatch Alarm Based on a CloudWatch Metric<a name="ConsoleAlarms"></a>
+# Create a CloudWatch Alarm Based on a Static Threshold<a name="ConsoleAlarms"></a>
 
 You choose a CloudWatch metric for the alarm to watch, and the threshold for that metric\. The alarm goes to `ALARM` state when the metric breaches the threshold for a specified number of evaluation periods\.
 
@@ -27,6 +27,8 @@ CloudWatch has changed the alarm user interface\. By default, you're shown the n
       The **Specify metric and conditions** page appears, showing a graph and other information about the metric and statistic you have selected\.
 
 1. Under **Conditions**, specify the following:
+
+   1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. 
 
    1. For **Whenever *metric* is**, specify whether the metric must be greater than, less than, or equal to the threshold\. Under **than\.\.\.**, specify the threshold value\.
 

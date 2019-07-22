@@ -22,7 +22,7 @@ The AWS namespaces use the following naming convention: `AWS/service`\. For exam
 
 AWS services send metrics to CloudWatch, and you can send your own custom metrics to CloudWatch\. You can add the data points in any order, and at any rate you choose\. You can retrieve statistics about those data points as an ordered set of time\-series data\.
 
-Metrics exist only in the region in which they are created\. Metrics cannot be deleted, but they automatically expire after 15 months if no new data is published to them\. Data points older than 15 months expire on a rolling basis; as new data points come in, data older than 15 months is dropped\.
+Metrics exist only in the Region in which they are created\. Metrics cannot be deleted, but they automatically expire after 15 months if no new data is published to them\. Data points older than 15 months expire on a rolling basis; as new data points come in, data older than 15 months is dropped\.
 
 Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\. Each data point in a metric has a time stamp, and \(optionally\) a unit of measure\. You can retrieve statistics from CloudWatch for any metric\.
 
@@ -121,7 +121,7 @@ Periods are also important for CloudWatch alarms\. When you create an alarm to m
 
 ### Aggregation<a name="CloudWatchAggregation"></a>
 
-Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them by period length\. Aggregated statistics are only available when using detailed monitoring\. In addition, Amazon CloudWatch does not aggregate data across regions\.
+Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them by period length\. Aggregated statistics are only available when using detailed monitoring\. In addition, Amazon CloudWatch does not aggregate data across Regions\.
 
 You can publish data points for a metric that share not only the same time stamp, but also the same namespace and dimensions\. CloudWatch returns aggregated statistics for those data points\. You can also publish multiple data points for the same or different metrics, with any time stamp\.
 
@@ -131,19 +131,13 @@ Amazon CloudWatch doesn't differentiate the source of a metric\. If you publish 
 
 ## Percentiles<a name="Percentiles"></a>
 
-A *percentile* indicates the relative standing of a value in a dataset\. For example, the 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value\. Percentiles help you get a better understanding of the distribution of your metric data\. You can use percentiles with the following services:
-+ API Gateway
-+ Application Load Balancer
-+ Amazon EC2
-+ Elastic Load Balancing
-+ Kinesis
-+ Amazon RDS
+A *percentile* indicates the relative standing of a value in a dataset\. For example, the 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value\. Percentiles help you get a better understanding of the distribution of your metric data\.
 
 Percentiles are often used to isolate anomalies\. In a typical distribution, 95 percent of the data is within two standard deviations from the mean and 99\.7 percent of the data is within three standard deviations from the mean\. Any data that falls outside three standard deviations is often considered to be an anomaly because it differs so greatly from the average value\. For example, suppose that you are monitoring the CPU utilization of your EC2 instances to ensure that your customers have a good experience\. If you monitor the average, this can hide anomalies\. If you monitor the maximum, a single anomaly can skew the results\. Using percentiles, you can monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load\.
 
-You can monitor your system and applications using percentiles as you would use the other CloudWatch statistics \(Average, Minimum, Maximum, and Sum\)\. For example, when you create an alarm, you can use percentiles as the statistical function\. You can specify the percentile with up to two decimal places \(for example, p95\.45\)\.
+Some CloudWatch metrics support percentiles as a statistic\. For these metrics, you can monitor your system and applications using percentiles as you would when using the other CloudWatch statistics \(Average, Minimum, Maximum, and Sum\)\. For example, when you create an alarm, you can use percentiles as the statistical function\. You can specify the percentile with up to two decimal places \(for example, p95\.45\)\.
 
-Percentile statistics are available for custom metrics as well as metrics from AWS services, as long as you publish the raw, unsummarized data points for your custom metric\. Percentile statistics are not available for metrics when any of the metric values are negative numbers\.
+Percentile statistics are available for custom metrics as long as you publish the raw, unsummarized data points for your custom metric\. Percentile statistics are not available for metrics when any of the metric values are negative numbers\.
 
 CloudWatch needs raw data points to calculate percentiles\. If you publish data using a statistic set instead, you can only retrieve percentile statistics for this data when one of the following conditions is true:
 + The SampleCount of the statistic set is 1\.

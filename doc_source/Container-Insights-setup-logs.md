@@ -22,13 +22,13 @@ Use the following steps to create a Kubernetes namespace called `amazon-cloudwat
 
 **To create a namespace for CloudWatch**
 
-1. Download the namespace YAML to your `kubectl` client host by running the following command:
+1. Download the namespace YAML to your `kubectl` client host by running the following command\.
 
    ```
    curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/kubernetes-monitoring/cloudwatch-namespace.yaml
    ```
 
-1. Run the following command to create the `amazon-cloudwatch` namespace:
+1. Run the following command to create the `amazon-cloudwatch` namespace\.
 
    ```
    kubectl apply -f cloudwatch-namespace.yaml

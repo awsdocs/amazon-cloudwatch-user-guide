@@ -1,0 +1,129 @@
+# Creating a CloudWatch Alarm Based on Anomaly Detection<a name="Create_Anomaly_Detection_Alarm"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CloudWatch anomaly detection is in open preview\. The preview is open to AWS accounts in all commercial AWS Regions except Asia Pacific \(Hong Kong\), AWS GovCloud \(US\), China \(Beijing\) Region, and China \(Ningxia\) Region\. You do not need to request access\. Features may be added or changed before announcing General Availability\. Please contact [anomalydetectionfeedback@amazon\.com](mailto:anomalydetectionfeedback@amazon.com) for any feedback, questions, or if you would like to be informed when updates are available\. | 
+
+You can create a standard resolution alarm based on CloudWatch anomaly detection, which mines past metric data and creates a model of expected values\. The expected values take into account the typical hourly, daily, and weekly patterns in the metric\.
+
+You specify a number of standard deviations which CloudWatch uses with the model to determine the "normal" range of values for the metric, with a higher number of standard deviations producing a thicker band of "normal" values\.
+
+You can choose whether the alarm is triggered when the metric value is above the band of expected values, below the band, or either above or below the band\.
+
+For more information, see [CloudWatch Anomaly Detection](CloudWatch_Anomaly_Detection.md)\.
+
+**Note**  
+If you create an anomaly detection alarm on a metric that you're already using anomaly detection for in the Metrics console for visualization purposes, the threshold that you set for the alarm doesn't change the threshold that you're already using for visualization\. For more information, see [Creating a Graph](graph_a_metric.md#create-metric-graph)\.
+
+**To create an alarm based on anomaly detection**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
+
+1. Choose **Select Metric** and do one of the following:
+   + Choose the service namespace that contains the metric that you want\. To narrow the choices, continue choosing options as they appear\. When a list of metrics appears, select the check box next to the metric that you want\.
+   + In the search box, enter the name of a metric, dimension, or resource ID and press Enter\. Then choose one of the results and continue until a list of metrics appears\. Select the check box next to the metric that you want\. 
+
+1. Choose the **Graphed metrics** tab\.
+
+   1. Under **Statistic** , choose one of the statistics or predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\)\.
+
+   1. Under **Period**, choose the evaluation period for the alarm\. When evaluating the alarm, each period is aggregated into one data point\. For anomaly detection alarms, the value must be one minute or longer\.
+
+      You can also choose whether the y\-axis legend appears on the left or right while you're creating the alarm\. This preference is used only while you're creating the alarm\.
+
+   1. Choose **Select metric**\.
+
+      The **Specify metric and conditions** page appears, showing a graph and other information about the metric and statistic you have selected\.
+
+1. Under **Conditions**, specify the following:
+
+   1. Choose **Anomaly detection**\.
+
+      If the model for this metric and statistic already exists, CloudWatch displays the anomaly detection band in the sample graph at the top of the screen\. If the model does not already exist, the model will be generated when you finish creating the alarm\. It may take 15 minutes for the anomaly detection band to appear in the graph\.
+
+   1. For **Whenever *metric* is**, specify whether the metric must be greater than, less than, or outside \(in either direction\) the band to trigger the alarm\.
+
+   1. For **Anomaly detection threshold**, choose the number of standard deviations to use to create the band that will be used as the normal range of values\. Choosing a higher number creates a thicker band that will be more tolerant of metric changes, and a lower number creates a thinner band that will go to `ALARM` state with smaller metric deviations\.
+
+   1. Choose **Additional configuration**\. For **Datapoints to alarm**, specify how many evaluation periods \(data points\) must be in the `ALARM` state to trigger the alarm\. If the two values here match, you create an alarm that goes to `ALARM` state if that many consecutive periods are breaching\.
+
+      To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an Alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
+
+   1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
+
+   1. If the alarm uses a percentile as the monitored statistic, a **Percentiles with low samples** box appears\. Use it to choose whether to evaluate or ignore cases with low sample rates\. If you choose **ignore \(maintain alarm state\)**, the current alarm state is always maintained when the sample size is too low\. For more information, see [Percentile\-Based CloudWatch Alarms and Low Data Samples](AlarmThatSendsEmail.md#percentiles-with-low-samples)\. 
+
+1. Choose **Next**\.
+
+1. Under **Notification**, select an SNS topic to notify when the alarm is in `ALARM` state, `OK` state, or `INSUFFICIENT_DATA` state\.
+
+   To have the alarm send multiple notifications for the same alarm state or for different alarm states, choose **Add notification**\.
+
+   To have the alarm not send notifications, choose **Remove**\.
+
+1. To have the alarm perform Auto Scaling or EC2 actions, choose the appropriate button and choose the alarm state and action to perform\.
+
+1. When finished, choose **Next**\.
+
+1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. Then choose **Next**\.
+
+1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
+
+## Modifying an Anomaly Detection Model<a name="Modify_Anomaly_Detection_Model"></a>
+
+Once you have created an alarm, you can adjust the anomaly detection model\. You can exclude certain time periods from being used in the model creation, and you can specify whether to adjust the model for daylight savings time changes\.
+
+You can choose to exclude time periods in both the past and the future\.
+
+**To adjust the anomaly detection model for an alarm**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Alarms**\.
+
+1. Choose the name of the alarm\. Use the search box to find the alarm if necessary\.
+
+1. Choose **View in metrics**\.
+
+1. In the lower part of the screen, choose **Edit model**\.
+
+1. To exclude a time period from being used to produce the model, choose **Add another time range to exclude from training**\. Then select or enter the days and times to exclude from training, and choose **Apply**\.
+
+1. If the metric is sensitive to daylight savings time changes, select the appropriate time zone in the **Metric timezone** box\.
+
+1. Choose **Update**\.
+
+## Deleting an Anomaly Detection Model<a name="Delete_Anomaly_Detection_Model"></a>
+
+Using anomaly detection for an alarm accrues AWS charges\. If you no longer need an anomaly detection model for an alarm, you should delete the alarm and then the model\. If you delete the model without deleting the alarm, the alarm automatically recreates the model\.
+
+**To delete an alarm**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Alarms**\.
+
+1. Choose the name of the alarm\.
+
+1. Choose **Actions**, **Delete**\.
+
+**To delete the anomaly detection model that had been used for an alarm**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Metrics**\.
+
+1. On the **All metrics** tab, enter a search term in the search field, such as a metric name or resource name, and press Enter\.
+
+   For example, if you search for the `CPUUtilization` metric, you see the namespaces and dimensions with this metric\.
+
+1. In the results, select the metric that had the anomaly detection model\. 
+
+1. Choose the **Graphed metrics** tab\.
+
+1. In the lower part of the screen, choose **Edit model** and then **Delete model**\.

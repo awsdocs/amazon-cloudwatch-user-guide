@@ -22,6 +22,19 @@ You can view your data at different granularities\. For example, you can choose 
 
 1. To graph one or more metrics, select the check box next to each metric\. To select all metrics, select the check box in the heading row of the table\.
 
+1. \(Optional\) To add a band that shows expected values for the metric, choose the anomaly detection icon under **Actions** next to the metric\.   
+![\[The metrics console, with the anomaly detection icon circled.\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/Anomaly_Detection_Icon.PNG)
+
+   CloudWatch uses up to two weeks of the metric's recent historical data to calculate a model for expected values, then displays this range of expected values as a band on the graph\. CloudWatch adds a new row under the metric to display the anomaly detection band math expression, labeled **ANOMALY\_DETECTION\_BAND**\. It may take 15 minutes before the model can be visualized on a graph\.
+
+   By default, CloudWatch creates the upper and lower bounds of the band of expected values with a default value of two standard deviations\. To change this number, change the value at the end of the formula under **Details** for the band\.
+
+   1. \(Optional\) You can also choose **Edit model** to change how the anomaly detection model is calculated\. You can exclude past time periods from being used in the training for calculating the model, and specify the time zone to use for the model to accurately model fluctuations that depend on the time of day\.
+
+   For more information, see [CloudWatch Anomaly Detection](CloudWatch_Anomaly_Detection.md)\.
+
+   To hide the model from the graph, uncheck the line with the ` ANOMALY_DETECTION_BAND` function or choose the `X` icon\. To delete the model entirely, choose **Edit model** and then choose **Delete model**\.
+
 1. \(Optional\) As you choose metrics to graph, you can specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics** and then **Dynamic labels**\.
 
    By default, the dynamic values you add to the label appear at the beginning of the label\. You can then click the **Label** value for the metric to edit the label\. For more information, see [Using Dynamic Labels](graph-dynamic-labels.md)\.

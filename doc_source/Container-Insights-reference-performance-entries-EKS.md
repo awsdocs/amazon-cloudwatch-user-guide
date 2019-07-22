@@ -1,4 +1,4 @@
-# Relevant Fields in Performance Log Events<a name="Container-Insights-reference-performance-entries"></a>
+# Relevant Fields in Performance Log Events for Amazon EKS and Kubernetes<a name="Container-Insights-reference-performance-entries-EKS"></a>
 
 
 ****  
@@ -7,12 +7,12 @@
 | --- |
 | CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
 
-The containerized CloudWatch agent emits data as performance log events\. This enables CloudWatch to ingest and store high\-cardinality data\. CloudWatch uses the data in the performance log events to create aggregated CloudWatch metrics at the cluster\-, node\-, and pod\-level without the need to lose granular details\.
+For Amazon EKS and Kubernetes, the containerized CloudWatch agent emits data as performance log events\. This enables CloudWatch to ingest and store high\-cardinality data\. CloudWatch uses the data in the performance log events to create aggregated CloudWatch metrics at the cluster, node, and pod levels without the need to lose granular details\.
 
 The following table lists the fields in these performance log events that are relevant to the collection of Container Insights metric data\. You can use CloudWatch Logs Insights to query for any of these fields to collect data or investigate issues\. For more information, see [Analyze Log Data With CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\.
 
 
-| Type | Log field | Source | Formula/Notes | 
+| Type | Log field | Source | Formula or Notes | 
 | --- | --- | --- | --- | 
 |  Pod |  `pod_cpu_utilization`  |  Calculated  |  Formula: `pod_cpu_usage_total / node_cpu_limit`  | 
 |  Pod |  `pod_cpu_usage_total`  |  cadvisor  |   | 

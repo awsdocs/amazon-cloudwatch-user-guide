@@ -128,6 +128,7 @@ CloudWatch Application Insights for \.NET and SQL Server supports using service\
 | EU \(Paris\) | eu\-west\-3 | Yes | 
 | EU \(Stockholm\) | eu\-north\-1 | Yes | 
 | South America \(São Paulo\) | sa\-east\-1 | Yes | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | Yes | 
 | US East \(N\. Virginia\) | us\-east\-1 | Yes | 
 | US East \(Ohio\) | us\-east\-2 | Yes | 
 | US West \(N\. California\) | us\-west\-1 | Yes | 

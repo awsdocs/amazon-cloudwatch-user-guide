@@ -1,4 +1,4 @@
-# What is Amazon CloudWatch?<a name="WhatIsCloudWatch"></a>
+# What Is Amazon CloudWatch?<a name="WhatIsCloudWatch"></a>
 
 Amazon CloudWatch monitors your Amazon Web Services \(AWS\) resources and the applications you run on AWS in real time\. You can use CloudWatch to collect and track metrics, which are variables you can measure for your resources and applications\.
 
@@ -11,10 +11,10 @@ With CloudWatch, you gain system\-wide visibility into resource utilization, app
 ## Accessing CloudWatch<a name="accessing_cloudwatch"></a>
 
 You can access CloudWatch using any of the following methods:
-+ **Amazon CloudWatch console** — [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)
-+ **AWS CLI** — For more information, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
-+ **CloudWatch API** — For more information, see the [Amazon CloudWatch API Reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/Welcome.html)\.
-+ **AWS SDKs** — For more information, see [Tools for Amazon Web Services](http://aws.amazon.com/tools)\.
++ **Amazon CloudWatch console** – [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)
++ **AWS CLI** – For more information, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
++ **CloudWatch API** – For more information, see the [Amazon CloudWatch API Reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/Welcome.html)\.
++ **AWS SDKs** – For more information, see [Tools for Amazon Web Services](http://aws.amazon.com/tools)\.
 
 ## Related AWS Services<a name="related_services"></a>
 

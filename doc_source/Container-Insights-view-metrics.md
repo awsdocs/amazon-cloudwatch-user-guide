@@ -9,6 +9,8 @@
 
 After you have Container Insights set up and it's collecting metrics, you can view those metrics on the CloudWatch automatic dashboards\.
 
+For Container Insights metrics to appear on your dashboard, you must complete the Container Insights setup\. For more information, see [Setting Up Container Insights](deploy-container-insights.md)\.
+
 **To view Container Insights metrics**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
@@ -29,7 +31,7 @@ You can set a CloudWatch alarm on any metric that Container Insights collects\. 
 
 Container Insights collects metrics by using performance log events, which are stored in CloudWatch Logs\. You can use CloudWatch Logs Insights queries for additional views of your container data\.
 
-For more information about CloudWatch Logs Insights, see [Analyze Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\. For more information about the log fields you can use in queries, see [Relevant Fields in Performance Log Events](Container-Insights-reference-performance-entries.md)\.
+For more information about CloudWatch Logs Insights, see [Analyze Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\. For more information about the log fields you can use in queries, see [Relevant Fields in Performance Log Events for Amazon EKS and Kubernetes](Container-Insights-reference-performance-entries-EKS.md)\.
 
 **To use CloudWatch Logs Insights to query your container metric data**
 

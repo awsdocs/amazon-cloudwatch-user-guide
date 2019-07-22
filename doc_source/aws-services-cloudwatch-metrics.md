@@ -18,6 +18,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  AWS CodeBuild  |  `AWS/CodeBuild`  |  [Monitoring AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html)  | 
 |  Amazon Cognito  |  `AWS/Cognito`  |  [Viewing Advanced Security Metrics](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-viewing-advanced-security-metrics.html)  | 
 |  Amazon Connect  |  `AWS/Connect`  |  [Monitoring Amazon Connect in Amazon CloudWatch Metrics](https://docs.aws.amazon.com/connect/latest/adminguide/monitoring-cloudwatch.html)  | 
+|  AWS DataSync  |  `AWS/DataSync`  |  [Monitoring Your Task](https://docs.aws.amazon.com/datasync/latest/userguide/monitor-datasync.html)  | 
 |  AWS Database Migration Service  |  `AWS/DMS`  |  [Monitoring AWS DMS Tasks](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)  | 
 |  AWS Direct Connect  |  `AWS/DX`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html)  | 
 |  Amazon DocumentDB  |  `AWS/DocDB`  |  [Amazon DocumentDB Metrics](https://docs.aws.amazon.com//documentdb/latest/developerguide/cloud-watch.html#metrics-list)  | 
@@ -26,7 +27,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon EC2 Spot Fleet  |  `AWS/EC2Spot`  |  [CloudWatch Metrics for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html)  | 
 |  Amazon EC2 Auto Scaling  |  `AWS/AutoScaling`  |  [Monitoring Your Auto Scaling Groups and Instances Using CloudWatch](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html)  | 
 |  AWS Elastic Beanstalk  |  `AWS/ElasticBeanstalk`  |  [Publishing Amazon CloudWatch Custom Metrics for an Environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-cloudwatch.html)  | 
-|  Amazon Elastic Block Store  |  `AWS/EBS`  |  [Monitoring the Status of Your Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html)  | 
+|  Amazon Elastic Block Store  |  `AWS/EBS`  |  [Amazon CloudWatch Metrics for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cloudwatch_ebs.html)  | 
 |  Amazon Elastic Container Service  |  `AWS/ECS`  |  [Amazon ECS CloudWatch Metrics](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-metrics.html)  | 
 |  Amazon Elastic File System  |  `AWS/EFS`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/efs/latest/ug/monitoring-cloudwatch.html)  | 
 |  Amazon Elastic Inference  |  `AWS/ElasticInference`  |  [Using CloudWatch Metrics to Monitor Amazon EI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cloudwatch-metrics-ei.html)  | 
