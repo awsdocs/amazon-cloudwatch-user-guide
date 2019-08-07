@@ -11,6 +11,10 @@ For each download link, there is a general link as well as links for each Region
 + `https://s3.us-east-1.amazonaws.com/amazoncloudwatch-agent-us-east-1/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm`
 + `https://s3.eu-central-1.amazonaws.com/amazoncloudwatch-agent-eu-central-1/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm`
 
+You can also download a README file about the latest changes to the agent, and a file that indicates the version number that is available for download\. These files are in the following locations:
++ `https://s3.amazonaws.com/amazoncloudwatch-agent/info/latest/RELEASE_NOTES` or `https://s3.region.amazonaws.com/amazoncloudwatch-agent-Region/info/latest/RELEASE_NOTES`
++ `https://s3.amazonaws.com/amazoncloudwatch-agent/info/latest/CWAGENT_VERSION` or `https://s3.region.amazonaws.com/amazoncloudwatch-agent-Region/info/latest/CWAGENT_VERSION`
+
 
 | Architecture | Platform | Download Link | Signature File Link | 
 | --- | --- | --- | --- | 

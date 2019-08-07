@@ -37,6 +37,8 @@ If you're already running the agent with the root user and want to change to usi
 
    Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
 
+1. Give the user necessary permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
+
 1. Start the agent with the configuration file that you just modified\.
 
    ```
@@ -60,6 +62,8 @@ If you're already running the agent with the root user and want to change to usi
    ```
 
    Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
+
+1. Give the user necessary permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
 
 1. Start the agent with the configuration file that you just modified\.
 

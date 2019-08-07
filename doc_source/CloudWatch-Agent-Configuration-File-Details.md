@@ -103,6 +103,11 @@ On servers running Linux, the metrics\_collected section of the configuration fi
     + `rename` – Specifies a different name for this metric\.
     + `unit` – Specifies the unit to use for this metric, overriding the default unit for the metric\. The unit that you specify must be a valid CloudWatch metric unit, as listed in the `Unit` description in [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)\.
   + `ignore_file_system_types` – Specifies file system types to exclude when collecting disk metrics\. Valid values include `sysfs`, `devtmpfs`, and so on\.
+  + `drop_device` – Setting this to `true` causes `Device` to not be included as a dimension for disk metrics\.
+
+    Preventing `Device` from being used as a dimension can be useful on instances that use the Nitro system because on those instances the device names change for each disk mount when the instance is rebooted\. This can cause inconsistent data in your metrics and cause alarms based on these metrics to go to `INSUFFICIENT DATA` state\.
+
+    The default is `false`\.
   + `metrics_collection_interval` – Optional\. Specifies how often to collect the disk metrics, overriding the global `metrics_collection_interval` specified in the `agent` section of the configuration file\.
 
     This value is specified in seconds\.
@@ -196,7 +201,7 @@ On servers running Linux, the metrics\_collected section of the configuration fi
 + `procstat` – Optional\. Specifies that you want to retrieve metrics from individual processes\. For more information, see [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)\. 
 + `statsd` – Optional\. Specifies that you want to retrieve custom metrics using the `StatsD` protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard `StatsD` client to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\. 
 
-The following is an example of a `metrics` section for a Linux server\. In this example, three CPU metrics, three netstat metrics, and three process metrics are collected, and the agent is set up to receive additional metrics from a `collectd` client\.
+The following is an example of a `metrics` section for a Linux server\. In this example, three CPU metrics, three netstat metrics, three process metrics, and one disk metric are collected, and the agent is set up to receive additional metrics from a `collectd` client\.
 
 ```
   "metrics": {
@@ -226,6 +231,15 @@ The following is an example of a `metrics` section for a Linux server\. In this 
         ],
         "metrics_collection_interval": 60
       },
+       "disk": {
+        "measurement": [
+          "used_percent"
+        ],
+        "resources": [
+          "*"
+        ],
+        "drop_device": true
+      },  
       "processes": {
         "measurement": [
           "running",

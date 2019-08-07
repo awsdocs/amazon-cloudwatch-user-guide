@@ -20,7 +20,7 @@ Before you can create an alarm for your estimated charges, you must enable billi
 After you enable billing alerts for the first time, it takes about 15 minutes before you can view billing data and set billing alarms\.
 
 **Requirements**
-+ You must be signed in using account root user credentials; IAM users can't enable billing alerts for your account\.
++ You must be signed in using account root user credentials or as an IAM user that has been given permission to view billing information\.
 + For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account, in addition to the consolidated account\.
 
 **To enable the monitoring of estimated charges**

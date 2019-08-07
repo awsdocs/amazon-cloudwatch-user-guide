@@ -14,7 +14,7 @@ A *namespace* is a container for CloudWatch metrics\. Metrics in different names
 
 There is no default namespace\. You must specify a namespace for each data point you publish to CloudWatch\. You can specify a namespace name when you create a metric\. These names must contain valid XML characters, and be fewer than 256 characters in length\. Possible characters are: alphanumeric characters \(0\-9A\-Za\-z\), period \(\.\), hyphen \(\-\), underscore \(\_\), forward slash \(/\), hash \(\#\), and colon \(:\)\.
 
-The AWS namespaces use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
+The AWS namespaces typically use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 
 ## Metrics<a name="Metric"></a>
 
@@ -121,7 +121,7 @@ Periods are also important for CloudWatch alarms\. When you create an alarm to m
 
 ### Aggregation<a name="CloudWatchAggregation"></a>
 
-Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them by period length\. Aggregated statistics are only available when using detailed monitoring\. In addition, Amazon CloudWatch does not aggregate data across Regions\.
+Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them according to the specified period length\. CloudWatch does not aggregate data across Regions\.
 
 You can publish data points for a metric that share not only the same time stamp, but also the same namespace and dimensions\. CloudWatch returns aggregated statistics for those data points\. You can also publish multiple data points for the same or different metrics, with any time stamp\.
 
@@ -139,9 +139,9 @@ Some CloudWatch metrics support percentiles as a statistic\. For these metrics, 
 
 Percentile statistics are available for custom metrics as long as you publish the raw, unsummarized data points for your custom metric\. Percentile statistics are not available for metrics when any of the metric values are negative numbers\.
 
-CloudWatch needs raw data points to calculate percentiles\. If you publish data using a statistic set instead, you can only retrieve percentile statistics for this data when one of the following conditions is true:
-+ The SampleCount of the statistic set is 1\.
-+ The Min and the Max of the statistic set are equal\.
+CloudWatch needs raw data points to calculate percentiles\. If you publish data using a statistic set instead, you can only retrieve percentile statistics for this data if one of the following conditions is true:
++ The SampleCount value of the statistic set is 1 and Min, Max, and Sum are all equal\.
++ The Min and Max are equal, and Sum is equal to Min multiplied by SampleCount\.
 
 ## Alarms<a name="CloudWatchAlarms"></a>
 

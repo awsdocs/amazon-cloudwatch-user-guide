@@ -22,7 +22,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  AWS Database Migration Service  |  `AWS/DMS`  |  [Monitoring AWS DMS Tasks](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)  | 
 |  AWS Direct Connect  |  `AWS/DX`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html)  | 
 |  Amazon DocumentDB  |  `AWS/DocDB`  |  [Amazon DocumentDB Metrics](https://docs.aws.amazon.com//documentdb/latest/developerguide/cloud-watch.html#metrics-list)  | 
-|  Amazon DynamoDB  |  `AWS/DynamoDB`  |  [Monitoring DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/MonitoringDynamoDB.html)  | 
+|  Amazon DynamoDB  |  `AWS/DynamoDB`  |  [DynamoDB Metrics and Dimensions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/metrics-dimensions.html)  | 
 |  Amazon EC2  |  `AWS/EC2`  |  [Monitoring Your Instances Using CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)  | 
 |  Amazon EC2 Spot Fleet  |  `AWS/EC2Spot`  |  [CloudWatch Metrics for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html)  | 
 |  Amazon EC2 Auto Scaling  |  `AWS/AutoScaling`  |  [Monitoring Your Auto Scaling Groups and Instances Using CloudWatch](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html)  | 
@@ -48,7 +48,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon GameLift  |  `AWS/GameLift`  |  [Monitor Amazon GameLift with CloudWatch](https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AWS Glue  |  `AWS/Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 
 |  Amazon Inspector |  `AWS/Inspector`  |  [Monitoring Amazon Inspector Using CloudWatch](https://docs.aws.amazon.com/inspector/latest/userguide/using-cloudwatch.html)  | 
-|  AWS IoT  |  `AWS/IoT`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/iot/latest/developerguide/monitoring-cloudwatch.html)  | 
+|  AWS IoT  |  `AWS/IoT`  |  [AWS IoT Metrics and Dimensions](https://docs.aws.amazon.com/iot/latest/developerguide/metrics_dimensions.html)  | 
 |  AWS IoT Analytics  |  `AWS/IoTAnalytics`  |  [Namespace, Metrics, and Dimensions](https://docs.aws.amazon.com/iotanalytics/latest/userguide/cloudwatch.html#aws-iot-analytics-cloudwatch-metrics)  | 
 |  AWS IoT Things Graph  |  `AWS/ThingsGraph`  |  [Metrics](https://docs.aws.amazon.com/thingsgraph/latest/ug/iot-tg-metrics.html)  | 
 |  AWS Key Management Service  |  `AWS/KMS`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/kms/latest/developerguide/monitoring-cloudwatch.html)  | 

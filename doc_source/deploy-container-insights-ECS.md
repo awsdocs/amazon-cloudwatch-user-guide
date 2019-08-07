@@ -57,7 +57,7 @@ To enable Container Insights on all new clusters by default, enter the following
 aws ecs put-account-setting --name "containerInsights" --value "enabled"
 ```
 
-If you didn't use the preceding command to enable Container Insights on all new clusters by default, enter the following command to create a new cluster with Container Insights enabled\.
+If you didn't use the preceding command to enable Container Insights on all new clusters by default, enter the following command to create a new cluster with Container Insights enabled\. You must be running version 1\.16\.200 or later of the AWS CLI for the following command to work\.
 
 ```
 aws ecs create-cluster --cluster-name myCICluster --settings "name=containerInsights,value=enabled"

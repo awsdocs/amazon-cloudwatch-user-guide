@@ -34,6 +34,8 @@ When you create a new application with CloudWatch Application Insights for \.NET
 
    CloudWatch Application Insights for \.NET and SQL Server is now set to monitor metrics and logs for your application\. It may take up to two weeks for the system to generate meaningful insights\.
 
+1. **Add AWS Systems Manager OpsCenter Integration\.** To view and get notified when problems are detected for selected applications, select the **Integrate with AWS OpsCenter** check box on the **Monitoring Details** page\. To track the operations that are taken to resolve operational work items \(OpsItems\) that are related to your AWS resources, provide the SNS topic ARN\. 
+
 1. **View monitoring \(optional\)\.** After your application has been set up for monitoring, you can view and troubleshoot detected problems and insights in the default overview page of the CloudWatch console\. You can view detected problems, alarms, and dashboards by selecting **View Insights** from the Application Insights landing page, or on the CloudWatch landing page\. 
 
 **Disabling an Application**  

@@ -58,7 +58,7 @@ For each application that is added to Application Insights for \.NET and SQL Ser
     + `severity`: The severity of the problem\.
     + `problemUrl`: The console URL for the problem\.
 + **Problem Update\.** Emitted when the problem is updated with a new observation or when an existing observation is updated and the problem is subsequently updated; updates include a resolution or closure of the problem\.
-  + Detail Type: ** "Application Insights Problem Updated "**
+  + Detail Type: ** "Application Insights Problem Updated"**
   + Detail:
     + `problemId`: The created problem ID\.
     + `region`: The AWS Region where the problem was created\.
@@ -94,3 +94,5 @@ aws events put-targets \
 
 **Note**  
 You can create a rule from the [ CloudWatch console](https://console.aws.amazon.com/cloudwatch/) by choosing **Rules** under **Events** in the left navigation pane\. Then choose **Create rule** > **Event pattern**, and then select **Custom event pattern** from the **Build event pattern to match events by service** dropdown\.
+
+**Actions Through AWS Systems Manager\.** CloudWatch Application Insights for \.NET and SQL Server provides built\-in integration with Systems Manager OpsCenter\. If you choose to use this integration for your application, an OpsItem is created on the OpsCenter console for every problem detected with the application\. From the OpsCenter console, you can view summarized information about the problem detected by CloudWatch Application Insights and pick a Systems Manager Automation runbook to take remedial actions or further identify Windows processes that are causing resource issues in your application\. 
