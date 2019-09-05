@@ -2,7 +2,13 @@
 
 You can retrieve custom metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. You use the collectd software to send the metrics to the CloudWatch agent\. For the collectd metrics, the CloudWatch agent acts as the server while the collectd plug\-in acts as the client\.
 
-The collectd software is not installed automatically on every server\. For more information, see the [Download page for collectd\.](https://collectd.org/download.shtml) 
+The collectd software is not installed automatically on every server\. 
+
+On the Amazon Linux 2 AMI you need to perform the following steps to install collectd:
+1. `sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
+2. `sudo yum install -y collectd`
+
+For other installation options, see the [Download page for collectd\.](https://collectd.org/download.shtml)
 
 To collect these custom metrics, add a **"collectd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
 
