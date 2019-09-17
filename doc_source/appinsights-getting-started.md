@@ -18,14 +18,17 @@ If you have access to CloudWatch Application Insights for \.NET and SQL Server, 
 
 You must complete the following prerequisites to configure an application with CloudWatch Application Insights:
 + **AWS Systems Manager enablement: **You must install Systems Manager Agent \(SSM Agent\), and your instances must be SSM enabled\. For steps on how to install the SSM Agent, see [Setting Up AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html)\.
-+ **EC2 Instance Role: **You must attach the `AmazonEC2RoleforSSM` to enable Systems Manager \(see [Using Identity\-based Policies \(IAM Policies\) for AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html)\) and the `CloudWatchAgentServerPolicy` to enable instance metrics and logs to be emitted through CloudWatch\. See [Create IAM Roles and Users for Use With CloudWatch Agent](url-doc-domain;AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html) for more information\.
-+ **AWS Resource Group: **To onboard your \.NET and SQL Server applications to CloudWatch Application Insights for \.NET and SQL Server, you must create a Resource Group that includes all associated AWS resources used by your application stack, including application load balancers, EC2 instances running IIS and web front‐end, \.NET worker tiers, and your SQL Server database\. CloudWatch Application Insights for \.NET and SQL Server automatically includes Auto Scaling groups using the same tags or CloudFormation stacks as your Resource Group, because Auto Scaling groups are not currently supported by Resource Groups\. For more information, see [Getting Started with AWS Resource Groups](https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted.html)\.
++ **EC2 Instance Role: **You must attach the `AmazonEC2RoleforSSM` to enable Systems Manager \(see [Using Identity\-based Policies \(IAM Policies\) for AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html)\) and the `CloudWatchAgentServerPolicy` to enable instance metrics and logs to be emitted through CloudWatch\. See [Create IAM Roles and Users for Use With CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html) for more information\.
++ **AWS Resource Group: **To onboard your \.NET and SQL Server applications to CloudWatch Application Insights for \.NET and SQL Server, you must create a Resource Group that includes all associated AWS resources used by your application stack\. This includes application load balancers, EC2 instances running IIS and web front‐end, \.NET worker tiers, and your SQL Server database\. CloudWatch Application Insights for \.NET and SQL Server automatically includes Auto Scaling groups using the same tags or CloudFormation stacks as your Resource Group, because Auto Scaling groups are not currently supported by Resource Groups\. For more information, see [Getting Started with AWS Resource Groups](https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted.html)\.
 + **IAM permissions: **For non‐Admin users, you must create an AWS Identity and Access Management \(IAM\) Policy and attach it to your user identity\. See [IAM Policy](#appinsights-iam)\.
 + **Service\-linked role: **CloudWatch Application Insights for \.NET and SQL Server uses AWS Identity and Access Management \(IAM\) service‐linked roles\. You don’t need to manually create a service‐linked role\. Instead, it is created for you when you create your first CloudWatch Application Insights for \.NET and SQL Server application in the AWS Management Console\. For more information, see [Using Service\-Linked Roles for CloudWatch Application Insights for \.NET and SQL Server](CHAP_using-service-linked-roles-appinsights.md)\.
 
 ## IAM Policy<a name="appinsights-iam"></a>
 
 To use CloudWatch Application Insights for \.NET and SQL Server, you must create an [Identity and Access Management \(IAM\) policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) and attach it to your IAM user identity\. The IAM policy defines the user permissions\.
+
+**To create an IAM policy using the console**  
+To create an IAM policy using the IAM console, follow these steps\.
 
 1. Go to the [IAM console](https://console.aws.amazon.com/iam/home)\. In the left navigation pane, select **Policies**\.
 
@@ -73,3 +76,9 @@ To use CloudWatch Application Insights for \.NET and SQL Server, you must create
 1. Make sure that the correct policy is listed, and select **Add permissions**\.
 
 1. Make sure that you log in with the user associated with the policy that you just created when you use CloudWatch Application Insights for \.NET and SQL Server\.
+
+**To create an IAM policy using the AWS CLI**  
+To create an IAM policy using the AWS CLI, run the [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) operation from the command line using the JSON document above as a file in your current folder\. 
+
+**To create an IAM policy using AWS Tools for Windows PowerShell**  
+To create an IAM policy using the AWS Tools for Windows PowerShell, run the [New\-IAMPolicy](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMPolicy.html) cmdlt using the JSON document above as a file in your current folder\. 

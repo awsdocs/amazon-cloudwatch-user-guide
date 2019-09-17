@@ -1,38 +1,30 @@
 # \(Optional\) Set Up the CloudWatch Agent as a StatsD Endpoint to Send StatsD Metrics to CloudWatch<a name="Container-Insights-setup-StatsD"></a>
 
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
-
 This section explains how to set up and configure the CloudWatch agent as a StatsD endpoint on an Amazon EKS cluster or Kubernetes cluster to collect StatsD metrics from the containers and publish them to CloudWatch\. You might want to do this if you're already using StatsD\.
 
 You have three options for how to deploy the CloudWatch agent as a StatsD endpoint in a cluster:
-+ Option 1: Deploy a single CloudWatch agent inside the cluster\. We recommend this option if you want to aggregate all StatsD metrics across the cluster before publishing them to CloudWatch\.
-+ Option 2: Deploy the CloudWatch agent as a DaemonSet to each worker node\. We recommend this option if you want aggregate StatsD metrics across Kubernetes worker nodes or if you have concern about the scalability of a single CloudWatch agent serving all StatsD metrics across the whole cluster\.
 
-  If you choose this option and you want the CloudWatch agent to both be a StatsD listener and collect Kubernetes metrics, follow the steps in [Set Up the CloudWatch Agent to Collect Cluster Metrics](Container-Insights-setup-metrics.md) and be sure to follow the optional steps for setting up StatsD\. If you do so, you can skip the rest of this section\.
-+ Option 3: Deploy the CloudWatch agent as a sidecar\. We recommend this option if you don’t want to aggregate StatsD metrics between pods\.
+**Deploy a single CloudWatch agent inside the cluster as a service**  
+We recommend this option if you want to aggregate all StatsD metrics across the cluster before publishing them to CloudWatch\. This option also scales well, and consumes fewer resources than deploying the agent as a sidecar\.
+
+**Deploy the CloudWatch agent as a DaemonSet to each worker node**  
+We recommend this option if you want aggregate StatsD metrics across Kubernetes worker nodes, or if you have concern about the scalability of a single CloudWatch agent serving all StatsD metrics across the whole cluster\. It also consumes fewer resources than deploying the agent as a sidecar\.  
+The downside is that you are not able to scale on a single node because only one container will be running on each node\.
+
+**Deploy the CloudWatch agent as a sidecar**  
+We recommend this option if you don’t want to aggregate StatsD metrics across pods\. Resources such as CPU, memory, and network are isolated at the pod level so that it’s flexible for customers to plug the agent into their pods\.  
+The disadvantages of this method include resource consumption– for example, 1000 pods has 1000 CloudWatch agent containers\. Additionally, metrics coming from different tasks can't be aggregated\.
 
 ## Step 1: Create a Namespace for CloudWatch<a name="create-namespace-statsd"></a>
 
 Use the following steps to create a Kubernetes namespace called `amazon-cloudwatch` for CloudWatch\. You can skip these steps if you have already created this namespace\.
 
 **To create a namespace for CloudWatch**
++ Download and apply the namespace YAML to your `kubectl` client host by running the following command\.
 
-1. Download the namespace YAML to your `kubectl` client host by running the following command\.
-
-   ```
-   curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/kubernetes-monitoring/cloudwatch-namespace.yaml
-   ```
-
-1. Run the following command to create the `amazon-cloudwatch` namespace\.
-
-   ```
-   kubectl apply -f cloudwatch-namespace.yaml
-   ```
+  ```
+  kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cloudwatch-namespace.yaml
+  ```
 
 ## Step 2: Create a ConfigMap for StatsD<a name="Container-Insights-setup-StatsD-ConfigMap"></a>
 
@@ -43,7 +35,7 @@ No matter which option you choose, you must create a ConfigMap for StatsD\.
 1. Download the ConfigMap YAML to your `kubectl` client host by running the following command:
 
    ```
-   curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/statsd/cwagent-statsd-configmap.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-statsd/cwagent-statsd-configmap.yaml
    ```
 
    This YAML file has a JSON configuration blob embedded\. 
@@ -74,19 +66,13 @@ This section explains how to deploy a single CloudWatch agent in a cluster to se
 
 **To deploy a single CloudWatch agent in a cluster**
 
-1. Download the deployment YAML by running the following command\.
+1. Download and deploy the deployment YAML by entering the following command\.
 
    ```
-   curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/statsd/cwagent-statsd-deployment.yaml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-statsd/cwagent-statsd-deployment.yaml
    ```
 
-1. Deploy the CloudWatch agent by running the following command\.
-
-   ```
-   kubectl apply -f cwagent-statsd-deployment.yaml
-   ```
-
-1. Validate the deployment by running the following command\.
+1. Validate the deployment by entering the following command\.
 
    ```
    kubectl get pods -n amazon-cloudwatch
@@ -98,16 +84,10 @@ This option is for deploying the CloudWatch agent as a DaemonSet to each worker 
 
 **To deploy the CloudWatch agent on each worker node**
 
-1. Download the DaemonSet YAML from by running the following command\.
+1. Download and deploy the DaemonSet YAML by running the following command\.
 
    ```
-   curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/statsd/cwagent-statsd-daemonset.yaml
-   ```
-
-1. Deploy the CloudWatch agent by running the following command\.
-
-   ```
-   kubectl apply -f cwagent-statsd-daemonset.yaml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-statsd/cwagent-statsd-daemonset.yaml
    ```
 
 1. Validate the deployment by running the following command\.

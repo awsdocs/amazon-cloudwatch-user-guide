@@ -1,31 +1,7 @@
-# Deleting the CloudWatch Agent<a name="ContainerInsights-delete-agent"></a>
+# Deleting the CloudWatch Agent and FluentD for Container Insights<a name="ContainerInsights-delete-agent"></a>
 
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
-
-To delete all resources related to the CloudWatch agent, run the following commands\.
+To delete all resources related to the CloudWatch agent and Fluentd, enter the following command\. In this command, *Cluster* is the name of your Amazon EKS or Kubernetes cluster, and *Region* is the name of the Region where the logs are published\.
 
 ```
-kubectl delete -f cwagent-daemonset.yaml
-```
-
-```
-kubectl delete -f cwagent-configmap.yaml
-```
-
-```
-kubectl delete -f cwagent-serviceaccount.yaml
-```
-
-```
-kubectl delete cm cwagent-clusterleader -n amazon-cloudwatch
-```
-
-```
-kubectl delete -f fluentd.yml && \
-kubectl delete cm cluster-info -n amazon-cloudwatch
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/quickstart/cwagent-fluentd-quickstart.yaml | sed "s/{{cluster_name}}/Cluster_Name/;s/{{region_name}}/Region/" | kubectl delete -f -
 ```

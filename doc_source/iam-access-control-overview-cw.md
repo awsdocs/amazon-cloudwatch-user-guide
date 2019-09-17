@@ -16,7 +16,7 @@ When granting permissions, you decide who is getting the permissions, the resour
 
 ## CloudWatch Resources and Operations<a name="CloudWatch_ARN_Format"></a>
 
-CloudWatch doesn't have any specific resources for you to control access to\. Therefore, there are no CloudWatch Amazon Resource Names \(ARNs\) for you to use in an IAM policy\. For example, you can't give a user access to CloudWatch data for only a specific set of EC2 instances or a specific load balancer\. Permissions granted using IAM cover all the cloud resources you use or monitor with CloudWatch\. In addition, you can't use IAM roles with the CloudWatch command line tools\.
+You can restrict access to specific alarms and dashboards by using their Amazon Resource Names \(ARNs\) in your policies\. For more information, see [Actions, Resources, and Condition Keys for Amazon CloudWatch](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazoncloudwatch.html) in the *IAM User Guide*\.
 
 You use an **\*** \(asterisk\) as the resource when writing a policy to control access to CloudWatch actions\. For example:
 

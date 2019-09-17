@@ -11,7 +11,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 **To create an SNS topic**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. On the Amazon SNS dashboard, under **Common actions**, choose **Create Topic**\. 
 
@@ -23,7 +23,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 **To subscribe to an SNS topic**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. In the navigation pane, choose **Subscriptions**, **Create subscription**\.
 
@@ -39,7 +39,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 **To publish a test message to an SNS topic**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. In the navigation pane, choose **Topics**\.
 

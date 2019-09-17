@@ -332,7 +332,7 @@ The role in the sending account also must include the following policy\. You add
 }
 ```
 
-The role in the target account must include the following policy so that it recognizes the IAM role used by the sending account\. You add this policy on the **Trust relationships** tab in the IAM console when you edit the role\. The role in the target account where you add this policy is the role you created in [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\. This role is the role specified in `agent-role-in-target-account` in the policy used by the sending account\.
+The role in the target account must include the following policy so that it recognizes the IAM role used by the sending account\. You add this policy on the **Trust relationships** tab in the IAM console when you edit the role\. The role in the target account where you add this policy is the role you created in [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent-commandline.md)\. This role is the role specified in `agent-role-in-target-account` in the policy used by the sending account\.
 
 ```
 {

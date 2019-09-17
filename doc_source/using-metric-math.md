@@ -6,7 +6,7 @@ You can also perform metric math programmatically, using the `GetMetricData` API
 
 ## Adding a Math Expression to a CloudWatch Graph<a name="adding-metrics-expression-console"></a>
 
-You can add a math expression to a graph on your CloudWatch dashboard\. Each graph is limited to a maximum of 100 metrics and expressions, so you can add a math expression only if the graph has 99 or fewer metrics\.
+You can add a math expression to a graph on your CloudWatch dashboard\. Each graph is limited to using a maximum of 100 metrics and expressions, so you can add a math expression only if the graph has 99 or fewer metrics\. This applies even if not all the metrics are displayed on the graph\.
 
 **To add a math expression to a graph**
 

@@ -43,8 +43,8 @@ Similar to how each alarm is always in one of three states, each specific data p
 + Missing
 
 For each alarm, you can specify CloudWatch to treat missing data points as any of the following:
-+ `good (notBreaching the threshold` – Missing data points are treated as being within the threshold
-+ `bad (breaching the threshold)` – Missing data points are treated as breaching the threshold
++ `notBreaching` – Missing data points are treated as "good" and within the threshold,
++ `breaching` – Missing data points are treated as "bad" and breaching the threshold
 + `ignore` – The current alarm state is maintained
 + `missing` – The alarm doesn't consider missing data points when evaluating whether to change state
 

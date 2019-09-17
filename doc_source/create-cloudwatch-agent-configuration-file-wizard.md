@@ -38,7 +38,7 @@ The wizard is configured with predefined sets of metrics, with different detail 
 
 | Detail Level | Metrics Included | 
 | --- | --- | 
-|  Basic |  **Mem:** mem\_used\_percent **Swap:** swap\_used\_percent  | 
+|  Basic |  **Mem:** mem\_used\_percent **Disk:** disk\_used\_percent The `disk` metrics such as `disk_used_percent` have a dimension for `Partition`, which means that the number of custom metrics generated is dependent on the number of partitions associated with your instance\. The number of disk partitions you have depends on which AMI you are using and the number of Amazon EBS volumes you attach to the server\.  | 
 |  Standard |  **CPU:** `cpu_usage_idle`, `cpu_usage_iowait`, `cpu_usage_user`, `cpu_usage_system` **Disk:** `disk_used_percent`, `disk_inodes_free` **Diskio:** `diskio_io_time` **Mem:** `mem_used_percent` **Swap:** `swap_used_percent`  | 
 |  Advanced |  **CPU:** `cpu_usage_idle`, `cpu_usage_iowait`, `cpu_usage_user`, `cpu_usage_system` **Disk:** `disk_used_percent`, `disk_inodes_free` **Diskio:** `diskio_io_time`, `diskio_write_bytes`, `diskio_read_bytes`, `diskio_writes`, `diskio_reads` **Mem:** `mem_used_percent` **Netstat:** `netstat_tcp_established`, `netstat_tcp_time_wait` **Swap:** `swap_used_percent`  | 
 
@@ -56,7 +56,7 @@ The wizard is configured with predefined sets of metrics, with different detail 
 
 | Detail Level | Metrics Included | 
 | --- | --- | 
-|  Basic |  **Memory:** `Memory % Committed Bytes In Use` **Paging:** `Paging File % Usage`  | 
+|  Basic |  **Memory:** `Memory % Committed Bytes In Use` **LogicalDisk:** `LogicalDisk % Free Space`  | 
 |  Standard |  **Memory:** `Memory % Committed Bytes In Use` **Paging:** `Paging File % Usage` **Processor:** `Processor % Idle Time`, `Processor % Interrupt Time`, `Processor % User Time` **PhysicalDisk:** `PhysicalDisk % Disk Time` **LogicalDisk:** `LogicalDisk % Free Space`  | 
 |  Advanced |  **Memory:** `Memory % Committed Bytes In Use` **Paging:** `Paging File % Usage` **Processor:** `Processor % Idle Time`, `Processor % Interrupt Time`, `Processor % User Time` **LogicalDisk:** `LogicalDisk % Free Space` **PhysicalDisk:** `PhysicalDisk % Disk Time`, `PhysicalDisk Disk Write Bytes/sec`, `PhysicalDisk Disk Read Bytes/sec`, `PhysicalDisk Disk Writes/sec`, `PhysicalDisk Disk Reads/sec` **TCP:** `TCPv4 Connections Established`, `TCPv6 Connections Established`  | 
 
@@ -88,6 +88,6 @@ The wizard is configured with predefined sets of metrics, with different detail 
 
 1. Answer the questions to customize the configuration file for your server\.
 
-1. If you're storing the configuration file locally, the configuration file `config.json` is stored in the current working directory\. You can then copy this file to other servers where you want to install the agent\.
+1. If you're storing the configuration file locally, the configuration file `config.json` is stored in `/opt/aws/amazon-cloudwatch-agent/bin/`\. You can then copy this file to other servers where you want to install the agent\.
 
    If you're going to use Systems Manager to install and configure the agent, be sure to answer **Yes** when prompted whether to store the file in Systems Manager Parameter Store\. You can also choose to store the file in Parameter Store even if you aren't using the SSM Agent to install the CloudWatch agent\. To be able to store the file in Parameter Store, you must use an IAM role with sufficient permissions\. For more information, see [Create IAM Roles and Users for Use with the CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\.

@@ -1,38 +1,24 @@
 # Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs<a name="Container-Insights-setup-logs"></a>
 
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
-
-In the following steps, you set up FluentD as a DaemonSet to send logs to CloudWatch Logs\. When you complete this step, FluentD creates the following log groups if they don't already exist\.
+To set up FluentD to collect logs from your containers, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up FluentD as a DaemonSet to send logs to CloudWatch Logs\. When you complete this step, FluentD creates the following log groups if they don't already exist\.
 
 
 | Log Group Name | Log Source | 
 | --- | --- | 
 |  `/aws/containerinsights/Cluster_Name/application`  |  All log files in `/var/log/containers`  | 
 |  `/aws/containerinsights/Cluster_Name/host`  |  Logs from `/var/log/dmesg`, `/var/log/secure`, and `/var/log/messages`  | 
-|  `/aws/containerinsights/Cluster_Name/dataplane`  |  Logs from `/var/log/journal`  | 
+|  `/aws/containerinsights/Cluster_Name/dataplane`  |  The logs in `/var/log/journal` for `kubelet.service`, `kubeproxy.service`, and `docker.service`\.  | 
 
 ## Step 1: Create a Namespace for CloudWatch<a name="create-namespace-logs"></a>
 
-Use the following steps to create a Kubernetes namespace called `amazon-cloudwatch` for CloudWatch\. You can skip these steps if you have already created this namespace\.
+Use the following step to create a Kubernetes namespace called `amazon-cloudwatch` for CloudWatch\. You can skip this step if you have already created this namespace\.
 
 **To create a namespace for CloudWatch**
++ Enter the following command\.
 
-1. Download the namespace YAML to your `kubectl` client host by running the following command\.
-
-   ```
-   curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/kubernetes-monitoring/cloudwatch-namespace.yaml
-   ```
-
-1. Run the following command to create the `amazon-cloudwatch` namespace\.
-
-   ```
-   kubectl apply -f cloudwatch-namespace.yaml
-   ```
+  ```
+  kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cloudwatch-namespace.yaml
+  ```
 
 ## Step 2: Install FluentD<a name="ContainerInsights-install-FluentD"></a>
 
@@ -43,12 +29,6 @@ Start this process by downloading FluentD\. When you finish these steps, the dep
 
 **To install FluentD**
 
-1. Download the FluentD deployment configuration by running the following command\.
-
-   ```
-   curl -O https://s3.amazonaws.com/cloudwatch-agent-k8s-yamls/fluentd/fluentd.yml
-   ```
-
 1. Create a ConfigMap named `cluster-info` with the cluster name and the AWS Region that the logs will be sent to\. Run the following command, updating the placeholders with your cluster and Region names\.
 
    ```
@@ -57,10 +37,10 @@ Start this process by downloading FluentD\. When you finish these steps, the dep
    --from-literal=logs.region=region_name -n amazon-cloudwatch
    ```
 
-1. Deploy the FluentD DaemonSet to the cluster by running the following command\.
+1. Download and deploy the FluentD DaemonSet to the cluster by running the following command\.
 
    ```
-   kubectl apply -f fluentd.yml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/fluentd/fluentd.yaml
    ```
 
 1. Validate the deployment by running the following command\. Each node should have one pod named `fluentd-cloudwatch-*`\.
@@ -85,6 +65,135 @@ To verify your FluentD setup, use the following steps\.
    + `/aws/containerinsights/Cluster_Name/dataplane`
 
    If you see these log groups, the FluentD setup is verified\.
+
+## Multiline Log Support<a name="ContainerInsights-fluentd-multiline"></a>
+
+On August 19 2019, we added multiline log support for the logs collected by FluentD\.
+
+By default, the multiline log entry starter is any character with no white space\. This means that all log lines that start with a character that does not have white space are considered as a new multiline log entry\.
+
+If your own application logs use a different multiline starter, you can support them by making two changes in the `fluentd.yaml` file\.
+
+First, exclude them from the default multiline support by adding the pathnames of your log files to an `exclude_path` field in the `containers` section of `fluentd.yaml`\. The following is an example\.
+
+```
+<source>
+  @type tail
+  @id in_tail_container_logs
+  @label @containers
+  path /var/log/containers/*.log
+  exclude_path ["full_pathname_of_log_file*", "full_pathname_of_log_file2*"]
+```
+
+Next, add a block for your log files to the `fluentd.yaml` file\. The example below is used for the CloudWatch agent's log file, which uses a timestamp regular expression as the multiline starter\. You can copy this block and add it to `fluentd.yaml`\. Change the indicated lines to reflect your application log file name and the multiline starter that you want to use\.
+
+```
+<source>
+  @type tail
+  @id in_tail_cwagent_logs
+  @label @cwagentlogs
+  path /var/log/containers/cloudwatch-agent*
+  pos_file /var/log/cloudwatch-agent.log.pos
+  tag *
+  read_from_head true
+ <parse>
+    @type json
+    time_format %Y-%m-%dT%H:%M:%S.%NZ
+ </parse>
+</source>
+```
+
+```
+<label @cwagentlogs>
+  <filter **>
+    @type kubernetes_metadata
+    @id filter_kube_metadata_cwagent
+  </filter>
+
+  <filter **>
+    @type record_transformer
+    @id filter_cwagent_stream_transformer
+    <record>
+      stream_name ${tag_parts[3]}
+    </record>
+ </filter>
+
+  <filter **>
+    @type concat
+    key log
+    multiline_start_regexp /^\d{4}[-/]\d{1,2}[-/]\d{1,2}/
+    separator ""
+    flush_interval 5
+    timeout_label @NORMAL
+ </filter>
+
+ <match **>
+    @type relabel
+    @label @NORMAL
+ </match>
+</label>
+```
+
+## Reducing the Log Volume From FluentD \(Optional\)<a name="ContainerInsights-fluentd-volume"></a>
+
+By default, we send FluentD application logs and Kubernetes metadata to CloudWatch\. If you want to reduce the volume of data being sent to CloudWatch, you can stop one or both of these data sources from being sent to CloudWatch\.
+
+To stop FluentD application logs, remove the following section from the `fluentd.yaml` file\.
+
+```
+<source>
+  @type tail
+  @id in_tail_fluentd_logs
+  @label @fluentdlogs
+  path /var/log/containers/fluentd*
+  pos_file /var/log/fluentd.log.pos
+  tag *
+  read_from_head true
+   <parse>
+   @type json
+   time_format %Y-%m-%dT%H:%M:%S.%NZ
+  </parse>
+</source>  
+
+<label @fluentdlogs>
+  <filter **>
+    @type kubernetes_metadata
+    @id filter_kube_metadata_fluentd
+  </filter>
+
+  <filter **>
+    @type record_transformer
+    @id filter_fluentd_stream_transformer
+    <record>
+      stream_name ${tag_parts[3]}
+    </record>
+   </filter>
+
+   <match **>
+     @type relabel
+     @label @NORMAL
+   </match>
+</label>
+```
+
+To remove Kubernetes metadata from being appended to log events that are sent to CloudWatch, add one line to the `record_transformer` section in the `fluentd.yaml` file\. In the log source where you want to remove this metadata, add the following line\.
+
+```
+remove_keys $.kubernetes.pod_id, $.kubernetes.master_url, $.kubernetes.container_image_id, $.kubernetes.namespace_id
+```
+
+For example:
+
+```
+<filter **>
+  @type record_transformer
+  @id filter_containers_stream_transformer
+  <record>
+    stream_name ${tag_parts[3]}
+  </record>
+  remove_keys $.kubernetes.pod_id, $.kubernetes.master_url, $.kubernetes.container_image_id, $.kubernetes.namespace_id
+</filter>
+```
 
 ## Troubleshooting<a name="ContainerInsights-fluentd-troubleshooting"></a>
 

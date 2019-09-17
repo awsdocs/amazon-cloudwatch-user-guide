@@ -1,19 +1,36 @@
 # Updating the CloudWatch Agent Container Image<a name="ContainerInsights-update-image"></a>
 
+If you need to update your container image to the latest version, use the steps in this section\.
 
-****  
+**To update your container image**
 
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
+1. Apply the latest `cwagent-serviceaccount.yaml` file by entering the following command\.
 
-If you need to update the version of the container image, run the following command\.
+   ```
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-kubernetes-monitoring/cwagent-serviceaccount.yaml
+   ```
 
-```
-kubectl set image ds/cloudwatch-agent cloudwatch-agent=new-image-container  -n amazon-cloudwatch
-```
+1. This step is necessary only for customers who upgraded their containerized CloudWatch agent from a version earlier than 1\.226589\.0, which was released on August 20, 2019\.
 
-To achieve rolling updates, you must make sure the `.spec.template` section in the `cwagent-daemonset.yaml` file has changes\. Otherwise, Kubernetes treats the DaemonSet as unchanged\. A common practice is to add the hash value of the ConfigMap into `.spec.template.metadata.annotations.configHash`, as in the following example\.
+   In the Configmap file `cwagentconfig`, change the keyword `structuredlogs` to `logs`
+
+   1. First, open the existing `cwagentconfig` in edit mode by entering the following command\.
+
+      ```
+      kubectl edit cm cwagentconfig -n amazon-cloudwatch
+      ```
+
+      In the file, if you see the keyword `structuredlogs`, change it to `logs`
+
+   1. Enter **wq** to save the file and exit edit mode\.
+
+1. Apply the latest `cwagent-daemonset.yaml` file by entering the following command\.
+
+   ```
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-kubernetes-monitoring/cwagent-daemonset.yaml
+   ```
+
+You can achieve rolling updates of the CloudWatch agent DaemonSet anytime that you change your configuration in `cwagent-configmap.yaml`\. To do so, you must make sure the `.spec.template` section in the `cwagent-daemonset.yaml` file has changes\. Otherwise, Kubernetes treats the DaemonSet as unchanged\. A common practice is to add the hash value of the ConfigMap into `.spec.template.metadata.annotations.configHash`, as in the following example\.
 
 ```
 yq w -i cwagent-daemonset.yaml spec.template.metadata.annotations.configHash $(kubectl get cm/cwagentconfig -n amazon-cloudwatch -o yaml | sha256sum)

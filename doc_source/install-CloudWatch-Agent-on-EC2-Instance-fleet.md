@@ -10,7 +10,7 @@ After you have a CloudWatch agent configuration saved in Parameter Store, you ca
 
 ## Attach an IAM Role to the Instance<a name="install-CloudWatch-Agent-iam_permissions-fleet"></a>
 
-You must attach an IAM role to the EC2 instance to be able to run the CloudWatch agent on the instance\. This role enables the CloudWatch agent to perform actions on the instance\. Use the role you created earlier that includes just the permissions needed for installing and running the agent\. This role might be called `CloudWatchAgentServerPolicy`\.
+You must attach the **CloudWatchAgentServerRole** IAM role to the EC2 instance to be able to run the CloudWatch agent on the instance\. This role enables the CloudWatch agent to perform actions on the instance\.
 
 For more information, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 

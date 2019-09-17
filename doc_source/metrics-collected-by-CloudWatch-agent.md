@@ -47,13 +47,13 @@ The following table lists metrics that you can collect with the CloudWatch agent
 |  `disk_used` |  Used space on the disks\. Unit: Bytes  | 
 |  `disk_used_percent` |  The percentage of total disk space that is used\. Unit: Percent  | 
 |  `diskio_iops_in_progress` |  The number of I/O requests that have been issued to the device driver but have not yet completed\. Unit: Count  | 
-|  `diskio_io_time` |  The amount of time that the disk has had I/O requests queued\. Unit: Milliseconds  | 
-|  `diskio_reads` |  The number of disk read operations\. Unit: Count  | 
-|  `diskio_read_bytes` |  The number of bytes read from the disks\. Unit: Bytes  | 
-|  `diskio_read_time` |  The amount of time that read requests have waited on the disks\. Multiple read requests waiting at the same time increase the number\. For example, if 5 requests all wait for an average of 100 milliseconds, 500 is reported\. Unit: Milliseconds  | 
-|  `diskio_writes` |  The number disk write operations\. Unit: Count  | 
-|  `diskio_write_bytes` |  The number of bytes written to the disks\. Unit: Bytes  | 
-|  `diskio_write_time` |  The amount of time that write requests have waited on the disks\. Multiple write requests waiting at the same time increase the number\. For example, if 8 requests all wait for an average of 1000 milliseconds, 8000 is reported\. Unit: Milliseconds  | 
+|  `diskio_io_time` |  The amount of time that the disk has had I/O requests queued\. Unit: Milliseconds The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `diskio_reads` |  The number of disk read operations\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `diskio_read_bytes` |  The number of bytes read from the disks\. Unit: Bytes The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `diskio_read_time` |  The amount of time that read requests have waited on the disks\. Multiple read requests waiting at the same time increase the number\. For example, if 5 requests all wait for an average of 100 milliseconds, 500 is reported\. Unit: Milliseconds The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `diskio_writes` |  The number disk write operations\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `diskio_write_bytes` |  The number of bytes written to the disks\. Unit: Bytes The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `diskio_write_time` |  The amount of time that write requests have waited on the disks\. Multiple write requests waiting at the same time increase the number\. For example, if 8 requests all wait for an average of 1000 milliseconds, 8000 is reported\. Unit: Milliseconds The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
 |  `mem_active` |  The amount of memory that has been used in some way during the last sample period\. Unit: Bytes  | 
 |  `mem_available` |  The amount of memory that is available and can be given instantly to processes\. Unit: Bytes  | 
 |  `mem_available_percent` |  The percentage of memory that is available and can be given instantly to processes\. Unit: Percent  | 
@@ -64,14 +64,14 @@ The following table lists metrics that you can collect with the CloudWatch agent
 |  `mem_total` |  The total amount of memory\. Unit: Bytes  | 
 |  `mem_used` |  The amount of memory currently in use\. Unit: Bytes  | 
 |  `mem_used_percent` |  The percentage of memory currently in use\. Unit: Percent  | 
-|  `net_bytes_recv` |  The number of bytes received by the network interface\. Unit: Bytes  | 
-|  `net_bytes_sent` |  The number of bytes sent by the network interface\. Unit: Bytes  | 
-|  `net_drop_in` |  The number of packets received by this network interface that were dropped\. Unit: Count  | 
-|  `net_drop_out` |  The number of packets transmitted by this network interface that were dropped\. Unit: Count  | 
-|  `net_err_in` |  The number of receive errors detected by this network interface\. Unit: Count  | 
-|  `net_err_out` |  The number of transmit errors detected by this network interface\. Unit: Count  | 
-|  `net_packets_sent` |  The number of packets sent by this network interface\. Unit: Count  | 
-|  `net_packets_recv` |  The number of packets received by this network interface\. Unit: Count  | 
+|  `net_bytes_recv` |  The number of bytes received by the network interface\. Unit: Bytes The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_bytes_sent` |  The number of bytes sent by the network interface\. Unit: Bytes The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_drop_in` |  The number of packets received by this network interface that were dropped\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_drop_out` |  The number of packets transmitted by this network interface that were dropped\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_err_in` |  The number of receive errors detected by this network interface\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_err_out` |  The number of transmit errors detected by this network interface\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_packets_sent` |  The number of packets sent by this network interface\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
+|  `net_packets_recv` |  The number of packets received by this network interface\. Unit: Count The only statistic that should be used for this metric is `Sum`\. Do not use `Average`\.  | 
 |  `netstat_tcp_close` |  The number of TCP connections with no state\. Unit: Count  | 
 |  `netstat_tcp_close_wait` |  The number of TCP connections waiting for a termination request from the client\. Unit: Count  | 
 |  `netstat_tcp_closing` |  The number of TCP connections that are waiting for a termination request with acknowledgement from the client\. Unit: Count  | 

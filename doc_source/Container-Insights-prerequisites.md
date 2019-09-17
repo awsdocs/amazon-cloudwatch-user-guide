@@ -1,18 +1,12 @@
 # Verify Prerequisites<a name="Container-Insights-prerequisites"></a>
 
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
-
 Before you install Container Insights on Amazon EKS or Kubernetes, verify the following:
-+ You have a functional Amazon EKS cluster or Kubernetes cluster with nodes attached in one of the Regions that supports the Container Insights preview\. For the list of supported Regions, see [Using Container Insights](ContainerInsights.md)\.
++ You have a functional Amazon EKS or Kubernetes cluster with nodes attached in one of the Regions that supports the Container Insights for Amazon EKS and Kubernetes\. For the list of supported Regions, see [Using Container Insights](ContainerInsights.md)\.
 + You have `kubectl` installed and running\. For more information, see [Installing `kubectl`](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) in the *Amazon EKS User Guide*\.
 + If you're using Kubernetes running on AWS instead of using Amazon EKS, the following prerequisites are also necessary:
   + Be sure that your Kubernetes cluster has enabled role\-based access control \(RBAC\)\. For more information, see [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) in the Kubernetes Reference\. 
   + Your kubelet has enabled Webhook authorization mode\. For more information, see [Kubelet authentication/authorization](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/) in the Kubernetes Reference\.
+  + Your container runtime is Docker\.
 
 You must also attach a policy to the IAM role of your Amazon EKS worker nodes to enable them to send metrics and logs to CloudWatch\. 
 
@@ -28,4 +22,21 @@ You must also attach a policy to the IAM role of your Amazon EKS worker nodes to
 
 1. Choose **Attach policies**\.
 
-If you're running a Kubernetes cluster outside Amazon EKS, you might not already have an IAM role attached to your worker nodes\. If not, you need to first attach an IAM role to the instance and then add the policy as explained in the previous steps\. For more information on attaching a role to an instance, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
+If you're running a Kubernetes cluster outside Amazon EKS, you might not already have an IAM role attached to your worker nodes\. If not, you must first attach an IAM role to the instance and then add the policy as explained in the previous steps\. For more information on attaching a role to an instance, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+If you're running a Kubernetes cluster outside Amazon EKS and you want to collect EBS volume IDs in the metrics, you must add another policy to the IAM role attached to the instance\. Add the following as an inline policy\. For more information, see [Adding and Removing IAM Identity Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the *IAM User Guide*\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ec2:DescribeVolumes"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        }
+    ]
+}
+```

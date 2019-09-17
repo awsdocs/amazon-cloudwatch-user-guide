@@ -23,6 +23,8 @@ If you're going to run the CloudWatch agent on Amazon EC2 instances, use the fol
 
    The role is now created\.
 
+   The role is now created\.
+
 If you're going to run the CloudWatch agent on on\-premises servers, use the following steps to create the necessary IAM user\. 
 
 **To create the IAM user necessary for the CloudWatch agent to run on on\-premises servers**

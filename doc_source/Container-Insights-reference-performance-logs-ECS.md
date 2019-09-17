@@ -1,11 +1,4 @@
-# Container Insights Performance Log Events for Amazon ECS<a name="Container-Insights-reference-structured-logs-ECS"></a>
-
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
+# Container Insights Performance Log Events for Amazon ECS<a name="Container-Insights-reference-performance-logs-ECS"></a>
 
 The following are examples of the performance log events that Container Insights collects from Amazon ECS\.
 

@@ -28,9 +28,9 @@ The second procedure creates the IAM role that you must attach to the Amazon EC2
 
 1. Immediately under **Choose the service that will use this role**, choose **EC2**,and then choose **Next: Permissions**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentServerPolicy**\. \(If necessary, use the search box to find the policy\.\) 
+1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. If necessary, use the search box to find the policy\. 
 
-1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
+1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.
 
 1. Choose **Next: Tags**\.
 
@@ -60,9 +60,9 @@ The permissions for writing to Parameter Store provide broad access\. This role 
 
 1. Immediately under **Choose the service that will use this role**, choose **EC2**, and then choose **Next: Permissions**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentAdminPolicy**\. \(If necessary, use the search box to find the policy\. \)
+1. In the list of policies, select the check box next to **CloudWatchAgentAdminPolicy**\. If necessary, use the search box to find the policy\. 
 
-1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
+1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.
 
 1. Choose **Next: Tags**\.
 
@@ -96,7 +96,7 @@ The second procedure creates the IAM user that you can use when creating the Clo
 
 1. For **Set permissions**, choose **Attach existing policies directly**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentServerPolicy**\. \(If necessary, use the search box to find the policy\.\)
+1.  In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. If necessary, use the search box to find the policy\.
 
 1. To use Systems Manager to install or configure the CloudWatch agent, select the box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
 
@@ -122,7 +122,7 @@ The following procedure creates the IAM user that can also write to Parameter St
 
 1. For **Set permissions**, choose **Attach existing policies directly**\.
 
-1. In the list of policies, select the box next to **CloudWatchAgentAdminPolicy**\. If necessary, use the search box to find the policy\.
+1. In the list of policies, select the check box next to **CloudWatchAgentAdminPolicy**\. If necessary, use the search box to find the policy\.
 
 1. To use Systems Manager to install or configure the CloudWatch agent, select the check box next to **AmazonSSMManagedInstanceCore**\. This AWS managed policy enables an instance to use Systems Manager service core functionality\. \(If necessary, use the search box to find the policy\. This policy isn't necessary if you start and configure the agent only through the command line\.\)
 

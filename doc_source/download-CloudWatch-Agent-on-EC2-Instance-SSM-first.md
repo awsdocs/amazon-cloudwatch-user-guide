@@ -55,6 +55,6 @@ Use the following steps to download the CloudWatch agent package using Systems M
 
 After you have downloaded the CloudWatch agent, you must create the configuration file before you start the agent on any servers\.
 
-If you're going to save your agent configuration file in the Systems Manager Parameter Store, you must use an EC2 instance to save to the Parameter Store\. Additionally, you must first attach to that instance the IAM role that you created that has permissions to write to Parameter Store\. This role might be called `CloudWatchAgentAdminRole`\. For more information about attaching roles, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
+If you're going to save your agent configuration file in the Systems Manager Parameter Store, you must use an EC2 instance to save to the Parameter Store\. Additionally, you must first attach to that instance the `CloudWatchAgentAdminRole` IAM role\. For more information about attaching roles, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 For more information about creating the CloudWatch agent configuration file, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.

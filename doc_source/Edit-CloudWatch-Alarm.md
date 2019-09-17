@@ -50,7 +50,7 @@ CloudWatch has changed the alarm user interface\. By default, you're shown the n
 
 **To update an email notification list that was created using the Amazon SNS console**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. In the navigation pane, choose **Topics** and then select the ARN for your notification list \(topic\)\.
 

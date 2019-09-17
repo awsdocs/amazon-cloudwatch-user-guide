@@ -96,6 +96,8 @@ On servers running Linux, the metrics\_collected section of the configuration fi
 + `disk` – Optional\. Specifies that disk metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as two fields:
   + `resources` – Optional\. Specifies an array of disk mount points\. This field limits CloudWatch to collect metrics from only the listed mount points\. You can specify `*` as the value to collect metrics from all mount points\. The default value is to collect metrics from all mount points\. 
   + `measurement` – Specifies the array of disk metrics to be collected\. Possible values are `free`, `total`, `used`, `used_percent`, `inodes_free`, `inodes_used`, and `inodes_total`\. This field is required if you include `disk`\.
+**Note**  
+The `disk` metrics have a dimension for `Partition`, which means that the number of custom metrics generated is dependent on the number of partitions associated with your instance\. The number of disk partitions you have depends on which AMI you are using and the number of Amazon EBS volumes you attach to the server\.
 
     To see the default units for each `disk` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
@@ -460,13 +462,13 @@ The following is an example of a `logs` section\.
            "files": {
                "collect_list": [
                    {
-                       "file_path": "c: \\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log",
+                       "file_path": "c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log",
                        "log_group_name": "amazon-cloudwatch-agent.log",
                        "log_stream_name": "my_log_stream_name_1",
                        "timestamp_format": "%H: %M: %S%y%b%-d"
                    },
                    {
-                       "file_path": "c: \\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\test.log",
+                       "file_path": "c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\test.log",
                        "log_group_name": "test.log",
                        "log_stream_name": "my_log_stream_name_2"
                    }
