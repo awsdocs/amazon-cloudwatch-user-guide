@@ -14,9 +14,12 @@ The following example shows a template fragment in JSON format\.
   "logs" : [
     list of logs
   ],
-  "instances" : {
+  "instances" : [
     component nested instances configuration
-  }
+  ],
+  "windowsEvents" : [
+   list of windows events channels configurations
+  ]
 }
 ```
 
@@ -42,6 +45,9 @@ The following example shows the instances section fragment in JSON format\.
   ],
   "logs" : [
     list of logs
+  ],
+  "windowsEvents" : [
+  list of windows events channels configurations
   ]
 }
 ```
@@ -103,6 +109,35 @@ Defines a log to be monitored for the component\.
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
 
+## Windows Events<a name="windows-events-"></a>
+
+Defines Windows Events to log\.
+
+**JSON** 
+
+```
+{
+  "logGroupName" : "logGroupName",
+  "eventName" : "eventName",
+  "eventLevels" : ["ERROR","WARNING","CRITICAL","INFORMATION","VERBOSE"],
+  "monitor" : true/false
+}
+```
+
+**Properties**
++ **logGroupName \(required\)**
+
+  The CloudWatch log group name to be associated to the monitored log\. For the log group name constraints, see [CreateLogGroup](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateLogGroup.html)\.
++ **eventName \(required\)**
+
+  The type of Windows Events to log\. It is equivalent to the Windows Event log channel name\. For example, System, Security, CustomEventName, etc\. This field is required for each type of Windows event to log\. 
++ **eventLevels \(required\)**
+
+  The levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, `CRITICAL`, and `VERBOSE`\. This field is required for each type of Windows Event to log\.
++ **monitor \(optional\)**
+
+  Boolean that indicates whether to monitor the logs\. The default value is `true`\.
+
 ## Component Configuration Examples<a name="component-configuration-examples"></a>
 
 The following examples show component configurations in JSON format for relevant AWS services\.
@@ -132,7 +167,19 @@ The following examples show component configurations in JSON format for relevant
       "logType" : "IIS",
       "encoding" : "utf-8"
     }
-  ]
+  ],
+  "windowsEvents" : [
+    {
+      "logGroupName" : "my_log_group_3",
+      "eventName" : "Application",
+      "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ],
+      "monitor" : true
+    }, {
+      "logGroupName" : "my_log_group_4",
+      "eventName" : "System",
+      "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ],
+      "monitor" : true
+  }]
 }
 ```
 
@@ -177,6 +224,14 @@ The following examples show component configurations in JSON format for relevant
         "logPath" : "C:\\LogFolder\\*",
         "logType" : "APPLICATION",
       }
+    ],
+    "windowsEvents" : [
+      {
+        "logGroupName" : "my_log_group_2",
+        "eventName" : "Application",
+        "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ],
+        "monitor" : true
+      }
     ]
   }
 }
@@ -207,6 +262,13 @@ The following examples show component configurations in JSON format for relevant
         "logPath" : "C:\\LogFolder\\*",
         "logType" : "APPLICATION",
       }
+    ],
+    "windowsEvents" : [
+      {
+        "logGroupName" : "my_log_group_2",
+        "eventName" : "Application",
+        "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
+      }
     ]
   }
 }
@@ -236,6 +298,13 @@ The following examples show component configurations in JSON format for relevant
         "logGroupName" : "my_log_group",
         "logPath" : "C:\\LogFolder\\*",
         "logType" : "APPLICATION",
+      }
+    ],
+    "windowsEvents" : [
+      {
+        "logGroupName" : "my_log_group_2",
+        "eventName" : "Application",
+        "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
       }
     ]
   }
@@ -273,6 +342,13 @@ The following examples show component configurations in JSON format for relevant
         "logGroupName" : "my_log_group",
         "logPath" : "C:\\LogFolder\\*",
         "logType" : "APPLICATION",
+      }
+    ],
+    "windowsEvents" : [
+      {
+        "logGroupName" : "my_log_group_2",
+        "eventName" : "Application",
+        "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
       }
     ]
   }

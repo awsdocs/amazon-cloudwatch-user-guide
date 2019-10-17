@@ -51,7 +51,13 @@ The following is an example of an `agent` section\.
 
 On servers running either Linux or Windows Server, the `metrics` section includes the following fields:
 + `namespace` – Optional\. The namespace to use for the metrics collected by the agent\. The default value is `CWAgent`\. The maximum length is 255 characters\.
-+ `append_dimensions` – Optional\. Adds Amazon EC2 metric dimensions to all metrics collected by the agent\. For each dimension, you must specify a key\-value pair, where the key matches an Amazon EC2 dimension: `ImageID:image-id`, `InstanceId:instance-id`, `InstanceType:instance-type`, or `AutoScalingGroupName:AutoScaling-group-name`\. 
++ `append_dimensions` – Optional\. Adds Amazon EC2 metric dimensions to all metrics collected by the agent\. The only supported key\-value pairs are shown in the following list\. Any other key\-value pairs are ignored\.
+  + `"ImageID":"${aws:ImageId}"` sets the instance's AMI ID as the value of the `ImageID` dimension\.
+  + `"InstanceId":"${aws:InstanceId}"` sets the instance's instance ID as the value of the `InstanceID` dimension\.
+  + `"InstanceType":"${aws:InstanceType}"` sets the instance's instance type as the value of the `InstanceType` dimension\.
+  + `"AutoScalingGroupName":"${aws:AutoScalingGroupName}"` sets the instance's Auto Scaling group name as the value of the `AutoScalingGroupName` dimension\.
+
+  If you want to append dimensions to metrics with arbitrary key\-value pairs, use the `append_dimensions` parameter in the field for that particular type of metric\.
 
   If you specify a value that depends on Amazon EC2 metadata and you use proxies, you must make sure that the server can access the endpoint for Amazon EC2\. For more information about these endpoints, see [Amazon Elastic Compute Cloud \(Amazon EC2\)](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
 + `aggregation_dimensions` – Optional\. Specifies the dimensions that collected metrics are to be aggregated on\. For example, if you roll up metrics on the `AutoScalingGroupName` dimension, the metrics from all instances in each Auto Scaling group are aggregated and can be viewed as a whole\.
@@ -77,8 +83,8 @@ On servers running Linux, the metrics\_collected section of the configuration fi
 
  Many of these fields can include a `measurement` sections that lists the metrics you want to collect for that resource\. These `measurement` sections can either specify the complete metric name such as `swap_used`, or just the part of the metric name that will be appended to the type of resource\. For example, specifying `reads` in the `measurement` section of the `diskio` section causes the `diskio_reads` metric to be collected\.
 + `collectd` – Optional\. Specifies that you want to retrieve custom metrics using the `collectd` protocol\. You use `collectd` software to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)\. 
-+ `cpu` – Optional\. Specifies that CPU metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
-  + `resources` – Optional\. Specifies that per\-cpu metrics are to be collected\. The only allowed value is `*`\. If you include this field and value, per\-cpu metrics are collected\. 
++ `cpu` – Optional\. Specifies that CPU metrics are to be collected\. This section is valid only for Linux instances\. You must include at least one of the `resources` and `totalcpu` fields for any CPU metrics to be collected\. This section can include the following fields:
+  + `resources` – Optional\. Specify this field with a value of `*` to cause per\-cpu metrics are to be collected\. The only allowed value is `*`\. 
   + `totalcpu` – Optional\. Specifies whether to report cpu metrics aggregated across all cpu cores\. The default is true\.
   + `measurement` – Specifies the array of cpu metrics to be collected\. Possible values are `time_active`, `time_guest`, `time_guest_nice`, `time_idle`, `time_iowait`, `time_irq`, `time_nice`, `time_softirq`, `time_steal`, `time_system`, `time_user`, `usage_active`, `usage_guest`, `usage_guest_nice`, `usage_idle`, `usage_iowait`, `usage_irq`, `usage_nice`, `usage_softirq`, `usage_steal`, `usage_system`, and `usage_user`\. This field is required if you include `cpu`\.
 
@@ -374,6 +380,11 @@ The `logs` section includes the following fields:
         You can also use the standard asterisk as a standard wildcard\. For example, `/var/log/system.log*` matches files such as `system.log_1111`, `system.log_2222`, and so on in `/var/log`\.
 
         Only the latest file is pushed to CloudWatch Logs based on file modification time\. We recommend that you use wildcards to specify a series of files of the same type, such as `access_log.2018-06-01-01` and `access_log.2018-06-01-02`, but not multiple kinds of files, such as `access_log_80` and `access_log_443`\. To specify multiple kinds of files, add another log stream entry to the agent configuration file so that each kind of log file goes to a different log stream\.
+      + `auto_removal` – Optional\. If this is true, the CloudWatch agent automatically removes old log files after they are uploaded to CloudWatch Logs\. The agent only removes complete files from logs that create multiple files, such as logs that create separate files for each date\. If a log continuously writes to a single file, it is not removed\.
+
+        If you already have a log file rotation or removal method in place, we recommend that you omit this field or set it to `false`\.
+
+        If you omit this field, the default value of `false` is used\.
       + `log_group_name` – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.
 
         If you use these variables to create many different log groups, keep in mind the limit of 5000 log groups per account per Region\.
@@ -385,7 +396,13 @@ The `logs` section includes the following fields:
 
         If you omit this field, the default value of `{instance_id}` is used\. If a log stream doesn't already exist, it's created automatically\.
       + `timezone` – Optional\. Specifies the time zone to use when putting timestamps on log events\. The valid values are `UTC` and `Local`\. The default value is `Local`\.
-      + `timestamp_format` – Optional\. Specifies the timestamp format, using plaintext and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the symbols in the following list as part of the format\. This list of symbols is different than the list used by the older CloudWatch Logs agent\. For a summary of these differences, see [Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-logs-timestamp-differences)  
+
+        This parameter is ignored if you don't specify a value for `timestamp_format`\.
+      + `timestamp_format` – Optional\. Specifies the timestamp format, using plaintext and special symbols that start with %\. If you omit this field, the current time is used\. If you use this field, you can use the symbols in the following list as part of the format\.
+
+        If a single log entry contains two time stamps that match the format, the first time stamp is used\.
+
+        This list of symbols is different than the list used by the older CloudWatch Logs agent\. For a summary of these differences, see [Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-logs-timestamp-differences)  
 `%y`  
 Year without century as a zero\-padded decimal number  
 `%Y`  
@@ -422,6 +439,8 @@ Minutes as a decimal number \(not zero\-padded\)
 Seconds as a zero\-padded decimal number  
 `%-S`  
 Seconds as a decimal number \(not zero padded\)  
+`%f`  
+Fractional seconds as a decimal number \(1\-9 digits\), zero\-padded on the left\.  
 `%Z`  
 Time zone, for example `PST`  
 `%z`  

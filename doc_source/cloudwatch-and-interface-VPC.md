@@ -15,6 +15,7 @@ CloudWatch currently supports VPC endpoints in the following Regions:
 + US East \(N\. Virginia\)
 + US West \(N\. California\)
 + US West \(Oregon\)
++ Asia Pacific \(Hong Kong\)
 + Asia Pacific \(Mumbai\)
 + Asia Pacific \(Seoul\)
 + Asia Pacific \(Singapore\)

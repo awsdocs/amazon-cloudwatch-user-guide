@@ -12,7 +12,7 @@ aws ecs put-account-setting --name "containerInsights" --value "enabled"
 
 ## Setting Up Container Insights on Existing Amazon ECS Clusters<a name="deploy-container-insights-ECS-existing"></a>
 
-To enable Container Insights on an existing Amazon ECS cluster, enter the following command\.
+To enable Container Insights on an existing Amazon ECS cluster, enter the following command\. You must be running version 1\.16\.200 or later of the AWS CLI for the following command to work\.
 
 ```
 aws ecs update-cluster-settings --cluster myCICluster --settings name=containerInsights,value=enabled

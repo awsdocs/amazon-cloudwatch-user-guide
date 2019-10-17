@@ -284,7 +284,7 @@ The following example of part of the `agent` section of the configuration file s
 {
   "agent": {
     "credentials": {
-      "role_arn": "CrossAccountAgentRole"
+      "role_arn": "arn:aws:iam::123456789012:role/CrossAccountAgentRole"
     }
   },
   .....
@@ -358,6 +358,6 @@ The CloudWatch agent supports a different set of symbols for timestamp formats, 
 
 | Symbols Supported by Both Agents | Symbols Supported Only by Unified CloudWatch Agent | Symbols Supported Only by Older CloudWatch Logs Agent | 
 | --- | --- | --- | 
-|  %A, %a, %b, %B, %d, %H, %l, %m, %M, %p, %S, %y, %Y, %Z, %z  |  %\-d, %\-l, %\-m, %\-M, %\-S  |  %c, %f, %j, %U, %W, %w  | 
+|  %A, %a, %b, %B, %d, %f, %H, %l, %m, %M, %p, %S, %y, %Y, %Z, %z  |  %\-d, %\-l, %\-m, %\-M, %\-S  |  %c,%j, %U, %W, %w  | 
 
 For more information about the meanings of the symbols supported by the new CloudWatch agent, see [ CloudWatch Agent Configuration File: Logs Section](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html#CloudWatch-Agent-Configuration-File-Logssection) in the *Amazon CloudWatch User Guide*\. For information about symbols supported by the CloudWatch Logs agent, see [Agent Configuration File](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html#agent-configuration-file) in the *Amazon CloudWatch Logs User Guide*\.

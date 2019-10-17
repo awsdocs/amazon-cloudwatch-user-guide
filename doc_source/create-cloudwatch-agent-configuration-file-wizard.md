@@ -88,6 +88,6 @@ The wizard is configured with predefined sets of metrics, with different detail 
 
 1. Answer the questions to customize the configuration file for your server\.
 
-1. If you're storing the configuration file locally, the configuration file `config.json` is stored in `/opt/aws/amazon-cloudwatch-agent/bin/`\. You can then copy this file to other servers where you want to install the agent\.
+1. If you're storing the configuration file locally, the configuration file `config.json` is stored in `/opt/aws/amazon-cloudwatch-agent/bin/` on Linux servers, and is stored in `ProgramData\Amazon\AmazonCloudWatchAgent\Configs` on Windows Server\. You can then copy this file to other servers where you want to install the agent\.
 
    If you're going to use Systems Manager to install and configure the agent, be sure to answer **Yes** when prompted whether to store the file in Systems Manager Parameter Store\. You can also choose to store the file in Parameter Store even if you aren't using the SSM Agent to install the CloudWatch agent\. To be able to store the file in Parameter Store, you must use an IAM role with sufficient permissions\. For more information, see [Create IAM Roles and Users for Use with the CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\.

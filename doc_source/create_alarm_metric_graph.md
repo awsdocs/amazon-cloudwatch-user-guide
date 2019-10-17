@@ -15,11 +15,28 @@ You can graph a metric and then create an alarm from the metric on the graph, wh
 1. To create an alarm for the metric, choose the **Graphed metrics** tab\. For **Actions**, choose the alarm icon\.  
 ![\[Create an alarm from a graphed metric\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_graph_alarm.png)
 
-1. Under **Alarm Threshold**, enter a unique name for the alarm and a description of the alarm\. For **Whenever**, specify a threshold and the number of periods\.
+1. Under **Conditions**, choose **Static** or **Anomaly detection** to specify whether to use a static threshold or anomaly detection model for the alarm\.
 
-1. Under **Actions**, select the type of action to have the alarm perform when the alarm is triggered\.
+   Depending on your choice, enter the rest of the data for the alarm conditions\.
 
-1. \(Optional\) For **Period**, choose a different value\. For **Statistic**, choose **Standard** to specify one of the statistics in the list or choose **Custom** to specify a percentile \(for example, **p95\.45**\)\.  
-![\[Update the period and statistic for an alarmed metric\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_alarm_period_statistic.png)
+1. Choose **Additional configuration**\. For **Datapoints to alarm**, specify how many evaluation periods \(data points\) must be in the `ALARM` state to trigger the alarm\. If the two values here match, you create an alarm that goes to `ALARM` state if that many consecutive periods are breaching\.
 
-1. Choose **Create Alarm**\.
+   To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an Alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
+
+1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
+
+1. Choose **Next**\.
+
+1. Under **Notification**, select an SNS topic to notify when the alarm is in `ALARM` state, `OK` state, or `INSUFFICIENT_DATA` state\.
+
+   To have the alarm send multiple notifications for the same alarm state or for different alarm states, choose **Add notification**\.
+
+   To have the alarm not send notifications, choose **Remove**\.
+
+1. To have the alarm perform Auto Scaling or EC2 actions, choose the appropriate button and choose the alarm state and action to perform\.
+
+1. When finished, choose **Next**\.
+
+1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. Then choose **Next**\.
+
+1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.

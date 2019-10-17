@@ -35,7 +35,11 @@ To get started with CloudWatch Application Insights for \.NET and SQL Server fro
 
    Based on your tier selection, CloudWatch Application Insights for \.NET and SQL Server makes recommendations for logs to monitor for the selected component\. This recommendation can be customized according to your needs\.
 
-   For each log, specify the file path for the log on your EC2 instance\. The corresponding log group name has a default value but can be customized\. For SQL Server error log and IIS log, a default file path location is assigned\. If you do not want to store your logs in the default location, you should update this default file path\. For log path and log name guidance, see [Paths](https://docs.microsoft.com/en-us/windows/desktop/FileIO/naming-a-file#paths)\.
+   For application\-specific logs, including for Microsoft SQL Server Error logs and IIS logs, verify the default log path \(if any\) or enter the correct log location in your EC2 instance\. 
+
+   You can also choose to add Windows Event Logs, including Windows Logs and Applications and Services Logs\. To do this, enter the types of events you want to store and analyze\. Then, specify all of the event levels \(critical, error, warning, informational, or verbose\) that you want to store in your CloudWatch account\. 
+
+   You can add a log group for storing and grouping each of these logs on your CloudWatch account, which also facilitates searches\. 
 
    CloudWatch Application Insights for \.NET and SQL Server also sets up relevant metrics for your application resources\. They are monitored for approximately two weeks to identify the appropriate metrics thresholds\. If you have created the metrics in the past, CloudWatch Application Insights for \.NET and SQL Server pulls historical data for the last two weeks to identify the thresholds and to set the alarms accordingly\. For newly created metrics, it may take up to three days before alarms are created\. 
 
