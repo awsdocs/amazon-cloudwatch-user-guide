@@ -32,7 +32,7 @@ On the CloudWatch home page, you can focus the view to a single AWS service\. Yo
 
      The alarms view appears in a new tab, displaying a list of your alarms, along with details about the chosen alarm\. To see the history for this alarm, choose the **History** tab\.
 
-1. Alarms are always refreshed one time per minute\. To refresh the view, choose the refresh icon \(two curved arrows\) at the top right of the screen\. To change the automatic refresh rate for items on the screen other than alarms, choose the down arrow next to the refresh icon and choose a refresh ratet\. You can also choose to turn off automatic refresh\.
+1. Alarms are always refreshed one time per minute\. To refresh the view, choose the refresh icon \(two curved arrows\) at the top right of the screen\. To change the automatic refresh rate for items on the screen other than alarms, choose the down arrow next to the refresh icon and choose a refresh rate\. You can also choose to turn off automatic refresh\.
 
 1. To change the time range shown in all graphs and alarms currently displayed, next to **Time range** at the top of the screen, choose the range \. To select from more time range options than those displayed by default, choose **custom**\.
 
