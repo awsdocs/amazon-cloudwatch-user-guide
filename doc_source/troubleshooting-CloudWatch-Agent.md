@@ -103,6 +103,23 @@ If the agent doesn't start and the error message mentions an Amazon EC2 Region e
 
 For example, if you specify a value for the `append_dimensions` parameter in the agent configuration file that depends on Amazon EC2 metadata and you use proxies, you must make sure that the server can access the endpoint for Amazon EC2\. For more information about these endpoints, see [Amazon Elastic Compute Cloud \(Amazon EC2\)](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
 
+## The CloudWatch Agent Won't Start on Windows
+
+On some Windows server installations the CloudWatch Agent takes more than 30 seconds to start.  Since Windows, by default, only allows 30 seconds for services to start, this causes the agent to fail with an error similar to the following:
+
+```
+Start-Service : Service 'Amazon CloudWatch Agent (AmazonCloudWatchAgent)' cannot be started due to the following
+error: Cannot start service AmazonCloudWatchAgent on computer '.'.
+At C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1:113 char:12
++     $svc | Start-Service
++            ~~~~~~~~~~~~~
+    + CategoryInfo          : OpenError: (System.ServiceProcess.ServiceController:ServiceController) [Start-Service],
+   ServiceCommandException
+    + FullyQualifiedErrorId : CouldNotStartService,Microsoft.PowerShell.Commands.StartServiceCommand
+```
+
+The solution is to increase the Windows Service Timeout using the information in this [Microsoft Support document](https://support.microsoft.com/en-us/help/922918/a-service-does-not-start-and-events-7000-and-7011-are-logged-in-window).
+
 ## Unable to Find Credentials on Windows Server<a name="CloudWatch-Agent-troubleshooting-Windows-credentials"></a>
 
 On Windows Server, if you have credentials in a location other than `$SystemDrive\\Users\\Administrator\\.aws` on Windows Server 2008 or Windows Server 2012, or `“$SystemDrive\\Documents and Settings\\Administrator\\.aws` on Windows Server 2003, you can specify your own credential path by using the `shared_credential_file` option in `common.toml`\.
