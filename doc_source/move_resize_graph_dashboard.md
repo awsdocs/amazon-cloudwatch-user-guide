@@ -16,9 +16,9 @@ You can arrange and resize graphs on your CloudWatch dashboard\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards** and choose a dashboard\.
 
-1. To increase or decrease the size, hover over the graph and drag the lower right corner of the graph\.
+1. To increase or decrease the size, hover over the graph and drag the lower right corner of the graph\. Stop dragging the corner when you have the size that you want\.
 
 1. Choose **Save dashboard**\.
 

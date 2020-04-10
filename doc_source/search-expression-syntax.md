@@ -3,7 +3,7 @@
 A valid search expression has the following format\.
 
 ```
-SEARCH(' {Namespace, DimensionName1, DimensionName2, ...}, SearchTerm', 'Statistic', Period)
+SEARCH(' {Namespace, DimensionName1, DimensionName2, ...} SearchTerm', 'Statistic', Period)
 ```
 
 For example:

@@ -1,0 +1,5 @@
+# Accessing CloudWatch Application Insights for \.NET and SQL Server<a name="appinsights-accessing"></a>
+
+If you have access to CloudWatch Application Insights for \.NET and SQL Server, you can manage it through one of the following interfaces:
++ **CloudWatch console**: To add monitors for your application, choose **Settings** in the left navigation pane of the [CloudWatch console](http://console.aws.amazon.com/cloudwatch)\. From the **Settings** page, choose **Application Insights for \.NET and SQL Server**\. After your application is configured, you can use the [ CloudWatch console](https://console.aws.amazon.com/cloudwatch) to view and analyze problems that are detected\.
++ **AWS Command Line Interface \(AWS CLI\)**: You can use the AWS CLI to access AWS API operations\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\. For the API reference, see the Amazon CloudWatch Application Insights for \.NET and SQL Server API Reference\. 

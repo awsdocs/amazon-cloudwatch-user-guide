@@ -122,11 +122,11 @@ CloudWatch Application Insights for \.NET and SQL Server supports using service\
 | Asia Pacific \(Seoul\) | ap\-northeast\-2 | Yes | 
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | Yes | 
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | Yes | 
-| EU \(Frankfurt\) | eu\-central\-1 | Yes | 
-| EU \(Ireland\) | eu\-west\-1 | Yes | 
-| EU \(London\) | eu\-west\-2 | Yes | 
-| EU \(Paris\) | eu\-west\-3 | Yes | 
-| EU \(Stockholm\) | eu\-north\-1 | Yes | 
+| Europe \(Frankfurt\) | eu\-central\-1 | Yes | 
+| Europe \(Ireland\) | eu\-west\-1 | Yes | 
+| Europe \(London\) | eu\-west\-2 | Yes | 
+| Europe \(Paris\) | eu\-west\-3 | Yes | 
+| Europe \(Stockholm\) | eu\-north\-1 | Yes | 
 | South America \(São Paulo\) | sa\-east\-1 | Yes | 
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | Yes | 
 | US East \(N\. Virginia\) | us\-east\-1 | Yes | 

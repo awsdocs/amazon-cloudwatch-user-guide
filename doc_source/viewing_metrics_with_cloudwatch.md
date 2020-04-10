@@ -4,6 +4,8 @@ Metrics are grouped first by namespace, and then by the various dimension combin
 
 Only the AWS services that you're using send metrics to Amazon CloudWatch\.
 
+For a list of AWS services that send metrics to CloudWatch, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\. From this page, you can also see the metrics and dimensions that are published by each of those services\.
+
 **To view available metrics by namespace and dimension using the console**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.

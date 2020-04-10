@@ -33,6 +33,14 @@ If you delete an existing cluster that does not have Container Insights enabled,
 aws ecs update-cluster-settings --cluster myCICluster --settings name=containerInsights,value=enabled
 ```
 
+## Invalid Endpoint Error<a name="ContainerInsights-setup-invalid-endpoint"></a>
+
+If you see an error message similar to the following, check to make sure that you replaced all the placeholders such as *cluster\-name* and *region\-name* in the commands that you are using with the correct information for your deployment\.
+
+```
+"log": "2020-04-02T08:36:16Z E! cloudwatchlogs: code: InvalidEndpointURL, message: invalid endpoint uri, original error: &url.Error{Op:\"parse\", URL:\"https://logs.{{region_name}}.amazonaws.com/\", Err:\"{\"}, &awserr.baseError{code:\"InvalidEndpointURL\", message:\"invalid endpoint uri\", errs:[]error{(*url.Error)(0xc0008723c0)}}\n",
+```
+
 ## Metrics Don't Appear in the Console<a name="ContainerInsights-setup-EKS-troubleshooting-nometrics"></a>
 
 If you don't see any Container Insights metrics in the AWS Management Console, be sure that you have completed the setup of Container Insights\. Metrics don't appear before Container Insights has been set up completely\. For more information, see [Setting Up Container Insights](deploy-container-insights.md)\.

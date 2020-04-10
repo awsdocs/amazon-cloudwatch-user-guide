@@ -1,6 +1,6 @@
 # Collect Process Metrics with the procstat Plugin<a name="CloudWatch-Agent-procstat-process-metrics"></a>
 
-The *procstat* plugin enables you to collect metrics from individual processes\. It is supported on Linux servers and on servers running Windows Server 2008 or later\.
+The *procstat* plugin enables you to collect metrics from individual processes\. It is supported on Linux servers and on servers running Windows Server 2008 R2 or later\.
 
 **Topics**
 + [Configuring the CloudWatch Agent for procstat](#CloudWatch-Agent-procstat-configuration)
@@ -135,6 +135,8 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 |  `memory_stack` |  Linux |  The amount of stack memory that the process is using\. Unit: Bytes  | 
 |  `memory_swap` |  Linux |  The amount of swap memory that the process is using\. Unit: Bytes  | 
 |  `memory_vms` |  Linux, Windows Server |  The amount of virtual memory that the process is using\. Unit: Bytes  | 
+|  pid |  Linux, Windows Server |  Process identifier \(ID\)\. Unit: Count  | 
+|  pid\_count |  Linux, Windows Server |  The number of process IDs associated with the process\. On Linux servers the full name of this metric is `procstat_lookup_pid_count` and on Windows Server it is `procstat_lookup pid_count`\. Unit: Count  | 
 |  `read_bytes` |  Linux, Windows Server |  The number of bytes that the process has read from disks\. Unit: Bytes  | 
 |  `write_bytes` |  Linux, Windows Server |  The number of bytes that the process has written to disks\. Unit: Bytes  | 
 |  `read_count` |  Linux, Windows Server |  The number of disk read operations that the process has executed\. Unit: Count  | 

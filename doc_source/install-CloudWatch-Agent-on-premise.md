@@ -176,11 +176,11 @@ You can start the CloudWatch agent using either Systems Manager Run Command or t
   Windows Server: If you saved the agent configuration file in Systems Manager Parameter Store, enter the following from the PowerShell console:
 
   ```
-  ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m onPremise -c ssm:configuration-parameter-store-name -s
+  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -c ssm:configuration-parameter-store-name -s
   ```
 
   Windows Server: If you saved the agent configuration file on the local computer, enter the following from the PowerShell console:
 
   ```
-  ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m onPremise -c file:configuration-file-path -s
+  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -c file:configuration-file-path -s
   ```

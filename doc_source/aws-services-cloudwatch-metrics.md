@@ -5,18 +5,20 @@ The following AWS services publish metrics to CloudWatch\. For information about
 
 | Service | Namespace | Documentation | 
 | --- | --- | --- | 
+|  Amazon Managed Apache Cassandra Service  |  `AWS/Cassandra`  |  [Amazon Managed Cassandra Service Metrics and Dimensions](https://docs.aws.amazon.com/mcs/latest/devguide/metrics-dimensions.html)  | 
 |  Amazon API Gateway  |  `AWS/ApiGateway`  |  [Monitor API Execution with Amazon CloudWatch](https://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AppStream 2\.0  |  `AWS/AppStream`  |  [Monitoring Amazon AppStream 2\.0 Resources](https://docs.aws.amazon.com/appstream2/latest/developerguide/monitoring.html)  | 
 |  AWS AppSync  |  `AWS/AppSync`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/appsync/latest/devguide/monitoring.html#cw-metrics)  | 
 |  Amazon Athena  |  `AWS/Athena`  |  [Monitoring Athena Queries with CloudWatch Metrics](https://docs.aws.amazon.com/athena/latest/ug/query-metrics-viewing.html)  | 
 |  AWS Billing and Cost Management  |  `AWS/Billing`  |  [Monitoring Charges with Alerts and Notifications](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html)  | 
 |  ACM Private CA  |  `AWS/ACMPrivateCA`  |  [Supported CloudWatch Metrics](https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCloudWatch.html)  | 
+|  AWS Chatbot  |  `AWS/Chatbot`  |  [Monitoring AWS Chatbot with Amazon CloudWatch](https://docs.aws.amazon.com//chatbot/latest/adminguide/monitoring-cloudwatch.html)  | 
 |  Amazon CloudFront  |  `AWS/CloudFront`  |  [Monitoring CloudFront Activity Using CloudWatch](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html)  | 
 |  AWS CloudHSM  |  `AWS/CloudHSM`  |  [Getting CloudWatch Metrics](https://docs.aws.amazon.com/cloudhsm/latest/userguide/hsm-metrics-cw.html)  | 
 |  Amazon CloudSearch  |  `AWS/CloudSearch`  |  [Monitoring an Amazon CloudSearch Domain with Amazon CloudWatch](https://docs.aws.amazon.com/cloudsearch/latest/developerguide/cloudwatch-monitoring.html)  | 
 |  Amazon CloudWatch Logs  |  `AWS/Logs`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html)  | 
 |  AWS CodeBuild  |  `AWS/CodeBuild`  |  [Monitoring AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html)  | 
-|  Amazon Cognito  |  `AWS/Cognito`  |  [Viewing Advanced Security Metrics](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-viewing-advanced-security-metrics.html)  | 
+|  Amazon Cognito  |  `AWS/Cognito`  |  [Monitoring Amazon Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/monitoring.html)  | 
 |  Amazon Connect  |  `AWS/Connect`  |  [Monitoring Amazon Connect in Amazon CloudWatch Metrics](https://docs.aws.amazon.com/connect/latest/adminguide/monitoring-cloudwatch.html)  | 
 |  AWS DataSync  |  `AWS/DataSync`  |  [Monitoring Your Task](https://docs.aws.amazon.com/datasync/latest/userguide/monitor-datasync.html)  | 
 |  AWS Database Migration Service  |  `AWS/DMS`  |  [Monitoring AWS DMS Tasks](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)  | 
@@ -48,6 +50,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon FSx for Windows File Server  |  `AWS/FSx`  |  [Monitoring Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/monitoring_overview.html)  | 
 |  Amazon GameLift  |  `AWS/GameLift`  |  [Monitor Amazon GameLift with CloudWatch](https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AWS Glue  |  `AWS/Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 
+|  AWS Ground Station  |  `AWS/GroundStation`  |  [Metrics Using Amazon CloudWatch](https://docs.aws.amazon.com/ground-station/latest/ug/metrics.html)  | 
 |  Amazon Inspector |  `AWS/Inspector`  |  [Monitoring Amazon Inspector Using CloudWatch](https://docs.aws.amazon.com/inspector/latest/userguide/using-cloudwatch.html)  | 
 |  AWS IoT  |  `AWS/IoT`  |  [AWS IoT Metrics and Dimensions](https://docs.aws.amazon.com/iot/latest/developerguide/metrics_dimensions.html)  | 
 |  AWS IoT Analytics  |  `AWS/IoTAnalytics`  |  [Namespace, Metrics, and Dimensions](https://docs.aws.amazon.com/iotanalytics/latest/userguide/cloudwatch.html#aws-iot-analytics-cloudwatch-metrics)  | 
@@ -60,7 +63,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  AWS Lambda  |  `AWS/Lambda`  |  [AWS Lambda Metrics](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-metrics.html)  | 
 |  Amazon Lex  |  `AWS/Lex`  |  [Monitoring Amazon Lex with CloudWatch](https://docs.aws.amazon.com/lex/latest/dg/monitoring-aws-lex-cloudwatch.html)  | 
 |  Amazon Machine Learning  |  `AWS/ML`  |  [Monitoring Amazon ML with CloudWatch Metrics](https://docs.aws.amazon.com/machine-learning/latest/dg/cw-doc.html)  | 
-|  Amazon Managed Streaming for Kafka  |  `AWS/Kafka`  |  [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html)  | 
+|  Amazon Managed Streaming for Apache Kafka  |  `AWS/Kafka`  |  [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html)  | 
 |  Amazon MQ  |  `AWS/AmazonMQ`  |  [Monitoring Amazon MQ Brokers Using Amazon CloudWatch](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-monitoring-cloudwatch.html)  | 
 |  Amazon Neptune  |  `AWS/Neptune`  |  [Monitoring Neptune with CloudWatch](https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch.html)  | 
 |  AWS OpsWorks  |  `AWS/OpsWorks`  |  [Monitoring Stacks using Amazon CloudWatch](https://docs.aws.amazon.com/opsworks/latest/userguide/monitoring-cloudwatch.html)  | 
@@ -72,6 +75,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Route 53  |  `AWS/Route53`  |  [Monitoring Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/monitoring-overview.html)  | 
 |  Amazon SageMaker  |  `AWS/SageMaker`  |  [Monitoring Amazon SageMaker with CloudWatch](https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html)  | 
 |  AWS SDK Metrics for Enterprise Support  |  `AWS/SDKMetrics`  |  [Metrics and Data Collected by AWS SDK Metrics for Enterprise Support](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-SDK-Metrics.html)  | 
+|  AWS Service Catalog  |  `AWS/ServiceCatalog`  |  [AWS Service Catalog CloudWatch Metrics](https://docs.aws.amazon.com/servicecatalog/latest/adminguide/cloudwatch-metrics.html)  | 
 |  AWS Shield Advanced  |  `AWS/DDoSProtection`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  Amazon Simple Email Service  |  `AWS/SES`  |  [Retrieving Amazon SES Event Data from CloudWatch](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/event-publishing-retrieving-cloudwatch.html)  | 
 |  Amazon Simple Notification Service  |  `AWS/SNS`  |  [Monitoring Amazon SNS with CloudWatch](https://docs.aws.amazon.com/sns/latest/dg/MonitorSNSwithCloudWatch.html)  | 
@@ -80,6 +84,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Simple Workflow Service  |  `AWS/SWF`  |  [Amazon SWF Metrics for CloudWatch](https://docs.aws.amazon.com/amazonswf/latest/developerguide/cw-metrics.html)  | 
 |  AWS Step Functions  |  `AWS/States`  |  [Monitoring Step Functions Using CloudWatch](https://docs.aws.amazon.com/step-functions/latest/dg/procedure-cw-metrics.html)  | 
 |  AWS Storage Gateway  |  `AWS/StorageGateway`  |  [Monitoring Your Gateway and Resources](https://docs.aws.amazon.com/storagegateway/latest/userguide/Main_monitoring-gateways-common.html)  | 
+|  AWS Systems Manager Run Command  |  `AWS/SSM-RunCommand`  |  [Monitoring Run Command Metrics Using CloudWatch](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-cloudwatch-metrics.html)  | 
 |  Amazon Textract  |  `AWS/Textract`  |  [CloudWatch Metrics for Amazon Textract](https://docs.aws.amazon.com/textract/latest/dg/cloudwatch-metricsdim.html)  | 
 |  AWS Transfer for SFTP  |  `AWS/Transfer`  |  [AWS SFTP CloudWatch Metrics](https://docs.aws.amazon.com/transfer/latest/userguide/monitoring.html#metrics)  | 
 |  Amazon Translate  |  `AWS/Translate`  |  [CloudWatch Metrics and Dimensions for Amazon Translate](https://docs.aws.amazon.com/translate/latest/dg/translate-cloudwatch.html)  | 

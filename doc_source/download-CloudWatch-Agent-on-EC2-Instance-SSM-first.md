@@ -39,7 +39,7 @@ Use the following steps to download the CloudWatch agent package using Systems M
 
 1. In the **Command document** list, choose **AWS\-ConfigureAWSPackage**\.
 
-1. In the **Targets** area, choose the instance to install the CloudWatch agent on\. If you don't see a specific instance, it might not be configured as a manged instance for use with Systems Manager\. For more information, see [Setting Up AWS Systems Manager for Hybrid Environments](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html) in the *AWS Systems Manager User Guide*\.
+1. In the **Targets** area, choose the instance to install the CloudWatch agent on\. If you don't see a specific instance, it might not be configured as a managed instance for use with Systems Manager\. For more information, see [Setting Up AWS Systems Manager for Hybrid Environments](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html) in the *AWS Systems Manager User Guide*\.
 
 1. In the **Action** list, choose **Install**\.
 

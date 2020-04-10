@@ -171,11 +171,11 @@ Follow these steps to use the command line to start the CloudWatch agent on a se
    On an EC2 instance running Windows Server, enter the following from the PowerShell console:
 
    ```
-   ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s
+   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -c file:configuration-file-path -s
    ```
 
    On an on\-premises server running Windows Server, enter the following from the PowerShell console:
 
    ```
-   ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m onPremise -c file:configuration-file-path -s
+   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -c file:configuration-file-path -s
    ```

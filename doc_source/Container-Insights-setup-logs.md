@@ -17,7 +17,7 @@ Use the following step to create a Kubernetes namespace called `amazon-cloudwatc
 + Enter the following command\.
 
   ```
-  kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cloudwatch-namespace.yaml
+  kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cloudwatch-namespace.yaml
   ```
 
 ## Step 2: Install FluentD<a name="ContainerInsights-install-FluentD"></a>
@@ -40,7 +40,7 @@ Start this process by downloading FluentD\. When you finish these steps, the dep
 1. Download and deploy the FluentD DaemonSet to the cluster by running the following command\.
 
    ```
-   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/fluentd/fluentd.yaml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluentd/fluentd.yaml
    ```
 
 1. Validate the deployment by running the following command\. Each node should have one pod named `fluentd-cloudwatch-*`\.

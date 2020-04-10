@@ -22,11 +22,13 @@ CloudWatch currently supports VPC endpoints in the following Regions:
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
 + Canada \(Central\)
-+ EU \(Frankfurt\)
-+ EU \(Ireland\)
-+ EU \(London\)
-+ EU \(Paris\)
++ Europe \(Frankfurt\)
++ Europe \(Ireland\)
++ Europe \(London\)
++ Europe \(Paris\)
 + South America \(São Paulo\)
++ AWS GovCloud \(US\-East\)
++ AWS GovCloud \(US\-West\)
 
 ## Creating a VPC Endpoint for CloudWatch<a name="create-VPC-endpoint-for-CloudWatch"></a>
 
@@ -57,6 +59,7 @@ The following is an example of an endpoint policy for CloudWatch\. This policy e
       "Resource": "*"
     }
   ]
+}
 ```
 
 **To modify the VPC endpoint policy for CloudWatch**

@@ -1,19 +1,25 @@
 # Using Amazon CloudWatch Alarms<a name="AlarmThatSendsEmail"></a>
 
-You can create a CloudWatch alarm that watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Amazon EC2 Auto Scaling action, or a notification sent to an Amazon SNS topic\.
+You can create both *metric alarms* and *composite alarms* in CloudWatch\.
++ A *metric alarm* watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Amazon EC2 Auto Scaling action, or a notification sent to an Amazon SNS topic\.
++ A *composite alarm* includes a rule expression that takes into account the alarm states of other alarms that you have created\. The composite alarm goes into ALARM state only if all conditions of the rule are met\. The alarms specified in a composite alarm's rule expression can include metric alarms and other composite alarms\.
 
-You can also add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
+  Using composite alarms can reduce alarm noise\. You can create multiple metric alarms, and also create a composite alarm and set up alerts only for the composite alarm\. For example, a composite might go into ALARM state only when all of the underlying metric alarms are in ALARM state\.
+
+  Composite alarms can send Amazon SNS notifications when they change state, but cannot perform EC2 actions or Auto Scaling actions\.
+
+You can add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
 
 Alarms invoke actions for sustained state changes only\. CloudWatch alarms don't invoke actions simply because they are in a particular state, the state must have changed and been maintained for a specified number of periods\. 
 
 After an alarm invokes an action due to a change in state, its subsequent behavior depends on the type of action that you have associated with the alarm\. For Amazon EC2 Auto Scaling actions, the alarm continues to invoke the action for every period that the alarm remains in the new state\. For Amazon SNS notifications, no additional actions are invoked\.
 
 **Note**  
-CloudWatch doesn't test or validate the actions that you specify, nor does it detect any Amazon EC2 Auto Scaling or Amazon SNS errors resulting from an attempt to invoke nonexistent actions\. Make sure that your actions exist\.
+CloudWatch doesn't test or validate the actions that you specify, nor does it detect any Amazon EC2 Auto Scaling or Amazon SNS errors resulting from an attempt to invoke nonexistent actions\. Make sure that your alarm actions exist\.
 
-## Alarm States<a name="alarm-states"></a>
+## Metric Alarm States<a name="alarm-states"></a>
 
-An alarm has the following possible states:
+A metric alarm has the following possible states:
 + `OK` – The metric or expression is within the defined threshold\.
 + `ALARM` – The metric or expression is outside of the defined threshold\.
 + `INSUFFICIENT_DATA` – The alarm has just started, the metric is not available, or not enough data is available for the metric to determine the alarm state\.
@@ -25,7 +31,7 @@ When you create an alarm, you specify three settings to enable CloudWatch to eva
 + **Evaluation Period** is the number of the most recent periods, or data points, to evaluate when determining alarm state\.
 + **Datapoints to Alarm** is the number of data points within the evaluation period that must be breaching to cause the alarm to go to the `ALARM` state\. The breaching data points don't have to be consecutive, they just must all be within the last number of data points equal to **Evaluation Period**\.
 
-In the following figure, the alarm threshold is set to three units\. The alarm is configured to go to the `ALARM` state and both **Evaluation Period** and **Datapoints to Alarm** are 3\. That is, when all existing data points in the most recent three consecutive periods are above the threshold, the alarm goes to the `ALARM` state\. In the figure, this happens in the third through fifth time periods\. At period six, the value dips below the threshold, so one of the periods being evaluated is not breaching, and the alarm state changes to `OK`\. During the ninth time period, the threshold is breached again, but for only one period\. Consequently, the alarm state remains `OK`\.
+In the following figure, the alarm threshold for a metric alarm is set to three units\. The alarm is configured to go to the `ALARM` state and both **Evaluation Period** and **Datapoints to Alarm** are 3\. That is, when all existing data points in the most recent three consecutive periods are above the threshold, the alarm goes to the `ALARM` state\. In the figure, this happens in the third through fifth time periods\. At period six, the value dips below the threshold, so one of the periods being evaluated is not breaching, and the alarm state changes to `OK`\. During the ninth time period, the threshold is breached again, but for only one period\. Consequently, the alarm state remains `OK`\.
 
 ![\[Alarm threshold trigger alarm\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/alarm_graph.png)
 
@@ -61,12 +67,12 @@ Once CloudWatch retrieves these data points, the following happens:
 + If some data points in the evaluation range are missing, but the number of existing data points retrieved is equal to or more than the alarm's **Evaluation Periods**, CloudWatch evaluates the alarm state based on the most recent existing data points that were successfully retrieved\. In this case, the value you set for how to treat missing data is not needed and is ignored\.
 + If some data points in the evaluation range are missing, and the number of existing data points that were retrieved is lower than the alarm's number of evaluation periods, CloudWatch fills in the missing data points with the result you specified for how to treat missing data, and then evaluates the alarm\. However, any real data points in the evaluation range, no matter when they were reported, are included in the evaluation\. CloudWatch uses missing data points only as few times as possible\. 
 
-In all of these situations, the number of data points evaluated is equal to the value of **Evaluation Periods**\. If fewer than the value of **Datapoints to Alarm** are breaching, the alarm state is set to `OK`\. Otherwise, the state is set to `ALARM`\.
+In all of these situations, the number of data points evaluated is equal to the value of **Evaluation Periods**\. If fewer than the value of **Datapoints to Alarm** are breaching, the alarm state is set to `OK`\. Otherwise, the state is set to `ALARM`\. The exception is if you have set the alarm to treat missing data points as `missing`\. In this case, if CloudWatch could not retrieve enough actual data points during the evaluation range, then the alarm state is set to `INSUFFICIENT_DATA`\.
 
 **Note**  
 A particular case of this behavior is that CloudWatch alarms might repeatedly re\-evaluate the last set of data points for a period of time after the metric has stopped flowing\. This re\-evaluation might cause the alarm to change state and re\-execute actions, if it had changed state immediately prior to the metric stream stopping\. To mitigate this behavior, use shorter periods\.
 
-The following tables illustrate examples of the alarm evaluation behavior\. In the first table, **Datapoints to Alarm** and **Evaluation Periods** are both 3\. CloudWatch retrieves the 5 most recent data points when evaluating the alarm\.
+The following tables illustrate examples of the alarm evaluation behavior\. In the first table, **Datapoints to Alarm** and **Evaluation Periods** are both 3\. CloudWatch retrieves the 5 most recent data points when evaluating the alarm, in case some of the most recent 3 data points are missing\. 5 is the evaluation range for the alarm\.
 
 Column 2 shows how many of the 3 necessary data points are missing\. Even though the most recent 5 data points are evaluated, only 3 \(the setting for **Evaluation Periods**\) are necessary to evaluate the alarm state\. The number of data points in Column 2 is the number of data points that must be "filled in", using the setting for how missing data is being treated\. 
 
@@ -81,9 +87,15 @@ Columns 3\-6 show the alarm state that would be set for each setting of how miss
 |  0 X X \- X  |  0  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `ALARM`  | 
 |  \- \- X \- \-   |  2  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `OK`  | 
 
-In the second row of the preceding table, the alarm stays `OK` even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to `ALARM`, as that non\-breaching data point will no longer be among the 5 most recent data points retrieved\. In the fourth row, the alarm goes to `ALARM` state in all cases because there are enough real data points so that the setting for how to treat missing data doesn't need to be considered\.
+In the second row of the preceding table, the alarm stays `OK` even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to `ALARM`, as that non\-breaching data point will no longer be among the 5 most recent data points retrieved\.
+
+In the fourth row, the alarm goes to `ALARM` state in all cases because there are enough real data points so that the setting for how to treat missing data doesn't need to be considered\.
+
+In the final row, the alarm goes to ALARM state because when an alarm's most recent three data points are either breaching or don't exist, the alarm goes to ALARM state\.
 
 In the next table, the **Period** is again set to 5 minutes, and **Datapoints to Alarm** is only 2 while **Evaluation Periods** is 3\. This is a 2 out of 3, M out of N alarm\.
+
+The evaluation range is 5\. This is the maximum number of recent data points that are retrieved and can be used in case some data points are missing\.
 
 
 | Data points | \# of missing data points | MISSING | IGNORE | BREACHING | NOT BREACHING | 
@@ -92,7 +104,7 @@ In the next table, the **Period** is again set to 5 minutes, and **Datapoints to
 |  0 0 X 0 X  |  0  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `ALARM`  | 
 |  0 \- X \- \-  |  1  |  `OK`  |  `OK`  |  `ALARM`  |  `OK`  | 
 |  \- \- \- \- 0  |  2  |  `OK`  |  `OK`  |  `ALARM`  |  `OK`  | 
-|  \- \- X \- \-  |  2  |  `OK`  |  Retain current state  |  `ALARM`  |  `OK`  | 
+|  \- \- X \- \-  |  2  |  `ALARM`  |  Retain current state  |  `ALARM`  |  `OK`  | 
 
 If data points are missing soon after you create an alarm, and the metric was being reported to CloudWatch before you created the alarm, CloudWatch retrieves the most recent data points from before the alarm was created when evaluating the alarm\.
 
@@ -114,7 +126,7 @@ For more information about metric math expressions and syntax, see [Using Metric
 
 When you set a percentile as the statistic for an alarm, you can specify what to do when there is not enough data for a good statistical assessment\. You can choose to have the alarm evaluate the statistic anyway and possibly change the alarm state\. Or, you can have the alarm ignore the metric while the sample size is low, and wait to evaluate it until there is enough data to be statistically significant\.
 
-For percentiles between 0\.5 and 1\.00, this setting is used when there are fewer than 10/\(1\-percentile\) data points during the evaluation period\. For example, this setting would be used if there were fewer than 1000 samples for an alarm on a p99 percentile\. For percentiles between 0 and 0\.5, the setting is used when there are fewer than 10/percentile data points\.
+For percentiles between 0\.5 \(inclusive\) and 1\.00 \(exclusive\), this setting is used when there are fewer than 10/\(1\-percentile\) data points during the evaluation period\. For example, this setting would be used if there were fewer than 1000 samples for an alarm on a p99 percentile\. For percentiles between 0 and 0\.5 \(exclusive\), the setting is used when there are fewer than 10/percentile data points\.
 
 ## Common Features of CloudWatch Alarms<a name="common-features-of-alarms"></a>
 

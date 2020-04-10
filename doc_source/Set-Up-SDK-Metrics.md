@@ -16,7 +16,7 @@ To set up SDK Metrics, you perform some steps with your SDK and some with CloudW
 
 1. Authorize SDK Metrics to collect and send metrics\. For more information, see [Set IAM Permissions for SDK Metrics](Set-IAM-Permissions-For-SDK-Metrics.md)\.
 
-1. Enable SDK Metrics\. There are multiple methods to do this, depending on which SDK you're using\. One method that is universal for all SDKs is to add the following to your enivronment variables:
+1. Enable SDK Metrics\. There are multiple methods to do this, depending on which SDK you're using\. One method that is universal for all SDKs is to add the following to your environment variables:
 
    ```
    export AWS_CSM_ENABLED=true

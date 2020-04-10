@@ -1,10 +1,10 @@
-# Monitoring CloudWatch Usage<a name="CloudWatch-Usage-Metrics"></a>
+# CloudWatch Usage Metrics<a name="CloudWatch-Usage-Metrics"></a>
 
-CloudWatch collects metrics that track the usage of some AWS resources\. These metrics correspond to AWS service limits\. Tracking these metrics can help you make sure your use of AWS stays within your service limits\.
+CloudWatch collects metrics that track the usage of some AWS resources\. These metrics correspond to AWS service quotas\. Tracking these metrics can help you proactively manage your quotas\. For more information, see [Service Quotas Integration and Usage Metrics](CloudWatch-Service-Quota-Integration.md)\.
 
-Currently, the only metric in this namespace that CloudWatch uses is `CallCount`\. This metric is published with the dimensions `Resource`, `Service`, and `Type`\. The `Resource` dimension specifies the name of the API operation being tracked\. For example, the `CallCount` metric with the dimensions `"Service": "CloudWatch"`, `"Type": "API"` and `"Resource": "PutMetricData"` indicates the number of times the CloudWatch `PutMetricData` API operation has been called in your account\.
+Service quota usage metrics are in the `AWS/Usage` namespace and are collected every minute\.
 
-Account\-level usage metrics for supported AWS resources are in the `AWS/Usage` namespace and are collected every minute\.
+Currently, the only metric name in this namespace that CloudWatch publishes is `CallCount`\. This metric is published with the dimensions `Resource`, `Service`, and `Type`\. The `Resource` dimension specifies the name of the API operation being tracked\. For example, the `CallCount` metric with the dimensions `"Service": "CloudWatch"`, `"Type": "API"` and `"Resource": "PutMetricData"` indicates the number of times the CloudWatch `PutMetricData` API operation has been called in your account\.
 
 The `CallCount` metric does not have a specified unit\. The most useful statistic for the metric is `SUM`, which represents the total operation count for the 1\-minute period\.
 
@@ -20,7 +20,7 @@ The `CallCount` metric does not have a specified unit\. The most useful statisti
 
 | Dimension | Description | 
 | --- | --- | 
-|  `Resource`  |  The name of the API operation\. Valid values include the following: DeleteAlarms, DeleteDashboards, DescribeAlarmHistory, DescribeAlarms, GetDashboard, GetMetricData, GetMetricStatistics, ListMetrics, PutDashboard, and PutMetricData  | 
-|  `Service`  |  The name of the AWS service containing the resource\.  | 
-|  `Type`  |  The type of resource being tracked\. Currently, the only valid value is `API`\.  | 
+|  `Service`  |  The name of the AWS service containing the resource\. For CloudWatch usage metrics, the value for this dimension is `CloudWatch`\.  | 
 |  `Class`  |  The class of resource being tracked\. CloudWatch API usage metrics use this dimension with a value of `None`\.  | 
+|  `Type`  |  The type of resource being tracked\. Currently, when the `Service` dimension is `CloudWatch`, the only valid value for `Type` is `API`\.  | 
+|  `Resource`  |  The name of the API operation\. Valid values include the following: DeleteAlarms, DeleteDashboards, DescribeAlarmHistory, DescribeAlarms, GetDashboard, GetMetricData, GetMetricStatistics, ListMetrics, PutDashboard, and PutMetricData  | 

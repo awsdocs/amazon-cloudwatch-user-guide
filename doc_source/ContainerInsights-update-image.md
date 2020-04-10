@@ -7,7 +7,7 @@ If you need to update your container image to the latest version, use the steps 
 1. Apply the latest `cwagent-serviceaccount.yaml` file by entering the following command\.
 
    ```
-   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-kubernetes-monitoring/cwagent-serviceaccount.yaml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-serviceaccount.yaml
    ```
 
 1. This step is necessary only for customers who upgraded their containerized CloudWatch agent from a version earlier than 1\.226589\.0, which was released on August 20, 2019\.
@@ -27,7 +27,7 @@ If you need to update your container image to the latest version, use the steps 
 1. Apply the latest `cwagent-daemonset.yaml` file by entering the following command\.
 
    ```
-   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-yaml-templates/cwagent-kubernetes-monitoring/cwagent-daemonset.yaml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml
    ```
 
 You can achieve rolling updates of the CloudWatch agent DaemonSet anytime that you change your configuration in `cwagent-configmap.yaml`\. To do so, you must make sure the `.spec.template` section in the `cwagent-daemonset.yaml` file has changes\. Otherwise, Kubernetes treats the DaemonSet as unchanged\. A common practice is to add the hash value of the ConfigMap into `.spec.template.metadata.annotations.configHash`, as in the following example\.

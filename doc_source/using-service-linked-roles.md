@@ -1,10 +1,12 @@
-# Using Service\-Linked Roles for CloudWatch Alarms<a name="using-service-linked-roles"></a>
+# Using Service\-Linked Roles for CloudWatch<a name="using-service-linked-roles"></a>
 
 Amazon CloudWatch uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role)\. A service\-linked role is a unique type of IAM role that is linked directly to CloudWatch\. Service\-linked roles are predefined by CloudWatch and include all the permissions that the service requires to call other AWS services on your behalf\. 
 
-The service\-linked role in CloudWatch makes setting up CloudWatch alarms that can terminate, stop, or reboot Amazon EC2 instance easier because you don’t have to manually add the necessary permissions\. CloudWatch defines the permissions of the service\-linked role, and unless defined otherwise, only CloudWatch can assume the role\. The defined permissions include the trust policy and the permissions policy, and that permissions policy cannot be attached to any other IAM entity\.
+One service\-linked role in CloudWatch makes setting up CloudWatch alarms that can terminate, stop, or reboot an Amazon EC2 instance without requiring you to manually add the necessary permissions\. Another service\-linked role enables a monitoring account to access CloudWatch data from other accounts that you specify, to build cross\-account cross\-Region dashboards\.
 
-You can delete the roles only after first deleting their related resources\. This protects your CloudWatch resources because you can't inadvertently remove permissions to access the resources\.
+CloudWatch defines the permissions of these service\-linked roles, and unless defined otherwise, only CloudWatch can assume the role\. The defined permissions include the trust policy and the permissions policy, and that permissions policy cannot be attached to any other IAM entity\.
+
+You can delete the roles only after first deleting their related resources\. This restriction protects your CloudWatch resources because you can't inadvertently remove permissions to access the resources\.
 
 For information about other services that support service\-linked roles, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) and look for the services that have **Yes** in the **Service\-Linked Role** column\. Choose a **Yes** with a link to view the service\-linked role documentation for that service\.
 
@@ -22,18 +24,24 @@ The AWSServiceRoleForCloudWatchEvents service\-linked role permissions policy al
 + `ec2:DescribeInstances`
 +  `ec2:DescribeInstanceStatus`
 
-## Creating a Service\-Linked Role for CloudWatch Alarms<a name="create-service-linked-role"></a>
+The **AWSServiceRoleForCloudWatchCrossAccount** service\-linked role permissions policy allows CloudWatch to complete the following actions:
++ `sts:AssumeRole`
 
-You do not need to manually create a service\-linked role\. The first time you create an alarm in the AWS Management Console, the IAM CLI, or the IAM API, CloudWatch creates the service\-linked role for you\. 
+## Service\-Linked Role Permissions for CloudWatch Cross\-Account Cross\-Region<a name="service-linked-role-permissions"></a>
 
-**Important**  
-This service\-linked role can appear in your account if you completed an action in another service that uses the features supported by this role\. Also, if you were using the CloudWatch service before January 1, 2017, when it began supporting service\-linked roles, then CloudWatch created the AWSServiceRoleForCloudWatchEvents role in your account\. To learn more, see [A New Role Appeared in My IAM Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared)\.
+CloudWatch uses the service\-linked role named **AWSServiceRoleForCloudWatchCrossAccount** – CloudWatch uses this role to access CloudWatch data in other AWS accounts that you specify\. The SLR only provides the assume role permission to allow the CloudWatch service to assume the role in the sharing account\. It is the sharing role that provides access to data\. 
+
+The **AWSServiceRoleForCloudWatchCrossAccount** service\-linked role trusts the CloudWatch service to assume the role\.
+
+## Creating a Service\-Linked Role for CloudWatch<a name="create-service-linked-role"></a>
+
+You do not need to manually create either of these service\-linked roles\. The first time you create an alarm in the AWS Management Console, the IAM CLI, or the IAM API, CloudWatch creates AWSServiceRoleForCloudWatchEvents for you\. When you first enable an account to be a monitoring account for cross\-account cross\-Region functionality, CloudWatch creates **AWSServiceRoleForCloudWatchCrossAccount** for you\. 
 
 For more information, see [Creating a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#create-service-linked-role) in the *IAM User Guide*\.
 
-## Editing a Service\-Linked Role for CloudWatch Alarms<a name="edit-service-linked-role"></a>
+## Editing a Service\-Linked Role for CloudWatch<a name="edit-service-linked-role"></a>
 
-CloudWatch does not allow you to edit the **AWSServiceRoleForCloudWatchEvents** role\. After you create the role, you cannot change the name of the role because various entities might reference the role\. However, you can edit the description of the **AWSServiceRoleForCloudWatchEvents** role using IAM\. 
+CloudWatch does not allow you to edit the **AWSServiceRoleForCloudWatchEvents** or **AWSServiceRoleForCloudWatchCrossAccount** roles\. After you create these roles, you cannot change their names because various entities might reference these roles\. However, you can edit the description of these roles using IAM\. 
 
 ### Editing a Service\-Linked Role Description \(IAM Console\)<a name="edit-service-linked-role-iam-console"></a>
 
@@ -47,7 +55,7 @@ You can use the IAM console to edit the description of a service\-linked role\.
 
 1. To the far right of **Role description**, choose **Edit**\. 
 
-1. Type a new description in the box and choose **Save**\.
+1. Type a new description in the box, and choose **Save**\.
 
 ### Editing a Service\-Linked Role Description \(AWS CLI\)<a name="edit-service-linked-role-iam-cli"></a>
 
@@ -83,9 +91,11 @@ You can use the IAM API to edit the description of a service\-linked role\.
 
    [UpdateRoleDescription](https://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateRoleDescription.html)
 
-## Deleting a Service\-Linked Role for CloudWatch Alarms<a name="delete-service-linked-role"></a>
+## Deleting a Service\-Linked Role for CloudWatch<a name="delete-service-linked-role"></a>
 
-If you no longer have alarms that automatically stop, terminate, or reboot EC2 instances, we recommend that you delete the AWSServiceRoleForCloudWatchEvents role\. That way you don’t have an unused entity that is not actively monitored or maintained\. However, you must clean up your service\-linked role before you can delete it\.
+If you no longer have alarms that automatically stop, terminate, or reboot EC2 instances, we recommend that you delete the AWSServiceRoleForCloudWatchEvents role\.
+
+That way you don’t have an unused entity that is not actively monitored or maintained\. However, you must clean up your service\-linked role before you can delete it\.
 
 ### Cleaning Up a Service\-Linked Role<a name="service-linked-role-review-before-delete"></a>
 
@@ -99,7 +109,7 @@ Before you can use IAM to delete a service\-linked role, you must first confirm 
 
 1. On the **Summary** page for the selected role, choose **Access Advisor** and review the recent activity for the service\-linked role\.
 **Note**  
-If you are unsure whether CloudWatch is using the AWSServiceRoleForCloudWatchEvents role, try to delete the role\. If the service is using the role, then the deletion fails and you can view the regions where the role is being used\. If the role is being used, then you must wait for the session to end before you can delete the role\. You cannot revoke the session for a service\-linked role\. 
+If you are unsure whether CloudWatch is using the AWSServiceRoleForCloudWatchEvents role, try to delete the role\. If the service is using the role, then the deletion fails and you can view the Regions where the role is being used\. If the role is being used, then you must wait for the session to end before you can delete the role\. You cannot revoke the session for a service\-linked role\. 
 
 ### Deleting a Service\-Linked Role \(IAM Console\)<a name="delete-service-linked-role-iam-console"></a>
 
@@ -109,7 +119,7 @@ You can use the IAM console to delete a service\-linked role\.
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles**\. Select the check box next to AWSServiceRoleForCloudWatchEvents, not the name or row itself\. 
+1. In the navigation pane, choose **Roles**\. Select the check box next to the name of the role you want to delete, not the name or row itself\. 
 
 1. For **Role actions**, choose **Delete role**\.
 
@@ -143,7 +153,7 @@ You can use the IAM API to delete a service\-linked role\.
 
 **To delete a service\-linked role \(API\)**
 
-1. To submit a deletion request for a service\-linked roll, call [DeleteServiceLinkedRole](https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html)\. In the request, specify the AWSServiceRoleForCloudWatchEvents role name\.
+1. To submit a deletion request for a service\-linked roll, call [DeleteServiceLinkedRole](https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html)\. In the request, specify the role name that you want to delete\.
 
    Because a service\-linked role cannot be deleted if it is being used or has associated resources, you must submit a deletion request\. That request can be denied if these conditions are not met\. You must capture the `DeletionTaskId` from the response to check the status of the deletion task\.
 

@@ -1,6 +1,6 @@
-# View and Troubleshoot Problems Detected by Amazon CloudWatch Application Insights for \.NET and SQL Server<a name="appinsights-troubleshooting"></a>
+# View and troubleshoot problems detected by Amazon CloudWatch Application Insights for \.NET and SQL Server<a name="appinsights-troubleshooting"></a>
 
-An overview of problems impacting your \.NET and SQL Server applications is listed under the CloudWatch Application Insights for \.NET and SQL Server widget in the default overview page of the CloudWatch console\. For more information, see [Getting Started with Amazon CloudWatch Application Insights for \.NET and SQL Server](appinsights-getting-started.md)\.
+An overview of problems impacting your \.NET and SQL Server applications is listed under the CloudWatch Application Insights for \.NET and SQL Server widget in the default overview page of the CloudWatch console\. For more information, see [Getting started with Amazon CloudWatch Application Insights for \.NET and SQL Server](appinsights-getting-started.md)\.
 
 The CloudWatch Application Insights for \.NET and SQL Server widget displays the following:
 + The severity of the problems detected
@@ -31,7 +31,7 @@ CloudWatch Application Insights for \.NET and SQL Server provides the following 
 
 You can provide feedback on the automatically generated insights on detected problems by designating them useful or not useful\. Your feedback on the insights, along with your application diagnostics \(metric anomalies and log exceptions\), are used to improve the future detection of similar problems\.
 
-## Configuration Errors<a name="appinsights-configuration-errors"></a>
+## Configuration errors<a name="appinsights-configuration-errors"></a>
 
 CloudWatch Application Insights for \.NET and SQL Server uses your configuration to create monitoring telemetries for the components\. When Application Insights detects an issue with your account or your configuration, information is provided in the **Remarks** field about how to resolve the configuration issue for your application\. 
 
@@ -42,57 +42,5 @@ The following table shows suggested resolutions for specific remarks\.
 | --- | --- | --- | 
 |  The quota for alarms has already been reached\.  |  By default, each AWS account can have 5,000 CloudWatch alarms per AWS Region\. See [CloudWatch Limits](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_limits.html)\. When throttled by this limit, CloudWatch Application Insights for \.NET and SQL Server cannot create all of the required alarms to monitor your application\. To resolve this, raise the account limit for CloudWatch alarms\.  | n/a | 
 |  The quota for CloudFormation has already been reached\.  |  Application Insights creates one CloudFormation stack for each application to manage CloudWatch agent installation and configuration for all application components\. By default, each AWS account can have 200 stacks\. See [AWS CloudFormation Limits](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html)\. To resolve this, raise the limit for CloudFormation stacks\.  | n/a | 
-|  No SSM instance role on the following instances\.  |  For Application Insights to be able to install and configure CloudWatch agent on application instances, AmazonEC2RoleforSSM and CloudWatchAgentServerPolicy policies must be attached to the instance role\.   |  ApplicationInsights calls the SSM [DescribeInstanceInformation API](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstanceInformation.html) to get the list of instances with SSM permission\. After the role is attached to the instance, it takes time for SSM to include the instance in the DescribeInstanceInformation result\. Until SSM includes the instance in the result, NO\_SSM\_INSTANCE\_ROLE error remains present for the application\.  | 
+|  No SSM instance role on the following instances\.  |  For Application Insights to be able to install and configure CloudWatch agent on application instances, AmazonEC2RoleforSSM and CloudWatchAgentServerPolicy policies must be attached to the instance role\.   |  Application Insights calls the SSM [DescribeInstanceInformation API](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstanceInformation.html) to get the list of instances with SSM permission\. After the role is attached to the instance, it takes time for SSM to include the instance in the DescribeInstanceInformation result\. Until SSM includes the instance in the result, NO\_SSM\_INSTANCE\_ROLE error remains present for the application\.  | 
 |  New components may need configuration\.  |  Application Insights detects that there are new components in the application Resource Group\. To resolve this, configure the new components accordingly\.  | n/a | 
-
-## Set Up Notifications and Actions for Detected Problems<a name="appinsights-cloudwatch-events"></a>
-
-For each application that is added to Application Insights for \.NET and SQL Server, a CloudWatch Event is published for the following events:
-+ **Problem Creation\.** Emitted when CloudWatch Application Insights for \.NET and SQL Server detects a new problem\.
-  + Detail Type: ** "Application Insights Problem Detected"**
-  + Detail:
-    + `problemId`: The detected problem ID\.
-    + `region`: The AWS Region where the problem was created\.
-    + `resourceGroupName`: The Resource Group for the registered application for which the problem was detected\.
-    + `status`: The status of the problem\.
-    + `severity`: The severity of the problem\.
-    + `problemUrl`: The console URL for the problem\.
-+ **Problem Update\.** Emitted when the problem is updated with a new observation or when an existing observation is updated and the problem is subsequently updated; updates include a resolution or closure of the problem\.
-  + Detail Type: ** "Application Insights Problem Updated"**
-  + Detail:
-    + `problemId`: The created problem ID\.
-    + `region`: The AWS Region where the problem was created\.
-    + `resourceGroupName`: The Resource Group for the registered application for which the problem was detected\.
-    + `status`: The status of the problem\.
-    + `severity`: The severity of the problem\.
-    + `problemUrl`: The console URL for the problem\.
-
-**Example: How to receive notification for problem events generated by an application**
-
-To receive notifications for problem events generated by Application Insights for \.NET and SQL Server, create a rule for Application Insights to receive problems for a specific application\.
-
-```
-aws events put-rule \
---name cwe-test \
---event-pattern \
-'{
-  "source": ["aws.applicationinsights"], 
-  "detail-type": ["Application Insights Problem Detected"],
-  "detail": {
-       "resourceGroupName": ["<RESOURCE_GROUP_NAME>"]
-   }
-  }'
-```
-
-Then add the proper CloudWatch Event target, which should receive the events\.
-
-```
-aws events put-targets \
---rule cwe-test \
---targets Id=1,Arn=<TARGET_ARN>
-```
-
-**Note**  
-You can create a rule from the [ CloudWatch console](https://console.aws.amazon.com/cloudwatch/) by choosing **Rules** under **Events** in the left navigation pane\. Then choose **Create rule** > **Event pattern**, and then select **Custom event pattern** from the **Build event pattern to match events by service** dropdown\.
-
-**Actions Through AWS Systems Manager\.** CloudWatch Application Insights for \.NET and SQL Server provides built\-in integration with Systems Manager OpsCenter\. If you choose to use this integration for your application, an OpsItem is created on the OpsCenter console for every problem detected with the application\. From the OpsCenter console, you can view summarized information about the problem detected by CloudWatch Application Insights and pick a Systems Manager Automation runbook to take remedial actions or further identify Windows processes that are causing resource issues in your application\. 

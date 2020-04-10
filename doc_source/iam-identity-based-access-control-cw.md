@@ -48,6 +48,7 @@ For a user to work with the CloudWatch console, that user must have a minimum se
 + Amazon SNS
 + Amazon SQS
 + Amazon SWF
++ X\-Ray, if you are using the ServiceLens feature
 
 If you create an IAM policy that is more restrictive than the minimum required permissions, the console won't function as intended for users with that IAM policy\. To ensure that those users can still use the CloudWatch console, also attach the `CloudWatchReadOnlyAccess` managed policy to the user, as described in [AWS Managed \(Predefined\) Policies for CloudWatch](#managed-policies-cloudwatch)\.
 
@@ -133,6 +134,8 @@ The full set of permissions required to work with the CloudWatch console are lis
 + swf:RegisterDomain
 + swf:UpdateAction
 
+Additionally, to view the service map in ServiceLens, you need `AWSXrayReadOnlyAccess`
+
 ## AWS Managed \(Predefined\) Policies for CloudWatch<a name="managed-policies-cloudwatch"></a>
 
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
@@ -146,6 +149,38 @@ The following AWS managed policies, which you can attach to users in your accoun
 You can review these permissions policies by signing in to the IAM console and searching for specific policies there\.
 
 You can also create your own custom IAM policies to allow permissions for CloudWatch actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
+
+### AWS Managed \(Predefined\) Policies for CloudWatch Synthetics<a name="managed-policies-cloudwatch-canaries"></a>
+
+The following AWS managed policies, which you can attach to users in your account, are specific to CloudWatch Synthetics:
++ **CloudWatchSyntheticsFullAccess** or **CloudWatchSyntheticsReadOnlyAccess** – To view canary details and the results of canary test runs\.
++ **AmazonS3ReadOnlyAccess** and **CloudWatchReadOnlyAccess** – To be able to read all Synthetics data in the CloudWatch console\.
++ **AWSLambdaReadOnlyAccess** – To be able to view the source code used by canaries\.
++ **CloudWatchSyntheticsFullAccess** – Enables you to create canaries, Additionally, to create a canary that will have a new IAM role created for it, you also need the following inline policy statement:
+
+  ```
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "iam:CreateRole",
+                  "iam:CreatePolicy",
+                  "iam:AttachRolePolicy"
+              ],
+              "Resource": [
+                  "arn:aws:iam::*:role/service-role/CloudWatchSyntheticsRole*",
+                  "arn:aws:iam::*:policy/service-role/CloudWatchSyntheticsPolicy*"
+              ]
+          }
+      ]
+  }
+  ```
+**Important**  
+Granting a user the `iam:CreateRole`, `iam:CreatePolicy`, and `iam:AttachRolePolicy` permissions gives that user full administrative access to your AWS account\. For example, a user with these permissions can create a policy that has full permissions for all resources, and attach that policy to any role\. Be very careful about who you grant these permissions to\.
+
+  For information about attaching policies and granting permissions to users, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) and [To embed an inline policy for a user or role](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console)\.
 
 ## Customer Managed Policy Examples<a name="customer-managed-policies-cw"></a>
 

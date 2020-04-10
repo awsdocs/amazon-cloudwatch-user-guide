@@ -23,8 +23,8 @@ The CloudWatch agent is supported on AMD64 architecture on the following operati
 + CentOS versions 7\.6, 7\.2, 7\.0, 6\.8, and 6\.5
 + Red Hat Enterprise Linux \(RHEL\) versions 8, 7\.6, 7\.5, 7\.4, 7\.2, 7\.0, and 6\.5
 + Debian 8\.0
-+ SUSE Linux Enterprise Server \(SLES\) 12 or later
-+ 64\-bit versions of Windows Server 2019, Windows Server 2016, Windows Server 2012, and Windows Server 2008
++ SUSE Linux Enterprise Server \(SLES\) version 12 and version 15
++ 64\-bit versions of Windows Server 2019, Windows Server 2016, Windows Server 2012, and Windows Server 2008 R2
 
 The agent is supported on ARM64 architecture on the following operating systems:
 + Amazon Linux 2

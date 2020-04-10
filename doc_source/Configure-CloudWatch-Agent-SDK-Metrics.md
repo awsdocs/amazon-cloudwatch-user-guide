@@ -16,7 +16,7 @@ This section explains how to use SSM to configure the CloudWatch agent to work w
 
 1. In the navigation pane, choose **Run Command**\.
 
-1. In the **Command document** list, choose **AWS\-UpdateSSMAgent**\.
+1. In the **Command document** list, choose the button next to **AWS\-UpdateSSMAgent**\.
 
 1. In the **Targets** area, choose the instance where you installed the CloudWatch agent\.
 
@@ -30,7 +30,7 @@ This section explains how to use SSM to configure the CloudWatch agent to work w
 
    1. Select type `string`\.
 
-   1. For **Value**, enter `{ "CSM": {"memory_limit_in_mb": 20, "port": 31000}}`\.
+   1. For **Value**, enter `{ "csm": {"memory_limit_in_mb": 20, "port": 31000}}`\.
 
 1. Select **Create Parameter**\.
 

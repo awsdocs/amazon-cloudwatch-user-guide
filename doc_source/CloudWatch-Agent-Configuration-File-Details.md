@@ -404,9 +404,9 @@ The `logs` section includes the following fields:
 
         This list of symbols is different than the list used by the older CloudWatch Logs agent\. For a summary of these differences, see [Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-logs-timestamp-differences)  
 `%y`  
-Year without century as a zero\-padded decimal number  
+Year without century as a zero\-padded decimal number\. For example, `19` to represent 2019\.  
 `%Y`  
-Year with century as a decimal number  
+Year with century as a decimal number\. For example, `2019`\.  
 `%b`  
 Month as the locale's abbreviated name  
 `%B`  
@@ -471,6 +471,8 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
 + `force_flush_interval` – Specifies in seconds the maximum amount of time that logs remain in the memory buffer before being sent to the server\. No matter the setting for this field, if the size of the logs in the buffer reaches 1 MB, the logs are immediately sent to the server\. The default value is 5\.
 + `credentials` – Specifies an IAM role to use when sending logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
   + `role_arn` – Specifies the ARN of an IAM role to use for authentication when sending logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\. If specified here, this overrides the `role_arn` specified in the `agent` section of the configuration file, if any\.
++ `metrics_collected` – Specifies that the agent is to collect metrics embedded in logs\. Currently, the `metrics_collected` field can contain only the `emf` field\.
+  + `emf` – Specifies that the agent is to collect logs that are in embedded metric format\. You can generate metric data from these logs\. For more information, see [Ingesting High\-Cardinality Logs and Generating Metrics with CloudWatch Embedded Metric Format](CloudWatch_Embedded_Metric_Format.md)\.
 
 The following is an example of a `logs` section\.
 

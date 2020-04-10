@@ -1,6 +1,6 @@
-# Component Configuration<a name="component-config"></a>
+# Component configuration<a name="component-config"></a>
 
-A component configuration is a text file in JSON format that describes the configuration settings of the component\. The following examples show a component configuration structure and its sections\.
+A component configuration is a text file in JSON format that describes the configuration settings of the component\. This section provides examples of a component configuration and its sections\.
 
 ## JSON<a name="component-config-json"></a>
 
@@ -18,12 +18,15 @@ The following example shows a template fragment in JSON format\.
     component nested instances configuration
   ],
   "windowsEvents" : [
-   list of windows events channels configurations
+    list of windows events channels configurations
+  ],
+  "alarms" : [
+    list of CloudWatch alarms
   ]
 }
 ```
 
-## Component Configuration Sections<a name="component-config-sections"></a>
+## Component configuration sections<a name="component-config-sections"></a>
 
 Component configuration includes several major sections\. Sections in a component configuration can be in any order\.
 + **alarmMetrics \(optional\)**
@@ -35,6 +38,9 @@ Component configuration includes several major sections\. Sections in a componen
 + **instances \(optional\)**
 
   Nested instance configuration for the component\. The following types of component can have nested instances and an instances section: ELB, ASG, and custom\-grouped EC2 instances\.
++ **alarms \(optional\)**
+
+  A list of [alarms](#component-configuration-alarms) to monitor for the component\. All component types can have an alarm section\.
 
 The following example shows the instances section fragment in JSON format\.
 
@@ -47,7 +53,7 @@ The following example shows the instances section fragment in JSON format\.
     list of logs
   ],
   "windowsEvents" : [
-  list of windows events channels configurations
+    list of windows events channels configurations
   ]
 }
 ```
@@ -68,7 +74,7 @@ Defines a metric to be monitored for the component\.
 **Properties**
 + **alarmMetricName \(required\)**
 
-  The name of the metric to be monitored for the component\. For metrics supported by Application Insights, see [Logs and Metrics Supported by Amazon CloudWatch Application Insights for \.NET and SQL Server](appinsights-logs-and-metrics.md)\. 
+  The name of the metric to be monitored for the component\. For metrics supported by Application Insights, see [Logs and metrics supported by Amazon CloudWatch Application Insights for \.NET and SQL Server](appinsights-logs-and-metrics.md)\. 
 + **monitor \(optional\)**
 
   Boolean to indicate whether to monitor the metric\. The default value is `true`\.
@@ -93,7 +99,7 @@ Defines a log to be monitored for the component\.
 + **logGroupName \(required\)**
 
   The CloudWatch log group name to be associated to the monitored log\. For the log group name constraints, see [CreateLogGroup](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateLogGroup.html)\.
-+ **logPath \(required\)**
++ **logPath \(required for EC2 instance components; not required for components that do not use CloudWatch Agent, such as AWS Lambda\)**
 
   The path of the logs to be monitored\. The log path must be an absolute Windows system file path\. For more information, see [CloudWatch Agent Configuration File: Logs Section](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html#CloudWatch-Agent-Configuration-File-Logssection)\. 
 + **logType \(required\)**
@@ -101,7 +107,7 @@ Defines a log to be monitored for the component\.
   The log type decides the log patterns against which Application Insights analyzes the log\. The log type is selected from the following: SQL\_SERVER/IIS/APPLICATION/DEFAULT\.
 + **encoding \(optional\)**
 
-  The type of encoding of the logs to be monitored\. The specified encoding should be included in the list of [CloudWatch agent supported encodings](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html)\. If not provided, Application Insights uses the default encoding type for the log type:
+  The type of encoding of the logs to be monitored\. The specified encoding should be included in the list of [CloudWatch agent supported encodings](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html)\. If not provided, CloudWatch Application Insights uses the default encoding type for the log type:
   + For APPLICATION/DEFAULT: utf\-8 encoding
   + For SQL\_SERVER: utf\-16 encoding
   + For IIS: ascii encoding
@@ -109,7 +115,7 @@ Defines a log to be monitored for the component\.
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
 
-## Windows Events<a name="windows-events-"></a>
+## Windows Events<a name="windows-events"></a>
 
 Defines Windows Events to log\.
 
@@ -138,11 +144,32 @@ Defines Windows Events to log\.
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
 
-## Component Configuration Examples<a name="component-configuration-examples"></a>
+## Alarm<a name="component-configuration-alarms"></a>
+
+Defines a CloudWatch alarm to be monitored for the component\.
+
+**JSON** 
+
+```
+{
+  "alarmName" : "monitoredAlarmName",
+  "severity" : HIGH/MEDIUM/LOW
+}
+```
+
+**Properties**
++ **alarmName \(required\)**
+
+  The name of the CloudWatch alarm to be monitored for the component\.
++ **severity \(optional\)**
+
+  Indicates the degree of outage when the alarm goes off\. 
+
+## Component configuration examples<a name="component-configuration-examples"></a>
 
 The following examples show component configurations in JSON format for relevant AWS services\.
 
-**Amazon Elastic Cloud Compute \(EC2\) Instance**
+**Amazon Elastic Compute Cloud \(EC2\) instance**
 
 ```
 {
@@ -179,11 +206,21 @@ The following examples show component configurations in JSON format for relevant
       "eventName" : "System",
       "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ],
       "monitor" : true
-  }]
+  }],
+   "alarms" : [
+    {
+      "alarmName" : "my_instance_alarm_1",
+      "severity" : "HIGH"
+    },
+    {
+      "alarmName" : "my_instance_alarm_2",
+      "severity" : "LOW"
+    }
+  ]
 }
 ```
 
-**Amazon Relational Database \(RDS\) Instance**
+**Amazon Relational Database \(RDS\) instance**
 
 ```
 {
@@ -194,6 +231,13 @@ The following examples show component configurations in JSON format for relevant
     }, {
       "alarmMetricName" : "WriteThroughput",
       "monitor" : false
+    }
+  ],
+
+  "alarms" : [
+    {
+      "alarmName" : "my_rds_instance_alarm",
+      "severity" : "MEDIUM"
     }
   ]
 }
@@ -233,7 +277,14 @@ The following examples show component configurations in JSON format for relevant
         "monitor" : true
       }
     ]
-  }
+  },
+
+  "alarms" : [
+    {
+      "alarmName" : "my_elb_alarm",
+      "severity" : "HIGH"
+    }
+  ]
 }
 ```
 
@@ -270,7 +321,14 @@ The following examples show component configurations in JSON format for relevant
         "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
       }
     ]
-  }
+  },
+
+  "alarms" : [
+    {
+      "alarmName" : "my_alb_alarm",
+      "severity" : "LOW"
+    }
+  ]
 }
 ```
 
@@ -307,7 +365,13 @@ The following examples show component configurations in JSON format for relevant
         "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
       }
     ]
-  }
+  },
+  "alarms" : [
+    {
+      "alarmName" : "my_asg_alarm",
+      "severity" : "LOW"
+    }
+  ]
 }
 ```
 
@@ -321,11 +385,17 @@ The following examples show component configurations in JSON format for relevant
     }, {
       "alarmMetricName" : "NumberOfEmptyReceives"
     }
+  ],
+  "alarms" : [
+    {
+      "alarmName" : "my_sqs_alarm",
+      "severity" : "MEDIUM"
+    }
   ]
 }
 ```
 
-**Customer Grouped EC2 Instances**
+**Customer Grouped EC2 instances**
 
 ```
 {
@@ -351,6 +421,43 @@ The following examples show component configurations in JSON format for relevant
         "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
       }
     ]
-  }
+  },
+  "alarms" : [
+    {
+      "alarmName" : "my_alarm",
+      "severity" : "MEDIUM"
+    }
+  ]
+}
+```
+
+**AWS Lambda Function**
+
+```
+{
+  "alarmMetrics": [
+    {
+      "alarmMetricName": "Errors",
+      "monitor": true
+    },
+    {
+      "alarmMetricName": "Throttles",
+      "monitor": true
+    },
+    {
+      "alarmMetricName": "IteratorAge",
+      "monitor": true
+    },
+    {
+      "alarmMetricName": "Duration",
+      "monitor": true
+    }
+  ],
+  "logs": [
+    {
+      "logType": "DEFAULT",
+      "monitor": true
+    }
+  ]
 }
 ```

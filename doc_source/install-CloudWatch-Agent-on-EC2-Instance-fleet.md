@@ -178,11 +178,11 @@ Follow these steps to use the command line to install the CloudWatch agent on an
   Windows Server: If you saved the agent configuration file in Systems Manager Parameter Store, enter the following from the PowerShell console:
 
   ```
-  ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
+  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -c ssm:configuration-parameter-store-name -s
   ```
 
   Windows Server: If you saved the agent configuration file on the local computer, enter the following from the PowerShell console:
 
   ```
-  ./amazon-cloudwatch-agent-ctl.ps1 -a fetch-config -m ec2 -c file:configuration-file-path -s
+  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -c file:"C:\Program Files\Amazon\AmazonCloudWatchAgent\config.json" -s
   ```

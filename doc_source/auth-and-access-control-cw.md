@@ -1,4 +1,4 @@
-# Authentication and Access Control for Amazon CloudWatch<a name="auth-and-access-control-cw"></a>
+# Identity and Access Management for Amazon CloudWatch<a name="auth-and-access-control-cw"></a>
 
 Access to Amazon CloudWatch requires credentials\. Those credentials must have permissions to access AWS resources, such as retrieving CloudWatch metric data about your cloud resources\. The following sections provide details about how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and CloudWatch to help secure your resources by controlling who can access them:
 + [Authentication](#authentication-cw)
