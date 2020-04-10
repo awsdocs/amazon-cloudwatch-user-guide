@@ -99,10 +99,10 @@ stats avg(cluster_failed_node_count) as CountOfNodeFailures
 | sort @timestamp desc
 ```
 
-**Application log errors**
+**Application log errors by container name**
 
 ```
-Count by container name: stats count() as countoferrors by kubernetes.container_name 
+stats count() as countoferrors by kubernetes.container_name 
 | filter stream="stderr" 
 | sort countoferrors desc
 ```
