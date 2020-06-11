@@ -214,7 +214,7 @@ The following is an example of a customized configuration:
 1. Download the task definition file to a local file, such as `/tmp/cwagent-ecs-instance-metric.json`
 
    ```
-   chttps://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/daemon-service/cwagent-ecs-instance-metric/cwagent-ecs-instance-metric.json -o /tmp/cwagent-ecs-instance-metric.json
+   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/daemon-service/cwagent-ecs-instance-metric/cwagent-ecs-instance-metric.json -o /tmp/cwagent-ecs-instance-metric.json
    ```
 
 1. Modify the task definition file\. Remove the following section:
