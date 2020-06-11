@@ -171,11 +171,11 @@ SEARCH(' {AWS/Lambda,FunctionName} MetricName="Errors" OR (MetricName="Invocatio
 
 You can use a search expression within a math expressions in a graph\. 
 
-For example, **SUM\(SEARCH\(' \{AWS/Lambda, FunctionName\}, MetricName="Errors" ', 'Sum', 300\)\)** returns the sum of the `Errors` metric of all your Lambda functions\.
+For example, **SUM\(SEARCH\(' \{AWS/Lambda, FunctionName\} MetricName="Errors" ', 'Sum', 300\)\)** returns the sum of the `Errors` metric of all your Lambda functions\.
 
 Using separate lines for your search expression and math expression might yield more useful results\. For example, suppose that you use the following two expressions in a graph\. The first line displays separate `Errors` lines for each of your Lambda functions\. The ID of this expression is `e1`\. The second line adds another line showing the sum of the errors from all of the functions\.
 
 ```
-SEARCH(' {AWS/Lambda, FunctionName}, MetricName="Errors" ', 'Sum', 300)
+SEARCH(' {AWS/Lambda, FunctionName} MetricName="Errors" ', 'Sum', 300)
 SUM(e1)
 ```
