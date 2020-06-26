@@ -118,11 +118,11 @@ All lines are commented out initially\. To set the credential profile or proxy s
   The first example below shows the syntax of a valid `shared_credential_file` line for Linux servers, and the second example is valid for Windows Server\. On Windows Server, you must escape the \\ characters\.
 
   ```
-  shared_credential_file= "C:\\Documents and Settings\\username\\.aws\\credentials"
+  shared_credential_file= "/usr/username/credentials"
   ```
 
   ```
-  shared_credential_file= "/usr/username/credentials"
+  shared_credential_file= "C:\\Documents and Settings\\username\\.aws\\credentials"
   ```
 
   If you specify a `shared_credential_file`, you must also remove the `#` from the beginning of the `[credentials]` line\.
@@ -164,23 +164,23 @@ You can start the CloudWatch agent using either Systems Manager Run Command or t
   Linux: If you saved the configuration file in the Systems Manager Parameter Store, enter the following:
 
   ```
-  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -c ssm:configuration-parameter-store-name -s
+  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -s -c ssm:configuration-parameter-store-name
   ```
 
-  Linux: If you saved the configuration file on the local computer, enter the following:
+  Linux: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
   ```
-  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -c file:configuration-file-path -s
+  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -s -c file:configuration-file-path
   ```
 
   Windows Server: If you saved the agent configuration file in Systems Manager Parameter Store, enter the following from the PowerShell console:
 
   ```
-  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -c ssm:configuration-parameter-store-name -s
+  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -s -c ssm:configuration-parameter-store-name
   ```
 
-  Windows Server: If you saved the agent configuration file on the local computer, enter the following from the PowerShell console:
+  Windows Server: If you saved the agent configuration file on the local computer, enter the following from the PowerShell console\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
   ```
-  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -c file:configuration-file-path -s
+  & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -s -c file:configuration-file-path
   ```

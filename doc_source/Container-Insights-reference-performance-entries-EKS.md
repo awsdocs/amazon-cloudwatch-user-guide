@@ -8,12 +8,12 @@ The following table lists the fields in these performance log events that are re
 | Type | Log field | Source | Formula or Notes | 
 | --- | --- | --- | --- | 
 |  Pod |  `pod_cpu_utilization`  |  Calculated  |  Formula: `pod_cpu_usage_total / node_cpu_limit`  | 
-|  Pod |  `pod_cpu_usage_total`  |  cadvisor  |   | 
+|  Pod |  `pod_cpu_usage_total` `pod_cpu_usage_total` is reported in millicores\.  |  cadvisor  |   | 
 |  Pod |  `pod_cpu_limit`  |  Calculated  |  Formula: `sum(container_cpu_limit)` If any containers in the pod don't have a CPU limit defined, this field doesn't appear in the log event\.  | 
 |  Pod |  `pod_cpu_request`  |  Calculated  |  Formula: `sum(container_cpu_request)` `container_cpu_request` isn't guaranteed to be set\. Only the ones that are set are included in the sum\.  | 
 |  Pod |  `pod_cpu_utilization_over_pod_limit`  |  Calculated  |  Formula: `pod_cpu_usage_total / pod_cpu_limit`  | 
 |  Pod |  `pod_cpu_reserved_capacity`  |  Calculated  |  Formula: `pod_cpu_request / node_cpu_limit`  | 
-|  Pod |  `pod_memory_utilization`  |  Calculated  |  Formula: `pod_memory_working_set / node_memory_limit`  | 
+|  Pod |  `pod_memory_utilization`  |  Calculated  |  Formula: `pod_memory_working_set / node_memory_limit` It is the percentage of pod memory usage over the node memory limitation\.  | 
 |  Pod |  `pod_memory_working_set`  |  cadvisor  |   | 
 |  Pod |  `pod_memory_limit`  |  Calculated  |  Formula: `sum(container_memory_limit)` If any containers in the pod don't have a memory limit defined, this field doesn't appear in the log event\.  | 
 |  Pod |  `pod_memory_request`  |  Calculated  |  Formula: `sum(container_memory_request)` `container_memory_request` isn't guaranteed to be set\. Only the ones that are set are included in the sum\.  | 

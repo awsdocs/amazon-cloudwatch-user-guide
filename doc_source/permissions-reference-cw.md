@@ -7,15 +7,16 @@ You can use AWS\-wide condition keys in your CloudWatch policies to express cond
 **Note**  
 To specify an action, use the `cloudwatch:` prefix followed by the API operation name\. For example: `cloudwatch:GetMetricStatistics`, `cloudwatch:ListMetrics`, or `cloudwatch:*` \(for all CloudWatch actions\)\.
 
-**Tables**
-+ [CloudWatch API Operations and Required Permissions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-permissions-table)
-+ [CloudWatch Events API Operations and Required Permissions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cwe-permissions-table)
-+ [CloudWatch Logs API Operations and Required Permissions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cwl-permissions-table)
-+ [Amazon EC2 API Operations and Required Permissions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-ec2-permissions-table)
-+ [Amazon EC2 Auto Scaling API Operations and Required Permissions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/permissions-reference-cw.html#cw-as-permissions-table)
+**Topics**
++ [CloudWatch API Operations and Required Permissions for Actions](#cw-permissions-table)
++ [CloudWatch Contributor Insights API Operations and Required Permissions for Actions](#cw-contributor-insights-permissions-table)
++ [CloudWatch Events API Operations and Required Permissions for Actions](#cwe-permissions-table)
++ [CloudWatch Logs API Operations and Required Permissions for Actions](#cwl-permissions-table)
++ [Amazon EC2 API Operations and Required Permissions for Actions](#cw-ec2-permissions-table)
++ [Amazon EC2 Auto Scaling API Operations and Required Permissions for Actions](#cw-as-permissions-table)
 
+## CloudWatch API Operations and Required Permissions for Actions<a name="cw-permissions-table"></a>
 
-**CloudWatch API Operations and Required Permissions for Actions**  
 
 | CloudWatch API Operations | Required Permissions \(API Actions\) | 
 | --- | --- | 
@@ -37,8 +38,22 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [PutMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html)  |  `cloudwatch:PutMetricData` Required to create metrics\.  | 
 |  [SetAlarmState](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_SetAlarmState.html)  |  `cloudwatch:SetAlarmState` Required to manually set an alarm's state\.  | 
 
+## CloudWatch Contributor Insights API Operations and Required Permissions for Actions<a name="cw-contributor-insights-permissions-table"></a>
 
-**CloudWatch Events API Operations and Required Permissions for Actions**  
+**Important**  
+When you grant a user the `cloudwatch:PutInsightRule` and `cloudwatch:GetInsightRuleReport` permissions, that user can create a rule that evaluates any log group in CloudWatch Logs and then see the results\. The results can contain contributor data for those log groups\. Be sure to grant these permissions only to users who should be able to view this data\.
+
+
+| CloudWatch Contributor Insights API Operations | Required Permissions \(API Actions\) | 
+| --- | --- | 
+|  [DeleteInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteInsightRules.html)  |  `cloudwatch:DeleteInsightRules` Required to delete Contributor Insights rules\.  | 
+|  [DescribeInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeInsightRules.html)  |  `cloudwatch:DescribeInsightRules` Required to view the Contributor Insights rules in your account\.  | 
+|  [EnableInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_EnableInsightRules.html)  |  `cloudwatch:EnableInsightRules` Required to enable Contributor Insights rules\.  | 
+|  [GetInsightRuleReport](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetInsightRuleReport.html)  |  `cloudwatch:GetInsightRuleReport` Required to retrieve time series data and other statistics collectd by Contributor Insights rules\.  | 
+|  [PutInsightRule](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutInsightRule.html)  |  `cloudwatch:PutInsightRule` Required to create Contributor Insights rules\.   | 
+
+## CloudWatch Events API Operations and Required Permissions for Actions<a name="cwe-permissions-table"></a>
+
 
 | CloudWatch Events API Operations | Required Permissions \(API Actions\) | 
 | --- | --- | 
@@ -55,8 +70,8 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [RemoveTargets](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_RemoveTargets.html)  |  `events:RemoveTargets` Required to remove a target from a rule\.  | 
 |  [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html)  |  `events:TestEventPattern` Required to test an event pattern against a given event\.  | 
 
+## CloudWatch Logs API Operations and Required Permissions for Actions<a name="cwl-permissions-table"></a>
 
-**CloudWatch Logs API Operations and Required Permissions for Actions**  
 
 | CloudWatch Logs API Operations | Required Permissions \(API Actions\) | 
 | --- | --- | 
@@ -68,6 +83,8 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [DeleteLogGroup](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteLogGroup.html)  |  `logs:DeleteLogGroup` Required to delete a log group and any associated archived log events\.  | 
 |  [DeleteLogStream](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteLogStream.html)  |  `logs:DeleteLogStream` Required to delete a log stream and any associated archived log events\.  | 
 |  [DeleteMetricFilter](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteMetricFilter.html)  |  `logs:DeleteMetricFilter` Required to delete a metric filter associated with a log group\.  | 
+|  [DeleteQueryDefinition](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteQueryDefinition.html)  |  `logs:DeleteQueryDefinition` Required to delete a saved query definition in CloudWatch Logs Insights\.  | 
+|  [DeleteResourcePolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteResourcePolicy.html)  |  `logs:DeleteResourcePolicy` Required to delete a CloudWatch Logs resource policy\.  | 
 |  [DeleteRetentionPolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html)  |  `logs:DeleteRetentionPolicy` Required to delete a log group's retention policy\.  | 
 |  [DeleteSubscriptionFilter](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteSubscriptionFilter.html)  |  `logs:DeleteSubscriptionFilter` Required to delete the subscription filter associated with a log group\.  | 
 |  [DescribeDestinations](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDestinations.html)  |  `logs:DescribeDestinations` Required to view all destinations associated with the account\.  | 
@@ -75,20 +92,31 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [DescribeLogGroups](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogGroups.html)  |  `logs:DescribeLogGroups` Required to view all log groups associated with the account\.  | 
 |  [DescribeLogStreams](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogStreams.html)  |  `logs:DescribeLogStreams` Required to view all log streams associated with a log group\.  | 
 |  [DescribeMetricFilters](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeMetricFilters.html)  |  `logs:DescribeMetricFilters` Required to view all metrics associated with a log group\.  | 
+|  [DescribeQueryDefinitions](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeQueryDefinitions.html)  |  `logs:DescribeQueryDefinitions` Required to see the list of saved query definitions in CloudWatch Logs Insights\.  | 
+|  [DescribeQueries](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeQueries.html)  |  `logs:DescribeQueries` Required to see the list of CloudWatch Logs Insights queries that are scheduled, executing, or have recently excecuted\.  | 
+|  [DescribeResourcePolicies](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeResourcePolicies.html)  |  `logs:DescribeResourcePolicies` Required to view a list of CloudWatch Logs resource policies\.  | 
 |  [DescribeSubscriptionFilters](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html)  |  `logs:DescribeSubscriptionFilters` Required to view all subscription filters associated with a log group\.  | 
 |  [FilterLogEvents](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html)  |  `logs:FilterLogEvents` Required to sort log events by log group filter pattern\.  | 
 |  [GetLogEvents](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html)  |  `logs:GetLogEvents` Required to retrieve log events from a log stream\.  | 
+|  [GetLogGroupFields](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html)  |  `logs:GetLogGroupFields` Required to retrieve the list of fields that are included in the log events in a log group\.  | 
+|  [GetLogRecord](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html)  |  `logs:GetLogRecord` Required to retrieve the details from a single log event\.  | 
+|  [GetQueryResults](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html)  |  `logs:GetQueryResults` Required to retrieve the results of CloudWatch Logs Insights queries\.  | 
 |  [ListTagsLogGroup](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsLogGroup.html)  |  `logs:ListTagsLogGroup` Required to list the tags associated with a log group\.  | 
-|  [PutDestination](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html)  |  `logs:PutDestination` Required to create or update a destination log stream \(such as a Kinesis stream\)\.  | 
+|  [PutDestination](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html)  |  `logs:PutDestination` Required to create or update a destination log stream \(such as an Kinesis stream\)\.  | 
 |  [PutDestinationPolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html)  |  `logs:PutDestinationPolicy` Required to create or update an access policy associated with an existing log destination\.  | 
 |  [PutLogEvents](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html)  |  `logs:PutLogEvents` Required to upload a batch of log events to a log stream\.  | 
 |  [PutMetricFilter](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutMetricFilter.html)  |  `logs:PutMetricFilter` Required to create or update a metric filter and associate it with a log group\.  | 
+|  [PutQueryDefinition](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutQueryDefinition.html)  |  `logs:PutQueryDefinition` Required to save a query in CloudWatch Logs Insights\.  | 
+|  [PutResourcePolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutResourcePolicy.html)  |  `logs:PutResourcePolicy` Required to create a CloudWatch Logs resource policy\.  | 
 |  [PutRetentionPolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html)  |  `logs:PutRetentionPolicy` Required to set the number of days to keep log events \(retention\) in a log group\.  | 
 |  [PutSubscriptionFilter](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html)  |  `logs:PutSubscriptionFilter` Required to create or update a subscription filter and associate it with a log group\.  | 
+|  [StartQuery](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html)  |  `logs:StartQuery` Required to start CloudWatch Logs Insights queries\.  | 
+|  [StopQuery](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StopQuery.html)  |  `logs:StopQuery` Required to stop a CloudWatch Logs Insights query that is in progress\.  | 
+|  [TagLogGroup](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html)  |  `logs:TagLogGroup` Required to add or update log group tags\.  | 
 |  [TestMetricFilter](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TestMetricFilter.html)  |  `logs:TestMetricFilter` Required to test a filter pattern against a sampling of log event messages\.  | 
 
+## Amazon EC2 API Operations and Required Permissions for Actions<a name="cw-ec2-permissions-table"></a>
 
-**Amazon EC2 API Operations and Required Permissions for Actions**  
 
 | Amazon EC2 API Operations | Required Permissions \(API Actions\) | 
 | --- | --- | 
@@ -98,8 +126,8 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [StopInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html)  |  `ec2:StopInstances` Required to stop an EC2 instance\.  | 
 |  [TerminateInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html)  |  `ec2:TerminateInstances` Required to terminate an EC2 instance\.  | 
 
+## Amazon EC2 Auto Scaling API Operations and Required Permissions for Actions<a name="cw-as-permissions-table"></a>
 
-**Amazon EC2 Auto Scaling API Operations and Required Permissions for Actions**  
 
 | Amazon EC2 Auto Scaling API Operations | Required Permissions \(API Actions\) | 
 | --- | --- | 

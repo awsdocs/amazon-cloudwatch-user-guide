@@ -50,7 +50,16 @@ The following is an example of an `agent` section\.
 ## CloudWatch Agent Configuration File: Metrics Section<a name="CloudWatch-Agent-Configuration-File-Metricssection"></a>
 
 On servers running either Linux or Windows Server, the `metrics` section includes the following fields:
-+ `namespace` – Optional\. The namespace to use for the metrics collected by the agent\. The default value is `CWAgent`\. The maximum length is 255 characters\.
++ `namespace` – Optional\. The namespace to use for the metrics collected by the agent\. The default value is `CWAgent`\. The maximum length is 255 characters\. The following is an example:
+
+  ```
+  {
+    "metrics": {
+      "namespace": "Development/Product1Metrics",
+     ......
+     },
+  }
+  ```
 + `append_dimensions` – Optional\. Adds Amazon EC2 metric dimensions to all metrics collected by the agent\. The only supported key\-value pairs are shown in the following list\. Any other key\-value pairs are ignored\.
   + `"ImageID":"${aws:ImageId}"` sets the instance's AMI ID as the value of the `ImageID` dimension\.
   + `"InstanceId":"${aws:InstanceId}"` sets the instance's instance ID as the value of the `InstanceID` dimension\.
@@ -68,6 +77,17 @@ On servers running either Linux or Windows Server, the `metrics` section include
 + `endpoint_override` – Specifies a FIPS endpoint or private link to use as the endpoint where the agent sends metrics\. Specifying this and setting a private link enables you to send the metrics to an Amazon VPC endpoint\. For more information, see [What Is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)\. 
 
   The value of `endpoint_override` must be a string that is a URL\.
+
+  For example, the following part of the metrics section of the configuration file sets the agent to use a VPC Endpoint when sending metrics\. 
+
+  ```
+  {
+    "metrics": {
+      "endpoint_override": "vpce-XXXXXXXXXXXXXXXXXXXXXXXXX.monitoring.us-east-1.vpce.amazonaws.com",
+     ......
+     },
+  }
+  ```
 + `metrics_collected` – Required\. Specifies which metrics are to be collected, including custom metrics collected through `StatsD` or `collectd`\. This section includes several subsections\. 
 
   The contents of the `metrics_collected` section depend on whether this configuration file is for a server running Linux or Windows Server\.
@@ -394,7 +414,9 @@ The `logs` section includes the following fields:
         We recommend that you specify this field to prevent confusion\. If you omit this field, the file path up to the final dot is used as the log group name\. For example, if the file path is `/tmp/TestLogFile.log.2017-07-11-14`, the log group name is `/tmp/TestLogFile.log`\. 
       + `log_stream_name` – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.
 
-        If you omit this field, the default value of `{instance_id}` is used\. If a log stream doesn't already exist, it's created automatically\.
+        If you omit this field, the value of the `log_stream_name` parameter in the global `logs` section is used\. If that is also omitted, the default value of `{instance_id}` is used\.
+
+        If a log stream doesn't already exist, it's created automatically\.
       + `timezone` – Optional\. Specifies the time zone to use when putting timestamps on log events\. The valid values are `UTC` and `Local`\. The default value is `Local`\.
 
         This parameter is ignored if you don't specify a value for `timestamp_format`\.
@@ -462,12 +484,25 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
       + `log_group_name` – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
       + `log_stream_name` – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.
 
-        If you omit this field, the default value of `{instance_id}` is used\. If a log stream doesn't already exist, it's created automatically\.
+        If you omit this field, the value of the `log_stream_name` parameter in the global `logs` section is used\. If that is also omitted, the default value of `{instance_id}` is used\.
+
+        If a log stream doesn't already exist, it's created automatically\.
       + `event_format` – Optional\. Specifies the format to use when storing Windows events in CloudWatch Logs\. `xml` uses the XML format as in Windows Event Viewer\. `text` uses the legacy CloudWatch Logs agent format\.
-+ `log_stream_name` – Required\. Specifies the default log stream name to be used for any logs or Windows events that don't have individual log stream names defined in their entry in `collect_list`\.
++ `log_stream_name` – Required\. Specifies the default log stream name to be used for any logs or Windows events that don't have individual log stream names defined in the `log_stream_name` parameter within their entry in `collect_list`\.
 + `endpoint_override` – Specifies a FIPS endpoint or private link to use as the endpoint where the agent sends logs\. Specifying this field and setting a private link enables you to send the logs to an Amazon VPC endpoint\. For more information, see [What Is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)\. 
 
   The value of `endpoint_override` must be a string that is a URL\.
+
+  For example, the following part of the logs section of the configuration file sets the agent to use a VPC Endpoint when sending logs\. 
+
+  ```
+  {
+    "logs": {
+      "endpoint_override": "vpce-XXXXXXXXXXXXXXXXXXXXXXXXX.logs.us-east-1.vpce.amazonaws.com",
+     ......
+     },
+  }
+  ```
 + `force_flush_interval` – Specifies in seconds the maximum amount of time that logs remain in the memory buffer before being sent to the server\. No matter the setting for this field, if the size of the logs in the buffer reaches 1 MB, the logs are immediately sent to the server\. The default value is 5\.
 + `credentials` – Specifies an IAM role to use when sending logs to a different AWS account\. If specified, this field contains one parameter, `role_arn`\.
   + `role_arn` – Specifies the ARN of an IAM role to use for authentication when sending logs to a different AWS account\. For more information, see [Sending Metrics and Logs to a Different Account](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-send-to-different-AWS-account)\. If specified here, this overrides the `role_arn` specified in the `agent` section of the configuration file, if any\.
@@ -522,6 +557,14 @@ The following is an example of a `logs` section\.
 }
 ```
 
+## How the CloudWatch Agent Handles Sparse Log Files<a name="CloudWatch-Agent-sparse-log-files"></a>
+
+Sparse files are files with both empty blocks and real contents\. A sparse file uses disk space more efficiently by writing brief information representing the empty blocks to disk instead of the actual null bytes which makes up the block\. This makes the actual size of a sparse file usually much smaller than its apparent size\.
+
+However, the CloudWatch agent doesn’t treat sparse files differently than it treats normal files\. When the agent reads a sparse file, the empty blocks are treated as "real" blocks filled with null bytes\. Because of this, the CloudWatch agent publishes as many bytes as the apparent size of a sparse file to CloudWatch\. 
+
+Configuring the CloudWatch agent to publish a sparse file can cause higher than expected CloudWatch costs, so we recommend not to do so\. For example, `/var/logs/lastlog` in Linux is usually a very sparse file, and we recommend that you don't publish it to CloudWatch\. 
+
 ## CloudWatch Agent Configuration File: Complete Examples<a name="CloudWatch-Agent-Configuration-File-Complete-Example"></a>
 
 The following is an example of a complete CloudWatch agent configuration file for a Linux server\.
@@ -537,6 +580,7 @@ This example includes both ways of specifying metrics in the `measurement` secti
         "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
       },
       "metrics": {
+        "namespace": "MyCustomNamespace",
         "metrics_collected": {
           "cpu": {
             "resources": [
@@ -671,6 +715,7 @@ The following is an example of a complete CloudWatch agent configuration file fo
         "logfile": "c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log"
       },
       "metrics": {
+        "namespace": "MyCustomNamespace",
         "metrics_collected": {
           "Processor": {
             "measurement": [

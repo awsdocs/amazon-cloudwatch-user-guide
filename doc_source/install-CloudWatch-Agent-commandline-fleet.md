@@ -136,11 +136,11 @@ All lines are commented out initially\. To set the credential profile or proxy s
   The first example below shows the syntax of a valid `shared_credential_file` line for Linux servers, and the second example is valid for Windows Server\. On Windows Server, you must escape the \\ characters\.
 
   ```
-  shared_credential_file= "C:\\Documents and Settings\\username\\.aws\\credentials"
+  shared_credential_file= "/usr/username/credentials"
   ```
 
   ```
-  shared_credential_file= "/usr/username/credentials"
+  shared_credential_file= "C:\\Documents and Settings\\username\\.aws\\credentials"
   ```
 
   If you specify a `shared_credential_file`, you must also remove the `#` from the beginning of the `[credentials]` line\.
@@ -156,26 +156,28 @@ Follow these steps to use the command line to start the CloudWatch agent on a se
 
 1. In this command, `-a fetch-config` causes the agent to load the latest version of the CloudWatch agent configuration file, and `-s` starts the agent\.
 
-   On an EC2 instance running Linux, enter the following:
+   Enter one the following commands\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
+
+   On an EC2 instance running Linux, enter the following command\. 
 
    ```
-   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:configuration-file-path
    ```
 
    On an on\-premises server running Linux, enter the following:
 
    ```
-   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -c file:configuration-file-path -s
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -s -c file:configuration-file-path
    ```
 
    On an EC2 instance running Windows Server, enter the following from the PowerShell console:
 
    ```
-   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -c file:configuration-file-path -s
+   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -s -c file:configuration-file-path
    ```
 
    On an on\-premises server running Windows Server, enter the following from the PowerShell console:
 
    ```
-   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -c file:configuration-file-path -s
+   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -s -c file:configuration-file-path
    ```

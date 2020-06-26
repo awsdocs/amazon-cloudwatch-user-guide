@@ -1,12 +1,5 @@
 # Security Considerations for Synthetics Canaries<a name="servicelens_canaries_security"></a>
 
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Synthetics is in open preview\. The preview is currently available in the following Regions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/servicelens_canaries_security.html) The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [cw\-synthetics@amazon\.com](mailto:cw-synthetics@amazon.com) | 
-
 The following sections explain security issues that you should consider when creating and running canaries in Synthetics\.
 
 ## Use Secure Connections<a name="servicelens_canaries_connections"></a>

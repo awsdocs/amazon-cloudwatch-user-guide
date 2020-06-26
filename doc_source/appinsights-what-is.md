@@ -2,6 +2,10 @@
 
 CloudWatch Application Insights for \.NET and SQL Server helps you monitor your \.NET and SQL Server applications that use Amazon EC2 instances along with other [AWS application resources](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/appinsights-what-is.html#appinsights-components)\. It identifies and sets up key metrics, logs, and alarms across your application resources and technology stack \(for example, your Microsoft SQL Server database, web \(IIS\) and application servers, OS, load balancers, and queues\)\. It continuously monitors metrics and logs to detect and correlate anomalies and errors\. When errors and anomalies are detected, Application Insights generates [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) that you can use to set up notifications or take actions\. To aid with troubleshooting, it creates automated dashboards for detected problems, which include correlated metric anomalies and log errors, along with additional insights to point you to a potential root cause\. The automated dashboards help you to take remedial actions to keep your applications healthy and to prevent impact to the end users of your application\. It also creates OpsItems so that you can resolve problems using [AWS Systems Manager OpsCenter](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html)\.
 
+Amazon CloudWatch Application Insights supports monitoring for Microsoft SQL Server High Availability \(HA\) workloads\. You can configure important counters, such as Mirrored Write Transaction/sec, Recovery Queue Length, and Transaction Delay, and Windows Event Logs on CloudWatch\. You can get automated insights when a failover event or problem occurs with your SQL HA workload, such as a restricted access to query a target database\.
+
+CloudWatch Application Insights integrates with [AWS Launch Wizard](https://docs.aws.amazon.com/launchwizard/latest/userguide/what-is-launch-wizard.html) to provide a one\-click monitoring setup experience for deploying SQL Server HA workloads on AWS\. When you select the option to set up monitoring and insights with Application Insights on the Launch Wizard console, CloudWatch Application Insights automatically sets up relevant metrics, logs, and alarms on CloudWatch, and starts monitoring newly deployed workloads\. You can view automated insights and detected problems, along with the health of your SQL Server HA workloads, on the CloudWatch console\.
+
 **Topics**
 + [Features](#appinsights-features)
 + [Concepts](#appinsights-concepts)
@@ -54,6 +58,9 @@ The following services are used along with CloudWatch Application Insights for \
 + **Amazon SQS **offers a secure, durable, and available hosted queue that allows you to integrate and decouple distributed software systems and components\. For more information, see the [https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)\.
 + **AWS Systems Manager OpsCenter **aggregates and standardizes OpsItems across services while providing contextual investigation data about each OpsItem, related OpsItems, and related resources\. OpsCenter also provides Systems Manager Automation documents \(runbooks\) that you can use to quickly resolve issues\. You can specify searchable, custom data for each OpsItem\. You can also view automatically\-generated summary reports about OpsItems by status and source\. For more information, see the [https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html)\.
 + **AWS Lambda** lets you build serverless applications composed of functions that are triggered by events and automatically deploy them using CodePipeline and AWS CodeBuild\. For more information, see [AWS Lambda Applications](https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html)\. 
++ **Amazon DynamoDB** is a fully managed NoSQL database service that lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling\. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data\.
+
+  **AWS Launch Wizard for SQL Server** reduces the time it takes to deploy SQL Server high availability solution to the cloud\. You input your application requirements, including performance, number of nodes, and connectivity on the service console, and AWS Launch Wizard identifies the right AWS resources to deploy and run your SQL Server Always On application\. 
 
 ## Supported application components<a name="appinsights-components"></a>
 
@@ -64,6 +71,8 @@ CloudWatch Application Insights for \.NET and SQL Server scans your Resource Gro
 + Amazon EC2 Auto Scaling groups: AWS Auto Scaling \(Auto Scaling groups are dynamically configured for all target instances; if your application scales up, CloudWatch Application Insights for \.NET and SQL Server automatically configure the new instances\)\. Auto Scaling groups are not supported for CloudFormation\-based Resource Groups\. 
 + AWS Lambda
 + Amazon Simple Queue Service \(Amazon SQS\)
++ Amazon DynamoDB table
++ Amazon S3 bucket metrics
 
 Any other component type resources are ignored by CloudWatch Application Insights for \.NET and SQL Server\. If a component type that is supported does not appear in your Application Insights application, the component may already be registered and managed by another application you own that is monitored by Application Insights\. 
 
@@ -72,4 +81,8 @@ Any other component type resources are ignored by CloudWatch Application Insight
 CloudWatch Application Insights for \.NET and SQL Server supports:
 + Front‐end: Microsoft Internet Information Services \(IIS\) Web Server
 + Worker‐tier: \.NET Framework
-+ Database: Microsoft SQL Server running on RDS or EC2
++ Databases: 
+  + Microsoft SQL Server running on RDS or EC2 \(including SQL Server High Availability configurations\. See, [Component configuration examples](component-config.md#component-configuration-examples)\)\.
+  + Amazon DynamoDB table
+
+If none of the technology stacks listed above apply to your application resources, you can monitor your application stack by choosing **Custom** from the application tier dropdown menu on the **Manage monitoring** page\.

@@ -9,6 +9,9 @@ This section provides steps for setting up, configuring, and managing your Cloud
 + [Delete an Application with the console](#appinsights-delete-app)
 + [Add and Manage an application with Application Insights using the command line](#appinsights-config-app-command)
 + [Manage and update monitoring using the command line](#appinsights-monitoring)
++ [Configure monitoring for SQL Always On Availability Groups](#configure-sql)
++ [Configure monitoring for MySQL RDS](#configure-mysql-rds)
++ [Configure monitoring for MySQL EC2](#configure-mysql-ec2)
 + [Set up notifications and actions for detected problems](#appinsights-cloudwatch-events)
 
 ## Add and configure an application with the CloudWatch console<a name="appinsights-add-configure"></a>
@@ -21,6 +24,18 @@ To get started with CloudWatch Application Insights for \.NET and SQL Server fro
 1. **Add an Application\.** To set up monitoring for your \.NET and SQL Server application, on the CloudWatch Application Insights for \.NET and SQL Server page, select **Add an application**\. This page shows the list of applications that are monitored with CloudWatch Application Insights for \.NET and SQL Server, along with their monitoring status\. After you select **Add an application**, you will be taken to the **Add an application** page\.
 
 1. **Select Resource Group\. **On the **Add an application** page, to add an application to CloudWatch Application Insights for \.NET and SQL Server, choose an AWS Resource Group from the dropdown list that contains your application resources\. These resources include front\-end servers, load balancers, auto scaling groups, and database servers\. 
+
+   An [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) will be generated for the application in the following format:
+
+   ```
+   arn:partition:applicationinsights:region:account-id:application/resource-group/resource-group-name
+   ```
+
+   For example:
+
+   ```
+   arn:aws:applicationinsights:us-east-1:123456789012:application/resource-group/my-resource-group
+   ```
 
    CloudWatch Application Insights for \.NET and SQL Server supports both tag\-based and CloudFormation\-based Resource Groups \(with the exception of Auto Scaling groups\)\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html)\.
 
@@ -378,6 +393,169 @@ To use the AWS Tools for Windows PowerShell to remove an application created on 
 ```
 Remove-CWAIApplication -ResourceGroupName my-resource-group
 ```
+
+## Configure monitoring for SQL Always On Availability Groups<a name="configure-sql"></a>
+
+1. Create an application for the resource group with the SQL HA EC2 instances\.
+
+   ```
+   aws application-insights create-application ‐-region <REGION> ‐-resource-group-name  <RESOURCE_GROUP_NAME>
+   ```
+
+1. Define the EC2 instances that represent the SQL HA cluster by creating a new application component\.
+
+   ```
+   aws application-insights create-component ‐-resource-group-name  "<RESOURCE_GROUP_NAME>" ‐-component-name SQL_HA_CLUSTER ‐-resource-list  "arn:aws:ec2:<REGION>:<ACCOUNT_ID>:instance/<CLUSTER_INSTANCE_1_ID>" "arn:aws:ec2:<REGION>:<ACCOUNT_ID>:instance/<CLUSTER_INSTANCE_2_ID>
+   ```
+
+1. Configure the SQL HA component\.
+
+   ```
+   aws application-insights  update-component-configuration ‐-resource-group-name "<RESOURCE_GROUP_NAME>" ‐-region <REGION> ‐-component-name "SQL_HA_CLUSTER" ‐-monitor ‐-tier SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP ‐-monitor  ‐-component-configuration '{
+     "instances" : {
+       "alarmMetrics" : [ {
+         "alarmMetricName" : "CPUUtilization",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "StatusCheckFailed",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "Processor % Processor Time",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "Memory % Committed Bytes In Use",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "Memory Available Mbytes",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "Paging File % Usage",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "System Processor Queue Length",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "Network Interface Bytes Total/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "PhysicalDisk % Disk Time",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Buffer Manager Buffer cache hit ratio",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Buffer Manager Page life expectancy",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:General Statistics Processes blocked",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:General Statistics User Connections",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Locks Number of Deadlocks/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:SQL Statistics Batch Requests/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica File Bytes Received/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Log Bytes Received/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Log remaining for undo",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Log Send Queue",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Mirrored Write Transaction/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Recovery Queue",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Redo Bytes Remaining",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Redone Bytes/sec",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Total Log requiring undo",
+         "monitor" : true
+       }, {
+         "alarmMetricName" : "SQLServer:Database Replica Transaction Delay",
+         "monitor" : true
+       } ],
+       "windowsEvents" : [ {
+         "logGroupName" : "WINDOWS_EVENTS-Application-<RESOURCE_GROUP_NAME>",
+         "eventName" : "Application",
+         "eventLevels" : [ "WARNING", "ERROR", "CRITICAL", "INFORMATION" ],
+         "monitor" : true
+       }, {
+         "logGroupName" : "WINDOWS_EVENTS-System-<RESOURCE_GROUP_NAME>",
+         "eventName" : "System",
+         "eventLevels" : [ "WARNING", "ERROR", "CRITICAL" ],
+         "monitor" : true
+       }, {
+         "logGroupName" : "WINDOWS_EVENTS-Security-<RESOURCE_GROUP_NAME>",
+         "eventName" : "Security",
+         "eventLevels" : [ "WARNING", "ERROR", "CRITICAL" ],
+         "monitor" : true
+       } ],
+       "logs" : [ {
+         "logGroupName" : "SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP-<RESOURCE_GROUP_NAME>",
+         "logPath" : "C:\\Program Files\\Microsoft SQL Server\\MSSQL**.MSSQLSERVER\\MSSQL\\Log\\ERRORLOG",
+         "logType" : "SQL_SERVER",
+         "monitor" : true,
+         "encoding" : "utf-8"
+       } ]
+     }
+   }'
+   ```
+
+**Note**  
+Application Insights must ingest Application Event logs \(information level\) to detect cluster activities such as failover\.
+
+## Configure monitoring for MySQL RDS<a name="configure-mysql-rds"></a>
+
+1. Create an application for the resource group with the RDS MySQL database instance\.
+
+   ```
+   aws application-insights create-application ‐-region <REGION> ‐-resource-group-name  <RESOURCE_GROUP_NAME>
+   ```
+
+1. The error log is enabled by default\. The slow query log can be enabled using data parameter groups\. For more information, see [Accessing the MySQL Slow Query and General Logs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQL.Generallog)\.
+   + `set slow_query_log = 1`
+   + `set log_output = FILE`
+
+1. Export the logs to be monitored to CloudWatch logs\. For more information, see [Publishing MySQL Logs to CloudWatch Logs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQLDB.PublishtoCloudWatchLogs)\.
+
+1. Configure the MySQL RDS component\.
+
+   ```
+   aws application-insights  update-component-configuration ‐-resource-group-name "<RESOURCE_GROUP_NAME>" ‐-region <REGION> ‐-component-name "<DB_COMPONENT_NAME>" ‐-monitor ‐-tier DEFAULT ‐-monitor  ‐-component-configuration "{\"alarmMetrics\":[{\"alarmMetricName\":\"CPUUtilization\",\"monitor\":true}],\"logs\":[{\"logType\":\"MYSQL\",\"monitor\":true},{\"logType\": \"MYSQL_SLOW_QUERY\",\"monitor\":false}]}"
+   ```
+
+## Configure monitoring for MySQL EC2<a name="configure-mysql-ec2"></a>
+
+1. Create an application for the resource group with the SQL HA EC2 instances\.
+
+   ```
+   aws application-insights create-application ‐-region <REGION> ‐-resource-group-name  <RESOURCE_GROUP_NAME>
+   ```
+
+1. The error log is enabled by default\. The slow query log can be enabled using data parameter groups\. For more information, see [Accessing the MySQL Slow Query and General Logs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQL.Generallog)\.
+   + `set slow_query_log = 1`
+   + `set log_output = FILE`
+
+1. Configure the MySQL EC2 component\.
+
+   ```
+   aws application-insights  update-component-configuration ‐-resource-group-name "<RESOURCE_GROUP_NAME>" ‐-region <REGION> ‐-component-name "<DB_COMPONENT_NAME>" ‐-monitor ‐-tier MYSQL ‐-monitor  ‐-component-configuration "{\"alarmMetrics\":[{\"alarmMetricName\":\"CPUUtilization\",\"monitor\":true}],\"logs\":[{\"logGroupName\":\"<UNIQUE_LOG_GROUP_NAME>\",\"logPath\":\"C:\\\\ProgramData\\\\MySQL\\\\MySQL Server **\\\\Data\\\\<FILE_NAME>.err\",\"logType\":\"MYSQL\",\"monitor\":true,\"encoding\":\"utf-8\"}]}"
+   ```
 
 ## Set up notifications and actions for detected problems<a name="appinsights-cloudwatch-events"></a>
 

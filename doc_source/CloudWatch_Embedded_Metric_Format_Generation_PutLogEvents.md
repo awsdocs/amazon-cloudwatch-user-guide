@@ -6,7 +6,7 @@ You can send embedded metric format logs to CloudWatch Logs using the CloudWatch
 x-amzn-logs-format: json/emf
 ```
 
-The following is a full example using the AWS SDK for Java:
+The following is a full example using the AWS SDK for Java 2\.x:
 
 ```
 package org.example.basicapp;

@@ -1,6 +1,8 @@
 # Retrieve Custom Metrics with StatsD<a name="CloudWatch-Agent-custom-metrics-statsd"></a>
 
-You can retrieve custom metrics from your applications or services using the CloudWatch agent with the `StatsD` protocol\. `StatsD` is supported on both Linux servers and servers running Windows Server\. CloudWatch supports the following `StatsD` format:
+You can retrieve additional custom metrics from your applications or services using the CloudWatch agent with the `StatsD` protocol\. StatsD is a popular open\-source solution that can gather metrics from a wide variety of applications\. StatsD is especially useful for instrumenting your own metrics\. For an example of using the CloudWatch agent and StatsD together, see [ How to better monitor your custom application metrics using Amazon CloudWatch Agent](https://aws.amazon.com/blogs/devops/new-how-to-better-monitor-your-custom-application-metrics-using-amazon-cloudwatch-agent/)\.
+
+`StatsD` is supported on both Linux servers and servers running Windows Server\. CloudWatch supports the following `StatsD` format:
 
 ```
 MetricName:value|type|@sample_rate|#tag1:

@@ -20,8 +20,10 @@ Before you can create an alarm for your estimated charges, you must enable billi
 After you enable billing alerts for the first time, it takes about 15 minutes before you can view billing data and set billing alarms\.
 
 **Requirements**
-+ You must be signed in as either an AWS account root user or an IAM user whose access to the Billing and Cost Management console has been activated\.
-+ For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account as well as for the consolidated account\.
++ You must be signed in using account root user credentials or as an IAM user that has been given permission to view billing information\.
++ For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account, in addition to the consolidated account\.
++ In a consolidated billing account, member linked account metrics are captured only if the payer account enables the **Receive Billing Alerts** preference\. If you change which account is your master/payer account, you must enable the billing alerts in the new master/payer account\.
++ The account must not be part of the Amazon Partner Network \(APN\) because billing metrics are not published to CloudWatch for APN accounts\. For more information, see [AWS Partner Network](https://aws.amazon.com/partners/)\.
 
 **To enable monitoring of your estimated charges**
 
@@ -29,12 +31,14 @@ After you enable billing alerts for the first time, it takes about 15 minutes be
 
 1. In the navigation pane, choose **Preferences**\.
 
-1. Select **Receive Billing Alerts**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/billing_preferences.png)
+1. Select **Receive Billing Alerts**\.
 
 1. Choose **Save preferences**\.
 
 ## Step 2: Create a Billing Alarm<a name="gs_creating_billing_alarm"></a>
+
+**Important**  
+Before you can create a billing alarm,you must enable billing alerts in your account, or in the master/payer account if you are using consolidated billing\. For more information, see [Enabling Billing Alerts](monitor_estimated_charges_with_cloudwatch.md#turning_on_billing_metrics)\.
 
 After you've enabled billing alerts, you can create a billing alarm\. In this scenario, you create an alarm that sends an email message when your estimated charges for AWS exceed a specified threshold\.
 
@@ -53,13 +57,13 @@ This procedure uses the simple options\. To use the advanced options, see [Creat
 
 1. Select the checkbox next to **EstimatedCharges** and choose **Select metric**
 
-1. For **Whenever my total AWS charges for the month exceed**, specify the monetary amount \(for example, 200\) that must be exceeded to trigger the alarm and send an email notification\.
+1. For **Whenever my total AWS charges for the month exceed**, specify the monetary amount \(for example, 200\) that must be exceeded to trigger the alarm and send an email notification\. Then choose **Next**\.
 **Tip**  
 The graph shows a current estimate of your charges that you can use to set an appropriate amount\.
 
-1. For **send a notification to**, choose an existing notification list or create a new one\.
-
-   To create a list, choose **New list** and type a comma\-separated list of email addresses to be notified when the alarm changes to the ALARM state\. Each email address is sent a subscription confirmation email\. The recipient must confirm the subscription before notifications can be sent to the email address\.
+1. For **send a notification to**, do one of the following:
+   + Choose **Select an existing SNS topic** and then select the topic to notify under **Send a notification to**\. 
+   + Choose **Create a new topic** and then type a name for the new SNS topic and enter the email addresses that are to receive the notifications\. Separate the email names with commas\.
 
 1. Choose **Create Alarm**\. 
 

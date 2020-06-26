@@ -14,5 +14,5 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Compliance Validation for Amazon CloudWatch](compliance-validation.md)
 + [Resilience in Amazon CloudWatch](disaster-recovery-resiliency.md)
 + [Infrastructure Security in Amazon CloudWatch](infrastructure-security.md)
-+ [Using CloudWatch with Interface VPC Endpoints](cloudwatch-and-interface-VPC.md)
++ [Using CloudWatch and CloudWatch Synthetics with Interface VPC Endpoints](cloudwatch-and-interface-VPC.md)
 + [Security Considerations for Synthetics Canaries](servicelens_canaries_security.md)

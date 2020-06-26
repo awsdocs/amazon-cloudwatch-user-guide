@@ -1,6 +1,6 @@
 # Viewing Container Insights Metrics<a name="Container-Insights-view-metrics"></a>
 
-After you have Container Insights set up and it's collecting metrics, you can view those metrics on the CloudWatch automatic dashboards\.
+After you have Container Insights set up and it is collecting metrics, you can view those metrics in the CloudWatch console\.
 
 For Container Insights metrics to appear on your dashboard, you must complete the Container Insights setup\. For more information, see [Setting Up Container Insights](deploy-container-insights.md)\.
 
@@ -8,29 +8,9 @@ For Container Insights metrics to appear on your dashboard, you must complete th
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the upper left of the screen, select the down arrow next to **Overview** and choose **Container Insights**\.
+1. In the navigation pane, choose **Performance Monitoring**\.
 
-   Several graphs appear, displaying metrics about your clusters\. Below the graphs is a list of clusters, with health and basic metrics shown for each one\.
-
-   To filter the view to a certain cluster, use the box at the top in the middle\. 
-
-1. At the top left, where it shows **Clusters**, switch to see metrics at the node, pod, service, task, and namespace levels\. When you do so, you can also filter those views to look only at individual pods and nodes\.
-
-   You can also switch between Amazon EKS and Amazon ECS metrics\.
-
-1. In any graph, pause on a legend line to see more information about that resource\.
-
-1. At the cluster level, to view logs about one of the clusters in the dashboard, select the button next to its name in the list at the bottom of the screen\. Then choose **Actions** and select one of the options in the list\.
-
-   A new browser appears, showing a CloudWatch Logs Insights query for that resource\.
-
-   Choose **Run query**\. The query results are diplayed\.
-
-   For more information about CloudWatch Logs Insights, see [Analyze Log Data With CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\.
-
-1. At the node, pod, or task level, to view logs about one or more resources currently displayed in the list at the bottom of the page, select the check boxes next to the names of those resources\. Then choose **Actions** and select one of the options in the list\. You can view logs or AWS X\-Ray traces of the resource\.
-
-   A new browser appears, showing the information you requested\.
+1. Use the drop\-down boxes near the top to select the type of resource to view, as well as the specific resource\.
 
 You can set a CloudWatch alarm on any metric that Container Insights collects\. For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)
 
@@ -71,6 +51,16 @@ For more information about CloudWatch Logs Insights, see [Analyze Log Data with 
    This query displays a list of your pods, sorted by average number of container restarts\.
 
 1. If you want to try another query, you can use include fields in the list at the right of the screen\. For more information about query syntax, see [CloudWatch Logs Insights Query Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html)\.
+
+**To see lists of your resources**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Resources**\.
+
+1. The default view is a list of your resources being monitored by Container Insights, and alarms that you have set on these resources\. To see a visual map of the resources, choose **Map view**\.
+
+1. From the map view, you can pause your pointer over any resource in the map to see basic metrics about that resource\. You can choose any resource to see more detailed graphs about the resource\.
 
 ### Other Sample Queries for Container Insights<a name="Container-Insights-sample-queries"></a>
 

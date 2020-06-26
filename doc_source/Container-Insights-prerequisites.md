@@ -8,9 +8,17 @@ Before you install Container Insights on Amazon EKS or Kubernetes, verify the fo
   + Your kubelet has enabled Webhook authorization mode\. For more information, see [Kubelet authentication/authorization](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/) in the Kubernetes Reference\.
   + Your container runtime is Docker\.
 
-You must also attach a policy to the IAM role of your Amazon EKS worker nodes to enable them to send metrics and logs to CloudWatch\. 
+You must also grant IAM permissions to enable your Amazon EKS worker nodes to send metrics and logs to CloudWatch\. There are two ways to do this:
++ Attach a policy to the IAM role of your worker nodes\. This works for both Amazon EKS clusters and other Kubernetes clusters\.
++ Use an IAM role for service accounts for the cluster, and attach the policy to this role\. This works only for Amazon EKS clusters\.
 
-**To add the necessary policy to the IAM role for your worker nodes**
+The first option grants permissions to CloudWatch for the entire node, while using an IAM role for the service account gives CloudWatch access to only the appropriate daemonset pods\.
+
+**Attaching a policy to the IAM role of your worker nodes**
+
+Follow these steps to attach the policy to the IAM role of your worker nodes\. This works for both Amazon EKS clusters and Kubernetes clusters outside of Amazon EKS\. 
+
+**To attach the necessary policy to the IAM role for your worker nodes**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -40,3 +48,17 @@ If you're running a Kubernetes cluster outside Amazon EKS and you want to collec
     ]
 }
 ```
+
+**Using an IAM service account role**
+
+This method works only on Amazon EKS clusters\.
+
+**To grant permission to CloudWatch using an IAM service account role**
+
+1. If you haven't already, enable IAM roles for service accounts on your cluster\. For more information, see [Enabling IAM roles for service accounts on your cluster ](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)\. 
+
+1. If you haven't already, create the IAM role for your service account\. For more information, see [Creating an IAM role and policy for your service account](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)\. 
+
+   When you create the role, attach the **CloudWatchAgentServerPolicy** IAM policy to the role in addition to the policy that you create for the role\.
+
+1. If you haven't already, associate the IAM role with a service account in your cluster\. For more information, see [Specifying an IAM role for your service account ](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html)

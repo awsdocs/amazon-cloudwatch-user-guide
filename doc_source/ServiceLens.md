@@ -8,7 +8,7 @@ To fully take advantage of ServiceLens and correlated metrics, logs, and traces,
 
 ServiceLens integrates with Amazon CloudWatch Synthetics, a fully\-managed service that enables you to create canaries to monitor your endpoints and APIs from the outside\-in\. Canaries that you create appear on the ServiceLens service map\. For more information, see [Using Synthetic Monitoring](CloudWatch_Synthetics_Canaries.md)\.
 
-ServiceLens is available in every Region where X\-Ray is available, except for AWS GovCloud \(US\)\. ServiceLens is not available in AWS GovCloud \(US\)\.
+ServiceLens is available in every Region where X\-Ray is available\.
 
 **Topics**
 + [Deploying ServiceLens](deploy_servicelens.md)

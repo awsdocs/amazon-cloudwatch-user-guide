@@ -1,6 +1,8 @@
 # Retrieve Custom Metrics with collectd<a name="CloudWatch-Agent-custom-metrics-collectd"></a>
 
-You can retrieve custom metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. You use the collectd software to send the metrics to the CloudWatch agent\. For the collectd metrics, the CloudWatch agent acts as the server while the collectd plug\-in acts as the client\.
+You can retrieve additional metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. collectd is a popular open\-source solution with plug\-ins that can gather system statistics for a wide variety of applications\. By combining the system metrics that the CloudWatch agent can already collect with the additional metrics from collectd, you can better monitor, analyze, and troubleshoot your systems and applications\. For more information about collectd, see [collectd \- The system statistics collection daemon](https://collectd.org/)\.
+
+You use the collectd software to send the metrics to the CloudWatch agent\. For the collectd metrics, the CloudWatch agent acts as the server while the collectd plug\-in acts as the client\.
 
 The collectd software is not installed automatically on every server\. On a server running Amazon Linux 2, follow these steps to install collectd
 

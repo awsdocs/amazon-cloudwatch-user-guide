@@ -10,7 +10,7 @@ Additionally, requests must be signed using an access key ID and a secret access
 
 A virtual private cloud \(VPC\) is a virtual network in your own logically isolated area in the AWS cloud\. A subnet is a range of IP addresses in a VPC\. You can deploy a variety of AWS resources in the subnets of your VPCs\. For example, you can deploy Amazon EC2 instances, EMR clusters, and DynamoDB tables in subnets\. For more information, see the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\.
 
-To enable CloudWatch to communicate with resources in a VPC without going through the public internet, use AWS PrivateLink\. For more information, see [Using CloudWatch with Interface VPC Endpoints](cloudwatch-and-interface-VPC.md)\.
+To enable CloudWatch to communicate with resources in a VPC without going through the public internet, use AWS PrivateLink\. For more information, see [Using CloudWatch and CloudWatch Synthetics with Interface VPC Endpoints](cloudwatch-and-interface-VPC.md)\.
 
 A private subnet is a subnet with no default route to the public internet\. Deploying an AWS resource in a private subnet does not prevent Amazon CloudWatch from collecting built\-in metrics from the resource\.
 

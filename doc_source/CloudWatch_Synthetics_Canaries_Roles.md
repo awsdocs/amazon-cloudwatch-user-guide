@@ -1,15 +1,8 @@
-# Necessary Roles and Permissions for CloudWatch Canaries<a name="CloudWatch_Synthetics_Canaries_Roles"></a>
+# Required Roles and Permissions for CloudWatch Canaries<a name="CloudWatch_Synthetics_Canaries_Roles"></a>
 
+To view canary details and the results of canary runs, you must be signed in as an IAM user who has either the `CloudWatchSyntheticsFullAccess` or the `CloudWatchSyntheticsReadOnlyAccess` attached\. To read all Synthetics data in the console, you also need the `AmazonS3ReadOnlyAccess` and `CloudWatchReadOnlyAccess` policies\. To view the source code used by canaries, you also need the `AWSLambdaReadOnlyAccess` policy\.
 
-****  
-
-|  | 
-| --- |
-| CloudWatch Synthetics is in open preview\. The preview is currently available in the following Regions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Roles.html) The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [cw\-synthetics@amazon\.com](mailto:cw-synthetics@amazon.com) | 
-
-To view canary details and the results of canary test runs, you need to be logged on as an IAM user that has either the **CloudWatchSyntheticsFullAccess** or the **CloudWatchSyntheticsReadOnlyAccess** attached\. To read all Synthetics data in the console, you also need the **AmazonS3ReadOnlyAccess**, **CloudWatchReadOnlyAccess** policies\. To be able to view the source code used by canaries, you also need the **AWSLambdaReadOnlyAccess** policy\.
-
-To be able to create canaries, you must be logged on as an IAM user that has the **CloudWatchSyntheticsFullAccess** policy or a similar set of permissions\. Additionally, if the canary you create will have a new IAM role created for it, you also need the following inline policy statement:
+To create canaries, you must be signed in as an IAM user who has the `CloudWatchSyntheticsFullAccess` policy or a similar set of permissions\. To create IAM roles for the canaries, you also need the following inline policy statement:
 
 ```
 {
@@ -32,13 +25,13 @@ To be able to create canaries, you must be logged on as an IAM user that has the
 ```
 
 **Important**  
-Granting a user the `iam:CreateRole`, `iam:CreatePolicy`, and `iam:AttachRolePolicy` permissions gives that user full administrative access to your AWS account\. For example, a user with these permissions can create a policy that has full permissions for all resources, and attach that policy to any role\. Be very careful about who you grant these permissions to\.
+Granting a user the `iam:CreateRole`, `iam:CreatePolicy`, and `iam:AttachRolePolicy` permissions gives that user full administrative access to your AWS account\. For example, a user with these permissions can create a policy that has full permissions for all resources and can attach that policy to any role\. Be very careful about who you grant these permissions to\.
 
 For information about attaching policies and granting permissions to users, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) and [To embed an inline policy for a user or role](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console)\.
 
 **CloudWatchSyntheticsFullAccess**
 
-The contents of the **CloudWatchSyntheticsFullAccess** policy are as follows:
+Here are the contents of the `CloudWatchSyntheticsFullAccess` policy:
 
 ```
 { 
@@ -169,7 +162,7 @@ The contents of the **CloudWatchSyntheticsFullAccess** policy are as follows:
 
 **CloudWatchSyntheticsReadOnlyAccess**
 
-The contents of the **CloudWatchSyntheticsReadOnlyAccess** policy are as follows:
+Here are the contents of the `CloudWatchSyntheticsReadOnlyAccess` policy:
 
 ```
 {

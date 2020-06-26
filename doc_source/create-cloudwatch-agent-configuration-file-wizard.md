@@ -33,6 +33,9 @@ region = us-west-1
 
 The wizard is configured with predefined sets of metrics, with different detail levels\. These sets of metrics are shown in the following tables\. For more information about these metrics, see [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\. 
 
+**Note**  
+Parameter Store supports parameters in Standard and Advanced tiers\. These parameter tiers are not related to the Basic, Standard, and Advanced levels of metric details that are described in these tables\.
+
 **Amazon EC2 instances running Linux**
 
 

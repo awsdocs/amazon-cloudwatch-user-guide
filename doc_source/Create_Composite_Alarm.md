@@ -4,11 +4,13 @@ Composite alarms are alarms that determine their alarm state by watching the ala
 
 Using composite alarms can help you reduce alarm noise\. If you set up a composite alarm to notify you of state changes, but set up the underlying metric alarms to not send notifications themselves, you will be notified only when the alarm state of the composite alarm changes\. For example, you could create metric alarms based on both CPU utilization and disk read operations, and specify for these alarms to never take actions\. You could then create a composite alarm that goes into ALARM state and notifies you only when both of those metric alarms are in ALARM state\.
 
+In a composite alarm, all underlying alarms must be in the same AWS Region and the same account\.
+
 Currently, the only alarm actions that can be taken by composite alarms are notifying SNS topics\.
 
 **Rule Expressions**
 
-Composite alarms include *rule expressions*, which specify which other alarms are to be evaluated to determine the composite alarm's state\. For each alarm that you reference in the rule expression, you designate a function that specifies whether that alarm needs to be in ALARM state, OK state, or INSUFFICIENT\_DATA state\. You can use operators \(AND, OR and NOT\) to combine multiple functions in a single expression\. You can use parenthesis to logically group the functions in your expression\.
+Each composite alarms includes a *rule expression*, which specifies which other alarms are to be evaluated to determine the composite alarm's state\. For each alarm that you reference in the rule expression, you designate a function that specifies whether that alarm needs to be in ALARM state, OK state, or INSUFFICIENT\_DATA state\. You can use operators \(AND, OR and NOT\) to combine multiple functions in a single expression\. You can use parenthesis to logically group the functions in your expression\.
 
 A rule expression can refer to both metric alarms and other composite alarms\.
 
@@ -26,7 +28,9 @@ The following are some examples of `AlarmRule`:
 + `ALARM(CPUUtilizationTooHigh) AND NOT ALARM(DeploymentInProgress)` specifies that the alarm goes to ALARM state if CPUUtilizationTooHigh is in ALARM state and DeploymentInProgress is not in ALARM state\. This example reduces alarm noise during a known deployment window\.
 + `(ALARM(CPUUtilizationTooHigh) OR ALARM(DiskReadOpsTooHigh)) AND OK(NetworkOutTooHigh)` goes into ALARM state if CPUUtilizationTooHigh OR DiskReadOpsTooHigh is in ALARM state, and if NetworkOutTooHigh is in OK state\. This provides another example of using a composite alarm to prevent noise\. This rule ensures that you are not notified with an alarm action on high CPU or disk usage if a known network problem is also occurring\.
 
-The `AlarmRule` can specify as many as 100 "children" alarms\. The `AlarmRule` expression can have as many as 500 elements\. Elements are child alarms, TRUE or FALSE statements, and parentheses\.
+An `AlarmRule` expression can specify as many as 100 "child" alarms\. The `AlarmRule` expression can have as many as 500 elements\. Elements are child alarms, TRUE or FALSE statements, and parentheses\. A pair of parentheses counts as one element\.
+
+A rule expression must contain at least one child alarm or at least one TRUE statement or FALSE statement\.
 
 **To create a composite alarm**
 

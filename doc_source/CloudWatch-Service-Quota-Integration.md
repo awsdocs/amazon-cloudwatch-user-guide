@@ -14,6 +14,7 @@ Currently, the following services provide usage metrics that you can use to eval
 + [Amazon Elastic Container Registry](https://docs.aws.amazon.com/AmazonECR/latest/userguide/monitoring-usage.html)
 + AWS Key Management Service
 + [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/dev/monitoring-with-cloudwatch-metrics.html#fh-metrics-usage)
++ [AWS Robomaker](https://docs.aws.amazon.com/robomaker/latest/dg/monitoring-aws-robomaker-cloudwatch.html)
 
 All of these services publish their usage metrics in the `AWS/Usage` metric namespace\.
 

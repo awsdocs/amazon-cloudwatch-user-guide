@@ -8,40 +8,51 @@ The alarm changes to the `ALARM` state when the average CPU use of an EC2 instan
 
 Use these steps to use the AWS Management Console to create a CPU usage alarm\.
 
-**To create an alarm that sends email based on CPU usage**
+**To create an alarm based on CPU usage**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
 
-1. Under **EC2 Metrics**, choose a metric category \(for example, **Per\-Instance Metrics**\)\.
+1. Choose **Select metric**\.
 
-1. Select a metric as follows:
+1. In the **All metrics** tab, choose **EC2 metrics**\.
 
-   1. Select a row with the instance and the **CPUUtilization** metric\.
+1. Choose a metric category \(for example, **Per\-Instance Metrics**\)\.
 
-   1. For the statistic, choose **Average**, choose one of the predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\)\.
+1. Find the row with the instance that you want listed in the **InstanceId** column and **CPUUtilization** in the **Metric Name** column\. Select the check box next to this row, and choose **Select metric**\.
 
-   1. Choose a period \(for example, **5 minutes**\)\.
+1. Under **Specify metric and conditions**, for **Statistic** choose **Average**, choose one of the predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\)\.
 
-   1. Choose **Next**\.  
-![\[CPUUtilization metric selected\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/alarm_create_send_email.png)
+1. Choose a period \(for example, **5 minutes**\)\.
 
-1. Define the alarm as follows:
+1. Under **Conditions**, specify the following:
 
-   1. Under **Alarm Threshold**, enter a unique name for the alarm \(for example, **myHighCpuAlarm**\) and a description of the alarm \(for example, **CPU usage exceeds 70 percent**\)\. Alarm names must contain only ASCII characters\.
+   1. For **Threshold type**, choose **Static**\.
 
-   1. Under **Whenever**, for **is**, choose **>** and enter **70**\. For **for**, enter **2**\. This specifies that the alarm is triggered if the CPU usage is above 70 percent for two consecutive sampling periods\.  
-![\[Alarm threshold specified\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/create-alarm-threshold.png)
+   1. For **Whenever CPUUtilization is**, specify **Greater**\. Under **than\.\.\.**, specify the threshold that is to trigger the alarm to go to ALARM state if the CPU utilization exceeds this percentage\. For example, 70\.
 
-   1. Under **Additional settings**, for **Treat missing data as**, choose **bad \(breaching threshold\)**, as missing data points might indicate that the instance is down\. 
+   1. Choose **Additional configuration**\. For **Datapoints to alarm**, specify how many evaluation periods \(data points\) must be in the `ALARM` state to trigger the alarm\. If the two values here match, you create an alarm that goes to `ALARM` state if that many consecutive periods are breaching\.
 
-   1. Under **Actions**, for **Whenever this alarm**, choose **State is ALARM**\. For **Send notification to**, select an existing SNS topic or create a new one\.  
-![\[Alarm actions specified\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/create-alarm-actions.png)
+      To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an Alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
 
-   1. To create a new SNS topic, choose **New list**\. For **Send notification to**, enter a name for the SNS topic \(for example, **myHighCpuAlarm**\), and for **Email list**, enter a comma\-separated list of email addresses to be notified when the alarm changes to the `ALARM` state\. Each email address is sent a topic subscription confirmation email\. You must confirm the subscription before notifications can be sent\.
+   1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
 
-   1. Choose **Create Alarm**\.
+   1. If the alarm uses a percentile as the monitored statistic, a **Percentiles with low samples** box appears\. Use it to choose whether to evaluate or ignore cases with low sample rates\. If you choose **ignore \(maintain alarm state\)**, the current alarm state is always maintained when the sample size is too low\. For more information, see [Percentile\-Based CloudWatch Alarms and Low Data Samples](AlarmThatSendsEmail.md#percentiles-with-low-samples)\. 
+
+1. Choose **Next**\.
+
+1. Under **Notification**, choose **In alarm** and select an SNS topic to notify when the alarm is in `ALARM` state
+
+   To have the alarm send multiple notifications for the same alarm state or for different alarm states, choose **Add notification**\.
+
+   To have the alarm not send notifications, choose **Remove**\.
+
+1. When finished, choose **Next**\.
+
+1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. Then choose **Next**\.
+
+1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
 
 ## Setting Up a CPU Usage Alarm Using the AWS CLI<a name="cpu-usage-alarm-cli"></a>
 

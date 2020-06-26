@@ -18,6 +18,9 @@ The first procedure creates the IAM role that you must attach to each Amazon EC2
 
 The second procedure creates the IAM role that you must attach to the Amazon EC2 instance being used to create the CloudWatch agent configuration file\. This step is necessary if you're going to store this file in Systems Manager Parameter Store so that other servers can use it\. This role provides permissions for writing to Parameter Store, in addition to the permissions for reading information from the instance and writing it to CloudWatch\. This role includes permissions sufficient to run the CloudWatch agent as well as to write to Parameter Store\.
 
+**Note**  
+Parameter Store supports parameters in Standard and Advanced tiers\. These parameter tiers are not related to the Basic, Standard, and Advanced levels of details available with the CloudWatch Agent predefined metric sets\.
+
 **To create the IAM role necessary for each server to run the CloudWatch agent**
 
 1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
@@ -83,6 +86,9 @@ The permissions for writing to Parameter Store provide broad access\. This role 
 The first procedure creates the IAM user that you need to run the CloudWatch agent\. This user provides permissions to send data to CloudWatch\.
 
 The second procedure creates the IAM user that you can use when creating the CloudWatch agent configuration file\. Use this procedure to store this file in Systems Manager Parameter Store so that other servers can use it\. This user provides permissions to write to Parameter Store, in addition to the permissions to write data to CloudWatch\. 
+
+**Note**  
+Parameter Store supports parameters in Standard and Advanced tiers\. These parameter tiers are not related to the Basic, Standard, and Advanced levels of details available with the CloudWatch Agent predefined metric sets\.
 
 **To create the IAM user necessary for the CloudWatch agent to write data to CloudWatch**
 

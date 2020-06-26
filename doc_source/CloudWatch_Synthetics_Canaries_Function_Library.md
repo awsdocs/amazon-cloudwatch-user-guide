@@ -1,14 +1,14 @@
-# Library Functions Available For Canary Scripts<a name="CloudWatch_Synthetics_Canaries_Function_Library"></a>
+# Library Functions Available for Canary Scripts<a name="CloudWatch_Synthetics_Canaries_Function_Library"></a>
 
-CloudWatch Synthetics includes several built\-in functions which you can call when writing Node\.js scripts to use as canaries\.
+CloudWatch Synthetics includes several built\-in functions that you can call when writing Node\.js scripts to use as canaries\.
 
-Some functions are applicable to both UI and API canaries, while others are applicable only to UI canaries\. A UI canary is a canary that uses the **getPage\(\)** function and uses Puppeteer as a web driver to navigate and interact with web pages\.
+Some functions apply to both UI and API canaries\. Others apply to UI canaries only\. A UI canary is a canary that uses the `getPage()` function and uses Puppeteer as a web driver to navigate and interact with webpages\.
 
 **Topics**
-+ [Library Functions that Apply to All Canaries](#CloudWatch_Synthetics_Library_allcanaries)
-+ [Library Functions that Apply to Only UI Canaries](#CloudWatch_Synthetics_Library_UIcanaries)
++ [Library Functions That Apply to All Canaries](#CloudWatch_Synthetics_Library_allcanaries)
++ [Library Functions That Apply to UI Canaries Only](#CloudWatch_Synthetics_Library_UIcanaries)
 
-## Library Functions that Apply to All Canaries<a name="CloudWatch_Synthetics_Library_allcanaries"></a>
+## Library Functions That Apply to All Canaries<a name="CloudWatch_Synthetics_Library_allcanaries"></a>
 
 The following CloudWatch Synthetics library functions are useful for all canaries\.
 
@@ -65,7 +65,7 @@ Useful function definitions:
 
 **log\.debug\(*message*, *ex*\);**
 
-Parameters: *message* is the message to log, and *ex* is the exception, if any, to log
+Parameters: *message* is the message to log\. *ex* is the exception, if any, to log\.
 
 Example:
 
@@ -75,7 +75,7 @@ log.debug("Starting step - login.");
 
 **log\.error\(*message*, *ex*\);**
 
-Parameters: *message* is the message to log, and *ex* is the exception, if any, to log
+Parameters: *message* is the message to log\. *ex* is the exception, if any, to log\.
 
 Example:
 
@@ -89,7 +89,7 @@ catch (ex) {
 
 **log\.info\(*message*, *ex*\);**
 
-Parameters: *message* is the message to log, and *ex* is the exception, if any, to log
+Parameters: *message* is the message to log\. *ex* is the exception, if any, to log\.
 
 Example:
 
@@ -101,7 +101,7 @@ log.info("Successfully completed step - login.");
 
 This is an alias for `log.info`\. 
 
-Parameters: *message* is the message to log, and *ex* is the exception, if any, to log
+Parameters: *message* is the message to log\. *ex* is the exception, if any, to log\.
 
 Example:
 
@@ -111,7 +111,7 @@ Example:
 
 **log\.warn\(*message*, *ex*\);**
 
-Parameters: *message* is the message to log, and *ex* is the exception, if any, to log
+Parameters: *message* is the message to log\. *ex* is the exception, if any, to log\.
 
 Example:
 
@@ -119,7 +119,7 @@ Example:
 log.warn("Exception encountered trying to publish CloudWatch Metric.", ex);
 ```
 
-## Library Functions that Apply to Only UI Canaries<a name="CloudWatch_Synthetics_Library_UIcanaries"></a>
+## Library Functions That Apply to UI Canaries Only<a name="CloudWatch_Synthetics_Library_UIcanaries"></a>
 
 The following CloudWatch Synthetics library functions are useful only for UI canaries\.
 
@@ -130,7 +130,6 @@ The following CloudWatch Synthetics library functions are useful only for UI can
 + [getRequestResponseLogHelper\(\);](#CloudWatch_Synthetics_Library_getRequestResponseLogHelper)
 + [RequestResponseLogHelper class](#CloudWatch_Synthetics_Library_RequestResponseLogHelper)
 + [setRequestResponseLogHelper\(\);](#CloudWatch_Synthetics_Library_setRequestResponseLogHelper)
-+ [async takeScreenshot\(stepName, suffix\);](#CloudWatch_Synthetics_Library_takeScreenshot)
 
 ### async addUserAgent\(page, userAgentString\);<a name="CloudWatch_Synthetics_Library_addUserAgent"></a>
 
@@ -146,17 +145,17 @@ Results in the page’s user\-agent header being set to `browsers-user-agent-hea
 
 ### async executeStep\(stepName = null, functionToExecute\);<a name="CloudWatch_Synthetics_Library_executeStep"></a>
 
-Executes the provided step, wrapping it with start/pass/fail logging, start/pass/fail screenshots, and pass/fail and duration metrics\. In further detail, it does the following:
+Executes the provided step, wrapping it with start/pass/fail logging, start/pass/fail screenshots, and pass/fail and duration metrics\. It also does the following:
 + Logs that the step started\.
-+ Takes a screenshot called **<stepName>\-starting**\.
++ Takes a screenshot named `<stepName>-starting`\.
 + Starts a timer\.
 + Executes the provided function\.
 + If the function returns normally, it counts as passing\. If the function throws, it counts as failing\.
 + End the timer\.
 + Logs whether the step passed or failed
-+ Takes a screenshot called **<stepName>\-succeeded** or **<stepName>\-failed**\.
-+ Emits the `stepName` **SuccessPercent** metric, 100 for pass or 0 for failure\.
-+ Emits the `stepName` **Duration** metric, with a value based on the step start and end times\.
++ Takes a screenshot named `<stepName>-succeeded` or `<stepName>-failed`\.
++ Emits the `stepName` `SuccessPercent` metric, 100 for pass or 0 for failure\.
++ Emits the `stepName` `Duration` metric, with a value based on the step start and end times\.
 + Finally, returns what the `functionToExecute` returned or re\-throws what `functionToExecute` threw\.
 
 Example:
@@ -202,7 +201,7 @@ Response:
 
 ### RequestResponseLogHelper class<a name="CloudWatch_Synthetics_Library_RequestResponseLogHelper"></a>
 
-Handles the fine grained configuration and creation of string representations of request and response payloads\. More details:
+Handles the fine\-grained configuration and creation of string representations of request and response payloads\. 
 
 ```
 class RequestResponseLogHelper {
@@ -263,22 +262,4 @@ Response:
 
 ```
 {RequestResponseLogHelper}
-```
-
-### async takeScreenshot\(stepName, suffix\);<a name="CloudWatch_Synthetics_Library_takeScreenshot"></a>
-
-Takes a screenshot \(\.PNG\) of the current page with optional stepName and optional suffix\.
-
-Examples:
-
-```
-await synthetics.takeScreenshot(); // 00_screenshot.png
-```
-
-```
-await synthetics.takeScreenshot("Cart"); // 01_Cart.png
-```
-
-```
-await synthetics.takeScreenshot("Cart", "starting"); // 02_Cart-starting.png
 ```

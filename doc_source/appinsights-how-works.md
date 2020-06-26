@@ -5,7 +5,7 @@ This section contains information about how CloudWatch Application Insights for 
 **Topics**
 + [How Application Insights monitors applications](#appinsights-how-works-sub)
 + [Data retention](#appinsights-retention)
-+ [Limits](#appinsights-limits)
++ [Quotas](#appinsights-limits)
 
 ## How Application Insights monitors applications<a name="appinsights-how-works-sub"></a>
 
@@ -33,12 +33,12 @@ With CloudWatch Application Insights for \.NET and SQL Server and its intelligen
 
 CloudWatch Application Insights for \.NET and SQL Server retains problems for 55 days and observations for 60 days\.
 
-## Limits<a name="appinsights-limits"></a>
+## Quotas<a name="appinsights-limits"></a>
 
-The following table provides the default limits for CloudWatch Application Insights for \.NET and SQL Server\. Unless otherwise noted, each limit is per AWS Region\. Please contact [AWS Support](https://console.aws.amazon.com/support/home#/case/create?issueType=technical) to request an increase in your service limit\. Many services contain limits that cannot be changed\. For more information about the limits for a specific service, see the documentation for that service\. 
+The following table provides the default quotas for CloudWatch Application Insights for \.NET and SQL Server\. Unless otherwise noted, each quota is per AWS Region\. Please contact [AWS Support](https://console.aws.amazon.com/support/home#/case/create?issueType=technical) to request an increase in your service quota\. Many services contain quotas that cannot be changed\. For more information about the quotas for a specific service, see the documentation for that service\. 
 
 
-| Resource  | Default limit | 
+| Resource  | Default quota | 
 | --- | --- | 
 |  API requests  |  All API actions are throttled to 5 TPS  | 
 | Applications  |  10 per account  | 

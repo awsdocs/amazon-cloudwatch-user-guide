@@ -1,8 +1,8 @@
-# Editing a CloudWatch Alarm<a name="Edit-CloudWatch-Alarm"></a>
+# Editing or Deleting a CloudWatch Alarm<a name="Edit-CloudWatch-Alarm"></a>
 
-You can edit an existing alarm and update the Amazon SNS email notification list that it uses\.
+You can edit or delete an existing alarm\.
 
-CloudWatch has changed the alarm user interface\. By default, you're shown the new user interface, but you can choose to return to the old user interface\. This topic contains steps for each\.
+CloudWatch has updated the alarm user interface\. By default, you're shown the new user interface, but you can choose to return to the old user interface\. This topic contains steps for each\.
 
 **To edit an alarm using the new alarm user interface**
 
@@ -59,3 +59,13 @@ CloudWatch has changed the alarm user interface\. By default, you're shown the n
    + To remove an email address, choose the **Subscription ID**\. Choose **Other subscription actions**, **Delete subscriptions**\.
 
 1. Choose **Publish to topic**\.
+
+**To delete an alarm**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Alarms**\.
+
+1. Select the check box to the left of the name of the alarm, and choose **Actions**, **Delete**\.
+
+1. Choose **Delete**\.

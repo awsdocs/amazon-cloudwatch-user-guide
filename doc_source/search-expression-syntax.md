@@ -26,7 +26,7 @@ The preceding example searches the `AWS/EC2` namespace for any metrics that have
 
 **Search Expression Limits**
 
-The maximum search expression query size is 1024 characters\. You can have as many as five search expressions on one graph\. A graph can display as many as 100 time series\.
+The maximum search expression query size is 1024 characters\. You can have as many as five search expressions on one graph\. A graph can display as many as 500 time series\.
 
 ## CloudWatch Search Expressions: Tokenization<a name="search-expression-syntax-tokenization"></a>
 
@@ -176,6 +176,6 @@ For example, **SUM\(SEARCH\(' \{AWS/Lambda, FunctionName\} MetricName="Errors" '
 Using separate lines for your search expression and math expression might yield more useful results\. For example, suppose that you use the following two expressions in a graph\. The first line displays separate `Errors` lines for each of your Lambda functions\. The ID of this expression is `e1`\. The second line adds another line showing the sum of the errors from all of the functions\.
 
 ```
-SEARCH(' {AWS/Lambda, FunctionName} MetricName="Errors" ', 'Sum', 300)
+SEARCH(' {AWS/Lambda, FunctionName}, MetricName="Errors" ', 'Sum', 300)
 SUM(e1)
 ```

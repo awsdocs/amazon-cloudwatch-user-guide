@@ -6,6 +6,10 @@ Only the AWS services that you're using send metrics to Amazon CloudWatch\.
 
 For a list of AWS services that send metrics to CloudWatch, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\. From this page, you can also see the metrics and dimensions that are published by each of those services\.
 
+**Note**  
+Metrics that have not had any new data points in the past two weeks do not appear in the console\. They also do not appear when you type their metric name or dimension names in the search box in the **All metrics** tab in the console, and they are not returned in the results of a [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\. The best way to retrieve these metrics is with the [get\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-data.html) or [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) commands in the AWS CLI\.  
+If the old metric you want to view has a current metric with similar dimensions, you can view that current similar metric and then choose the **Source** tab, and change the metric name and dimension fields to the ones that you want, and also change the time range to a time when the metric was being reported\.
+
 **To view available metrics by namespace and dimension using the console**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.

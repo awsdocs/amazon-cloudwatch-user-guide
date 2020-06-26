@@ -4,6 +4,8 @@ You can collect metrics from servers by installing the CloudWatch agent on the s
 
 For information about installing the CloudWatch agent on an instance, see [Collecting Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](Install-CloudWatch-Agent.md)\.
 
+All metrics discussed in this section are collected directly by the CloudWatch agent\.
+
 ## Metrics Collected by the CloudWatch Agent on Windows Server Instances<a name="windows-metrics-enabled-by-CloudWatch-agent"></a>
 
 On a server running Windows Server, installing the CloudWatch agent enables you to collect the metrics associated with the counters in Windows Performance Monitor\. The CloudWatch metric names for these counters are created by putting a space between the object name and the counter name\. For example, the `% Interrupt Time` counter of the `Processor` object is given the metric name `Processor % Interrupt Time` in CloudWatch\. For more information about Windows Performance Monitor counters, see the Microsoft Windows Server documentation\.

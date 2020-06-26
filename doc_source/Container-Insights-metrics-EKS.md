@@ -17,7 +17,7 @@ If you do not see any Container Insights metrics in your console, be sure that y
 |  `node_filesystem_utilization` |  NodeName, ClusterName, InstanceId ClusterName  |  The total percentage of file system capacity being used on nodes in the cluster\.  | 
 |  `node_memory_limit` |  ClusterName  |  The maximum amount of memory, in bytes, that can be assigned to a single node in this cluster\.  | 
 |  `node_memory_reserved_capacity` |  NodeName, ClusterName, InstanceId ClusterName  |  The percentage of memory currently being used on the nodes in the cluster\.  | 
-|  `node_memory_utilization` |  NodeName, ClusterName, InstanceId ClusterName  |  The percentage of memory currently being used by the node or nodes\.  | 
+|  `node_memory_utilization`  |  NodeName, ClusterName, InstanceId ClusterName  |  The percentage of memory currently being used by the node or nodes\. `node_memory_utilization` is calculated by `node_memory_working_set` /`node_memory_limit`\. It is the percentage of node memory usage over the node memory limitation\.  | 
 |  `node_memory_working_set` |  ClusterName  |  The amount of memory, in bytes, being used in the working set of the nodes in the cluster\.  | 
 |  `node_network_total_bytes` |  NodeName, ClusterName, InstanceId ClusterName  |  The total number of bytes per second transmitted and received over the network per node in a cluster\.  | 
 |  `node_number_of_running_containers` |  NodeName, ClusterName, InstanceId ClusterName  |  The number of running containers per node in a cluster\.  | 

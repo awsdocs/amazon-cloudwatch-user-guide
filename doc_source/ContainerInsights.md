@@ -1,6 +1,8 @@
 # Using Container Insights<a name="ContainerInsights"></a>
 
-Use CloudWatch Container Insights to collect, aggregate, and summarize metrics and logs from your containerized applications and microservices\. Container Insights is available for Amazon Elastic Container Service, Amazon Elastic Kubernetes Service, and Kubernetes platforms on Amazon EC2\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Container Insights also provides diagnostic information, such as container restart failures, to help you isolate issues and resolve them quickly\. You can also set CloudWatch alarms on metrics that Container Insights collects\.
+Use CloudWatch Container Insights to collect, aggregate, and summarize metrics and logs from your containerized applications and microservices\. Container Insights is available for Amazon Elastic Container Service \(Amazon ECS\), Amazon Elastic Kubernetes Service \(Amazon EKS\), and Kubernetes platforms on Amazon EC2\. Amazon ECS support includes support for Fargate\.
+
+The metrics include utilization for resources such as CPU, memory, disk, and network\. Container Insights also provides diagnostic information, such as container restart failures, to help you isolate issues and resolve them quickly\. You can also set CloudWatch alarms on metrics that Container Insights collects\.
 
 The metrics that Container Insights collects are available in CloudWatch automatic dashboards\. You can analyze and troubleshoot container performance and logs data with CloudWatch Logs Insights\.
 
@@ -72,5 +74,7 @@ Container Insights for Amazon EKS and Kubernetes is supported in the following R
 + [Viewing Container Insights Metrics](Container-Insights-view-metrics.md)
 + [Metrics Collected by Container Insights](Container-Insights-metrics.md)
 + [Container Insights Performance Log Reference](Container-Insights-reference.md)
++ [Container Insights Prometheus Metrics Monitoring](ContainerInsights-Prometheus.md)
 + [Troubleshooting Container Insights](ContainerInsights-troubleshooting.md)
 + [Building Your Own CloudWatch Agent Docker Image](ContainerInsights-build-docker-image.md)
++ [Deploying Other CloudWatch Agent Features in Your Containers](ContainerInsights-other-agent-features.md)

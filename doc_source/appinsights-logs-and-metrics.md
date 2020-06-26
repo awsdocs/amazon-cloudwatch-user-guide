@@ -8,6 +8,7 @@ The following lists show the supported logs and metrics for CloudWatch Applicati
 + Custom \.NET application logs, such as Log4Net
 + Windows Event logs, including Windows logs \(System, Application, and Security\) and Applications and Services log
 +  Amazon CloudWatch Logs for AWS Lambda 
++ Error log and slow log for RDS MySQL and MySQL on EC2
 
 **Topics**
 + [Amazon Elastic Compute Cloud \(EC2\)](#appinsights-metrics-ec2)
@@ -17,13 +18,20 @@ The following lists show the supported logs and metrics for CloudWatch Applicati
 + [Amazon Simple Queue Server \(SQS\)](#appinsights-metrics-sqs)
 + [Amazon Relational Database Service \(RDS\)](#appinsights-metrics-rds)
 + [AWS Lambda Function](#appinsights-metrics-lambda)
++ [Amazon DynamoDB table](#appinsights-metrics-dyanamodb)
++ [Amazon S3 bucket](#appinsights-metrics-s3)
 + [Metrics With datapoints requirements](#appinsights-metrics-datapoint-requirements)
 + [Recommended metrics](#application-insights-recommended-metrics)
 + [Performance Counter metrics](#application-insights-performance-counter)
 
 ## Amazon Elastic Compute Cloud \(EC2\)<a name="appinsights-metrics-ec2"></a>
 
-**CloudWatch built\-in metrics**
+**Topics**
++ [CloudWatch built\-in metrics](#appinsights-metrics-ec2-built-in)
++ [CloudWatch Agent metrics \(Windows server\)](#appinsights-metrics-ec2-windows)
++ [CloudWatch Agent metrics \(Linux server\)](#appinsights-metrics-ec2-linux)
+
+### CloudWatch built\-in metrics<a name="appinsights-metrics-ec2-built-in"></a>
 
 CPUCreditBalance
 
@@ -69,7 +77,7 @@ StatusCheckFailed\_Instance
 
 StatusCheckFailed\_System
 
-**CloudWatch Agent metrics \(Windows server\)**
+### CloudWatch Agent metrics \(Windows server\)<a name="appinsights-metrics-ec2-windows"></a>
 
 \.NET CLR Exceptions \# of Exceps Thrown
 
@@ -227,7 +235,7 @@ Web Service Get Requests/sec
 
 Web Service Post Requests/sec
 
-**CloudWatch Agent metrics \(Linux server\)**
+### CloudWatch Agent metrics \(Linux server\)<a name="appinsights-metrics-ec2-linux"></a>
 
 cpu\_time\_active
 
@@ -543,6 +551,72 @@ IteratorAge
 
 ProvisionedConcurrencySpilloverInvocations
 
+## Amazon DynamoDB table<a name="appinsights-metrics-dyanamodb"></a>
+
+SystemErrors
+
+UserErrors
+
+ConsumedReadCapacityUnits
+
+ConsumedWriteCapacityUnits
+
+ReadThrottleEvents
+
+WriteThrottleEvents
+
+TimeToLiveDeletedItemCount
+
+ConditionalCheckFailedRequests
+
+TransactionConflict
+
+ReturnedRecordsCount
+
+PendingReplicationCount
+
+ReplicationLatency
+
+## Amazon S3 bucket<a name="appinsights-metrics-s3"></a>
+
+ReplicationLatency
+
+BytesPendingReplication
+
+OperationsPendingReplication
+
+4xxErrors
+
+5xxErrors
+
+AllRequests
+
+GetRequests
+
+PutRequests
+
+DeleteRequests
+
+HeadRequests
+
+PostRequests
+
+SelectRequests
+
+ListRequests
+
+SelectScannedBytes
+
+SelectReturnedBytes
+
+FirstByteLatency
+
+TotalRequestLatency
+
+BytesDownloaded
+
+BytesUploaded
+
 ## Metrics With datapoints requirements<a name="appinsights-metrics-datapoint-requirements"></a>
 
 For metrics without an obvious default threshold to alarm on, Application Insights waits until the metric has enough data points to predict a reasonable threshold to alarm on\. The metric datapoints requirement that CloudWatch Application Insights checks before an alarm is created are: 
@@ -551,7 +625,19 @@ For metrics without an obvious default threshold to alarm on, Application Insigh
 
 The following metrics follow these datapoints requirements\. Note that CloudWatch agent metrics require up to one hour to create alarms\. 
 
-**AWS/ApplicationELB**
+**Topics**
++ [AWS/ApplicationELB](#appinsights-metrics-datapoint-requirements-app-elb)
++ [AWS/AutoScaling](#appinsights-metrics-datapoint-requirements-autoscaling)
++ [AWS/EC2](#appinsights-metrics-datapoint-requirements-ec2)
++ [AWS/ELB](#appinsights-metrics-datapoint-requirements-elb)
++ [AWS/RDS](#appinsights-metrics-datapoint-requirements-rds)
++ [AWS/Lambda](#appinsights-metrics-datapoint-requirements-lambda)
++ [AWS/SQS](#appinsights-metrics-datapoint-requirements-sqs)
++ [AWS/CWAgent](#appinsights-metrics-datapoint-requirements-cwagent)
++ [AWS/DynamoDB](#appinsights-metrics-datapoint-requirements-dynamo)
++ [AWS/S3](#appinsights-metrics-datapoint-requirements-s3)
+
+### AWS/ApplicationELB<a name="appinsights-metrics-datapoint-requirements-app-elb"></a>
 
 ActiveConnectionCount
 
@@ -575,7 +661,7 @@ TargetResponseTime
 
 UnHealthyHostCount
 
-**AWS/AutoScaling**
+### AWS/AutoScaling<a name="appinsights-metrics-datapoint-requirements-autoscaling"></a>
 
 GroupDesiredCapacity
 
@@ -593,7 +679,7 @@ GroupTerminatingInstances
 
 GroupTotalInstances
 
-**AWS/EC2**
+### AWS/EC2<a name="appinsights-metrics-datapoint-requirements-ec2"></a>
 
 CPUCreditBalance
 
@@ -633,7 +719,7 @@ NetworkPacketsIn
 
 NetworkPacketsOut
 
-**AWS/ELB**
+### AWS/ELB<a name="appinsights-metrics-datapoint-requirements-elb"></a>
 
 EstimatedALBActiveConnectionCount
 
@@ -657,7 +743,7 @@ SurgeQueueLength
 
 UnHealthyHostCount
 
-**AWS/RDS**
+### AWS/RDS<a name="appinsights-metrics-datapoint-requirements-rds"></a>
 
 CPUCreditBalance
 
@@ -681,7 +767,7 @@ WriteIOPS
 
 WriteThroughput
 
-**AWS/Lambda**
+### AWS/Lambda<a name="appinsights-metrics-datapoint-requirements-lambda"></a>
 
 Errors
 
@@ -695,7 +781,7 @@ IteratorAge
 
 ProvisionedConcurrencySpilloverInvocations
 
-**AWS/SQS**
+### AWS/SQS<a name="appinsights-metrics-datapoint-requirements-sqs"></a>
 
 ApproximateAgeOfOldestMessage
 
@@ -713,7 +799,7 @@ NumberOfMessagesReceived
 
 NumberOfMessagesSent
 
-**CWAgent**
+### AWS/CWAgent<a name="appinsights-metrics-datapoint-requirements-cwagent"></a>
 
 LogicalDisk % Free Space
 
@@ -755,6 +841,26 @@ SQLServer:Buffer Manager Buffer cache hit ratio
 
 SQLServer:Buffer Manager Page life expectancy
 
+SQLServer:Database Replica File Bytes Received/sec
+
+SQLServer:Database Replica Log Bytes Received/sec
+
+SQLServer:Database Replica Log remaining for undo
+
+SQLServer:Database Replica Log Send Queue
+
+SQLServer:Database Replica Mirrored Write Transaction/sec
+
+SQLServer:Database Replica Recovery Queue
+
+SQLServer:Database Replica Redo Bytes Remaining
+
+SQLServer:Database Replica Redone Bytes/sec
+
+SQLServer:Database Replica Total Log requiring undo
+
+SQLServer:Database Replica Transaction Delay
+
 SQLServer:General Statistics Processes blocked
 
 SQLServer:SQL Statistics Batch Requests/sec
@@ -768,6 +874,68 @@ System Processor Queue Length
 TCPv4 Connections Established
 
 TCPv6 Connections Established
+
+### AWS/DynamoDB<a name="appinsights-metrics-datapoint-requirements-dynamo"></a>
+
+ConsumedReadCapacityUnits
+
+ConsumedWriteCapacityUnits
+
+ReadThrottleEvents
+
+WriteThrottleEvents
+
+TimeToLiveDeletedItemCount
+
+ConditionalCheckFailedRequests
+
+TransactionConflict
+
+ReturnedRecordsCount
+
+PendingReplicationCount
+
+ReplicationLatency
+
+### AWS/S3<a name="appinsights-metrics-datapoint-requirements-s3"></a>
+
+ReplicationLatency
+
+BytesPendingReplication
+
+OperationsPendingReplication
+
+4xxErrors
+
+5xxErrors
+
+AllRequests
+
+GetRequests
+
+PutRequests
+
+DeleteRequests
+
+HeadRequests
+
+PostRequests
+
+SelectRequests
+
+ListRequests
+
+SelectScannedBytes
+
+SelectReturnedBytes
+
+FirstByteLatency
+
+TotalRequestLatency
+
+BytesDownloaded
+
+BytesUploaded
 
 ## Recommended metrics<a name="application-insights-recommended-metrics"></a>
 
@@ -835,6 +1003,16 @@ Performance Counter metrics are recommended for instances only when the correspo
 | SQLServer:Access Methods Page Splits/Sec |  SQLServer:Access Methods  | 
 | SQLServer:Buffer Manager Buffer cache hit Ratio |  SQLServer:Buffer Manager  | 
 | SQLServer:Buffer Manager Page life Expectancy |  SQLServer:Buffer Manager  | 
+| SQLServer:Database Replica File Bytes Received/sec | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Log Bytes Received/sec | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Log remaining for undo | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Log Send Queue | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Mirrored Write Transaction/sec | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Recovery Queue | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Redo Bytes Remaining | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Redone Bytes/sec | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Total Log requiring undo | SQL\_SERVER\_ALWAYSON\_AG | 
+| SQLServer:Database Replica Transaction Delay | SQL\_SERVER\_ALWAYSON\_AG | 
 | SQLServer:General Statistics Processes Blocked |  SQLServer:General Statistics  | 
 | SQLServer:General Statistics User Connections | SQLServer:General Statistics | 
 | SQLServer:Latches Average Latch Wait Time \(ms\)  | SQLServer:Latches  | 

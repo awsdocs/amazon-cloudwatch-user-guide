@@ -123,6 +123,8 @@ When you complete the following procedure, CloudWatch creates a service\-linked 
 
      You can also enter a label for each of these accounts to help you identify them when choosing accounts to view\.
 
+     The account selector settings that a user makes here are retained only for that user, not for all other users in the monitoring account\. 
+
 1. Choose **Enable**\.
 
 After you complete this setup, you can create cross\-account dashboards\. For more information, see [Cross\-Account Cross\-Region Dashboards](cloudwatch_xaxr_dashboard.md)\.

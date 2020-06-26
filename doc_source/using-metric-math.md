@@ -6,19 +6,19 @@ You can also perform metric math programmatically, using the `GetMetricData` API
 
 ## Adding a Math Expression to a CloudWatch Graph<a name="adding-metrics-expression-console"></a>
 
-You can add a math expression to a graph on your CloudWatch dashboard\. Each graph is limited to using a maximum of 100 metrics and expressions, so you can add a math expression only if the graph has 99 or fewer metrics\. This applies even if not all the metrics are displayed on the graph\.
+You can add a math expression to a graph on your CloudWatch dashboard\. Each graph is limited to using a maximum of 500 metrics and expressions, so you can add a math expression only if the graph has 499 or fewer metrics\. This applies even if not all the metrics are displayed on the graph\.
 
 **To add a math expression to a graph**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. Create or edit a graph or line widget\.
+1. Create or edit a graph\. There needs to be at least one metric in the graph\.
 
 1. Choose **Graphed metrics**\.
 
-1. Choose **Add a math expression**\. A new line appears for the expression\.
+1. Choose **Math expression**, **Start with empty expression**\. A new line appears for the expression\.
 
-1. For the **Details** column, enter the math expression\. The tables in the Metric Math Syntax and Functions section list the functions that you can use in the expression\. 
+1. In the new line, under the **Details** column, enter the math expression\. The tables in the Metric Math Syntax and Functions section list the functions that you can use in the expression\. 
 
    To use a metric or the result of another expression as part of the formula for this expression, use the value shown in the **Id** column: for example, **m1\+m2** or **e1\-MIN\(e1\)**\.
 
@@ -194,6 +194,7 @@ For each data point of **metric1**, the corresponding output time series value:
 + has the value of **metric2**, if the corresponding data point of **metric1** is TRUE\.
 + has the value of **scalar3**, if the corresponding data point of **metric1** is FALSE\.
 + has the value of **0**, if the corresponding data point of **metric1** is TRUE and the corresponding data point does not exist in **metric2**\. 
++ is dropped if the corresponding data point in **metric1** does not exist\. 
 
 
 | Metric or Function | Values | 
@@ -201,7 +202,7 @@ For each data point of **metric1**, the corresponding output time series value:
 |  **\(metric1\)** |  **\[1, 1, 0, 0, \-\]**  | 
 |  **\(metric2\)** |  **\[30, \-, 0, 0, 30\]**  | 
 |  **scalar3** |  **5**  | 
-|  **IF\(metric1, metric2, scalar3\)** |  **\[30, 0, 5, 5, 5\]**  | 
+|  **IF\(metric1, metric2, scalar3\)** |  **\[30, 0, 5, 5, \-\]**  | 
 
 **IF\(scalar1, metric2, *metric3*\)**
 

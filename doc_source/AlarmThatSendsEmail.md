@@ -1,18 +1,16 @@
 # Using Amazon CloudWatch Alarms<a name="AlarmThatSendsEmail"></a>
 
 You can create both *metric alarms* and *composite alarms* in CloudWatch\.
-+ A *metric alarm* watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Amazon EC2 Auto Scaling action, or a notification sent to an Amazon SNS topic\.
++ A *metric alarm* watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Auto Scaling action, or a notification sent to an Amazon SNS topic\.
 + A *composite alarm* includes a rule expression that takes into account the alarm states of other alarms that you have created\. The composite alarm goes into ALARM state only if all conditions of the rule are met\. The alarms specified in a composite alarm's rule expression can include metric alarms and other composite alarms\.
 
   Using composite alarms can reduce alarm noise\. You can create multiple metric alarms, and also create a composite alarm and set up alerts only for the composite alarm\. For example, a composite might go into ALARM state only when all of the underlying metric alarms are in ALARM state\.
 
-  Composite alarms can send Amazon SNS notifications when they change state, but cannot perform EC2 actions or Auto Scaling actions\.
+  Composite alarms can send Amazon SNS notifications when they change state, but can't perform EC2 actions or Auto Scaling actions\.
 
 You can add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
 
-Alarms invoke actions for sustained state changes only\. CloudWatch alarms don't invoke actions simply because they are in a particular state, the state must have changed and been maintained for a specified number of periods\. 
-
-After an alarm invokes an action due to a change in state, its subsequent behavior depends on the type of action that you have associated with the alarm\. For Amazon EC2 Auto Scaling actions, the alarm continues to invoke the action for every period that the alarm remains in the new state\. For Amazon SNS notifications, no additional actions are invoked\.
+An alarm invokes actions only when the alarm changes state\. The exception is for alarms with Auto Scaling actions\. For Auto Scaling actions, the alarm continues to invoke the action once per minute that the alarm remains in the new state\. 
 
 **Note**  
 CloudWatch doesn't test or validate the actions that you specify, nor does it detect any Amazon EC2 Auto Scaling or Amazon SNS errors resulting from an attempt to invoke nonexistent actions\. Make sure that your alarm actions exist\.
@@ -27,7 +25,7 @@ A metric alarm has the following possible states:
 ## Evaluating an Alarm<a name="alarm-evaluation"></a>
 
 When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
-+ **Period** is the length of time to evaluate the metric or expression to create each individual data point for an alarm\. It is expressed in seconds\. If you choose one minute as the period, there is one data point every minute\.
++ **Period** is the length of time to evaluate the metric or expression to create each individual data point for an alarm\. It is expressed in seconds\. If you choose one minute as the period, the alarm evaluates the metric once per minute\.
 + **Evaluation Period** is the number of the most recent periods, or data points, to evaluate when determining alarm state\.
 + **Datapoints to Alarm** is the number of data points within the evaluation period that must be breaching to cause the alarm to go to the `ALARM` state\. The breaching data points don't have to be consecutive, they just must all be within the last number of data points equal to **Evaluation Period**\.
 
@@ -35,7 +33,7 @@ In the following figure, the alarm threshold for a metric alarm is set to three 
 
 ![\[Alarm threshold trigger alarm\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/alarm_graph.png)
 
-When you configure **Evaluation Period** and **Datapoints to Alarm** as different values, you're setting an "M out of N" alarm\. **Datapoints to Alarm** is \("M"\) and **Evaluation Period** is \("N"\)\. The evaluation interval is the number of data points multiplied by the period\. For example, if you configure 4 out of 5 data points with a period of 1 minute, the evaluation interval is 5 minutes\. If you configure 3 out of 3 data points with a period of 10 minutes, the evaluation interval is 30 minutes\.
+When you configure **Evaluation Period** and **Datapoints to Alarm** as different values, you're setting an "M out of N" alarm\. **Datapoints to Alarm** is \("M"\) and **Evaluation Period** is \("N"\)\. 
 
 ## Configuring How CloudWatch Alarms Treat Missing Data<a name="alarms-and-missing-data"></a>
 
@@ -131,15 +129,15 @@ For percentiles between 0\.5 \(inclusive\) and 1\.00 \(exclusive\), this setting
 ## Common Features of CloudWatch Alarms<a name="common-features-of-alarms"></a>
 
 The following features apply to all CloudWatch alarms:
-+ You can create up to 5000 alarms per Region per AWS account\. To create or update an alarm, you use the `PutMetricAlarm` API action \(`mon-put-metric-alarm` command\)\.
++ You can create up to 5000 alarms per Region per AWS account\. To create or update an alarm, you use the CloudWatch console, the [PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html) API action, or the [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command in the AWS CLI\.
 + Alarm names must contain only ASCII characters\.
-+ You can list any or all of the currently configured alarms, and list any alarms in a particular state using `DescribeAlarms` \(`mon-describe-alarms`\)\. You can further filter the list by time range\. 
-+ You can disable and enable alarms by using `DisableAlarmActions` and `EnableAlarmActions` \(`mon-disable-alarm-actions` and `mon-enable-alarm-actions`\)\.
-+ You can test an alarm by setting it to any state using `SetAlarmState` \(`mon-set-alarm-state`\)\. This temporary state change lasts only until the next alarm comparison occurs\.
-+ You can create an alarm using `PutMetricAlarm` \(`mon-put-metric-alarm`\) before you've created a custom metric\. For the alarm to be valid, you must include all of the dimensions for the custom metric in addition to the metric namespace and metric name in the alarm definition\.
-+ You can view an alarm's history using `DescribeAlarmHistory` \(`mon-describe-alarm-history`\)\. CloudWatch preserves alarm history for two weeks\. Each state transition is marked with a unique timestamp\. In rare cases, your history might show more than one notification for a state change\. The timestamp enables you to confirm unique state changes\.
++ You can list any or all of the currently configured alarms, and list any alarms in a particular state by using the CloudWatch console, the [DescribeAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html) API action, or the [describe\-alarms](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/describe-alarms.html) command in the AWS CLI\.
++ You can disable and enable alarms by using the CloudWatch console, the [DisableAlarmActions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DisableAlarmActions.html) and [EnableAlarmActions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_EnableAlarmActions.html) API actions, or the [disable\-alarm\-actions](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/disable-alarm-actions.html) and [enable\-alarm\-actions](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/enable-alarm-actions.html) commands in the AWS CLI\. 
++ You can test an alarm by setting it to any state using the [SetAlarmState](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_SetAlarmState.html) API action or the [set\-alarm\-state](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/set-alarm-state.html) command in the AWS CLI\. This temporary state change lasts only until the next alarm comparison occurs\.
++ You can create an alarm for a custom metric before you've created that custom metric\. For the alarm to be valid, you must include all of the dimensions for the custom metric in addition to the metric namespace and metric name in the alarm definition\. To do this, you can use the [PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html) API action, or the [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command in the AWS CLI\.
++ You can view an alarm's history using the CloudWatch console, the [DescribeAlarmHistory](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarmHistory.html) API action, or the [describe\-alarm\-history](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/describe-alarm-history.html) command in the AWS CLI\. CloudWatch preserves alarm history for two weeks\. Each state transition is marked with a unique timestamp\. In rare cases, your history might show more than one notification for a state change\. The timestamp enables you to confirm unique state changes\.
 + The number of evaluation periods for an alarm multiplied by the length of each evaluation period can't exceed one day\.
 
 **Note**  
 Some AWS resources don't send metric data to CloudWatch under certain conditions\.  
-For example, Amazon EBS might not send metric data for an available volume that is not attached to an Amazon EC2 instance, because there is no metric activity to be monitored for that volume\. If you have an alarm set for such a metric, you might notice its state change to `INSUFFICIENT_DATA`\. This might indicate that your resource is inactive, and might not necessarily mean that there is a problem\.
+For example, Amazon EBS might not send metric data for an available volume that is not attached to an Amazon EC2 instance, because there is no metric activity to be monitored for that volume\. If you have an alarm set for such a metric, you might notice its state change to `INSUFFICIENT_DATA`\. This might indicate that your resource is inactive, and might not necessarily mean that there is a problem\. You can specify how each alarm treats missing data\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](#alarms-and-missing-data)\.

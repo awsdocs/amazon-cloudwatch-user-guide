@@ -1,6 +1,6 @@
 # Aggregating Statistics Across Resources<a name="GetSingleMetricAllDimensions"></a>
 
-You can aggregate the metrics for AWS resources across multiple resources\. Metrics are completely separate between Regions but you can use CloudWatch metric math to aggregate and transform metrics from multiple accounts and Regions\.
+You can aggregate the metrics for AWS resources across multiple resources\. Amazon CloudWatch can't aggregate data across Regions\. Metrics are completely separate between Regions\.
 
 For example, you can aggregate statistics for your EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring aren't included\. Therefore, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 

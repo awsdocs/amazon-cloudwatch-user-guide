@@ -3,7 +3,7 @@
 Amazon CloudWatch uses Amazon SNS to send email\. First, create and subscribe to an SNS topic\. When you create a CloudWatch alarm, you can add this SNS topic to send an email notification when the alarm changes state\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](https://docs.aws.amazon.com/sns/latest/gsg/)\.
 
 **Note**  
-Alternatively, if you plan to create your CloudWatch alarm using the AWS Management Console, you can skip this procedure because you can create the topic through the **Create Alarm Wizard**\.
+Alternatively, if you plan to create your CloudWatch alarm using the AWS Management Console, you can skip this procedure because you can create the topic when you create the alarm\.
 
 ## Setting Up an Amazon SNS Topic Using the AWS Management Console<a name="set-up-sns-topic-console"></a>
 

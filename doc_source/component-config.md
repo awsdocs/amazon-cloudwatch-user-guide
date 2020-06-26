@@ -42,7 +42,7 @@ Component configuration includes several major sections\. Sections in a componen
 
   A list of [alarms](#component-configuration-alarms) to monitor for the component\. All component types can have an alarm section\.
 
-The following example shows the instances section fragment in JSON format\.
+The following example shows the syntax for the **instances section fragment** in JSON format\.
 
 ```
 {
@@ -58,7 +58,7 @@ The following example shows the instances section fragment in JSON format\.
 }
 ```
 
-## Metric<a name="component-config-metric"></a>
+### Metric<a name="component-config-metric"></a>
 
 Defines a metric to be monitored for the component\.
 
@@ -79,7 +79,7 @@ Defines a metric to be monitored for the component\.
 
   Boolean to indicate whether to monitor the metric\. The default value is `true`\.
 
-## Log<a name="component-configuration-log"></a>
+### Log<a name="component-configuration-log"></a>
 
 Defines a log to be monitored for the component\.
 
@@ -115,7 +115,7 @@ Defines a log to be monitored for the component\.
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
 
-## Windows Events<a name="windows-events"></a>
+### Windows Events<a name="windows-events"></a>
 
 Defines Windows Events to log\.
 
@@ -144,7 +144,7 @@ Defines Windows Events to log\.
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
 
-## Alarm<a name="component-configuration-alarms"></a>
+### Alarm<a name="component-configuration-alarms"></a>
 
 Defines a CloudWatch alarm to be monitored for the component\.
 
@@ -165,9 +165,9 @@ Defines a CloudWatch alarm to be monitored for the component\.
 
   Indicates the degree of outage when the alarm goes off\. 
 
-## Component configuration examples<a name="component-configuration-examples"></a>
+### Component configuration examples<a name="component-configuration-examples"></a>
 
-The following examples show component configurations in JSON format for relevant AWS services\.
+The following examples show component configurations in JSON format for relevant services\.
 
 **Amazon Elastic Compute Cloud \(EC2\) instance**
 
@@ -459,5 +459,200 @@ The following examples show component configurations in JSON format for relevant
       "monitor": true
     }
   ]
+}
+```
+
+**Amazon DynamoDB table**
+
+```
+{
+  "alarmMetrics": [
+    {
+      "alarmMetricName": "SystemErrors",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "UserErrors",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "ConsumedReadCapacityUnits",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "ConsumedWriteCapacityUnits",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "ReadThrottleEvents",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "WriteThrottleEvents",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "ConditionalCheckFailedRequests",
+      "monitor": false
+    },
+    {
+      "alarmMetricName": "TransactionConflict",
+      "monitor": false
+    }
+  ],
+  "logs": []
+}
+```
+
+**SQL Always On Availability Group**
+
+```
+{
+  "instances" : {
+    "alarmMetrics" : [ {
+      "alarmMetricName" : "CPUUtilization",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "StatusCheckFailed",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "Processor % Processor Time",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "Memory % Committed Bytes In Use",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "Memory Available Mbytes",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "Paging File % Usage",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "System Processor Queue Length",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "Network Interface Bytes Total/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "PhysicalDisk % Disk Time",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Buffer Manager Buffer cache hit ratio",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Buffer Manager Page life expectancy",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:General Statistics Processes blocked",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:General Statistics User Connections",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Locks Number of Deadlocks/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:SQL Statistics Batch Requests/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica File Bytes Received/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Log Bytes Received/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Log remaining for undo",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Log Send Queue",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Mirrored Write Transaction/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Recovery Queue",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Redo Bytes Remaining",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Redone Bytes/sec",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Total Log requiring undo",
+      "monitor" : true
+    }, {
+      "alarmMetricName" : "SQLServer:Database Replica Transaction Delay",
+      "monitor" : true
+    } ],
+    "windowsEvents" : [ {
+      "logGroupName" : "WINDOWS_EVENTS-Application-<RESOURCE_GROUP_NAME>",
+      "eventName" : "Application",
+      "eventLevels" : [ "WARNING", "ERROR", "CRITICAL", "INFORMATION" ],
+      "monitor" : true,
+      "logType" : "SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP"
+    }, {
+      "logGroupName" : "WINDOWS_EVENTS-System-<RESOURCE_GROUP_NAME>",
+      "eventName" : "System",
+      "eventLevels" : [ "WARNING", "ERROR", "CRITICAL" ],
+      "monitor" : true,
+      "logType" : "DEFAULT"
+    }, {
+      "logGroupName" : "WINDOWS_EVENTS-Security-<RESOURCE_GROUP_NAME>",
+      "eventName" : "Security",
+      "eventLevels" : [ "WARNING", "ERROR", "CRITICAL" ],
+      "monitor" : true,
+      "logType" : "DEFAULT"
+    } ],
+    "logs" : [ {
+      "logGroupName" : "SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP-<RESOURCE_GROUP_NAME>",
+      "logPath" : "C:\\Program Files\\Microsoft SQL Server\\MSSQL**.MSSQLSERVER\\MSSQL\\Log\\ERRORLOG",
+      "logType" : "SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP",
+      "monitor" : true,
+      "encoding" : "utf-8"
+    } ]
+  }
+}
+```
+
+**RDS MySQL**
+
+```
+{
+  "alarmMetrics": [
+    {
+      "alarmMetricName": "CPUUtilization",
+      "monitor": true
+    }
+  ],
+  "logs": [
+    {
+      "logType": "MYSQL",
+      "monitor": true,
+    },
+    {
+      "logType": "MYSQL_SLOW_QUERY",
+      "monitor": false
+    }
+  ]
+}
+```
+
+**Amazon S3 bucket**
+
+```
+{
+    "alarmMetrics" : [
+        {
+            "alarmMetricName" : "ReplicationLatency",
+            "monitor" : true
+        }, {
+            "alarmMetricName" : "5xxErrors",
+            "monitor" : true
+        }, {
+            "alarmMetricName" : "BytesDownloaded"
+            "monitor" : true
+        }
+    ]
 }
 ```

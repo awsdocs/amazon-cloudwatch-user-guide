@@ -46,6 +46,9 @@ CloudWatch retains metric data as follows:
 
 Data points that are initially published with a shorter period are aggregated together for long\-term storage\. For example, if you collect data using a period of 1 minute, the data remains available for 15 days with 1\-minute resolution\. After 15 days this data is still available, but is aggregated and is retrievable only with a resolution of 5 minutes\. After 63 days, the data is further aggregated and is available with a resolution of 1 hour\. 
 
+**Note**  
+Metrics that have not had any new data points in the past two weeks do not appear in the console\. They also do not appear when you type their metric name or dimension names in the search box in the **All metrics** tab in the console, and they are not returned in the results of a [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\. The best way to retrieve these metrics is with the [get\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-data.html) or [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) commands in the AWS CLI\.
+
 CloudWatch started retaining 5\-minute and 1\-hour metric data as of 9 July 2016\.
 
 ## Dimensions<a name="Dimension"></a>
@@ -77,7 +80,7 @@ If you publish only those four metrics, you can retrieve statistics for these co
 + `Server=Beta,Domain=Frankfurt`
 + `Server=Beta,Domain=Rio`
 
-You can't retrieve statistics for the following dimensions or if you specify no dimensions:
+You can't retrieve statistics for the following dimensions or if you specify no dimensions\. \(The exception is by using the metric math **SEARCH** function, which can retrieve statistics for multiple metrics\. For more information, see [Using Search Expressions in Graphs](using-search-expressions.md)\.\)
 + `Server=Prod`
 + `Server=Beta`
 + `Domain=Frankfurt`
@@ -121,7 +124,7 @@ Periods are also important for CloudWatch alarms\. When you create an alarm to m
 
 ### Aggregation<a name="CloudWatchAggregation"></a>
 
-Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them according to the specified period length\. CloudWatch does not aggregate data across Regions\.
+Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them according to the specified period length\. CloudWatch does not automatically aggregate data across Regions, but you can use metric math to aggregate metrics from different Regions\.
 
 You can publish data points for a metric that share not only the same time stamp, but also the same namespace and dimensions\. CloudWatch returns aggregated statistics for those data points\. You can also publish multiple data points for the same or different metrics, with any time stamp\.
 
@@ -149,7 +152,7 @@ You can use an *alarm* to automatically initiate actions on your behalf\. An ala
 
 Alarms invoke actions for sustained state changes only\. CloudWatch alarms do not invoke actions simply because they are in a particular state\. The state must have changed and been maintained for a specified number of periods\.
 
-When creating an alarm, select a period that is greater than or equal to the frequency of the metric to be monitored\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances every 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
+When creating an alarm, select an alarm monitoring period that is greater than or equal to the metric's monitoring period\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances every 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
 
  If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing Custom Metrics](publishingMetrics.md)\.
 

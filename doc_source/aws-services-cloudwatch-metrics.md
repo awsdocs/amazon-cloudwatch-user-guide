@@ -5,7 +5,6 @@ The following AWS services publish metrics to CloudWatch\. For information about
 
 | Service | Namespace | Documentation | 
 | --- | --- | --- | 
-|  Amazon Managed Apache Cassandra Service  |  `AWS/Cassandra`  |  [Amazon Managed Cassandra Service Metrics and Dimensions](https://docs.aws.amazon.com/mcs/latest/devguide/metrics-dimensions.html)  | 
 |  Amazon API Gateway  |  `AWS/ApiGateway`  |  [Monitor API Execution with Amazon CloudWatch](https://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  AppStream 2\.0  |  `AWS/AppStream`  |  [Monitoring Amazon AppStream 2\.0 Resources](https://docs.aws.amazon.com/appstream2/latest/developerguide/monitoring.html)  | 
 |  AWS AppSync  |  `AWS/AppSync`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/appsync/latest/devguide/monitoring.html#cw-metrics)  | 
@@ -26,6 +25,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon DocumentDB  |  `AWS/DocDB`  |  [Amazon DocumentDB Metrics](https://docs.aws.amazon.com//documentdb/latest/developerguide/cloud-watch.html#metrics-list)  | 
 |  Amazon DynamoDB  |  `AWS/DynamoDB`  |  [DynamoDB Metrics and Dimensions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/metrics-dimensions.html)  | 
 |  Amazon EC2  |  `AWS/EC2`  |  [Monitoring Your Instances Using CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)  | 
+|  Amazon EC2 Elastic Graphics  |  `AWS/ElasticGPUs`  |  [Using CloudWatch metrics to monitor Elastic Graphics](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics-cloudwatch.html)  | 
 |  Amazon EC2 Spot Fleet  |  `AWS/EC2Spot`  |  [CloudWatch Metrics for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html)  | 
 |  Amazon EC2 Auto Scaling  |  `AWS/AutoScaling`  |  [Monitoring Your Auto Scaling Groups and Instances Using CloudWatch](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html)  | 
 |  AWS Elastic Beanstalk  |  `AWS/ElasticBeanstalk`  |  [Publishing Amazon CloudWatch Custom Metrics for an Environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-cloudwatch.html)  | 
@@ -39,11 +39,12 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Elastic Transcoder  |  `AWS/ElasticTranscoder`  |  [Monitoring with Amazon CloudWatch](https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/monitoring-cloudwatch.html)  | 
 |  Amazon ElastiCache for Memcached  |  `AWS/ElastiCache`  |  [Monitoring Use with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/CacheMetrics.html)  | 
 |  Amazon ElastiCache for Redis  |  `AWS/ElastiCache`  |  [Monitoring Use with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.html)  | 
-|  Amazon Elasticsearch Service  |  `AWS/ES`  |  [Monitoring Cluster Metrics and Statistics with CloudWatch](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-cloudwatchmetrics)  | 
+|  Amazon Elasticsearch Service  |  `AWS/ES`  |  [Monitoring Cluster Metrics with Amazon CloudWatch](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-cloudwatchmetrics.html)  | 
 |  Amazon EMR  |  `AWS/ElasticMapReduce`  |  [Monitor Metrics with CloudWatch](https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_ViewingMetrics.html)  | 
 |  AWS Elemental MediaConnect  |  `AWS/MediaConnect`  |  [Monitoring MediaConnect with Amazon CloudWatch](https://docs.aws.amazon.com/mediaconnect/latest/ug/monitor-with-cloudwatch.html)  | 
-|  AWS Elemental MediaConvert  |  `AWS/MediaConvert`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediaconvert/latest/ug/MediaConvert-metrics.html)  | 
-|  AWS Elemental MediaPackage  |  `AWS/MediaPackage`  |  [CloudWatch Metrics](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch.html#metrics)  | 
+|  AWS Elemental MediaConvert  |  `AWS/MediaConvert`  |  [Using CloudWatch Metrics to View Metrics for AWS Elemental MediaConvert Resources](https://docs.aws.amazon.com/mediaconvert/latest/ug/MediaConvert-metrics.html)  | 
+|  AWS Elemental MediaPackage  |  `AWS/MediaPackage`  |  [Monitoring AWS Elemental MediaPackage with Amazon CloudWatch Metrics](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch.html#metrics)  | 
+|  AWS Elemental MediaStore  |  `AWS/MediaStore`  |  [Monitoring AWS Elemental MediaStore with Amazon CloudWatch Metrics](https://docs.aws.amazon.com/mediastore/latest/ug/monitor-with-cloudwatch-metrics.html)  | 
 |  AWS Elemental MediaTailor  |  `AWS/MediaTailor`  |  [Monitoring AWS Elemental MediaTailor with Amazon CloudWatch](https://docs.aws.amazon.com/mediatailor/latest/ug/monitoring-cloudwatch.html)  | 
 |  Amazon EventBridge  |  `AWS/Events`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/eventbridge/latest/userguide/CloudWatch-Events-Monitoring-CloudWatch-Metrics.html)  | 
 |  Amazon FSx for Lustre  |  `AWS/FSx`  |  [Monitoring Amazon FSx for Lustre](https://docs.aws.amazon.com/fsx/latest/LustreGuide/monitoring_overview.html)  | 
@@ -54,9 +55,11 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon Inspector |  `AWS/Inspector`  |  [Monitoring Amazon Inspector Using CloudWatch](https://docs.aws.amazon.com/inspector/latest/userguide/using-cloudwatch.html)  | 
 |  AWS IoT  |  `AWS/IoT`  |  [AWS IoT Metrics and Dimensions](https://docs.aws.amazon.com/iot/latest/developerguide/metrics_dimensions.html)  | 
 |  AWS IoT Analytics  |  `AWS/IoTAnalytics`  |  [Namespace, Metrics, and Dimensions](https://docs.aws.amazon.com/iotanalytics/latest/userguide/cloudwatch.html#aws-iot-analytics-cloudwatch-metrics)  | 
+|  AWS IoT SiteWise  |  `AWS/IoTSiteWise`  |  [ Monitoring AWS IoT SiteWise with Amazon CloudWatch metrics](https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-cloudwatch-metrics.html)  | 
 |  AWS IoT Things Graph  |  `AWS/ThingsGraph`  |  [Metrics](https://docs.aws.amazon.com/thingsgraph/latest/ug/iot-tg-metrics.html)  | 
 |  AWS Key Management Service  |  `AWS/KMS`  |  [Monitoring with CloudWatch](https://docs.aws.amazon.com/kms/latest/developerguide/monitoring-cloudwatch.html)  | 
-|  Amazon Kinesis Data Analytics  |  `AWS/KinesisAnalytics`  |  *Kinesis Data Analytics*: [Monitoring with CloudWatch](https://docs.aws.amazon.com/kinesisanalytics/latest/dev/monitoring-cloudwatch.html) *Kinesis Data Analytics for Java Applications*: [Viewing Amazon Kinesis Data Analytics Metrics and Dimensions](https://docs.aws.amazon.com/kinesisanalytics/latest/java/metrics-dimensions.html)  | 
+|  Amazon Keyspaces \(for Apache Cassandra\)  |  `AWS/Cassandra`  |  [Amazon Keyspaces Metrics and Dimensions](https://docs.aws.amazon.com/mcs/latest/devguide/metrics-dimensions.html)  | 
+|  Amazon Kinesis Data Analytics  |  `AWS/KinesisAnalytics`  |  *Kinesis Data Analytics for SQL Applications*: [Monitoring with CloudWatch](https://docs.aws.amazon.com/kinesisanalytics/latest/dev/monitoring-cloudwatch.html) *Kinesis Data Analytics for Apache Flink*: [Viewing Amazon Kinesis Data Analytics Metrics and Dimensions](https://docs.aws.amazon.com/kinesisanalytics/latest/java/metrics-dimensions.html)  | 
 |  Amazon Kinesis Data Firehose  |  `AWS/Firehose`  |  [Monitoring Kinesis Data Firehose Using CloudWatch Metrics ](https://docs.aws.amazon.com/firehose/latest/dev/monitoring-with-cloudwatch-metrics.html)  | 
 |  Amazon Kinesis Data Streams  |  `AWS/Kinesis`  |  [Monitoring Amazon Kinesis Data Streams with Amazon CloudWatch](https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html)  | 
 |  Amazon Kinesis Video Streams  |  `AWS/KinesisVideo`  |  [Monitoring Kinesis Video Streams Metrics with CloudWatch](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring-cloudwatch.html)  | 

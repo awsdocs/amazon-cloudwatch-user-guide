@@ -42,7 +42,7 @@ If you're already running the agent with the root user and want to change to usi
 1. Start the agent with the configuration file that you just modified\.
 
    ```
-   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:configuration-file-path
    ```
 
 **To run the CloudWatch agent as a different user on an on\-premises server running Linux**
@@ -68,7 +68,7 @@ If you're already running the agent with the root user and want to change to usi
 1. Start the agent with the configuration file that you just modified\.
 
    ```
-   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:configuration-file-path -s
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:configuration-file-path
    ```
 
 ## Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-adding-custom-dimensions"></a>
@@ -118,11 +118,11 @@ To set this up, first create the configuration files that you want to use\. Any 
 Start the CloudWatch agent using the `fetch-config` option and specify the first configuration file\. To append the second configuration file to the running agent, use the same command but with the `append-config` option\. All metrics and logs listed in either configuration file are collected\. The following example Linux commands illustrate this scenario using configurations stores as files\. The first line starts the agent using the `infrastructure.json` configuration file, and the second line appends the `app.json` configuration file\.
 
 ```
-/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/tmp/infrastructure.json -s
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/tmp/infrastructure.json
 ```
 
 ```
-/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a append-config -m ec2 -c file:/tmp/app.json -s
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a append-config -m ec2 -s -c file:/tmp/app.json
 ```
 
 The following example configuration files illustrate a use for this feature\. The first configuration file is used for all servers in the infrastructure, and the second collects only logs from a certain application and is appended to servers running that application\.
@@ -342,7 +342,7 @@ The role in the target account must include the following policy so that it reco
       "Effect": "Allow",
       "Principal": {
         "AWS": [
-          "arn:aws:iam::sending-account-ID:role/role-specified-in-role_arn"
+          "arn:aws:iam::sending-account-ID:role/role-in-sender-account"
         ]
       },
       "Action": "sts:AssumeRole"
