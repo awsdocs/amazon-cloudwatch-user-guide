@@ -24,7 +24,7 @@ The following metrics are available when you complete the steps in [Setting Up C
 |  `NetworkTxBytes` |  TaskDefinitionFamily, ClusterName ServiceName, ClusterName ClusterName  |  The number of bytes transmitted by the resource that is specified by the dimensions that you're using\. This metric is available only for containers in `bridge` network mode\. It is not available for containers in `awsvpc` network mode or `host` network mode\.  | 
 |  `PendingTaskCount` |  ServiceName, ClusterName  |  The number of tasks currently in the `PENDING` state\.  | 
 |  `RunningTaskCount` |  ServiceName, ClusterName  |  The number of tasks currently in the `RUNNING` state\.  | 
-|  `ServiceCount` |  ServiceName  |  The number of services in the cluster\.  | 
+|  `ServiceCount` |  ClusterName  |  The number of services in the cluster\.  | 
 |  `StorageReadBytes` |  TaskDefinitionFamily, ClusterName ServiceName, ClusterName ClusterName  |  The number of bytes read from storage in the resource that is specified by the dimensions that you're using\.  | 
 |  `StorageWriteBytes` |  TaskDefinitionFamily, ClusterName ServiceName, ClusterName ClusterName  |  The number of bytes written to storage in the resource that is specified by the dimensions that you're using\.  | 
 |  `TaskCount` |  ServiceName  |  The number of tasks running in the service\.  | 
