@@ -26,7 +26,7 @@ You can also define different values for these settings at the job level, to ove
 
 ### Prometheus Scraping Jobs<a name="ContainerInsights-Prometheus-Setup-config-scrape"></a>
 
-The CloudWatch agent YAML files already have some default scraping jobs configured\. These are defined in the YAML files with `job_name` lines in the `scrape_configs` section\. For example, the following default `kubernetes-pod-jmx` section scrapes JMX exporter metrics\.
+The CloudWatch agent YAML files already have some default scraping jobs configured\. These are defined in the YAML files with `job_name` lines in the `scrape_configs` section\. For example, the following default `kubernetes-pod-jmx` section scrapes JMX exporter metrics from pods with Label `jmx_prometheus_metrics=true`\.
 
 ```
    - job_name: 'kubernetes-pod-jmx'
@@ -36,10 +36,13 @@ The CloudWatch agent YAML files already have some default scraping jobs configur
       - role: pod
       relabel_configs:
       - source_labels: [__address__]
+        action: replace
+        regex: ([^:]+)(?::\d+)?
+        replacement: ${1}:9404
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_pod_label_jmx_prometheus_metrics]
         action: keep
-        regex: '.*:9404$'
-      - action: labelmap
-        regex: __meta_kubernetes_pod_label_(.+)
+        regex: true
       - action: replace
         source_labels:
         - __meta_kubernetes_namespace

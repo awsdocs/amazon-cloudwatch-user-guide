@@ -71,7 +71,14 @@ To install the CloudWatch agent with Prometheus support on an Amazon EKS cluster
    kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-eks.yaml
    ```
 
-   To have the agent send data to a different Region instead, follow these steps:
+2. By default, CloudWatch agent scrapes JMX metrics only from pods with Label jmx_prometheus_metrics=true
+   1. You can add label to pods exposing JMX metrics in your Kubernetes cluster by using following command,
+
+   ```
+   kubectl label pod <pod_id> --namespace <pod_namespace> jmx_prometheus_metrics=true
+   ```
+
+3. To have the agent send data to a different Region instead, follow these steps:
 
    1. Download the YAML file for the agent by entering the following command:
 
@@ -79,9 +86,9 @@ To install the CloudWatch agent with Prometheus support on an Amazon EKS cluster
       curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-eks.yaml
       ```
 
-   1. Open the file with a text editor, and search for the `cwagentconfig.json` block of the file\.
+   2. Open the file with a text editor, and search for the `cwagentconfig.json` block of the file\.
 
-   1. Add the highlighted lines, specifying the Region that you want:
+   3. Add the highlighted lines, specifying the Region that you want:
 
       ```
       cwagentconfig.json: |
@@ -92,7 +99,7 @@ To install the CloudWatch agent with Prometheus support on an Amazon EKS cluster
             "logs": { ...
       ```
 
-   1. Save the file and deploy the agent using your updated file\.
+   4. Save the file and deploy the agent using your updated file\.
 
       ```
       kubectl apply -f prometheus-eks.yaml
@@ -120,6 +127,6 @@ On both Amazon EKS and Kubernetes clusters, you can enter the following command 
 kubectl get pod -l "app=cwagent-prometheus" -n amazon-cloudwatch
 ```
 
-If the results include a single CloudWatch agent pod in the `Running` state, the agent is running and collecting Prometheus metrics\. By default the CloudWatch agent collects metrics for App Mesh, NGINX, Memcached, Java/JMX, and HAProxy every minute\. For more information about those metrics, see [Prometheus Metrics Collected by the CloudWatch Agent](ContainerInsights-Prometheus-metrics.md)\. For instructions on how to see your Prometheus metrics in CloudWatch, see [Viewing Your Prometheus Metrics ](ContainerInsights-Prometheus-viewmetrics.md)
+If the results include a single CloudWatch agent pod in the `Running` state, the agent is running and collecting Prometheus metrics\. By default the CloudWatch agent collects metrics for App Mesh, NGINX, Memcached, Java/JMX (for pod with label jmx_prometheus_metrics=true), and HAProxy every minute\. For more information about those metrics, see [Prometheus Metrics Collected by the CloudWatch Agent](ContainerInsights-Prometheus-metrics.md)\. For instructions on how to see your Prometheus metrics in CloudWatch, see [Viewing Your Prometheus Metrics ](ContainerInsights-Prometheus-viewmetrics.md)
 
 You can also configure the CloudWatch agent to collect metrics from other Prometheus exporters\. For more information, see [Configuring the CloudWatch Agent for Prometheus Monitoring](ContainerInsights-Prometheus-Setup-configure.md)\.
