@@ -42,7 +42,7 @@ To install App Mesh Kubernetes Controller, follow these instructions on [appmesh
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the AWS Region where your cluster is running, choose **Metrics**\. The App Mesh meetrics are in the **ContainerInsights/Prometheus** namespace\.
+1. In the AWS Region where your cluster is running, choose **Metrics**\. The App Mesh metrics are in the **ContainerInsights/Prometheus** namespace\.
 
 1. To see the CloudWatch Logs events, choose **Log Groups** in the navigation pane\. The events are in the log group **/aws/containerinsights/*your\_cluster\_name*/prometheus**, in the log stream **kubernetes\-pod\-appmesh\-envoyappmesh**\.
 
