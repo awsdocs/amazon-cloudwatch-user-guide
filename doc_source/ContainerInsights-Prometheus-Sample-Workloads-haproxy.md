@@ -21,9 +21,9 @@ HAProxy is an open\-source proxy application\. For more information, see [HAProx
    ```
    helm install haproxy incubator/haproxy-ingress \
    --namespace haproxy-ingress-sample \
-   --set controller.stats.enabled=true \ 
-   --set controller.metrics.enabled=true \ 
-   --set-string controller.metrics.service.annotations."prometheus\.io/port"="9101" \ 
+   --set controller.stats.enabled=true \
+   --set controller.metrics.enabled=true \
+   --set-string controller.metrics.service.annotations."prometheus\.io/port"="9101" \
    --set-string controller.metrics.service.annotations."prometheus\.io/scrape"="true"
    ```
 
