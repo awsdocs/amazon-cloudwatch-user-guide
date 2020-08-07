@@ -7,7 +7,7 @@ To set up FluentD to collect logs from your containers, you can follow the steps
 | --- | --- | 
 |  `/aws/containerinsights/Cluster_Name/application`  |  All log files in `/var/log/containers`  | 
 |  `/aws/containerinsights/Cluster_Name/host`  |  Logs from `/var/log/dmesg`, `/var/log/secure`, and `/var/log/messages`  | 
-|  `/aws/containerinsights/Cluster_Name/dataplane`  |  The logs in `/var/log/journal` for `kubelet.service`, `kubeproxy.service`, and `docker.service`\.  | 
+|  `/aws/containerinsights/Cluster_Name/dataplane`  |  The logs in `/var/log/journal` for `kubelet.service`, and `docker.service`\.  | 
 
 ## Step 1: Create a Namespace for CloudWatch<a name="create-namespace-logs"></a>
 
