@@ -4,16 +4,22 @@ NGINX is a web server that can also be used as a load balancer and reverse proxy
 
 **To install NGINX with a sample traffic service to test Container Insights Prometheus support**
 
+1. Enter the following command to add the Helm ingress-nginx repo:
+
+   ```
+   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+   ```
+
 1. Enter the following commands:
 
    ```
    kubectl create namespace nginx-ingress-sample
    
-   helm install stable/nginx-ingress --generate-name --version 1.33.5 \
+   helm install my-nginx ingress-nginx/ingress-nginx \
    --namespace nginx-ingress-sample \
    --set controller.metrics.enabled=true \
-   --set controller.metrics.service.annotations."prometheus\.io/port"="10254" \
-   --set controller.metrics.service.annotations."prometheus\.io/scrape"="true"
+   --set-string controller.metrics.service.annotations."prometheus\.io/port"="10254" \
+   --set-string controller.metrics.service.annotations."prometheus\.io/scrape"="true"
    ```
 
 1. Check whether the services started correctly by entering the following command:
@@ -56,11 +62,9 @@ NGINX is a web server that can also be used as a load balancer and reverse proxy
    kubectl delete namespace $SAMPLE_TRAFFIC_NAMESPACE
    ```
 
-1. Delete the NGINX egress\. First, find the Helm release name\. For example, if the service name is `nginx-ingress-1583277500-controller`, the Helm release name is `nginx-ingress-1583277500`
-
-   Then enter the following commands:
+1. Delete the NGINX ingress by Helm release name.
 
    ```
-   helm uninstall release-name --namespace nginx-ingress-sample
-   kubectl delete namespace nginx-ingress-sample $SAMPLE_TRAFFIC_NAMESPACE
+   helm uninstall my-nginx --namespace nginx-ingress-sample
+   kubectl delete namespace nginx-ingress-sample
    ```
