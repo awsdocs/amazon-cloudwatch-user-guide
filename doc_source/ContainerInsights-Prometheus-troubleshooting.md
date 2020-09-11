@@ -145,4 +145,4 @@ If the Prometheus metrics are ingested as log events correctly, check that the e
 
 For more information about embedded metric format, see [Specification: Embedded Metric Format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
 
-If there is no embedded metric format in the log events, check that the `metric_definitions` are configured correctly in the `config map: prometheus-cwagentconfig` section of the CloudWatch agent installation YAML file\. For more information, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus KPI Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
+If there is no embedded metric format in the log events, check that the `metric_definitions` are configured correctly in the `config map: prometheus-cwagentconfig` section of the CloudWatch agent installation YAML file\. For more information, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.

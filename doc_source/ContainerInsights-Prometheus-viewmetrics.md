@@ -1,6 +1,6 @@
 # Viewing Your Prometheus Metrics<a name="ContainerInsights-Prometheus-viewmetrics"></a>
 
-You can monitor and alarm on all your Prometheus metrics including the curated pre\-aggregated metrics from App Mesh, NGINX, Java/JMX, Memcached, and HAProxy, and any other manually configured Prometheus exporter you may have added\. For more information about collecting metrics from other Prometheus exporters, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus KPI Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
+You can monitor and alarm on all your Prometheus metrics including the curated pre\-aggregated metrics from App Mesh, NGINX, Java/JMX, Memcached, and HAProxy, and any other manually configured Prometheus exporter you may have added\. For more information about collecting metrics from other Prometheus exporters, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
 
 In the CloudWatch console, Container Insights provides pre\-built reports for App Mesh and NGINX\. 
 
