@@ -71,7 +71,7 @@ These log events are stored in the **/aws/containerinsights/*cluster\_name*/prom
 
 Each scraping job is contained in a different log stream in this log group\. For example, the Prometheus scraping job `kubernetes-pod-appmesh-envoy` is defined for App Mesh\. All App Mesh Prometheus metrics are sent to the log stream named **/aws/containerinsights/*cluster\_name*>prometheus/kubernetes\-pod\-appmesh\-envoy/**\.
 
-To add a new scraping target, you add a new `job_name` section to the `scrape_configs` section of the YAML file, and restart the agent\. For an example of this process, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus KPI Server Metrics](#ContainerInsights-Prometheus-Setup-new-exporters)\.
+To add a new scraping target, you add a new `job_name` section to the `scrape_configs` section of the YAML file, and restart the agent\. For an example of this process, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](#ContainerInsights-Prometheus-Setup-new-exporters)\.
 
 ## CloudWatch Agent Configuration for Prometheus<a name="ContainerInsights-Prometheus-Setup-cw-agent-config"></a>
 
@@ -136,7 +136,7 @@ The log event that is sent includes the following highlighted section:
 }
 ```
 
-## Tutorial for Adding a New Prometheus Scrape Target: Prometheus KPI Server Metrics<a name="ContainerInsights-Prometheus-Setup-new-exporters"></a>
+## Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics<a name="ContainerInsights-Prometheus-Setup-new-exporters"></a>
 
 The Kubernetes API Server exposes Prometheus metrics on endpoints by default\. The official example for the Kubernetes API Server scraping configuration is available on [Github](https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml)\.
 
@@ -191,7 +191,7 @@ The Kubernetes API Server exposes gauge, counter, histogram, and summary metrics
            target_label: Service
    ```
 
-1. While you still have the YAML file open in the text editor, find the `cwagentconfig.json` section\. Add the following subsection and save the changes\. This section puts the KPI service metrics onto the CloudWatch agent allow list\. Three types of KPI Server metrics are added to the allow list:
+1. While you still have the YAML file open in the text editor, find the `cwagentconfig.json` section\. Add the following subsection and save the changes\. This section puts the KPI service metrics onto the CloudWatch agent allow list\. Three types of API Server metrics are added to the allow list:
    + etcd object counts
    + API Server registration controller metrics
    + API Server request metrics
@@ -287,13 +287,13 @@ Once you have done this, you should see a new log stream named ** kubernetes\-ap
 }
 ```
 
-You can view your metrics in the CloudWatch console in the **ContainerInsights/Prometheus** namespace\. You can also optionally create a CloudWatch dashboard for your Prometheus Kubernetes KPI Server metrics\.
+You can view your metrics in the CloudWatch console in the **ContainerInsights/Prometheus** namespace\. You can also optionally create a CloudWatch dashboard for your Prometheus Kubernetes API Server metrics\.
 
-### \(Optional\) Creating a Dashboard for Kubernetes KPI Server metrics<a name="ContainerInsights-Prometheus-Setup-KPI-dashboard"></a>
+### \(Optional\) Creating a Dashboard for Kubernetes API Server metrics<a name="ContainerInsights-Prometheus-Setup-KPI-dashboard"></a>
 
 To see Kubernetes API Server metrics in your dashboard, you must have first completed the steps in the previous sections to start collecting these metrics in CloudWatch\.
 
-**To create a dashboard for Kubernetes KPI Server metrics**
+**To create a dashboard for Kubernetes API Server metrics**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
