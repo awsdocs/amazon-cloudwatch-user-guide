@@ -146,9 +146,9 @@ The following tutorial shows how to do the following steps to begin importing Ku
 + \(Optional\) Creating a CloudWatch dashboard for the Kubernetes API Server metrics\.
 
 **Note**  
-The Kubernetes API Server exposes gauge, counter, histogram, and summary metrics\. In this release of Prometheus metrics support, CloudWatch imports only the metrics with gauge and counter types\.
+The Kubernetes API Server exposes gauge, counter, histogram, and summary metrics\. In this release of Prometheus metrics support, CloudWatch imports only the metrics with gauge, counter and summary types\.
 
-**To start collecting Prometheus Kubernetes API Server metrics in CloudWatch**
+**To start collecting Kubernetes API Server Prometheus metrics in CloudWatch**
 
 1. Download the latest version of the `prometheus-eks.yaml` or `prometheus-k8s.yaml` file by entering one of the following commands\. For an Amazon EKS cluster, enter the following command:
 
@@ -244,8 +244,11 @@ The Kubernetes API Server exposes gauge, counter, histogram, and summary metrics
    For a Kubernetes cluster, enter this command:
 
    ```
-   kubectl apply -f prometheus-k8s.yaml
+   cat prometheus-k8s.yaml \
+   | sed "s/{{cluster_name}}/MyCluster/;s/{{region_name}}/region/" \
+   | kubectl apply -f -
    ```
+   Replace *MyCluster* and *region* to match your setting.
 
 Once you have done this, you should see a new log stream named ** kubernetes\-apiservers ** in the **/aws/containerinsights/*cluster\_name*/prometheus** log group\. This log stream should include log events with an embedded metric format definition like the following:
 
