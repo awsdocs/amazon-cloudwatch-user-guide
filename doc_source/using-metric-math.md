@@ -38,7 +38,7 @@ Choose the down arrow next to **Math Expression** to see a list of supported fun
 
 The following sections explain the functions available for metric math\. All functions must be written in uppercase letters \(such as **AVG**\), and the **Id** field for all metrics and math expressions must start with a lowercase letter\. 
 
-The final result of any math expression must be a single time series or an array of time series\. Some functions produce a scalar number\. You can use these functions within a larger function that ultimately produces a time series\. For example, taking the **AVG** of a single time series produces a scalar number, so it can't be the final expression result\. But you could use it in the function **m1\-AVG\(m1\)** to display a time series of the difference between each individual data point and the average value of that data point\.
+The final result of any math expression must be a single time series or an array of time series\. Some functions produce a scalar number\. You can use these functions within a larger function that ultimately produces a time series\. For example, taking the **AVG** of a single time series produces a scalar number, so it can't be the final expression result\. But you could use it in the function **m1\-AVG\(m1\)** to display a time series of the difference between each individual data point and the average value in the time series\.
 
 ### Data Type Abbreviations<a name="metric-math-syntax-datatypes"></a>
 

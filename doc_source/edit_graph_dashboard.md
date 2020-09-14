@@ -12,6 +12,8 @@ You can edit a graph to change the title, statistic, or period, or to add or rem
 
 1. To change the graph's title, select the title, enter a new title, and press ENTER\.
 
+1. To change the type of graph, choose **Graph options**\. You can then choose between a line graph, stacked area chart, bar chart, pie chart, or number\.
+
 1. To change the time range shown on the graph, choose either **custom** at the top of the graph, or one of the time periods to the left of **custom**\.
 
 1. To change the type of widget between separate lines on a graph, stacked lines on a graph, and a number, choose the box next to the right of **custom** and select either **Line**, **Stacked area**, or **Number**\.

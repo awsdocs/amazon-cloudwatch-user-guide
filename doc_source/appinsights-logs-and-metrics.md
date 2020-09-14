@@ -1,26 +1,50 @@
-# Logs and metrics supported by Amazon CloudWatch Application Insights for \.NET and SQL Server<a name="appinsights-logs-and-metrics"></a>
+# Logs and metrics supported by Amazon CloudWatch Application Insights<a name="appinsights-logs-and-metrics"></a>
 
-The following lists show the supported logs and metrics for CloudWatch Application Insights for \.NET and SQL Server\. 
+The following lists show the supported logs and metrics for Amazon CloudWatch Application Insights\. 
 
-**CloudWatch Application Insights for \.NET and SQL Server supports the following logs:**
+**CloudWatch Application Insights supports the following logs:**
 + Microsoft Internet Information Services \(IIS\) logs
 + Error log for SQL Server on EC2
 + Custom \.NET application logs, such as Log4Net
 + Windows Event logs, including Windows logs \(System, Application, and Security\) and Applications and Services log
-+  Amazon CloudWatch Logs for AWS Lambda 
-+ Error log and slow log for RDS MySQL and MySQL on EC2
++ Amazon CloudWatch Logs for AWS Lambda 
++ Error log and slow log for RDS MySQL, Aurora MySQL, and MySQL on EC2
++ Postgresql log for PostgreSQL RDS and PostgreSQL on EC2
++ Amazon CloudWatch Logs for AWS Step Functions
 
-**Topics**
+**Contents**
 + [Amazon Elastic Compute Cloud \(EC2\)](#appinsights-metrics-ec2)
+  + [CloudWatch built\-in metrics](#appinsights-metrics-ec2-built-in)
+  + [CloudWatch Agent metrics \(Windows server\)](#appinsights-metrics-ec2-windows)
+  + [CloudWatch Agent metrics \(Linux server\)](#appinsights-metrics-ec2-linux)
 + [Elastic Load Balancer \(ELB\)](#appinsights-metrics-elb)
 + [Application ELB](#appinsights-metrics-app-elb)
 + [Amazon EC2 Auto Scaling Groups](#appinsights-metrics-as)
 + [Amazon Simple Queue Server \(SQS\)](#appinsights-metrics-sqs)
 + [Amazon Relational Database Service \(RDS\)](#appinsights-metrics-rds)
+  + [RDS Database instances](#appinsights-metrics-rds-instances)
+  + [RDS Database clusters](#appinsights-metrics-rds-clusters)
 + [AWS Lambda Function](#appinsights-metrics-lambda)
 + [Amazon DynamoDB table](#appinsights-metrics-dyanamodb)
 + [Amazon S3 bucket](#appinsights-metrics-s3)
++ [AWS Step Functions](#appinsights-metrics-step-functions)
+  + [Execution\-level metrics](#appinsights-metrics-step-functions-execution)
+  + [Activity metrics](#appinsights-metrics-step-functions-activity)
+  + [Lambda function metrics](#appinsights-metrics-step-functions-lambda)
+  + [Service integration metrics](#appinsights-metrics-step-functions-service-integration)
+  + [Step Functions API metrics](#appinsights-metrics-step-functions-api)
 + [Metrics With datapoints requirements](#appinsights-metrics-datapoint-requirements)
+  + [AWS/ApplicationELB](#appinsights-metrics-datapoint-requirements-app-elb)
+  + [AWS/AutoScaling](#appinsights-metrics-datapoint-requirements-autoscaling)
+  + [AWS/EC2](#appinsights-metrics-datapoint-requirements-ec2)
+  + [AWS/ELB](#appinsights-metrics-datapoint-requirements-elb)
+  + [AWS/RDS](#appinsights-metrics-datapoint-requirements-rds)
+  + [AWS/Lambda](#appinsights-metrics-datapoint-requirements-lambda)
+  + [AWS/SQS](#appinsights-metrics-datapoint-requirements-sqs)
+  + [AWS/CWAgent](#appinsights-metrics-datapoint-requirements-cwagent)
+  + [AWS/DynamoDB](#appinsights-metrics-datapoint-requirements-dynamo)
+  + [AWS/S3](#appinsights-metrics-datapoint-requirements-s3)
+  + [AWS/States](#appinsights-metrics-datapoint-requirements-states)
 + [Recommended metrics](#application-insights-recommended-metrics)
 + [Performance Counter metrics](#application-insights-performance-counter)
 
@@ -505,6 +529,8 @@ NumberOfMessagesSent
 
 ## Amazon Relational Database Service \(RDS\)<a name="appinsights-metrics-rds"></a>
 
+### RDS Database instances<a name="appinsights-metrics-rds-instances"></a>
+
 BurstBalance
 
 CPUCreditBalance
@@ -536,6 +562,84 @@ WriteIOPS
 WriteLatency
 
 WriteThroughput
+
+### RDS Database clusters<a name="appinsights-metrics-rds-clusters"></a>
+
+ActiveTransactions
+
+AuroraBinlogReplicaLag
+
+AuroraReplicaLag
+
+BackupRetentionPeriodStorageUsed
+
+BinLogDiskUsage
+
+BlockedTransactions
+
+BufferCacheHitRatio
+
+CPUUtilization
+
+CommitLatency
+
+CommitThroughput
+
+DDLLatency
+
+DDLThroughput
+
+DMLLatency
+
+DMLThroughput
+
+DatabaseConnections
+
+Deadlocks
+
+DeleteLatency
+
+DeleteThroughput
+
+EngineUptime
+
+FreeLocalStorage
+
+FreeableMemory
+
+InsertLatency
+
+InsertThroughput
+
+LoginFailures
+
+NetworkReceiveThroughput
+
+NetworkThroughput
+
+NetworkTransmitThroughput
+
+Queries
+
+ResultSetCacheHitRatio
+
+SelectLatency
+
+SelectThroughput
+
+SnapshotStorageUsed
+
+TotalBackupStorageBilled
+
+UpdateLatency
+
+UpdateThroughput
+
+VolumeBytesUsed
+
+VolumeReadIOPs
+
+VolumeWriteIOPs
 
 ## AWS Lambda Function<a name="appinsights-metrics-lambda"></a>
 
@@ -617,6 +721,90 @@ BytesDownloaded
 
 BytesUploaded
 
+## AWS Step Functions<a name="appinsights-metrics-step-functions"></a>
+
+### Execution\-level metrics<a name="appinsights-metrics-step-functions-execution"></a>
+
+ExecutionTime
+
+ExecutionThrottled
+
+ExecutionsFailed
+
+ExecutionsTimedOut
+
+ExecutionsAborted
+
+ExecutionsSucceeded
+
+ExecutionsStarted
+
+### Activity metrics<a name="appinsights-metrics-step-functions-activity"></a>
+
+ActivityRunTime
+
+ActivityScheduleTime
+
+ActivityTime
+
+ActivitiesFailed
+
+ActivitiesHeartbeatTimedOut
+
+ActivitiesTimedOut
+
+ActivitiesScheduled
+
+ActivitiesSucceeded
+
+ActivitiesStarted
+
+### Lambda function metrics<a name="appinsights-metrics-step-functions-lambda"></a>
+
+LambdaFunctionRunTime
+
+LambdaFunctionScheduleTime
+
+LambdaFunctionTime
+
+LambdaFunctionsFailed
+
+LambdaFunctionsTimedOut
+
+LambdaFunctionsScheduled
+
+LambdaFunctionsSucceeded
+
+LambdaFunctionsStarted
+
+### Service integration metrics<a name="appinsights-metrics-step-functions-service-integration"></a>
+
+ServiceIntegrationRunTime
+
+ServiceIntegrationScheduleTime
+
+ServiceIntegrationTime
+
+ServiceIntegrationsFailed
+
+ServiceIntegrationsTimedOut
+
+ServiceIntegrationsScheduled
+
+ServiceIntegrationsSucceeded
+
+ServiceIntegrationsStarted
+
+### Step Functions API metrics<a name="appinsights-metrics-step-functions-api"></a>
+
+ThrottledEvents
+
+ProvisionedBucketSize
+
+ProvisionedRefillRate
+
+ConsumedCapacity
+
 ## Metrics With datapoints requirements<a name="appinsights-metrics-datapoint-requirements"></a>
 
 For metrics without an obvious default threshold to alarm on, Application Insights waits until the metric has enough data points to predict a reasonable threshold to alarm on\. The metric datapoints requirement that CloudWatch Application Insights checks before an alarm is created are: 
@@ -636,6 +824,7 @@ The following metrics follow these datapoints requirements\. Note that CloudWatc
 + [AWS/CWAgent](#appinsights-metrics-datapoint-requirements-cwagent)
 + [AWS/DynamoDB](#appinsights-metrics-datapoint-requirements-dynamo)
 + [AWS/S3](#appinsights-metrics-datapoint-requirements-s3)
++ [AWS/States](#appinsights-metrics-datapoint-requirements-states)
 
 ### AWS/ApplicationELB<a name="appinsights-metrics-datapoint-requirements-app-elb"></a>
 
@@ -745,23 +934,85 @@ UnHealthyHostCount
 
 ### AWS/RDS<a name="appinsights-metrics-datapoint-requirements-rds"></a>
 
+ActiveTransactions
+
+AuroraBinlogReplicaLag
+
+AuroraReplicaLag
+
+BackupRetentionPeriodStorageUsed
+
+BinLogDiskUsage
+
+BlockedTransactions
+
 CPUCreditBalance
+
+CommitLatency
+
+CommitThroughput
+
+DDLLatency
+
+DDLThroughput
+
+DMLLatency
+
+DMLThroughput
 
 DatabaseConnections
 
+Deadlocks
+
+DeleteLatency
+
+DeleteThroughput
+
 DiskQueueDepth
+
+EngineUptime
+
+FreeLocalStorage
 
 FreeStorageSpace
 
 FreeableMemory
 
+InsertLatency
+
+InsertThroughput
+
+LoginFailures
+
 NetworkReceiveThroughput
 
+NetworkThroughput
+
 NetworkTransmitThroughput
+
+Queries
 
 ReadIOPS
 
 ReadThroughput
+
+SelectLatency
+
+SelectThroughput
+
+SnapshotStorageUsed
+
+TotalBackupStorageBilled
+
+UpdateLatency
+
+UpdateThroughput
+
+VolumeBytesUsed
+
+VolumeReadIOPs
+
+VolumeWriteIOPs
 
 WriteIOPS
 
@@ -936,6 +1187,52 @@ TotalRequestLatency
 BytesDownloaded
 
 BytesUploaded
+
+### AWS/States<a name="appinsights-metrics-datapoint-requirements-states"></a>
+
+ActivitiesScheduled
+
+ActivitiesStarted
+
+ActivitiesSucceeded
+
+ActivityScheduleTime
+
+ActivityRuntime
+
+ActivityTime
+
+LambdaFunctionsScheduled
+
+LambdaFunctionsStarted
+
+LambdaFunctionsSucceeded
+
+LambdaFunctionScheduleTime
+
+LambdaFunctionRuntime
+
+LambdaFunctionTime
+
+ServiceIntegrationsScheduled
+
+ServiceIntegrationsStarted
+
+ServiceIntegrationsSucceeded
+
+ServiceIntegrationScheduleTime
+
+ServiceIntegrationRuntime
+
+ServiceIntegrationTime
+
+ProvisionedRefillRate
+
+ProvisionedBucketSize
+
+ConsumedCapacity
+
+ThrottledEvents
 
 ## Recommended metrics<a name="application-insights-recommended-metrics"></a>
 

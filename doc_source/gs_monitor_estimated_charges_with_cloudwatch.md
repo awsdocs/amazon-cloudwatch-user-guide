@@ -55,6 +55,8 @@ This procedure uses the simple options\. To use the advanced options, see [Creat
 
 1. Choose **Select metric**, **Billing**, **Total Estimated Charge**\.
 
+   If you don't see **Billing** or the **Total Estimated Charge** metric, you might need to enable billing alerts\. For more information, see [Step 1: Enable Billing Alerts](#gs_turning_on_billing_metrics)\.
+
 1. Select the checkbox next to **EstimatedCharges** and choose **Select metric**
 
 1. For **Whenever my total AWS charges for the month exceed**, specify the monetary amount \(for example, 200\) that must be exceeded to trigger the alarm and send an email notification\. Then choose **Next**\.

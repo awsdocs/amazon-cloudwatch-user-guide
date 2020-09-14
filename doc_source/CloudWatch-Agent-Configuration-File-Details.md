@@ -102,7 +102,7 @@ On servers running either Linux or Windows Server, the `metrics` section include
 On servers running Linux, the metrics\_collected section of the configuration file can also contain the following fields\.
 
  Many of these fields can include a `measurement` sections that lists the metrics you want to collect for that resource\. These `measurement` sections can either specify the complete metric name such as `swap_used`, or just the part of the metric name that will be appended to the type of resource\. For example, specifying `reads` in the `measurement` section of the `diskio` section causes the `diskio_reads` metric to be collected\.
-+ `collectd` – Optional\. Specifies that you want to retrieve custom metrics using the `collectd` protocol\. You use `collectd` software to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)\. 
++ `collectd` – Optional\. Specifies that you want to retrieve custom metrics using the `collectd` protocol\. You use `collectd` software to send the metrics to the CloudWatch agent\. For more information about the configuration options available for collectd, see [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)\. 
 + `cpu` – Optional\. Specifies that CPU metrics are to be collected\. This section is valid only for Linux instances\. You must include at least one of the `resources` and `totalcpu` fields for any CPU metrics to be collected\. This section can include the following fields:
   + `resources` – Optional\. Specify this field with a value of `*` to cause per\-cpu metrics are to be collected\. The only allowed value is `*`\. 
   + `totalcpu` – Optional\. Specifies whether to report cpu metrics aggregated across all cpu cores\. The default is true\.
@@ -226,8 +226,8 @@ The `disk` metrics have a dimension for `Partition`, which means that the number
 
     If you set this value below 60 seconds, each metric is collected as a high\-resolution metric\. For more information, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
   + `append_dimensions` – Optional\. Additional dimensions to use for only the process metrics\. If you specify this field, it's used in addition to dimensions specified in the `append_dimensions` field that is used for all types of metrics collected by the agent\.
-+ `procstat` – Optional\. Specifies that you want to retrieve metrics from individual processes\. For more information, see [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)\. 
-+ `statsd` – Optional\. Specifies that you want to retrieve custom metrics using the `StatsD` protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard `StatsD` client to send the metrics to the CloudWatch agent\. For more information, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\. 
++ `procstat` – Optional\. Specifies that you want to retrieve metrics from individual processes\. For more information about the configuration options available for procstat, see [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)\. 
++ `statsd` – Optional\. Specifies that you want to retrieve custom metrics using the `StatsD` protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard `StatsD` client to send the metrics to the CloudWatch agent\. For more information about the configuration options available for StatsD, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\. 
 
 The following is an example of a `metrics` section for a Linux server\. In this example, three CPU metrics, three netstat metrics, three process metrics, and one disk metric are collected, and the agent is set up to receive additional metrics from a `collectd` client\.
 

@@ -45,7 +45,7 @@ Next, we'll expand the script to use Synthetics logging and make a call using th
 
 If you have more than a single `.js` file or you have a dependency that your script depends on, you can bundle them all into a single ZIP file that contains the folder structure `nodejs/node_modules/myCanaryFilename.js file and other folders and files`\.
 
-Be sure to set your canary’s script entry point as `myCanaryFilename.handler` to match the filename of your script’s entry point\.
+Be sure to set your canary’s script entry point as `myCanaryFilename.handler` to match the file name of your script’s entry point\.
 
 ```
 const log = require('SyntheticsLogger');

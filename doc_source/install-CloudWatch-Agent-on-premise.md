@@ -64,17 +64,20 @@ If you name this profile `AmazonCloudWatchAgent`, you don't need to do anything 
 Following is an example of using the aws configure command to create a named profile for the CloudWatch agent\. This example assumes that you're using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-+ On Linux servers, enter the following command and follow the prompts:
 
-  ```
-  sudo aws configure --profile AmazonCloudWatchAgent
-  ```
+1. If you haven't already done so, install the AWS Command Line Interface on the server\. For more information, see [ Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
 
-  On Windows Server, open PowerShell as an administrator, enter the following command, and follow the prompts\.
+1. On Linux servers, enter the following command and follow the prompts:
 
-  ```
-  aws configure --profile AmazonCloudWatchAgent
-  ```
+   ```
+   sudo aws configure --profile AmazonCloudWatchAgent
+   ```
+
+   On Windows Server, open PowerShell as an administrator, enter the following command, and follow the prompts\.
+
+   ```
+   aws configure --profile AmazonCloudWatchAgent
+   ```
 
 ## \(Optional\) Modifying the Common Configuration and Named Profile for CloudWatch Agent<a name="CloudWatch-Agent-profile-onprem"></a>
 
@@ -167,7 +170,7 @@ You can start the CloudWatch agent using either Systems Manager Run Command or t
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -s -c ssm:configuration-parameter-store-name
   ```
 
-  Linux: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
+  Linux: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` if you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m onPremise -s -c file:configuration-file-path
@@ -179,7 +182,7 @@ You can start the CloudWatch agent using either Systems Manager Run Command or t
   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -s -c ssm:configuration-parameter-store-name
   ```
 
-  Windows Server: If you saved the agent configuration file on the local computer, enter the following from the PowerShell console\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
+  Windows Server: If you saved the agent configuration file on the local computer, enter the following from the PowerShell console\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` if you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
   ```
   & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m onPremise -s -c file:configuration-file-path

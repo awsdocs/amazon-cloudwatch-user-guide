@@ -19,6 +19,7 @@ To install the CloudWatch agent and the X\-Ray daemon on Amazon EKS or Kubernete
 **What the Quick Start Does**
 
 This section describes the quick setup of the CloudWatch agent and the X\-Ray daemon\.
++ The quick setup specifies inbound ports and protocols\. Outbound connections do not have to be explicitly opened\.
 + The quick setup installs the X\-Ray daemon via the `kubectl apply -f` command with the following file content\.
 
   ```
@@ -54,7 +55,7 @@ This section describes the quick setup of the CloudWatch agent and the X\-Ray da
         terminationGracePeriodSeconds: 60
   ```
 + The quick setup updates the CloudWatch agent using the Docker image version/label 1\.231221\.0 or later, or the latest version\. You can find the image at [https://hub\.docker\.com/r/amazon/cloudwatch\-agent](https://hub.docker.com/r/amazon/cloudwatch-agent)\.
-+ To enable the X\-Ray SDK to read cluster name and Region information, he quick setup updates the CloudWatch agent using the Docker image version/label 1\.231221\.0, or later, or the latest\. You can find the image at [https://hub\.docker\.com/r/amazon/cloudwatch\-agent](https://hub.docker.com/r/amazon/cloudwatch-agent)\.
++ To enable the X\-Ray SDK to read cluster name and Region information, the quick setup updates the CloudWatch agent using the Docker image version/label 1\.231221\.0, or later, or the latest\. You can find the image at [https://hub\.docker\.com/r/amazon/cloudwatch\-agent](https://hub.docker.com/r/amazon/cloudwatch-agent)\.
 + To enable the X\-Ray SDK to read cluster name and Region information, the quick setup created a file with the following content, and then applied it with the **kubectl apply \-f** command\.
 
   ```

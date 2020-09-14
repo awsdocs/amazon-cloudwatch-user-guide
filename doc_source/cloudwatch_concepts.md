@@ -20,7 +20,7 @@ The AWS namespaces typically use the following naming convention: `AWS/service`\
 
 *Metrics* are the fundamental concept in CloudWatch\. A metric represents a time\-ordered set of data points that are published to CloudWatch\. Think of a metric as a variable to monitor, and the data points as representing the values of that variable over time\. For example, the CPU usage of a particular EC2 instance is one metric provided by Amazon EC2\. The data points themselves can come from any application or business activity from which you collect data\.
 
-AWS services send metrics to CloudWatch, and you can send your own custom metrics to CloudWatch\. You can add the data points in any order, and at any rate you choose\. You can retrieve statistics about those data points as an ordered set of time\-series data\.
+By default, many AWS services provide free metrics for resources \(such as Amazon EC2 instances, Amazon EBS volumes, and Amazon RDS DB instances\)\. For a charge, you can also enable detailed monitoring for some resources, such as your Amazon EC2 instances, or publish your own application metrics\. For custom metrics, you can add the data points in any order, and at any rate you choose\. You can retrieve statistics about those data points as an ordered set of time\-series data\.
 
 Metrics exist only in the Region in which they are created\. Metrics cannot be deleted, but they automatically expire after 15 months if no new data is published to them\. Data points older than 15 months expire on a rolling basis; as new data points come in, data older than 15 months is dropped\.
 
@@ -48,8 +48,6 @@ Data points that are initially published with a shorter period are aggregated to
 
 **Note**  
 Metrics that have not had any new data points in the past two weeks do not appear in the console\. They also do not appear when you type their metric name or dimension names in the search box in the **All metrics** tab in the console, and they are not returned in the results of a [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\. The best way to retrieve these metrics is with the [get\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-data.html) or [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) commands in the AWS CLI\.
-
-CloudWatch started retaining 5\-minute and 1\-hour metric data as of 9 July 2016\.
 
 ## Dimensions<a name="Dimension"></a>
 
@@ -85,6 +83,18 @@ You can't retrieve statistics for the following dimensions or if you specify no 
 + `Server=Beta`
 + `Domain=Frankfurt`
 + `Domain=Rio`
+
+## Resolution<a name="Resolution_definition"></a>
+
+Each metric is one of the following:
++ Standard resolution, with data having a one\-minute granularity
++ High resolution, with data at a granularity of one second
+
+Metrics produced by AWS services are standard resolution by default\. When you publish a custom metric, you can define it as either standard resolution or high resolution\. When you publish a high\-resolution metric, CloudWatch stores it with a resolution of 1 second, and you can read and retrieve it with a period of 1 second, 5 seconds, 10 seconds, 30 seconds, or any multiple of 60 seconds\.
+
+High\-resolution metrics can give you more immediate insight into your application's sub\-minute activity\. Keep in mind that every `PutMetricData` call for a custom metric is charged, so calling `PutMetricData` more often on a high\-resolution metric can lead to higher charges\. For more information about CloudWatch pricing, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
+
+If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms with a period of 10 or 30 seconds\.
 
 ## Statistics<a name="Statistic"></a>
 
@@ -146,13 +156,21 @@ CloudWatch needs raw data points to calculate percentiles\. If you publish data 
 + The SampleCount value of the statistic set is 1 and Min, Max, and Sum are all equal\.
 + The Min and Max are equal, and Sum is equal to Min multiplied by SampleCount\.
 
+The following AWS services include metrics that support percentile statistics\.
++ API Gateway
++ Application Load Balancer
++ Amazon EC2
++ Elastic Load Balancing
++ Kinesis
++ Amazon RDS
+
 ## Alarms<a name="CloudWatchAlarms"></a>
 
 You can use an *alarm* to automatically initiate actions on your behalf\. An alarm watches a single metric over a specified time period, and performs one or more specified actions, based on the value of the metric relative to a threshold over time\. The action is a notification sent to an Amazon SNS topic or an Auto Scaling policy\. You can also add alarms to dashboards\.
 
 Alarms invoke actions for sustained state changes only\. CloudWatch alarms do not invoke actions simply because they are in a particular state\. The state must have changed and been maintained for a specified number of periods\.
 
-When creating an alarm, select an alarm monitoring period that is greater than or equal to the metric's monitoring period\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances every 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
+When creating an alarm, select an alarm monitoring period that is greater than or equal to the metric's resolution\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances with a resolution of 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
 
  If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing Custom Metrics](publishingMetrics.md)\.
 

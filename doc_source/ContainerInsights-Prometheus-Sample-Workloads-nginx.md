@@ -1,10 +1,10 @@
-# \(Optional\) Set Up NGINX with Sample Traffic<a name="ContainerInsights-Prometheus-Sample-Workloads-nginx"></a>
+# \(Optional\) Set Up NGINX with Sample Traffic on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-nginx"></a>
 
 NGINX is a web server that can also be used as a load balancer and reverse proxy\. For more information, see [NGINX](https://www.nginx.com/)\.
 
 **To install NGINX with a sample traffic service to test Container Insights Prometheus support**
 
-1. Enter the following command to add the Helm ingress-nginx repo:
+1. Enter the following command to add the Helm ingress\-nginx repo:
 
    ```
    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -40,7 +40,7 @@ NGINX is a web server that can also be used as a load balancer and reverse proxy
 
    ```
    SAMPLE_TRAFFIC_NAMESPACE=nginx-sample-traffic
-   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_traffic/nginx-traffic/nginx-traffic-sample.yaml | 
+   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_traffic/nginx-traffic/nginx-traffic-sample.yaml | 
    sed "s/{{external_ip}}/$EXTERNAL_IP/g" | 
    sed "s/{{namespace}}/$SAMPLE_TRAFFIC_NAMESPACE/g" | 
    kubectl apply -f -
@@ -62,7 +62,7 @@ NGINX is a web server that can also be used as a load balancer and reverse proxy
    kubectl delete namespace $SAMPLE_TRAFFIC_NAMESPACE
    ```
 
-1. Delete the NGINX ingress by Helm release name.
+1. Delete the NGINX egress by the Helm release name\. 
 
    ```
    helm uninstall my-nginx --namespace nginx-ingress-sample

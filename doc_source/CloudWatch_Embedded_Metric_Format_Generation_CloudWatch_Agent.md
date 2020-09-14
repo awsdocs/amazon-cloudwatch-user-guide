@@ -66,7 +66,9 @@ Configure your task definition to use the CloudWatch Agent and expose the TCP or
 
 Notice that the `webapp` specifies the `AWS_EMF_AGENT_ENDPOINT` environment variable\. This is used by the library and should point to the endpoint that the agent is listening on\. Additionally, the `cwagent` specifies the `CW_CONFIG_CONTEN`T as a “valueFrom” parameter that points to the SSM configuration that you created in the previous step\.
 
-The following is an example for bridge mode\. When bridge mode networking is enabled, the agent needs to be linked to your application using the `links` parameter and addressed using the container name\.
+This section contains one example for bridge mode and one example for host or awsvpc mode\. For more examples of how you can configure the CloudWatch agent on Amazon ECS, see the [Github samples repository](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/master/ecs-task-definition-templates/deployment-mode/sidecar)
+
+The following is an example for bridge mode\. When bridge mode networking is enabled, the agent needs to be linked to your application using the `links` parameter and must be addressed using the container name\.
 
 ```
 {
@@ -75,7 +77,6 @@ The following is an example for bridge mode\. When bridge mode networking is ena
               "name": "webapp",
               "links": [ "cwagent" ],
               "image": "my-org/web-app:latest",
-              "essential": true,
               "memory": 256,
               "cpu": 256,
               "environment": [{
@@ -87,7 +88,6 @@ The following is an example for bridge mode\. When bridge mode networking is ena
               "name": "cwagent",
               "mountPoints": [],
               "image": "amazon/cloudwatch-agent:latest",
-              "essential": true,
               "memory": 256,
               "cpu": 256,
               "portMappings": [{
@@ -96,7 +96,7 @@ The following is an example for bridge mode\. When bridge mode networking is ena
               }],
               "environment": [{
                 "name": "CW_CONFIG_CONTENT",
-                "value": "cwagentconfig"
+                "valueFrom": "cwagentconfig"
               }],
           }
       ],
@@ -111,7 +111,6 @@ The following is an example for host mode or awsvpc mode\. When running on these
           {
               "name": "webapp",
               "image": "my-org/web-app:latest",
-              "essential": true,
               "memory": 256,
               "cpu": 256,
               "environment": [{
@@ -123,7 +122,6 @@ The following is an example for host mode or awsvpc mode\. When running on these
               "name": "cwagent",
               "mountPoints": [],
               "image": "amazon/cloudwatch-agent:latest",
-              "essential": true,
               "memory": 256,
               "cpu": 256,
               "portMappings": [{
@@ -132,7 +130,7 @@ The following is an example for host mode or awsvpc mode\. When running on these
               }],
               "environment": [{
                 "name": "CW_CONFIG_CONTENT",
-                "value": "cwagentconfig"
+                "valueFrom": "cwagentconfig"
               }],
           }
       ],

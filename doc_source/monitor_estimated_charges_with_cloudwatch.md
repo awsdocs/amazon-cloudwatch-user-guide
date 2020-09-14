@@ -52,6 +52,8 @@ In this procedure, you create an alarm that sends an email message when your est
 
 1. Choose **Select metric**\. In the **All metrics** tab, choose **Billing**, **Total Estimated Charge**\.
 
+   If you don't see **Billing** or the **Total Estimated Charge** metric, you may need to enable billing alerts\. For more information, see [Enabling Billing Alerts](#turning_on_billing_metrics)\.
+
 1. Select the check box next to **EstimatedCharges**, and choose **Select metric**\.
 
 1. Under **Conditions**, choose **Static**\.

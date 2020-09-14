@@ -169,7 +169,7 @@ Follow these steps to use the command line to install the CloudWatch agent on an
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:configuration-parameter-store-name
   ```
 
-  Linux: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
+  Linux: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` if you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:configuration-file-path

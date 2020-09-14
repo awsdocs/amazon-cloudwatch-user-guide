@@ -10,9 +10,13 @@ You can add graphs containing one or more metrics to your dashboard for the reso
 
 1. Choose **Add widget**\.
 
-1. Choose either **Line** or **Stacked area** and choose **Configure**\.
+1. Choose the type of graph you want: **Line**, **Stacked area**, **Bar**, or **Pie**\. Then choose **Next**\.
+
+1. Choose **Metrics** and then choose **Configure**\.
 
 1. In the **All metrics** tab, select the metrics to graph\. If a specific metric doesn't appear in the dialog box because it hasn't published data in more than 14 days, you can add it manually\. For more information, see [Graph Metrics Manually on a CloudWatch Dashboard](add_old_metrics_to_graph.md)\.
+
+1. \(Optional\) To change the type of graph, choose **Graph options**\. You can then choose between a line graph, stacked area chart, bar chart, pie chart, or number\.
 
 1. <a name="dynamic-labels"></a>\(Optional\) As you choose metrics to graph, you can specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics** and then **Dynamic labels**\.
 

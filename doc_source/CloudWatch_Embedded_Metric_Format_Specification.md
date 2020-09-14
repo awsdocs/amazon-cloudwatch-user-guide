@@ -77,7 +77,7 @@ The MetricDirective object instructs downstream services that the LogEvent conta
 
 A DimensionSet is an array of strings containing the dimension keys that will be applied to all metrics in the document\. The values within this array MUST also be members on the root\-node—referred to as the [Target Members](#CloudWatch_Embedded_Metric_Format_Specification_structure_target)
 
-A DimensionSet MUST NOT contain more than 9 dimension keys\.
+A DimensionSet MUST NOT contain more than 9 dimension keys\. A DimensionSet MAY be empty\.
 
 The target member MUST have a string value\. The target member defines a dimension that will be published as part of the metric identity\. Every DimensionSet used creates a new metric in CloudWatch\. For more information about dimensions, see [Dimension](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Dimension.html) and [Dimensions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension)\.
 
@@ -232,7 +232,7 @@ You can use the following schema to validate embedded metric format documents\.
                                     "$id": "#/properties/_aws/properties/CloudWatchMetrics/items/properties/Dimensions/items",
                                     "type": "array",
                                     "title": "DimensionSet",
-                                    "minItems": 1,
+                                    "minItems": 0,
                                     "maxItems": 9,
                                     "items": {
                                         "$id": "#/properties/_aws/properties/CloudWatchMetrics/items/properties/Dimensions/items/items",

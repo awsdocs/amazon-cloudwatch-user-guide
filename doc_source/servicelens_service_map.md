@@ -25,6 +25,8 @@ You must also be logged on to an account that has the `AWSXrayReadOnlyAccess` ma
 
 1. If you have enabled X\-Ray groups, you can filter the map by selecting an X\-ray group in the filter\.
 
+1. To view metrics for a node, choose the node\. To then see more information about that node, choose **View logs**, **View traces**, or **View dashboard**\. 
+
 1. To focus on the incoming and outgoing connections for a node, select the node and choose **View connections** near the top of the service map\.
 
 1. To see a pop\-up displaying latency, errors, requests, and alarm summary statistics for a node, pause on that node\.

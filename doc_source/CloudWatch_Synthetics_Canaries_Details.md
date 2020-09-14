@@ -17,6 +17,7 @@ For more information about viewing CloudWatch metrics, see [Viewing Available Me
    In the details about the canaries that you have created:
    + **Status** visually shows how many of your canaries have passed their most recent runs\.
    + In the graph under **Canary runs**, each point represents one minute of your canaries’ runs\. You can pause on a point to see details\.
+   + Near the bottom of the page is a table displaying all canaries\. The column on the right shows the alarms created for each canary\. Only alarms that conform to the naming standard for canary alarms are displayed\. This standard is `Synthetics-Alarm-canaryName-index `\. Canary alarms that you create in the **Synthetics** section of the CloudWatch console automatically use this naming convention\. If you create canary alarms in the **Alarms** section of the CloudWatch console or by using AWS CloudFormation, and you don't use this naming convention, the alarms work but they do not appear in this list\.
 
 1. To see more details about a single canary, choose a point in the **Status** graph or choose the name of the canary in the **Canaries** table\.
 
@@ -26,4 +27,8 @@ For more information about viewing CloudWatch metrics, see [Viewing Available Me
 
      The logs for canary runs are stored in S3 buckets and in CloudWatch Logs\.
 
-     Screenshots show how your customers view your web pages\. You can use the HAR files \(HTTP Archive files\) to view detailed performance data about the web pages\. You can analyze the list of web requests and catch performance issues such as time to load for an item\. Log files show the record of interactions between the canary run and the web page and can be used to identify details of errors\.
+     Screenshots show how your customers view your webpages\. You can use the HAR files \(HTTP Archive files\) to view detailed performance data about the webpages\. You can analyze the list of web requests and catch performance issues such as time to load for an item\. Log files show the record of interactions between the canary run and the webpage and can be used to identify details of errors\.
+
+     If the canary uses the `syn-nodejs-2.0-beta` runtime or later, you can sort the HAR files by status code, request size, or duation\.
+
+1. If the canary uses the `syn-nodejs-2.0-beta` runtime or later and the canary executes steps in its script, you can choose a **Steps** tab\. This tab displays a list of the canary's steps, each step's status, failure reason, URL after step execution, screenshots, and duration of step execution\.

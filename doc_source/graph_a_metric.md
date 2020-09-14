@@ -22,6 +22,8 @@ You can view your data at different levels of detail\. For example, you can choo
 
 1. To graph one or more metrics, select the check box next to each metric\. To select all metrics, select the check box in the heading row of the table\.
 
+1. \(Optional\) To change the type of graph, choose **Graph options**\. You can then choose between a line graph, stacked area chart, bar chart, pie chart, or number\.
+
 1. \(Optional\) To add an anomaly detection band that shows expected values for the metric, choose the anomaly detection icon under **Actions** next to the metric\.   
 ![\[The metrics console, with the anomaly detection icon circled.\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/Anomaly_Detection_Icon.PNG)
 

@@ -1,4 +1,4 @@
-# \(Optional\) Set Up Java/JMX<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx"></a>
+# \(Optional\) Set Up Java/JMX sample workload on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx"></a>
 
 JMX Exporter is an official Prometheus exporter that can scrape and expose JMX mBeans as Prometheus metrics\. For more information, see [prometheus/jmx\_exporter](https://github.com/prometheus/jmx_exporter)\.
 

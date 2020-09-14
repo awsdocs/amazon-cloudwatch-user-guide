@@ -61,7 +61,7 @@ Region=cluster-region
 aws cloudformation describe-stack-events --stack-name CWAgentECS-$ClusterName-$Region --region $Region
 ```
 
-To check the status of the `cwagent` dawemon service, enter the following command\. In the output, you should see that the runningCount is equal to the desiredCount in the deployment section\. If it isn't equal, check the failures section in the output\.
+To check the status of the `cwagent` daemon service, enter the following command\. In the output, you should see that the runningCount is equal to the desiredCount in the deployment section\. If it isn't equal, check the failures section in the output\.
 
 ```
 ClusterName=cluster-name
@@ -98,7 +98,7 @@ aws iam create-role --role-name CWAgentECSTaskRole \
     --assume-role-policy-document "{\"Version\": \"2012-10-17\",\"Statement\": [{\"Sid\": \"\",\"Effect\": \"Allow\",\"Principal\": {\"Service\": \"ecs-tasks.amazonaws.com\"},\"Action\": \"sts:AssumeRole\"}]}"
 ```
 
-After you enter the previous command, note the value of Arn from the command output as "TaskRoleArn"\. You'll need to use it later when you craete the task definition\. Then enter the following command to attach the necessary policies\.
+After you enter the previous command, note the value of Arn from the command output as "TaskRoleArn"\. You'll need to use it later when you create the task definition\. Then enter the following command to attach the necessary policies\.
 
 ```
 aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy \
@@ -112,7 +112,7 @@ aws iam create-role --role-name CWAgentECSExecutionRole \
     --assume-role-policy-document "{\"Version\": \"2012-10-17\",\"Statement\": [{\"Sid\": \"\",\"Effect\": \"Allow\",\"Principal\": {\"Service\": \"ecs-tasks.amazonaws.com\"},\"Action\": \"sts:AssumeRole\"}]}"
 ```
 
-After you enter the previous command, note the value of Arn from the command output as "ExecutionRoleArn"\. You'll need to use it later when you craete the task definition\. Then enter the following commands to attach the necessary policies\.
+After you enter the previous command, note the value of Arn from the command output as "ExecutionRoleArn"\. You'll need to use it later when you create the task definition\. Then enter the following commands to attach the necessary policies\.
 
 ```
 aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy \

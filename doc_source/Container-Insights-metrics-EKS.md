@@ -4,6 +4,8 @@ The following table lists the metrics and dimensions that Container Insights col
 
 If you do not see any Container Insights metrics in your console, be sure that you have completed the setup of Container Insights\. Metrics do not appear before Container Insights has been set up completely\. For more information, see [Setting Up Container Insights](deploy-container-insights.md)\.
 
+When you use Container Insights to collect the following metrics, the metrics are charged as custom metrics\. For more information about CloudWatch pricing, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\. 
+
 
 | Metric Name | Dimensions | Description | 
 | --- | --- | --- | 

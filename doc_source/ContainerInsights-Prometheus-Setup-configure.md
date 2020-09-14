@@ -1,18 +1,24 @@
 # Configuring the CloudWatch Agent for Prometheus Monitoring<a name="ContainerInsights-Prometheus-Setup-configure"></a>
 
-The CloudWatch agent uses a YAML file to configure how it collects Prometheus metrics\. This file is called `prometheus-eks.yaml` for Amazon EKS clusters and `prometheus-k8s.yaml` for Kubernetes clusters on Amazon EC2 instances\.
+The CloudWatch agent with Prometheus monitoring needs two configurations to scrape the Prometheus metrics\. One is for the standard Prometheus configurations as documented in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. The other is for the CloudWatch agent configuration\.
 
-This YAML file contains two config map sections:
-+ The `name: prometheus-config` section contains the settings for Prometheus scraping\. It follows the standard Prometheus scrape config as documented in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. You use this section to add scrape targets\. 
-+ The `name: prometheus-cwagentconfig` section contains the configuration for the CloudWatch agent\. You can use this section to configure how the Prometheus metrics are collected by CloudWatch\. For example, you whitelist which metrics are to be imported into CloudWatch, and define their dimensions\. 
+For Amazon EKS clusters, the configurations are defined in the `prometheus-eks.yaml` YAML file as two config maps:
++ The `name: prometheus-config` section contains the settings for Prometheus scraping\.
++ The `name: prometheus-cwagentconfig` section contains the configuration for the CloudWatch agent\. You can use this section to configure how the Prometheus metrics are collected by CloudWatch\. For example, you specify which metrics are to be imported into CloudWatch, and define their dimensions\. 
 
-To scrape additional Prometheus metrics sources and import those metrics to CloudWatch, you can modify both sections of the YAML file and re\-deploy the agent with the updated configuration\.
+For Kubernetes clusters running on Amazon EC2 instances, the configurations are defined in the `prometheus-k8s.yaml` YAML file as two config maps:
++ The `name: prometheus-config` section contains the settings for Prometheus scraping\.
++ The `name: prometheus-cwagentconfig` section contains the configuration for the CloudWatch agent\. 
+
+For Amazon ECS clusters, the configurations are integrated with the Parameter Store of AWS Systems Manager by the secrets in the Amazon ECS task definition:
++ The secret `PROMETHEUS_CONFIG_CONTENT` is for the Prometheus scrape configuration\.
++ The secret `CW_CONFIG_CONTENT` is for the CloudWatch agent configuration\. 
+
+To scrape additional Prometheus metrics sources and import those metrics to CloudWatch, you modify both the Prometheus scrape configuration and the CloudWatch agent configuration, and then re\-deploy the agent with the updated configuration\.
 
 ## Prometheus Scrape Configuration<a name="ContainerInsights-Prometheus-Setup-config-global"></a>
 
-The `prometheus-config` config map section in the CloudWatch agent YAML file supports standard Prometheus scrape configurations as documented in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. You can edit this section to update the configurations that are already in this file, and add additional Prometheeus scraping targets\.
-
-By default, the `prometheus-config` section of the `prometheus-eks.yaml` and `prometheus-k8s.yaml` files contains the following global configuration lines:
+The CloudWatch agent supports the standard Prometheus scrape configurations as documented in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. You can edit this section to update the configurations that are already in this file, and add additional Prometheus scraping targets\. By default, the sample configuration file contains the following global configuration lines:
 
 ```
 global:
@@ -26,7 +32,7 @@ You can also define different values for these settings at the job level, to ove
 
 ### Prometheus Scraping Jobs<a name="ContainerInsights-Prometheus-Setup-config-scrape"></a>
 
-The CloudWatch agent YAML files already have some default scraping jobs configured\. These are defined in the YAML files with `job_name` lines in the `scrape_configs` section\. For example, the following default `kubernetes-pod-jmx` section scrapes JMX exporter metrics\.
+The CloudWatch agent YAML files already have some default scraping jobs configured\. For example, in `prometheus-eks.yaml`, the default scraping jobs are configured in the `job_name` lines in the `scrape_configs` section\. In this file, the following default `kubernetes-pod-jmx` section scrapes JMX exporter metrics\.
 
 ```
    - job_name: 'kubernetes-pod-jmx'
@@ -67,18 +73,39 @@ The CloudWatch agent YAML files already have some default scraping jobs configur
 
 Each of these default targets are scraped, and the metrics are sent to CloudWatch in log events using embedded metric format\. For more information, see [Ingesting High\-Cardinality Logs and Generating Metrics with CloudWatch Embedded Metric Format](CloudWatch_Embedded_Metric_Format.md)\.
 
-These log events are stored in the **/aws/containerinsights/*cluster\_name*/prometheus** log group in CloudWatch Logs
+Log events from Amazon EKS and Kubernetes clusters are stored in the **/aws/containerinsights/*cluster\_name*/prometheus** log group in CloudWatch Logs\. Log events from Amazon ECS clusters are stored in the **/aws/ecs/containerinsights/*cluster\_name*/prometheus** log group\.
 
-Each scraping job is contained in a different log stream in this log group\. For example, the Prometheus scraping job `kubernetes-pod-appmesh-envoy` is defined for App Mesh\. All App Mesh Prometheus metrics are sent to the log stream named **/aws/containerinsights/*cluster\_name*>prometheus/kubernetes\-pod\-appmesh\-envoy/**\.
+Each scraping job is contained in a different log stream in this log group\. For example, the Prometheus scraping job `kubernetes-pod-appmesh-envoy` is defined for App Mesh\. All App Mesh Prometheus metrics from Amazon EKS and Kubernetes clusters are sent to the log stream named **/aws/containerinsights/*cluster\_name*>prometheus/kubernetes\-pod\-appmesh\-envoy/**\.
 
 To add a new scraping target, you add a new `job_name` section to the `scrape_configs` section of the YAML file, and restart the agent\. For an example of this process, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](#ContainerInsights-Prometheus-Setup-new-exporters)\.
 
 ## CloudWatch Agent Configuration for Prometheus<a name="ContainerInsights-Prometheus-Setup-cw-agent-config"></a>
 
-The CloudWatch agent YAML file includes a `cwagentconfig.json` section\. This section is under `metrics_collected`, which tells the agent how to collect metrics embedded in logs\. It includes the following fields:
-+ **prometheus\_config\_path**— specifies the Prometheus scrape configuration file path\. Do not change this field\.
+The CloudWatch agent configuration file has a `prometheus` section under `metrics_collected` for the Prometheus scraping configuration\. It includes the following configuration options:
++ **cluster\_name**— specifies the cluster name to be added as a label in the log event\. This field is optional\. If you omit it, the agent can detect the Amazon EKS or Amazon ECS cluster name\.
++ **log\_group\_name**— specifies the log group name for the scraped Prometheus metrics\. This field is optional\. If you omit it, CloudWatch uses **/aws/containerinsights/*cluster\_name*/prometheus** for logs from Amazon EKS and Kubernetes clusters, and uses **/aws/ecs/containerinsights/*cluster\_name*/prometheus** for logs from Amazon ECS clusters\.
++ **prometheus\_config\_path**— specifies the Prometheus scrape configuration file path\. If the value of this field starts with `env:` the Prometheus scrape configuration file contents will be retrieved from the container's environment variable\. Do not change this field\.
++ **ecs\_service\_discovery**— is the section to specify the configurations of the Amazon ECS Prometheus target auto\-discovery functions\. Two modes are supported to discover the Prometheus targets: discovery based on the container’s docker label or discovery based on the Amazon ECS task definition ARN regular expression\. You can use the two modes together and the CloudWatch agent will de\-duplicate the discovered targets based on: *\{private\_ip\}:\{port\}/\{metrics\_path\}*\.
+
+  The `ecs_service_discovery` section can contain the following fields:
+  + `sd_frequency` is the frequency to discover the Prometheus exporters\. Specify a number and a unit suffix\. For example, `1m` for once per minute or `30s` for once per 30 seconds\. Valid unit suffixes are `ns`, `us`, `ms`, `s`, `m`, and `h`\.
+
+    This field is optional\. The default is 60 seconds \(1 minute\)\.
+  + `sd_target_cluster` is the target Amazon ECS cluster name for auto\-discovery\. This field is optional\. The default is the name of the Amazon ECS cluster where the CloudWatch agent is installed\. 
+  + `sd_cluster_region` is the target Amazon ECS cluster's Region\. This field is optional\. The default is the Region of the Amazon ECS cluster where the CloudWatch agent is installed\. \.
+  + `sd_result_file` is the path of the YAML file for the Prometheus target results\. The Prometheus scrape configuration will refer to this file\.
+  + `docker_label` is an optional section that you can use to specify the configuration for docker label\-based service discovery\. If you omit this section, docker label\-based discovery is not used\. This section can contain the following fields:
+    + `sd_port_label` is the container's docker label name that specifies the container port for Prometheus metrics\. The default value is `ECS_PROMETHEUS_EXPORTER_PORT`\. If the container does not have this docker label, the CloudWatch agent will skip it\.
+    + `sd_metrics_path_label` is the container's docker label name that specifies the Prometheus metrics path\. The default value is `ECS_PROMETHEUS_METRICS_PATH`\. If the container does not have this docker label, the the agent assumes the default path `/metrics`\.
+    + `sd_job_name_label` is the container's docker label name that specifies the Prometheus scrape job name\. The default value is `job`\. If the container does not have this docker label, the CloudWatch agent uses the job name in the Prometheus scrape configuration\.
+  + `task_definition_list` is an optional section that you can use to specify the configuration of task definition\-based service discovery\. If you omit this section, task definition\-based discovery is not used\. This section can contain the following fields:
+    + `sd_task_definition_arn_pattern` is the pattern to use to specify the Amazon ECS task definitions to discover\. This is a regular expression\.
+    + `sd_metrics_ports` lists the containerPort for the Prometheus metrics\. Separate the containerPorts with semicolons\.
+    + `sd_container_name_pattern` specifies the Amazon ECS task container names\. This is a regular expression\.
+    + `sd_metrics_path` specifies the Prometheus metric path\. If you omit this, the agent assumes the default path `/metrics`
+    + `sd_job_name` specifies the Prometheus scrape job name\. If you omit this field, the CloudWatch agent uses the job name in the Prometheus scrape configuration\.
 + **metric\_declaration**— are sections that specify the array of logs with embedded metric format to be generated\. There are `metric_declaration` sections for each Prometheus source that the CloudWatch agent imports from by default\. These sections each include the following fields:
-  + `label_matcher` is a regular espression that checks the value of the Kubernetes labels listed in `source_labels`\. The metrics that match are whitelisted for inclusion in the embedded metric format sent to CloudWatch\. 
+  + `label_matcher` is a regular expression that checks the value of the labels listed in `source_labels`\. The metrics that match are enabled for inclusion in the embedded metric format sent to CloudWatch\. 
   + `source_labels` specifies the value of the labels that are checked by the `label_matcher` line\.
   + `label_separator` specifies the separator to be used in the ` label_matcher` line if multiple `source_labels` are specified\. The default is `;`\. You can see this default used in the `label_matcher` line in the following example\.
   + `metric_selectors` is a regular expression that specifies the metrics to be collected and sent to CloudWatch\.
@@ -153,13 +180,13 @@ The Kubernetes API Server exposes gauge, counter, histogram, and summary metrics
 1. Download the latest version of the `prometheus-eks.yaml` or `prometheus-k8s.yaml` file by entering one of the following commands\. For an Amazon EKS cluster, enter the following command:
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-eks.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-eks.yaml
    ```
 
    For a Kubernetes cluster running on an Amazon EC2 instance, enter the following command:
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-k8s.yaml
+   https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-k8s.yaml
    ```
 
 1. Open the file with a text editor, find the `prometheus-config` section, and add the following section inside of that section\. Then save the changes:
@@ -191,7 +218,7 @@ The Kubernetes API Server exposes gauge, counter, histogram, and summary metrics
            target_label: Service
    ```
 
-1. While you still have the YAML file open in the text editor, find the `cwagentconfig.json` section\. Add the following subsection and save the changes\. This section puts the KPI service metrics onto the CloudWatch agent allow list\. Three types of API Server metrics are added to the allow list:
+1. While you still have the YAML file open in the text editor, find the `cwagentconfig.json` section\. Add the following subsection and save the changes\. This section puts the API server metrics onto the CloudWatch agent allow list\. Three types of API Server metrics are added to the allow list:
    + etcd object counts
    + API Server registration controller metrics
    + API Server request metrics
@@ -307,7 +334,7 @@ To see Kubernetes API Server metrics in your dashboard, you must have first comp
 
 1. Choose **Actions**, **View/edit source**\.
 
-1. Download the following JSON file: [Kubernetes API Dashboard source](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/kubernetes_api_server/cw_dashboard_kubernetes_api_server.json)\.
+1. Download the following JSON file: [Kubernetes API Dashboard source](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/kubernetes_api_server/cw_dashboard_kubernetes_api_server.json)\.
 
 1. Open the JSON file that you downloaded with a text editor, and make the following changes:
    + Replace all the `{{YOUR_CLUSTER-NAME}}` strings with the exact name of your cluster\. Make sure not to add whitespaces before or after the text\.

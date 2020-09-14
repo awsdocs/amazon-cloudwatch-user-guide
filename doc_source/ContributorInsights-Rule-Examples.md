@@ -103,3 +103,77 @@ This section contains examples that illustrate use cases for Contributor Insight
     "AggregateOn": "Sum"
 }
 ```
+
+**Route 53 NXDomain responses by source address**
+
+```
+{
+    "Schema": {
+        "Name": "CloudWatchLogRule",
+        "Version": 1
+    },
+    "AggregateOn": "Count",
+    "Contribution": {
+        "Filters": [
+            {
+                "Match": "$.rcode",
+                "StartsWith": [
+                    "NXDOMAIN"
+                ]
+            }
+        ],
+        "Keys": [
+            "$.srcaddr"
+        ]
+    },
+    "LogFormat": "JSON",
+    "LogGroupNames": [
+        "<loggroupname>"
+    ]
+}
+```
+
+**Route 53 resolver queries by domain name**
+
+```
+{
+    "Schema": {
+        "Name": "CloudWatchLogRule",
+        "Version": 1
+    },
+    "AggregateOn": "Count",
+    "Contribution": {
+        "Filters": [],
+        "Keys": [
+            "$.query_name"
+        ]
+    },
+    "LogFormat": "JSON",
+    "LogGroupNames": [
+        "<loggroupname>"
+    ]
+}
+```
+
+**Route 53 resolver queries by query type and source address**
+
+```
+{
+    "Schema": {
+        "Name": "CloudWatchLogRule",
+        "Version": 1
+    },
+    "AggregateOn": "Count",
+    "Contribution": {
+        "Filters": [],
+        "Keys": [
+            "$.query_type",
+            "$.srcaddr"
+        ]
+    },
+    "LogFormat": "JSON",
+    "LogGroupNames": [
+        "<loggroupname>"
+    ]
+}
+```

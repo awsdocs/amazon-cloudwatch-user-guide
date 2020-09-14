@@ -1,9 +1,11 @@
 # Creating a Canary<a name="CloudWatch_Synthetics_Canaries_Create"></a>
 
 **Important**  
-Ensure that you use Synthetics canaries to monitor only endpoints and APIs where you have ownership or permissions\. Depending on canary run frequency settings, these endpoints might experience increased traffic\.
+Ensure that you use Synthetics canaries to monitor only endpoints and APIs where you have ownership or permissions\. Depending on the canary frequency settings, these endpoints might experience increased traffic\.
 
-You can use a blueprint provided by CloudWatch to create your canary or you can write your own script\. For more information, see [Using Canary Blueprints](CloudWatch_Synthetics_Canaries_Blueprints.md)\.
+When you use the CloudWatch console to create a canary, you can use a blueprint provided by CloudWatch to create your canary or you can write your own script\. For more information, see [Using Canary Blueprints](CloudWatch_Synthetics_Canaries_Blueprints.md)\.
+
+You can also create a canary using AWS CloudFormation if you are using your own script for the canary\. For more information, see [AWS::Synthetics::Canary ](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-canary.html) in the *AWS CloudFormation User Guide*\.
 
 If you are writing your own script, you can use several functions that CloudWatch Synthetics has built into a library\. For more information, see [Canary Runtime Versions](CloudWatch_Synthetics_Canaries_Library.md)\.
 
@@ -44,13 +46,15 @@ If you are writing your own script, you can use several functions that CloudWatc
 
    To use an existing role, you must have the `iam:PassRole` permission to pass that role to Synthetics and Lambda\. You must also have the `iam:GetRole` permission\.
 
-1. \(Optional\) Under **Alarms**, choose whether you want default CloudWatch alarms to be created for this canary\.
+1. \(Optional\) Under **Alarms**, choose whether you want default CloudWatch alarms to be created for this canary\. If you choose to create alarms, they are created with the following name convention:`Synthetics-Alarm-canaryName-index `
+
+   `index` is a number representing each different alarm created for this canary\. The first alarm has an index of 1, the second alarm has an index of 2, and so on\.
 
 1. \(Optional\) To have this canary test an endpoint that is on a VPC, choose **VPC settings**, and then do the following:
 
    1. Select the VPC that hosts the endpoint\.
 
-   1. Select one or more subnets on your VPC\. You must select a private subnet because a Lambda instance can't be configured to run in a public subnet when an IP address cannot be assigned to the Lambda instance during execution\. For more information, see [Configuring a Lambda Function to Access Resources in a VPC](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)\.
+   1. Select one or more subnets on your VPC\. You must select a private subnet because a Lambda instance can't be configured to run in a public subnet when an IP address can't be assigned to the Lambda instance during execution\. For more information, see [Configuring a Lambda Function to Access Resources in a VPC](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)\.
 
    1. Select one or more security groups on your VPC\.
 
@@ -58,7 +62,7 @@ If you are writing your own script, you can use several functions that CloudWatc
 
 1. \(Optional\) Under **Tags**, add one or more key\-value pairs as tags for this canary\. Tags can help you identify and organize your AWS resources and track your AWS costs\. For more information, see [Tagging Your Amazon CloudWatch Resources](CloudWatch-Tagging.md)\.
 
-## Resources That Are Created for Canaries<a name="CloudWatch_Synthetics_Canaries_Resources_Created"></a>
+## Resources that Are Created for Canaries<a name="CloudWatch_Synthetics_Canaries_Resources_Created"></a>
 
 When you create a canary, the following resources are created:
 + An IAM role with the name `CloudWatchSyntheticsRole-canary-name-uuid` \(if you use CloudWatch console to create the canary and specify for a new role to be created for the canary\)

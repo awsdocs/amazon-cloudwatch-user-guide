@@ -6,7 +6,7 @@ The overall process for setting up Container Insights on Amazon EKS or Kubernete
 
 1. Set up the CloudWatch agent as a DaemonSet on your Amazon EKS cluster or Kubernetes cluster to send metrics to CloudWatch, and set up FluentD as a DaemonSet to send logs to CloudWatch Logs\.
 
-   You can perform these steps at once as part of the quick start setup, or do them seprately\.
+   You can perform these steps at once as part of the quick start setup, or do them separately\.
 
 1. \(Optional\) Set up Amazon EKS control plane logging\.
 

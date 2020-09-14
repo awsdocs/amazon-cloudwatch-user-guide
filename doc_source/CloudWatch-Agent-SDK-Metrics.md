@@ -24,12 +24,12 @@ Additionally, you must be using one of the following versions of an AWS SDK\.
 
 | Supported SDK | SDK Metrics documentation | 
 | --- | --- | 
-|  AWS CLI 1\.16\.84 or later |  [SDK Metrics](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/sdk-metrics.html) The instructions for the AWS CLI installation are the same as for SDK for Python \(Boto 3\)\.  | 
+|  AWS CLI 1\.16\.84 or later |  [SDK Metrics](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/sdk-metrics.html) The instructions for the AWS CLI installation are the same as for SDK for Python \(Boto3\)\.  | 
 |  AWS SDK for C\+\+ 1\.7\.47 or later |  [SDK Metrics](https://docs.aws.amazon.com/sdk-for-cpp/latest/developer-guide/sdk-metrics.html)  | 
 |  AWS SDK for Go 1\.25\.18 or later |  [SDK Metrics in the AWS SDK for Go](https://docs.aws.amazon.com/sdk-for-go/latest/developer-guide/sdk-metrics.html)  | 
 |  AWS SDK for Java 1\.11\.523 or later \(AWS SDK for Java 2\.x is not yet supported\) |  [Enabling AWS SDK Metrics for Enterprise Support](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/sdk-metrics.html)  | 
 |  AWS SDK for JavaScript in Node\.js 2\.387 or later |  [SDK Metrics in the AWS SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/metrics.html)  | 
 |  AWS SDK for \.NET 3\.3\.440 or later |  [Enabling SDK Metrics](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/sdk-metrics.html)  | 
 |  AWS SDK for PHP 3\.85\.0 or later |  [SDK Metrics in the AWS SDK for PHP Version 3](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_sdk-metrics.html)  | 
-|  AWS SDK for Python \(Boto 3\) 1\.9\.78 or later |  [SDK Metrics](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/sdk-metrics.html)  | 
+|  AWS SDK for Python \(Boto3\) 1\.9\.78 or later |  [SDK Metrics](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/sdk-metrics.html)  | 
 |  AWS SDK for Ruby 3\.45\.0 or later |  [SDK Metrics in the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/sdk-metrics.html)  | 

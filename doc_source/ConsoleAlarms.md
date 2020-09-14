@@ -94,4 +94,4 @@ CloudWatch has changed the alarm user interface\. By default, you're shown the n
 
 1. Choose **Create Alarm**\.
 
-You can also add alarms to a dashboard\. For more information, see [Add or Remove an Alarm from a CloudWatch Dashboard](add_remove_alarm_dashboard.md)\. 
+You can also add alarms to a dashboard\. For more information, see [Add an Alarm Widget to a CloudWatch Dashboard](add_remove_alarm_dashboard.md)\. 

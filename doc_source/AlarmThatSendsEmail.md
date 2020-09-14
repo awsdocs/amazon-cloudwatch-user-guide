@@ -26,20 +26,23 @@ A metric alarm has the following possible states:
 
 When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
 + **Period** is the length of time to evaluate the metric or expression to create each individual data point for an alarm\. It is expressed in seconds\. If you choose one minute as the period, the alarm evaluates the metric once per minute\.
-+ **Evaluation Period** is the number of the most recent periods, or data points, to evaluate when determining alarm state\.
-+ **Datapoints to Alarm** is the number of data points within the evaluation period that must be breaching to cause the alarm to go to the `ALARM` state\. The breaching data points don't have to be consecutive, they just must all be within the last number of data points equal to **Evaluation Period**\.
++ **Evaluation Periods** is the number of the most recent periods, or data points, to evaluate when determining alarm state\.
++ **Datapoints to Alarm** is the number of data points within the Evaluation Periods that must be breaching to cause the alarm to go to the `ALARM` state\. The breaching data points don't have to be consecutive, they just must all be within the last number of data points equal to **Evaluation Period**\.
 
-In the following figure, the alarm threshold for a metric alarm is set to three units\. The alarm is configured to go to the `ALARM` state and both **Evaluation Period** and **Datapoints to Alarm** are 3\. That is, when all existing data points in the most recent three consecutive periods are above the threshold, the alarm goes to the `ALARM` state\. In the figure, this happens in the third through fifth time periods\. At period six, the value dips below the threshold, so one of the periods being evaluated is not breaching, and the alarm state changes to `OK`\. During the ninth time period, the threshold is breached again, but for only one period\. Consequently, the alarm state remains `OK`\.
+In the following figure, the alarm threshold for a metric alarm is set to three units\. Both **Evaluation Period** and **Datapoints to Alarm** are 3\. That is, when all existing data points in the most recent three consecutive periods are above the threshold, the alarm goes to `ALARM` state\. In the figure, this happens in the third through fifth time periods\. At period six, the value dips below the threshold, so one of the periods being evaluated is not breaching, and the alarm state changes back to `OK`\. During the ninth time period, the threshold is breached again, but for only one period\. Consequently, the alarm state remains `OK`\.
 
 ![\[Alarm threshold trigger alarm\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/alarm_graph.png)
 
-When you configure **Evaluation Period** and **Datapoints to Alarm** as different values, you're setting an "M out of N" alarm\. **Datapoints to Alarm** is \("M"\) and **Evaluation Period** is \("N"\)\. 
+When you configure **Evaluation Periods** and **Datapoints to Alarm** as different values, you're setting an "M out of N" alarm\. **Datapoints to Alarm** is \("M"\) and **Evaluation Periods** is \("N"\)\. The evaluation interval is the number of data points multiplied by the period\. For example, if you configure 4 out of 5 data points with a period of 1 minute, the evaluation interval is 5 minutes\. If you configure 3 out of 3 data points with a period of 10 minutes, the evaluation interval is 30 minutes\.
+
+**Note**  
+If data points are missing soon after you create an alarm, and the metric was being reported to CloudWatch before you created the alarm, CloudWatch retrieves the most recent data points from before the alarm was created when evaluating the alarm\.
 
 ## Configuring How CloudWatch Alarms Treat Missing Data<a name="alarms-and-missing-data"></a>
 
-Sometimes some data points for a metric with an alarm don't get reported to CloudWatch\. For example, this can happen when a connection is lost, a server goes down, or when a metric reports data only intermittently by design\.
+Sometimes, not every expected data point for a metric gets reported to CloudWatch\. For example, this can happen when a connection is lost, a server goes down, or when a metric reports data only intermittently by design\.
 
-CloudWatch enables you to specify how to treat missing data points when evaluating an alarm\. This can help you configure your alarm to go to the `ALARM` state when appropriate for the type of data being monitored\. You can avoid false positives when missing data doesn't indicate a problem\.
+CloudWatch enables you to specify how to treat missing data points when evaluating an alarm\. This helps you to configure your alarm so that it goes to `ALARM` state only when appropriate for the type of data being monitored\. You can avoid false positives when missing data doesn't indicate a problem\.
 
 Similar to how each alarm is always in one of three states, each specific data point reported to CloudWatch falls under one of three categories:
 + Not breaching \(within the threshold\)
@@ -50,7 +53,7 @@ For each alarm, you can specify CloudWatch to treat missing data points as any o
 + `notBreaching` – Missing data points are treated as "good" and within the threshold,
 + `breaching` – Missing data points are treated as "bad" and breaching the threshold
 + `ignore` – The current alarm state is maintained
-+ `missing` – The alarm doesn't consider missing data points when evaluating whether to change state
++ `missing` – If all data points in the alarm evaluation range are missing, the alarm transitions to INSUFFICIENT\_DATA\.
 
 The best choice depends on the type of metric\. For a metric that continually reports data, such as `CPUUtilization` of an instance, you might want to treat missing data points as `breaching`, because they might indicate that something is wrong\. But for a metric that generates data points only when an error occurs, such as `ThrottledRequests` in Amazon DynamoDB, you would want to treat missing data as `notBreaching`\. The default behavior is `missing`\.
 
@@ -58,38 +61,40 @@ Choosing the best option for your alarm prevents unnecessary and misleading alar
 
 ### How Alarm State Is Evaluated When Data Is Missing<a name="alarms-evaluating-missing-data"></a>
 
-No matter what value you set for how to treat missing data, when an alarm evaluates whether to change state, CloudWatch attempts to retrieve a higher number of data points than specified by **Evaluation Periods**\. The exact number of data points it attempts to retrieve depends on the length of the alarm period and whether it is based on a metric with standard resolution or high resolution\. The time frame of the data points that it attempts to retrieve is the *evaluation range*\.
+Whenever an alarm evaluates whether to change state, CloudWatch attempts to retrieve a higher number of data points than the number specified as **Evaluation Periods**\. The exact number of data points it attempts to retrieve depends on the length of the alarm period and whether it is based on a metric with standard resolution or high resolution\. The time frame of the data points that it attempts to retrieve is the *evaluation range*\.
 
 Once CloudWatch retrieves these data points, the following happens:
-+ If no data points in the evaluation range are missing, CloudWatch evaluates the alarm based on the most recent data points collected\.
-+ If some data points in the evaluation range are missing, but the number of existing data points retrieved is equal to or more than the alarm's **Evaluation Periods**, CloudWatch evaluates the alarm state based on the most recent existing data points that were successfully retrieved\. In this case, the value you set for how to treat missing data is not needed and is ignored\.
-+ If some data points in the evaluation range are missing, and the number of existing data points that were retrieved is lower than the alarm's number of evaluation periods, CloudWatch fills in the missing data points with the result you specified for how to treat missing data, and then evaluates the alarm\. However, any real data points in the evaluation range, no matter when they were reported, are included in the evaluation\. CloudWatch uses missing data points only as few times as possible\. 
-
-In all of these situations, the number of data points evaluated is equal to the value of **Evaluation Periods**\. If fewer than the value of **Datapoints to Alarm** are breaching, the alarm state is set to `OK`\. Otherwise, the state is set to `ALARM`\. The exception is if you have set the alarm to treat missing data points as `missing`\. In this case, if CloudWatch could not retrieve enough actual data points during the evaluation range, then the alarm state is set to `INSUFFICIENT_DATA`\.
++ If no data points in the evaluation range are missing, CloudWatch evaluates the alarm based on the most recent data points collected\. The number of data points evaluated is equal to the **Evaluation Periods** for the alarm\. The extra data points from farther back in the evaluation range are not needed and are ignored\.
++ If some data points in the evaluation range are missing, but the total number of existing data points that were successfully retrieved from the evaluation range is equal to or more than the alarm's **Evaluation Periods**, CloudWatch evaluates the alarm state based on the most recent real data points that were successfully retrieved, including the necessary extra data points from farther back in the evaluation range\. In this case, the value you set for how to treat missing data is not needed and is ignored\.
++ If some data points in the evaluation range are missing, and the number of actual data points that were retrieved is lower than the alarm's number of **Evaluation Periods**, CloudWatch fills in the missing data points with the result you specified for how to treat missing data, and then evaluates the alarm\. However, all real data points in the evaluation range are included in the evaluation\. CloudWatch uses missing data points only as few times as possible\. 
 
 **Note**  
 A particular case of this behavior is that CloudWatch alarms might repeatedly re\-evaluate the last set of data points for a period of time after the metric has stopped flowing\. This re\-evaluation might cause the alarm to change state and re\-execute actions, if it had changed state immediately prior to the metric stream stopping\. To mitigate this behavior, use shorter periods\.
 
 The following tables illustrate examples of the alarm evaluation behavior\. In the first table, **Datapoints to Alarm** and **Evaluation Periods** are both 3\. CloudWatch retrieves the 5 most recent data points when evaluating the alarm, in case some of the most recent 3 data points are missing\. 5 is the evaluation range for the alarm\.
 
+Column 1 shows the 5 most recent data points, because the evaluation range is 5\. These data points are shown with the most recent data point on the right\. 0 is a non\-breaching data point, X is a breaching data point, and \- is a missing data point\.
+
 Column 2 shows how many of the 3 necessary data points are missing\. Even though the most recent 5 data points are evaluated, only 3 \(the setting for **Evaluation Periods**\) are necessary to evaluate the alarm state\. The number of data points in Column 2 is the number of data points that must be "filled in", using the setting for how missing data is being treated\. 
 
-Columns 3\-6 show the alarm state that would be set for each setting of how missing data should be treated, shown at the top of each column\. In the data points column, 0 is a non\-breaching data point, X is a breaching data point, and \- is a missing data point\.
+In columns 3\-6, the column headers are the possible values for how to treat missing data\. The rows in these columns show the alarm state that is set for each of these possible ways to treat missing data\.
 
 
-| Data points | \# of missing data points | MISSING | IGNORE | BREACHING | NOT BREACHING | 
+| Data points | \# of data points that must be filled | MISSING | IGNORE | BREACHING | NOT BREACHING | 
 | --- | --- | --- | --- | --- | --- | 
 |  0 \- X \- X  |  0  |  `OK`  |  `OK`  |  `OK`  |  `OK`  | 
 |  0 \- \- \- \-  |  2  |  `OK`  |  `OK`  |  `OK`  |  `OK`  | 
 |  \- \- \- \- \-  |  3  |  `INSUFFICIENT_DATA`  |  Retain current state  |  `ALARM`  |  `OK`  | 
 |  0 X X \- X  |  0  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `ALARM`  | 
-|  \- \- X \- \-   |  2  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `OK`  | 
+|  \- \- X \- \-   |  2  |  `ALARM`  |  `Retain current state`  |  `ALARM`  |  `OK`  | 
 
-In the second row of the preceding table, the alarm stays `OK` even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to `ALARM`, as that non\-breaching data point will no longer be among the 5 most recent data points retrieved\.
+In the second row of the preceding table, the alarm stays `OK` even if missing data is treated as breaching, because the one existing data point is not breaching, and this is evaluated along with two missing data points which are treated as breaching\. The next time this alarm is evaluated, if the data is still missing it will go to `ALARM`, as that non\-breaching data point will no longer be in the evaluation range\.
 
-In the fourth row, the alarm goes to `ALARM` state in all cases because there are enough real data points so that the setting for how to treat missing data doesn't need to be considered\.
+The third row, where all five of the most recent data points are missing, illustrates how the various settings for how to treat missing data affect the alarm state\. If missing data points are considered breaching, the alarm goes into ALARM state, while if they are considered not breaching, then the alarm goes into OK state\. If missing data points are ignored, the alarm retains the current state it had before the missing data points\. And if missing data points are just considered as missing, then the alarm does not have enough recent real data to make an evaluation, and goes into INSUFFICIENT\_DATA\.
 
-In the final row, the alarm goes to ALARM state because when an alarm's most recent three data points are either breaching or don't exist, the alarm goes to ALARM state\.
+In the fourth row, the alarm goes to `ALARM` state in all cases because the three most recent data points are breaching, and the alarm's **Evaluation Periods** and **Datapoints to Alarm** are both set to 3\. In this case, the missing data point is ignored and the setting for how to evaluate missing data is not needed, because there are 3 real data points to evaluate\.\.
+
+Row 5 represents a special case of alarm evaluation called *premature alarm state*\. For more information, see [Avoiding Premature Transitions to Alarm State](#CloudWatch-alarms-avoiding-premature-transition)\.
 
 In the next table, the **Period** is again set to 5 minutes, and **Datapoints to Alarm** is only 2 while **Evaluation Periods** is 3\. This is a 2 out of 3, M out of N alarm\.
 
@@ -102,9 +107,23 @@ The evaluation range is 5\. This is the maximum number of recent data points tha
 |  0 0 X 0 X  |  0  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `ALARM`  | 
 |  0 \- X \- \-  |  1  |  `OK`  |  `OK`  |  `ALARM`  |  `OK`  | 
 |  \- \- \- \- 0  |  2  |  `OK`  |  `OK`  |  `ALARM`  |  `OK`  | 
-|  \- \- X \- \-  |  2  |  `ALARM`  |  Retain current state  |  `ALARM`  |  `OK`  | 
+|  \- \- \- X \-  |  2  |  `ALARM`  |  Retain current state  |  `ALARM`  |  `OK`  | 
 
-If data points are missing soon after you create an alarm, and the metric was being reported to CloudWatch before you created the alarm, CloudWatch retrieves the most recent data points from before the alarm was created when evaluating the alarm\.
+In rows 1 and 2, the alarm always goes to ALARM state because 2 of the 3 most recent data points are breaching\. In row 2, the two oldest data points in the evaluation range are not needed because none of the 3 most recent data points are missing, so these two older data points are ignored\.
+
+In rows 3 and 4, the alarm goes to ALARM state only if missing data is treated as breaching, in which case the two most recent missing data points are both treated as breaching\. In row 4, these two missing data points that are treated as breaching provide the two necessary breaching data points to trigger the ALARM state\.
+
+Row 5 represents a special case of alarm evaluation called *premature alarm state*\. For more information, see the following section\.
+
+#### Avoiding Premature Transitions to Alarm State<a name="CloudWatch-alarms-avoiding-premature-transition"></a>
+
+CloudWatch alarm evaluation includes logic to try to avoid false alarms, where the alarm goes into ALARM state prematurely when data is intermittent\. The example shown in row 5 in the tables in the previous section illustrate this logic\. In those rows, and in the following examples, the **Evaluation Periods** is 3 and the evaluation range is 5 data points\. **Datapoints to Alarm** is 3, except for the M out of N example, where **Datapoints to Alarm** is 2\.
+
+Suppose an alarm's most recent data is `- - - - X`, with four missing data points and then a breaching data point as the most recent data point\. Because the next data point may be non\-breaching, the alarm does not go immediately into ALARM state when the data is either `- - - - X` or `- - - X -` and **Datapoints to Alarm** is 3\. This way, false positives are avoided when the next data point is non\-breaching and causes the data to be `- - - X O` or `- - X - O`\.
+
+However, if the last few data points are `- - X - -`, the alarm goes into ALARM state even if missing data points are treated as missing\. This is because alarms are designed to always go into ALARM state when the oldest available breaching datapoint during the Evaluation Periods number of data points is at least as old as the value of **Datapoints to Alarm**, and all other more recent data points are breaching or missing\. In this casethe alarm goes into ALARM state no matter if the total number of datapoints available is lower than M \(**Datapoints to Alarm**\)\.
+
+This alarm logic applies to M out of N alarms as well\. If the oldest breaching data point during the **Evaluation Periods** number of data points is at least as old as the value of **Evaluation Periods**, and all of the more recent data points are either breaching or missing, the alarm goes into ALARM state no matter the value of M \(**Datapoints to Alarm**\)\.
 
 ## High\-Resolution Alarms<a name="high-resolution-alarms"></a>
 

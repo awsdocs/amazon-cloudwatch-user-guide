@@ -12,7 +12,7 @@ You can choose to enable live data for a whole dashboard, or for individual widg
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. To permanently turn on or off live data for all widgets on the dashbaord, do the following:
+1. To permanently turn on or off live data for all widgets on the dashboard, do the following:
 
    1. Choose **Actions**, **Settings**, **Bulk update live data\.**
 

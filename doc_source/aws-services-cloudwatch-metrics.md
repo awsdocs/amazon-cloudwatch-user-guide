@@ -17,6 +17,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon CloudSearch  |  `AWS/CloudSearch`  |  [Monitoring an Amazon CloudSearch Domain with Amazon CloudWatch](https://docs.aws.amazon.com/cloudsearch/latest/developerguide/cloudwatch-monitoring.html)  | 
 |  Amazon CloudWatch Logs  |  `AWS/Logs`  |  [Monitoring Usage with CloudWatch Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html)  | 
 |  AWS CodeBuild  |  `AWS/CodeBuild`  |  [Monitoring AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html)  | 
+|  Amazon CodeGuru Profiler  |  `AWS/CodeGuruProfiler`  |  [Monitoring Amazon CodeGuru Profiler with Amazon CloudWatch ](https://docs.aws.amazon.com/codeguru/latest/profiler-ug/monitoring.html)  | 
 |  Amazon Cognito  |  `AWS/Cognito`  |  [Monitoring Amazon Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/monitoring.html)  | 
 |  Amazon Connect  |  `AWS/Connect`  |  [Monitoring Amazon Connect in Amazon CloudWatch Metrics](https://docs.aws.amazon.com/connect/latest/adminguide/monitoring-cloudwatch.html)  | 
 |  AWS DataSync  |  `AWS/DataSync`  |  [Monitoring Your Task](https://docs.aws.amazon.com/datasync/latest/userguide/monitor-datasync.html)  | 
@@ -53,6 +54,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  AWS Glue  |  `AWS/Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 
 |  AWS Ground Station  |  `AWS/GroundStation`  |  [Metrics Using Amazon CloudWatch](https://docs.aws.amazon.com/ground-station/latest/ug/metrics.html)  | 
 |  Amazon Inspector |  `AWS/Inspector`  |  [Monitoring Amazon Inspector Using CloudWatch](https://docs.aws.amazon.com/inspector/latest/userguide/using-cloudwatch.html)  | 
+|  Amazon Interactive Video Service \(IVS\)  |  `AWS/IVS`  |  [Monitoring Amazon IVS with Amazon CloudWatch](https://docs.aws.amazon.com/ivs/latest/userguide/ivs-metrics.html)  | 
 |  AWS IoT  |  `AWS/IoT`  |  [AWS IoT Metrics and Dimensions](https://docs.aws.amazon.com/iot/latest/developerguide/metrics_dimensions.html)  | 
 |  AWS IoT Analytics  |  `AWS/IoTAnalytics`  |  [Namespace, Metrics, and Dimensions](https://docs.aws.amazon.com/iotanalytics/latest/userguide/cloudwatch.html#aws-iot-analytics-cloudwatch-metrics)  | 
 |  AWS IoT SiteWise  |  `AWS/IoTSiteWise`  |  [ Monitoring AWS IoT SiteWise with Amazon CloudWatch metrics](https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-cloudwatch-metrics.html)  | 

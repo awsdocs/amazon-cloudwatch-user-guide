@@ -1,6 +1,6 @@
 # IAM policy<a name="appinsights-iam"></a>
 
-To use CloudWatch Application Insights for \.NET and SQL Server, you must create an [Identity and Access Management \(IAM\) policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) and attach it to your IAM user identity\. The IAM policy defines the user permissions\.
+To use CloudWatch Application Insights, you must create an [Identity and Access Management \(IAM\) policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) and attach it to your IAM user identity\. The IAM policy defines the user permissions\.
 
 **To create an IAM policy using the console**  
 To create an IAM policy using the IAM console, follow these steps\.
@@ -50,7 +50,7 @@ To create an IAM policy using the IAM console, follow these steps\.
 
 1. Make sure that the correct policy is listed, and select **Add permissions**\.
 
-1. Make sure that you log in with the user associated with the policy that you just created when you use CloudWatch Application Insights for \.NET and SQL Server\.
+1. Make sure that you log in with the user associated with the policy that you just created when you use CloudWatch Application Insights\.
 
 **To create an IAM policy using the AWS CLI**  
 To create an IAM policy using the AWS CLI, run the [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) operation from the command line using the JSON document above as a file in your current folder\. 

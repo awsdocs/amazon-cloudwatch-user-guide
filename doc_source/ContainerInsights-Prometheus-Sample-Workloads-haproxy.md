@@ -1,4 +1,4 @@
-# \(Optional\) Set Up HAProxy with a Metric Exporter<a name="ContainerInsights-Prometheus-Sample-Workloads-haproxy"></a>
+# \(Optional\) Set Up HAProxy with a Metric Exporter on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-haproxy"></a>
 
 HAProxy is an open\-source proxy application\. For more information, see [HAProxy](https://www.haproxy.org)\.
 
@@ -23,7 +23,7 @@ HAProxy is an open\-source proxy application\. For more information, see [HAProx
    --namespace haproxy-ingress-sample \
    --set controller.stats.enabled=true \
    --set controller.metrics.enabled=true \
-   --set-string controller.metrics.service.annotations."prometheus\.io/port"="9101" \
+   --set-string controller.metrics.service.annotations."prometheus\.io/port"="9101" \ 
    --set-string controller.metrics.service.annotations."prometheus\.io/scrape"="true"
    ```
 

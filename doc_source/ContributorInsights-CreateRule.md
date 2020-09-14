@@ -4,7 +4,12 @@ You can create rules to analyze log data\. Any logs in JSON or Common Log Format
 
 In a rule, when you specify field names or values, all matching is case sensitive\.
 
-You can use built\-in sample rules when you create a rule or you can create your own rule from scratch\.
+You can use built\-in sample rules when you create a rule or you can create your own rule from scratch\. Contributor Insights includes sample rules for the following types of logs:
++ Amazon API Gateway logs
++ Amazon Route 53 public DNS query logs
++ Amazon Route 53 resolver query logs
++ CloudWatch Container Insights logs
++ VPC flow logs
 
 **To create a rule using a built\-in sample rule**
 

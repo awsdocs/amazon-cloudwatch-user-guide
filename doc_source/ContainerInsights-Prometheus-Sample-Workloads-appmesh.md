@@ -1,4 +1,4 @@
-# \(Optional\) Set Up AWS App Mesh<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh"></a>
+# \(Optional\) Set Up AWS App Mesh sample workload for Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh"></a>
 
 The beta of Prometheus support in CloudWatch Container Insights supports AWS App Mesh\. This section explains how to set up App Mesh\.
 
@@ -10,47 +10,41 @@ You must add the **AWSAppMeshFullAccess** policy to the IAM role for your Amazon
 
 ## Install App Mesh<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-install"></a>
 
-To install App Mesh Kubernetes Controller, follow these instructions on [appmesh-controller](https://github.com/aws/eks-charts/tree/master/stable/appmesh-controller#app-mesh-controller) Helm chart\.
+To install the App Mesh Kubernetes controller, follow the instructions in [App Mesh Controller](https://github.com/aws/eks-charts/tree/master/stable/appmesh-controller#app-mesh-controller)\.
 
+## Install a Sample Application<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-application"></a>
 
-## Install a Sample Application<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-app-install"></a>
+[aws\-app\-mesh\-examples](https://github.com/aws/aws-app-mesh-examples) contains several Kubernetes App Mesh walkthroughs\. For this tutorial, you install a sample color application that shows how http routes can use headers for matching incoming requests\.
 
-[aws-app-mesh-examples](https://github.com/aws/aws-app-mesh-examples) contains several Kubernetes App Mesh walkthroughs. For this tutorial, install a sample Color application that shows how http routes can use headers for matching incoming requests\.
+**To use a sample App Mesh application to test Container Insights**
 
-1. Install the application using the instructions [here](https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-http-headers)\.
+1. Install the application using these instructions: [https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-http-headers](https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-http-headers)\. 
 
 1. Launch a curler pod to generate traffic:
 
-    ```
-    kubectl -n default run -it curler --image=tutum/curl /bin/bash
-    ```
-1. Curl different endpoints by changing HTTP headers (run the curl command multiple times)\.
+   ```
+   kubectl -n default run -it curler --image=tutum/curl /bin/bash
+   ```
 
-    ```
-    curl -H "color_header: blue" front.howto-k8s-http-headers.svc.cluster.local:8080/; echo;
-    ```
+1. Curl different endpoints by changing HTTP headers\. Run the curl command multiple times, as shown:
 
-    ```
-    curl -H "color_header: red" front.howto-k8s-http-headers.svc.cluster.local:8080/; echo;
-    ```
-
-    ```
-    curl -H "color_header: yellow" front.howto-k8s-http-headers.svc.cluster.local:8080/; echo;
-    ```
-
-## Check CloudWatch Metrics and Logs<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-cw-check"></a>
+   ```
+   curl -H "color_header: blue" front.howto-k8s-http-headers.svc.cluster.local:8080/; echo;
+   
+   curl -H "color_header: red" front.howto-k8s-http-headers.svc.cluster.local:8080/; echo;
+   
+   curl -H "color_header: yellow" front.howto-k8s-http-headers.svc.cluster.local:8080/; echo;
+   ```
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the AWS Region where your cluster is running, choose **Metrics**\. The App Mesh metrics are in the **ContainerInsights/Prometheus** namespace\.
+1. In the AWS Region where your cluster is running, choose **Metrics** in the navigation pane\. The metric are in the **ContainerInsights/Prometheus** namespace\.
 
-1. To see the CloudWatch Logs events, choose **Log Groups** in the navigation pane\. The events are in the log group **/aws/containerinsights/*your\_cluster\_name*/prometheus**, in the log stream **kubernetes\-pod\-appmesh\-envoyappmesh**\.
+1. To see the CloudWatch Logs events, choose **Log groups** in the navigation pane\. The events are in the log group ` /aws/containerinsights/your_cluster_name/prometheus ` in the log stream `kubernetes-pod-appmesh-envoy`\.
 
-## Deleting The App Mesh Test Environment<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-cleanup"></a>
+## Deleting the App Mesh Test Environment<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-delete"></a>
 
-When you have finished using App Mesh and the sample application, use the following commands to delete the unnecessary resources\.
-
-Delete the sample application by entering the following command:
+When you have finished using App Mesh and the sample application, use the following commands to delete the unnecessary resources\. Delete the sample application by entering the following command:
 
 ```
 cd aws-app-mesh-examples/walkthroughs/howto-k8s-http-headers/
@@ -62,4 +56,3 @@ Delete the App Mesh controller by entering the following command:
 ```
 helm delete appmesh-controller -n appmesh-system
 ```
-

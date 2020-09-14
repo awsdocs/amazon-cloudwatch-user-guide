@@ -1,4 +1,4 @@
-# \(Optional\) Set Up memcached with a Metric Exporter<a name="ContainerInsights-Prometheus-Sample-Workloads-memcached"></a>
+# \(Optional\) Set Up memcached with a Metric Exporter on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-memcached"></a>
 
 memcached is an open\-source memory object caching system\. For more information, see [What is Memcached?](https://www.memcached.org)\.
 

@@ -29,7 +29,7 @@ Parameter Store supports parameters in Standard and Advanced tiers\. These param
 
 1. Under **Select type of trusted entity**, choose **AWS service**\.
 
-1. Immediately under **Choose the service that will use this role**, choose **EC2**,and then choose **Next: Permissions**\.
+1. Immediately under **Common use cases**, choose **EC2**,and then choose **Next: Permissions**\.
 
 1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. If necessary, use the search box to find the policy\. 
 

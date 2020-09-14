@@ -13,7 +13,11 @@ If you're going to run the CloudWatch agent on Amazon EC2 instances, use the fol
 
 1. In the navigation pane on the left, choose **Roles** and then **Create role**\. 
 
-1. For **Choose the service that will use this role**, choose ****EC2** Allows EC2 instances to call AWS services on your behalf**\. Choose **Next: Permissions**\.
+1. Make sure that **AWS service** is selected under **Select type of trusted entity**\.
+
+1. For **Choose a use case**, choose **EC2** under **Common use cases**,
+
+1. Choose **Next: Permissions**\.
 
 1. In the list of policies, select the check box next to **CloudWatchAgentServerPolicy**\. If necessary, use the search box to find the policy\. 
 

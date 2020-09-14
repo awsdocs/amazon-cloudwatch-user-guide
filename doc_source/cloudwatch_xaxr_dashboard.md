@@ -6,13 +6,13 @@ You can create cross\-account cross\-Region dashboards in the AWS Management Con
 
 **Pre\-Requisite**
 
-Before you can create a cross\-account cross\-Region dashboard, you must enable at least one sharing account and at least one monitoring account\. Additionally, to be able to use the AWS Management Console to create a cross\-account dashboard, you must enable the your console for cross\-account functionality\. For more information, see [Cross\-Account Cross\-Region CloudWatch Console](Cross-Account-Cross-Region.md)\.
+Before you can create a cross\-account cross\-Region dashboard, you must enable at least one sharing account and at least one monitoring account\. Additionally, to be able to use the CloudWatch console to create a cross\-account dashboard, you must enable the console for cross\-account functionality\. For more information, see [Cross\-Account Cross\-Region CloudWatch Console](Cross-Account-Cross-Region.md)\.
 
 ## Creating and Using a Cross\-Account Cross\-Region Dashboard With the AWS Management Console<a name="create_xaxr_dashboard"></a>
 
 You can use the AWS Management Console to create a cross\-account cross\-Region dashboard\.
 
-**To create your a cross\-account cross\-Region dashboard**
+**To create a cross\-account cross\-Region dashboard**
 
 1. Log in to the monitoring account\.
 

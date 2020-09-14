@@ -1,11 +1,4 @@
-# Install the CloudWatch Agent with Prometheus Metrics Collection<a name="ContainerInsights-Prometheus-Setup"></a>
-
-
-****  
-
-|  | 
-| --- |
-| Support for Prometheus metrics is in beta\. The beta is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
+# Install the CloudWatch agent with Prometheus metrics collection on Amazon EKS and Kubernetes clusters<a name="ContainerInsights-Prometheus-Setup"></a>
 
 Before following these steps to install the CloudWatch agent for Prometheus metric collection, you must have a cluster running on Amazon EKS or a Kubernetes cluster running on an Amazon EC2 instance\.
 
@@ -68,7 +61,7 @@ To install the CloudWatch agent with Prometheus support on an Amazon EKS cluster
 1. To deploy the agent with the default configuration and have it send data to the AWS Region that it is installed in, enter the following command:
 
    ```
-   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-eks.yaml
+   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-eks.yaml
    ```
 
    To have the agent send data to a different Region instead, follow these steps:
@@ -103,9 +96,9 @@ To install the CloudWatch agent with Prometheus support on an Amazon EKS cluster
 To install the CloudWatch agent with Prometheus support on a cluster running Kubernetes, enter the following command:
 
 ```
-curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/prometheus-beta/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-k8s.yaml | 
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-k8s.yaml | 
 sed "s/{{cluster_name}}/MyCluster/;s/{{region_name}}/region/" | 
-            kubectl apply -f -
+kubectl apply -f -
 ```
 
 Replace *MyCluster* with the name of the cluster\. This name is used in the log group name that stores the log events collected by the agent, and is also used as a dimension for the metrics collected by the agent\.

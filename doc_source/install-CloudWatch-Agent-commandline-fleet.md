@@ -82,17 +82,29 @@ region = us-west-1
 The following is an example of using the `aws configure` command to create a named profile for the CloudWatch agent\. This example assumes that you are using the default profile name of `AmazonCloudWatchAgent`\.
 
 **To create the AmazonCloudWatchAgent profile for the CloudWatch agent**
-+ On Linux servers, enter the following command and follow the prompts:
 
-  ```
-  sudo aws configure --profile AmazonCloudWatchAgent
-  ```
+1. If you haven't already done so, install the AWS Command Line Interface on the server\. For more information, see [ Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
 
-  On Windows Server, open PowerShell as an administrator, enter the following command, and follow the prompts\.
+1. On Linux servers, enter the following command and follow the prompts:
 
-  ```
-  aws configure --profile AmazonCloudWatchAgent
-  ```
+   ```
+   sudo aws configure --profile AmazonCloudWatchAgent
+   ```
+
+   On Windows Server, open PowerShell as an administrator, enter the following command, and follow the prompts\.
+
+   ```
+   aws configure --profile AmazonCloudWatchAgent
+   ```
+
+## Verify Internet Access<a name="install-CloudWatch-Agent-internet-access-first-cmd"></a>
+
+Your Amazon EC2 instances must have outbound internet access to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
+
+The endpoints and ports to configure on your proxy are as follows:
++ If you're using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch](https://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
++ If you're using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch Logs](https://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
++ If you're using Systems Manager to install the agent or Parameter Store to store your configuration file, you must whitelist the Systems Manager endpoints for the appropriate Regions\. These endpoints are listed in [AWS Systems Manager](https://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
 
 ## \(Optional\) Modify the Common Configuration for Proxy or Region Information<a name="CloudWatch-Agent-profile-instance-first"></a>
 
@@ -156,7 +168,7 @@ Follow these steps to use the command line to start the CloudWatch agent on a se
 
 1. In this command, `-a fetch-config` causes the agent to load the latest version of the CloudWatch agent configuration file, and `-s` starts the agent\.
 
-   Enter one of the following commands\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` is you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
+   Enter one of the following commands\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` if you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
    On an EC2 instance running Linux, enter the following command\. 
 
