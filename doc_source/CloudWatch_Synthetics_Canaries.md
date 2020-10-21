@@ -16,7 +16,7 @@ By default, canaries create CloudWatch metrics in the `CloudWatchSynthetics` nam
 
 CloudWatch Synthetics integrates well with CloudWatch ServiceLens, which uses CloudWatch with AWS X\-Ray to provide an end\-to\-end view of your services to help you more efficiently pinpoint performance bottlenecks and identify impacted users\. Canaries that you create with CloudWatch Synthetics appear on the ServiceLens service map\. For more information about ServiceLens, see [Using ServiceLens to Monitor the Health of Your Applications](ServiceLens.md)\.
 
-CloudWatch Synthetics is currently available in the following AWS Regions:
+CloudWatch Synthetics is currently available in all 24 AWS Regions:
 + US East \(N\. Virginia\)
 + US East \(Ohio\)
 + US West \(N\. California\)
