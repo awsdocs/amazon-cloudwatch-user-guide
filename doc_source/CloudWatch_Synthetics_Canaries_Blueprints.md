@@ -21,7 +21,7 @@ API canaries can test the basic Read and Write functions of a REST API\. REST st
 In a REST API, each URL is called a *request* and the data sent back is the *response*\. Each request consists of the following information:
 + The *endpoint*, which is the URL that you request\.
 + The *method*, which is the type of request that is sent to the server\. REST APIs support GET \(read\), POST \(write\), PUT \(update\), PATCH \(update\), and DELETE \(delete\) operations\.
-+ The *headers*, which provide information to both the client and the server\. They are used for authentication and providing information about the body content\. For a list ov valid headers, see [HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)\.
++ The *headers*, which provide information to both the client and the server\. They are used for authentication and providing information about the body content\. For a list of valid headers, see [HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)\.
 + The *data* \(or *body*\), which contains information to be sent to the server\. This is used only for POST, PUT, PATCH, or DELETE requests\.
 + The URL that you request\.
 
