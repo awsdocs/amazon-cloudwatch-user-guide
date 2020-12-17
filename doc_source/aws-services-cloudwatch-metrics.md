@@ -51,7 +51,7 @@ The following AWS services publish metrics to CloudWatch\. For information about
 |  Amazon FSx for Lustre  |  `AWS/FSx`  |  [Monitoring Amazon FSx for Lustre](https://docs.aws.amazon.com/fsx/latest/LustreGuide/monitoring_overview.html)  | 
 |  Amazon FSx for Windows File Server  |  `AWS/FSx`  |  [Monitoring Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/monitoring_overview.html)  | 
 |  Amazon GameLift  |  `AWS/GameLift`  |  [Monitor Amazon GameLift with CloudWatch](https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html)  | 
-|  AWS Glue  |  `AWS/Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 
+|  AWS Glue  |  `Glue`  |  [Monitoring AWS Glue Using CloudWatch Metrics](https://docs.aws.amazon.com/glue/latest/dg/monitoring-awsglue-with-cloudwatch-metrics.html)  | 
 |  AWS Ground Station  |  `AWS/GroundStation`  |  [Metrics Using Amazon CloudWatch](https://docs.aws.amazon.com/ground-station/latest/ug/metrics.html)  | 
 |  Amazon Inspector |  `AWS/Inspector`  |  [Monitoring Amazon Inspector Using CloudWatch](https://docs.aws.amazon.com/inspector/latest/userguide/using-cloudwatch.html)  | 
 |  Amazon Interactive Video Service \(IVS\)  |  `AWS/IVS`  |  [Monitoring Amazon IVS with Amazon CloudWatch](https://docs.aws.amazon.com/ivs/latest/userguide/ivs-metrics.html)  | 
