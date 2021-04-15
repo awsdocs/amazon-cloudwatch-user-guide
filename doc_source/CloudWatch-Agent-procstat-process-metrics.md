@@ -17,7 +17,8 @@ To use the procstat plugin, add a `procstat` section in the `metrics_collected` 
 
 The CloudWatch agent uses only one of these methods, even if you include more than one of the above sections\. If you specify more than one section, the CloudWatch agent uses the `pid_file` section if it is present\. If not, it uses the `exe` section\.
 
-On Linux servers, the strings that you specify in an `exe` or `pattern` section are evaluated as regular expressions\. On servers running Windows Server, these strings are evaluated as WMI queries\. For more information, see [LIKE Operator](https://docs.microsoft.com/en-us/windows/desktop/WmiSdk/like-operator)\.
+On Linux servers, the strings that you specify in an `exe` or `pattern` section are evaluated as regular expressions\. 
+On servers running Windows Server, these strings are evaluated as WMI queries\. For more information, see [LIKE Operator](https://docs.microsoft.com/en-us/windows/desktop/WmiSdk/like-operator)\. `eg: pattern: "%apache%"`
 
 Whichever method you use, you can include an optional `metrics_collection_interval` parameter, which specifies how often in seconds to collect those metrics\. If you omit this parameter, the default value of 60 seconds is used\.
 
