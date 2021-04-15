@@ -14,7 +14,7 @@ If you have issues after creating or updating a canary, one of the following sec
 
 ### New Canary in Error State or Canary Can't Be Updated<a name="CloudWatch_Synthetics_Canaries_VPC_troubleshoot_errorstate"></a>
 
-If you create a canary to run on a VPC and it immediately goes into an error state, or you can't update a canary to run on a VPC, the canary's role might not have the right permissions\. To run on a VPC, a canary must have the permissions `ec2:CreateNetworkInterface`, `ec2:DescribeNetworkInterface`, and `ec2:DeleteNetworkInterface`\. These permissions are all contained in the `AWSLambdaVPCAccessExecutionRole` managed policy\. For more information, see [Execution Role and User Permissions](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#vpc-permissions)\.
+If you create a canary to run on a VPC and it immediately goes into an error state, or you can't update a canary to run on a VPC, the canary's role might not have the right permissions\. To run on a VPC, a canary must have the permissions `ec2:CreateNetworkInterface`, `ec2:DescribeNetworkInterfaces`, and `ec2:DeleteNetworkInterface`\. These permissions are all contained in the `AWSLambdaVPCAccessExecutionRole` managed policy\. For more information, see [Execution Role and User Permissions](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#vpc-permissions)\.
 
 If this issue happened when you created a canary, you must delete the canary, and create a new one\. If you use the CloudWatch console to create the new canary, under **Access Permissions**, select **Create a new role**\. A new role that includes all permissions required to run the canary is created\.
 
