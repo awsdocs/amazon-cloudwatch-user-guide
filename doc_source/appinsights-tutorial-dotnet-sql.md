@@ -49,9 +49,11 @@ This CloudFormation template can also be found in the aws\-samples GitHub repo a
 
 1. On the **Specify stack details** page, enter a name for the stack, such as `ApplicationInsightsTest`\.
 
+1. Specify a key pair name in the **EC2 Key Pair** field to either create a new key pair or choose an existing key pair that you can use to log in to your EC2 instance\
+
 1. Review the default parameters under **Parameters** and modify the values to your preferences\. Enter a password for SQLServer\. Choose **Next**\.
 
-1. On the **Configure stack options** page, under **Tags**, create a new key pair or choose an existing key pair that you can use to log in to your EC2 instance\. Select **Next**\.
+1. On the **Configure stack options** page, under **Tags**, add any tags to help identify your stack . Select **Next**\.
 
 1. Review and confirm the settings on the **Review** page\. Select the box acknowledging that the template may create AWS Identity and Access Management \(IAM\) resources\.
 
