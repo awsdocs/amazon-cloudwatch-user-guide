@@ -45,7 +45,7 @@ The template deployment takes approximately 10 minutes to complete\.
 
 1. Under **Specify template**, select **Amazon S3 URL** and enter the following S3 URL path: `https://application-insights-demo-resources.s3.amazonaws.com/SampleApp.yml`\. Choose **Next**\.
 **Note**  
-This CloudFormation template can also be found in the aws\-samples GitHub repo at the following location: [https://github\.com/aws\-samples/application\-insights\-sample\-application/blob/master/SampleApp\.yml](https://github.com/aws-samples/application-insights-sample-application/edit/blob/SampleApp.yml)\.
+This CloudFormation template can also be found in the aws\-samples GitHub repo at the following location: [https://github\.com/aws\-samples/application\-insights\-sample\-application/blob/master/SampleApp\.yml](https://github.com/aws-samples/application-insights-sample-application/blob/master/SampleApp.yml)\.
 
 1. On the **Specify stack details** page, enter a name for the stack, such as `ApplicationInsightsTest`\.
 
