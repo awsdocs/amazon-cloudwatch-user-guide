@@ -4,6 +4,7 @@ The following terminology and concepts are central to your understanding and use
 + [Namespaces](#Namespace)
 + [Metrics](#Metric)
 + [Dimensions](#Dimension)
++ [Resolution](#Resolution_definition)
 + [Statistics](#Statistic)
 + [Percentiles](#Percentiles)
 + [Alarms](#CloudWatchAlarms)
