@@ -11,6 +11,9 @@ You can use built\-in sample rules when you create a rule or you can create your
 + CloudWatch Container Insights logs
 + VPC flow logs
 
+**Important**  
+When you grant a user the `cloudwatch:PutInsightRule` permission, by default that user can create a rule that evaluates any log group in CloudWatch Logs\. You can add IAM policy conditions that limit these permissions for a user to include and exclude specific log groups\. For more information, see [Using Condition Keys to Limit Contributor Insights Users' Access to Log Groups](iam-cw-condition-keys-contributor.md)\.
+
 **To create a rule using a built\-in sample rule**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
@@ -18,6 +21,8 @@ You can use built\-in sample rules when you create a rule or you can create your
 1. In the navigation pane, choose **Contributor Insights**\.
 
 1. Choose **Create rule**\.
+
+   
 
 1. Choose **Sample rule**, and from **Select sample rule**, select the rule\.
 
@@ -44,6 +49,8 @@ You can use built\-in sample rules when you create a rule or you can create your
 1. In the navigation pane, choose **Contributor Insights**\.
 
 1. Choose **Create rule**\.
+
+   
 
 1. In the **Create rule** wizard, choose **Custom rule**\.
 
@@ -79,7 +86,7 @@ You can use built\-in sample rules when you create a rule or you can create your
 
       You can add as many as 10 filters in a rule\. Multiple filters are joined by AND logic, so only log events that match all filters are evaluated\.
 
-   1. For **Aggregate on**, choose **COUNT** or **SUM**\. Choosing **COUNT** causes the contributor ranking to be based on the number of occurrences\. Choosing **SUM** causes the ranking to be based on the aggregated sum of the values of the field that you specify for **Contribution**, **Value**\.
+   1. For **Aggregate on**, choose **Count** or **Sum**\. Choosing **Count** causes the contributor ranking to be based on the number of occurrences\. Choosing **Sum** causes the ranking to be based on the aggregated sum of the values of the field that you specify for **Contribution**, **Value**\.
 
 1. To enter your rule as a JSON object instead of using the wizard, do the following:
 

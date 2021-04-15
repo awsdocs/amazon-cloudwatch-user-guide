@@ -1,10 +1,12 @@
-# \(Optional\) Set Up Java/JMX sample workload on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx"></a>
+# Set Up Java/JMX sample workload on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx"></a>
 
 JMX Exporter is an official Prometheus exporter that can scrape and expose JMX mBeans as Prometheus metrics\. For more information, see [prometheus/jmx\_exporter](https://github.com/prometheus/jmx_exporter)\.
 
 Container Insights can collect predefined Prometheus metrics from Java Virtual Machine \(JVM\), Java, and Tomcat \(Catalina\) using the JMX Exporter\.
 
-The CloudWatch agent with Prometheus support scrapes the Java/JMX Prometheus metrics from http://CLUSTER\_IP:9404/metrics on each pod in an Amazon EKS or Kubernetes cluster\. You can configure the JMX Exporter to expose the metrics on a different port or metrics\_path\. If you do change the port or path, update the default jmx scrape\_config in the CloudWatch agent config map\. Run the following command to get the current CloudWatch agent Prometheus configuration:
+## Default Prometheus Scrape Configuration<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-default"></a>
+
+By default, the CloudWatch agent with Prometheus support scrapes the Java/JMX Prometheus metrics from `http://CLUSTER_IP:9404/metrics` on each pod in an Amazon EKS or Kubernetes cluster\. This is done by `role: pod` discovery of Prometheus `kubernetes_sd_config`\. 9404 is the default port allocated for JMX Exporter by Prometheus\. For more information about `role: pod` discovery, see [ pod](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#pod)\. You can configure the JMX Exporter to expose the metrics on a different port or metrics\_path\. If you do change the port or path, update the default jmx scrape\_config in the CloudWatch agent config map\. Run the following command to get the current CloudWatch agent Prometheus configuration:
 
 ```
 kubectl describe cm prometheus-config -n amazon-cloudwatch
@@ -27,9 +29,25 @@ relabel_configs:
   source_labels:
 ```
 
+## Other Prometheus Scrape Configuration<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-other"></a>
+
+If you expose your application running on a set of pods with Java/JMX Prometheus exporters by a Kubernetes Service, you can also switch to use `role: service` discovery or `role: endpoint` discovery of Prometheus `kubernetes_sd_config`\. For more information about these discovery methods, see [ service](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#service), [ endpoints](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#endpoints), and [ <kubernetes\_sd\_config>\.](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)\. 
+
+More meta labels are provided by these two service discovery modes which could be useful for you to build the CloudWatch metrics dimensions\. For example, you can relabel `__meta_kubernetes_service_name` to `Service` and include it into your metrics’ dimension\. For more informatio about customizing your CloudWatch metrics and their dimensions, see [ CloudWatch Agent Configuration for Prometheus](ContainerInsights-Prometheus-Setup-configure-ECS.md#ContainerInsights-Prometheus-Setup-cw-agent-config)\.
+
+## Docker Image with JMX Exporter<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-docker"></a>
+
 Next, build a docker image\. The following sections provide two example dockerfiles\.
 
 When you have built the image, load it into Amazon EKS or Kubernetes, and then run the following command to verify that Prometheus metrics are exposed by JMX\_EXPORTER on port 9404\. Replace *$JAR\_SAMPLE\_TRAFFIC\_POD* with the running pod name and replace *$JAR\_SAMPLE\_TRAFFIC\_NAMESPACE* with your application namespace\. 
+
+If you are running JMX Exporter on a cluster with the Fargate launch type, you also need to set up a Fargate profile before doing the steps in this procedure\. To set up the profile, enter the following command\. Replace *MyCluster* with the name of your cluster\.
+
+```
+eksctl create fargateprofile --cluster MyCluster \
+--namespace $JAR_SAMPLE_TRAFFIC_NAMESPACE\
+ --name $JAR_SAMPLE_TRAFFIC_NAMESPACE
+```
 
 ```
 kubectl exec $JAR_SAMPLE_TRAFFIC_POD -n $JARCAT_SAMPLE_TRAFFIC_NAMESPACE -- curl http://localhost:9404

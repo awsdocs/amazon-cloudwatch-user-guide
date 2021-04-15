@@ -9,7 +9,7 @@ When you use Container Insights to collect the following metrics, the metrics ar
 
 | Metric Name | Dimensions | Description | 
 | --- | --- | --- | 
-|  `cluster_failed_node_count` |  ClusterName  |  The number of failed worker nodes in the cluster\. A node is considered failed if it is suffering from any [node conditions](https://kubernetes.io/docs/concepts/architecture/nodes/#condition)\.  | 
+|  `cluster_failed_node_count` |  ClusterName  |  The number of failed worker nodes in the cluster\. A node is considered failed if it is suffering from any *node conditions*\. For more information, see [Conditions](https://kubernetes.io/docs/concepts/architecture/nodes/#condition) in the Kubernetes documentation\.  | 
 |  `cluster_node_count` |  ClusterName  |  The total number of worker nodes in the cluster\.  | 
 |  `namespace_number_of_running_pods` |  Namespace ClusterName ClusterName  |  The number of pods running per namespace in the resource that is specified by the dimensions that you're using\.  | 
 |  `node_cpu_limit` |  ClusterName  |  The maximum number of CPU units that can be assigned to a single node in this cluster\.  | 

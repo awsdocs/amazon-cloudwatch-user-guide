@@ -1,6 +1,6 @@
 # Set Up the CloudWatch Agent to Collect Cluster Metrics<a name="Container-Insights-setup-metrics"></a>
 
-To set up Container Insights to collect metrics, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up the CloudWatch agent to be able to collect metrics from your clusters\.
+To set up Container Insights to collect metrics, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up the CloudWatch agent to be able to collect metrics from your clusters\.
 
 ## Step 1: Create a Namespace for CloudWatch<a name="create-namespace-metrics"></a>
 

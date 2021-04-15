@@ -2,6 +2,8 @@
 
 CloudWatch sends events to Amazon EventBridge whenever a CloudWatch alarm changes alarm state\. You can use EventBridge and these events to write rules that take actions, such as notifying you, when an alarm changes state\. For more information, see [What is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/what-is-amazon-eventbridge.html)
 
+CloudWatch guarantees the delivery of alarm state change events to EventBridge\.
+
 ## Sample Events from CloudWatch<a name="CloudWatch-event-samples"></a>
 
 This section includes example events from CloudWatch\.

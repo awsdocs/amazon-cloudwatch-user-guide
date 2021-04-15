@@ -1,10 +1,67 @@
-# Quick Start Setup for Container Insights on Amazon EKS<a name="Container-Insights-setup-EKS-quickstart"></a>
+# Quick Start Setup for Container Insights on Amazon EKS and Kubernetes<a name="Container-Insights-setup-EKS-quickstart"></a>
 
 To complete the setup of Container Insights, you can follow the quick start instructions in this section\.
 
-Alternatively, you can instead follow the instructions in the following two sections, [Set Up the CloudWatch Agent to Collect Cluster Metrics](Container-Insights-setup-metrics.md) and [Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs.md)\. Those sections provide more details on how CloudWatch agent works with Amazon EKS and the configuration, but require you to perform more installation steps\.
+Alternatively, you can instead follow the instructions in the following two sections, [Set Up the CloudWatch Agent to Collect Cluster Metrics](Container-Insights-setup-metrics.md) and [Send logs to CloudWatch Logs](Container-Insights-EKS-logs.md)\. Those sections provide more configuration details on how the CloudWatch agent works with Amazon EKS and Kubernetes, but require you to perform more installation steps\.
+
+**Note**  
+Amazon has now launched Fluent Bit as the default log solution for Container Insights with significant performance gains\. We recommend that you use Fluent Bit instead of Fluentd\.
+
+## Quick Start with the CloudWatch agent and Fluent Bit<a name="Container-Insights-setup-EKS-quickstart-FluentBit"></a>
+
+There are two configurations for Fluent Bit: an optimized version and a version that provides an experience more similar to FluentD\. The Quick Start configuration uses the optimized version\. For more details about the FluentD\-compatible configuration, see [Set Up Fluent Bit as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)\.
 
 To deploy Container Insights using the quick start, enter the following command\.
+
+**Note**  
+The following setup step pulls the container image from Docker Hub as an anonymous user by default\. This pull may be subject to a rate limit\. For more information, see [CloudWatch agent container image](ContainerInsights.md#container-insights-download-limit)\.
+
+```
+ClusterName=<my-cluster-name>
+RegionName=<my-cluster-region>
+FluentBitHttpPort='2020'
+FluentBitReadFromHead='Off'
+[[ ${FluentBitReadFromHead} = 'On' ]] && FluentBitReadFromTail='Off'|| FluentBitReadFromTail='On'
+[[ -z ${FluentBitHttpPort} ]] && FluentBitHttpServer='Off' || FluentBitHttpServer='On'
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml | sed 's/{{cluster_name}}/'${ClusterName}'/;s/{{region_name}}/'${RegionName}'/;s/{{http_server_toggle}}/"'${FluentBitHttpServer}'"/;s/{{http_server_port}}/"'${FluentBitHttpPort}'"/;s/{{read_from_head}}/"'${FluentBitReadFromHead}'"/;s/{{read_from_tail}}/"'${FluentBitReadFromTail}'"/' | kubectl apply -f -
+```
+
+In this command, *my\-cluster\-name* is the name of your Amazon EKS or Kubernetes cluster, and *my\-cluster\-region* is the name of the Region where the logs are published\. We recommend that you use the same Region where your cluster is deployed to reduce the AWS outbound data transfer costs\.
+
+For example, to deploy Container Insights on the cluster named `MyCluster` and publish the logs and metrics to US West \(Oregon\), enter the following command\.
+
+```
+ClusterName='MyCluster'
+LogRegion='us-west-2'
+FluentBitHttpPort='2020'
+FluentBitReadFromHead='Off'
+[[ ${FluentBitReadFromHead} = 'On' ]] && FluentBitReadFromTail='Off'|| FluentBitReadFromTail='On'
+[[ -z ${FluentBitHttpPort} ]] && FluentBitHttpServer='Off' || FluentBitHttpServer='On'
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml | sed 's/{{cluster_name}}/'${ClusterName}'/;s/{{region_name}}/'${LogRegion}'/;s/{{http_server_toggle}}/"'${FluentBitHttpServer}'"/;s/{{http_server_port}}/"'${FluentBitHttpPort}'"/;s/{{read_from_head}}/"'${FluentBitReadFromHead}'"/;s/{{read_from_tail}}/"'${FluentBitReadFromTail}'"/' | kubectl apply -f -
+```
+
+**Migrating from Fluentd**
+
+If you already have Fluentd configured and want to move to Fluent Bit, you must delete the FluentD pods after you install Fluent Bit\. You can use the following command to delete FluentD\.
+
+```
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluentd/fluentd.yaml | kubectl delete -f -
+kubectl delete configmap cluster-info -n amazon-cloudwatch
+```
+
+**Deleting Container Insights**
+
+If you want to remove Container Insights after using the quick start setup, enter the following command\.
+
+```
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml | sed 's/{{cluster_name}}/'${ClusterName}'/;s/{{region_name}}/'${LogRegion}'/;s/{{http_server_toggle}}/"'${FluentBitHttpServer}'"/;s/{{http_server_port}}/"'${FluentBitHttpPort}'"/;s/{{read_from_head}}/"'${FluentBitReadFromHead}'"/;s/{{read_from_tail}}/"'${FluentBitReadFromTail}'"/' | kubectl delete -f -
+```
+
+## Quick Start with the CloudWatch agent and Fluentd<a name="Container-Insights-setup-EKS-quickstart-Fluentd"></a>
+
+If you are already using Fluentd in your Kubernetes cluster and want to extend it to be the log solution for Container Insights, we provide a FluentD configuration for you to do so\.
+
+To deploy the CloudWatch agent and Fluentd using the quick start, use the following command\. The following setup contains a community supported FluentD container image\. You can replace the image with your own FluentD image as long as it meets the FluentD image requirements\. For more information, see [\(Optional\) Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs.md)\.
 
 ```
 curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluentd-quickstart.yaml | sed "s/{{cluster_name}}/cluster-name/;s/{{region_name}}/cluster-region/" | kubectl apply -f -

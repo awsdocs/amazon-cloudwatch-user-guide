@@ -102,7 +102,7 @@ For example, if you specify a value for the `append_dimensions` parameter in the
 
 ## The CloudWatch Agent Won't Start on Windows Server<a name="CloudWatch-Agent-troubleshooting-Windows-start"></a>
 
-On some Windows Server installations, the CloudWatch agent takes more than 30 seconds to start\. Because Windows Server, by default, allows only 30 seconds for services to start, this causes the agent to fail with an error similar to the following:
+On Windows Server, you may see the following error:
 
 ```
 Start-Service : Service 'Amazon CloudWatch Agent (AmazonCloudWatchAgent)' cannot be started due to the following
@@ -115,7 +115,11 @@ At C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1
     + FullyQualifiedErrorId : CouldNotStartService,Microsoft.PowerShell.Commands.StartServiceCommand
 ```
 
- To fix this, increase the service timeout value\. For more information, see [ A service does not start, and events 7000 and 7011 are logged in the Windows event log](https://support.microsoft.com/en-us/help/922918/a-service-does-not-start-and-events-7000-and-7011-are-logged-in-window)\.
+ To fix this, first make sure that the server service is running\. This error can be seen if the agent tries to start when the server service isn't running\.
+
+If the server service is already running, the following may be the issue\. On some Windows Server installations, the CloudWatch agent takes more than 30 seconds to start\. Because Windows Server, by default, allows only 30 seconds for services to start, this causes the agent to fail with an error similar to the following:
+
+To fix this issue, increase the service timeout value\. For more information, see [ A service does not start, and events 7000 and 7011 are logged in the Windows event log](https://support.microsoft.com/en-us/help/922918/a-service-does-not-start-and-events-7000-and-7011-are-logged-in-window)\.
 
 ## Unable to Find Credentials on Windows Server<a name="CloudWatch-Agent-troubleshooting-Windows-credentials"></a>
 

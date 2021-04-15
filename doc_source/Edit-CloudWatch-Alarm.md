@@ -2,9 +2,7 @@
 
 You can edit or delete an existing alarm\.
 
-CloudWatch has updated the alarm user interface\. By default, you're shown the new user interface, but you can choose to return to the old user interface\. This topic contains steps for each\.
-
-**To edit an alarm using the new alarm user interface**
+**To edit an alarm using**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
@@ -35,18 +33,6 @@ CloudWatch has updated the alarm user interface\. By default, you're shown the n
 1. Choose **Next**\.
 
 1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Update alarm**\.
-
-**To edit an alarm using the older alarms user interface**
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the navigation pane, choose **Alarms**\.
-
-1. Select the alarm and choose **Actions**, **Modify**\.
-
-1. On the **Modify Alarm** page, update the alarm as necessary and choose **Save Changes**\. To modify the expression, metrics, period, or statistic, first choose **Edit** near the top of the screen\.
-
-   You can't change the name of an existing alarm\. You can change the description\. Or you can copy the alarm and give the new alarm a different name\. To copy an alarm, select the alarm and then choose **Actions**, **Copy**\.
 
 **To update an email notification list that was created using the Amazon SNS console**
 

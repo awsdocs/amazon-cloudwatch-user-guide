@@ -39,7 +39,7 @@ All generated tokens are in lowercase\. The following table shows some examples 
 
 | Original String | Tokens Generated | 
 | --- | --- | 
-|  CustomCount1  |  `customcount1`, `custom`, `count`, `1`  | 
+|  CustomCount1  |  `customcount1`, `custom`, `count`, `1`    | 
 |  SDBFailure  |  `sdbfailure`, `sdb`, `failure`  | 
 |  Project2\-trial333  |  `project2trial333`, `project`, `2`, `trial`, `333`  | 
 
@@ -60,7 +60,7 @@ Searches can also match composite tokens, which are multiple tokens that appear 
 
 You can define a search to find only exact matches of your search term by using double quotes around the part of the search term that requires an exact match\. These double\-quotes are enclosed in the single\-quotes used around the entire search term\. For example, **SEARCH\(' \{MyNamespace\}, "CustomCount1" ', 'Maximum', 120\)** finds the exact string `CustomCount1` if it exists as a metric name, dimension name, or dimension value in the namespace named `MyNamespace`\. However, the searches **SEARCH\(' \{MyNamespace\}, "customcount1" ', 'Maximum', 120\)** or **SEARCH\(' \{MyNamespace\}, "Custom" ', 'Maximum', 120\)** do not find this string\.
 
-You can combine partial match terms and exact match terms in a single search expression\. For example, **SEARCH\(' \{AWS/NetworkELB, LoadBalancer\}, "ConsumedLCUs" OR flow ', 'Maximum', 120\)** returns the Elastic Load Balancing metric named `ConsumedLCUs` as well as all Elastic Load Balancing metrics or dimensions that contain the token `flow`\. 
+You can combine partial match terms and exact match terms in a single search expression\. For example, **SEARCH\(' \{AWS/NetworkELB, LoadBalancer\} "ConsumedLCUs" OR flow ', 'Maximum', 120\)** returns the Elastic Load Balancing metric named `ConsumedLCUs` as well as all Elastic Load Balancing metrics or dimensions that contain the token `flow`\. 
 
 Using exact match is also a good way to find names with special characters, such as non\-alphanumeric characters or spaces, as in the following example\.
 
@@ -72,7 +72,7 @@ SEARCH(' {"My Namespace", "Dimension@Name"}, "Custom:Name[Special_Characters" ',
 
 All examples shown so far include a metric schema, in curly braces\. Searches that omit a metric schema are also valid\.
 
-For example, **SEARCH\(' "CPUUtilization" ', 'Average', 300\)** returns all metric names, dimension names, dimension values, and namespaces that are an exact match for the string `CPUUtilization`\. In the AWS metric namespaces, this can include metrics from several services including Amazon EC2, Amazon ECS, Amazon SageMaker, and others\.
+For example, **SEARCH\(' "CPUUtilization" ', 'Average', 300\)** returns all metric names, dimension names, dimension values, and namespaces that are an exact match for the string `CPUUtilization`\. In the AWS metric namespaces, this can include metrics from several services including Amazon EC2, Amazon ECS, SageMaker, and others\.
 
 To narrow this search to only one AWS service, the best practice is to specify the namespace and any necessary dimensions in the metric schema, as in the following example\. Although this narrows the search to the `AWS/EC2` namespace, it would still return results of other metrics if you have defined `CPUUtilization` as a dimension value for those metrics\. 
 

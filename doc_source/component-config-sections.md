@@ -1,33 +1,48 @@
 # Component configuration sections<a name="component-config-sections"></a>
 
-Component configuration includes several major sections\. Sections in a component configuration can be in any order\.
+A component configuration includes several major sections\. Sections in a component configuration can be listed in any order\.
 + **alarmMetrics \(optional\)**
 
   A list of [metrics](#component-config-metric) to monitor for the component\. All component types can have an alarmMetrics section\. 
 + **logs \(optional\)**
 
   A list of [logs](#component-configuration-log) to monitor for the component\. Only EC2 instances can have a logs section\. 
-+ **instances \(optional\)**
++ **subComponents \(optional\)**
 
-  Nested instance configuration for the component\. The following types of component can have nested instances and an instances section: ELB, ASG, and custom\-grouped EC2 instances\.
+  Nested instance and volume subComponent configuration for the component\. The following types of components can have nested instances and a subComponents section: ELB, ASG, custom\-grouped EC2 instances , and EC2 instances\.
 + **alarms \(optional\)**
 
   A list of [alarms](#component-configuration-alarms) to monitor for the component\. All component types can have an alarm section\.
++ **windowsEvents \(optional\)**
 
-The following example shows the syntax for the **instances section fragment** in JSON format\.
+  A list of [windows events](#windows-events) to monitor for the component\. Only Windows on EC2 instances have a `windowsEvents` section\.
++ **JMXPrometheusExporter \(optional\)**
+
+  JMXPrometheus Exporter configuration\.
+
+The following example shows the syntax for the **subComponents section fragment** in JSON format\.
 
 ```
-{
-  "alarmMetrics" : [
-    list of alarm metrics
-  ],
-  "logs" : [
-    list of logs
-  ],
-  "windowsEvents" : [
-    list of windows events channels configurations
-  ]
-}
+[
+  {
+    "subComponentType" : "AWS::EC2::Instance",
+    "alarmMetrics" : [
+      list of alarm metrics
+    ],
+    "logs" : [
+      list of logs
+    ],
+    "windowsEvents" : [
+      list of windows events channels configurations
+    ]
+  },
+  {
+    "subComponentType" : "AWS::EC2::Volume",
+    "alarmMetrics" : [
+      list of alarm metrics
+    ]
+  }
+]
 ```
 
 ## Component configuration section properties<a name="component-config-properties"></a>
@@ -37,6 +52,7 @@ This section describes the properties of each component configuration section\.
 **Topics**
 + [Metric](#component-config-metric)
 + [Log](#component-configuration-log)
++ [JMX Prometheus Exporter](#component-configuration-prometheus)
 + [Windows Events](#windows-events)
 + [Alarm](#component-configuration-alarms)
 
@@ -86,16 +102,54 @@ Defines a log to be monitored for the component\.
   The path of the logs to be monitored\. The log path must be an absolute Windows system file path\. For more information, see [CloudWatch Agent Configuration File: Logs Section](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html#CloudWatch-Agent-Configuration-File-Logssection)\. 
 + **logType \(required\)**
 
-  The log type decides the log patterns against which Application Insights analyzes the log\. The log type is selected from the following: SQL\_SERVER/IIS/APPLICATION/DEFAULT\.
+  The log type decides the log patterns against which Application Insights analyzes the log\. The log type is selected from the following:
+  + `SQL_SERVER`
+  + `SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP`
+  + `MYSQL`
+  + `MYSQL_SLOW_QUERY`
+  + `POSTGRESQL`
+  + `WINDOWS_EVENTS`
+  + `STEP_FUNCTION`
+  + `IIS`
+  + `APPLICATION`
+  + `DEFAULT`
+  + `CUSTOM`
+  + `ORACLE_ALERT`
+  + `ORACLE_LISTENER`
 + **encoding \(optional\)**
 
   The type of encoding of the logs to be monitored\. The specified encoding should be included in the list of [CloudWatch agent supported encodings](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html)\. If not provided, CloudWatch Application Insights uses the default encoding type for the log type:
-  + For APPLICATION/DEFAULT: utf\-8 encoding
-  + For SQL\_SERVER: utf\-16 encoding
-  + For IIS: ascii encoding
+  + For `MYSQL`/`POSTGRESQL`/`WINDOWS_EVENTS`/`SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP`/`APPLICATION`/`DEFAULT`: utf\-8 encoding
+  + For `SQL_SERVER`: utf\-16 encoding
+  + For `IIS`: ascii encoding
 + **monitor \(optional\)**
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
+
+### JMX Prometheus Exporter<a name="component-configuration-prometheus"></a>
+
+Defines the JMX Prometheus Exporter settings\.
+
+**JSON** 
+
+```
+"JMXPrometheusExporter": {
+  "jmxURL" : "JMX URL",
+  "hostPort" : "The host and port",
+  "prometheusPort" : "Target port to emit Prometheus metrics"
+}
+```
+
+**Properties**
++ **jmxURL \(optional\)**
+
+  A complete JMX URL to connect to\.
++ **hostPort \(optional\)**
+
+  The host and port to connect to through remote JMX\. Only one of `jmxURL` and `hostPort` can be specified\.
++ **prometheusPort \(optional\)**
+
+  The target port to send Prometheus metrics to\. If not specified, the default port 9404 is used\.
 
 ### Windows Events<a name="windows-events"></a>
 

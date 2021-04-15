@@ -1,55 +1,41 @@
-# Canary Runtime Versions<a name="CloudWatch_Synthetics_Canaries_Library"></a>
+# Synthetics runtime versions<a name="CloudWatch_Synthetics_Canaries_Library"></a>
 
 When you create or update a canary, you choose a Synthetics runtime version for the canary\. A Synthetics runtime is a combination of the Synthetics code that calls your script handler, and the Lambda layers of bundled dependencies\.
 
+CloudWatch Synthetics currently supports runtimes that use Node\.js for scripts and the Puppeteer framework, and runtimes that use Python for scripting and Selenium Webdriver for the framework\.
+
 We recommend that you always use the most recent runtime version for your canaries, to be able to use the latest features and updates made to the Synthetics library\.
 
-Synthetics runtime versions are labeled `syn-language-majorversion.minorversion`\. The exception to this naming convention is the first runtime version, which is named `syn-1.0`\.
+**Topics**
++ [CloudWatch Synthetics runtime support policy](#CloudWatch_Synthetics_Canaries_runtime_support)
++ [Runtime versions using Node\.js and Puppeteer](CloudWatch_Synthetics_Library_nodejs_puppeteer.md)
++ [Runtime versions using Python and Selenium Webdriver](CloudWatch_Synthetics_Library_python_selenium.md)
 
-An additional `-beta` suffix shows that the runtime version is currently in a beta preview release\.
+## CloudWatch Synthetics runtime support policy<a name="CloudWatch_Synthetics_Canaries_runtime_support"></a>
 
-Currently, Node\.js is the only supported language\. Runtime versions with the same major version number are backward compatible\. 
+Synthetics runtime versions are subject to maintenance and security updates\. When any component of a runtime version is no longer supported, that Synthetics runtime version is deprecated\.
 
-**Notes for all runtime versions**
+You can't create canaries using deprecated runtime versions\. Canaries that use deprecated runtimes continue to run\. You can stop, start, and delete these canaries\. You can update an existing canary that uses a deprecated runtime version by updating the canary to use a supported runtime version\.
 
-When using either of the current runtime versions, be sure that your canary scripts are compatible with Node\.js 10\.x\.
+CloudWatch Synthetics notifies you by email if you have canaries that use runtimes that are scheduled to be deprecated in the next 60 days\. We recommend that you migrate your canaries to a supported runtime version to benefit from the new functionality, security, and performance enhancements that are included in more recent releases\. 
 
-The Lambda code in a canary is configured to have a maximum memory of 1 GB\. Each run of a canary times out after a configured timeout value\. If no timeout value is specified for a canary, CloudWatch chooses a timeout value based on the canary's frequency\.
+**How do I update a canary to a new runtime version?**
 
-## syn\-nodejs\-2\.0\-beta<a name="CloudWatch_Synthetics_runtimeversion-2.0"></a>
+You can update a canary’s runtime version by using the CloudWatch console, AWS CloudFormation, the AWS CLI or the AWS SDK\. When you use the CloudWatch console, you can update up to five canaries at once by selecting them in the canary list page and then choosing **Actions**, **Update Runtime**\.
 
-The `syn-nodejs-2.0-beta` is the newest runtime version\.
+You can verify the upgrade by first cloning the canary using the CloudWatch console and updating its runtime version\. This creates another canary which is a clone of your original canary\. Once you have verified your canary with the new runtime version, you can update the runtime version of your original canary and delete the clone canary\.
 
-**Major dependencies**:
-+ Lambda runtime Node\.js 10\.x
-+ Puppeteer\-core version 3\.3\.0
-+ Chromium version 81\.0\.4044\.0
+ You can also update multiple canaries using an upgrade script\. For more information, see [Canary runtime upgrade script](CloudWatch_Synthetics_Canaries_upgrade_script.md)\.
 
-**New features in syn\-nodejs\-2\.0\-beta**:
-+ **Upgraded dependencies**— This runtime version uses Puppeteer\-core version 3\.3\.0 and Chromium version 81\.0\.4044\.0
-+ **Synthetics reporting**— For each canary run, CloudWatch Synthetics creates a report named `SyntheticsReport-PASSED.json` or `SyntheticsReport-FAILED.json` which records data such as start time, end time, status, and failures\. It also records the PASSED/FAILED status of each step of the canary script, and failures and screenshots captured for each step\.
-+ **Broken link checker report**— The new version of the broken link checker included in this runtime creates a report that includes the links that were checked, status code, failure reason \(if any\), and source and destination page screenshots\.
-+ **New CloudWatch metrics**— Synthetics publishes metrics named `2xx`, `4xx`, `5xx`, and `RequestFailed` in the `CloudWatchSynthetics` namespace\. These metrics show the number of 200s, 400s, 500s, and request failures in the canary runs\.
-+ **Sortable HAR files**— You can now sort your HAR files by status code, request size, and duration\.
-+ **Metrics timestamp**— CloudWatch metrics are now reported based on the Lambda invocation time instead of the canary run end time\.
+If you upgrade a canary and it fails, see [Troubleshooting a failed canary](CloudWatch_Synthetics_Canaries_Troubleshoot.md)\.
 
-**Bug fixes in syn\-nodejs\-2\.0\-beta**:
-+ Fixed the issue of canary artifact upload errors not being reported\. Such errors are now surfaced as execution errors\.
-+ Fixed the issue of redirected requests \(3xx\) being incorrectly logged as errors\.
-+ Fixed the issue of screenshots being numbered starting from 0\. They should now start with 1\.
-+ Fixed the issue of screenshots being garbled for Chinese and Japanese fonts\.
+**Runtime deprecation dates**
 
-## syn\-1\.0<a name="CloudWatch_Synthetics_runtimeversion-1.0"></a>
 
-The first Synthetics runtime version is `syn-1.0`\.
-
-**Major dependencies**:
-+ Lambda runtime Node\.js 10\.x
-+ Puppeteer\-core version 1\.14\.0
-+ The Chromium version that matches Puppeteer\-core 1\.14\.0
-
-## Canary Runtime Support Policy<a name="CloudWatch_Synthetics_Canaries_runtime_support"></a>
-
-Synthetics runtime versions are subject to maintenance and security updates\. When any component of a runtime version is no longer supported for security updates, that Synthetics runtime version is deprecated\.
-
-You can't create canaries using deprecated runtime versions\. Canaries that use deprecated runtimes continue to run\. You can stop, start, and delete these canaries\. You can update an existing canary that uses deprecated runtime versions by updating the canary to use a supported runtime version\.
+| Runtime Version | Deprecation date | 
+| --- | --- | 
+|  `syn-nodejs-2.2`  |  May 28, 2021  | 
+|  `syn-nodejs-2.1`  |  May 28, 2021  | 
+|  `syn-nodejs-2.0`  |  May 28, 2021  | 
+|  `syn-nodejs-2.0-beta`  |  February 8, 2021  | 
+|  `syn-1.0`  |  May 28, 2021  | 

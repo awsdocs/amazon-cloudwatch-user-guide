@@ -1,4 +1,4 @@
-# Create Alarms to Stop, Terminate, Reboot, or Recover an Instance<a name="UsingAlarmActions"></a>
+# Create Alarms to Stop, Terminate, Reboot, or Recover an EC2 Instance<a name="UsingAlarmActions"></a>
 
 Using Amazon CloudWatch alarm actions, you can create alarms that automatically stop, terminate, reboot, or recover your EC2 instances\. You can use the stop or terminate actions to help you save money when you no longer need an instance to be running\. You can use the reboot and recover actions to automatically reboot those instances or recover them onto new hardware if a system impairment occurs\.
 
@@ -18,16 +18,7 @@ aws iam create-service-linked-role --aws-service-name events.amazonaws.com
 You can create alarms using the CloudWatch console or the Amazon EC2 console\. The procedures in this documentation use the CloudWatch console\. For procedures that use the Amazon EC2 console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Permissions**  
-If you are using an AWS Identity and Access Management \(IAM\) account to create or modify an alarm, you must have the following permissions:
-+ `iam:CreateServiceLinkedRole`, `iam:GetPolicy`, `iam:GetPolicyVersion`, and `iam:GetRole` — For all alarms with Amazon EC2 actions
-+ `ec2:DescribeInstanceStatus` and `ec2:DescribeInstances` — For all alarms on Amazon EC2 instance status metrics
-+ `ec2:StopInstances` — For alarms with stop actions
-+ `ec2:TerminateInstances` — For alarms with terminate actions
-+ No specific permissions are needed for alarms with recover actions\.
-
-If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions aren't performed on the instance\. However, if you are later granted permission to use the associated Amazon EC2 API actions, the alarm actions you created earlier are performed\. For more information, see [Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
-
-If you want to use an IAM role to stop, terminate, or reboot an instance using an alarm action, you can only use the AWSServiceRoleForCloudWatchEvents role\. Other IAM roles are not supported\. However, you can still see the alarm state and perform any other actions such as Amazon SNS notifications or Amazon EC2 Auto Scaling policies\.
+If you are using an AWS Identity and Access Management \(IAM\) account to create or modify an alarm that performs EC2 actions or Systems Manager OpsItem actions, you must have the `iam:CreateServiceLinkedRole` permission\.
 
 **Topics**
 + [Adding Stop Actions to Amazon CloudWatch Alarms](#AddingStopActions)
@@ -176,7 +167,7 @@ Examples of problems that cause system status checks to fail include:
 + Hardware issues on the physical host that impact network reachability
 
 The recover action is supported only on:
-+ The A1, C3, C4, C5, C5n, M3, M4, M5, M5a, P3, R3, R4, R5, R5a, T2, T3, X1, and X1e instance types
++ The A1, C3, C4, C5, C5a, C5n, C6g, Inf1, M3, M4, M5, M5a, M5n, M5zn, M6g, P3, P4, R3, R4, R5, R5a, R5b, R5n, T2, T3, T3a, T4g, X1, and X1e instance types
 + Instances in a VPC
 + Instances with `default` or `dedicated` instance tenancy
 + Instances that use Amazon EBS volumes only \(do not configure instance store volumes\)

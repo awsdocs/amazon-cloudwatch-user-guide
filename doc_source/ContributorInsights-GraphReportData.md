@@ -4,11 +4,13 @@ Contributor Insights provides a metric math function, `INSIGHT_RULE_METRIC`\. Yo
 
 To use this metric math function, you must be signed in to an account that has both the `cloudwatch:GetMetricData` and `cloudwatch:GetInsightRuleReport` permissions\.
 
+
+
 The syntax is `INSIGHT_RULE_METRIC(ruleName, metricName)`\. *ruleName* is the name of a Contributor Insights rule\. *metricName* is one of the values in the following list\. The value of *metricName* determines which type of data the math function returns\.
 + `UniqueContributors` — the number of unique contributors for each data point\.
 + `MaxContributorValue` — the value of the top contributor for each data point\. The identity of the contributor might change for each data point in the graph\.
 
-  If this rule aggregates by COUNT, the top contributor for each data point is the contributor with the most occurrences in that period\. If the rule aggregates by SUM, the top contributor is the contributor with the greatest sum in the log field specified by the rule's `Value` during that period\.
+  If this rule aggregates by `Count`, the top contributor for each data point is the contributor with the most occurrences in that period\. If the rule aggregates by `Sum`, the top contributor is the contributor with the greatest sum in the log field specified by the rule's `Value` during that period\.
 + `SampleCount` — the number of data points matched by the rule\.
 + `Sum` — the sum of the values from all contributors during the time period represented by that data point\.
 + `Minimum` — the minimum value from a single observation during the time period represented by that data point\.

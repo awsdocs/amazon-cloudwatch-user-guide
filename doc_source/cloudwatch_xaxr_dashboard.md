@@ -22,9 +22,7 @@ You can use the AWS Management Console to create a cross\-account cross\-Region 
 
 1. Choose a dashboard, or create a new one\.
 
-1. At the top of the screen, use the boxes by **View data for** to switch between accounts and Regions\.
-
-   As you create your dashboard, you can include widgets from multiple accounts and Regions\. Widgets include graphs, alarms, and CloudWatch Logs Insights widgets\.
+1. At the top of the screen, you can switch between accounts and Regions\. As you create your dashboard, you can include widgets from multiple accounts and Regions\. Widgets include graphs, alarms, and CloudWatch Logs Insights widgets\.
 
 **Creating a graph with metrics from different accounts and Regions**
 
@@ -34,7 +32,7 @@ You can use the AWS Management Console to create a cross\-account cross\-Region 
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Under **All metrics**, use the boxes by **View data for** to choose the account and Region that you want to add metrics from\.
+1. Under **All metrics**, choose the account and Region that you want to add metrics from\.
 
 1. Add the metrics you want to the graph\. For more information, see [Graphing Metrics](graph_metrics.md)\.
 
@@ -54,7 +52,7 @@ You can use the AWS Management Console to create a cross\-account cross\-Region 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. Use the boxes by **View data for** to choose the account where the alarm is located\.
+1. At the top of the page, choose the account where the alarm is located\.
 
 1. In the navigation pane, choose **Alarms**\.
 

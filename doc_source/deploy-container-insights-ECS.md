@@ -6,4 +6,6 @@ You can use one or both of the following options to enable Container Insights on
 
 **Topics**
 + [Setting Up Container Insights on Amazon ECS for Cluster\- and Service\-Level Metrics](deploy-container-insights-ECS-cluster.md)
++ [Setting up Container Insights on Amazon ECS using AWS Distro for OpenTelemetry](deploy-container-insights-ECS-adot.md)
 + [Deploying the CloudWatch Agent to Collect EC2 Instance\-Level Metrics on Amazon ECS](deploy-container-insights-ECS-instancelevel.md)
++ [Set up Firelens to send logs to CloudWatch Logs](deploy-container-insights-ECS-logs.md)

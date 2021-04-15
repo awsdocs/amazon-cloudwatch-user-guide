@@ -44,3 +44,29 @@ The following is an example of the **statsd** section of the agent configuration
    }
 }
 ```
+
+## Viewing StatsD Metrics Imported by the CloudWatch Agent<a name="CloudWatch-view-statsd-metrics"></a>
+
+After importing StatsD metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view StatsD metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+
+**To view StatsD metrics in the CloudWatch console**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Metrics**\.
+
+1. Choose the namespace for the metrics collected by the agent\. By default, this is **CWAgent**, but you may have specified a different namespace in the CloudWatch agent configuration file\.
+
+1. Choose a metric dimension \(for example, **Per\-Instance Metrics**\)\.
+
+1. The **All metrics** tab displays all metrics for that dimension in the namespace\. You can do the following:
+
+   1. To graph a metric, select the check box next to the metric\. To select all metrics, select the check box in the heading row of the table\.
+
+   1. To sort the table, use the column heading\.
+
+   1. To filter by resource, choose the resource ID and then choose **Add to search**\.
+
+   1. To filter by metric, choose the metric name and then choose **Add to search**\.
+
+1. \(Optional\) To add this graph to a CloudWatch dashboard, choose **Actions**, **Add to dashboard**\.

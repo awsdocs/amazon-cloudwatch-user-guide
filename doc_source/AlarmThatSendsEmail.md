@@ -1,12 +1,12 @@
 # Using Amazon CloudWatch Alarms<a name="AlarmThatSendsEmail"></a>
 
 You can create both *metric alarms* and *composite alarms* in CloudWatch\.
-+ A *metric alarm* watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be an Amazon EC2 action, an Auto Scaling action, or a notification sent to an Amazon SNS topic\.
++ A *metric alarm* watches a single CloudWatch metric or the result of a math expression based on CloudWatch metrics\. The alarm performs one or more actions based on the value of the metric or expression relative to a threshold over a number of time periods\. The action can be sending a notification to an Amazon SNS topic, performing an Amazon EC2 action or an Auto Scaling action, or creating a Systems Manager OpsItem\.
 + A *composite alarm* includes a rule expression that takes into account the alarm states of other alarms that you have created\. The composite alarm goes into ALARM state only if all conditions of the rule are met\. The alarms specified in a composite alarm's rule expression can include metric alarms and other composite alarms\.
 
   Using composite alarms can reduce alarm noise\. You can create multiple metric alarms, and also create a composite alarm and set up alerts only for the composite alarm\. For example, a composite might go into ALARM state only when all of the underlying metric alarms are in ALARM state\.
 
-  Composite alarms can send Amazon SNS notifications when they change state, but can't perform EC2 actions or Auto Scaling actions\.
+  Composite alarms can send Amazon SNS notifications when they change state, and can create Systems Manager OpsItems when they go into ALARM state, but can't perform EC2 actions or Auto Scaling actions\.
 
 You can add alarms to CloudWatch dashboards and monitor them visually\. When an alarm is on a dashboard, it turns red when it is in the `ALARM` state, making it easier for you to monitor its status proactively\.
 
@@ -37,6 +37,16 @@ When you configure **Evaluation Periods** and **Datapoints to Alarm** as differe
 
 **Note**  
 If data points are missing soon after you create an alarm, and the metric was being reported to CloudWatch before you created the alarm, CloudWatch retrieves the most recent data points from before the alarm was created when evaluating the alarm\.
+
+## Alarm actions<a name="alarms-and-actions"></a>
+
+You can specify what actions an alarm takes when it changes state between the OK, ALARM, and INSUFFICIENT\_DATA states\. The most common type of alarm action is to notify one or more people by sending a message to an Amazon Simple Notification Service topic\. For more information about Amazon SNS, see [ What is Amazon SNS?](https://docs.aws.amazon.com/sns/latest/dg/welcome.html)\. 
+
+Alarms based on EC2 metrics can also perform EC2 actions, such as stopping, terminating, rebooting, or recovering an EC2 instance\. For more information, see [Create Alarms to Stop, Terminate, Reboot, or Recover an EC2 Instance](UsingAlarmActions.md)\.
+
+Alarms can also perform actions to scale an Auto Scaling group\. For more information, see [ Step and simple scaling policies for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html)\.
+
+Alarms actions can also create OpsItems in Systems Manager Ops Center\. For more information, see [ Configuring CloudWatch to create OpsItems from alarms](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-create-OpsItems-from-CloudWatch-Alarms.html)\.
 
 ## Configuring How CloudWatch Alarms Treat Missing Data<a name="alarms-and-missing-data"></a>
 
@@ -121,7 +131,7 @@ CloudWatch alarm evaluation includes logic to try to avoid false alarms, where t
 
 Suppose an alarm's most recent data is `- - - - X`, with four missing data points and then a breaching data point as the most recent data point\. Because the next data point may be non\-breaching, the alarm does not go immediately into ALARM state when the data is either `- - - - X` or `- - - X -` and **Datapoints to Alarm** is 3\. This way, false positives are avoided when the next data point is non\-breaching and causes the data to be `- - - X O` or `- - X - O`\.
 
-However, if the last few data points are `- - X - -`, the alarm goes into ALARM state even if missing data points are treated as missing\. This is because alarms are designed to always go into ALARM state when the oldest available breaching datapoint during the Evaluation Periods number of data points is at least as old as the value of **Datapoints to Alarm**, and all other more recent data points are breaching or missing\. In this casethe alarm goes into ALARM state no matter if the total number of datapoints available is lower than M \(**Datapoints to Alarm**\)\.
+However, if the last few data points are `- - X - -`, the alarm goes into ALARM state even if missing data points are treated as missing\. This is because alarms are designed to always go into ALARM state when the oldest available breaching datapoint during the Evaluation Periods number of data points is at least as old as the value of **Datapoints to Alarm**, and all other more recent data points are breaching or missing\. In this case, the alarm goes into ALARM state even if the total number of datapoints available is lower than M \(**Datapoints to Alarm**\)\.
 
 This alarm logic applies to M out of N alarms as well\. If the oldest breaching data point during the **Evaluation Periods** number of data points is at least as old as the value of **Evaluation Periods**, and all of the more recent data points are either breaching or missing, the alarm goes into ALARM state no matter the value of M \(**Datapoints to Alarm**\)\.
 

@@ -34,13 +34,13 @@ The following metrics are available when you complete the steps in [Deploying th
 | Metric Name | Dimensions | Description | 
 | --- | --- | --- | 
 |  `instance_cpu_limit` |  ClusterName  |  The maximum number of CPU units that can be assigned to a single EC2 Instance in the cluster\.  | 
-|  `instance_cpu_reserved_capacity` |  ClusterName EC2InstanceId, ContainerInstanceId,ClusterName  |  The percentage of CPU currently being reserved on a single EC2 instance in the cluster\.  | 
+|  `instance_cpu_reserved_capacity` |  ClusterName InstanceId, ContainerInstanceId,ClusterName  |  The percentage of CPU currently being reserved on a single EC2 instance in the cluster\.  | 
 |  `instance_cpu_usage_total` |  ClusterName  |  The number of CPU units being used on a Single EC2 instance in the cluster\.  | 
-|  `instance_cpu_utilization` |  ClusterName EC2InstanceId, ContainerInstanceId,ClusterName  |  The total percentage of CPU units being used on a single EC2 instance in the cluster\.   | 
-|  `instance_filesystem_utilization` |  ClusterName EC2InstanceId, ContainerInstanceId,ClusterName  |  The total percentage of file system capacity being used on a single EC2 instance in the cluster\.   | 
+|  `instance_cpu_utilization` |  ClusterName InstanceId, ContainerInstanceId,ClusterName  |  The total percentage of CPU units being used on a single EC2 instance in the cluster\.   | 
+|  `instance_filesystem_utilization` |  ClusterName InstanceId, ContainerInstanceId,ClusterName  |  The total percentage of file system capacity being used on a single EC2 instance in the cluster\.   | 
 |  `instance_memory_limit` |  ClusterName  |  The maximum amount of memory, in bytes, that can be assigned to a single EC2 Instance in this cluster\.   | 
-|  `instance_memory_reserved_capacity` |  ClusterName EC2InstanceId, ContainerInstanceId,ClusterName  |  The percentage of Memory currently being reserved on a single EC2 Instance in the cluster\.  | 
-|  `instance_memory_utiliization` |  ClusterName EC2InstanceId, ContainerInstanceId,ClusterName  |  The total percentage of memory being used on a single EC2 Instance in the cluster\.  | 
+|  `instance_memory_reserved_capacity` |  ClusterName InstanceId, ContainerInstanceId,ClusterName  |  The percentage of Memory currently being reserved on a single EC2 Instance in the cluster\.  | 
+|  `instance_memory_utilization` |  ClusterName InstanceId, ContainerInstanceId,ClusterName  |  The total percentage of memory being used on a single EC2 Instance in the cluster\.  | 
 |  `instance_memory_working_set` |  ClusterName  |  The amount of memory, in bytes, being used on a single EC2 Instance in the cluster\.  | 
 |  `instance_network_total_bytes` |  ClusterName  |  The total number of bytes per second transmitted and received over the network on a single EC2 Instance in the cluster\.  | 
 |  `instance_number_of_running_tasks` |  ClusterName  |  The number of running tasks on a single EC2 Instance in the cluster\.  | 

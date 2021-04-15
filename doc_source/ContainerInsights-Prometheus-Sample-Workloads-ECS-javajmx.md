@@ -1,8 +1,10 @@
-# \(Optional\) Sample Java/JMX Workload for Amazon ECS clusters<a name="ContainerInsights-Prometheus-Sample-Workloads-ECS-javajmx"></a>
+# Sample Java/JMX Workload for Amazon ECS clusters<a name="ContainerInsights-Prometheus-Sample-Workloads-ECS-javajmx"></a>
 
 JMX Exporter is an official Prometheus exporter that can scrape and expose JMX mBeans as Prometheus metrics\. For more information, see [prometheus/jmx\_exporter](https://github.com/prometheus/jmx_exporter)\.
 
 The CloudWatch agent with Prometheus support scrapes the Java/JMX Prometheus metrics based on the service discovery configuration in the Amazon ECS cluster\. You can configure the JMX Exporter to expose the metrics on a different port or metrics\_path\. If you do change the port or path, update the default `ecs_service_discovery` section in the CloudWatch agent configuration\.
+
+To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting Up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
 
 **To install the Java/JMX sample workload for Amazon ECS clusters**
 
@@ -12,7 +14,7 @@ The CloudWatch agent with Prometheus support scrapes the Java/JMX Prometheus met
 
 1. Specify the following two docker labels in the Amazon ECS task definition file\. You can then run the task definition as an Amazon ECS service or Amazon ECS task in the cluster\.
    + Set `ECS_PROMETHEUS_EXPORTER_PORT` to point to the containerPort where the Prometheus metrics are exposed\.
-   + Set `Jave_EMF_Metric` to `true`\. The CloudWatch agent uses this flag to generated the embedded metric format in the log event\.
+   + Set `Java_EMF_Metrics` to `true`\. The CloudWatch agent uses this flag to generated the embedded metric format in the log event\.
 
    The following is an example:
 

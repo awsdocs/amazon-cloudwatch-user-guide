@@ -30,10 +30,11 @@ The `agent` section can include the following fields\. The wizard doesn't create
   + Windows Server: `c:\\ProgramData\\Amazon\\CloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log` 
 
   The CloudWatch agent automatically rotates the log file that it creates\. A log file is rotated out when it reaches 100 MB in size\. The agent keeps the rotated log files for up to seven days, and it keeps as many as five backup log files that have been rotated out\. Backup log files have a timestamp appended to their filename\. The timestamp shows the date and time that the file was rotated out: for example, `amazon-cloudwatch-agent-2018-06-08T21-01-50.247.log.gz`\.
-+ `omit_hostname` – Optional\. By default, the hostname is published as a dimension of metrics that are collected by the agent\. Set this value to `true` to prevent the hostname from being published as a dimension\. The default value is `false`\. 
++ `omit_hostname` – Optional\. By default, the hostname is published as a dimension of metrics that are collected by the agent, unless you are using the `append_dimensions` field in the `metrics` section\. Set `omit_hostname ` to `true` to prevent the hostname from being published as a dimension even if you are are not using `append_dimensions`\. The default value is `false`\. 
 + `run_as_user` – Optional\. Specifies a user to use to run the CloudWatch agent\. If you don't specify this parameter, the root user is used\. This option is valid only on Linux servers\.
 
   If you specify this option, the user must exist before you start the CloudWatch agent\. For more information, see [Running the CloudWatch Agent as a Different User](CloudWatch-Agent-common-scenarios.md#CloudWatch-Agent-run-as-user)\.
++ `user_agent` – Optional\. Specifies the `user-agent` string that is used by the CloudWatch agent when it makes API calls to the CloudWatch backend\. The default value is a string consisting of the agent version, the version of the Go programming language that was used to compile the agent, the runtime operating system and architecture, the build time, and the plugins enabled\.
 
 The following is an example of an `agent` section\.
 
@@ -60,7 +61,9 @@ On servers running either Linux or Windows Server, the `metrics` section include
      },
   }
   ```
-+ `append_dimensions` – Optional\. Adds Amazon EC2 metric dimensions to all metrics collected by the agent\. The only supported key\-value pairs are shown in the following list\. Any other key\-value pairs are ignored\.
++ `append_dimensions` – Optional\. Adds Amazon EC2 metric dimensions to all metrics collected by the agent\. This also causes the agent to not publish the hostname as a dimension\.
+
+  The only supported key\-value pairs for `append_dimensions` are shown in the following list\. Any other key\-value pairs are ignored\.
   + `"ImageID":"${aws:ImageId}"` sets the instance's AMI ID as the value of the `ImageID` dimension\.
   + `"InstanceId":"${aws:InstanceId}"` sets the instance's instance ID as the value of the `InstanceID` dimension\.
   + `"InstanceType":"${aws:InstanceType}"` sets the instance's instance type as the value of the `InstanceType` dimension\.
@@ -103,6 +106,7 @@ On servers running Linux, the metrics\_collected section of the configuration fi
 
  Many of these fields can include a `measurement` sections that lists the metrics you want to collect for that resource\. These `measurement` sections can either specify the complete metric name such as `swap_used`, or just the part of the metric name that will be appended to the type of resource\. For example, specifying `reads` in the `measurement` section of the `diskio` section causes the `diskio_reads` metric to be collected\.
 + `collectd` – Optional\. Specifies that you want to retrieve custom metrics using the `collectd` protocol\. You use `collectd` software to send the metrics to the CloudWatch agent\. For more information about the configuration options available for collectd, see [Retrieve Custom Metrics with collectd](CloudWatch-Agent-custom-metrics-collectd.md)\. 
++ `ethtool` – Optional\. Specifies that you want to retrieve network metrics using the `ethtool` plugin\. This plugin can import both the metrics collected by the standard ethtool utility, as well as network performance metrics from Amazon EC2 instances\. For more information about the configuration options available for ethtool, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md)\. 
 + `cpu` – Optional\. Specifies that CPU metrics are to be collected\. This section is valid only for Linux instances\. You must include at least one of the `resources` and `totalcpu` fields for any CPU metrics to be collected\. This section can include the following fields:
   + `resources` – Optional\. Specify this field with a value of `*` to cause per\-cpu metrics are to be collected\. The only allowed value is `*`\. 
   + `totalcpu` – Optional\. Specifies whether to report cpu metrics aggregated across all cpu cores\. The default is true\.
@@ -125,7 +129,7 @@ On servers running Linux, the metrics\_collected section of the configuration fi
 **Note**  
 The `disk` metrics have a dimension for `Partition`, which means that the number of custom metrics generated is dependent on the number of partitions associated with your instance\. The number of disk partitions you have depends on which AMI you are using and the number of Amazon EBS volumes you attach to the server\.
 
-    To see the default units for each `disk` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
+    To see the default units for each `disk` metric, see [Metrics Collected by the CloudWatch Agent on Linux and macOS Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
     Within the entry for each individual metric, you might optionally specify one or both of the following:
     + `rename` – Specifies a different name for this metric\.
@@ -158,7 +162,7 @@ The `disk` metrics have a dimension for `Partition`, which means that the number
 + `swap` – Optional\. Specifies that swap memory metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
   + `measurement` – Specifies the array of swap metrics to be collected\. Possible values are `free`, `used`, and `used_percent`\. This field is required if you include `swap`\.
 
-    To see the default units for each `swap` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
+    To see the default units for each `swap` metric, see [Metrics Collected by the CloudWatch Agent on Linux and macOS Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
     Within the entry for each individual metric, you might optionally specify one or both of the following:
     + `rename` – Specifies a different name for this metric\.
@@ -172,7 +176,7 @@ The `disk` metrics have a dimension for `Partition`, which means that the number
 + `mem` – Optional\. Specifies that memory metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
   + `measurement` – Specifies the array of memory metrics to be collected\. Possible values are `active`, `available`, `available_percent`, `buffered`, `cached`, `free`, `inactive`, `total`, `used`, and `used_percent`\. This field is required if you include `mem`\.
 
-    To see the default units for each `mem` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
+    To see the default units for each `mem` metric, see [Metrics Collected by the CloudWatch Agent on Linux and macOS Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
     Within the entry for each individual metric, you might optionally specify one or both of the following:
     + `rename` – Specifies a different name for this metric\.
@@ -187,7 +191,7 @@ The `disk` metrics have a dimension for `Partition`, which means that the number
   + `resources` – Optional\. If you specify an array of network interfaces, CloudWatch collects metrics from only those interfaces\. Otherwise, metrics for all devices are collected\. You can also specify `*` as the value to collect metrics from all interfaces\.
   + `measurement` – Specifies the array of networking metrics to be collected\. Possible values are `bytes_sent`, `bytes_recv`, `drop_in`, `drop_out`, `err_in`, `err_out`, `packets_sent`, and `packets_recv`\. This field is required if you include `net`\.
 
-    To see the default units for each `net` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
+    To see the default units for each `net` metric, see [Metrics Collected by the CloudWatch Agent on Linux and macOS Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
     Within the entry for each individual metric, you might optionally specify one or both of the following:
     + `rename` – Specifies a different name for this metric\.
@@ -201,7 +205,7 @@ The `disk` metrics have a dimension for `Partition`, which means that the number
 + `netstat` – Optional\. Specifies that TCP connection state and UDP connection metrics are to be collected\. This section is valid only for Linux instances\. This section can include as many as three fields:
   + `measurement` – Specifies the array of netstat metrics to be collected\. Possible values are `tcp_close`, `tcp_close_wait`, `tcp_closing`, `tcp_established`, `tcp_fin_wait1`, `tcp_fin_wait2`, `tcp_last_ack`, `tcp_listen`, `tcp_none`, `tcp_syn_sent`, `tcp_syn_recv`, `tcp_time_wait`, and `udp_socket`\. This field is required if you include `netstat`\.
 
-    To see the default units for each `netstat` metric, see [Metrics Collected by the CloudWatch Agent on Linux Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
+    To see the default units for each `netstat` metric, see [Metrics Collected by the CloudWatch Agent on Linux and macOS Instances](metrics-collected-by-CloudWatch-agent.md#linux-metrics-enabled-by-CloudWatch-agent)\.
 
     Within the entry for each individual metric, you might optionally specify one or both of the following:
     + `rename` – Specifies a different name for this metric\.
@@ -228,6 +232,7 @@ The `disk` metrics have a dimension for `Partition`, which means that the number
   + `append_dimensions` – Optional\. Additional dimensions to use for only the process metrics\. If you specify this field, it's used in addition to dimensions specified in the `append_dimensions` field that is used for all types of metrics collected by the agent\.
 + `procstat` – Optional\. Specifies that you want to retrieve metrics from individual processes\. For more information about the configuration options available for procstat, see [Collect Process Metrics with the procstat Plugin](CloudWatch-Agent-procstat-process-metrics.md)\. 
 + `statsd` – Optional\. Specifies that you want to retrieve custom metrics using the `StatsD` protocol\. The CloudWatch agent acts as a daemon for the protocol\. You use any standard `StatsD` client to send the metrics to the CloudWatch agent\. For more information about the configuration options available for StatsD, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\. 
++ `ethtool` – Optional\. Specifies that you want to import ethtool statistics into CloudWatch\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md)\. 
 
 The following is an example of a `metrics` section for a Linux server\. In this example, three CPU metrics, three netstat metrics, three process metrics, and one disk metric are collected, and the agent is set up to receive additional metrics from a `collectd` client\.
 
@@ -466,7 +471,8 @@ Fractional seconds as a decimal number \(1\-9 digits\), zero\-padded on the left
 `%Z`  
 Time zone, for example `PST`  
 `%z`  
-Time zone, expressed as the offset between the local time zone and UTC\. For example, `-0700`\. Only this format is supported\. For example, `-07:00` isn't a valid format\.
+Time zone, expressed as the offset between the local time zone and UTC\. For example, `-0700`\. Only this format is supported\. For example, `-07:00` isn't a valid format\.  
+
       + `multi_line_start_pattern` – Specifies the pattern for identifying the start of a log message\. A log message is made of a line that matches the pattern and any subsequent lines that don't match the pattern\.
 
         If you omit this field, multi\-line mode is disabled, and any line that begins with a non\-whitespace character closes the previous log message and starts a new log message\.
@@ -480,8 +486,8 @@ Time zone, expressed as the offset between the local time zone and UTC\. For exa
   + The `windows_events` section specifies the type of Windows events to collect from servers running Windows Server\. It includes the following fields:
     + `collect_list` – Required if `windows_events` is included\. Specifies the types and levels of Windows events to be collected\. Each log to be collected has an entry in this section, which can include the following fields:
       + `event_name` – Specifies the type of Windows events to log\. This is equivalent to the Windows event log channel name: for example, `System`, `Security`, `Application`, and so on\. This field is required for each type of Windows event to log\.
-**Note**
-When CloudWatch retrieves messages from a Windows log channel, it looks up that log channel based on its `Full Name` property\.  Meanwhile, the Windows Event Viewer navigation pane displays the `Log Name` property of log channels\.  The `Full Name` and `Log Name` do not always match\.  To confirm the `Full Name` of a log channel, right-click on it in the Windows Event viewer and open the Properties dialog\.
+**Note**  
+When CloudWatch retrieves messages from a Windows log channel, it looks up the log channel based on its `Full Name` property\. Meanwhile, the Windows Event Viewer navigation pane displays the `Log Name` property of log channels\. The `Full Name` and `Log Name` do not always match\. To confirm the `Full Name` of a channel, right\-click on it in the Windows Event viewer and open **Properties**\.
       + `event_levels` – Specifies the levels of event to log\. You must specify each level to log\. Possible values include `INFORMATION`, `WARNING`, `ERROR`, `CRITICAL`, and `VERBOSE`\. This field is required for each type of Windows event to log\.
       + `log_group_name` – Required\. Specifies what to use as the log group name in CloudWatch Logs\. 
       + `log_stream_name` – Optional\. Specifies what to use as the log stream name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.

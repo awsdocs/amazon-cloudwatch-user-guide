@@ -80,7 +80,7 @@ Copy the following task definition to a local JSON file such as `/tmp/ecs-cwagen
         },
         {
             "name": "xray-daemon",
-            "image": "amazon/aws-xray-daemon:latest",
+            "image": "public.ecr.aws/xray/aws-xray-daemon:latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -93,7 +93,7 @@ Copy the following task definition to a local JSON file such as `/tmp/ecs-cwagen
         },
         {
             "name": "cloudwatch-agent",
-            "image": "amazon/cloudwatch-agent:latest",
+            "image": "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest",
             "secrets": [
                 {
                     "name": "CW_CONFIG_CONTENT",
@@ -169,7 +169,7 @@ Copy the following task definition to a local JSON file such as `/tmp/ecs-cwagen
         },
         {
             "name": "xray-daemon",
-            "image": "amazon/aws-xray-daemon:latest",
+            "image": "public.ecr.aws/xray/aws-xray-daemon:latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -182,7 +182,7 @@ Copy the following task definition to a local JSON file such as `/tmp/ecs-cwagen
         },
         {
             "name": "cloudwatch-agent",
-            "image": "amazon/cloudwatch-agent:latest",
+            "image": "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest",
             "secrets": [
                 {
                     "name": "CW_CONFIG_CONTENT",

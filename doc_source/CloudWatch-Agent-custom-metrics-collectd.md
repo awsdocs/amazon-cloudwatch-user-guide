@@ -1,8 +1,8 @@
 # Retrieve Custom Metrics with collectd<a name="CloudWatch-Agent-custom-metrics-collectd"></a>
 
-You can retrieve additional metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. collectd is a popular open\-source solution with plug\-ins that can gather system statistics for a wide variety of applications\. By combining the system metrics that the CloudWatch agent can already collect with the additional metrics from collectd, you can better monitor, analyze, and troubleshoot your systems and applications\. For more information about collectd, see [collectd \- The system statistics collection daemon](https://collectd.org/)\.
+You can retrieve additional metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. collectd is a popular open\-source solution with plugins that can gather system statistics for a wide variety of applications\. By combining the system metrics that the CloudWatch agent can already collect with the additional metrics from collectd, you can better monitor, analyze, and troubleshoot your systems and applications\. For more information about collectd, see [collectd \- The system statistics collection daemon](https://collectd.org/)\.
 
-You use the collectd software to send the metrics to the CloudWatch agent\. For the collectd metrics, the CloudWatch agent acts as the server while the collectd plug\-in acts as the client\.
+You use the collectd software to send the metrics to the CloudWatch agent\. For the collectd metrics, the CloudWatch agent acts as the server while the collectd plugin acts as the client\.
 
 The collectd software is not installed automatically on every server\. On a server running Amazon Linux 2, follow these steps to install collectd
 
@@ -34,7 +34,9 @@ Optional parameters are also available\. If you are using collectd and you do no
   `user1: user1_password`
 
   `user2: user2_password`
-+ **collectd\_typesdb:** A list of one or more files that contain the dataset descriptions\. The list must be surrounded by brackets, even if there is just one entry in the list\. Each entry in the list must be surrounded by double quotes\. If there are multiple entries, separate them with commas\. The default is `["/usr/share/collectd/types.db"]`\. For more information, see [https://collectd.org/documentation/manpages/types.db.5.shtml](https://collectd.org/documentation/manpages/types.db.5.shtml)\.
++ **collectd\_typesdb:** A list of one or more files that contain the dataset descriptions\. The list must be surrounded by brackets, even if there is just one entry in the list\. Each entry in the list must be surrounded by double quotes\. If there are multiple entries, separate them with commas\. The default on Linux servers is `["/usr/share/collectd/types.db"]`\. The default on macOs computers depends on the version of collectd\. For example, `["/usr/local/Cellar/collectd/5.12.0/share/collectd/types.db"]`\.
+
+  For more information, see [https://collectd.org/documentation/manpages/types.db.5.shtml](https://collectd.org/documentation/manpages/types.db.5.shtml)\.
 + **metrics\_aggregation\_interval:** How often in seconds CloudWatch aggregates metrics into single data points\. The default is 60 seconds\. The range is 0 to 172,000\. Setting it to 0 disables the aggregation of collectd metrics\.
 
 The following is an example of the collectd section of the agent configuration file\.
@@ -51,3 +53,29 @@ The following is an example of the collectd section of the agent configuration f
    }
 }
 ```
+
+## Viewing collectd Metrics Imported by the CloudWatch Agent<a name="CloudWatch-view-collectd-metrics"></a>
+
+After importing collectd metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view collectd metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+
+**To view collectd metrics in the CloudWatch console**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Metrics**\.
+
+1. Choose the namespace for the metrics collected by the agent\. By default, this is **CWAgent**, but you may have specified a different namespace in the CloudWatch agent configuration file\.
+
+1. Choose a metric dimension \(for example, **Per\-Instance Metrics**\)\.
+
+1. The **All metrics** tab displays all metrics for that dimension in the namespace\. You can do the following:
+
+   1. To graph a metric, select the check box next to the metric\. To select all metrics, select the check box in the heading row of the table\.
+
+   1. To sort the table, use the column heading\.
+
+   1. To filter by resource, choose the resource ID and then choose **Add to search**\.
+
+   1. To filter by metric, choose the metric name and then choose **Add to search**\.
+
+1. \(Optional\) To add this graph to a CloudWatch dashboard, choose **Actions**, **Add to dashboard**\.

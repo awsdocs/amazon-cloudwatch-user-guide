@@ -57,4 +57,4 @@ Then if you run the following command, the new configuration is picked up\.
 kubectl apply -f cwagent-daemonset.yaml 
 ```
 
-For more information about yq, see [yq](https://mikefarah.github.io/yq/)\.
+For more information about yq, see [yq](https://mikefarah.gitbook.io/yq/)\.

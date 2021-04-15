@@ -54,7 +54,7 @@ SEARCH(' {AWS/EBS}, MetricName="CPUUtilization" ', 'Average', 300)
 The following example returns the Elastic Load Balancing metric named `ConsumedLCUs` as well as all Elastic Load Balancing metrics or dimensions that contain the token `flow`\. 
 
 ```
-SEARCH(' {AWS/NetworkELB, LoadBalancer}, "ConsumedLCUs" OR flow ', 'Maximum', 120)
+SEARCH(' {AWS/NetworkELB, LoadBalancer} "ConsumedLCUs" OR flow ', 'Maximum', 120)
 ```
 
 The following example uses nested grouping\. It returns Lambda metrics for `Errors` from all functions and `Invocations` of functions with names that include the strings `ProjectA` or `ProjectB`\.

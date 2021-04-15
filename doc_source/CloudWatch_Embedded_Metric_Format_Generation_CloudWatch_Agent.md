@@ -87,7 +87,7 @@ The following is an example for bridge mode\. When bridge mode networking is ena
           {
               "name": "cwagent",
               "mountPoints": [],
-              "image": "amazon/cloudwatch-agent:latest",
+              "image": "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest",
               "memory": 256,
               "cpu": 256,
               "portMappings": [{
@@ -121,7 +121,7 @@ The following is an example for host mode or awsvpc mode\. When running on these
           {
               "name": "cwagent",
               "mountPoints": [],
-              "image": "amazon/cloudwatch-agent:latest",
+              "image": "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest",
               "memory": 256,
               "cpu": 256,
               "portMappings": [{
@@ -220,7 +220,7 @@ spec:
       image: my-org/web-app:latest
     # CloudWatch Agent configuration
     - name: cloudwatch-agent
-      image: amazon/cloudwatch-agent:latest
+      image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest
       imagePullPolicy: Always
       resources:
         limits:

@@ -16,9 +16,7 @@ The overall process for setting up Container Insights on Amazon EKS or Kubernete
 
 **Topics**
 + [Verify Prerequisites](Container-Insights-prerequisites.md)
-+ [Quick Start Setup for Container Insights on Amazon EKS](Container-Insights-setup-EKS-quickstart.md)
++ [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md)
 + [Set Up the CloudWatch Agent to Collect Cluster Metrics](Container-Insights-setup-metrics.md)
-+ [Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs.md)
-+ [\(Optional\) Set Up Amazon EKS Control Plane Logging](Container-Insights-setup-control-plane-logging.md)
-+ [\(Optional\) Enable App Mesh Envoy Access Logs](ContainerInsights-Prometheus-Sample-Workloads-appmesh-envoy.md)
++ [Send logs to CloudWatch Logs](Container-Insights-EKS-logs.md)
 + [Updating or Deleting Container Insights on Amazon EKS and Kubernetes](ContainerInsights-update-delete.md)

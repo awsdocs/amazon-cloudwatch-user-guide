@@ -1,4 +1,4 @@
-# \(Optional\) Set Up NGINX with Sample Traffic on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-nginx"></a>
+# Set Up NGINX with Sample Traffic on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-nginx"></a>
 
 NGINX is a web server that can also be used as a load balancer and reverse proxy\. For more information, see [NGINX](https://www.nginx.com/)\.
 

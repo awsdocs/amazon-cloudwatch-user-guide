@@ -4,7 +4,7 @@ You can set up Container Insights FluentD to send App Mesh Envoy access logs to 
 
 **To have Envoy access logs sent to CloudWatch Logs**
 
-1. Set up FluentD in the cluster\. For more information, see [Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs.md)\.
+1. Set up FluentD in the cluster\. For more information, see [\(Optional\) Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs.md)\.
 
 1. Configure Envoy access logs for your virtual nodes\. For instructions, see [Configure Envoy access logs](https://docs.aws.amazon.com/app-mesh/latest/userguide/observability.html#envoy-logs)\. Be sure to configure the log path to be **/dev/stdout** in each virtual node\.
 

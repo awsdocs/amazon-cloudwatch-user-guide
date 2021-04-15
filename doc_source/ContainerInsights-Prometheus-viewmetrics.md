@@ -50,7 +50,7 @@ We have also provided custom dashboards for NGINX, App Mesh, Memcached, HAProxy,
    + [ Java/JMX custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/javajmx/cw_dashboard_javajmx.json)\.
 
 1. Open the JSON file that you downloaded with a text editor, and make the following changes:
-   + Replace all the `{{YOUR_CLUSTER-NAME}}` strings with the exact name of your cluster\. Make sure not to add whitespaces before or after the text\.
+   + Replace all the `{{YOUR_CLUSTER_NAME}}` strings with the exact name of your cluster\. Make sure not to add whitespaces before or after the text\.
    + Replace all the `{{YOUR_AWS_REGION}}` strings with the AWS Region where your cluster is running\. For example, **us\-west\-1** Make sure not to add whitespaces before or after the text\. 
    + Replace all the `{{YOUR_NAMESPACE}}` strings with the exact namespace of your workload\.
    + Replace all the `{{YOUR_SERVICE_NAME}}` strings with the exact service name of your workload\. For example, **haproxy\-haproxy\-ingress\-controller\-metrics**

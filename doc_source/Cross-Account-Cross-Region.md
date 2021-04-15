@@ -12,6 +12,12 @@ Cross\-account functionality is integrated with AWS Organizations, to help you e
 
 Cross\-Region functionality is now built\-in automatically\. You do not need to take any extra steps to be able to display metrics from different Regions in a single account on the same graph or the same dashboard\.
 
+**Topics**
++ [Enabling Cross\-Account Functionality in CloudWatch](#enable-cross-account-cross-Region)
++ [\(Optional\) Integrate With AWS Organizations](#cross-account-and-AWS-organizations)
++ [Troubleshooting Your CloudWatch Cross\-Account Setup](#troubleshooting-cross-account-cross-Region)
++ [Disabling and cleaning up after using cross\-account](#cleanup-cross-account-cross-Region)
+
 ## Enabling Cross\-Account Functionality in CloudWatch<a name="enable-cross-account-cross-Region"></a>
 
 To set up cross\-account functionality in your CloudWatch console, use the AWS Management Console to set up your sharing accounts and monitoring accounts\.
@@ -118,7 +124,7 @@ When you complete the following procedure, CloudWatch creates a service\-linked 
    + **Account Id Input**\. This option prompts you to manually input an account ID each time that you want to switch accounts when you view cross\-account data\.
    + **AWS Organization account selector**\. This option causes the accounts that you specified when you completed your cross\-account integration with Organizations to appear\. When you next use the console, CloudWatch displays a dropdown list of these accounts for you to select from when you are viewing cross\-account data\.
 
-     To do this, you must have first used your organization master account to allow CloudWatch to see a list of accounts in your organization\. For more information, see [\(Optional\) Integrate With AWS Organizations](#cross-account-and-AWS-organizations)\.
+     To do this, you must have first used your organization management account to allow CloudWatch to see a list of accounts in your organization\. For more information, see [\(Optional\) Integrate With AWS Organizations](#cross-account-and-AWS-organizations)\.
    + **Custom account selector**\. This option prompts you to enter a list of account IDs\. When you next use the console, CloudWatch displays a dropdown list of these accounts for you to select from when you are viewing cross\-account data\.
 
      You can also enter a label for each of these accounts to help you identify them when choosing accounts to view\.
@@ -135,7 +141,7 @@ If you want to integrate cross\-account functionality with AWS Organizations, yo
 
 **To enable cross\-account CloudWatch functionality to access a list of all accounts in your organization**
 
-1. Log in to your organization's master account\.
+1. Log in to your organization's management account\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
@@ -175,3 +181,21 @@ Check the following:
 
 **I don't see an account drop\-down in the console**  
 First, check that you have created the correct IAM roles, as discussed in the preceding troubleshooting section\. If those are set up correctly, make sure that you have enabled this account to view cross\-account data, as described in [Enable Your Account to View Cross-Account Data](#view_cross_account)\.
+
+## Disabling and cleaning up after using cross\-account<a name="cleanup-cross-account-cross-Region"></a>
+
+To disable cross\-account functionality for CloudWatch, follow these steps\.
+
+**Step 1: Remove the cross\-account stacks or roles**
+
+The best method is to remove the AWS CloudFormation stacks that were used to enable cross\-account functionality\.
++ In each of the sharing accounts, remove the **CloudWatch\-CrossAccountSharingRole** stack\.
++ If you used AWS Organizations to enable cross\-account functionality with all accounts in an organization, remove the **CloudWatch\-CrossAccountListAccountsRole ** stack in the organization's management account\.
+
+If you didn't use the AWS CloudFormation stacks to enable cross\-account functionality, do the following:
++ In each of the sharing accounts, delete the **CloudWatch\-CrossAccountSharingRole** IAM role\.
++ If you used AWS Organizations to enable cross\-account functionality with all accounts in an organization, delete the **CloudWatch\-CrossAccountSharing\-ListAccountsRole** IAM role in the organization's management account\.
+
+**Step 2: Remove the service\-linked role**
+
+In the monitoring account, delete the **AWSServiceRoleForCloudWatchCrossAccount** service\-linked IAM role\.

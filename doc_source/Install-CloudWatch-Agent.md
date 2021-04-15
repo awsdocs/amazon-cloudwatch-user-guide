@@ -1,16 +1,20 @@
 # Collecting Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent<a name="Install-CloudWatch-Agent"></a>
 
 The unified CloudWatch agent enables you to do the following:
-+ Collect more system\-level metrics from Amazon EC2 instances across operating systems\. The metrics can include in\-guest metrics, in addition to the metrics for EC2 instances\. The additional metrics that can be collected are listed in [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
++ Collect internal system\-level metrics from Amazon EC2 instances across operating systems\. The metrics can include in\-guest metrics, in addition to the metrics for EC2 instances\. The additional metrics that can be collected are listed in [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
 + Collect system\-level metrics from on\-premises servers\. These can include servers in a hybrid environment as well as servers not managed by AWS\.
 + Retrieve custom metrics from your applications or services using the `StatsD` and `collectd` protocols\. `StatsD` is supported on both Linux servers and servers running Windows Server\. `collectd` is supported only on Linux servers\.
 + Collect logs from Amazon EC2 instances and on\-premises servers, running either Linux or Windows Server\.
+**Note**  
+The CloudWatch agent does not support collecting logs from FIFO pipes\.
 
 You can store and view the metrics that you collect with the CloudWatch agent in CloudWatch just as you can with any other CloudWatch metrics\. The default namespace for metrics collected by the CloudWatch agent is `CWAgent`, although you can specify a different namespace when you configure the agent\.
 
 The logs collected by the unified CloudWatch agent are processed and stored in Amazon CloudWatch Logs, just like logs collected by the older CloudWatch Logs agent\. For information about CloudWatch Logs pricing, see [Amazon CloudWatch Pricing](http://aws.amazon.com/cloudwatch/pricing)\.
 
 Metrics collected by the CloudWatch agent are billed as custom metrics\. For more information about CloudWatch metrics pricing, see [Amazon CloudWatch Pricing](http://aws.amazon.com/cloudwatch/pricing)\.
+
+The CloudWatch agent is open\-source under the MIT license, and is [ hosted on GitHub](https://github.com/aws/amazon-cloudwatch-agent/)\. If you would like to build, customize or contribute to the CloudWatch agent, see the GitHub repository for the latest instructions\. If you think you’ve found a potential security issue, do not post it on GitHub or any public forum\. Instead, please follow the instructions at [ https://aws\.amazon\.com/security/vulnerability\-reporting/](https://aws.amazon.com/security/vulnerability-reporting/) or [ email AWS security directly](mailto:aws-security@amazon.com)\.
 
 The steps in this section explain how to install the unified CloudWatch agent on Amazon EC2 instances and on\-premises servers\. For more information about the metrics that the CloudWatch agent can collect, see [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)\.
 
@@ -19,16 +23,18 @@ The steps in this section explain how to install the unified CloudWatch agent on
 The CloudWatch agent is supported on AMD64 architecture on the following operating systems:
 + Amazon Linux version 2014\.03\.02 or later
 + Amazon Linux 2
-+ Ubuntu Server versions 18\.04, 16\.04, and 14\.04
-+ CentOS versions 7\.6, 7\.2, 7\.0, 6\.8, and 6\.5
-+ Red Hat Enterprise Linux \(RHEL\) versions 8, 7\.6, 7\.5, 7\.4, 7\.2, 7\.0, and 6\.5
++ Ubuntu Server versions 20\.04, 18\.04, 16\.04, and 14\.04
++ CentOS versions 8\.0, 7\.6, 7\.2, 7\.0, 6\.8, and 6\.5
++ Red Hat Enterprise Linux \(RHEL\) versions 8, 7\.7, 7\.6, 7\.5, 7\.4, 7\.2, 7\.0, and 6\.5
 + Debian version 10 and version 8\.0
 + SUSE Linux Enterprise Server \(SLES\) version 15 and version 12
++ Oracle Linux versions 7\.8, 7\.6, and 7\.5
++ macOS, including EC2 Mac1 instances
 + 64\-bit versions of Windows Server 2019, Windows Server 2016, Windows Server 2012, and Windows Server 2008 R2
 
 The agent is supported on ARM64 architecture on the following operating systems:
 + Amazon Linux 2
-+ Ubuntu Server version 18\.04
++ Ubuntu Server versions 20\.04 and 18\.04
 + Red Hat Enterprise Linux \(RHEL\) version 7\.6
 + SUSE Linux Enterprise Server 15
 
@@ -48,5 +54,6 @@ You can download and install the CloudWatch agent manually using the command lin
 + [Installing the CloudWatch Agent](install-CloudWatch-Agent-on-EC2-Instance.md)
 + [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
 + [Metrics Collected by the CloudWatch Agent](metrics-collected-by-CloudWatch-agent.md)
++ [OpenTelemetry support in the CloudWatch Agent](CloudWatch-Agent-open-telemetry.md)
 + [Common Scenarios with the CloudWatch Agent](CloudWatch-Agent-common-scenarios.md)
 + [Troubleshooting the CloudWatch Agent](troubleshooting-CloudWatch-Agent.md)

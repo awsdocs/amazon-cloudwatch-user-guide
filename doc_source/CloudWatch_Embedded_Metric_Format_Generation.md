@@ -8,4 +8,5 @@ If you use one of the manual methods, the logs must follow the defined JSON form
 
 **Topics**
 + [Using the Client Libraries to Generate Embedded Metric Format Logs](CloudWatch_Embedded_Metric_Format_Libraries.md)
++ [Using the Embedded Metric Format with AWS Distro for OpenTelemetry](CloudWatch_Embedded_Metric_Format_OpenTelemetry.md)
 + [Manually Generating Embedded Metric Format Logs](CloudWatch_Embedded_Metric_Format_Manual.md)

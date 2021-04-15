@@ -51,6 +51,8 @@ Use the following steps to download the CloudWatch agent package using Systems M
 
 1. Optionally, in the **Targets and outputs** areas, select the button next to an instance name and choose **View output**\. Systems Manager should show that the agent was successfully installed\.
 
+   
+
 ## Create and Modify the Agent Configuration File<a name="CW-Agent-Instance-Create-Configuration-File-first"></a>
 
 After you have downloaded the CloudWatch agent, you must create the configuration file before you start the agent on any servers\.

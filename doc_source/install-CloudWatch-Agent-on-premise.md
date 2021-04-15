@@ -4,7 +4,7 @@ If you have downloaded the CloudWatch agent on one computer and created the agen
 
 ## Download the CloudWatch Agent on an On\-Premises Server<a name="download-CloudWatch-Agent-onprem"></a>
 
-You can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch Agent Package Using an S3 Download Link](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+You can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch Agent Package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
 
 ### Download Using Systems Manager<a name="download-CloudWatch-Agent-onprem-fleet-sys"></a>
 

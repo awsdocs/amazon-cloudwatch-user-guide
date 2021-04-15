@@ -143,7 +143,7 @@ It MUST NOT match the nested member:
 { "A": { "a" } }
 ```
 
-Valid values of target members depend on what is referencing them\. For example, a metric target MUST be a numeric value or an array or numeric values while dimension targets MUST be string values\.
+Valid values of target members depend on what is referencing them\. A metric target MUST be a numeric value or an array of numeric values\. Numeric array metric targets MUST NOT have more than 100 members\. A dimension target MUST have a string value\.
 
 ### Embedded Metric Format Example and JSON Schema<a name="CloudWatch_Embedded_Metric_Format_Specification_structure_example"></a>
 
@@ -221,7 +221,8 @@ You can use the following schema to validate embedded metric format documents\.
                                     "MyApp"
                                 ],
                                 "pattern": "^(.*)$",
-                                "minLength": 1
+                                "minLength": 1,
+                                "maxLength": 255
                             },
                             "Dimensions": {
                                 "$id": "#/properties/_aws/properties/CloudWatchMetrics/items/properties/Dimensions",
@@ -242,8 +243,9 @@ You can use the following schema to validate embedded metric format documents\.
                                             "Operation"
                                         ],
                                         "pattern": "^(.*)$",
-                                        "minItems": 1
-                                    }
+                                        "minLength": 1,
+                                        "maxLength": 255
+}
                                 }
                             },
                             "Metrics": {
@@ -265,7 +267,9 @@ You can use the following schema to validate embedded metric format documents\.
                                             "examples": [
                                                 "ProcessingLatency"
                                             ],
-                                            "pattern": "^(.*)$"
+                                            "pattern": "^(.*)$",
+                                            "minLength": 1,
+                                            "maxLength": 255
                                         },
                                         "Unit": {
                                             "$id": "#/properties/_aws/properties/CloudWatchMetrics/items/properties/Metrics/items/properties/Unit",
@@ -275,7 +279,7 @@ You can use the following schema to validate embedded metric format documents\.
                                                 "Milliseconds"
                                             ],
                                             "pattern": "^(Seconds|Microseconds|Milliseconds|Bytes|Kilobytes|Megabytes|Gigabytes|Terabytes|Bits|Kilobits|Megabits|Gigabits|Terabits|Percent|Count|Bytes\\/Second|Kilobytes\\/Second|Megabytes\\/Second|Gigabytes\\/Second|Terabytes\\/Second|Bits\\/Second|Kilobits\\/Second|Megabits\\/Second|Gigabits\\/Second|Terabits\\/Second|Count\\/Second|None)$"
-                                        }
+                                         }
                                     }
                                 }
                             }

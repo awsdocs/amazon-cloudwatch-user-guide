@@ -13,7 +13,7 @@ This tutorial demonstrates how to configure CloudWatch Application Insights to m
 
 In this scenario, a \.NET application using SQL Server on the backend runs on an Amazon EC2 instance\. The deployment is configured with two load\-balanced EC2 instances hosting the Barley Adventure Works application\. Both instances access SQL Server, which is hosted on a separate EC2 instance\. Monitors are set up with CloudWatch Application Insights to quickly identify, isolate, and resolve application issues\.
 
-![\[Solution component diagram\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/app-insights-solution-components.png)
+![\[Solution component diagram\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/app-insights-solution-components-v2.png)
 
 ## Prerequisites<a name="appinsights-tutorial-dotnet-sql-prereqs"></a>
 
@@ -43,17 +43,15 @@ The template deployment takes approximately 10 minutes to complete\.
 
 1. Select **Template is ready** on the **Create Stack** page\.
 
-1. Under **Specify template**, select **Amazon S3 URL** and enter the following S3 URL path: `https://application-insights-demo-resources.s3.amazonaws.com/SampleApp.yml`\. Choose **Next**\.
+1. Under **Specify template**, select **Amazon S3 URL** and enter the following S3 URL path: `https://application-insights-demo-resources.s3.amazonaws.com/SampleApp.yml` \. Choose **Next**\.
 **Note**  
 This CloudFormation template can also be found in the aws\-samples GitHub repo at the following location: [https://github\.com/aws\-samples/application\-insights\-sample\-application/blob/master/SampleApp\.yml](https://github.com/aws-samples/application-insights-sample-application/blob/master/SampleApp.yml)\.
 
 1. On the **Specify stack details** page, enter a name for the stack, such as `ApplicationInsightsTest`\.
 
-1. Specify a key pair name in the **EC2 Key Pair** field to either create a new key pair or choose an existing key pair that you can use to log in to your EC2 instance\
+1. Review the default parameters under **Parameters** and modify the values to your preferences\. Enter a password for SQLServer\. Enter an existing EC2 key pair or create a new one in the EC2 console\. Choose **Next**\.
 
-1. Review the default parameters under **Parameters** and modify the values to your preferences\. Enter a password for SQLServer\. Choose **Next**\.
-
-1. On the **Configure stack options** page, under **Tags**, add any tags to help identify your stack . Select **Next**\.
+1. On the **Configure stack options** page, under **Tags**, optionally add tags to help you identify your stack\. Select **Next**\.
 
 1. Review and confirm the settings on the **Review** page\. Select the box acknowledging that the template may create AWS Identity and Access Management \(IAM\) resources\.
 
@@ -112,6 +110,19 @@ This section demonstrates how to create a resource group from the resources depl
    + SQLServer:SQL Statistics Batch Requests/sec
    + System Processor Queue Length
 
+   The following metrics are monitored for the volumes attached to the SQL Server instance:
+   + VolumeReadBytes
+   + VolumeWriteBytes
+   + VolumeReadOps
+   + VolumeWriteOps
+   + VolumeTotalReadTime
+   + VolumeTotalWriteTime
+   + VolumeIdleTime
+   + VolumeQueueLength
+   + VolumeThroughputPercentage
+   + VolumeConsumedReadWriteOps
+   + BurstBalance
+
 1. When monitoring is enabled for both the load balancer and the SQL Server instance, the resource group to which they belong displays a status of **Enabled** on the resource group **Overview ** page\.
 
 ## Simulate problem scenarios and view insights<a name="appinsights-tutorial-dotnet-sql-problem-scenarios"></a>
@@ -168,7 +179,7 @@ HTTP requests for an unhandled HTTP request to a web application results in an H
 
 1. Navigate to the customer details page of the Barley Adventure Works web application by suffixing the previously mentioned URL with `barleyapp/SalesOrderDetails/edit/5`\.
 
-1. Refresh the compiled URL request several times\. Your URL should look something like this: `http://<YourURL>.us-east-1.elb.amazonaws.com/barleyapp/SalesOrderDetails/edit/5`\.
+1. Refresh the compiled URL request several times\. Your URL should look something like this: `http://<YourURL>.us-east-1.elb.amazonaws.com/barleyapp/SalesOrderDetails/edit/5` \.
 
    An error message appears indicating that the file or directory cannot be found\.
 

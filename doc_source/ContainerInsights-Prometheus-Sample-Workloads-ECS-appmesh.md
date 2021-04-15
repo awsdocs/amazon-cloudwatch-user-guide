@@ -1,8 +1,10 @@
-# \(Optional\) Sample App Mesh Workload for Amazon ECS clusters<a name="ContainerInsights-Prometheus-Sample-Workloads-ECS-appmesh"></a>
+# Sample App Mesh Workload for Amazon ECS clusters<a name="ContainerInsights-Prometheus-Sample-Workloads-ECS-appmesh"></a>
+
+To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting Up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
 
 First, follow this [ walkthrough](https://github.com/aws/aws-app-mesh-examples/tree/master/examples/apps/colorapp#app-mesh-walkthrough-deploy-the-color-app-on-ecs) to deploy the sample color app on your Amazon ECS cluster\. After you finish, you will have App Mesh Prometheus metrics exposed on port 9901\.
 
-Next, follow these steps to isntall the CloudWatch agent with Prometheus monitoring on the same Amazon ECS cluster where you installed the color app\. The steps in this section install the CloudWatch agent in bridge network mode\. 
+Next, follow these steps to install the CloudWatch agent with Prometheus monitoring on the same Amazon ECS cluster where you installed the color app\. The steps in this section install the CloudWatch agent in bridge network mode\. 
 
 The environment variables `ENVIRONMENT_NAME`, `AWS_PROFILE`, and `AWS_DEFAULT_REGION` that you set in the walkthrough will also be used in the following steps\.
 
@@ -58,7 +60,7 @@ When the response gets to Default output format, enter **json**\.
 
 ## Uninstall the CloudWatch agent with Prometheus monitoring<a name="ContainerInsights-Prometheus-Sample-Workloads-ECS-appmesh-uninstall"></a>
 
-When you are finished testing, enter the followign command to uninstall the CloudWatch agent by deleting the AWS CloudFormation stack\.
+When you are finished testing, enter the following command to uninstall the CloudWatch agent by deleting the AWS CloudFormation stack\.
 
 ```
 aws cloudformation delete-stack \

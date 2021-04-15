@@ -9,7 +9,37 @@ When you share dashboards, you can designate who can view the dashboard in three
 
 ## Permissions required for dashboard sharing<a name="share-cloudwatch-dashboard-email-addresses"></a>
 
-To be able to share dashboards using any of the following methods and to see which dashboards have already been shared, you must be logged on to an IAM user or IAM role that includes the a policy statement similar to the following:
+To be able to share dashboards using any of the following methods and to see which dashboards have already been shared, you must be logged on to an IAM user or IAM role that has certain permissions\.
+
+To be able to share dashboards, your IAM user or IAM role must include the permissions included in the following policy statement:
+
+```
+{
+    "Effect": "Allow",
+    "Action": [
+        "iam:CreateRole",
+        "iam:CreatePolicy",
+        "iam:AttachRolePolicy",
+        "iam:PassRole"
+    ],
+    "Resource": [
+        "arn:aws:iam::*:role/service-role/CloudWatchDashboard*",
+        "arn:aws:iam::*:policy/*"
+    ]
+},
+{
+    "Effect": "Allow",
+    "Action": [
+        "cognito-idp:*",
+        "cognito-identity:*",
+    ],
+    "Resource": [
+        "*"
+    ]
+}
+```
+
+To be able to see which dashboards are shared, but not be able to share dashboards, your IAM user or IAM role can include a policy statement similar to the following:
 
 ```
 {
@@ -23,6 +53,70 @@ To be able to share dashboards using any of the following methods and to see whi
     ]
 }
 ```
+
+## Permissions that are granted to people who you share the dashboard with<a name="share-cloudwatch-dashboard-iamrole"></a>
+
+When you share a dashboard, CloudWatch creates an IAM role in the account which gives the following permissions to the people who you share the dashboard with:
++ `cloudwatch:GetInsightRuleReport`
++ `cloudwatch:GetMetricData`
++ `cloudwatch:DescribeAlarms`
++ `ec2:DescribeTags`
+
+**Warning**  
+All people who you share the dashboard with are granted these permissions for the account\. If you share the dashboard publicly, then everyone who has the link to the dashboard has these permissions\.  
+The `cloudwatch:GetMetricData` and `ec2:DescribeTags` can't be scoped down to specific metrics or EC2 instances, so the people with access to the dashboard can query all CloudWatch metrics and the names and tags of all EC2 instances in the account\.
+
+For additional security, you can modify the IAM role used for dashboard sharing to narrow the scope of the `cloudwatch:GetInsightRuleReport` and `cloudwatch:DescribeAlarms` permissions\. Typically, you will do this to deny access to alarms or Contributor Insights rules that are not on shared dashboards\. But if you do deny access to a widget that is on a shared dashboard, then that widget will not appear when people that you have shared the dashboard with view the dashboard\.
+
+ To narrow the scope of the IAM role, do the following after the dashboard is shared:
+
+**To modify the IAM role for a shared dashboard to narrow the scope of some permissions**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Dashboards**\.
+
+1. Choose the name of the shared dashboard\.
+
+1. Choose **Actions**, **Share dashboard**\.
+
+1. Under **Resources**, choose **IAM Role**\.
+
+1. In the IAM console, choose the displayed policy\. 
+
+1. Do one of the following:
+   + Choose **Edit policy** and then add a statement with an **Allow** effect that lists only the ARNs of the alarms and Contributor Insights rules that are to be shared\. See the following example\.
+
+     ```
+     {
+                 "Effect": "Allow",
+                 "Action": [ 
+                    "cloudwatch:DescribeAlarms", 
+                    "cloudwatch:DescribeInsightRules" 
+                 ],
+                 "Resource": [
+                     "PublicAlarmARN",
+                     "PublicContributorInsightsRuleARN"
+                 ]
+             },
+     ```
+   + Choose **Edit policy** and then add a statement with a **Deny** effect that lists the ARNs of the alarms and Contributor Insights rules to be locked down\. See the following example\.
+
+     ```
+     {
+                 "Effect": "Deny",
+                 "Action": [ 
+                    "cloudwatch:DescribeAlarms", 
+                    "cloudwatch:DescribeInsightRules" 
+                 ],
+                 "Resource": [
+                     "SensitiveAlarmARN",
+                     "SensitiveContributorInsightsRuleARN"
+                 ]
+             },
+     ```
+
+1. Choose **Save Changes**\.
 
 ## Share a single dashboard with specific users<a name="share-cloudwatch-dashboard-email-addresses"></a>
 
@@ -121,6 +215,8 @@ We strongly recommend that you do not share dashboards using a non\-SAML SSO pro
 1. In the **Dashboard sharing** section, choose **Configure**\.
 
 1. Choose **Manage SSO providers**\.
+
+   This opens the Amazon Cognito console in N\. Virginia \(us\-east\-1\)\. If you don't see any **User Pools**, the Amazon Cognito console might have opened in a different Region\. If so, change the Region to **US East \(N\. Virginia\) us\-east\-1** and proceed with the next steps\.
 
 1. Choose the **CloudWatchDashboardSharing** pool\.
 

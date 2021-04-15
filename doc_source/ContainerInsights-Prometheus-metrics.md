@@ -1,6 +1,6 @@
 # Prometheus Metrics Collected by the CloudWatch Agent<a name="ContainerInsights-Prometheus-metrics"></a>
 
-The CloudWatch agent with Prometheus support automatically collects metrics from several services and workloads\. The metrics that are collected by default are listed in the following sections\. You can also configure the agent to collect more metrics from these services, and to collect Prometheus metrics from other applications and services\. For more information about collecting additional metrics, see [ CloudWatch Agent Configuration for Prometheus](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-cw-agent-config)\.
+The CloudWatch agent with Prometheus support automatically collects metrics from several services and workloads\. The metrics that are collected by default are listed in the following sections\. You can also configure the agent to collect more metrics from these services, and to collect Prometheus metrics from other applications and services\. For more information about collecting additional metrics, see [ CloudWatch Agent Configuration for Prometheus](ContainerInsights-Prometheus-Setup-configure-ECS.md#ContainerInsights-Prometheus-Setup-cw-agent-config)\.
 
 Prometheus metrics collected from Amazon EKS and Kubernetes clusters are in the **ContainerInsights/Prometheus** namespace\. Prometheus metrics collected from Amazon ECS clusters are in the **ECS/ContainerInsights/Prometheus** namespace\. 
 
@@ -206,26 +206,33 @@ In addition to the Java/JMX metrics in the previous table, the following metrics
 
 The following metrics are automatically collected from HAProxy on Amazon EKS and Kubernetes clusters\.
 
+The metrics collected depend on which version of HAProxy Ingress that you are using\. For more information about HAProxy Ingress and its versions, see [ haproxy\-ingress](https://artifacthub.io/packages/helm/haproxy-ingress/haproxy-ingress)\.
 
-| Metric Name | Dimensions | 
-| --- | --- | 
-|  `haproxy_backend_bytes_in_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_backend_bytes_out_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_backend_connection_errors_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_backend_connections_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_backend_current_sessions` |  ClusterName, Namespace, Service  | 
-|  `haproxy_backend_http_responses_total` |  ClusterName, Namespace, Service, code, backend  | 
-|  `haproxy_backend_up` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_bytes_in_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_bytes_out_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_connections_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_current_sessions` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_http_requests_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_http_responses_total` |  ClusterName, Namespace, Service, code, frontend  | 
-|  `haproxy_frontend_request_errors_total` |  ClusterName, Namespace, Service  | 
-|  `haproxy_frontend_requests_denied_total` |  ClusterName, Namespace, Service  | 
+
+| Metric Name | Dimensions | Availability | 
+| --- | --- | --- | 
+|  `haproxy_backend_bytes_in_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_backend_bytes_out_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_backend_connection_errors_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_backend_connections_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_backend_current_sessions` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_backend_http_responses_total` |  ClusterName, Namespace, Service, code, backend  | All versions of HAProxy Ingress | 
+|  `haproxy_backend_status` |  ClusterName, Namespace, Service  |  Only in versions 0\.10 or later of HAProxy Ingress  | 
+|  `haproxy_backend_up` |  ClusterName, Namespace, Service  |  Only in versions of HAProxy Ingress earlier than 0\.10  | 
+|  `haproxy_frontend_bytes_in_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_bytes_out_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_connections_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_current_sessions` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_http_requests_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_http_responses_total` |  ClusterName, Namespace, Service, code, frontend  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_request_errors_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
+|  `haproxy_frontend_requests_denied_total` |  ClusterName, Namespace, Service  | All versions of HAProxy Ingress | 
 
 **Note**  
 The values of the `code` dimension can be `1xx`, `2xx`, `3xx`, `4xx`, `5xx`, or `other`\.  
-The values of the `backend` dimension can be `http-default-backend`, `http-shared-backend`, or `httpsback-shared-backend`\.  
-The values of the `frontend` dimension can be `httpfront-default-backend`, `httpfront-shared-frontend`, or `httpfronts`\.
+The values of the `backend` dimension can be:  
+`http-default-backend`, `http-shared-backend`, or `httpsback-shared-backend` for HAProxy Ingress version 0\.0\.27 or earlier\.
+`_default_backend` for HAProxy Ingress versions later than 0\.0\.27\.
+The values of the `frontend` dimension can be:  
+`httpfront-default-backend`, `httpfront-shared-frontend`, or `httpfronts` for HAProxy Ingress version 0\.0\.27 or earlier\.
+`_front_http` or `_front_https` for HAProxy Ingress versions later than 0\.0\.27\.

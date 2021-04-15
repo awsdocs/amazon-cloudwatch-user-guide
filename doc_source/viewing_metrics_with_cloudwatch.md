@@ -33,6 +33,8 @@ If the old metric you want to view has a current metric with similar dimensions,
    1. To filter by metric, choose the metric name and then choose **Add to search**\.  
 ![\[View the metrics for Amazon EC2\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_view_metrics.png)
 
+1. \(Optional\) To add this graph to a CloudWatch dashboard, choose **Actions**, **Add to dashboard**\.
+
 **To view available metrics by namespace, dimension, or metric using the AWS CLI**  
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list CloudWatch metrics\. For a list of the namespaces, metrics, and dimensions for all services that publish metrics, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
 

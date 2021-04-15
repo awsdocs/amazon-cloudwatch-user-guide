@@ -5,6 +5,7 @@ The *procstat* plugin enables you to collect metrics from individual processes\.
 **Topics**
 + [Configuring the CloudWatch Agent for procstat](#CloudWatch-Agent-procstat-configuration)
 + [Metrics Collected by Procstat](#CloudWatch-Agent-procstat-process-metrics-collected)
++ [Viewing Process Metrics Imported by the CloudWatch Agent](#CloudWatch-view-procstat-metrics)
 
 ## Configuring the CloudWatch Agent for procstat<a name="CloudWatch-Agent-procstat-configuration"></a>
 
@@ -17,8 +18,7 @@ To use the procstat plugin, add a `procstat` section in the `metrics_collected` 
 
 The CloudWatch agent uses only one of these methods, even if you include more than one of the above sections\. If you specify more than one section, the CloudWatch agent uses the `pid_file` section if it is present\. If not, it uses the `exe` section\.
 
-On Linux servers, the strings that you specify in an `exe` or `pattern` section are evaluated as regular expressions\. 
-On servers running Windows Server, these strings are evaluated as WMI queries\. For more information, see [LIKE Operator](https://docs.microsoft.com/en-us/windows/desktop/WmiSdk/like-operator)\. `eg: pattern: "%apache%"`
+On Linux servers, the strings that you specify in an `exe` or `pattern` section are evaluated as regular expressions\. On servers running Windows Server, these strings are evaluated as WMI queries\. An example would be `pattern: "%apache%"`\. For more information, see [LIKE Operator](https://docs.microsoft.com/en-us/windows/desktop/WmiSdk/like-operator)\.
 
 Whichever method you use, you can include an optional `metrics_collection_interval` parameter, which specifies how often in seconds to collect those metrics\. If you omit this parameter, the default value of 60 seconds is used\.
 
@@ -129,17 +129,17 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 | Metric Name | Available On | Description | 
 | --- | --- | --- | 
 |  `cpu_time` |  Linux |  The amount of time that the process uses the CPU\. This metric is measured in hundredths of a second\. Unit: Count  | 
-|  `cpu_time_system` |  Linux, Windows Server |  The amount of time that the process is in system mode\. This metric is measured in hundredths of a second\. Type: Float Unit: Count  | 
-|  `cpu_time_user` |  Linux, Windows Server |  The amount of time that the process is in user mode\. This metric is measured in hundredths of a second\. Unit: Count  | 
-|  `cpu_usage` |  Linux, Windows Server |  The percentage of time that the process is active in any capacity\. Unit: Percent  | 
-|  `memory_data` |  Linux |  The amount of memory that the process uses for data\. Unit: Bytes  | 
-|  `memory_locked` |  Linux |  The amount of memory that the process has locked\. Unit: Bytes  | 
-|  `memory_rss` |  Linux, Windows Server |  The amount of real memory \(resident set\) that the process is using\. Unit: Bytes  | 
-|  `memory_stack` |  Linux |  The amount of stack memory that the process is using\. Unit: Bytes  | 
-|  `memory_swap` |  Linux |  The amount of swap memory that the process is using\. Unit: Bytes  | 
-|  `memory_vms` |  Linux, Windows Server |  The amount of virtual memory that the process is using\. Unit: Bytes  | 
-|  pid |  Linux, Windows Server |  Process identifier \(ID\)\. Unit: Count  | 
-|  pid\_count |  Linux, Windows Server |  The number of process IDs associated with the process\. On Linux servers the full name of this metric is `procstat_lookup_pid_count` and on Windows Server it is `procstat_lookup pid_count`\. Unit: Count  | 
+|  `cpu_time_system` |  Linux, Windows Server, macOS |  The amount of time that the process is in system mode\. This metric is measured in hundredths of a second\. Type: Float Unit: Count  | 
+|  `cpu_time_user` |  Linux, Windows Server, macOS |  The amount of time that the process is in user mode\. This metric is measured in hundredths of a second\. Unit: Count  | 
+|  `cpu_usage` |  Linux, Windows Server, macOS |  The percentage of time that the process is active in any capacity\. Unit: Percent  | 
+|  `memory_data` |  Linux, macOS |  The amount of memory that the process uses for data\. Unit: Bytes  | 
+|  `memory_locked` |  Linux, macOS |  The amount of memory that the process has locked\. Unit: Bytes  | 
+|  `memory_rss` |  Linux, Windows Server, macOS |  The amount of real memory \(resident set\) that the process is using\. Unit: Bytes  | 
+|  `memory_stack` |  Linux, macOS |  The amount of stack memory that the process is using\. Unit: Bytes  | 
+|  `memory_swap` |  Linux, macOS |  The amount of swap memory that the process is using\. Unit: Bytes  | 
+|  `memory_vms` |  Linux, Windows Server, macOS |  The amount of virtual memory that the process is using\. Unit: Bytes  | 
+|  pid |  Linux, Windows Server, macOS |  Process identifier \(ID\)\. Unit: Count  | 
+|  pid\_count |  Linux, Windows Server\. macOS |  The number of process IDs associated with the process\. On Linux servers and macOS computers the full name of this metric is `procstat_lookup_pid_count` and on Windows Server it is `procstat_lookup pid_count`\. Unit: Count  | 
 |  `read_bytes` |  Linux, Windows Server |  The number of bytes that the process has read from disks\. Unit: Bytes  | 
 |  `write_bytes` |  Linux, Windows Server |  The number of bytes that the process has written to disks\. Unit: Bytes  | 
 |  `read_count` |  Linux, Windows Server |  The number of disk read operations that the process has executed\. Unit: Count  | 
@@ -162,3 +162,29 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 |  `rlimit_memory_stack_hard` |  Linux |  The hard resource limit on the process stack\. Unit: Bytes  | 
 |  `rlimit_memory_stack_soft` |  Linux |  The soft resource limit on the process stack\. Unit: Bytes  | 
 |  `rlimit_memory_vms_hard` |  Linux |  The hard resource limit on the process for virtual memory\. Unit: Bytes  | 
+
+## Viewing Process Metrics Imported by the CloudWatch Agent<a name="CloudWatch-view-procstat-metrics"></a>
+
+After importing process metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view process metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+
+**To view process metrics in the CloudWatch console**
+
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+1. In the navigation pane, choose **Metrics**\.
+
+1. Choose the namespace for the metrics collected by the agent\. By default, this is **CWAgent**, but you may have specified a different namespace in the CloudWatch agent configuration file\.
+
+1. Choose a metric dimension \(for example, **Per\-Instance Metrics**\)\.
+
+1. The **All metrics** tab displays all metrics for that dimension in the namespace\. You can do the following:
+
+   1. To graph a metric, select the check box next to the metric\. To select all metrics, select the check box in the heading row of the table\.
+
+   1. To sort the table, use the column heading\.
+
+   1. To filter by resource, choose the resource ID and then choose **Add to search**\.
+
+   1. To filter by metric, choose the metric name and then choose **Add to search**\.
+
+1. \(Optional\) To add this graph to a CloudWatch dashboard, choose **Actions**, **Add to dashboard**\.

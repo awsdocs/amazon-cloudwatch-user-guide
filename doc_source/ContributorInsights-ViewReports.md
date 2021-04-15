@@ -8,6 +8,8 @@ To view graphs of report data and a ranked list of contributors found by your ru
 
 1. In the navigation pane, choose **Contributor Insights**\.
 
+   
+
 1. In the list of rules, choose the name of a rule\.
 
    The graph displays the results of the rule over the last three hours\. The table under the graph shows the top 10 contributors\.

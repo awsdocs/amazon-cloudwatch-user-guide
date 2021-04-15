@@ -14,6 +14,9 @@ To use the quick setup, enter the following command to use AWS CloudFormation to
 
 This command creates the IAM roles **CWAgentECSTaskRole** and **CWAgentECSExecutionRole**\. If these roles already exist in your account, use `ParameterKey=CreateIAMRoles,ParameterValue=False` instead of `ParameterKey=CreateIAMRoles,ParameterValue=True` when you enter the command\. Otherwise, the command will fail\.
 
+**Note**  
+The following setup step pulls the container image from Docker Hub as an anonymous user by default\. This pull may be subject to a rate limit\. For more information, see [CloudWatch agent container image](ContainerInsights.md#container-insights-download-limit)\.
+
 ```
 ClusterName=cluster-name
 Region=cluster-region

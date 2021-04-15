@@ -1,8 +1,10 @@
-# Installing the CloudWatch Agent Using AWS CloudFormation<a name="Install-CloudWatch-Agent-New-Instances-CloudFormation"></a>
+# Installing the CloudWatch agent on new instances using AWS CloudFormation<a name="Install-CloudWatch-Agent-New-Instances-CloudFormation"></a>
 
-Amazon has uploaded several AWS CloudFormation templates to GitHub to help you install and update the CloudWatch agent\. For more information about using AWS CloudFormation, see [ What is AWS CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)\.
+Amazon has uploaded several AWS CloudFormation templates to GitHub to help you install and update the CloudWatch agent on new Amazon EC2 instances\. For more information about using AWS CloudFormation, see [ What is AWS CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)\.
 
 The template location is [ Deploy the Amazon CloudWatch agent to EC2 instances using AWS CloudFormation](https://github.com/awslabs/aws-cloudformation-templates/tree/master/aws/solutions/AmazonCloudWatchAgent)\. This location includes both `inline` and `ssm` directories\. Each of these directories contains templates for both Linux and Windows instances\. 
+
+
 + The templates in the `inline` directory have the CloudWatch agent configuration embedded into the AWS CloudFormation template\. By default, the Linux templates collect the metrics `mem_used_percent` and `swap_used_percent`, and the Windows templates collect `Memory % Committed Bytes In Use` and `Paging File % Usage`\.
 
   To modify these templates to collect different metrics, modify the following section of the template\. The following example is from the template for Linux servers\. Follow the format and syntax of the agent configuration file to make these changes\. For more information, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\.

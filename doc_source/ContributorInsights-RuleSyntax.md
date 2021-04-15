@@ -52,7 +52,7 @@ Keys
  An array of up to four log fields that are used as dimensions to classify contributors\. If you enter more than one key, each unique combination of values for the keys is counted as a unique contributor\. The fields must be specified using JSON property format notation\. 
 
 ValueOf  
- \(Optional\) Specify this only when you are specifying `SUM` as the value of `AggregateOn`\. `ValueOf` specifies a log field with numerical values\. In this type of rule, the contributors are ranked by their sum of the value of this field, instead of their number of occurrences in the log entries\. For example, if you want to sort contributors by their total `BytesSent` over a period, you would set `ValueOf` to `BytesSent` and specify `Sum` for `AggregateOn`\. 
+ \(Optional\) Specify this only when you are specifying `Sum` as the value of `AggregateOn`\. `ValueOf` specifies a log field with numerical values\. In this type of rule, the contributors are ranked by their sum of the value of this field, instead of their number of occurrences in the log entries\. For example, if you want to sort contributors by their total `BytesSent` over a period, you would set `ValueOf` to `BytesSent` and specify `Sum` for `AggregateOn`\. 
 
 Filters  
  \(Optional\) Specifies an array of as many as four filters to narrow the log events that are included in the report\. If you specify multiple filters, Contributor Insights evaluates them with a logical AND operator\. You can use this to filter out irrelevant log events in your search or you can use it to select a single contributor to analyze their behavior\.  
@@ -71,7 +71,7 @@ See the following for filter examples:
 ```
 
 AggregateOn  
- Valid values are `COUNT` and `SUM`\. Specifies whether to aggregate the report based on a count of occurrences or a sum of the values of the field that is specified in the `ValueOf` field\. 
+ Valid values are `Count` and `Sum`\. Specifies whether to aggregate the report based on a count of occurrences or a sum of the values of the field that is specified in the `ValueOf` field\. 
 
 **JSON Property Format Notation**
 

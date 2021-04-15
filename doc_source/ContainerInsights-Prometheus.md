@@ -4,7 +4,7 @@ CloudWatch Container Insights monitoring for Prometheus automates the discovery 
 
 Discovering Prometheus metrics is supported for [Amazon Elastic Container Service](https://aws.amazon.com/ecs/), [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/) and [Kubernetes](https://aws.amazon.com/kubernetes/) clusters running on Amazon EC2 instances\. The Prometheus counter, gauge, and summary metric types are collected\. Support for histogram metrics is planned for an upcoming release\.
 
-For Amazon ECS clusters, both the EC2 and Fargate launch types are supported\. 
+For Amazon ECS and Amazon EKS clusters, both the EC2 and Fargate launch types are supported\. 
 
 The Container Insights Prometheus solution automatically collects metrics from the following containerized workloads and systems, and you can configure it to collect Prometheus metrics from other containerized services and applications\.
 
@@ -18,6 +18,8 @@ For Amazon EKS clusters and Kubernetes clusters running on Amazon EC2 instances:
 For Amazon ECS clusters:
 + AWS App Mesh
 + Java/JMX
++ NGINX
++ NGINX Plus
 
 You can adopt Prometheus as an open\-source and open\-standard method to ingest custom metrics in CloudWatch\. The CloudWatch agent with Prometheus support discovers and collects Prometheus metrics to monitor, troubleshoot, and alarm on application performance degradation and failures faster\. This also reduces the number of monitoring tools required to improve observability\.
 

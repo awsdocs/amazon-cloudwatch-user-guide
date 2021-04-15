@@ -6,7 +6,7 @@ CloudWatch ServiceLens enhances the observability of your services and applicati
 
 To fully take advantage of ServiceLens and correlated metrics, logs, and traces, you must update the X\-Ray SDK and the instrumentation of your application\. ServiceLens supports logs correlation for Lambda functions, API Gateway, Java\-based applications running on Amazon EC2, and Java\-based applications running on Amazon EKS or Kubernetes with Container Insights deployed\.
 
-ServiceLens integrates with Amazon CloudWatch Synthetics, a fully\-managed service that enables you to create canaries to monitor your endpoints and APIs from the outside\-in\. Canaries that you create appear on the ServiceLens service map\. For more information, see [Using Synthetic Monitoring](CloudWatch_Synthetics_Canaries.md)\.
+ServiceLens integrates with Amazon CloudWatch Synthetics, a fully\-managed service that enables you to create canaries to monitor your endpoints and APIs from the outside\-in\. Canaries that you create appear on the ServiceLens service map\. For more information, see [Using synthetic monitoring](CloudWatch_Synthetics_Canaries.md)\.
 
 ServiceLens is available in every Region where X\-Ray is available\.
 

@@ -16,7 +16,13 @@ For more information, see [Attaching an IAM Role to an Instance](https://docs.aw
 
 ## Download the CloudWatch Agent Package on an Amazon EC2 Instance<a name="download-CloudWatch-Agent-on-EC2-Instance-fleet"></a>
 
-You can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch Agent Package Using an S3 Download Link](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+You need to install the agent on each server where you will run the agent\. The CloudWatch agent is available as a package in Amazon Linux 2\. If you are using this operating system, you can install the package by entering the following command\. You must also make sure that the IAM role attached to the instance has the **CloudWatchAgentServerPolicy** attached\. For more information, see ﻿[Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)﻿\.
+
+```
+sudo yum install amazon-cloudwatch-agent
+```
+
+On all supported operating systems, you can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch Agent Package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
 
 ### Download the CloudWatch Agent on an Amazon EC2 Instance Using Systems Manager<a name="download-CloudWatch-Agent-on-EC2-Instance-SSM-fleet"></a>
 
@@ -163,13 +169,13 @@ Follow these steps to use the command line to install the CloudWatch agent on an
 **To use the command line to start the CloudWatch agent on an Amazon EC2 instance**
 + In this command, `-a fetch-config` causes the agent to load the latest version of the CloudWatch agent configuration file, and `-s` starts the agent\.
 
-  Linux: If you saved the configuration file in the Systems Manager Parameter Store, enter the following:
+  Linux and macOS: If you saved the configuration file in the Systems Manager Parameter Store, enter the following:
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:configuration-parameter-store-name
   ```
 
-  Linux: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` if you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
+  Linux and macOS: If you saved the configuration file on the local computer, enter the following command\. Replace *configuration\-file\-path* with the path to the agent configuration file\. This file is called `config.json` if you created it with the wizard, and might be called `amazon-cloudwatch-agent.json` if you created it manually\.
 
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:configuration-file-path

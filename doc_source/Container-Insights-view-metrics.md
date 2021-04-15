@@ -16,6 +16,17 @@ This procedure explains how to view the metrics that Container Insights automati
 
 You can set a CloudWatch alarm on any metric that Container Insights collects\. For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)
 
+## Viewing the top contributors<a name="Container-Insights-view-metrics-topn"></a>
+
+For some of the views in Container Insights performance monitoring, you can also see the top contributors by memory or CPU, or the most recently active resources\. This is available when you select any of the following dasbhoards in the drop\-down box near the top of the page:
++ ECS Services
++ ECS Tasks
++ EKS Namespaces
++ EKS Services
++ EKS Pods
+
+When you are viewing one of these types of resources, the bottom of the page displays a table sorted initially by CPU usage\. You can change it to sort by memory usage or recent activity\. To see more about one of the rows in the table, you can select the checkbox next to that row and then choose **Actions** and choose one of the options in the **Actions** menu\.
+
 ## Using CloudWatch Logs Insights to View Container Insights Data<a name="Container-Insights-CloudWatch-Logs-Insights"></a>
 
 Container Insights collects metrics by using performance log events with using [embedded metric format](CloudWatch_Embedded_Metric_Format.md)\. The logs are stored in CloudWatch Logs\. CloudWatch generates several metrics automatically from the logs which you can view in the CloudWatch console\. You can also do a deeper analysis of the performance data that is collected by using CloudWatch Logs Insights queries\.

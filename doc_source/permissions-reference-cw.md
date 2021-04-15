@@ -22,6 +22,7 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 | --- | --- | 
 |  [DeleteAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteAlarms.html)  |  `cloudwatch:DeleteAlarms` Required to delete an alarm\.  | 
 |  [DeleteDashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteDashboards.html)  |  `cloudwatch:DeleteDashboards` Required to delete a dashboard\.  | 
+|  [DeleteMetricStream](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteMetricStream.html)  |  `cloudwatch:DeleteMetricStream` Required to delete a metric stream\.  | 
 |  [DescribeAlarmHistory](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarmHistory.html)  |  `cloudwatch:DescribeAlarmHistory` Required to view alarm history\.  | 
 |  [DescribeAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)  |  `cloudwatch:DescribeAlarms` Required to retrieve alarm information by name\.  | 
 |  [DescribeAlarmsForMetric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarmsForMetric.html)  |  `cloudwatch:DescribeAlarmsForMetric` Required to view alarms for a metric\.  | 
@@ -30,18 +31,25 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [GetDashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetDashboard.html)  |  `cloudwatch:GetDashboard` Required to display data about existing dashboards\.  | 
 |  [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)  |  `cloudwatch:GetMetricData` Required to retrieve large batches of metric data and perform metric math on that data\.  | 
 |  [GetMetricStatistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html)  |  `cloudwatch:GetMetricStatistics` Required to view graphs in other parts of the CloudWatch console and in dashboard widgets\.  | 
+|  [GetMetricStream](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStream.html)  |  `cloudwatch:GetMetricStream` Required to view information about a metric stream\.  | 
 |  [GetMetricWidgetImage](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricWidgetImage.html)  |  `cloudwatch:GetMetricWidgetImage` Required to retrieve a snapshot graph of one or more CloudWatch metrics as a bitmap image\.  | 
 |  [ListDashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListDashboards.html)  |  `cloudwatch:ListDashboards` Required to view the list of CloudWatch dashboards in your account\.  | 
 |  [ListMetrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html)  |  `cloudwatch:ListMetrics` Required to view or search metric names within the CloudWatch console and in the CLI\. Required to select metrics on dashboard widgets\.  | 
+|  [ListMetricStreams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetricStreams.html)  |  `cloudwatch:ListMetricStreams` Required to view or search the list of metric streams in the account\.  | 
 |  [PutDashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutDashboard.html)  |  `cloudwatch:PutDashboard` Required to create a dashboard or update an existing dashboard\.  | 
 |  [PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html)  |  `cloudwatch:PutMetricAlarm` Required to create or update an alarm\.  | 
 |  [PutMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html)  |  `cloudwatch:PutMetricData` Required to create metrics\.  | 
+|  [PutMetricStream](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricStream.html)  |  `cloudwatch:PutMetricStream` Required to create a metric stream\.  | 
 |  [SetAlarmState](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_SetAlarmState.html)  |  `cloudwatch:SetAlarmState` Required to manually set an alarm's state\.  | 
+|  [StartMetricStreams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_StartMetricStreams.html)  |  `cloudwatch:StartMetricStreams` Required to start the flow of metrics in a metric stream\.  | 
+|  [StopMetricStreams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_StartMetricStreams.html)  |  `cloudwatch:StopMetricStreams` Required to temporarily stop the flow of metrics in a metric stream\.  | 
+|  [TagResource](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html)  |  `cloudwatch:TagResource` Required to add or update tags on CloudWatch resources such as alarms and Contributor Insights rules\.  | 
+|  [UntagResource](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html)  |  `cloudwatch:UntagResource` Required to remove tags from CloudWatch resources \.  | 
 
 ## CloudWatch Contributor Insights API Operations and Required Permissions for Actions<a name="cw-contributor-insights-permissions-table"></a>
 
 **Important**  
-When you grant a user the `cloudwatch:PutInsightRule` and `cloudwatch:GetInsightRuleReport` permissions, that user can create a rule that evaluates any log group in CloudWatch Logs and then see the results\. The results can contain contributor data for those log groups\. Be sure to grant these permissions only to users who should be able to view this data\.
+When you grant a user the `cloudwatch:PutInsightRule` permission, by default that user can create a rule that evaluates any log group in CloudWatch Logs\. You can add IAM policy conditions that limit these permissions for a user to include and exclude specific log groups\. For more information, see [Using Condition Keys to Limit Contributor Insights Users' Access to Log Groups](iam-cw-condition-keys-contributor.md)\.
 
 
 | CloudWatch Contributor Insights API Operations | Required Permissions \(API Actions\) | 
@@ -50,7 +58,7 @@ When you grant a user the `cloudwatch:PutInsightRule` and `cloudwatch:GetInsight
 |  [DescribeInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeInsightRules.html)  |  `cloudwatch:DescribeInsightRules` Required to view the Contributor Insights rules in your account\.  | 
 |  [EnableInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_EnableInsightRules.html)  |  `cloudwatch:EnableInsightRules` Required to enable Contributor Insights rules\.  | 
 |  [GetInsightRuleReport](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetInsightRuleReport.html)  |  `cloudwatch:GetInsightRuleReport` Required to retrieve time series data and other statistics collectd by Contributor Insights rules\.  | 
-|  [PutInsightRule](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutInsightRule.html)  |  `cloudwatch:PutInsightRule` Required to create Contributor Insights rules\.   | 
+|  [PutInsightRule](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutInsightRule.html)  |  `cloudwatch:PutInsightRule` Required to create Contributor Insights rules\. See the **Important** note at the beginning of this table\.  | 
 
 ## CloudWatch Events API Operations and Required Permissions for Actions<a name="cwe-permissions-table"></a>
 

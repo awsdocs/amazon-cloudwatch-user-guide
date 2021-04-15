@@ -59,7 +59,7 @@ If you create an anomaly detection alarm on a metric that you're already using a
 
    To have the alarm not send notifications, choose **Remove**\.
 
-1. To have the alarm perform EC2 actions, choose the appropriate button and choose the alarm state and action to perform\.
+1. To have the alarm perform EC2 actions when it changes state or create a Systems Manager OpsItem when it goes into ALARM state, choose the appropriate button and choose the alarm state and action to perform\.
 
 1. When finished, choose **Next**\.
 

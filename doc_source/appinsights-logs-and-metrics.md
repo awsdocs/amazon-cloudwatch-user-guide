@@ -7,16 +7,20 @@ The following lists show the supported logs and metrics for Amazon CloudWatch Ap
 + Error log for SQL Server on EC2
 + Custom \.NET application logs, such as Log4Net
 + Windows Event logs, including Windows logs \(System, Application, and Security\) and Applications and Services log
-+ Amazon CloudWatch Logs for AWS Lambda 
++ Amazon CloudWatch Logs for AWS Lambda
 + Error log and slow log for RDS MySQL, Aurora MySQL, and MySQL on EC2
 + Postgresql log for PostgreSQL RDS and PostgreSQL on EC2
 + Amazon CloudWatch Logs for AWS Step Functions
++ Execution logs and access logs \(JSON, CSV, and XML, but not CLF\) for API Gateway REST API stages
++ Prometheus JMX exporter logs \(EMF\)
++ Alert logs and listener logs for Oracle on Amazon RDS and Oracle on Amazon EC2
 
 **Contents**
 + [Amazon Elastic Compute Cloud \(EC2\)](#appinsights-metrics-ec2)
   + [CloudWatch built\-in metrics](#appinsights-metrics-ec2-built-in)
   + [CloudWatch Agent metrics \(Windows server\)](#appinsights-metrics-ec2-windows)
   + [CloudWatch Agent metrics \(Linux server\)](#appinsights-metrics-ec2-linux)
++ [Elastic Block Store \(EBS\)](#appinsights-metrics-ebs)
 + [Elastic Load Balancer \(ELB\)](#appinsights-metrics-elb)
 + [Application ELB](#appinsights-metrics-app-elb)
 + [Amazon EC2 Auto Scaling Groups](#appinsights-metrics-as)
@@ -28,15 +32,18 @@ The following lists show the supported logs and metrics for Amazon CloudWatch Ap
 + [Amazon DynamoDB table](#appinsights-metrics-dyanamodb)
 + [Amazon S3 bucket](#appinsights-metrics-s3)
 + [AWS Step Functions](#appinsights-metrics-step-functions)
-  + [Execution\-level metrics](#appinsights-metrics-step-functions-execution)
-  + [Activity metrics](#appinsights-metrics-step-functions-activity)
-  + [Lambda function metrics](#appinsights-metrics-step-functions-lambda)
-  + [Service integration metrics](#appinsights-metrics-step-functions-service-integration)
-  + [Step Functions API metrics](#appinsights-metrics-step-functions-api)
+  + [Execution\-level](#appinsights-metrics-step-functions-execution)
+  + [Activity](#appinsights-metrics-step-functions-activity)
+  + [Lambda function](#appinsights-metrics-step-functions-lambda)
+  + [Service integration](#appinsights-metrics-step-functions-service-integration)
+  + [Step Functions API](#appinsights-metrics-step-functions-api)
++ [API Gateway REST API stages](#appinsights-metrics-api-gateway)
++ [Java](#appinsights-metrics-java)
 + [Metrics With datapoints requirements](#appinsights-metrics-datapoint-requirements)
   + [AWS/ApplicationELB](#appinsights-metrics-datapoint-requirements-app-elb)
   + [AWS/AutoScaling](#appinsights-metrics-datapoint-requirements-autoscaling)
   + [AWS/EC2](#appinsights-metrics-datapoint-requirements-ec2)
+  + [Elastic Block Store \(EBS\)](#appinsights-metrics-datapoint-requirements-ebs)
   + [AWS/ELB](#appinsights-metrics-datapoint-requirements-elb)
   + [AWS/RDS](#appinsights-metrics-datapoint-requirements-rds)
   + [AWS/Lambda](#appinsights-metrics-datapoint-requirements-lambda)
@@ -45,6 +52,7 @@ The following lists show the supported logs and metrics for Amazon CloudWatch Ap
   + [AWS/DynamoDB](#appinsights-metrics-datapoint-requirements-dynamo)
   + [AWS/S3](#appinsights-metrics-datapoint-requirements-s3)
   + [AWS/States](#appinsights-metrics-datapoint-requirements-states)
+  + [AWS/ApiGateway](#appinsights-metrics-datapoint-requirements-api-gateway)
 + [Recommended metrics](#application-insights-recommended-metrics)
 + [Performance Counter metrics](#application-insights-performance-counter)
 
@@ -419,6 +427,30 @@ swap\_used
 
 swap\_used\_percent
 
+## Elastic Block Store \(EBS\)<a name="appinsights-metrics-ebs"></a>
+
+VolumeReadBytes
+
+VolumeWriteBytes
+
+VolumeReadOps
+
+VolumeWriteOps
+
+VolumeTotalReadTime 
+
+VolumeTotalWriteTime 
+
+VolumeIdleTime
+
+VolumeQueueLength
+
+VolumeThroughputPercentage
+
+VolumeConsumedReadWriteOps
+
+BurstBalance
+
 ## Elastic Load Balancer \(ELB\)<a name="appinsights-metrics-elb"></a>
 
 EstimatedALBActiveConnectionCount
@@ -723,7 +755,7 @@ BytesUploaded
 
 ## AWS Step Functions<a name="appinsights-metrics-step-functions"></a>
 
-### Execution\-level metrics<a name="appinsights-metrics-step-functions-execution"></a>
+### Execution\-level<a name="appinsights-metrics-step-functions-execution"></a>
 
 ExecutionTime
 
@@ -739,7 +771,7 @@ ExecutionsSucceeded
 
 ExecutionsStarted
 
-### Activity metrics<a name="appinsights-metrics-step-functions-activity"></a>
+### Activity<a name="appinsights-metrics-step-functions-activity"></a>
 
 ActivityRunTime
 
@@ -759,7 +791,7 @@ ActivitiesSucceeded
 
 ActivitiesStarted
 
-### Lambda function metrics<a name="appinsights-metrics-step-functions-lambda"></a>
+### Lambda function<a name="appinsights-metrics-step-functions-lambda"></a>
 
 LambdaFunctionRunTime
 
@@ -777,7 +809,7 @@ LambdaFunctionsSucceeded
 
 LambdaFunctionsStarted
 
-### Service integration metrics<a name="appinsights-metrics-step-functions-service-integration"></a>
+### Service integration<a name="appinsights-metrics-step-functions-service-integration"></a>
 
 ServiceIntegrationRunTime
 
@@ -795,7 +827,7 @@ ServiceIntegrationsSucceeded
 
 ServiceIntegrationsStarted
 
-### Step Functions API metrics<a name="appinsights-metrics-step-functions-api"></a>
+### Step Functions API<a name="appinsights-metrics-step-functions-api"></a>
 
 ThrottledEvents
 
@@ -804,6 +836,62 @@ ProvisionedBucketSize
 ProvisionedRefillRate
 
 ConsumedCapacity
+
+## API Gateway REST API stages<a name="appinsights-metrics-api-gateway"></a>
+
+4XXError
+
+5XXError
+
+IntegrationLatency
+
+Latency
+
+DataProcessed
+
+CacheHitCount
+
+CacheMissCount
+
+## Java<a name="appinsights-metrics-java"></a>
+
+java\_lang\_memory\_heapmemoryusage\_used
+
+java\_lang\_memory\_heapmemoryusage\_committed
+
+java\_lang\_operatingsystem\_openfiledescriptorcount
+
+java\_lang\_operatingsystem\_maxfiledescriptorcount
+
+java\_lang\_operatingsystem\_freephysicalmemorysize
+
+java\_lang\_operatingsystem\_freeswapspacesize
+
+java\_lang\_threading\_threadcount
+
+java\_lang\_threading\_daemonthreadcount
+
+java\_lang\_classloading\_loadedclasscount
+
+java\_lang\_garbagecollector\_collectiontime\_copy
+
+java\_lang\_garbagecollector\_collectiontime\_ps\_scavenge
+
+java\_lang\_garbagecollector\_collectiontime\_parnew
+
+java\_lang\_garbagecollector\_collectiontime\_marksweepcompact
+
+java\_lang\_garbagecollector\_collectiontime\_ps\_marksweep
+
+java\_lang\_garbagecollector\_collectiontime\_concurrentmarksweep
+
+java\_lang\_garbagecollector\_collectiontime\_g1\_young\_generation
+
+java\_lang\_garbagecollector\_collectiontime\_g1\_old\_generation
+
+java\_lang\_garbagecollector\_collectiontime\_g1\_mixed\_generation
+
+java\_lang\_operatingsystem\_committedvirtualmemorysize
 
 ## Metrics With datapoints requirements<a name="appinsights-metrics-datapoint-requirements"></a>
 
@@ -817,6 +905,7 @@ The following metrics follow these datapoints requirements\. Note that CloudWatc
 + [AWS/ApplicationELB](#appinsights-metrics-datapoint-requirements-app-elb)
 + [AWS/AutoScaling](#appinsights-metrics-datapoint-requirements-autoscaling)
 + [AWS/EC2](#appinsights-metrics-datapoint-requirements-ec2)
++ [Elastic Block Store \(EBS\)](#appinsights-metrics-datapoint-requirements-ebs)
 + [AWS/ELB](#appinsights-metrics-datapoint-requirements-elb)
 + [AWS/RDS](#appinsights-metrics-datapoint-requirements-rds)
 + [AWS/Lambda](#appinsights-metrics-datapoint-requirements-lambda)
@@ -825,6 +914,7 @@ The following metrics follow these datapoints requirements\. Note that CloudWatc
 + [AWS/DynamoDB](#appinsights-metrics-datapoint-requirements-dynamo)
 + [AWS/S3](#appinsights-metrics-datapoint-requirements-s3)
 + [AWS/States](#appinsights-metrics-datapoint-requirements-states)
++ [AWS/ApiGateway](#appinsights-metrics-datapoint-requirements-api-gateway)
 
 ### AWS/ApplicationELB<a name="appinsights-metrics-datapoint-requirements-app-elb"></a>
 
@@ -907,6 +997,30 @@ NetworkOut
 NetworkPacketsIn
 
 NetworkPacketsOut
+
+### Elastic Block Store \(EBS\)<a name="appinsights-metrics-datapoint-requirements-ebs"></a>
+
+VolumeReadBytes 
+
+VolumeWriteBytes 
+
+VolumeReadOps
+
+VolumeWriteOps
+
+VolumeTotalReadTime 
+
+VolumeTotalWriteTime 
+
+VolumeIdleTime
+
+VolumeQueueLength
+
+VolumeThroughputPercentage
+
+VolumeConsumedReadWriteOps
+
+BurstBalance
 
 ### AWS/ELB<a name="appinsights-metrics-datapoint-requirements-elb"></a>
 
@@ -1233,6 +1347,20 @@ ProvisionedBucketSize
 ConsumedCapacity
 
 ThrottledEvents
+
+### AWS/ApiGateway<a name="appinsights-metrics-datapoint-requirements-api-gateway"></a>
+
+4XXError 
+
+IntegrationLatency
+
+Latency
+
+DataProcessed
+
+CacheHitCount
+
+CacheMissCount
 
 ## Recommended metrics<a name="application-insights-recommended-metrics"></a>
 

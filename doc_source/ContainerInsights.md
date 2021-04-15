@@ -16,7 +16,7 @@ Container Insights supports encryption with the customer master key \(CMK\) for 
 
 For more information, see [Encrypt Log Data in CloudWatch Logs Using AWS KMS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html)\.
 
-**Supported Platforms**
+## Supported Platforms<a name="container-insights-platforms"></a>
 
 Container Insights is available for Amazon Elastic Container Service, Amazon Elastic Kubernetes Service, and Kubernetes platforms on Amazon EC2 instances\.
 + For Amazon ECS, Container Insights collects metrics at the cluster, task and service levels on both Linux and Windows Server instances\. It can collect metrics at the instance\-level only on Linux instances\.
@@ -25,28 +25,33 @@ Container Insights is available for Amazon Elastic Container Service, Amazon Ela
 + For Amazon Elastic Kubernetes Service, and Kubernetes platforms on Amazon EC2 instances, Container Insights is supported only on Linux instances\.
 + Currently, Container Insights isn't supported in AWS Batch\.
 
-**Supported Regions for Amazon ECS**
+## CloudWatch agent container image<a name="container-insights-download-limit"></a>
+
+Amazon provides a CloudWatch agent container image on Amazon Elastic Container Registry\. For more information, see [cloudwatch\-agent](https://gallery.ecr.aws/cloudwatch-agent/cloudwatch-agent) on Amazon ECR\.
+
+## Supported Regions<a name="container-insights-regions"></a>
 
 Container Insights for Amazon ECS is supported in the following Regions:
 + US East \(N\. Virginia\)
 + US East \(Ohio\)
 + US West \(N\. California\)
 + US West \(Oregon\)
++ Africa \(Cape Town\)
++ Asia Pacific \(Mumbai\)
++ Asia Pacific \(Hong Kong\)
++ Asia Pacific \(Seoul\)
++ Asia Pacific \(Singapore\)
++ Asia Pacific \(Tokyo\)
++ Asia Pacific \(Sydney\)
 + Canada \(Central\)
 + Europe \(Frankfurt\)
 + Europe \(Ireland\)
 + Europe \(London\)
 + Europe \(Paris\)
 + Europe \(Stockholm\)
-+ Asia Pacific \(Hong Kong\)
-+ Asia Pacific \(Tokyo\)
-+ Asia Pacific \(Seoul\)
-+ Asia Pacific \(Singapore\)
-+ Asia Pacific \(Sydney\)
-+ Asia Pacific \(Mumbai\)
 + South America \(São Paulo\)
-
-AWS Fargate is not supported in Europe \(Paris\) or South America \(São Paulo\)\.
++ AWS GovCloud \(US\-East\)
++ AWS GovCloud \(US\-West\)
 
 **Supported Regions for Amazon EKS and Kubernetes**
 
@@ -55,26 +60,22 @@ Container Insights for Amazon EKS and Kubernetes is supported in the following R
 + US East \(Ohio\)
 + US West \(N\. California\)
 + US West \(Oregon\)
++ Asia Pacific \(Hong Kong\)
++ Asia Pacific \(Mumbai\)
++ Asia Pacific \(Seoul\)
++ Asia Pacific \(Singapore\)
++ Asia Pacific \(Sydney\)
++ Asia Pacific \(Tokyo\)
 + Canada \(Central\)
++ China \(Beijing\)
++ China \(Ningxia\)
 + Europe \(Frankfurt\)
 + Europe \(Ireland\)
 + Europe \(London\)
 + Europe \(Paris\)
 + Europe \(Stockholm\)
-+ Asia Pacific \(Hong Kong\)
-+ Asia Pacific \(Mumbai\)
-+ Asia Pacific \(Singapore\)
-+ Asia Pacific \(Sydney\)
-+ Asia Pacific \(Tokyo\)
-+ Asia Pacific \(Seoul\)
 + South America \(São Paulo\)
++ AWS GovCloud \(US\-East\)
++ AWS GovCloud \(US\-West\)
 
 **Topics**
-+ [Setting Up Container Insights](deploy-container-insights.md)
-+ [Viewing Container Insights Metrics](Container-Insights-view-metrics.md)
-+ [Metrics Collected by Container Insights](Container-Insights-metrics.md)
-+ [Container Insights Performance Log Reference](Container-Insights-reference.md)
-+ [Container Insights Prometheus Metrics Monitoring](ContainerInsights-Prometheus.md)
-+ [Troubleshooting Container Insights](ContainerInsights-troubleshooting.md)
-+ [Building Your Own CloudWatch Agent Docker Image](ContainerInsights-build-docker-image.md)
-+ [Deploying Other CloudWatch Agent Features in Your Containers](ContainerInsights-other-agent-features.md)

@@ -5,4 +5,4 @@ A component configuration is a text file in JSON format that describes the confi
 **Topics**
 + [Template fragment](component-config-json.md)
 + [Sections](component-config-sections.md)
-+ [Examples](component-configuration-examples.md)
++ [Example configurations for relevant services](component-configuration-examples.md)

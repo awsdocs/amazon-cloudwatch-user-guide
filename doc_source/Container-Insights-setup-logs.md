@@ -1,6 +1,9 @@
-# Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs<a name="Container-Insights-setup-logs"></a>
+# \(Optional\) Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs<a name="Container-Insights-setup-logs"></a>
 
-To set up FluentD to collect logs from your containers, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up FluentD as a DaemonSet to send logs to CloudWatch Logs\. When you complete this step, FluentD creates the following log groups if they don't already exist\.
+**Note**  
+Amazon has now launched Fluent Bit as the default log solution for Container Insights with significant performance gains\. We recommend that you use Fluent Bit instead of Fluentd\. For more information, see [Set Up Fluent Bit as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)\.
+
+To set up FluentD to collect logs from your containers, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up FluentD as a DaemonSet to send logs to CloudWatch Logs\. When you complete this step, FluentD creates the following log groups if they don't already exist\.
 
 
 | Log Group Name | Log Source | 
@@ -37,7 +40,7 @@ Start this process by downloading FluentD\. When you finish these steps, the dep
    --from-literal=logs.region=region_name -n amazon-cloudwatch
    ```
 
-1. Download and deploy the FluentD DaemonSet to the cluster by running the following command\.
+1. Download and deploy the FluentD DaemonSet to the cluster by running the following command\. Make sure that you are using the container image with correct architecture\. The example manifest only works on x86 instances and will enter `CrashLoopBackOff` if you have Advanced RISC Machine \(ARM\) instances in your cluster\. The FluentD daemonSet does not have an official multi\-architecture docker image that enables you to use one tag for multiple underlying images and let the container runtime pull the right one\. The FluentD ARM image uses a different tag with an `arm64` suffix\.
 
    ```
    kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluentd/fluentd.yaml
@@ -218,3 +221,5 @@ If the pod status is `CreateContainerConfigError`, get the exact error by runnin
 ```
 kubectl describe pod pod_name -n amazon-cloudwatch
 ```
+
+If the pod status is `CrashLoopBackOff`, make sure that the architecture of the Fluentd container image is the same as the node when you installed Fluentd\. If your cluster has both x86 and ARM64 nodes, you can use a kubernetes\.io/arch label to place the images on the correct node\. For more information, see [kuberntes\.io/arch](https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/#kubernetes-io-arch)\. 

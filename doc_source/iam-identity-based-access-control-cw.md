@@ -29,7 +29,7 @@ The following shows an example of a permissions policy\.
 14. }
 ```
 
-This sample policy has one statement that grants permissions to a group for two CloudWatch actions \(`cloudwatch:GetMetricStatisticsdata`, and `cloudwatch:ListMetrics`\), but only if the group uses SSL with the request \(`"aws:SecureTransport":"true"`\)\. For more information about the elements within an IAM policy statement, see [Specifying Policy Elements: Actions, Effects, and Principals](iam-access-control-overview-cw.md#actions-effects-principals-cw) and [IAM Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html) in *IAM User Guide*\.
+This sample policy has one statement that grants permissions to a group for two CloudWatch actions \(`cloudwatch:GetMetricStatistics`, and `cloudwatch:ListMetrics`\), but only if the group uses SSL with the request \(`"aws:SecureTransport":"true"`\)\. For more information about the elements within an IAM policy statement, see [Specifying Policy Elements: Actions, Effects, and Principals](iam-access-control-overview-cw.md#actions-effects-principals-cw) and [IAM Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html) in *IAM User Guide*\.
 
 ## Permissions Required to Use the CloudWatch Console<a name="console-permissions-cw"></a>
 

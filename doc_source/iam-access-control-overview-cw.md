@@ -44,8 +44,8 @@ For more information about ARNs, see [ARNs](https://docs.aws.amazon.com/IAM/late
 | --- | --- | --- | 
 |   `Stop`   |  arn:aws:automate:us\-east\-1:ec2:stop  |  arn:aws:swf:us\-east\-1:*customer\-account*:action/actions/AWS\_EC2\.InstanceId\.Stop/1\.0   | 
 |   `Terminate`   |  arn:aws:automate:us\-east\-1:ec2:terminate  |  arn:aws:swf:us\-east\-1:*customer\-account*:action/actions/AWS\_EC2\.InstanceId\.Terminate/1\.0  | 
-|   `Reboot`   |  n/a  |  arn:aws:swf:us\-east\-1:*customer\-account*:action/actions/AWS\_EC2\.InstanceId\.Reboot/1\.0  | 
-|   `Recover`   |  arn:aws:automate:us\-east\-1:ec2:recover  |  n/a  | 
+|   `Reboot`   |  arn:aws:automate:us\-east\-1:ec2:reboot  |  arn:aws:swf:us\-east\-1:*customer\-account*:action/actions/AWS\_EC2\.InstanceId\.Reboot/1\.0  | 
+|   `Recover`   |  arn:aws:automate:us\-east\-1:ec2:recover  |  arn:aws:swf:us\-east\-1:*customer\-account*:action/actions/AWS\_EC2\.InstanceId\.Recover/1\.0  | 
 
 ## Understanding Resource Ownership<a name="understanding-resource-ownership-cw"></a>
 

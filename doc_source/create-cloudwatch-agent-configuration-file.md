@@ -4,7 +4,7 @@ Before running the CloudWatch agent on any servers, you must create a CloudWatch
 
 The agent configuration file is a JSON file that specifies the metrics and logs that the agent is to collect, including custom metrics\. You can create it by using the wizard or by creating it yourself from scratch\. You could also use the wizard to initially create the configuration file and then modify it manually\. If you create or modify the file manually, the process is more complex, but you have more control over the metrics collected and can specify metrics not available through the wizard\.
 
-Any time you change the agent configuration file, you must then restart the agent to have the changes take effect\.
+Any time you change the agent configuration file, you must then restart the agent to have the changes take effect\. To restart the agent, follow the instructions in [Start the CloudWatch Agent](install-CloudWatch-Agent-on-EC2-Instance-fleet.md#start-CloudWatch-Agent-EC2-fleet)\.
 
 After you have created a configuration file, you can save it manually as a JSON file and then use this file when installing the agent on your servers\. Alternatively, you can store it in Systems Manager Parameter Store if you're going to use Systems Manager when you install the agent on servers\.
 

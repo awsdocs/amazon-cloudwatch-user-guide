@@ -6,18 +6,14 @@ Before you can install any of these workloads, you must install Helm 3\.x by ent
 
 ```
 brew install helm
-helm repo add stable https://kubernetes-charts.storage.googleapis.com
 ```
 
 For more information, see [Helm](https://helm.sh)\.
 
-**Sample workloads for Amazon EKS and Kubernetes clusters**
-+ [\(Optional\) Set Up AWS App Mesh sample workload for Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-appmesh.md)
-+ [\(Optional\) Set Up NGINX with Sample Traffic on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-nginx.md)
-+ [\(Optional\) Set Up memcached with a Metric Exporter on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-memcached.md)
-+ [\(Optional\) Set Up Java/JMX sample workload on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-javajmx.md)
-+ [\(Optional\) Set Up HAProxy with a Metric Exporter on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-haproxy.md)
-
-**Sample workloads for Amazon ECS clusters**
-+ [\(Optional\) Sample App Mesh Workload for Amazon ECS clusters](ContainerInsights-Prometheus-Sample-Workloads-ECS-appmesh.md)
-+ [\(Optional\) Sample Java/JMX Workload for Amazon ECS clusters](ContainerInsights-Prometheus-Sample-Workloads-ECS-javajmx.md)
+**Topics**
++ [Set Up AWS App Mesh sample workload for Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-appmesh.md)
++ [Set Up NGINX with Sample Traffic on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-nginx.md)
++ [Set Up memcached with a Metric Exporter on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-memcached.md)
++ [Set Up Java/JMX sample workload on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-javajmx.md)
++ [Set Up HAProxy with a Metric Exporter on Amazon EKS and Kubernetes](ContainerInsights-Prometheus-Sample-Workloads-haproxy.md)
++ [Tutorial for Adding a New Prometheus Scrape Target: Redis on Amazon EKS and Kubernetes Clusters](ContainerInsights-Prometheus-Setup-redis-eks.md)

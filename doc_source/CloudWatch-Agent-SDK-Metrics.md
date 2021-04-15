@@ -19,6 +19,18 @@ To use SDK Metrics, you must be using version 1\.207573\.0 or later of the Cloud
 + Linux: `/opt/aws/amazon-cloudwatch-agent/bin/CWAGENT_VERSION`
 + Windows Server: `C:\Program Files\Amazon\AmazonCloudWatchAgent\CWAGENT_VERSION`
 
+You can also find the agent version using the command line\. On Linux, enter the following command\.
+
+```
+ /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent -version
+```
+
+On Windows Server, enter the following command\.
+
+```
+& 'C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent.exe' -version
+```
+
 Additionally, you must be using one of the following versions of an AWS SDK\.
 
 

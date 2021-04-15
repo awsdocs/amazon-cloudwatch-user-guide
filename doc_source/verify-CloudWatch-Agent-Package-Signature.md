@@ -4,6 +4,8 @@ GPG signature files are included for CloudWatch agent packages on Linux servers\
 
 For Windows Server, you can use the MSI to verify the signature\.
 
+For macOS computers, the signature is included in the agent download package\.
+
 To find the correct signature file, see the following table\. For each architecture and operating system there is a general link as well as links for each Region\. For example, for Amazon Linux and Amazon Linux 2 and the AMD64 architecture, three of the valid links are:
 + `https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm.sig`
 + `https://s3.us-east-1.amazonaws.com/amazoncloudwatch-agent-us-east-1/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm.sig`
@@ -18,6 +20,8 @@ To find the correct signature file, see the following table\. For each architect
 |  AMD64 |  SUSE  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/suse/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
 |  AMD64 |  Debian  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/debian/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
 |  AMD64 |  Ubuntu  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/ubuntu/amd64/latest/amazon\-cloudwatch\-agent\.deb\.sig  | 
+|  AMD64 |  Oracle  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/oracle\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/oracle\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/oracle\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/oracle\_linux/amd64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
+|  AMD64 |  macOS  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/darwin/amd64/latest/amazon\-cloudwatch\-agent\.pkg https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/darwin/amd64/latest/amazon\-cloudwatch\-agent\.pkg  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/darwin/amd64/latest/amazon\-cloudwatch\-agent\.pkg\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/darwin/amd64/latest/amazon\-cloudwatch\-agent\.pkg\.sig  | 
 |  AMD64 |  Windows  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi  |   https://s3\.amazonaws\.com/amazoncloudwatch\-agent/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi\.sig  https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/windows/amd64/latest/amazon\-cloudwatch\-agent\.msi\.sig  | 
 |  ARM64 |  Amazon Linux 2  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/arm64/latest/amazon\-cloudwatch\-agent\.rpm https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/amazon\_linux/arm64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/amazon\_linux/arm64/latest/amazon\-cloudwatch\-agent\.rpm\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/amazon\_linux/arm64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
 |  ARM64 |  Redhat  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/arm64/latest/amazon\-cloudwatch\-agent\.rpm https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/redhat/arm64/latest/amazon\-cloudwatch\-agent\.rpm  |  https://s3\.amazonaws\.com/amazoncloudwatch\-agent/redhat/arm64/latest/amazon\-cloudwatch\-agent\.rpm\.sig https://s3\.*region*\.amazonaws\.com/amazoncloudwatch\-agent\-*region*/redhat/arm64/latest/amazon\-cloudwatch\-agent\.rpm\.sig  | 
@@ -138,3 +142,60 @@ To find the correct signature file, see the following table\. For each architect
    If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid using the downloaded file\.
 
    Note the warning about trust\. A key is trusted only if you or someone who you trust has signed it\. This doesn't mean that the signature is invalid, only that you have not verified the public key\.
+
+**To verify the CloudWatch agent package on a macOS computer**
++ There are two methods for signature verification on macOS\.
+  + Verify the fingerprint by running the following command\.
+
+    ```
+    pkgutil --check-signature amazon-cloudwatch-agent.pkg
+    ```
+
+    You should see a result similar to the following\.
+
+    ```
+    Package "amazon-cloudwatch-agent.pkg":
+            Status: signed by a developer certificate issued by Apple for distribution
+            Signed with a trusted timestamp on: 2020-10-02 18:13:24 +0000
+            Certificate Chain:
+            1. Developer ID Installer: AMZN Mobile LLC (94KV3E626L)
+            Expires: 2024-10-18 22:31:30 +0000
+            SHA256 Fingerprint:
+            81 B4 6F AF 1C CA E1 E8 3C 6F FB 9E 52 5E 84 02 6E 7F 17 21 8E FB
+            0C 40 79 13 66 8D 9F 1F 10 1C
+            ------------------------------------------------------------------------
+            2. Developer ID Certification Authority
+            Expires: 2027-02-01 22:12:15 +0000
+            SHA256 Fingerprint:
+            7A FC 9D 01 A6 2F 03 A2 DE 96 37 93 6D 4A FE 68 09 0D 2D E1 8D 03
+            F2 9C 88 CF B0 B1 BA 63 58 7F
+            ------------------------------------------------------------------------
+            3. Apple Root CA
+            Expires: 2035-02-09 21:40:36 +0000
+            SHA256 Fingerprint:
+            B0 B1 73 0E CB C7 FF 45 05 14 2C 49 F1 29 5E 6E DA 6B CA ED 7E 2C
+            68 C5 BE 91 B5 A1 10 01 F0 24
+    ```
+  + Or, download and use the \.sig file To use this method, follow these steps\.
+
+    1. Install the GPG application to your macOS host by entering the following command\.
+
+      ```
+      brew install GnuPG
+      ```
+  + Download the package signature file using curl\. To determine the correct signature file, see [CloudWatch Agent Download Links](download-cloudwatch-agent-commandline.md#agent-download-link-table)\.
+  + To verify the signature, run gpg \-\-verify\.
+
+    ```
+    PS> gpg --verify sig-filename agent-download-filename
+    gpg: Signature made 11/29/17 23:00:45 Coordinated Universal Time
+    gpg:                using RSA key D58167303B789C72
+    gpg: Good signature from "Amazon CloudWatch Agent" [unknown]
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg:          There is no indication that the signature belongs to the owner.
+    Primary key fingerprint: 9376 16F3 450B 7D80 6CBD  9725 D581 6730 3B78 9C72
+    ```
+
+    If the output includes the phrase `BAD signature`, check whether you performed the procedure correctly\. If you continue to get this response, contact Amazon Web Services and avoid using the downloaded file\.
+
+    Note the warning about trust\. A key is trusted only if you or someone who you trust has signed it\. This doesn't mean that the signature is invalid, only that you have not verified the public key\.
