@@ -358,7 +358,7 @@ To see Kubernetes API Server metrics in your dashboard, you must have first comp
 
 1. Open the JSON file that you downloaded with a text editor, and make the following changes:
    + Replace all the `{{YOUR_CLUSTER_NAME}}` strings with the exact name of your cluster\. Make sure not to add whitespaces before or after the text\.
-   + Replace all the `{{YOUR_REGION}}` strings with the name of the Region where the metrics are collected\. For example `us-west-2`\. Be sure not to add whitespaces before or after the text\.
+   + Replace all the `{{YOUR_AWS_REGION}}` strings with the name of the Region where the metrics are collected\. For example `us-west-2`\. Be sure not to add whitespaces before or after the text\.
 
 1. Copy the entire JSON blob and paste it into the text box in the CloudWatch console, replacing what is already in the box\.
 
