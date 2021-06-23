@@ -72,7 +72,7 @@ For each download link, there is a general link as well as links for each Region
 
 ## \(Installing on an EC2 Instance\) Attaching an IAM Role<a name="install-CloudWatch-Agent-iam_permissions-first"></a>
 
-To enable the CloudWatch agent to send data from the instance, you must attach an IAM role to the instance\. The role to attach is **CloudWatchAgentServerRole**\.
+To enable the CloudWatch agent to send data from the instance, you must attach an IAM role to the instance\. The role to attach is **CloudWatchAgentServerPolicy**\.
 
 For more information on attaching an IAM role to an instance, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
