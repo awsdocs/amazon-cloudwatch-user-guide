@@ -114,7 +114,7 @@ The conversion steps are as follows:
 + Use the `Synthetics.getPage` function to get a Puppeteer `Page` object\.
 
   ```
-  const page = await synthetics.getPage();
+  const page = synthetics.getPage();
   ```
 
   The page object returned by the Synthetics\.getPage function has the **page\.on** `request`, `response` and `requestfailed` events instrumented for logging\. Synthetics also sets up HAR file generation for requests and responses on the page, and adds the canary ARN to the user\-agent headers of outgoing requests on the page\.
@@ -125,7 +125,7 @@ The script is now ready to be run as a Synthetics canary\. Here is the updated s
 var synthetics = require('Synthetics');  // Synthetics dependency
 
 const basicPuppeteerExample = async function () {
-    const page = await synthetics.getPage(); // Get instrumented page from Synthetics
+    const page = synthetics.getPage(); // Get instrumented page from Synthetics
     await page.goto('https://example.com');
     await page.screenshot({path: '/tmp/example.png'}); // Write screenshot to /tmp folder
 };
@@ -170,7 +170,7 @@ const pageLoadEnvironmentVariable = async function () {
     // INSERT URL here
     const URL = process.env.URL;
 
-    let page = await synthetics.getPage();
+    let page = synthetics.getPage();
     //You can customize the wait condition here. For instance,
     //using 'networkidle2' may be less restrictive.
     const response = await page.goto(URL, {waitUntil: 'domcontentloaded', timeout: 30000});
@@ -271,7 +271,7 @@ const getSecrets = async (secretName) => {
  
 const secretsExample = async function () {
     let URL = "<URL>";
-    let page = await synthetics.getPage();
+    let page = synthetics.getPage();
     
     log.info(`Navigating to URL: ${URL}`);
     const response = await page.goto(URL, {waitUntil: 'domcontentloaded', timeout: 30000});

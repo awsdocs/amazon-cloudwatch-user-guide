@@ -18,7 +18,7 @@ const pageLoadBlueprint = async function () {
 
     let url = "http://smile.amazon.com/";
 
-    let page = await synthetics.getPage();
+    let page = synthetics.getPage();
 
     // Set cookies.  I found that name, value, and either url or domain are required fields.
     const cookies = [{
@@ -72,7 +72,7 @@ const pageLoadBlueprint = async function () {
     // INSERT URL here
     const URL = "https://amazon.com";
 
-    let page = await synthetics.getPage();
+    let page = synthetics.getPage();
     await page.emulate(iPhone);
 
     //You can customize the wait condition here. For instance,
