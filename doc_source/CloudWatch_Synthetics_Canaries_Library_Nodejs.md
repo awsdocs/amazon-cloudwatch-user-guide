@@ -703,7 +703,7 @@ The following canary script code snippet demonstrates an example of navigating t
    let syntheticsLink = new SyntheticsLink(url);
    
    // Navigate to the url.
-   let page = await synthetics.getPage();
+   let page = synthetics.getPage();
    
    // Create a new instance of Synthetics Link
    let link = new SyntheticsLink(url)
