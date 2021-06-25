@@ -56,7 +56,7 @@ To enable metrics explorer to discover EC2 metrics published by the CloudWatch a
 + In the `metrics` section,inside the `metrics_collected` section, check the sections for each resource type that you want metrics explorer to discover, such as the `cpu`, `disk`, and `memory` sections\. Make sure that each of these sections has a `"resources": [ "*"] line.`\. `aggregation_dimensions` parameter includes `[InstanceId"]`\. It can also contain other dimensions\.
 + In the `cpu` section of the `metrics_collected>` section, make sure there is a `"totalcpu": true` line\.
 
-The settings in the previous list cause the CloudWatch agent to publish aggregate metrics for disks, CPUs, and other reousrces that can be plotted in metrics explorer for all the instances that use it\.
+The settings in the previous list cause the CloudWatch agent to publish aggregate metrics for disks, CPUs, and other resources that can be plotted in metrics explorer for all the instances that use it\.
 
 These settings will republish the metrics that you had previously set up to be published with multiple dimensions, adding to your metric costs\.
 
