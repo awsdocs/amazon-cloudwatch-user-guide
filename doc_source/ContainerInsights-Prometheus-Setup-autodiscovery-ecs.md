@@ -141,14 +141,14 @@ This example enables docker label\-based service discovery\. THe CloudWatch agen
       "sd_job_name": "java-prometheus",
       "sd_metrics_path": "/metrics",
       "sd_metrics_ports": "9404; 9406",
-      "sd_task_definition_name_pattern": ".*:task-definition/.*javajmx.*:[0-9]+"
+      "sd_task_definition_arn_pattern": ".*:task-definition/.*javajmx.*:[0-9]+"
     },
     {
       "sd_job_name": "envoy-prometheus",
       "sd_metrics_path": "/stats/prometheus",
       "sd_container_name_pattern": "^envoy$" 
       "sd_metrics_ports": "9901",
-      "sd_task_definition_name_pattern": ".*:task-definition/.*appmesh.*:23"
+      "sd_task_definition_arn_pattern": ".*:task-definition/.*appmesh.*:23"
     }
   ]
 }
@@ -204,7 +204,7 @@ Two service name regular expresion sections are defined:
   "task_definition_list": [
     {
       "sd_metrics_ports": "9150",
-      "sd_task_definition_name_pattern": "*memcached.*"
+      "sd_task_definition_arn_pattern": "*memcached.*"
     }
   ]
 }
