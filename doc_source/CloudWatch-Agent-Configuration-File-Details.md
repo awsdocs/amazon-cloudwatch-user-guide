@@ -412,7 +412,7 @@ The `logs` section includes the following fields:
         If you omit this field, the default value of `false` is used\.
       + `log_group_name` – Optional\. Specifies what to use as the log group name in CloudWatch Logs\. As part of the name, you can use `{instance_id}`, `{hostname}`, `{local_hostname}`, and `{ip_address}` as variables within the name\. `{hostname}` retrieves the hostname from the EC2 metadata, and `{local_hostname}` uses the hostname from the network configuration file\.
 
-        If you use these variables to create many different log groups, keep in mind the limit of 5000 log groups per account per Region\.
+        If you use these variables to create many different log groups, keep in mind the limit of 1,000,000 log groups per Region per account.\.
 
         Allowed characters include a–z, A–Z, 0–9, '\_' \(underscore\), '\-' \(hyphen\), '/' \(forward slash\), and '\.' \(period\)\.
 
