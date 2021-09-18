@@ -51,9 +51,9 @@ To create a visualization with metrics explorer and optionally add it to a dashb
 ## CloudWatch agent configuration for metrics explorer<a name="CloudWatch-Metrics-Explorer-agent"></a>
 
 To enable metrics explorer to discover EC2 metrics published by the CloudWatch agent, make sure that the CloudWatch agent configuration file contains the following values:
-+ In the `metrics` section, make sure that the `aggregation_dimensions` parameter includes `[InstanceId"]`\. It can also contain other dimensions\.
-+ In the `metrics` section, make sure that the `append_dimensions` parameter includes a `{InstanceId":"${aws:InstanceId}"}` line\. It can also contain other lines\.
-+ In the `metrics` section,inside the `metrics_collected` section, check the sections for each resource type that you want metrics explorer to discover, such as the `cpu`, `disk`, and `memory` sections\. Make sure that each of these sections has a `"resources": [ "*"] line.`\. `aggregation_dimensions` parameter includes `[InstanceId"]`\. It can also contain other dimensions\.
++ In the `metrics` section, make sure that the `aggregation_dimensions` parameter includes `["InstanceId"]`\. It can also contain other dimensions\.
++ In the `metrics` section, make sure that the `append_dimensions` parameter includes a `{"InstanceId":"${aws:InstanceId}"}` line\. It can also contain other lines\.
++ In the `metrics` section,inside the `metrics_collected` section, check the sections for each resource type that you want metrics explorer to discover, such as the `cpu`, `disk`, and `memory` sections\. Make sure that each of these sections has a `"resources": ["*"] line.`\. `aggregation_dimensions` parameter includes `["InstanceId"]`\. It can also contain other dimensions\.
 + In the `cpu` section of the `metrics_collected>` section, make sure there is a `"totalcpu": true` line\.
 
 The settings in the previous list cause the CloudWatch agent to publish aggregate metrics for disks, CPUs, and other reousrces that can be plotted in metrics explorer for all the instances that use it\.
