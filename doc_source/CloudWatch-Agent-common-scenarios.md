@@ -147,7 +147,7 @@ The following example configuration files illustrate a use for this feature\. Th
            "used_percent"
         ]
       }
-}
+    }
   },
   "logs": {
     "logs_collected": {
