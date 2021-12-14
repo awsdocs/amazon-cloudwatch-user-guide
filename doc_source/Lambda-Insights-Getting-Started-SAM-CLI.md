@@ -47,7 +47,7 @@ The AWS SAM CLI supports Lambda extensions\. However, every locally executed inv
 
 **Troubleshooting**
 
-To troubleshoot your Lambda Insights installation, add the following environment variable to your Lambda functino to enable debug logging\.
+To troubleshoot your Lambda Insights installation, add the following environment variable to your Lambda function to enable debug logging\.
 
 ```
 Resources:
