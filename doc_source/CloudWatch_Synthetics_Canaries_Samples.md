@@ -164,7 +164,7 @@ const apiCanaryBlueprint = async function () {
     await synthetics.executeHttpStep('Verify GET products API with valid name', requestOptionsStep1, validatePositiveCase, stepConfig);
     
     let requestOptionsStep2 = {
-        'hostname': ‘myproductsEndpoint.com',
+        'hostname': 'myproductsEndpoint.com',
         'method': 'GET',
         'path': '/test/canary/InvalidName(',
         'port': 443,
