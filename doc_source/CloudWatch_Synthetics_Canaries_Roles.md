@@ -1,6 +1,6 @@
 # Required roles and permissions for CloudWatch canaries<a name="CloudWatch_Synthetics_Canaries_Roles"></a>
 
-To view canary details and the results of canary runs, you must be signed in as an IAM user who has either the `CloudWatchSyntheticsFullAccess` or the `CloudWatchSyntheticsReadOnlyAccess` attached\. To read all Synthetics data in the console, you also need the `AmazonS3ReadOnlyAccess` and `CloudWatchReadOnlyAccess` policies\. To view the source code used by canaries, you also need the `AWSLambdaReadOnlyAccess` policy\.
+To view canary details and the results of canary runs, you must be signed in as an IAM user who has either the `CloudWatchSyntheticsFullAccess` or the `CloudWatchSyntheticsReadOnlyAccess` attached\. To read all Synthetics data in the console, you also need the `AmazonS3ReadOnlyAccess` and `CloudWatchReadOnlyAccess` policies\. To view the source code used by canaries, you also need the `AWSLambda_ReadOnlyAccess` policy\.
 
 To create canaries, you must be signed in as an IAM user who has the `CloudWatchSyntheticsFullAccess` policy or a similar set of permissions\. To create IAM roles for the canaries, you also need the following inline policy statement:
 
