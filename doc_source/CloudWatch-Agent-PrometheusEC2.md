@@ -25,7 +25,7 @@ The CloudWatch agent with Prometheus monitoring needs two configurations to scra
 
 ### Prometheus scrape configuration<a name="CloudWatch-Agent-PrometheusEC2-configure-scrape"></a>
 
-The CloudWatch agent supports the standard Prometheus scrape conifigurations as documented in [ <scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. You can edit this section to update the configurations that are already in this file, and add additional Prometheus scraping targets\. A sample configuration file contains the following global configuration lines:
+The CloudWatch agent supports the standard Prometheus scrape configurations as documented in [ <scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. You can edit this section to update the configurations that are already in this file, and add additional Prometheus scraping targets\. A sample configuration file contains the following global configuration lines:
 
 ```
 PS C:\ProgramData\Amazon\AmazonCloudWatchAgent> cat prometheus.yaml
