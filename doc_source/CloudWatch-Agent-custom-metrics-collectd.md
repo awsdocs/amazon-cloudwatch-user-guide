@@ -7,8 +7,7 @@ You use the collectd software to send the metrics to the CloudWatch agent\. For 
 The collectd software is not installed automatically on every server\. On a server running Amazon Linux 2, follow these steps to install collectd
 
 ```
-sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum install -y collectd
+sudo amazon-linux-extras install collectd
 ```
 
 For information about installing collectd on other systems, see the [Download page for collectd\.](https://collectd.org/download.shtml) 
