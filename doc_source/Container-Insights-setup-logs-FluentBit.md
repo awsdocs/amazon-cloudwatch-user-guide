@@ -174,7 +174,7 @@ To stop Fluent Bit application logs, remove the following section from the `Flue
 [INPUT]
         Name                tail
         Tag                 application.*
-        Path                /var/log/containers/fluent_bit*
+        Path                /var/log/containers/fluent-bit*
         Parser              docker
         DB                  /fluent-bit/state/flb_log.db
         Mem_Buf_Limit       5MB
