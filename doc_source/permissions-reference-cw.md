@@ -1,41 +1,42 @@
-# Amazon CloudWatch Permissions Reference<a name="permissions-reference-cw"></a>
+# Amazon CloudWatch permissions reference<a name="permissions-reference-cw"></a>
 
-When you are setting up [Access Control](auth-and-access-control-cw.md#access-control-cw) and writing permissions policies that you can attach to an IAM identity \(identity\-based policies\), you can use the following table as a reference\. The table lists each CloudWatch API operation and the corresponding actions for which you can grant permissions to perform the action\. You specify the actions in the policy's `Action` field, and you specify a wildcard character \(\*\) as the resource value in the policy's `Resource` field\.
+When you are setting up [Access control](auth-and-access-control-cw.md#access-control-cw) and writing permissions policies that you can attach to an IAM identity \(identity\-based policies\), you can use the following table as a reference\. The table lists each CloudWatch API operation and the corresponding actions for which you can grant permissions to perform the action\. You specify the actions in the policy's `Action` field, and you specify a wildcard character \(\*\) as the resource value in the policy's `Resource` field\.
 
 You can use AWS\-wide condition keys in your CloudWatch policies to express conditions\. For a complete list of AWS\-wide keys, see [AWS Global and IAM Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\.
 
 **Note**  
-To specify an action, use the `cloudwatch:` prefix followed by the API operation name\. For example: `cloudwatch:GetMetricStatistics`, `cloudwatch:ListMetrics`, or `cloudwatch:*` \(for all CloudWatch actions\)\.
+To specify an action, use the `cloudwatch:` prefix followed by the API operation name\. For example: `cloudwatch:GetMetricData`, `cloudwatch:ListMetrics`, or `cloudwatch:*` \(for all CloudWatch actions\)\.
 
 **Topics**
-+ [CloudWatch API Operations and Required Permissions for Actions](#cw-permissions-table)
-+ [CloudWatch Contributor Insights API Operations and Required Permissions for Actions](#cw-contributor-insights-permissions-table)
-+ [CloudWatch Events API Operations and Required Permissions for Actions](#cwe-permissions-table)
-+ [CloudWatch Logs API Operations and Required Permissions for Actions](#cwl-permissions-table)
-+ [Amazon EC2 API Operations and Required Permissions for Actions](#cw-ec2-permissions-table)
-+ [Amazon EC2 Auto Scaling API Operations and Required Permissions for Actions](#cw-as-permissions-table)
++ [CloudWatch API operations and required permissions for actions](#cw-permissions-table)
++ [CloudWatch Contributor Insights API operations and required permissions for actions](#cw-contributor-insights-permissions-table)
++ [CloudWatch Events API operations and required permissions for actions](#cwe-permissions-table)
++ [CloudWatch Logs API operations and required permissions for actions](#cwl-permissions-table)
++ [Amazon EC2 API operations and required permissions for actions](#cw-ec2-permissions-table)
++ [Amazon EC2 Auto Scaling API operations and required permissions for actions](#cw-as-permissions-table)
 
-## CloudWatch API Operations and Required Permissions for Actions<a name="cw-permissions-table"></a>
+## CloudWatch API operations and required permissions for actions<a name="cw-permissions-table"></a>
 
 
-| CloudWatch API Operations | Required Permissions \(API Actions\) | 
+| CloudWatch API operations | Required permissions \(API actions\) | 
 | --- | --- | 
 |  [DeleteAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteAlarms.html)  |  `cloudwatch:DeleteAlarms` Required to delete an alarm\.  | 
 |  [DeleteDashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteDashboards.html)  |  `cloudwatch:DeleteDashboards` Required to delete a dashboard\.  | 
 |  [DeleteMetricStream](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteMetricStream.html)  |  `cloudwatch:DeleteMetricStream` Required to delete a metric stream\.  | 
-|  [DescribeAlarmHistory](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarmHistory.html)  |  `cloudwatch:DescribeAlarmHistory` Required to view alarm history\.  | 
-|  [DescribeAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)  |  `cloudwatch:DescribeAlarms` Required to retrieve alarm information by name\.  | 
+|  [DescribeAlarmHistory](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarmHistory.html)  |  `cloudwatch:DescribeAlarmHistory` Required to view alarm history\. To retrieve information about composite alarms, your `cloudwatch:DescribeAlarmHistory` permission must have a `*` scope\. You can't return information about composite alarms if your `cloudwatch:DescribeAlarmHistory` permission has a narrower scope\.  | 
+|  [DescribeAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)  |  `cloudwatch:DescribeAlarms` Required to retrieve information about alarms\. To retrieve information about composite alarms, your `cloudwatch:DescribeAlarms` permission must have a `*` scope\. You can't return information about composite alarms if your `cloudwatch:DescribeAlarms` permission has a narrower scope\.  | 
 |  [DescribeAlarmsForMetric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarmsForMetric.html)  |  `cloudwatch:DescribeAlarmsForMetric` Required to view alarms for a metric\.  | 
 |  [DisableAlarmActions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DisableAlarmActions.html)  |  `cloudwatch:DisableAlarmActions` Required to disable an alarm action\.  | 
 |  [EnableAlarmActions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_EnableAlarmActions.html)  |  `cloudwatch:EnableAlarmActions` Required to enable an alarm action\.  | 
 |  [GetDashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetDashboard.html)  |  `cloudwatch:GetDashboard` Required to display data about existing dashboards\.  | 
-|  [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)  |  `cloudwatch:GetMetricData` Required to retrieve large batches of metric data and perform metric math on that data\.  | 
+|  [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)  |  `cloudwatch:GetMetricData` Required to graph metic data in the CloudWatch console, to retrieve large batches of metric data, and perform metric math on that data\.  | 
 |  [GetMetricStatistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html)  |  `cloudwatch:GetMetricStatistics` Required to view graphs in other parts of the CloudWatch console and in dashboard widgets\.  | 
 |  [GetMetricStream](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStream.html)  |  `cloudwatch:GetMetricStream` Required to view information about a metric stream\.  | 
 |  [GetMetricWidgetImage](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricWidgetImage.html)  |  `cloudwatch:GetMetricWidgetImage` Required to retrieve a snapshot graph of one or more CloudWatch metrics as a bitmap image\.  | 
 |  [ListDashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListDashboards.html)  |  `cloudwatch:ListDashboards` Required to view the list of CloudWatch dashboards in your account\.  | 
 |  [ListMetrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html)  |  `cloudwatch:ListMetrics` Required to view or search metric names within the CloudWatch console and in the CLI\. Required to select metrics on dashboard widgets\.  | 
 |  [ListMetricStreams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetricStreams.html)  |  `cloudwatch:ListMetricStreams` Required to view or search the list of metric streams in the account\.  | 
+|  [PutCompositeAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutCompositeAlarm.html)  |  `cloudwatch:PutCompositeAlarm` Required to create a composite alarm\. To create a composite alarm, your `cloudwatch:PutCompositeAlarm` permission must have a `*` scope\. You can't return information about composite alarms if your `cloudwatch:PutCompositeAlarm` permission has a narrower scope\.  | 
 |  [PutDashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutDashboard.html)  |  `cloudwatch:PutDashboard` Required to create a dashboard or update an existing dashboard\.  | 
 |  [PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html)  |  `cloudwatch:PutMetricAlarm` Required to create or update an alarm\.  | 
 |  [PutMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html)  |  `cloudwatch:PutMetricData` Required to create metrics\.  | 
@@ -46,13 +47,13 @@ To specify an action, use the `cloudwatch:` prefix followed by the API operation
 |  [TagResource](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html)  |  `cloudwatch:TagResource` Required to add or update tags on CloudWatch resources such as alarms and Contributor Insights rules\.  | 
 |  [UntagResource](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html)  |  `cloudwatch:UntagResource` Required to remove tags from CloudWatch resources \.  | 
 
-## CloudWatch Contributor Insights API Operations and Required Permissions for Actions<a name="cw-contributor-insights-permissions-table"></a>
+## CloudWatch Contributor Insights API operations and required permissions for actions<a name="cw-contributor-insights-permissions-table"></a>
 
 **Important**  
-When you grant a user the `cloudwatch:PutInsightRule` permission, by default that user can create a rule that evaluates any log group in CloudWatch Logs\. You can add IAM policy conditions that limit these permissions for a user to include and exclude specific log groups\. For more information, see [Using Condition Keys to Limit Contributor Insights Users' Access to Log Groups](iam-cw-condition-keys-contributor.md)\.
+When you grant a user the `cloudwatch:PutInsightRule` permission, by default that user can create a rule that evaluates any log group in CloudWatch Logs\. You can add IAM policy conditions that limit these permissions for a user to include and exclude specific log groups\. For more information, see [Using condition keys to limit Contributor Insights users' access to log groups](iam-cw-condition-keys-contributor.md)\.
 
 
-| CloudWatch Contributor Insights API Operations | Required Permissions \(API Actions\) | 
+| CloudWatch Contributor Insights API operations | Required permissions \(API actions\) | 
 | --- | --- | 
 |  [DeleteInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteInsightRules.html)  |  `cloudwatch:DeleteInsightRules` Required to delete Contributor Insights rules\.  | 
 |  [DescribeInsightRules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeInsightRules.html)  |  `cloudwatch:DescribeInsightRules` Required to view the Contributor Insights rules in your account\.  | 
@@ -60,10 +61,10 @@ When you grant a user the `cloudwatch:PutInsightRule` permission, by default tha
 |  [GetInsightRuleReport](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetInsightRuleReport.html)  |  `cloudwatch:GetInsightRuleReport` Required to retrieve time series data and other statistics collectd by Contributor Insights rules\.  | 
 |  [PutInsightRule](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutInsightRule.html)  |  `cloudwatch:PutInsightRule` Required to create Contributor Insights rules\. See the **Important** note at the beginning of this table\.  | 
 
-## CloudWatch Events API Operations and Required Permissions for Actions<a name="cwe-permissions-table"></a>
+## CloudWatch Events API operations and required permissions for actions<a name="cwe-permissions-table"></a>
 
 
-| CloudWatch Events API Operations | Required Permissions \(API Actions\) | 
+| CloudWatch Events API operations | Required permissions \(API actions\) | 
 | --- | --- | 
 |  [DeleteRule](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_DeleteRule.html)  |  `events:DeleteRule` Required to delete a rule\.  | 
 |  [DescribeRule](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_DescribeRule.html)  |  `events:DescribeRule` Required to list the details about a rule\.  | 
@@ -78,10 +79,10 @@ When you grant a user the `cloudwatch:PutInsightRule` permission, by default tha
 |  [RemoveTargets](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_RemoveTargets.html)  |  `events:RemoveTargets` Required to remove a target from a rule\.  | 
 |  [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html)  |  `events:TestEventPattern` Required to test an event pattern against a given event\.  | 
 
-## CloudWatch Logs API Operations and Required Permissions for Actions<a name="cwl-permissions-table"></a>
+## CloudWatch Logs API operations and required permissions for actions<a name="cwl-permissions-table"></a>
 
 
-| CloudWatch Logs API Operations | Required Permissions \(API Actions\) | 
+| CloudWatch Logs API operations | Required permissions \(API actions\) | 
 | --- | --- | 
 |  [CancelExportTask](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CancelExportTask.html)  |  `logs:CancelExportTask` Required to cancel a pending or running export task\.  | 
 |  [CreateExportTask](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateExportTask.html)  |  `logs:CreateExportTask` Required to export data from a log group to an Amazon S3 bucket\.  | 
@@ -123,10 +124,10 @@ When you grant a user the `cloudwatch:PutInsightRule` permission, by default tha
 |  [TagLogGroup](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html)  |  `logs:TagLogGroup` Required to add or update log group tags\.  | 
 |  [TestMetricFilter](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TestMetricFilter.html)  |  `logs:TestMetricFilter` Required to test a filter pattern against a sampling of log event messages\.  | 
 
-## Amazon EC2 API Operations and Required Permissions for Actions<a name="cw-ec2-permissions-table"></a>
+## Amazon EC2 API operations and required permissions for actions<a name="cw-ec2-permissions-table"></a>
 
 
-| Amazon EC2 API Operations | Required Permissions \(API Actions\) | 
+| Amazon EC2 API operations | Required permissions \(API actions\) | 
 | --- | --- | 
 |  [DescribeInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstanceStatus.html)  |  `ec2:DescribeInstanceStatus` Required to view EC2 instance status details\.  | 
 |  [DescribeInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)  |  `ec2:DescribeInstances` Required to view EC2 instance details\.  | 
@@ -134,10 +135,10 @@ When you grant a user the `cloudwatch:PutInsightRule` permission, by default tha
 |  [StopInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html)  |  `ec2:StopInstances` Required to stop an EC2 instance\.  | 
 |  [TerminateInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html)  |  `ec2:TerminateInstances` Required to terminate an EC2 instance\.  | 
 
-## Amazon EC2 Auto Scaling API Operations and Required Permissions for Actions<a name="cw-as-permissions-table"></a>
+## Amazon EC2 Auto Scaling API operations and required permissions for actions<a name="cw-as-permissions-table"></a>
 
 
-| Amazon EC2 Auto Scaling API Operations | Required Permissions \(API Actions\) | 
+| Amazon EC2 Auto Scaling API operations | Required permissions \(API actions\) | 
 | --- | --- | 
 |  Scaling  |  `autoscaling:Scaling` Required to scale an Auto Scaling group\.  | 
 |  Trigger  |  `autoscaling:Trigger` Required to trigger an Auto Scaling action\.  | 

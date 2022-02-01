@@ -1,4 +1,4 @@
-# Graph Metrics Manually on a CloudWatch Dashboard<a name="add_old_metrics_to_graph"></a>
+# Graph metrics manually on a CloudWatch dashboard<a name="add_old_metrics_to_graph"></a>
 
 If a metric hasn't published data in the past 14 days, you can't find it when searching for metrics to add to a graph on a CloudWatch dashboard\. Use the following steps to add any metric manually to an existing graph\.
 
@@ -8,7 +8,7 @@ If a metric hasn't published data in the past 14 days, you can't find it when se
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. The dashboard must already contain a graph where you want to add the metric\. If it doesn't, create the graph and add any metric to it\. For more information, see [Add or Remove a Graph from a CloudWatch Dashboard](add_remove_graph_dashboard.md)\.
+1. The dashboard must already contain a graph where you want to add the metric\. If it doesn't, create the graph and add any metric to it\. For more information, see [Add or remove a graph from a CloudWatch dashboard](add_remove_graph_dashboard.md)\.
 
 1. Choose **Actions**, **View/edit source**\.
 

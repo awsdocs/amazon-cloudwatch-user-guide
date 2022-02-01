@@ -1,8 +1,8 @@
-# Viewing Container Insights Metrics<a name="Container-Insights-view-metrics"></a>
+# Viewing Container Insights metrics<a name="Container-Insights-view-metrics"></a>
 
 After you have Container Insights set up and it is collecting metrics, you can view those metrics in the CloudWatch console\.
 
-For Container Insights metrics to appear on your dashboard, you must complete the Container Insights setup\. For more information, see [Setting Up Container Insights](deploy-container-insights.md)\.
+For Container Insights metrics to appear on your dashboard, you must complete the Container Insights setup\. For more information, see [Setting up Container Insights](deploy-container-insights.md)\.
 
 This procedure explains how to view the metrics that Container Insights automatically generates from the collected log data\. The rest of this section explains how to further dive into your data and use CloudWatch Logs Insights to see more metrics at more levels of granularity\.
 
@@ -14,7 +14,11 @@ This procedure explains how to view the metrics that Container Insights automati
 
 1. Use the drop\-down boxes near the top to select the type of resource to view, as well as the specific resource\.
 
-You can set a CloudWatch alarm on any metric that Container Insights collects\. For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)
+You can set a CloudWatch alarm on any metric that Container Insights collects\. For more information, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)
+
+**Note**  
+If you have already set up CloudWatch Application Insights to monitor your containerized applications, the Application Insights dashboard appears below the Container Insights dashboard\. If you have not already enabled Application Insights, you can do so by choosing **Auto\-configure Application Insights** below the performance view in the Container Insights dashboard\.  
+For more information about Application Insights and containerized applications, see [Enable Application Insights for Amazon ECS and Amazon EKS resource monitoring](appinsights-setting-up-console.md#appinsights-container-insights)\.
 
 ## Viewing the top contributors<a name="Container-Insights-view-metrics-topn"></a>
 
@@ -27,11 +31,11 @@ For some of the views in Container Insights performance monitoring, you can also
 
 When you are viewing one of these types of resources, the bottom of the page displays a table sorted initially by CPU usage\. You can change it to sort by memory usage or recent activity\. To see more about one of the rows in the table, you can select the checkbox next to that row and then choose **Actions** and choose one of the options in the **Actions** menu\.
 
-## Using CloudWatch Logs Insights to View Container Insights Data<a name="Container-Insights-CloudWatch-Logs-Insights"></a>
+## Using CloudWatch Logs Insights to view Container Insights data<a name="Container-Insights-CloudWatch-Logs-Insights"></a>
 
 Container Insights collects metrics by using performance log events with using [embedded metric format](CloudWatch_Embedded_Metric_Format.md)\. The logs are stored in CloudWatch Logs\. CloudWatch generates several metrics automatically from the logs which you can view in the CloudWatch console\. You can also do a deeper analysis of the performance data that is collected by using CloudWatch Logs Insights queries\.
 
-For more information about CloudWatch Logs Insights, see [Analyze Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\. For more information about the log fields you can use in queries, see [Container Insights Performance Log Events for Amazon EKS and Kubernetes](Container-Insights-reference-performance-logs-EKS.md)\.
+For more information about CloudWatch Logs Insights, see [Analyze Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\. For more information about the log fields you can use in queries, see [Container Insights performance log events for Amazon EKS and Kubernetes](Container-Insights-reference-performance-logs-EKS.md)\.
 
 **To use CloudWatch Logs Insights to query your container metric data**
 
@@ -75,7 +79,7 @@ For more information about CloudWatch Logs Insights, see [Analyze Log Data with 
 
 1. From the map view, you can pause your pointer over any resource in the map to see basic metrics about that resource\. You can choose any resource to see more detailed graphs about the resource\.
 
-## Use Case: Seeing Task\-Level Metrics in Amazon ECS Containers<a name="Container-Insights-CloudWatch-Logs-Insights-example"></a>
+## Use case: Seeing task\-level metrics in Amazon ECS containers<a name="Container-Insights-CloudWatch-Logs-Insights-example"></a>
 
 The following example illustrates how to use CloudWatch Logs Insights to dive deeper into your Container Insights logs\. For more examples, see the blog [ Introducing Amazon CloudWatch Container Insights for Amazon ECS](http://aws.amazon.com/blogs/mt/introducing-container-insights-for-amazon-ecs/)\.
 
@@ -86,7 +90,7 @@ stats avg(CpuUtilized) as CPU, avg(MemoryUtilized) as Mem by TaskId, ContainerNa
 | sort Mem, CPU desc
 ```
 
-## Other Sample Queries for Container Insights<a name="Container-Insights-sample-queries"></a>
+## Other sample queries for Container Insights<a name="Container-Insights-sample-queries"></a>
 
 **List of your pods, sorted by average number of container restarts**
 

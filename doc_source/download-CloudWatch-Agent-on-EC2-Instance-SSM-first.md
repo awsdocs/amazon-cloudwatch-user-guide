@@ -1,8 +1,8 @@
-# Download and Configure the CloudWatch Agent<a name="download-CloudWatch-Agent-on-EC2-Instance-SSM-first"></a>
+# Download and configure the CloudWatch agent<a name="download-CloudWatch-Agent-on-EC2-Instance-SSM-first"></a>
 
 This section explains how to use Systems Manager to download the agent and then how to create your agent configuration file\. Before you can use Systems Manager to download the agent, you must make sure that the instance is configured correctly for Systems Manager\.
 
-## Installing or Updating SSM Agent<a name="update-SSM-Agent-EC2instance-first"></a>
+## Installing or updating SSM Agent<a name="update-SSM-Agent-EC2instance-first"></a>
 
 On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install SSM Agent on the instance if you haven't already done so\. 
 
@@ -10,11 +10,11 @@ For information about installing or updating SSM Agent on an instance running Li
 
 For information about installing or updating the SSM Agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 
-## \(Optional\) Verify Systems Manager Prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-first"></a>
+## \(Optional\) Verify Systems Manager prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-first"></a>
 
 Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Systems Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html#systems-manager-prereqs) in the *AWS Systems Manager User Guide*\.
 
-## Verify Internet Access<a name="install-CloudWatch-Agent-internet-access-first"></a>
+## Verify internet access<a name="install-CloudWatch-Agent-internet-access-first"></a>
 
 Your Amazon EC2 instances must have outbound internet access to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
@@ -53,10 +53,10 @@ Use the following steps to download the CloudWatch agent package using Systems M
 
    
 
-## Create and Modify the Agent Configuration File<a name="CW-Agent-Instance-Create-Configuration-File-first"></a>
+## Create and modify the agent configuration file<a name="CW-Agent-Instance-Create-Configuration-File-first"></a>
 
 After you have downloaded the CloudWatch agent, you must create the configuration file before you start the agent on any servers\.
 
 If you're going to save your agent configuration file in the Systems Manager Parameter Store, you must use an EC2 instance to save to the Parameter Store\. Additionally, you must first attach to that instance the `CloudWatchAgentAdminRole` IAM role\. For more information about attaching roles, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-For more information about creating the CloudWatch agent configuration file, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+For more information about creating the CloudWatch agent configuration file, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.

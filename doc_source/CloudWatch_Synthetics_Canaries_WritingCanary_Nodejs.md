@@ -1,13 +1,13 @@
 # Writing a Node\.js canary script<a name="CloudWatch_Synthetics_Canaries_WritingCanary_Nodejs"></a>
 
 **Topics**
-+ [Creating a CloudWatch Synthetics canary From scratch](#CloudWatch_Synthetics_Canaries_write_from_scratch)
++ [Creating a CloudWatch Synthetics canary from scratch](#CloudWatch_Synthetics_Canaries_write_from_scratch)
 + [Changing an existing Puppeteer script to use as a Synthetics canary](#CloudWatch_Synthetics_Canaries_modify_puppeteer_script)
 + [Environment variables](#CloudWatch_Synthetics_Environment_Variables)
 + [Integrating your canary with other AWS services](#CloudWatch_Synthetics_Canaries_AWS_integrate)
 + [Forcing your canary to use a static IP address](#CloudWatch_Synthetics_Canaries_staticIP)
 
-## Creating a CloudWatch Synthetics canary From scratch<a name="CloudWatch_Synthetics_Canaries_write_from_scratch"></a>
+## Creating a CloudWatch Synthetics canary from scratch<a name="CloudWatch_Synthetics_Canaries_write_from_scratch"></a>
 
 Here is an example minimal Synthetics Canary script\. This script passes as a successful run, and returns a string\. To see what a failing canary looks like, change `let fail = false;` to `let fail = true;`\. 
 

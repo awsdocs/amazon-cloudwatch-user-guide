@@ -1,4 +1,4 @@
-# Retrieve Custom Metrics with collectd<a name="CloudWatch-Agent-custom-metrics-collectd"></a>
+# Retrieve custom metrics with collectd<a name="CloudWatch-Agent-custom-metrics-collectd"></a>
 
 You can retrieve additional metrics from your applications or services using the CloudWatch agent with the collectd protocol, which is supported only on Linux servers\. collectd is a popular open\-source solution with plugins that can gather system statistics for a wide variety of applications\. By combining the system metrics that the CloudWatch agent can already collect with the additional metrics from collectd, you can better monitor, analyze, and troubleshoot your systems and applications\. For more information about collectd, see [collectd \- The system statistics collection daemon](https://collectd.org/)\.
 
@@ -12,7 +12,7 @@ sudo amazon-linux-extras install collectd
 
 For information about installing collectd on other systems, see the [Download page for collectd\.](https://collectd.org/download.shtml) 
 
-To collect these custom metrics, add a **"collectd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+To collect these custom metrics, add a **"collectd": \{\}** line to the **metrics\_collected** section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it is done for you\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.
 
 Optional parameters are also available\. If you are using collectd and you do not use `/etc/collectd/auth_file` as your **collectd\_auth\_file**, you must set some of these options\. 
 + **service\_address:** The service address to which the CloudWatch agent should listen\. The format is `"udp://ip:port`\. The default is `udp://127.0.0.1:25826`\.
@@ -53,9 +53,9 @@ The following is an example of the collectd section of the agent configuration f
 }
 ```
 
-## Viewing collectd Metrics Imported by the CloudWatch Agent<a name="CloudWatch-view-collectd-metrics"></a>
+## Viewing collectd metrics imported by the CloudWatch agent<a name="CloudWatch-view-collectd-metrics"></a>
 
-After importing collectd metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view collectd metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+After importing collectd metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view collectd metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 **To view collectd metrics in the CloudWatch console**
 

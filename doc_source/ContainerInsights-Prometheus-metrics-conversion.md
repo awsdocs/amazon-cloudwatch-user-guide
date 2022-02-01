@@ -8,7 +8,7 @@ The Prometheus client libraries offer four core metric types:
 
 The CloudWatch agent supports the counter, gauge, and summary metric types\. Support for histogram metrics is planned for an upcoming release\.
 
- The Prometheus metrics with the unsupported histogram metric type are dropped by the CloudWatch agent\. For more information, see [Logging Dropped Prometheus Metrics](ContainerInsights-Prometheus-troubleshooting-EKS.md#ContainerInsights-Prometheus-troubleshooting-droppedmetrics)\.
+ The Prometheus metrics with the unsupported histogram metric type are dropped by the CloudWatch agent\. For more information, see [Logging dropped Prometheus metrics](ContainerInsights-Prometheus-troubleshooting-EKS.md#ContainerInsights-Prometheus-troubleshooting-droppedmetrics)\.
 
 **Gauge metrics**
 

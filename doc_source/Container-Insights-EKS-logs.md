@@ -8,10 +8,11 @@ If you are not already using Fluentd, we recommend that you use Fluent Bit for t
 
 **Topics**
 + [Fluent Bit and Fluentd performance comparison](#Container-Insights-EKS-logs-performance)
-+ [Set Up Fluent Bit as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)
-+ [\(Optional\) Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs.md)
-+ [\(Optional\) Set Up Amazon EKS Control Plane Logging](Container-Insights-setup-control-plane-logging.md)
-+ [\(Optional\) Enable App Mesh Envoy Access Logs](ContainerInsights-Prometheus-Sample-Workloads-appmesh-envoy.md)
++ [Set up Fluent Bit as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)
++ [\(Optional\) Set up FluentD as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs.md)
++ [\(Optional\) Set up Amazon EKS control plane logging](Container-Insights-setup-control-plane-logging.md)
++ [\(Optional\) Enable App Mesh Envoy access logs](ContainerInsights-Prometheus-Sample-Workloads-appmesh-envoy.md)
++ [\(Optional\) Enable the Use\_Kubelet feature for large clusters](ContainerInsights-use-kubelet.md)
 
 ## Fluent Bit and Fluentd performance comparison<a name="Container-Insights-EKS-logs-performance"></a>
 

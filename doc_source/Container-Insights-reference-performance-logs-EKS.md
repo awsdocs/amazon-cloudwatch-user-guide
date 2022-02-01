@@ -1,4 +1,4 @@
-# Container Insights Performance Log Events for Amazon EKS and Kubernetes<a name="Container-Insights-reference-performance-logs-EKS"></a>
+# Container Insights performance log events for Amazon EKS and Kubernetes<a name="Container-Insights-reference-performance-logs-EKS"></a>
 
 The following are examples of the performance log events that Container Insights collects from Amazon EKS and Kubernetes clusters\.
 

@@ -1,8 +1,8 @@
-# Add a Metrics Explorer Widget to a CloudWatch Dashboard<a name="add_metrics_explorer_dashboard"></a>
+# Add a metrics explorer widget to a CloudWatch dashboard<a name="add_metrics_explorer_dashboard"></a>
 
 Metrics explorer widgets include graphs of multiple resources that have the same tag, or share the same resource property such as an instance type\. These widgets stay up to date, as resources that match are created or deleted\. Adding metrics explorer widgets to your dashboard helps you to troubleshoot your environment more efficiently\.
 
-For example, you can monitor your fleet of EC2 instances by assigning tags that represent their environments, such as production or test\. You can then use these tags to filter and aggregate the operational metrics such as `CPUUtilization` to understand the health and performance of the EC2 instances that are associated with each tag\.
+For example, you can monitor your fleet of EC2 instances by assigning tags that represent their environments, such as production or test\. You can then use these tags to filter and aggregate the operational metrics, such as `CPUUtilization`, to understand the health and performance of the EC2 instances that are associated with each tag\.
 
 The following steps explain how to add a metrics explorer widget to a dashboard using the console\. You can also add it programmatically or by using AWS CloudFormation\. For more information, see [ Metrics Explorer Widget Object Definition](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html#CloudWatch-Dashboard-Properties-Metric-Explorer-Object) and [ AWS::CloudWatch::Dashboard](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html)\.
 
@@ -18,7 +18,7 @@ The following steps explain how to add a metrics explorer widget to a dashboard 
 
 1. Choose **Explorer** and then choose **Next**\. 
 **Note**  
-You must be opted in to the new dashboard view to be able to add a Metrics Explorer widget\.To opt in, choose **Dashboards** in the navigation pane, then choose **try out the new interface** in the banner at the top of the page\.
+You must be opted in to the new dashboard view to be able to add a Metrics Explorer widget\. To opt in, choose **Dashboards** in the navigation pane, then choose **try out the new interface** in the banner at the top of the page\.
 
 1. Do one of the following:
    + To use a template, choose **Pre\-filled Explorer widget** and then select a template to use\.

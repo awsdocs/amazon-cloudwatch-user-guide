@@ -47,13 +47,12 @@ If a node is not visible or is not an `HTMLElement` for `page.click()`, first ve
 
 ## Unable to upload artifacts to S3, Exception: Unable to fetch S3 bucket location: Access Denied<a name="CloudWatch_Synthetics_Canaries_Troubleshoot_noupload"></a>
 
-This means that CloudWatch Synthetics was unable to upload screenshots, logs, or reports created for the canary because of permission issues\. Make sure that canary role has the necessary permissions\. For more information, see [Required roles and permissions for CloudWatch canaries](CloudWatch_Synthetics_Canaries_Roles.md)\.
+If your canary fails because of an Amazon S3 error, CloudWatch Synthetics was unable to upload screenshots, logs, or reports created for the canary because of permission issues\. Check the following:
++ Check that the canary's IAM role has the `s3:ListAllMyBuckets` permission, the `s3:GetBucketLocation` permission for the correct Amazon S3 bucket, and the `s3:PutObject` permission for the bucket where the canary stores its artifacts\. If the canary performs visual monitoring, the role also needs the `s3:GetObject` permission for the bucket\.
++  If the canary uses an AWS KMS customer managed key for encryption instead of the standard AWS managed key \(default\), the canary's IAM role might not have the permission to encrypt or decrypt using that key\. For more information, see [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)\.
++ Your bucket policy might not allow the encryption mechanism that the canary uses\. For example, if your bucket policy mandates to use a specific encryption mechanism or KMS key, then you must select the same encryption mode for your canary\.
 
-**Note**  
-Your CloudWatch metrics might show a datapoint as `Passed` even when the canary has failed with this error\. This is because CloudWatch Synthetics publishes the `SuccessPercent` metric as `Passed` if your script has passed\.  
-Failure to upload artifacts does not indicate any issues with your script\. Therefore, these errors fail the canary but will not trigger any alarms configured on your canary\.
-
-You can add your own execution errors by using the CloudWatch Synthetics `addExecutionError` function\. You should only track errors as execution errors if they are not important to indicate the success or failure of your script\. For more information about this function, see [addExecutionError\(errorMessage, ex\);](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_addExecutionError)\. 
+If the canary performs visual monitoring, see [Updating artifact location and encryption when using visual monitoring](CloudWatch_Synthetics_artifact_encryption.md#CloudWatch_Synthetics_artifact_encryption_visual) for more information\.
 
 ## Error: Protocol error \(Runtime\.callFunctionOn\): Target closed\.<a name="CloudWatch_Synthetics_Canaries_Troubleshoot_protocolError"></a>
 
@@ -63,7 +62,9 @@ This error appears if there are some network requests after the page or browser 
 
 This means that your canary run exceeded the timeout\. The canary execution stopped before CloudWatch Synthetics could publish success percent CloudWatch metrics or update artifacts such as HAR files, logs and screenshots\. If your timeout is too low, you can increase it\.
 
-By default, a canary timeout value is equal to its frequency\. You can manually adjust the timeout value to be less than or equal to the canary frequency\. If your canary frequency is low, you must increase the frequency to increase the timeout\. You can adjust both the frequency and the timeout value c under **Schedule** when you create or update a canary by using the CloudWatch Synthetics console\.
+By default, a canary timeout value is equal to its frequency\. You can manually adjust the timeout value to be less than or equal to the canary frequency\. If your canary frequency is low, you must increase the frequency to increase the timeout\. You can adjust both the frequency and the timeout value under **Schedule** when you create or update a canary by using the CloudWatch Synthetics console\.
+
+Be sure that your canary timeout value is no shorter than 15 seconds to allow for Lambda cold starts and the time it takes to boot up the canary instrumentation\.
 
 Canary artifacts are not available to view in the CloudWatch Synthetics console when this error happens\. You can use CloudWatch Logs to see the canary's logs\.
 

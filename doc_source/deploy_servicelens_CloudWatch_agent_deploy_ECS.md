@@ -1,8 +1,8 @@
-# Deploying the CloudWatch Agent and the X\-Ray Daemon on Amazon ECS<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS"></a>
+# Deploying the CloudWatch agent and the X\-Ray daemon on Amazon ECS<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS"></a>
 
 On Amazon ECS, you deploy the CloudWatch agent as a sidecar to your application container to collect metrics\. You can configure the CloudWatch Agent through SSM parameter store\.
 
-## Creating IAM Roles<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_roles"></a>
+## Creating IAM roles<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_roles"></a>
 
 You must create two IAM roles\. If you already have created these roles, you may need to add permissions to them\.
 + **ECS task role—** Containers use this role to run\. The permissions should be whatever your applications need, plus **CloudWatchAgentServerPolicy** and **AWSXRayDaemonWriteAccess**\. 
@@ -12,7 +12,7 @@ You must create two IAM roles\. If you already have created these roles, you may
 
 For more information about creating IAM roles, see [Creating IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)\.
 
-## Store the Agent Configuration in SSM Parameter Store<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_store"></a>
+## Store the agent configuration in SSM Parameter Store<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_store"></a>
 
 You need to make sure your agent configuration file has the following section, and then upload it to the SSM parameter store\.
 
@@ -40,13 +40,13 @@ You need to make sure your agent configuration file has the following section, a
    --region "region"
    ```
 
-## Create a Task Definition and Launch the Task<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_definition"></a>
+## Create a task definition and launch the task<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_definition"></a>
 
 The steps for this task depend on whether you want to use the EC2 launch type or the Fargate launch type\.
 
-### EC2 Launch Type<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_definition_EC2"></a>
+### EC2 launch type<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_definition_EC2"></a>
 
-First, create the task definition\. In this example, the container “demo\-app” sends X\-Ray SDK metrics to the CloudWatch agent and sends trace information to the X\-Ray daemon\.
+First, create the task definition\. In this example, the container "demo\-app" sends X\-Ray SDK metrics to the CloudWatch agent and sends trace information to the X\-Ray daemon\.
 
 Copy the following task definition to a local JSON file such as `/tmp/ecs-cwagent-ec2.json`\. Replace the following placeholders:
 + Replace *\{\{ecs\-task\-role\}\}* with the ARN of your ECS task role\.
@@ -137,7 +137,7 @@ aws ecs run-task \
     --launch-type EC2
 ```
 
-### Fargate Launch Type<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_definition_Fargate"></a>
+### Fargate launch type<a name="deploy_servicelens_CloudWatch_agent_deploy_ECS_definition_Fargate"></a>
 
 First, create the task definition\. In this example, the container “demo\-app” sends X\-Ray SDK metrics to the CloudWatch agent and sends trace information to the X\-Ray daemon\.
 

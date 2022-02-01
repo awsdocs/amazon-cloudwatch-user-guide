@@ -10,11 +10,33 @@ Runtime versions with the same major version number are backward compatible\.
 
 When using `syn-nodejs-puppeteer-3.0` runtime version, make sure that your canary script is compatible with Node\.js 12\.x\. If you use an earlier version of a `syn-nodejs` runtime version, make sure that that your script is compatible with Node\.js 10\.x\.
 
-The Lambda code in a canary is configured to have a maximum memory of 1 GB\. Each run of a canary times out after a configured timeout value\. If no timeout value is specified for a canary, CloudWatch chooses a timeout value based on the canary's frequency\.
+The Lambda code in a canary is configured to have a maximum memory of 1 GB\. Each run of a canary times out after a configured timeout value\. If no timeout value is specified for a canary, CloudWatch chooses a timeout value based on the canary's frequency\. If you configure a timeout value, make it no shorter than 15 seconds to allow for Lambda cold starts and the time it takes to boot up the canary instrumentation\.
+
+## syn\-nodejs\-puppeteer\-3\.3<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.3"></a>
+
+The `syn-nodejs-puppeteer-3.3` runtime is the newest runtime version\.
+
+**Major dependencies**:
++ Lambda runtime Node\.js 12\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 88\.0\.4298\.0
+
+**New features in syn\-nodejs\-puppeteer\-3\.3**:
++ **More options for artifact encryption**— For canaries using this runtime or later, instead of using an AWS managed key to encrypt artifacts that the canary stores in Amazon S3, you can choose to use an AWS KMS customer managed key or an Amazon S3\-managed key\. For more information, see [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)\. 
+
+## syn\-nodejs\-puppeteer\-3\.2<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.2"></a>
+
+**Major dependencies**:
++ Lambda runtime Node\.js 12\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 88\.0\.4298\.0
+
+**New features in syn\-nodejs\-puppeteer\-3\.2**:
++ **visual monitoring with screenshots**— Canaries using this runtime or later can compare a screenshot taken during a run with a baseline version of the same screenshot\. If the screenshots are more different than a specified percentage threshold, the canary fails\. For more information, see [Visual monitoring](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsLogger_VisualTesting) or [Visual monitoring blueprint](CloudWatch_Synthetics_Canaries_Blueprints.md#CloudWatch_Synthetics_Canaries_Blueprints_VisualTesting)\. 
++ **New functions regarding sensitive data** You can prevent sensitive data from appearing in canary logs and reports\. For more information, see [SyntheticsLogHelper class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsLogHelper)\.
++ **Deprecated function** The `RequestResponseLogHelper` class is deprecated in favor of other new configuration options\. For more information, see [RequestResponseLogHelper class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_RequestResponseLogHelper)\.
 
 ## syn\-nodejs\-puppeteer\-3\.1<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.1"></a>
-
-The `syn-nodejs-puppeteer-3.1` runtime is the newest runtime version\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 12\.x

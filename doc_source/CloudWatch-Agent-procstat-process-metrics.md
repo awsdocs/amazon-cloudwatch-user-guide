@@ -1,13 +1,13 @@
-# Collect Process Metrics with the procstat Plugin<a name="CloudWatch-Agent-procstat-process-metrics"></a>
+# Collect process metrics with the procstat plugin<a name="CloudWatch-Agent-procstat-process-metrics"></a>
 
-The *procstat* plugin enables you to collect metrics from individual processes\. It is supported on Linux servers and on servers running Windows Server 2008 R2 or later\.
+The *procstat* plugin enables you to collect metrics from individual processes\. It is supported on Linux servers and on servers running Windows Server 2012 or later\.
 
 **Topics**
-+ [Configuring the CloudWatch Agent for procstat](#CloudWatch-Agent-procstat-configuration)
-+ [Metrics Collected by Procstat](#CloudWatch-Agent-procstat-process-metrics-collected)
-+ [Viewing Process Metrics Imported by the CloudWatch Agent](#CloudWatch-view-procstat-metrics)
++ [Configuring the CloudWatch agent for procstat](#CloudWatch-Agent-procstat-configuration)
++ [Metrics collected by procstat](#CloudWatch-Agent-procstat-process-metrics-collected)
++ [Viewing process metrics imported by the CloudWatch agent](#CloudWatch-view-procstat-metrics)
 
-## Configuring the CloudWatch Agent for procstat<a name="CloudWatch-Agent-procstat-configuration"></a>
+## Configuring the CloudWatch agent for procstat<a name="CloudWatch-Agent-procstat-configuration"></a>
 
 To use the procstat plugin, add a `procstat` section in the `metrics_collected` section of the CloudWatch agent configuration file\. There are three ways to specify the processes to monitor\. You can use only one of these methods, but you can use that method to specify one or more processes to monitor\.
 + `pid_file`: Selects processes by the names of the process identification number \(PID\) files they create\. 
@@ -22,9 +22,9 @@ On Linux servers, the strings that you specify in an `exe` or `pattern` section 
 
 Whichever method you use, you can include an optional `metrics_collection_interval` parameter, which specifies how often in seconds to collect those metrics\. If you omit this parameter, the default value of 60 seconds is used\.
 
-In the examples in the following sections, the `procstat` section is the only section included in the `metrics_collected` section of the agent configuration file\. Actual configuration files can also include other sections in `metrics_collected`\. For more information, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\.
+In the examples in the following sections, the `procstat` section is the only section included in the `metrics_collected` section of the agent configuration file\. Actual configuration files can also include other sections in `metrics_collected`\. For more information, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
 
-### Configuring with Pid\_file<a name="CloudWatch-Agent-procstat-configuration-pidfile"></a>
+### Configuring with pid\_file<a name="CloudWatch-Agent-procstat-configuration-pidfile"></a>
 
 The following example `procstat` section monitors the processes that create the PID files `example1.pid` and `example2.pid`\. Different metrics are collected from each process\. Metrics collected from the process that creates `example2.pid` are collected every 10 seconds, and the metrics collected from the `example1.pid` process are collected every 60 seconds, the default value\. 
 
@@ -55,7 +55,7 @@ The following example `procstat` section monitors the processes that create the 
 }
 ```
 
-### Configuring with Exe<a name="CloudWatch-Agent-procstat-configuration-exe"></a>
+### Configuring with exe<a name="CloudWatch-Agent-procstat-configuration-exe"></a>
 
 The following example `procstat` section monitors all processes with names that match the strings `agent` or `plugin`\. The same metrics are collected from each process\. 
 
@@ -86,7 +86,7 @@ The following example `procstat` section monitors all processes with names that 
 }
 ```
 
-### Configuring with Pattern<a name="CloudWatch-Agent-procstat-configuration-pattern"></a>
+### Configuring with pattern<a name="CloudWatch-Agent-procstat-configuration-pattern"></a>
 
 The following example `procstat` section monitors all processes with command lines that match the strings `config` or `-c`\. The same metrics are collected from each process\. 
 
@@ -119,14 +119,14 @@ The following example `procstat` section monitors all processes with command lin
 }
 ```
 
-## Metrics Collected by Procstat<a name="CloudWatch-Agent-procstat-process-metrics-collected"></a>
+## Metrics collected by procstat<a name="CloudWatch-Agent-procstat-process-metrics-collected"></a>
 
 The following table lists the metrics that you can collect with the `procstat` plugin\.
 
 The CloudWatch agent adds `procstat` to the beginning of the following metric names\. There is a different syntax depending on whether it was collected from a Linux server or a server running Windows Server\. For example, the `cpu_time` metric appears as `procstat_cpu_time` when collected from Linux and as `procstat cpu_time` when collected from Windows Server\.
 
 
-| Metric Name | Available On | Description | 
+| Metric name | Available on | Description | 
 | --- | --- | --- | 
 |  `cpu_time` |  Linux |  The amount of time that the process uses the CPU\. This metric is measured in hundredths of a second\. Unit: Count  | 
 |  `cpu_time_system` |  Linux, Windows Server, macOS |  The amount of time that the process is in system mode\. This metric is measured in hundredths of a second\. Type: Float Unit: Count  | 
@@ -163,9 +163,9 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 |  `rlimit_memory_stack_soft` |  Linux |  The soft resource limit on the process stack\. Unit: Bytes  | 
 |  `rlimit_memory_vms_hard` |  Linux |  The hard resource limit on the process for virtual memory\. Unit: Bytes  | 
 
-## Viewing Process Metrics Imported by the CloudWatch Agent<a name="CloudWatch-view-procstat-metrics"></a>
+## Viewing process metrics imported by the CloudWatch agent<a name="CloudWatch-view-procstat-metrics"></a>
 
-After importing process metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view process metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+After importing process metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view process metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 **To view process metrics in the CloudWatch console**
 

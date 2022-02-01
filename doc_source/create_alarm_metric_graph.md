@@ -1,4 +1,4 @@
-# Creating an Alarm from a Metric on a Graph<a name="create_alarm_metric_graph"></a>
+# Creating an alarm from a metric on a graph<a name="create_alarm_metric_graph"></a>
 
 You can graph a metric and then create an alarm from the metric on the graph, which has the benefit of populating many of the alarm fields for you\.
 
@@ -21,9 +21,9 @@ You can graph a metric and then create an alarm from the metric on the graph, wh
 
 1. Choose **Additional configuration**\. For **Datapoints to alarm**, specify how many evaluation periods \(data points\) must be in the `ALARM` state to trigger the alarm\. If the two values here match, you create an alarm that goes to `ALARM` state if that many consecutive periods are breaching\.
 
-   To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an Alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
+   To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
 
-1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
+1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring how CloudWatch alarms treat missing data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
 
 1. Choose **Next**\.
 

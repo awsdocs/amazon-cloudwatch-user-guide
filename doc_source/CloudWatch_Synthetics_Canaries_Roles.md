@@ -37,7 +37,7 @@ AWS services maintain and update AWS managed policies\. You can't change the per
 
 ### CloudWatch Synthetics updates to AWS managed policies<a name="CloudWatch_Synthetics_IAMManagedPolicies_Updates"></a>
 
-View details about updates to AWS maanged policies for CloudWatch Synthetics since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the CloudWatch Document history page\. 
+View details about updates to AWS managed policies for CloudWatch Synthetics since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the CloudWatch Document history page\. 
 
 
 | Change | Description | Date | 

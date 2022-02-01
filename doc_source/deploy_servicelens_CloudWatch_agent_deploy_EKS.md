@@ -1,8 +1,8 @@
-# Deploying the CloudWatch Agent and the X\-Ray Daemon on Amazon EKS or Kubernetes<a name="deploy_servicelens_CloudWatch_agent_deploy_EKS"></a>
+# Deploying the CloudWatch agent and the X\-Ray daemon on Amazon EKS or Kubernetes<a name="deploy_servicelens_CloudWatch_agent_deploy_EKS"></a>
 
 These topics explain how to install the X\-Ray daemon and the CloudWatch agent on Amazon EKS or Kubernetes\.
 
-## Deploying the X\-Ray Daemon on Amazon EKS or Kubernetes<a name="deploy_servicelens_CloudWatch_agent_deploy_Xray_daemon"></a>
+## Deploying the X\-Ray daemon on Amazon EKS or Kubernetes<a name="deploy_servicelens_CloudWatch_agent_deploy_Xray_daemon"></a>
 
 To install the CloudWatch agent and the X\-Ray daemon on Amazon EKS or Kubernetes, you can use a quick setup\.
 
@@ -16,7 +16,7 @@ To install the CloudWatch agent and the X\-Ray daemon on Amazon EKS or Kubernete
    curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/daemonset/cwagent-fluentd-xray/cwagent-fluentd-xray-quickstart.yaml | sed "s/{{cluster_name}}/cluster-name/;s/{{region_name}}/region/" | kubectl apply -f -
    ```
 
-**What the Quick Start Does**
+**What the Quick Start does**
 
 This section describes the quick setup of the CloudWatch agent and the X\-Ray daemon\.
 + The quick setup specifies inbound ports and protocols\. Outbound connections do not have to be explicitly opened\.

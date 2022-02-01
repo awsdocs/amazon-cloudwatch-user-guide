@@ -1,4 +1,4 @@
-# Enabling Segment Metrics From X\-Ray<a name="deploy_servicelens_CloudWatch_agent_segments"></a>
+# Enabling segment metrics from X\-Ray<a name="deploy_servicelens_CloudWatch_agent_segments"></a>
 
 The AWS X\-Ray SDK for Java can emit several metrics about segments into CloudWatch to give an unsampled view of latency, throttle, error, and fault rates\. It uses the CloudWatch agent to emit these metrics to minimize the impact on application performance\. For more information about segments, see [Segments](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-segments)\.
 

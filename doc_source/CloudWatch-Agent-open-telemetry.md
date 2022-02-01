@@ -1,4 +1,4 @@
-# OpenTelemetry support in the CloudWatch Agent<a name="CloudWatch-Agent-open-telemetry"></a>
+# OpenTelemetry support in the CloudWatch agent<a name="CloudWatch-Agent-open-telemetry"></a>
 
 Versions 1\.247347\.3 and later of the CloudWatch agent have an embedded AWS OpenTelemetry Collector\. This enables the CloudWatch agent to integrate with AWS OpenTelemetry APIs and SDKs, and send application telemetry data from EC2 instances to CloudWatch and AWS X\-Ray\. This feature is intended for existing CloudWatch agent users who want to begin monitoring with OpenTelemetry without installing or configuring multiple agents\. For more information about AWS OpenTelemetry, see [AWS Distro for OpenTelemetry](https://aws.amazon.com/otel/)\.
 
@@ -8,7 +8,7 @@ By using the CloudWatch agent with the embedded AWS OpenTelemetry Collector, you
 
 The CloudWatch agent with the embedded OpenTelemetry Collector can receive metrics and traces from the AWS OpenTelemetry SDK, and publish them to CloudWatch and X\-Ray\. The OpenTelemetry Collector that is embedded in the CloudWatch agent has the same behavior as the AWS OpenTelemetry Collector, and using it means that you don’t need to install the separate AWS OpenTelemetry Collector\. But if you do install both on the same server, be aware that the embedded OpenTelemetry Collector in the CloudWatch agent and the AWS OpenTelemetry Collector are located in different directories, managed through different tools, and run as separate processes\. For example, if you configure and run both processes in the same server, be sure that the local ports that they use to listen do not conflict with each other\.
 
-OpenTelemetry in the CloudWatch agent is supported for the CloudWatch agent running on EC2 instances, but not for the CloudWatch agent running in containers or on on\-premises servers\. Both AMD64 and ARM64 architectures are supported on Linux instances, and AMD64 is supported on Windows Server instances\.
+OpenTelemetry in the CloudWatch agent is supported for the CloudWatch agent running on EC2 instances, but not for the CloudWatch agent running in containers or on on\-premises servers\. Both x86\-64 and ARM64 architectures are supported on Linux instances, and x86\-64 is supported on Windows Server instances\.
 
 ## IAM permissions<a name="CloudWatch-Agent-open-telemetry-iam"></a>
 
@@ -38,7 +38,7 @@ To be able to publish OpenTelemetry metrics and traces, the CloudWatch agent nee
 
 Amazon provides a default configuration file for the embedded OpenTelemetry Collector\. This configuration enables collecting OpenTelemetry metrics and traces through a default port\. If the default configuration works for you, you don't need to do any more configuration steps\. To see the the contents of this default configuration files, see [ config\.yaml](https://github.com/aws-observability/aws-otel-collector/blob/main/config.yaml) on Github\.
 
-If you want to customize the configuration file, see the [ AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/introduction) documentation\. If you do this, once you have made the custom configuration file, you can either upload it to Parameter Store or copy it to the file system of every server where you want to use it\. For more information about uploading it to Parameter Store, see [ Uploading the CloudWatch Agent Configuration File to Systems Manager Parameter Store](CloudWatch-Agent-Configuration-File-Details.md#Upload-CloudWatch-Agent-Configuration-To-Parameter-Store)\.
+If you want to customize the configuration file, see the [ AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/introduction) documentation\. If you do this, once you have made the custom configuration file, you can either upload it to Parameter Store or copy it to the file system of every server where you want to use it\. For more information about uploading it to Parameter Store, see [ Uploading the CloudWatch agent configuration file to Systems Manager Parameter Store](CloudWatch-Agent-Configuration-File-Details.md#Upload-CloudWatch-Agent-Configuration-To-Parameter-Store)\.
 
 ## Use the command line to manage the CloudWatch agent with OpenTelemetry support<a name="CloudWatch-Agent-open-telemetry-processes"></a>
 

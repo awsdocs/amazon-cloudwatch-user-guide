@@ -4,6 +4,7 @@ This section provides details about each of the canary blueprints and the tasks 
 + Heartbeat Monitor
 + API Canary
 + Broken Link Checker
++ Visual Monitoring
 + Canary Recorder
 + GUI Workflow
 
@@ -15,7 +16,7 @@ Heartbeat scripts load the specified URL and store a screenshot of the page and 
 
 You can use the HAR files to view detailed performance data about the web pages\. You can analyze the list of web requests and catch performance issues such as time to load for an item\.
 
-If your canary uses the `syn-nodejs-puppeteer-3.1` or later runtime version, you can use the heartbeat monitoring blueprint to monitor multiple URLs and see the status, duration, associated screenshots, and failure reason or each URL in the step summary of the canary run report\.
+If your canary uses the `syn-nodejs-puppeteer-3.1` or later runtime version, you can use the heartbeat monitoring blueprint to monitor multiple URLs and see the status, duration, associated screenshots, and failure reason for each URL in the step summary of the canary run report\.
 
 ## API canary<a name="CloudWatch_Synthetics_Canaries_Blueprints_API"></a>
 
@@ -23,7 +24,7 @@ API canaries can test the basic Read and Write functions of a REST API\. REST st
 
 Canaries can work with any APIs and test all types of functionality\. Each canary can make multiple API calls\.
 
-In canaries that use runtime version `syn-nodejs-2.2` or later, the API canary blueprint supports multi\-step canaries that monitor your APIs as HTTP steps\. You can test multiple APIs in a single canary\. Each step is a separate request that can access different a URL, use different headers, and use different rules for whether headers and response bodies are captured\. By not capturing headers and response body, you can prevent sensitive data from being recorded\. 
+In canaries that use runtime version `syn-nodejs-2.2` or later, the API canary blueprint supports multi\-step canaries that monitor your APIs as HTTP steps\. You can test multiple APIs in a single canary\. Each step is a separate request that can access a different URL, use different headers, and use different rules for whether headers and response bodies are captured\. By not capturing headers and response body, you can prevent sensitive data from being recorded\. 
 
 Each request in an API canary consists of the following information:
 + The *endpoint*, which is the URL that you request\.
@@ -61,6 +62,29 @@ A broken link checker canary detects the following types of link errors:
 + The host server returns empty responses with no content and no response code\.
 + The HTTP requests constantly time out during the canary's run\.
 + The host consistently drops connections because it is misconfigured or is too busy\.
+
+## Visual monitoring blueprint<a name="CloudWatch_Synthetics_Canaries_Blueprints_VisualTesting"></a>
+
+The visual monitoring blueprint includes code to compare screenshots taken during a canary run with screenshots taken during a baseline canary run\. If the discrepancy between the two screenshots is beyond a threshold percentage, the canary fails\. Visual monitoring is supported in canaries running **syn\-puppeteer\-node\-3\.2** and later\. It is not currently supported in canaries running Python and Selenium\.
+
+The visual monitoring blueprint includes the following line of code in the default blueprint canary script, which enables visual monitoring\.
+
+```
+syntheticsConfiguration.withVisualCompareWithBaseRun(true);
+```
+
+The first time that the canary runs successfully after this line is added to the script, it uses the screenshots taken during that run as the baseline for comparison\. After that first canary run, you can use the CloudWatch console to edit the canary to do any of the following:
++ Set the next run of the canary as the new baseline\.
++ Draw boundaries on the current baseline screenshot to designate areas of the screenshot to ignore during visual comparisons\.
++ Remove a screenshot from being used for visual monitoring\.
+
+For more information about using the CloudWatch console to edit a canary, see [Editing or deleting a canary](synthetics_canaries_deletion.md)\.
+
+You can also change the canary run that is used as the baseline by using the `nextrun` or `lastrun` parameters or specifing a canary run ID in the [UpdateCanary](https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UpdateCanary.html) API\.
+
+When you use the visual monitoring blueprint, you enter the URL where you want the screenshot to be taken, and specify a difference threshold as a percentage\. After the baseline run, future runs of the canary that detect a visual difference greater than that threshold trigger a canary failure\. After the baseline run, you can also edit the canary to "draw" boundaries on the baseline screenshot that you want to ignore during the visual monitoring\.
+
+The visual monitoring feature is powered by the the ImageMagick open source software toolkit\. For more information, see [ImageMagick ](https://imagemagick.org/index.php)\.
 
 ## Canary recorder<a name="CloudWatch_Synthetics_Canaries_Blueprints_Recorder"></a>
 

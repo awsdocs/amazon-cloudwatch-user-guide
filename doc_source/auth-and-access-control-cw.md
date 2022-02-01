@@ -1,15 +1,15 @@
-# Identity and Access Management for Amazon CloudWatch<a name="auth-and-access-control-cw"></a>
+# Identity and access management for Amazon CloudWatch<a name="auth-and-access-control-cw"></a>
 
 Access to Amazon CloudWatch requires credentials\. Those credentials must have permissions to access AWS resources, such as retrieving CloudWatch metric data about your cloud resources\. The following sections provide details about how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and CloudWatch to help secure your resources by controlling who can access them:
 + [Authentication](#authentication-cw)
-+ [Access Control](#access-control-cw)
++ [Access control](#access-control-cw)
 
 ## Authentication<a name="authentication-cw"></a>
 
 You can access AWS as any of the following types of identities:
 + **AWS account root user** – When you sign up for AWS, you provide an email address and password that is associated with your AWS account\. These are your *AWS account user credentials* and they provide complete access to all of your AWS resources\.
 **Important**  
-For security reasons, we recommend that you use the AWS account user credentials only to create an *administrator*, which is an *IAM user* with full permissions to your AWS account\. Then, you can use this administrator to create other IAM users and roles with limited permissions\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users) and [Creating an Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
+For security reasons, we recommend that you use the AWS account user credentials only to create an *administrator*, which is an *IAM user* with full permissions to your account\. Then, you can use this administrator to create other IAM users and roles with limited permissions\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users) and [Creating an Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 + **IAM user** – An [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) is an identity within your AWS account that has specific custom permissions \(for example, permissions to view metrics in CloudWatch\)\. You can use an IAM user name and password to sign in to secure AWS webpages like the [AWS Management Console](https://console.aws.amazon.com/), [AWS Discussion Forums](https://forums.aws.amazon.com/), or the [AWS Support Center](https://console.aws.amazon.com/support/home#/)\.
 
    
@@ -33,11 +33,11 @@ For security reasons, we recommend that you use the AWS account user credentials
 
     
 
-## Access Control<a name="access-control-cw"></a>
+## Access control<a name="access-control-cw"></a>
 
 You can have valid credentials to authenticate your requests, but unless you have permissions you cannot create or access CloudWatch resources\. For example, you must have permissions to create CloudWatch dashboard widgets, view metrics, and so on\.
 
 The following sections describe how to manage permissions for CloudWatch\. We recommend that you read the overview first\.
-+ [Overview of Managing Access Permissions to Your CloudWatch Resources](iam-access-control-overview-cw.md)
-+ [Using Identity\-Based Policies \(IAM Policies\) for CloudWatch](iam-identity-based-access-control-cw.md)
-+ [Amazon CloudWatch Permissions Reference](permissions-reference-cw.md)
++ [Overview of managing access permissions to your CloudWatch resources](iam-access-control-overview-cw.md)
++ [Using identity\-based policies \(IAM policies\) for CloudWatch](iam-identity-based-access-control-cw.md)
++ [Amazon CloudWatch permissions reference](permissions-reference-cw.md)

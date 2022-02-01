@@ -1,4 +1,4 @@
-# Viewing Your Metrics and Logs in the Console<a name="CloudWatch_Embedded_Metric_Format_View"></a>
+# Viewing your metrics and logs in the console<a name="CloudWatch_Embedded_Metric_Format_View"></a>
 
 After you generate embedded metric format logs that extract metrics, you can use the CloudWatch console to view the metrics\. Embedded metrics have the dimensions that you specified when you generated the logs\. Also, embedded metrics that you generated using the client libraries have the following default dimensions:
 + ServiceType 
@@ -25,7 +25,7 @@ After you generate embedded metric format logs that extract metrics, you can use
 
    1. To filter by metric, choose the metric name and then choose **Add to search**\.
 
-**Querying Logs Using CloudWatch Logs Insights**
+**Querying logs using CloudWatch Logs Insights**
 
 You can query the detailed log events associated with the extracted metrics by using CloudWatch Logs Insights to provide deep insights into the root causes of operational events\. One of the benefits of extracting metrics from your logs is that you can filter your logs later by the unique metric \(metric name plus unique dimension set\) and metric values, to get context on the events that contributed to the aggregated metric value
 

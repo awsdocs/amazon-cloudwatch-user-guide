@@ -1,8 +1,8 @@
-# Editing or Deleting a CloudWatch Alarm<a name="Edit-CloudWatch-Alarm"></a>
+# Editing or deleting a CloudWatch alarm<a name="Edit-CloudWatch-Alarm"></a>
 
 You can edit or delete an existing alarm\.
 
-**To edit an alarm using**
+**To edit an alarm**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

@@ -1,82 +1,126 @@
 # Set up, configure, and manage your application for monitoring from the CloudWatch console<a name="appinsights-setting-up-console"></a>
 
-This section provides steps for setting up, configuring, and managing your application for monitoring from the CloudWatch console\.
+This section provides steps to set up, configure, and manage your application for monitoring from the CloudWatch console\.
 
 **Topics**
 + [Add and configure an application](#appinsights-add-configure)
-+ [Disable an application](#appinsights-disable-app)
++ [Enable Application Insights for Amazon ECS and Amazon EKS resource monitoring](#appinsights-container-insights)
 + [Disable monitoring for an application component](#appinsights-disable-monitoring)
 + [Delete an application](#appinsights-delete-app)
 
 ## Add and configure an application<a name="appinsights-add-configure"></a>
 
 **Add and configure an application from the CloudWatch console**  
-To get started with CloudWatch Application Insights from the CloudWatch console, follow these steps\.
+To get started with CloudWatch Application Insights from the CloudWatch console, perform the following steps\.
 
-1. **Start\.** Open the [CloudWatch console landing page](http://console.aws.amazon.com/cloudwatch)\. From the left navigation pane, choose **Settings**\. From the **Settings** page, choose **Application Insights** > **View applications to get started**\. 
+1. **Start\.** Open the [CloudWatch console landing page](http://console.aws.amazon.com/cloudwatch)\. From the left navigation pane, under **Insights**, choose **Application Insights**\. The page that opens shows the list of applications that are monitored with CloudWatch Application Insights, along with their monitoring status\. 
 
-1. **Add an Application\.** To set up monitoring for your \.NET and SQL Server application, on the CloudWatch Application Insights page, select **Add an application**\. This page shows the list of applications that are monitored with CloudWatch Application Insights, along with their monitoring status\. After you select **Add an application**, you will be taken to the **Add an application** page\.
+1. **Add an application\.** To set up monitoring for your application, choose **Add an application**\. When you choose **Add an application**, you are prompted to **Choose Application Type**\. 
+   + **Resource group\-based application**\. When you select this option, you can choose which resource groups in this account to monitor\.
+   + **Account\-based application**\. When you select this option, you can monitor all of the resources in this account\. If you want to monitor all of the resources in an account, we recommend this option over the resource group\-based option because the application onboarding process is faster\.
+**Note**  
+You cannot combine resource group\-based monitoring with account\-based monitoring using Application Insights\. In order to change the application type, you must delete all of the applications that are being monitored, and **Choose Application Type**\. 
 
-1. **Select Resource Group\. **On the **Add an application** page, to add an application to CloudWatch Application Insights, choose an AWS Resource Group from the dropdown list that contains your application resources\. These resources include front\-end servers, load balancers, auto scaling groups, and database servers\. 
+   When you add your first application for monitoring, CloudWatch Application Insights creates a service\-linked role in your account, which gives Application Insights permissions to call other AWS services on your behalf\. For more information about the service\-linked role created in your account by Application Insights, see [Using service\-linked roles for CloudWatch Application Insights](CHAP_using-service-linked-roles-appinsights.md)\.
 
-   An [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) will be generated for the application in the following format:
+1. 
 
-   ```
-   arn:partition:applicationinsights:region:account-id:application/resource-group/resource-group-name
-   ```
+------
+#### [ Resource\-based application monitoring ]
 
-   For example:
+   1. **Select resource group\. **On the **Specify application details** page, select the AWS resource group that contains your application resources from the dropdown list\. These resources include front\-end servers, load balancers, auto scaling groups, and database servers\. 
 
-   ```
-   arn:aws:applicationinsights:us-east-1:123456789012:application/resource-group/my-resource-group
-   ```
+      If you have not created a resource group for your application, you can create one by choosing **Create new resource group**\. For more information about creating resource groups, see the [https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)\. 
 
-   CloudWatch Application Insights supports both tag\-based and CloudFormation\-based Resource Groups \(with the exception of Auto Scaling groups\)\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html)\.
+   1. **Monitor CloudWatch Events**\. Select the check box to integrate Application Insights monitoring with CloudWatch Events to get insights from Amazon EBS, Amazon EC2, AWS CodeDeploy, Amazon ECS, AWS Health APIs And Notifications, Amazon RDS, Amazon S3, and AWS Step Functions\.
 
-   If you have not created a Resource Group for your \.NET application, you can create one\. For more information, see the [https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)\. 
+   1. **Integrate with AWS Systems Manager OpsCenter\.** To view and get notified when problems are detected for selected applications, select the **Generate Systems Manager OpsCenter OpsItems for remedial actions** check box\. To track the operations that are taken to resolve operational work items \(OpsItems\) that are related to your AWS resources, provide the SNS topic ARN\. 
 
-1. **Add Monitoring Details\.** After you add an application, you are taken to the **Monitoring Details** page, which lists the application components, resources in those components, and their monitoring status\. Components are auto\-grouped, standalone, or custom groupings of similar resources that make up an application\. By default, CloudWatch Application Insights groups instances that are in Auto Scaling groups, and instances that are behind your Elastic Load Balancers\. On this page, you can configure custom components and can manage monitoring for each application component\. For supported components, see [Supported application components](appinsights-what-is.md#appinsights-components)\.
+   1. **Tags — optional**\. CloudWatch Application Insights supports both tag\-based and CloudFormation\-based resource groups \(with the exception of Auto Scaling groups\)\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html)\.
 
-1. **Configure components\.** After selecting a Resource Group, you are prompted to configure [components](appinsights-what-is.md#components)\. We recommend grouping similar resources, such as \.NET web server instances, into custom components for easier onboarding and better monitoring and insights\. By default, CloudWatch Application Insights groups instances that are in Auto Scaling groups, and instances that are behind your Elastic Load Balancers\. For supported components, see [Supported application components](appinsights-what-is.md#appinsights-components)\.
+   1. Choose **Next**\.
 
-   Under **Application components**, for each component for which you want to set up monitors, select the component and select **Manage Monitoring**\.
+      An [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) is generated for the application in the following format\.
 
-1. **Enable Monitors\.** To set up monitoring for an application component, select the components that you want to monitor and then choose **Manage Monitoring**\. Select the **Enable Monitoring** check box\. When you select the check box, the dropdown populates with the relevant application tiers\. Choose the application tier for the selected component\. The tiers indicate the part of the application stack running on the selected resources\. If you select a custom tier, Application Insights recommends monitors based on the operating system\. You can customize the list of metrics and logs, and add custom application logs and log patterns to detect\. 
+      ```
+      arn:partition:applicationinsights:region:account-id:application/resource-group/resource-group-name
+      ```
 
-   Based on your tier selection, CloudWatch Application Insights makes recommendations for logs to monitor for the selected component\. This recommendation can be customized according to your needs\.
+      Example
 
-   For application\-specific logs, including for Microsoft SQL Server Error logs and IIS logs, verify the default log path \(if any\) or enter the correct log location in your EC2 instance\. 
+      ```
+      arn:aws:applicationinsights:us-east-1:123456789012:application/resource-group/my-resource-group
+      ```
 
-   You can also choose to add Windows Event Logs, including Windows Logs and Applications and Services Logs\. To do this, enter the types of events you want to store and analyze\. Then, specify all of the event levels \(critical, error, warning, informational, or verbose\) that you want to store in your CloudWatch account\. 
+------
+#### [ Account\-based application monitoring ]
 
-   You can add a log group for storing and grouping each of these logs on your CloudWatch account, which also facilitates searches\. 
+   1. **Application name**\. Enter a name for your account\-based application\.
 
-   CloudWatch Application Insights also sets up relevant metrics for your application resources\. They are monitored for approximately two weeks to identify the appropriate metrics thresholds\. If you have created the metrics in the past, CloudWatch Application Insights pulls historical data for the last two weeks to identify the thresholds and to set the alarms accordingly\. For newly created metrics, it may take up to three days before alarms are created\. You can also monitor your application resources using the CloudWatch alarms you created in your account\. 
+   1. **Automated monitoring of new resources**\. By default, Application Insights uses recommended settings to configure monitoring for resource components that are added to your account after you onboard the application\. You can exclude monitoring for resources added after onboarding your application by clearing the check box\.
 
-1. **Save monitors\.** When you are finished selecting and customizing logs and metrics, select **Save** to set up monitors for the selected component\. When you select **Save**, Application Insights sets up the CloudWatch Agent configuration files for all of the instances in your application based on the recommended metrics and your selection of logs\. It can take up to an hour for this process to complete\. 
+   1. **Monitor CloudWatch Events**\. Select the check box to integrate Application Insights monitoring with CloudWatch Events to get insights from Amazon EBS, Amazon EC2, AWS CodeDeploy, Amazon ECS, AWS Health APIs And Notifications, Amazon RDS, Amazon S3, and AWS Step Functions\.
 
-   CloudWatch Application Insights also sets up CloudWatch alarms for selected metrics in the component\. The alarms are dynamically updated by monitoring historical metric patterns from the past two weeks\. 
+   1. **Integrate with AWS Systems Manager OpsCenter\.** To view and get notified when problems are detected for selected applications, select the **Generate Systems Manager OpsCenter OpsItems for remedial actions** check box\. To track the operations that are taken to resolve operational work items \(OpsItems\) that are related to your AWS resources, provide the SNS topic ARN\. 
 
-    When you select **Cancel**, Application Insights only deletes your current selections\. 
+   1. **Tags — optional**\. CloudWatch Application Insights supports both tag\-based and CloudFormation\-based resource groups \(with the exception of Auto Scaling groups\)\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html)\.
 
-   When you create a new application with CloudWatch Application Insights, the service‐linked role is created for you\. To delete the service‐linked role, you must first delete all of your applications on CloudWatch Application Insights and then manually delete the role\. For more information, see [Using service\-linked roles for CloudWatch Application Insights](CHAP_using-service-linked-roles-appinsights.md)\.
+   1. **Discovered resources**\. All of the resources discovered in your account are added to this list\. If Application Insights is unable to discover all of the resources in your account, an error message appears at the top of the page\. This message includes a link to the [documentation for how to add the required permissions](appinsights-account-based-onboarding-permissions.md)\.
 
-   CloudWatch Application Insights is now set to monitor metrics and logs for your application\. It may take up to two weeks for the system to generate meaningful insights\.
+   1. Choose **Next**\.
 
-   \*If your Resource Group is already configured and you want to save your configuration but don’t want CloudWatch Application Insights to monitor your application, you can disable CloudWatch Application Insights\. You can also delete your configuration\.
+      An [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) is generated for the application in the following format\.
 
-1. **Add AWS SSM OpsCenter Integration\.** To view and get notified when problems are detected for selected applications, select the **Integrate with AWS OpsCenter** check box on the **Monitoring Details** page\. To track the operations that are taken to resolve operational work items \(OpsItems\) that are related to your AWS resources, provide the SNS topic ARN\. 
+      ```
+      arn:partition:applicationinsights:region:account-id:application/TBD/application-name
+      ```
 
-1. **View monitoring \(optional\)\.** After your application has been set up for monitoring, you can view and troubleshoot detected problems and insights in the default overview page of the CloudWatch console\. You can view detected problems, alarms, and dashboards by selecting **View Insights** from the Application Insights landing page, or on the CloudWatch landing page\. 
+      Example
 
-## Disable an application<a name="appinsights-disable-app"></a>
+      ```
+      arn:aws:applicationinsights:us-east-1:123456789012:application/TBD/my-application
+      ```
 
-To disable an application, from the CloudWatch dashboard, under **Settings**, select the application that you want to disable\. Under **Actions**, choose **Disable**\. When you disable an application, monitoring is disabled, but Application Insights stores the saved monitors for application components\. 
+------
+
+1. After you submit your application monitoring configuration, you will be taken to the details page for the application, where you can view the **Application summary**, the list of **Monitored components** and **Unmonitored components**, and, by selecting the tabs next to **Components**, the **Configuration history**, **Log patterns**, and any **Tags** that you have applied\.
+
+   To view insights for the application, choose **View Insights**\.
+
+   You can update your selections for CloudWatch Events monitoring and integration with AWS Systems Manager OpsCenter by choosing **Edit**\.
+
+   Under **Components**, you can select the **Actions** menu to Create, Modify, or Ungroup an instance group\.
+
+   You can manage monitoring for components, including application tier, log groups, event logs, metrics, and custom alarms, by selecting the bullet next to a component and choosing **Manage monitoring**\.
+
+## Enable Application Insights for Amazon ECS and Amazon EKS resource monitoring<a name="appinsights-container-insights"></a>
+
+You can enable Application Insights to monitor containerized applications and microservices from the Container Insights console\. Application Insights supports monitoring for the following resources:
++ Amazon ECS clusters
++ Amazon ECS services
++ Amazon ECS tasks
++ Amazon EKS clusters
+
+When Application Insights is enabled, it provides recommended metrics and logs, detects potential problems, generates CloudWatch Events, and creates automatic dashboards for your containerized applications and microservices\.
+
+You can enable Application Insights for containerized resources from the Container Insights or Application Insights consoles\.
+
+**Enable Application Insights from the Container Insights console**  
+From the Container Insights console, on the Container Insights **Performance monitoring** dashboard, choose **Auto\-configure Application Insights**\. When Application Insights is enabled, it displays details about detected problems\.
+
+**Enable Application Insights from the Application Insights console**  
+When ECS clusters appear in the component list, Application Insights automatically enables additional container monitoring with Container Insights\. 
+
+For EKS clusters, you can enable additional monitoring with Container Insights to provide diagnostics information, such as container restart failures, to help you isolate and resolve problems\. Additional steps are required to set up Container Insights for EKS\. For information, see [Setting up Container Insights on Amazon EKS and Kubernetes](deploy-container-insights-EKS.md) for steps to set up Container Insights on EKS\. 
+
+Additional monitoring for EKS with Container Insights is supported on Linux instances with EKS\.
+
+For more information about Container Insights support for ECS and EKS clusters, see [Using Container Insights](ContainerInsights.md)\.
 
 ## Disable monitoring for an application component<a name="appinsights-disable-monitoring"></a>
 
-To disable monitoring for an application component, from the Application Details page select the component for which you want to disable monitoring\. Choose **Manage Monitors**, and then clear the **Enable Monitoring** check box\. 
+To disable monitoring for an application component, from the application details page, select the component for which you want to disable monitoring\. Choose **Actions**, and then **Remove from monitoring**\. 
 
 ## Delete an application<a name="appinsights-delete-app"></a>
 
-To delete an application, from the CloudWatch dashboard, under **Settings**, select the application that you want to delete\. Under **Actions**, choose **Delete**\. This deletes monitoring and deletes all of the saved monitors for application components\. The application resources are not deleted\. 
+To delete an application, from the CloudWatch dashboard, on the left navigation pane, choose **Application Insights** under **Insights**\. Select the application that you want to delete\. Under **Actions**, choose **Delete application**\. This deletes monitoring and deletes all of the saved monitors for application components\. The application resources are not deleted\. 

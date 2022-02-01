@@ -1,6 +1,6 @@
-# Using ServiceLens to Monitor the Health of Your Applications<a name="ServiceLens"></a>
+# Using ServiceLens to monitor the health of your applications<a name="ServiceLens"></a>
 
-CloudWatch ServiceLens enhances the observability of your services and applications by enabling you to integrate traces, metrics, logs, and alarms into one place\. ServiceLens integrates CloudWatch with AWS X\-Ray to provide an end\-to\-end view of your application to help you more efficiently pinpoint performance bottlenecks and identify impacted users\. A service map displays your service endpoints and resources as “nodes” and highlights the traffic, latency, and errors for each node and its connections\. You can choose a node to see detailed insights about the correlated metrics, logs, and traces associated with that part of the service\. This enables you to investigate problems and their effect on the application\.
+CloudWatch ServiceLens enhances the observability of your services and applications by enabling you to integrate traces, metrics, logs, alarms, and other resource health information into one place\. ServiceLens integrates CloudWatch with AWS X\-Ray to provide an end\-to\-end view of your application to help you more efficiently pinpoint performance bottlenecks and identify impacted users\. A service map displays your service endpoints and resources as “nodes” and highlights the traffic, latency, and errors for each node and its connections\. You can choose a node to see detailed insights about the correlated metrics, logs, and traces associated with that part of the service\. This enables you to investigate problems and their effect on the application\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/ServiceMap.png)
 
@@ -12,6 +12,7 @@ ServiceLens is available in every Region where X\-Ray is available\.
 
 **Topics**
 + [Deploying ServiceLens](deploy_servicelens.md)
-+ [Using the Service Map in ServiceLens](servicelens_service_map.md)
-+ [Using the Traces View in ServiceLens](servicelens_service_map_traces.md)
-+ [ServiceLens Troubleshooting](servicelens_troubleshooting.md)
++ [Using the service map in ServiceLens](servicelens_service_map.md)
++ [Using the traces view in ServiceLens](servicelens_service_map_traces.md)
++ [Using the resource health view in ServiceLens](servicelens_resource_health.md)
++ [ServiceLens troubleshooting](servicelens_troubleshooting.md)

@@ -1,4 +1,4 @@
-# Updating the CloudWatch Agent Container Image<a name="ContainerInsights-update-image"></a>
+# Updating the CloudWatch agent container image<a name="ContainerInsights-update-image"></a>
 
 If you need to update your container image to the latest version, use the steps in this section\.
 

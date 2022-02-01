@@ -1,10 +1,10 @@
-# Set Up Java/JMX sample workload on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx"></a>
+# Set up Java/JMX sample workload on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx"></a>
 
 JMX Exporter is an official Prometheus exporter that can scrape and expose JMX mBeans as Prometheus metrics\. For more information, see [prometheus/jmx\_exporter](https://github.com/prometheus/jmx_exporter)\.
 
 Container Insights can collect predefined Prometheus metrics from Java Virtual Machine \(JVM\), Java, and Tomcat \(Catalina\) using the JMX Exporter\.
 
-## Default Prometheus Scrape Configuration<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-default"></a>
+## Default Prometheus scrape configuration<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-default"></a>
 
 By default, the CloudWatch agent with Prometheus support scrapes the Java/JMX Prometheus metrics from `http://CLUSTER_IP:9404/metrics` on each pod in an Amazon EKS or Kubernetes cluster\. This is done by `role: pod` discovery of Prometheus `kubernetes_sd_config`\. 9404 is the default port allocated for JMX Exporter by Prometheus\. For more information about `role: pod` discovery, see [ pod](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#pod)\. You can configure the JMX Exporter to expose the metrics on a different port or metrics\_path\. If you do change the port or path, update the default jmx scrape\_config in the CloudWatch agent config map\. Run the following command to get the current CloudWatch agent Prometheus configuration:
 
@@ -29,15 +29,15 @@ relabel_configs:
   source_labels:
 ```
 
-## Other Prometheus Scrape Configuration<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-other"></a>
+## Other Prometheus scrape configuration<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-other"></a>
 
 If you expose your application running on a set of pods with Java/JMX Prometheus exporters by a Kubernetes Service, you can also switch to use `role: service` discovery or `role: endpoint` discovery of Prometheus `kubernetes_sd_config`\. For more information about these discovery methods, see [ service](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#service), [ endpoints](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#endpoints), and [ <kubernetes\_sd\_config>\.](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)\. 
 
-More meta labels are provided by these two service discovery modes which could be useful for you to build the CloudWatch metrics dimensions\. For example, you can relabel `__meta_kubernetes_service_name` to `Service` and include it into your metrics’ dimension\. For more informatio about customizing your CloudWatch metrics and their dimensions, see [ CloudWatch Agent Configuration for Prometheus](ContainerInsights-Prometheus-Setup-configure-ECS.md#ContainerInsights-Prometheus-Setup-cw-agent-config)\.
+More meta labels are provided by these two service discovery modes which could be useful for you to build the CloudWatch metrics dimensions\. For example, you can relabel `__meta_kubernetes_service_name` to `Service` and include it into your metrics’ dimension\. For more informatio about customizing your CloudWatch metrics and their dimensions, see [ CloudWatch agent configuration for Prometheus](ContainerInsights-Prometheus-Setup-configure-ECS.md#ContainerInsights-Prometheus-Setup-cw-agent-config)\.
 
-## Docker Image with JMX Exporter<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-docker"></a>
+## Docker image with JMX Exporter<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-docker"></a>
 
-Next, build a docker image\. The following sections provide two example dockerfiles\.
+Next, build a Docker image\. The following sections provide two example Dockerfiles\.
 
 When you have built the image, load it into Amazon EKS or Kubernetes, and then run the following command to verify that Prometheus metrics are exposed by JMX\_EXPORTER on port 9404\. Replace *$JAR\_SAMPLE\_TRAFFIC\_POD* with the running pod name and replace *$JAR\_SAMPLE\_TRAFFIC\_NAMESPACE* with your application namespace\. 
 
@@ -53,9 +53,9 @@ eksctl create fargateprofile --cluster MyCluster \
 kubectl exec $JAR_SAMPLE_TRAFFIC_POD -n $JARCAT_SAMPLE_TRAFFIC_NAMESPACE -- curl http://localhost:9404
 ```
 
-## Example: Apache Tomcat Docker Image with Prometheus Metrics<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-tomcat"></a>
+## Example: Apache Tomcat Docker image with Prometheus metrics<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-tomcat"></a>
 
-Apache Tomcat server exposes JMX mBeans by default\. You can integrate JMX Exporter with Tomcat to expose JMX mBeans as Prometheus metrics\. The following example dockerfile shows the steps to build a testing image: 
+Apache Tomcat server exposes JMX mBeans by default\. You can integrate JMX Exporter with Tomcat to expose JMX mBeans as Prometheus metrics\. The following example Dockerfile shows the steps to build a testing image: 
 
 ```
 # From Tomcat 9.0 JDK8 OpenJDK 
@@ -73,7 +73,7 @@ RUN chmod  o+x /usr/local/tomcat/bin/setenv.sh
 ENTRYPOINT ["catalina.sh", "run"]
 ```
 
-The following list explains the four `COPY` lines in this dockerfile\.
+The following list explains the four `COPY` lines in this Dockerfile\.
 + Download the latest JMX Exporter jar file from [https://github\.com/prometheus/jmx\_exporter](https://github.com/prometheus/jmx_exporter)\.
 + `config.yaml` is the JMX Exporter configuration file\. For more information, see [https://github\.com/prometheus/jmx\_exporter\#Configuration](https://github.com/prometheus/jmx_exporter#Configuration )\.
 
@@ -134,11 +134,11 @@ The following list explains the four `COPY` lines in this dockerfile\.
   ```
 + your web application\.war is your web application `war` file to be loaded by Tomcat\.
 
-Build a docker image with this configuration and upload it to an image repository\.
+Build a Docker image with this configuration and upload it to an image repository\.
 
-## Example: Java Jar Application Docker Image with Prometheus Metrics<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-jar"></a>
+## Example: Java Jar Application Docker image with Prometheus metrics<a name="ContainerInsights-Prometheus-Sample-Workloads-javajmx-jar"></a>
 
-The following example dockerfile shows the steps to build a testing image: 
+The following example Dockerfile shows the steps to build a testing image: 
 
 ```
 # Alpine Linux with OpenJDK JRE
@@ -157,7 +157,7 @@ RUN apk add curl
 ENTRYPOINT exec /opt/jmx_exporter/start_exporter_example.sh
 ```
 
-The following list explains the four `COPY` lines in this dockerfile\.
+The following list explains the four `COPY` lines in this Dockerfile\.
 + Download the latest JMX Exporter jar file from [https://github\.com/prometheus/jmx\_exporter](https://github.com/prometheus/jmx_exporter)\.
 + `config.yaml` is the JMX Exporter configuration file\. For more information, see [https://github\.com/prometheus/jmx\_exporter\#Configuration](https://github.com/prometheus/jmx_exporter#Configuration )\.
 
@@ -218,4 +218,4 @@ The following list explains the four `COPY` lines in this dockerfile\.
   ```
 + SampleJavaApplication\-1\.0\-SNAPSHOT\.jar is the sample Java application jar file\. Replace it with the Java application that you want to monitor\.
 
-Build a docker image with this configuration and upload it to an image repository\.
+Build a Docker image with this configuration and upload it to an image repository\.

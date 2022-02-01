@@ -18,7 +18,7 @@ The following metrics are available as time series aggregated data in CloudWatch
 
 The following metrics can be found in the embedded metric format log entries by using CloudWatch Logs Insights\. For more information about CloudWatch Logs Insights, see [ Analyzing Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\.
 
-For more information about embedded metric format, see [Ingesting High\-Cardinality Logs and Generating Metrics with CloudWatch Embedded Metric Format](CloudWatch_Embedded_Metric_Format.md)\.
+For more information about embedded metric format, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
 
 
 | Metric name | Description | 

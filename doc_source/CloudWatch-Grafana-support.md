@@ -1,7 +1,7 @@
-# Grafana Integration<a name="CloudWatch-Grafana-support"></a>
+# Grafana integration<a name="CloudWatch-Grafana-support"></a>
 
 You can use Grafana version 6\.5\.0 and later to contextually advance through the CloudWatch console and query a dynamic list of metrics by using wildcards\. This can help you monitor metrics for AWS resources, such as Amazon Elastic Compute Cloud instances or containers\. When new instances are created as part of an Auto Scaling event, they appear in the graph automatically\. You don't need to track the new instance IDs\. Prebuilt dashboards help simplify the getting started experience for monitoring Amazon EC2, Amazon Elastic Block Store, and AWS Lambda resources\.
 
 You can use Grafana version 7\.0 and later to perform CloudWatch Logs Insights queries on log groups in CloudWatch Logs\. You can visualize your query results in bar, line, and stacked graphs and in a table format\. For more information about CloudWatch Logs Insights, see [Analyzing Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\.
 
-For more information about how to get started, see [Using AWS CloudWatch in Grafana](https://grafana.com/docs/grafana/latest/datasources/cloudwatch/) in the Grafana Labs documentation\.
+For more information about how to get started, see [Using AWS CloudWatch in Grafana](https://grafana.com/docs/grafana/latest/datasources/aws-cloudwatch/) in the Grafana Labs documentation\.

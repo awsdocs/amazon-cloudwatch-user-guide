@@ -1,8 +1,8 @@
-# Set Up the CloudWatch Agent to Collect Cluster Metrics<a name="Container-Insights-setup-metrics"></a>
+# Set up the CloudWatch agent to collect cluster metrics<a name="Container-Insights-setup-metrics"></a>
 
-To set up Container Insights to collect metrics, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up the CloudWatch agent to be able to collect metrics from your clusters\.
+To set up Container Insights to collect metrics, you can follow the steps in [Quick Start setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up the CloudWatch agent to be able to collect metrics from your clusters\.
 
-## Step 1: Create a Namespace for CloudWatch<a name="create-namespace-metrics"></a>
+## Step 1: Create a namespace for CloudWatch<a name="create-namespace-metrics"></a>
 
 Use the following step to create a Kubernetes namespace called `amazon-cloudwatch` for CloudWatch\. You can skip this step if you have already created this namespace\.
 
@@ -13,7 +13,7 @@ Use the following step to create a Kubernetes namespace called `amazon-cloudwatc
   kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cloudwatch-namespace.yaml
   ```
 
-## Step 2: Create a Service Account in the Cluster<a name="create-service-account"></a>
+## Step 2: Create a service account in the cluster<a name="create-service-account"></a>
 
 Use the following step to create a service account for the CloudWatch agent, if you do not already have one\.
 
@@ -45,7 +45,7 @@ rules:
     verbs: ["get"]
 ```
 
-## Step 3: Create a ConfigMap for the CloudWatch Agent<a name="create-configmap"></a>
+## Step 3: Create a ConfigMap for the CloudWatch agent<a name="create-configmap"></a>
 
 Use the following steps to create a ConfigMap for the CloudWatch agent\.
 
@@ -65,7 +65,7 @@ Use the following steps to create a ConfigMap for the CloudWatch agent\.
    + **endpoint\_override** – In the `logs` section, you can specify the CloudWatch Logs endpoint if you want to override the default endpoint\. You might want to do this if you're publishing from a cluster in a VPC and you want the data to go to a VPC endpoint\.
    + **force\_flush\_interval** – In the `logs` section, you can specify the interval for batching log events before they are published to CloudWatch Logs\. The default is 5 seconds\.
    + **region** – By default, the agent published metrics to the Region where the worker node is located\. To override this, you can add a `region` field in the `agent` section: for example, `"region":"us-west-2"`\.
-   + **statsd** section – If you want the CloudWatch Logs agent to also run as a StatsD listener in each worker node of your cluster, you can add a `statsd` section to the `metrics` section, as in the following example\. For information about other StatsD options for this section, see [Retrieve Custom Metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\.
+   + **statsd** section – If you want the CloudWatch Logs agent to also run as a StatsD listener in each worker node of your cluster, you can add a `statsd` section to the `metrics` section, as in the following example\. For information about other StatsD options for this section, see [Retrieve custom metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\.
 
      ```
      "metrics": {
@@ -110,7 +110,7 @@ Use the following steps to create a ConfigMap for the CloudWatch agent\.
    kubectl apply -f cwagent-configmap.yaml
    ```
 
-## Step 4: Deploy the CloudWatch Agent as a DaemonSet<a name="deploy-agent-yaml"></a>
+## Step 4: Deploy the CloudWatch agent as a DaemonSet<a name="deploy-agent-yaml"></a>
 
 To finish the installation of the CloudWatch agent and begin collecting container metrics, use the following steps\.
 

@@ -24,7 +24,7 @@ For a list of Lambda Insights metrics, see [Metrics collected by Lambda Insights
 
    The top part of the page displays graphs with metrics for the selected function\.
 
-1. If you have X\-Ray enabled, you can choose a single trace ID\. This opens CloudWatch ServiceLens for that invocation, and from there you can zoom out to see the distributed trace and the other services involved in handling that specific transaction\. For more information about ServiceLens, see [Using ServiceLens to Monitor the Health of Your Applications](ServiceLens.md)\.
+1. If you have X\-Ray enabled, you can choose a single trace ID\. This opens CloudWatch ServiceLens for that invocation, and from there you can zoom out to see the distributed trace and the other services involved in handling that specific transaction\. For more information about ServiceLens, see [Using ServiceLens to monitor the health of your applications](ServiceLens.md)\.
 
 1. To open CloudWatch Logs Insights and zoom in on a specific error, choose **View logs** by the table at the bottom of the page\.
 

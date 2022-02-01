@@ -1,16 +1,16 @@
-# Using the Service Map in ServiceLens<a name="servicelens_service_map"></a>
+# Using the service map in ServiceLens<a name="servicelens_service_map"></a>
 
 This section introduces the service map and helps you learn to navigate it\.
 
 To see a service map, you must have installed AWS X\-Ray and completed the other ServiceLens deployment steps\. For more information, see [Deploying ServiceLens](deploy_servicelens.md)\.
 
-You must also be logged on to an account that has the `AWSXrayReadOnlyAccess` managed policy, as well as permissions that enable you to view the CloudWatch console\. For more information, see [How AWS X\-Ray Works with IAM](https://docs.aws.amazon.com/xray/latest/devguide/security_iam_service-with-iam.html) and [Using Amazon CloudWatch Dashboards](CloudWatch_Dashboards.md)\.
+You must also be signed in to an account that has the `AWSXrayReadOnlyAccess` managed policy, as well as permissions that enable you to view the CloudWatch console\. For more information, see [How AWS X\-Ray Works with IAM](https://docs.aws.amazon.com/xray/latest/devguide/security_iam_service-with-iam.html) and [Using Amazon CloudWatch dashboards](CloudWatch_Dashboards.md)\.
 
 **To begin using the service map**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Service Map**\.
+1. In the navigation pane, choose **ServiceLens**, **Service Map**\.
 
    A service map appears\. It has the following parts:
    + The AWS services and your custom applications that you have enabled tracing for are shown as circles or “nodes\.” The size of each node indicates the relative number of traced requests that are going to that service\.
@@ -45,7 +45,7 @@ You must also be logged on to an account that has the `AWSXrayReadOnlyAccess` ma
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Service Map**\.
+1. In the navigation pane, choose **ServiceLens**, **Service Map**\.
 
 1. Choose the node that represents the service or application that you want to investigate\.
 
@@ -55,4 +55,4 @@ You must also be logged on to an account that has the `AWSXrayReadOnlyAccess` ma
 
 1. To view traces related to the service, choose **View traces**\.
 
-   The console switches to the **Traces** view, focused on the service that you are investigating\. For more information, see [Using the Traces View in ServiceLens](servicelens_service_map_traces.md)\.
+   The console switches to the **Traces** view, focused on the service that you are investigating\. For more information, see [Using the traces view in ServiceLens](servicelens_service_map_traces.md)\.

@@ -104,7 +104,7 @@ The next step is creating a task definition\.
 
 1. Under **ENVIRONMENT**, for **Command** enter **\-\-config=/etc/ecs/container\-insights/otel\-task\-metrics\-config\.yaml** 
 
-   This YAML file is included in the docker image, and includes the configuration to consume container metrics\.
+   This YAML file is included in the Docker image, and includes the configuration to consume container metrics\.
 
 1. If you're using the EC2 launch type, enter a port mapping of 55680 for TCP\.
 

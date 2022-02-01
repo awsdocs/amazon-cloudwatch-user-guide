@@ -1,4 +1,4 @@
-# Prometheus Metrics Troubleshooting on Amazon ECS<a name="ContainerInsights-Prometheus-troubleshooting-ECS"></a>
+# Prometheus metrics troubleshooting on Amazon ECS<a name="ContainerInsights-Prometheus-troubleshooting-ECS"></a>
 
 This section provides help for troubleshooting your Prometheus metrics setup on Amazon ECS clusters\. 
 

@@ -15,7 +15,7 @@ First, you should get language\-specific bindings, which enable you to parse Ope
 
     1. Download the OpenTelemetry 0\.7\.0 ProtoBuf definitions at [v0\.7\.0 release](https://github.com/open-telemetry/opentelemetry-proto/releases/tag/v0.7.0)\. 
 
-    1. Confirm that you are in the root folder of the downloaded OpenTelemetry 0\.7\.0 ProtoBuf definitions, and run the command to generate language\-specific bindings\. For more information, see [Generating Your Classes](https://developers.google.com/protocol-buffers/docs/proto3#generating)\. 
+    1. Confirm that you are in the root folder of the downloaded OpenTelemetry 0\.7\.0 ProtoBuf definitions\. Then create a `src` folder and then run the command to generate language\-specific bindings\. For more information, see [Generating Your Classes](https://developers.google.com/protocol-buffers/docs/proto3#generating)\. 
 
        The following is an example for how to generate Javascript bindings\.
 
@@ -23,7 +23,8 @@ First, you should get language\-specific bindings, which enable you to parse Ope
        protoc --proto_path=./ --js_out=import_style=commonjs,binary:src \
        opentelemetry/proto/common/v1/common.proto \
        opentelemetry/proto/resource/v1/resource.proto \
-       opentelemetry/proto/metrics/v1/metrics.proto
+       opentelemetry/proto/metrics/v1/metrics.proto \
+       opentelemetry/proto/collector/metrics/v1/metrics_service.proto
        ```
 
 The following section includes examples of using the language\-specific bindings that you can build using the previous instructions\.

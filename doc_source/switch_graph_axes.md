@@ -1,6 +1,6 @@
-# Modifying the Y\-Axis for a Graph<a name="switch_graph_axes"></a>
+# Modifying the y\-axis for a graph<a name="switch_graph_axes"></a>
 
-You can set custom bounds for the \-y\-axis on a graph to help you see the data better\. For example, you can change the bounds on a `CPUUtilization` graph to 100 percent so that it's easy to see whether the CPU is low \(the plotted line is near the bottom of the graph\) or high \(the plotted line is near the top of the graph\)\.
+You can set custom bounds for the y\-axis on a graph to help you see the data better\. For example, you can change the bounds on a `CPUUtilization` graph to 100 percent so that it's easy to see whether the CPU is low \(the plotted line is near the bottom of the graph\) or high \(the plotted line is near the top of the graph\)\.
 
 You can switch between two different y\-axes for your graph\. This is useful if the graph contains metrics that have different units or that differ greatly in their range of values\.
 

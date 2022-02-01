@@ -1,4 +1,4 @@
-# Using the CloudWatch Agent to Send Embedded Metric Format Logs<a name="CloudWatch_Embedded_Metric_Format_Generation_CloudWatch_Agent"></a>
+# Using the CloudWatch agent to send embedded metric format logs<a name="CloudWatch_Embedded_Metric_Format_Generation_CloudWatch_Agent"></a>
 
 To use this method, first install the CloudWatch agent for the services you want to send embedded metric format logs from, and then you can begin sending the events\.
 
@@ -8,15 +8,15 @@ The CloudWatch agent must be version 1\.230621\.0 or later\.
 You do not need to install the CloudWatch agent to send logs from Lambda functions\.  
 Lambda function timeouts are not handled automatically\. This means that if your function times out before the metrics get flushed, then the metrics for that invocation will not be captured\.
 
-## Installing the CloudWatch Agent<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent"></a>
+## Installing the CloudWatch agent<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent"></a>
 
 Install the CloudWatch agent for each service which is to send embedded metric format logs\.
 
-### Installing the CloudWatch Agent on EC2<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent_EC2"></a>
+### Installing the CloudWatch agent on EC2<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent_EC2"></a>
 
-First, install the CloudWatch agent on the instance\. For more information, see [Installing the CloudWatch Agent](install-CloudWatch-Agent-on-EC2-Instance.md)\.
+First, install the CloudWatch agent on the instance\. For more information, see [Installing the CloudWatch agent](install-CloudWatch-Agent-on-EC2-Instance.md)\.
 
-Once you have installed the agent, configure the agent to listen on a UDP or TCP port for the embedded metric format logs\. The following is an example of this configuration that listens on the default socket `tcp:25888`\. For more information about agent configuration, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\.
+Once you have installed the agent, configure the agent to listen on a UDP or TCP port for the embedded metric format logs\. The following is an example of this configuration that listens on the default socket `tcp:25888`\. For more information about agent configuration, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
 
 ```
 {
@@ -28,15 +28,15 @@ Once you have installed the agent, configure the agent to listen on a UDP or TCP
 }
 ```
 
-### Installing the CloudWatch Agent on Amazon ECS<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent_ECS"></a>
+### Installing the CloudWatch agent on Amazon ECS<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent_ECS"></a>
 
 The easiest way to deploy the CloudWatch agent on Amazon ECS is to run it as a sidecar, defining it in the same task definition as your application\.
 
-**Create Agent Configuration File**
+**Create agent configuration file**
 
 Create your CloudWatch agent configuration file locally\. In this example, the relative file path will be `amazon-cloudwatch-agent.json`\.
 
-For more information about agent configuration, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\.
+For more information about agent configuration, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
 
 ```
 {
@@ -48,7 +48,7 @@ For more information about agent configuration, see [ Manually Create or Edit th
 }
 ```
 
-**Push Configuration to SSM Parameter Store **
+**Push configuration to SSM Parameter Store **
 
 Enter the following command to push the CloudWatch agent configuration file to the AWS Systems Manager \(SSM\) Parameter Store\.
 
@@ -60,11 +60,11 @@ aws ssm put-parameter \
     --region "{{region}}"
 ```
 
-**Configure The Task Definition**
+**Configure the task definition**
 
 Configure your task definition to use the CloudWatch Agent and expose the TCP or UDP port\. The sample task definition that you should use depends on your networking mode\.
 
-Notice that the `webapp` specifies the `AWS_EMF_AGENT_ENDPOINT` environment variable\. This is used by the library and should point to the endpoint that the agent is listening on\. Additionally, the `cwagent` specifies the `CW_CONFIG_CONTEN`T as a “valueFrom” parameter that points to the SSM configuration that you created in the previous step\.
+Notice that the `webapp` specifies the `AWS_EMF_AGENT_ENDPOINT` environment variable\. This is used by the library and should point to the endpoint that the agent is listening on\. Additionally, the `cwagent` specifies the `CW_CONFIG_CONTENT` as a “valueFrom” parameter that points to the SSM configuration that you created in the previous step\.
 
 This section contains one example for bridge mode and one example for host or awsvpc mode\. For more examples of how you can configure the CloudWatch agent on Amazon ECS, see the [Github samples repository](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/master/ecs-task-definition-templates/deployment-mode/sidecar)
 
@@ -150,7 +150,7 @@ aws ecs run-task \
 --network-configuration "awsvpcConfiguration={subnets=[{{subnetId}}],securityGroups=[{{sgId}}],assignPublicIp=ENABLED}"
 ```
 
-**Ensure Permissions**
+**Ensure permissions**
 
 Ensure the IAM role executing your tasks has permission to read from the SSM Parameter Store\. You can add this permission by attaching the **AmazonSSMReadOnlyAccess** policy\. To do so, enter the following command\.
 
@@ -159,13 +159,13 @@ aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonSSMReadOnl
 --role-name CWAgentECSExecutionRole
 ```
 
-### Installing the CloudWatch Agent on Amazon EKS<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent_EKS"></a>
+### Installing the CloudWatch agent on Amazon EKS<a name="CloudWatch_Embedded_Metric_Format_Generation_Install_Agent_EKS"></a>
 
 Parts of this process can be skipped if you have already installed CloudWatch Container Insights on this cluster\.
 
 Permissions
 
-If you have not already installed Container Insights, then first ensure that your Amazon EKS nodes have the appropriate IAM permissions\. They should have the **CloudWatchAgentServerPolicy** attached\. For more information, see [Verify Prerequisites](Container-Insights-prerequisites.md)\.
+If you have not already installed Container Insights, then first ensure that your Amazon EKS nodes have the appropriate IAM permissions\. They should have the **CloudWatchAgentServerPolicy** attached\. For more information, see [Verify prerequisites](Container-Insights-prerequisites.md)\.
 
 **Create ConfigMap**
 
@@ -203,7 +203,7 @@ Enter the following command to apply the ConfigMap\.
 kubectl apply -f cwagent-emf-configmap.yaml
 ```
 
-**Deploy the Agent**
+**Deploy the agent**
 
 To deploy the CloudWatch agent as a sidecar, add the agent to your pod definition, as in the following example\.
 
@@ -243,13 +243,13 @@ spec:
         name: cwagentemfconfig
 ```
 
-## Using the CloudWatch Agent to Send Embedded Metric Format Logs<a name="CloudWatch_Embedded_Metric_Format_Generation_CloudWatch_Agent_Send_Logs"></a>
+## Using the CloudWatch agent to send embedded metric format logs<a name="CloudWatch_Embedded_Metric_Format_Generation_CloudWatch_Agent_Send_Logs"></a>
 
-Once you have the CloudWatch agent installed and running you can send the embedded metric format logs over TCP or UDP\. There are two requirements when sending the logs over the agent:
+When you have the CloudWatch agent installed and running, you can send the embedded metric format logs over TCP or UDP\. There are two requirements when sending the logs over the agent:
 + The logs must contain a `LogGroupName` key that tells the agent which log group to use\.
 + Each log event must be on a single line\. In other words, a log event cannot contain the newline \(\\n\) character\.
 
-The log events must also follow the embedded metric format specification\. For more information, see [Specification: Embedded Metric Format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
+The log events must also follow the embedded metric format specification\. For more information, see [Specification: Embedded metric format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
 
 The following is an example of sending log events manually from a Linux bash shell\. You can instead use the UDP socket interfaces provided by your programming language of choice\. 
 

@@ -1,4 +1,4 @@
-# Retrieve Custom Metrics with StatsD<a name="CloudWatch-Agent-custom-metrics-statsd"></a>
+# Retrieve custom metrics with StatsD<a name="CloudWatch-Agent-custom-metrics-statsd"></a>
 
 You can retrieve additional custom metrics from your applications or services using the CloudWatch agent with the `StatsD` protocol\. StatsD is a popular open\-source solution that can gather metrics from a wide variety of applications\. StatsD is especially useful for instrumenting your own metrics\. For an example of using the CloudWatch agent and StatsD together, see [ How to better monitor your custom application metrics using Amazon CloudWatch Agent](https://aws.amazon.com/blogs/devops/new-how-to-better-monitor-your-custom-application-metrics-using-amazon-cloudwatch-agent/)\.
 
@@ -16,7 +16,7 @@ MetricName:value|type|@sample_rate|#tag1:
 
 You can use any `StatsD` client that follows this format to send the metrics to the CloudWatch agent\. For more information about some of the available `StatsD` clients, see the [StatsD client page on GitHub](https://github.com/etsy/statsd/wiki#client-implementations)\. 
 
-To collect these custom metrics, add a `"statsd": {}` line to the `metrics_collected` section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it's done for you\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+To collect these custom metrics, add a `"statsd": {}` line to the `metrics_collected` section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it's done for you\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.
 
 The `StatsD` default configuration works for most users\. There are three optional fields that you can add to the **statsd** section of the agent configuration file as needed:
 + `service_address` – The service address to which the CloudWatch agent should listen\. The format is `ip:port`\. If you omit the IP address, the agent listens on all available interfaces\. Only the UDP format is supported, so you don't need to specify a UDP prefix\. 
@@ -45,9 +45,9 @@ The following is an example of the **statsd** section of the agent configuration
 }
 ```
 
-## Viewing StatsD Metrics Imported by the CloudWatch Agent<a name="CloudWatch-view-statsd-metrics"></a>
+## Viewing StatsD metrics imported by the CloudWatch agent<a name="CloudWatch-view-statsd-metrics"></a>
 
-After importing StatsD metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view StatsD metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+After importing StatsD metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view StatsD metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 **To view StatsD metrics in the CloudWatch console**
 

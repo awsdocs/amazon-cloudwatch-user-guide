@@ -1,8 +1,8 @@
-# Modifying the Time Range or Time Zone Format for a Graph<a name="modify_graph_date_time"></a>
+# Modifying the time range or time zone format for a graph<a name="modify_graph_date_time"></a>
 
 You can change the time range or the time zone format of a graph\.
 
-## Setting a Relative Time Range<a name="set-relative-time-range"></a>
+## Setting a relative time range<a name="set-relative-time-range"></a>
 
 You can set a relative time range for your graph\.
 
@@ -16,7 +16,7 @@ You can set a relative time range for your graph\.
 
 1. For more predefined ranges, choose the **custom** menu and then choose **Relative**\. Select one of the predefined ranges, which span from 5 minutes to 15 months ago\.
 
-## Setting an Absolute Time Range<a name="set-absolute-time-range"></a>
+## Setting an absolute time range<a name="set-absolute-time-range"></a>
 
 You can set an absolute time range for your graph\.
 
@@ -28,7 +28,7 @@ You can set an absolute time range for your graph\.
 
 1. Choose the **custom** menu and then choose **Absolute**\. Use the calendar picker or the text fields to specify the time range\.
 
-## Setting the Time Zone Format<a name="set-time-zone-Cloudwatch-graph"></a>
+## Setting the time zone format<a name="set-time-zone-Cloudwatch-graph"></a>
 
 You can specify whether the graph uses UTC time or your local time\.
 
@@ -40,7 +40,7 @@ You can specify whether the graph uses UTC time or your local time\.
 
 1. Choose the **custom** menu and then choose **UTC** or **Local timezone**\.
 
-## Zooming In on a Graph<a name="zoom-graph"></a>
+## Zooming in on a graph<a name="zoom-graph"></a>
 
 You can change the granularity of a graph and zoom in to see data over a shorter time period\.
 

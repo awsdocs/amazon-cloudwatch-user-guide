@@ -1,8 +1,8 @@
-# Contributor Insights Rule Examples<a name="ContributorInsights-Rule-Examples"></a>
+# Contributor Insights rule examples<a name="ContributorInsights-Rule-Examples"></a>
 
 This section contains examples that illustrate use cases for Contributor Insights rules\.
 
-**VPC Flow Logs: Byte Transfers by Source and Destination IP Address**
+**VPC Flow Logs: Byte transfers by source and destination IP address**
 
 ```
 {
@@ -31,7 +31,7 @@ This section contains examples that illustrate use cases for Contributor Insight
 }
 ```
 
-**VPC Flow Logs: Highest Number of HTTPS Requests**
+**VPC Flow Logs: Highest number of HTTPS requests**
 
 ```
 {
@@ -64,7 +64,7 @@ This section contains examples that illustrate use cases for Contributor Insight
 }
 ```
 
-**VPC Flow Logs: Rejected TCP Connections**
+**VPC Flow Logs: Rejected TCP connections**
 
 ```
 {

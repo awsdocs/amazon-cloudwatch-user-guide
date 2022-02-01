@@ -8,133 +8,384 @@ For information about other services that support service\-linked roles, see [AW
 
 ## Service\-linked role permissions for CloudWatch Application Insights<a name="service-linked-role-permissions"></a>
 
-CloudWatch Application Insights uses the service\-linked role named **AWSServiceRoleForApplicationInsights**\. Application Insights uses this role to perform operations such as analyzing the Resource Groups of the customer, creating CloudFormation stacks to create alarms on metrics, and configuring the CloudWatch Agent on EC2 instances\.
+CloudWatch Application Insights uses the service\-linked role named **AWSServiceRoleForApplicationInsights**\. Application Insights uses this role to perform operations such as analyzing the resource groups of the customer, creating CloudFormation stacks to create alarms on metrics, and configuring the CloudWatch Agent on EC2 instances\. This service\-linked role is attached to the following managed policy: `CloudwatchApplicationInsightsServiceLinkedRolePolicy`\. For updates to this policy, see [Application Insights updates to AWS managed policies](security-iam-awsmanpol-appinsights.md#security-iam-awsmanpol-appinsights-updates)\.
 
-The role permissions policy allows CloudWatch Application Insights to complete the following actions on all resources:
-+ `cloudwatch:DescribeAlarmHistory`
-+  `cloudwatch:DescribeAlarms`
-+  `cloudwatch:GetMetricData`
-+ `cloudwatch:ListMetrics`
-+ `cloudwatch:PutMetricAlarm`
-+ `cloudwatch:DeleteAlarms`
-+ `cloudwatch:PutAnomalyDetector`
-+ `cloudwatch:DeleteAnomalyDetector`
-+ `cloudwatch:DescribeAnomalyDetectors`
-+ `logs:FilterLogEvents`
-+ `logs:GetLogEvents` 
-+  `logs:DescribeLogStreams`
-+  `logs:DescribeLogGroups`
-+ `events:DescribeRule` 
-+ `cloudFormation:DescribeStacks` 
-+ `cloudFormation:ListStackResources` 
-+ `tag:GetResources` 
-+ `resource-groups:ListGroupResources` 
-+ `resource-groups:GetGroupQuery` 
-+ `resource-groups:GetGroup` 
-+ `elasticloadbalancing:DescribeLoadBalancers` 
-+ `elasticloadbalancing:DescribeTargetGroups` 
-+ `elasticloadbalancing:DescribeTargetHealth` 
-+ `autoscaling:DescribeAutoScalingGroups` 
-+ `ssm:GetOpsItem` 
-+ `ssm:CreateOpsItem` 
-+ `ssm:DescribeOpsItems` 
-+ `ssm:UpdateOpsItem` 
-+ `ssm:DescribeInstanceInformation` 
-+ `ssm:ListCommandInvocations` 
-+ `ec2:DescribeInstances` 
-+ `ec2:DescribeVolumes` 
-+ `ec2:DescribeVolumeStatus` 
-+ `rds:DescribeDBInstances` 
-+ `rds:DescribeDBClusters` 
-+ `lambda:GetFunctionConfiguration` 
-+ `lambda:ListEventSourceMappings` 
-+ `xray:GetServiceGraph` 
-+ `xray:GetTraceSummaries` 
-+ `xray:GetTimeSeriesServiceStatistics` 
-+ `xray:GetTraceGraph` 
-+ `dynamodb:DescribeTable` 
-+ `dynamodb:DescribeContributorInsights` 
-+ `dynamodb:DescribeTimeToLive` 
-+ `application-autoscaling:DescribeScalableTargets` 
-+ `s3:GetMetricsConfiguration` 
-+ `s3:GetReplicationConfiguration` 
-+ `states:DescribeExecution` 
-+ `states:DescribeStateMachine` 
-+ `states:GetExecutionHistory` 
-+ `apigateway:GET` 
-
-The role permissions policy allows CloudWatch Application Insights to complete the following actions on specified resources\. These policies are used to manage resources created by or related to CloudWatch Application Insights in your account\.
+The role permissions policy allows CloudWatch Application Insights to complete the following actions on resources\.
 
 ```
-[
-  {
-    "Effect": "Allow",
-    "Action": [
-      "cloudFormation:CreateStack",
-      "cloudFormation:UpdateStack",
-      "cloudFormation:DeleteStack",
-      "cloudFormation:DescribeStackResources"
-    ],
-    "Resource": [
-      "arn:aws:cloudformation:*:*:stack/ApplicationInsights-*"
-    ]
-  },
-  {
-    "Effect": "Allow",
-    "Action": [
-      "events:PutRule",
-      "events:PutTargets",
-      "events:RemoveTargets",
-      "events:DeleteRule"
-    ],
-    "Resource": [
-      "arn:aws:events:*:*:rule/AmazonCloudWatch-ApplicationInsights-*"
-    ]
-  },
-  {
-    "Effect": "Allow",
-    "Action": "ssm:SendCommand",
-    "Resource": [
-      "arn:aws:ec2:*:*:instance/*",
-      "arn:aws:ssm:*:*:document/AWSEC2-CheckPerformanceCounterSets",
-      "arn:aws:ssm:*:*:document/AWS-ConfigureAWSPackage",
-      "arn:aws:ssm:*:*:document/AWSEC2-DetectWorkload"
-    ]
-  },
-  {
-    "Effect": "Allow",
-    "Action": [
-      "ssm:PutParameter",
-      "ssm:DeleteParameter",
-      "ssm:AddTagsToResource",
-      "ssm:RemoveTagsFromResource",
-      "ssm:GetParameters"
-    ],
-    "Resource": "arn:aws:ssm:*:*:parameter/AmazonCloudWatch-ApplicationInsights-*"
-  },
-  {
-    "Effect": "Allow",
-    "Action": [
-      "ssm:CreateAssociation",
-      "ssm:UpdateAssociation",
-      "ssm:DeleteAssociation",
-      "ssm:DescribeAssociation"
-    ],
-    "Resource": [
-      "arn:aws:ec2:*:*:instance/*",
-      "arn:aws:ssm:*:*:association/*",
-      "arn:aws:ssm:*:*:managed-instance/*",
-      "arn:aws:ssm:*:*:document/AWSEC2-ApplicationInsightsCloudwatchAgentInstallAndConfigure",
-      "arn:aws:ssm:*:*:document/AWS-ConfigureAWSPackage",
-      "arn:aws:ssm:*:*:document/AmazonCloudWatch-ManageAgent"
-    ]
-  },
-  {
-    "Effect": "Allow",
-    "Action": "ssm:AddTagsToResource",
-    "Resource": "arn:aws:ssm:*:*:opsitem/*"
-  }
-]
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:DescribeAlarmHistory",
+        "cloudwatch:DescribeAlarms",
+        "cloudwatch:GetMetricData",
+        "cloudwatch:ListMetrics",
+        "cloudwatch:PutMetricAlarm",
+        "cloudwatch:DeleteAlarms",
+        "cloudwatch:PutAnomalyDetector",
+        "cloudwatch:DeleteAnomalyDetector",
+        "cloudwatch:DescribeAnomalyDetectors"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:FilterLogEvents",
+        "logs:GetLogEvents",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:DescribeRule"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudFormation:CreateStack",
+        "cloudFormation:UpdateStack",
+        "cloudFormation:DeleteStack",
+        "cloudFormation:DescribeStackResources"
+      ],
+      "Resource": [
+        "arn:aws:cloudformation:*:*:stack/ApplicationInsights-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudFormation:DescribeStacks",
+        "cloudFormation:ListStackResources"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "tag:GetResources"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "resource-groups:ListGroupResources",
+        "resource-groups:GetGroupQuery",
+        "resource-groups:GetGroup"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "resource-groups:CreateGroup",
+        "resource-groups:DeleteGroup"
+      ],
+      "Resource": [
+        "arn:aws:resource-groups:*:*:group/ApplicationInsights-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeTargetHealth"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:PutParameter",
+        "ssm:DeleteParameter",
+        "ssm:AddTagsToResource",
+        "ssm:RemoveTagsFromResource",
+        "ssm:GetParameters"
+      ],
+      "Resource": "arn:aws:ssm:*:*:parameter/AmazonCloudWatch-ApplicationInsights-*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:CreateAssociation",
+        "ssm:UpdateAssociation",
+        "ssm:DeleteAssociation",
+        "ssm:DescribeAssociation"
+      ],
+      "Resource": [
+        "arn:aws:ec2:*:*:instance/*",
+        "arn:aws:ssm:*:*:association/*",
+        "arn:aws:ssm:*:*:managed-instance/*",
+        "arn:aws:ssm:*:*:document/AWSEC2-ApplicationInsightsCloudwatchAgentInstallAndConfigure",
+        "arn:aws:ssm:*:*:document/AWS-ConfigureAWSPackage",
+        "arn:aws:ssm:*:*:document/AmazonCloudWatch-ManageAgent"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetOpsItem",
+        "ssm:CreateOpsItem",
+        "ssm:DescribeOpsItems",
+        "ssm:UpdateOpsItem",
+        "ssm:DescribeInstanceInformation"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:AddTagsToResource"
+      ],
+      "Resource": "arn:aws:ssm:*:*:opsitem/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:ListCommandInvocations"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ssm:SendCommand",
+      "Resource": [
+        "arn:aws:ec2:*:*:instance/*",
+        "arn:aws:ssm:*:*:document/AWSEC2-CheckPerformanceCounterSets",
+        "arn:aws:ssm:*:*:document/AWS-ConfigureAWSPackage",
+        "arn:aws:ssm:*:*:document/AWSEC2-DetectWorkload",
+        "arn:aws:ssm:*:*:document/AmazonCloudWatch-ManageAgent"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeVolumeStatus"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBClusters"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:ListFunctions",
+        "lambda:GetFunctionConfiguration",
+        "lambda:ListEventSourceMappings"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:PutRule",
+        "events:PutTargets",
+        "events:RemoveTargets",
+        "events:DeleteRule"
+      ],
+      "Resource": [
+        "arn:aws:events:*:*:rule/AmazonCloudWatch-ApplicationInsights-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "xray:GetServiceGraph",
+        "xray:GetTraceSummaries",
+        "xray:GetTimeSeriesServiceStatistics",
+        "xray:GetTraceGraph"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:ListTables",
+        "dynamodb:DescribeTable",
+        "dynamodb:DescribeContributorInsights",
+        "dynamodb:DescribeTimeToLive"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "application-autoscaling:DescribeScalableTargets"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:GetMetricsConfiguration",
+        "s3:GetReplicationConfiguration"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "states:ListStateMachines",
+        "states:DescribeExecution",
+        "states:DescribeStateMachine",
+        "states:GetExecutionHistory"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "apigateway:GET"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecs:DescribeClusters",
+        "ecs:DescribeContainerInstances",
+        "ecs:DescribeServices",
+        "ecs:DescribeTaskDefinition",
+        "ecs:DescribeTasks",
+        "ecs:DescribeTaskSets",
+        "ecs:ListClusters",
+        "ecs:ListContainerInstances",
+        "ecs:ListServices",
+        "ecs:ListTasks"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecs:UpdateClusterSettings"
+      ],
+      "Resource": [
+        "arn:aws:ecs:*:*:cluster/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "eks:DescribeCluster",
+        "eks:DescribeFargateProfile",
+        "eks:DescribeNodegroup",
+        "eks:ListClusters",
+        "eks:ListFargateProfiles",
+        "eks:ListNodegroups",
+        "fsx:DescribeFileSystems"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:GetSubscriptionAttributes",
+        "sns:GetTopicAttributes",
+        "sns:GetSMSAttributes",
+        "sns:ListSubscriptionsByTopic",
+        "sns:ListTopics"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sqs:ListQueues"
+      ],
+      "Resource": "*"
+    }
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:DeleteSubscriptionFilter"
+      ],
+      "Resource": [
+        "arn:aws:logs:*:*:log-group:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:PutSubscriptionFilter"
+      ],
+      "Resource": [
+        "arn:aws:logs:*:*:log-group:*",
+        "arn:aws:logs:*:*:destination:AmazonCloudWatch-ApplicationInsights-LogIngestionDestination*"
+      ]
+    }
+  ]
+}
 ```
 
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
@@ -165,32 +416,4 @@ Use the IAM console, the AWS CLI, or the AWS API to delete the AWSServiceRoleFor
 
 ## Supported Regions for CloudWatch Application Insights service\-linked roles<a name="slr-regions"></a>
 
-CloudWatch Application Insights supports using service\-linked roles in all of the AWS Regions where the service is available\.
-
-
-****  
-
-| Region name | Region identity | Support in CloudWatch Application Insights | 
-| --- | --- | --- | 
-| Asia Pacific \(Mumbai\) | ap\-south\-1 | Yes | 
-| Asia Pacific \(Seoul\) | ap\-northeast\-2 | Yes | 
-| Asia Pacific \(Singapore\) | ap\-southeast\-1 | Yes | 
-| Asia Pacific \(Sydney\) | ap\-southeast\-2 | Yes | 
-| Asia Pacific \(Hong Kong\) | ap\-east\-1 | Yes | 
-| Europe \(Frankfurt\) | eu\-central\-1 | Yes | 
-| Europe \(Ireland\) | eu\-west\-1 | Yes | 
-| Europe \(London\) | eu\-west\-2 | Yes | 
-| Europe \(Paris\) | eu\-west\-3 | Yes | 
-| Europe \(Stockholm\) | eu\-north\-1 | Yes | 
-| Europe \(Milan\) | eu\-south\-1 | Yes | 
-| South America \(São Paulo\) | sa\-east\-1 | Yes | 
-| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | Yes | 
-| US East \(N\. Virginia\) | us\-east\-1 | Yes | 
-| US East \(Ohio\) | us\-east\-2 | Yes | 
-| US West \(N\. California\) | us\-west\-1 | Yes | 
-| US West \(Oregon\) | us\-west\-2 | Yes | 
-| Canada \(Central\) | ca\-central\-1 | Yes | 
-| Africa \(Cape Town\) | af\-south\-1 | Yes | 
-| Middle East \(Bahrain\) | me\-south\-1 | Yes | 
-| AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | Yes | 
-| AWS GovCloud \(US\-West\) | us\-gov\-west\-1 | Yes | 
+CloudWatch Application Insights supports using service\-linked roles in all of the AWS Regions where the service is available\. For more information, see [CloudWatch Application Insights Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/applicationinsights.html)\.

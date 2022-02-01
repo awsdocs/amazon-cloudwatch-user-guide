@@ -1,4 +1,4 @@
-# What Is Amazon CloudWatch Application Insights?<a name="appinsights-what-is"></a>
+# What is Amazon CloudWatch Application Insights?<a name="appinsights-what-is"></a>
 
 CloudWatch Application Insights helps you monitor your applications that use Amazon EC2 instances along with other [application resources](#appinsights-components)\. It identifies and sets up key metrics, logs, and alarms across your application resources and technology stack \(for example, your Microsoft SQL Server database, web \(IIS\) and application servers, OS, load balancers, and queues\)\. It continuously monitors metrics and logs to detect and correlate anomalies and errors\. When errors and anomalies are detected, Application Insights generates [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) that you can use to set up notifications or take actions\. To assist with troubleshooting, it creates automated dashboards for detected problems, which include correlated metric anomalies and log errors, along with additional insights to point you to a potential root cause\. The automated dashboards help you to take remedial actions to keep your applications healthy and to prevent impact to the end\-users of your application\. It also creates OpsItems so that you can resolve problems using [AWS SSM OpsCenter](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html)\.
 
@@ -51,7 +51,8 @@ CloudWatch Application Insights sets up recommended metrics and logs for selecte
 The following services are used along with CloudWatch Application Insights:
 
 **Related AWS services**
-+ **Amazon CloudWatch **provides system‐wide visibility into resource utilization, application performance, and operational health\. It collects and tracks metrics, sends alarm notifications, automatically updates resources that you are monitoring based on the rules that you define, and allows you to monitor your own custom metrics\. CloudWatch Application Insights is initiated through CloudWatch—specifically, within the CloudWatch default operational dashboards\. For more information, see the [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)\.
++ **Amazon CloudWatch** provides system‐wide visibility into resource utilization, application performance, and operational health\. It collects and tracks metrics, sends alarm notifications, automatically updates resources that you are monitoring based on the rules that you define, and allows you to monitor your own custom metrics\. CloudWatch Application Insights is initiated through CloudWatch—specifically, within the CloudWatch default operational dashboards\. For more information, see the [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)\.
++ **CloudWatch Container Insights** collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. You can use Container Insights to monitor Amazon ECS, Amazon Elastic Kubernetes Service, and Kubernetes platforms on Amazon EC2\. When Application Insights is enabled on the Container Insights or Application Insights consoles, Application Insights displays detected problems on your Container Insights dashboard\. For more information, see [Using Container Insights](ContainerInsights.md) \.
 + **Amazon DynamoDB** is a fully managed NoSQL database service that lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling\. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data\.
 + **Amazon EC2 **provides scalable computing capacity in the AWS Cloud\. You can use Amazon EC2 to launch as many or as few virtual servers as you need, to configure security and networking, and to manage storage\. You can scale up or down to handle changes in requirements or spikes in popularity, which reduces your need to forecast traffic\. For more information, see the [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) or [https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/concepts.html](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/concepts.html)\.
 + **Amazon Elastic Block Store \(Amazon EBS\)** provides block\-level storage volumes for use with Amazon EC2 instances\. Amazon EBS volumes behave like raw, unformatted block devices\. You can mount these volumes as devices on your instances\. Amazon EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance\. You can create a file system on top of these volumes, or use them in any way you would use a block device \(such as a hard drive\)\. You can dynamically change the configuration of a volume attached to an instance\. For more information, see the [Amazon EBS User Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)\.
@@ -67,6 +68,11 @@ The following services are used along with CloudWatch Application Insights:
 + **Amazon API Gateway** is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale\. API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud\. For more information, see the [Amazon API Gateway User Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)\.
 **Note**  
 Application Insights supports only REST API protocols \(v1 of the API Gateway service\)\.
++ **Amazon Elastic Container Service \(Amazon ECS\)** is a fully managed container orchestration service\. You can use Amazon ECS to run your most sensitive and mission\-critical applications\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)\.
++ **Amazon Elastic Kubernetes Service \(Amazon EKS\)** is a managed service that you can use to run Kubernetes on AWS without having to install, operate, and maintain your own Kubernetes control plane or nodes\. Kubernetes is an open\-source system for automating the deployment, scaling, and management of containerized applications\. For more information, see the [Amazon EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html)\.
++ **Kubernetes on Amazon EC2**\. Kubernetes is open\-source software that helps you deploy and manage containerized applications at scale\. Kubernetes manages clusters of Amazon EC2 compute instances and runs containers on those instances with processes for deployment, maintenance, and scaling\. With Kubernetes you can run any type of containerized application with the same toolset on\-premises and in the cloud\. For more information, see [Running Kubernetes on AWS EC2](https://v1-18.docs.kubernetes.io/docs/setup/production-environment/turnkey/aws/)\.
++ **Amazon FSx** helps you to launch and run popular file systems that are fully managed by AWS\. With Amazon FSx, you can leverage the feature sets and performance of common open source and commercially\-licensed file systems to avoid time\-consuming administrative tasks\. For more information, see the [Amazon FSx Documentation](https://docs.aws.amazon.com/fsx/)\.
++ **Amazon Simple Notification Service \(SNS\)** is a fully\-managed messaging service for both application\-to\-application and application\-to\-person communication\. You can configure Amazon SNS for monitoring by Application Insights\. When Amazon SNS is configured as a resource for monitoring, Application Insights tracks SNS metrics to help determine why SNS messages may encounter issues or fail\.
 
 **Related third\-party services**
 + For some workloads and applications monitored in Application Insights, **Prometheus JMX exporter** is installed using AWS Systems Manager Distributor so that CloudWatch Application Insights can retrieve Java\-specific metrics\. When you choose to monitor a Java application, Application Insights automatically installs the Prometheus JMX exporter for you\. 
@@ -89,6 +95,10 @@ The following components are supported by CloudWatch Application Insights:
 + Amazon S3 bucket metrics
 + AWS Step Functions
 + Amazon API Gateway REST API stages
++ Amazon Elastic Container Service \(Amazon ECS\): cluster, service, and task
++ Amazon Elastic Kubernetes Service \(Amazon EKS\): cluster
++ Kubernetes on Amazon EC2: Kubernetes cluster running on EC2
++ Amazon SNS topic
 
 Any other component type resources are not currently tracked by CloudWatch Application Insights\. If a component type that is supported does not appear in your Application Insights application, the component may already be registered and managed by another application you own that is monitored by Application Insights\. 
 
@@ -100,11 +110,15 @@ You can use CloudWatch Application Insights to monitor your applications running
   + \.NET Framework 
   + \.NET Core
 + Applications: Java
++ Active Directory
++ SharePoint
 + Databases: 
   + Microsoft SQL Server running on Amazon RDS or Amazon EC2 \(including SQL Server High Availability configurations\. See, [Component configuration examples](component-configuration-examples.md)\)\.
   + MySQL running on Amazon RDS, Amazon Aurora, or Amazon EC2
   + PostgreSQL running on Amazon RDS or Amazon EC2
   + Amazon DynamoDB table
   + Oracle running on Amazon RDS or Amazon EC2
+  + SAP HANA database on a single Amazon EC2 instance and multiple EC2 instances
+  + Cross\-AZ SAP HANA database high availability setup\.
 
 If none of the technology stacks listed above apply to your application resources, you can monitor your application stack by choosing **Custom** from the application tier dropdown menu on the **Manage monitoring** page\.

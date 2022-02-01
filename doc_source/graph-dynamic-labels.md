@@ -1,4 +1,4 @@
-# Using Dynamic Labels<a name="graph-dynamic-labels"></a>
+# Using dynamic labels<a name="graph-dynamic-labels"></a>
 
 You can use dynamic labels with your graphs\. Dynamic labels add a dynamically updated value to the label for the selected metric\. You can add a wide range of values to the labels, as shown in the following tables\.
 
@@ -8,7 +8,7 @@ If you use a dynamic label with a search expression, the dynamic label applies t
 
 You can use the CloudWatch console to add a dynamic value to a label, edit the label, change the position of the dynamic value within the label column, and make other customizations\.
 
-## Dynamic Labels<a name="dynamic-label-syntax"></a>
+## Dynamic labels<a name="dynamic-label-syntax"></a>
 
 Within a dynamic label, you can use the following values relating to properties of the metric:
 

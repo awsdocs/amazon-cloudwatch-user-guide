@@ -1,18 +1,20 @@
-# \(Optional\) Set Up FluentD as a DaemonSet to Send Logs to CloudWatch Logs<a name="Container-Insights-setup-logs"></a>
+# \(Optional\) Set up FluentD as a DaemonSet to send logs to CloudWatch Logs<a name="Container-Insights-setup-logs"></a>
 
-**Note**  
-Amazon has now launched Fluent Bit as the default log solution for Container Insights with significant performance gains\. We recommend that you use Fluent Bit instead of Fluentd\. For more information, see [Set Up Fluent Bit as a DaemonSet to Send Logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)\.
+**Warning**  
+Container Insights Support for FluentD is now in maintenance mode, which means that AWS will not provide any further updates for FluentD and that we are planning to deprecate it in near future\. Additionally, the current FluentD configuration for Container Insights is using an old version of the FluentD Image `fluent/fluentd-kubernetes-daemonset:v1.7.3-debian-cloudwatch-1.0` which does not have the latest improvement and security patches\. For the latest FluentD image supported by the open source community, see [fluentd\-kubernetes\-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset)\.   
+We strongly recommend that you migrate to use FluentBit with Container Insights whenever possible\. Using FluentBit as the log forwarder for Container Insights provides significant performance gains\.   
+For more information, see [Set up Fluent Bit as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md) and [ Differences if you're already using Fluentd](Container-Insights-setup-logs-FluentBit.md#Container-Insights-setup-logs-FluentBit-migrate)\.
 
-To set up FluentD to collect logs from your containers, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up FluentD as a DaemonSet to send logs to CloudWatch Logs\. When you complete this step, FluentD creates the following log groups if they don't already exist\.
+To set up FluentD to collect logs from your containers, you can follow the steps in [Quick Start setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\. In the following steps, you set up FluentD as a DaemonSet to send logs to CloudWatch Logs\. When you complete this step, FluentD creates the following log groups if they don't already exist\.
 
 
-| Log Group Name | Log Source | 
+| Log group name | Log source | 
 | --- | --- | 
 |  `/aws/containerinsights/Cluster_Name/application`  |  All log files in `/var/log/containers`  | 
 |  `/aws/containerinsights/Cluster_Name/host`  |  Logs from `/var/log/dmesg`, `/var/log/secure`, and `/var/log/messages`  | 
 |  `/aws/containerinsights/Cluster_Name/dataplane`  |  The logs in `/var/log/journal` for `kubelet.service`, `kubeproxy.service`, and `docker.service`\.  | 
 
-## Step 1: Create a Namespace for CloudWatch<a name="create-namespace-logs"></a>
+## Step 1: Create a namespace for CloudWatch<a name="create-namespace-logs"></a>
 
 Use the following step to create a Kubernetes namespace called `amazon-cloudwatch` for CloudWatch\. You can skip this step if you have already created this namespace\.
 
@@ -40,11 +42,13 @@ Start this process by downloading FluentD\. When you finish these steps, the dep
    --from-literal=logs.region=region_name -n amazon-cloudwatch
    ```
 
-1. Download and deploy the FluentD DaemonSet to the cluster by running the following command\. Make sure that you are using the container image with correct architecture\. The example manifest only works on x86 instances and will enter `CrashLoopBackOff` if you have Advanced RISC Machine \(ARM\) instances in your cluster\. The FluentD daemonSet does not have an official multi\-architecture docker image that enables you to use one tag for multiple underlying images and let the container runtime pull the right one\. The FluentD ARM image uses a different tag with an `arm64` suffix\.
+1. Download and deploy the FluentD DaemonSet to the cluster by running the following command\. Make sure that you are using the container image with correct architecture\. The example manifest only works on x86 instances and will enter `CrashLoopBackOff` if you have Advanced RISC Machine \(ARM\) instances in your cluster\. The FluentD daemonSet does not have an official multi\-architecture Docker image that enables you to use one tag for multiple underlying images and let the container runtime pull the right one\. The FluentD ARM image uses a different tag with an `arm64` suffix\.
 
    ```
    kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluentd/fluentd.yaml
    ```
+**Note**  
+Because of a recent change to optimize the FluentD configuration and minimize the impact of FluentD API requests on Kubernetes API endpoints, the "Watch" option for Kubernetes filters has been disabled by default\. For more details, see [fluent\-plugin\-kubernetes\_metadata\_filter](https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter)\. 
 
 1. Validate the deployment by running the following command\. Each node should have one pod named `fluentd-cloudwatch-*`\.
 
@@ -52,7 +56,7 @@ Start this process by downloading FluentD\. When you finish these steps, the dep
    kubectl get pods -n amazon-cloudwatch
    ```
 
-## Step 3: Verify the FluentD Setup<a name="ContainerInsights-verify-FluentD"></a>
+## Step 3: Verify the FluentD setup<a name="ContainerInsights-verify-FluentD"></a>
 
 To verify your FluentD setup, use the following steps\.
 
@@ -69,7 +73,7 @@ To verify your FluentD setup, use the following steps\.
 
    If you see these log groups, the FluentD setup is verified\.
 
-## Multiline Log Support<a name="ContainerInsights-fluentd-multiline"></a>
+## Multiline log support<a name="ContainerInsights-fluentd-multiline"></a>
 
 On August 19 2019, we added multiline log support for the logs collected by FluentD\.
 
@@ -137,7 +141,7 @@ Next, add a block for your log files to the `fluentd.yaml` file\. The example be
 </label>
 ```
 
-## Reducing the Log Volume From FluentD \(Optional\)<a name="ContainerInsights-fluentd-volume"></a>
+## \(Optional\) Reducing the log volume from FluentD<a name="ContainerInsights-fluentd-volume"></a>
 
 By default, we send FluentD application logs and Kubernetes metadata to CloudWatch\. If you want to reduce the volume of data being sent to CloudWatch, you can stop one or both of these data sources from being sent to CloudWatch\.
 

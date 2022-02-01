@@ -1,6 +1,6 @@
-# Viewing Your Prometheus Metrics<a name="ContainerInsights-Prometheus-viewmetrics"></a>
+# Viewing your Prometheus metrics<a name="ContainerInsights-Prometheus-viewmetrics"></a>
 
-You can monitor and alarm on all your Prometheus metrics including the curated pre\-aggregated metrics from App Mesh, NGINX, Java/JMX, Memcached, and HAProxy, and any other manually configured Prometheus exporter you may have added\. For more information about collecting metrics from other Prometheus exporters, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
+You can monitor and alarm on all your Prometheus metrics including the curated pre\-aggregated metrics from App Mesh, NGINX, Java/JMX, Memcached, and HAProxy, and any other manually configured Prometheus exporter you may have added\. For more information about collecting metrics from other Prometheus exporters, see [Tutorial for adding a new Prometheus scrape target: Prometheus API Server metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
 
 In the CloudWatch console, Container Insights provides the following pre\-built reports: 
 + For Amazon EKS and Kubernetes clusters, there are pre\-built reports for App Mesh, NGINX, HAPROXY, Memcached, and Java/JMX\.
@@ -51,7 +51,7 @@ We have also provided custom dashboards for NGINX, App Mesh, Memcached, HAProxy,
 
 1. Open the JSON file that you downloaded with a text editor, and make the following changes:
    + Replace all the `{{YOUR_CLUSTER_NAME}}` strings with the exact name of your cluster\. Make sure not to add whitespaces before or after the text\.
-   + Replace all the `{{YOUR_AWS_REGION}}` strings with the AWS Region where your cluster is running\. For example, **us\-west\-1** Make sure not to add whitespaces before or after the text\. 
+   + Replace all the `{{YOUR_REGION}}` strings with the AWS Region where your cluster is running\. For example, **us\-west\-1** Make sure not to add whitespaces before or after the text\. 
    + Replace all the `{{YOUR_NAMESPACE}}` strings with the exact namespace of your workload\.
    + Replace all the `{{YOUR_SERVICE_NAME}}` strings with the exact service name of your workload\. For example, **haproxy\-haproxy\-ingress\-controller\-metrics**
 

@@ -1,8 +1,8 @@
-# Detailed Guide for Autodiscovery on Amazon ECS clusters<a name="ContainerInsights-Prometheus-Setup-autodiscovery-ecs"></a>
+# Detailed guide for autodiscovery on Amazon ECS clusters<a name="ContainerInsights-Prometheus-Setup-autodiscovery-ecs"></a>
 
 Prometheus provides dozens of dynamic service\-discovery mechanisms as described in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config)\. However there is no built\-in service discovery for Amazon ECS\. The CloudWatch agent adds this mechanism\.
 
-Once the Amazon ECS Prometheus service discovery is enabled, the CloudWatch agent periodically makes the following API calls to Amazon ECS and Amazon EC2 frontends to retrieve the metadata of the running ECS tasks in the target ECS cluster\. 
+When the Amazon ECS Prometheus service discovery is enabled, the CloudWatch agent periodically makes the following API calls to Amazon ECS and Amazon EC2 frontends to retrieve the metadata of the running ECS tasks in the target ECS cluster\. 
 
 ```
 EC2:DescribeInstances
@@ -74,7 +74,7 @@ scrape_configs:
 ```
 
 The CloudWatch agent also adds the following additional labels for the discovered targets\.
-+ `container_name`e
++ `container_name`
 + `TaskDefinitionFamily`
 + `TaskRevision`
 + `TaskGroup`
@@ -146,7 +146,7 @@ This example enables docker label\-based service discovery\. THe CloudWatch agen
     {
       "sd_job_name": "envoy-prometheus",
       "sd_metrics_path": "/stats/prometheus",
-      "sd_container_name_pattern": "^envoy$" 
+      "sd_container_name_pattern": "^envoy$", 
       "sd_metrics_ports": "9901",
       "sd_task_definition_name_pattern": ".*:task-definition/.*appmesh.*:23"
     }

@@ -1,4 +1,4 @@
-# Add an Alarm Widget to a CloudWatch Dashboard<a name="add_remove_alarm_dashboard"></a>
+# Add an alarm widget to a CloudWatch dashboard<a name="add_remove_alarm_dashboard"></a>
 
 To add an alarm widget to a dashboard, you have two options\.
 + You can add a single alarm in a widget, which displays both the graph of the alarm's metric and the alarm status\.
@@ -16,7 +16,7 @@ To add an alarm widget to a dashboard, you have two options\.
 
 1. \(Optional\) To temporarily make an alarm graph larger, select the graph\.
 
-1. \(Optional\) To change the widget type, hover over the title of the graph, choose **Widget actions**, and then choose **Widget type**\.
+1. \(Optional\) To change the widget type, pause on the title of the graph, choose **Widget actions**, and then choose **Widget type**\.
 
 **To add an alarm status widget to a dashboard**
 
@@ -38,6 +38,6 @@ To add an alarm widget to a dashboard, you have two options\.
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. Hover over the widget, choose **Widget actions**, and then choose **Delete**\.
+1. Pause on the widget, choose **Widget actions**, and then choose **Delete**\.
 
 1. Choose **Save dashboard**\. If you attempt to navigate away from the dashboard before you save your changes, you're prompted to either save or discard your changes\.

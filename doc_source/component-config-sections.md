@@ -19,6 +19,12 @@ A component configuration includes several major sections\. Sections in a compon
 + **JMXPrometheusExporter \(optional\)**
 
   JMXPrometheus Exporter configuration\.
++ **hanaPrometheusExporter \(optional\)**
+
+  SAP HANA Prometheus Exporter configuration\.
++ **haClusterPrometheusExporter \(optional\)**
+
+   HA Cluster Prometheus Exporter configuration\.
 
 The following example shows the syntax for the **subComponents section fragment** in JSON format\.
 
@@ -53,6 +59,8 @@ This section describes the properties of each component configuration section\.
 + [Metric](#component-config-metric)
 + [Log](#component-configuration-log)
 + [JMX Prometheus Exporter](#component-configuration-prometheus)
++ [HANA Prometheus Exporter](#component-configuration-hana-prometheus)
++ [HA Cluster Prometheus Exporter](#component-configuration-ha-cluster-prometheus)
 + [Windows Events](#windows-events)
 + [Alarm](#component-configuration-alarms)
 
@@ -104,24 +112,33 @@ Defines a log to be monitored for the component\.
 
   The log type decides the log patterns against which Application Insights analyzes the log\. The log type is selected from the following:
   + `SQL_SERVER`
-  + `SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP`
   + `MYSQL`
   + `MYSQL_SLOW_QUERY`
   + `POSTGRESQL`
-  + `WINDOWS_EVENTS`
-  + `STEP_FUNCTION`
-  + `IIS`
-  + `APPLICATION`
-  + `DEFAULT`
-  + `CUSTOM`
   + `ORACLE_ALERT`
   + `ORACLE_LISTENER`
+  + `IIS`
+  + `APPLICATION`
+  + `WINDOWS_EVENTS`
+  + `WINDOWS_EVENTS_ACTIVE_DIRECTORY`
+  + `WINDOWS_EVENTS_DNS`
+  + `WINDOWS_EVENTS_IIS`
+  + `WINDOWS_EVENTS_SHAREPOINT`
+  + `SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP`
+  + `SQL_SERVER_FAILOVER_CLUSTER_INSTANCE`
+  + `DEFAULT`
+  + `CUSTOM`
+  + `STEP_FUNCTION`
+  + `API_GATEWAY_ACCESS`
+  + `API_GATEWAY_EXECUTION`
+  + `SAP_HANA_LOGS`
+  + `SAP_HANA_TRACE`
+  + `SAP_HANA_HIGH_AVAILABILITY`
 + **encoding \(optional\)**
 
-  The type of encoding of the logs to be monitored\. The specified encoding should be included in the list of [CloudWatch agent supported encodings](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html)\. If not provided, CloudWatch Application Insights uses the default encoding type for the log type:
-  + For `MYSQL`/`POSTGRESQL`/`WINDOWS_EVENTS`/`SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP`/`APPLICATION`/`DEFAULT`: utf\-8 encoding
-  + For `SQL_SERVER`: utf\-16 encoding
-  + For `IIS`: ascii encoding
+  The type of encoding of the logs to be monitored\. The specified encoding should be included in the list of [CloudWatch agent supported encodings](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html)\. If not provided, CloudWatch Application Insights uses the default encoding of type utf\-8, except for: 
+  +  `SQL_SERVER`: utf\-16 encoding
+  +  `IIS`: ascii encoding
 + **monitor \(optional\)**
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
@@ -150,6 +167,52 @@ Defines the JMX Prometheus Exporter settings\.
 + **prometheusPort \(optional\)**
 
   The target port to send Prometheus metrics to\. If not specified, the default port 9404 is used\.
+
+### HANA Prometheus Exporter<a name="component-configuration-hana-prometheus"></a>
+
+Defines the HANA Prometheus Exporter settings\.
+
+**JSON** 
+
+```
+"hanaPrometheusExporter": {
+    "hanaSid": "SAP HANA  SID",
+    "hanaPort": "HANA database port",
+    "hanaSecretName": "HANA secret name",
+    "prometheusPort": "Target port to emit Prometheus metrics"
+}
+```
+
+**Properties**
++ **hanaSid**
+
+  The three\-character SAP system ID \(SID\) of the SAP HANA system\.
++ **hanaPort**
+
+  The HANA database port by which the exporter will query HANA metrics\.
++ **hanaSecretName**
+
+  The AWS Secrets Manager secret that stores HANA monitoring user credentials\. The HANA Prometheus exporter uses these credentials to connect to the database and query HANA metrics\.
++ **prometheusPort \(optional\)**
+
+  The target port to which Prometheus sends metrics\. If not specified, the default port 9668 is used\.
+
+### HA Cluster Prometheus Exporter<a name="component-configuration-ha-cluster-prometheus"></a>
+
+Defines the HA Cluster Prometheus Exporter settings\.
+
+**JSON** 
+
+```
+"haClusterPrometheusExporter": {
+    "prometheusPort": "Target port to emit Prometheus metrics"
+}
+```
+
+**Properties**
++ **prometheusPort \(optional\)**
+
+  The target port to which Prometheus sends metrics\. If not specified, the default port 9664 is used\.
 
 ### Windows Events<a name="windows-events"></a>
 

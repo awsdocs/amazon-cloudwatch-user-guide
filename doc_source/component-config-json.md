@@ -16,9 +16,15 @@ The following example shows a template fragment in JSON format\.
   "alarms" : [
     list of CloudWatch alarms
   ],
-  "JMXPrometheusExporter": {
+  "jmxPrometheusExporter": {
     JMX Prometheus Exporter configuration
-  }
+  },
+  "hanaPrometheusExporter": {
+      SAP HANA Prometheus Exporter configuration
+  },
+  "haClusterPrometheusExporter": {
+      HA Cluster Prometheus Exporter configuration
+  },
   "subComponents" : [
     {
       "subComponentType" : "AWS::EC2::Instance" ...

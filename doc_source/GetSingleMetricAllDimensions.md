@@ -1,10 +1,10 @@
-# Aggregating Statistics Across Resources<a name="GetSingleMetricAllDimensions"></a>
+# Aggregating statistics across resources<a name="GetSingleMetricAllDimensions"></a>
 
-You can aggregate the metrics for AWS resources across multiple resources\. Metrics are completely separate between Regions, but you can use metric math to aggregate similar metrics across Regions\. For more information, see [Using Metric Math](using-metric-math.md)\.
+You can aggregate the metrics for AWS resources across multiple resources\. Metrics are completely separate between Regions, but you can use metric math to aggregate similar metrics across Regions\. For more information, see [Using metric math](using-metric-math.md)\.
 
 For example, you can aggregate statistics for your EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring aren't included\. Therefore, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-This example shows you how to get the average CPU usage for your EC2 instances\. Because no dimension is specified, CloudWatch returns statistics for all dimensions in the `AWS/EC2` namespace\. To get statistics for other metrics, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
+This example shows you how to get the average CPU usage for your EC2 instances\. Because no dimension is specified, CloudWatch returns statistics for all dimensions in the `AWS/EC2` namespace\. To get statistics for other metrics, see [AWS services that publish CloudWatch metrics](aws-services-cloudwatch-metrics.md)\.
 
 **Important**  
 This technique for retrieving all dimensions across an AWS namespace doesn't work for custom namespaces that you publish to CloudWatch\. With custom namespaces, you must specify the complete set of dimensions that are associated with any given data point to retrieve statistics that include the data point\. 

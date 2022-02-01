@@ -1,4 +1,4 @@
-# Tutorial for Adding a New Prometheus Scrape Target: Memcached on Amazon ECS<a name="ContainerInsights-Prometheus-Setup-memcached-ecs"></a>
+# Tutorial for adding a new Prometheus scrape target: Memcached on Amazon ECS<a name="ContainerInsights-Prometheus-Setup-memcached-ecs"></a>
 
 This tutorial provides a hands\-on introduction to scrape the Prometheus metrics of a sample Memcached application on an Amazon Amazon ECS cluster with the EC2 launch type\. The Memcached Prometheus exporter target will be auto\-discovered by the CloudWatch agent by ECS task definition\-based service discovery\.
 
@@ -6,13 +6,13 @@ Memcached is a general\-purpose distributed memory caching system\. It is often 
 
 The [ memchached\_exporter](https://github.com/prometheus/memcached_exporter) \(Apache License 2\.0\) is one of the Prometheus official exporters\. By default the memcache\_exporter serves on port 0\.0\.0\.0:9150 at `/metrics.`
 
-The docker images in the following two docker hub repositories are used in this tutorial: 
+The Docker images in the following two Docker Hub repositories are used in this tutorial: 
 + [ Memcached](https://hub.docker.com/_/memcached?tab=description)
 + [ prom/memcached\-exporter](https://hub.docker.com/r/prom/memcached-exporter/)
 
 **Prerequisite**
 
-To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting Up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
+To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
 
 **Topics**
 + [Set the Amazon ECS EC2 cluster environment variables](#ContainerInsights-Prometheus-Setup-memcached-ecs-environment)
@@ -108,7 +108,7 @@ In the Memcached task definition, two containers are defined:
 1. Download the latest version of `cwagent-ecs-prometheus-metric-for-awsvpc.yaml` by entering the following command\.
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
    ```
 
 1. Open the file with a text editor, and find the full CloudWatch agent configuration behind the `value` key in the `resource:CWAgentConfigSSMParameter` section\.
@@ -212,7 +212,7 @@ In the Memcached task definition, two containers are defined:
 This tutorial sends the following metrics to the **ECS/ContainerInsights/Prometheus** namespace in CloudWatch\. You can use the CloudWatch console to see the metrics in that namespace\.
 
 
-| Metric Name | Dimensions | 
+| Metric name | Dimensions | 
 | --- | --- | 
 |  `memcached_current_items` |  ClusterName, TaskDefinitionFamily  | 
 |  `memcached_current_connections` |  ClusterName, TaskDefinitionFamily  | 

@@ -1,4 +1,4 @@
-# Getting Statistics for a Specific Resource<a name="US_SingleMetricPerInstance"></a>
+# Getting statistics for a specific resource<a name="US_SingleMetricPerInstance"></a>
 
 The following example shows you how to determine the maximum CPU utilization of a specific EC2 instance\.
 
@@ -21,7 +21,7 @@ The following example shows you how to determine the maximum CPU utilization of 
 1. In the search field, enter **CPUUtilization** and press Enter\. Select the row for the specific instance, which displays a graph for the `CPUUtilization` metric for the instance\. To change the name of the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.  
 ![\[Graph a single metric\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_statistics_ec2_instance.png)
 
-1. To change the statistic, choose the **Graphed metrics** tab\. Choose the column heading or an individual value and then choose one of the statistics or predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\.  
+1. To change the statistic, choose the **Graphed metrics** tab\. Choose the column heading or an individual value and then choose one of the statistics or predefined percentiles, or specify a custom percentile \(for example, **p99\.999**\)\.  
 ![\[Change the statistic for a metric\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/metric_statistics_ec2_instance_statistic_period.png)
 
 1. To change the period, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.

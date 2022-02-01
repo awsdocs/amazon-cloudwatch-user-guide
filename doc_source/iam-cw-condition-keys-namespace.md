@@ -1,8 +1,8 @@
-# Using Condition Keys to Limit Access to CloudWatch Namespaces<a name="iam-cw-condition-keys-namespace"></a>
+# Using condition keys to limit access to CloudWatch namespaces<a name="iam-cw-condition-keys-namespace"></a>
 
 Use IAM condition keys to limit users to publishing metrics only in the CloudWatch namespaces that you specify\.
 
-**Allowing Publishing in One Namespace Only**
+**Allowing publishing in one namespace only**
 
 The following policy limits the user to publishing metrics only in the namespace named `MyCustomNamespace`\.
 
@@ -22,7 +22,7 @@ The following policy limits the user to publishing metrics only in the namespace
 }
 ```
 
-**Excluding Publishing from a Namespace**
+**Excluding publishing from a namespace**
 
 The following policy allows the user to publish metrics in any namespace except for `CustomNamespace2`\.
 

@@ -1,4 +1,4 @@
-# Using the Traces View in ServiceLens<a name="servicelens_service_map_traces"></a>
+# Using the traces view in ServiceLens<a name="servicelens_service_map_traces"></a>
 
 The traces view enables you to view recent X\-Ray traces in your application\.
 
@@ -6,7 +6,7 @@ The traces view enables you to view recent X\-Ray traces in your application\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Traces**\.
+1. In the navigation pane, choose **ServiceLens**, **Traces**\.
 
 1. Under **Filter type**, you can choose different criteria to sort the traces by\. As you do, CloudWatch displays the success rate and response time of the traces according to your choice\. The list of traces displayed at the bottom of the page is narrowed to traces that match your filter\. The first 1000 traces that match your filter are retrieved\.
 

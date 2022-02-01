@@ -1,9 +1,9 @@
-# Change the Time Range or Time Zone Format of a CloudWatch Dashboard<a name="change_dashboard_time_format"></a>
+# Change the time range or time zone format of a CloudWatch dashboard<a name="change_dashboard_time_format"></a>
 
 You can change the time range to display dashboard data over minutes, hours, days, or weeks\. You can also change the time format to display dashboard data in UTC or local time\. Local time is the time zone specified as your local time zone in the operating system of the computer you are using to view the CloudWatch console\.
 
 **Note**  
-If you create a dashboard with graphs that contain close to 100 or more high\-resolution metrics, we recommend that you set the time range to no longer than one hour to ensure good dashboard performance\. For more information about high\-resolution metrics, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\. 
+If you create a dashboard with graphs that contain close to 100 or more high\-resolution metrics, we recommend that you set the time range to no longer than one hour to ensure good dashboard performance\. For more information about high\-resolution metrics, see [High\-resolution metrics](publishingMetrics.md#high-resolution-metrics)\. 
 
 **To change the dashboard time range**
 

@@ -1,14 +1,14 @@
-# Scenario: Publish Metrics to CloudWatch<a name="PublishMetrics"></a>
+# Scenario: Publish metrics to CloudWatch<a name="PublishMetrics"></a>
 
 In this scenario, you use the AWS Command Line Interface \(AWS CLI\) to publish a single metric for a hypothetical application named *GetStarted*\. If you haven't already installed and configured the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
 **Topics**
-+ [Step 1: Define the Data Configuration](#define-data-domain)
-+ [Step 2: Add Metrics to CloudWatch](#add-metrics-to-scenario)
-+ [Step 3: Get Statistics from CloudWatch](#GetStatistics)
-+ [Step 4: View Graphs with the Console](#ViewGraphs)
++ [Step 1: Define the data configuration](#define-data-domain)
++ [Step 2: Add metrics to CloudWatch](#add-metrics-to-scenario)
++ [Step 3: Get statistics from CloudWatch](#GetStatistics)
++ [Step 4: View graphs with the console](#ViewGraphs)
 
-## Step 1: Define the Data Configuration<a name="define-data-domain"></a>
+## Step 1: Define the data configuration<a name="define-data-domain"></a>
 
 In this scenario, you publish data points that track the request latency for the application\. Choose names for your metric and namespace that make sense to you\. For this example, name the metric *RequestLatency* and place all of the data points into the *GetStarted* namespace\. 
 
@@ -22,7 +22,7 @@ You can publish data to CloudWatch as single data points or as an aggregated set
 You publish the data points from hour one as single data points\. For the data from hours two and three, you aggregate the data points and publish a statistic set for each hour\. The key values are shown in the following table\.
 
 
-| Hour | Raw Data | Sum | Minimum | Maximum | SampleCount | 
+| Hour | Raw data | Sum | Minimum | Maximum | SampleCount | 
 | --- | --- | --- | --- | --- | --- | 
 | `1` | `87` |  |  |  |  | 
 | `1` | `51` |  |  |  |  | 
@@ -31,7 +31,7 @@ You publish the data points from hour one as single data points\. For the data f
 | `2` | `121, 113, 189, 65, 89` | `577` | `65` | `189` | `5` | 
 | `3` | `100, 47, 133, 98, 100, 328` | `806` | `47` | `328` | `6` | 
 
-## Step 2: Add Metrics to CloudWatch<a name="add-metrics-to-scenario"></a>
+## Step 2: Add metrics to CloudWatch<a name="add-metrics-to-scenario"></a>
 
 After you have defined your data configuration, you are ready to add data\.
 
@@ -64,7 +64,7 @@ After you have defined your data configuration, you are ready to add data\.
    --statistic-values Sum=806,Minimum=47,Maximum=328,SampleCount=6 --unit Milliseconds
    ```
 
-## Step 3: Get Statistics from CloudWatch<a name="GetStatistics"></a>
+## Step 3: Get statistics from CloudWatch<a name="GetStatistics"></a>
 
 Now that you have published metrics to CloudWatch, you can retrieve statistics based on those metrics using the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows\. Be sure to specify `--start-time` and `--end-time` far enough in the past to cover the earliest timestamp that you published\.
 
@@ -82,7 +82,7 @@ The following is example output:
 }
 ```
 
-## Step 4: View Graphs with the Console<a name="ViewGraphs"></a>
+## Step 4: View graphs with the console<a name="ViewGraphs"></a>
 
 After you have published metrics to CloudWatch, you can use the CloudWatch console to view statistical graphs\.
 
@@ -96,4 +96,4 @@ After you have published metrics to CloudWatch, you can use the CloudWatch conso
 
 1. Select the check box for the **RequestLatency** metric\. A graph of the metric data is displayed in the upper pane\.
 
-For more information, see [Graphing Metrics](graph_metrics.md)\.
+For more information, see [Graphing metrics](graph_metrics.md)\.

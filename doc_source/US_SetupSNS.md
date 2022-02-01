@@ -1,11 +1,13 @@
-# Setting Up Amazon SNS Notifications<a name="US_SetupSNS"></a>
+# Setting up Amazon SNS notifications<a name="US_SetupSNS"></a>
 
 Amazon CloudWatch uses Amazon SNS to send email\. First, create and subscribe to an SNS topic\. When you create a CloudWatch alarm, you can add this SNS topic to send an email notification when the alarm changes state\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](https://docs.aws.amazon.com/sns/latest/gsg/)\.
 
-**Note**  
 Alternatively, if you plan to create your CloudWatch alarm using the AWS Management Console, you can skip this procedure because you can create the topic when you create the alarm\.
 
-## Setting Up an Amazon SNS Topic Using the AWS Management Console<a name="set-up-sns-topic-console"></a>
+**Note**  
+When you create an Amazon SNS topic, you choose to make it a *standard topic* or a *FIFO topic*\. CloudWatch guarantees the publication of all alarm notifications to both types of topics\. However, even if you use a FIFO topic, in rare cases CloudWatch sends the notifications to the topic out of order\. If you use a FIFO topic, the alarm sets the message group ID of the alarm notifications to be a hash of the ARN of the alarm\.
+
+## Setting up an Amazon SNS topic using the AWS Management Console<a name="set-up-sns-topic-console"></a>
 
 First, create a topic, then subscribe to it\. You can optionally publish a test message to the topic\.
 
@@ -51,7 +53,7 @@ First, create a topic, then subscribe to it\. You can optionally publish a test 
 
 1. Check your email to confirm that you received the message\.
 
-## Setting Up an SNS Topic Using the AWS CLI<a name="set-up-sns-topic-cli"></a>
+## Setting up an SNS topic using the AWS CLI<a name="set-up-sns-topic-cli"></a>
 
 First, you create an SNS topic, and then you publish a message directly to the topic to test that you have properly configured it\.
 

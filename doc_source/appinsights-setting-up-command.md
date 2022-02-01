@@ -84,7 +84,7 @@ You can use the following AWS CLI command to describe a component called `my-com
 aws application-insights describe-component --resource-group-name my-resource-group --component-name my-component
 ```
 
-**Describe a component using AAWS Tools for Windows PowerShell**  
+**Describe a component using AWS Tools for Windows PowerShell**  
 You can use the following AWS Tools for Windows PowerShell command to describe a component called `my-component` that belongs to an application created on a resource group called `my-resource-group`\.
 
 ```
@@ -177,7 +177,7 @@ You can manage and update monitoring for your Application Insights application u
 To use the AWS CLI to list problems with your application detected between 1,000 and 10,000 milliseconds since Unix Epoch for an application created on a resource group called `my-resource-group`, use the following command\.
 
 ```
- aws application-insights list-problems --resource-group-name my-resource-group --start-time 1000 --end-time 10000
+aws application-insights list-problems --resource-group-name my-resource-group --start-time 1000 --end-time 10000
 ```
 
 **List problems with your application using AWS Tools for Windows PowerShell**  
@@ -516,7 +516,7 @@ Application Insights must ingest Application Event logs \(information level\) to
    aws application-insights create-application ‐-region <REGION> ‐-resource-group-name  <RESOURCE_GROUP_NAME>
    ```
 
-1. Publishing PostgreSQL logs to CloudWatch is not enabled by default\. To enable monitoring, open the RDS console and select the database to monitor\. Choose **Modify** in the upper right corner, and select the checkbox labeled **PostgreSQL** log\. Choose **Continue** to save this setting\.
+1. Publishing PostgreSQL logs to CloudWatch is not enabled by default\. To enable monitoring, open the RDS console and select the database to monitor\. Choose **Modify** in the upper right corner, and select the check box labeled **PostgreSQL** log\. Choose **Continue** to save this setting\.
 
 1. Your PostgreSQL logs are exported to CloudWatch\.
 
@@ -579,7 +579,7 @@ Application Insights must ingest Application Event logs \(information level\) to
    aws application-insights create-application ‐-region <REGION> ‐-resource-group-name  <RESOURCE_GROUP_NAME>
    ```
 
-1. Publishing Oracle logs to CloudWatch is not enabled by default\. To enable monitoring, open the RDS console and select the database to monitor\. Choose **Modify** in the upper right corner, and select the checkboxes labeled **Alert** log and **Listener** log\. Choose **Continue** to save this setting\.
+1. Publishing Oracle logs to CloudWatch is not enabled by default\. To enable monitoring, open the RDS console and select the database to monitor\. Choose **Modify** in the upper right corner, and select the check boxes labeled **Alert** log and **Listener** log\. Choose **Continue** to save this setting\.
 
 1. Your Oracle logs are exported to CloudWatch\.
 

@@ -1,4 +1,4 @@
-# Container Insights Performance Log Events for Amazon ECS<a name="Container-Insights-reference-performance-logs-ECS"></a>
+# Container Insights performance log events for Amazon ECS<a name="Container-Insights-reference-performance-logs-ECS"></a>
 
 The following are examples of the performance log events that Container Insights collects from Amazon ECS\.
 
@@ -6,31 +6,32 @@ The following are examples of the performance log events that Container Insights
 
 ```
 {
-    "Version": "0",
-    "Type": "Container",
-    "ContainerName": "mysql",
-    "TaskId": "7c7bce41-8f2f-4673-b1a3-0e57ef51168f",
-    "TaskDefinitionFamily": "hello_world",
-    "TaskDefinitionRevision": "2",
-    "ContainerInstanceId": "12345678-db61-4b1b-b0ec-93ad21467cc9",
-    "EC2InstanceId": "i-1234567890123456",
-    "ServiceName": "myCIService",
-    "ClusterName": "myCICluster",
-    "Timestamp": 1561586749104,
-    "CpuUtilized": 1.8381139895790504,
-    "CpuReserved": 30.0,
-    "MemoryUtilized": 295,
-    "MemoryReserved": 400,
-    "StorageReadBytes": 10817536,
-    "StorageWriteBytes": 2085376000,
-    "NetworkRxBytes": 6522,
-    "NetworkRxDropped": 0,
-    "NetworkRxErrors": 0,
-    "NetworkRxPackets": 83,
-    "NetworkTxBytes": 3904,
-    "NetworkTxDropped": 0,
-    "NetworkTxErrors": 0,
-    "NetworkTxPackets": 44
+	"Version":"0",
+	"Type":"Container",
+	"ContainerName":"sleep",
+	"TaskId":"7ac4dfba69214411b4783a3b8189c9ba",
+	"TaskDefinitionFamily":"sleep360",
+	"TaskDefinitionRevision":"1",
+	"ContainerInstanceId":"0d7650e6dec34c1a9200f72098071e8f",
+	"EC2InstanceId":"i-0c470579dbcdbd2f3",
+	"ClusterName":"MyCluster",
+	"Image":"busybox",
+	"ContainerKnownStatus":"RUNNING",
+	"Timestamp":1623963900000,
+	"CpuUtilized":0.0,
+	"CpuReserved":10.0,
+	"MemoryUtilized":0,
+	"MemoryReserved":10,
+	"StorageReadBytes":0,
+	"StorageWriteBytes":0,
+	"NetworkRxBytes":0,
+	"NetworkRxDropped":0,
+	"NetworkRxErrors":0,
+	"NetworkRxPackets":14,
+	"NetworkTxBytes":0,
+	"NetworkTxDropped":0,
+	"NetworkTxErrors":0,
+	"NetworkTxPackets":0
 }
 ```
 
@@ -38,82 +39,83 @@ The following are examples of the performance log events that Container Insights
 
 ```
 {
-    "Version": "0",
-    "Type": "Task",
-    "TaskId": "8b03d710-a0de-4458-b6ee-e9829e9d1440",
-    "TaskDefinitionFamily": "hello_world",
-    "TaskDefinitionRevision": "2",
-    "ContainerInstanceId": "12345678-e797-496b-9d70-4edfda2700a4",
-    "EC2InstanceId": "i-1234567890123456",
-    "ServiceName": "myCIService",
-    "ClusterName": "myCICluster",
-    "Timestamp": 1561586269429,
-    "CpuUtilized": 2.4353688568190526,
-    "CpuReserved": 60.0,
-    "MemoryUtilized": 314,
-    "MemoryReserved": 800,
-    "StorageReadBytes": 11124736,
-    "StorageWriteBytes": 2100379648,
-    "NetworkRxBytes": 12062,
-    "NetworkRxDropped": 0,
-    "NetworkRxErrors": 0,
-    "NetworkRxPackets": 149,
-    "NetworkTxBytes": 8064,
-    "NetworkTxDropped": 0,
-    "NetworkTxErrors": 0,
-    "NetworkTxPackets": 96,
-    "CloudWatchMetrics": [
-        {
-            "Namespace": "ECS/ContainerInsights",
-            "Metrics": [
-                {
-                    "Name": "CpuUtilized",
-                    "Unit": "None"
-                },
-                {
-                    "Name": "CpuReserved",
-                    "Unit": "None"
-                },
-                {
-                    "Name": "MemoryUtilized",
-                    "Unit": "Megabytes"
-                },
-                {
-                    "Name": "MemoryReserved",
-                    "Unit": "Megabytes"
-                },
-                {
-                    "Name": "StorageReadBytes",
-                    "Unit": "Bytes/Second"
-                },
-                {
-                    "Name": "StorageWriteBytes",
-                    "Unit": "Bytes/Second"
-                },
-                {
-                    "Name": "NetworkRxBytes",
-                    "Unit": "Bytes/Second"
-                },
-                {
-                    "Name": "NetworkTxBytes",
-                    "Unit": "Bytes/Second"
-                }
-            ],
-            "Dimensions": [
-                [
-                    "ClusterName"
-                ],
-                [
-                    "ServiceName",
-                    "ClusterName"
-                ],
-                [
-                    "ClusterName",
-                    "TaskDefinitionFamily"
-                ]
-            ]
-        }
-    ]
+	"Version": "0",
+	"Type": "Task",
+	"TaskId": "7ac4dfba69214411b4783a3b8189c9ba",
+	"TaskDefinitionFamily": "sleep360",
+	"TaskDefinitionRevision": "1",
+	"ContainerInstanceId": "0d7650e6dec34c1a9200f72098071e8f",
+	"EC2InstanceId": "i-0c470579dbcdbd2f3",
+	"ClusterName": "MyCluster",
+	"AccountID": "637146863587",
+	"Region": "us-west-2",
+	"AvailabilityZone": "us-west-2b",
+	"KnownStatus": "RUNNING",
+	"LaunchType": "EC2",
+	"PullStartedAt": 1623963608201,
+	"PullStoppedAt": 1623963610065,
+	"CreatedAt": 1623963607094,
+	"StartedAt": 1623963610382,
+	"Timestamp": 1623963900000,
+	"CpuUtilized": 0.0,
+	"CpuReserved": 10.0,
+	"MemoryUtilized": 0,
+	"MemoryReserved": 10,
+	"StorageReadBytes": 0,
+	"StorageWriteBytes": 0,
+	"NetworkRxBytes": 0,
+	"NetworkRxDropped": 0,
+	"NetworkRxErrors": 0,
+	"NetworkRxPackets": 14,
+	"NetworkTxBytes": 0,
+	"NetworkTxDropped": 0,
+	"NetworkTxErrors": 0,
+	"NetworkTxPackets": 0,
+	"CloudWatchMetrics": [{
+		"Namespace": "ECS/ContainerInsights",
+		"Metrics": [{
+				"Name": "CpuUtilized",
+				"Unit": "None"
+			},
+			{
+				"Name": "CpuReserved",
+				"Unit": "None"
+			},
+			{
+				"Name": "MemoryUtilized",
+				"Unit": "Megabytes"
+			},
+			{
+				"Name": "MemoryReserved",
+				"Unit": "Megabytes"
+			},
+			{
+				"Name": "StorageReadBytes",
+				"Unit": "Bytes/Second"
+			},
+			{
+				"Name": "StorageWriteBytes",
+				"Unit": "Bytes/Second"
+			},
+			{
+				"Name": "NetworkRxBytes",
+				"Unit": "Bytes/Second"
+			},
+			{
+				"Name": "NetworkTxBytes",
+				"Unit": "Bytes/Second"
+			}
+		],
+		"Dimensions": [
+			[
+				"ClusterName"
+			],
+			[
+				"ClusterName",
+				"TaskDefinitionFamily"
+			]
+		]
+	}]
 }
 ```
 

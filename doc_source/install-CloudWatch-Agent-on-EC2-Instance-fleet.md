@@ -1,34 +1,37 @@
-# Installing the CloudWatch Agent on EC2 Instances Using Your Agent Configuration<a name="install-CloudWatch-Agent-on-EC2-Instance-fleet"></a>
+# Installing the CloudWatch agent on EC2 instances using your agent configuration<a name="install-CloudWatch-Agent-on-EC2-Instance-fleet"></a>
 
 After you have a CloudWatch agent configuration saved in Parameter Store, you can use it when you install the agent on other servers\.
 
 **Topics**
-+ [Attach an IAM Role to the Instance](#install-CloudWatch-Agent-iam_permissions-fleet)
-+ [Download the CloudWatch Agent Package on an Amazon EC2 Instance](#download-CloudWatch-Agent-on-EC2-Instance-fleet)
-+ [\(Optional\) Modify the Common Configuration and Named Profile for CloudWatch Agent](#CloudWatch-Agent-profile-instance-fleet)
-+ [Start the CloudWatch Agent](#start-CloudWatch-Agent-EC2-fleet)
++ [Attach an IAM role to the instance](#install-CloudWatch-Agent-iam_permissions-fleet)
++ [Download the CloudWatch agent package on an Amazon EC2 instance](#download-CloudWatch-Agent-on-EC2-Instance-fleet)
++ [\(Optional\) Modify the common configuration and named profile for CloudWatch agent](#CloudWatch-Agent-profile-instance-fleet)
++ [Start the CloudWatch agent](#start-CloudWatch-Agent-EC2-fleet)
 
-## Attach an IAM Role to the Instance<a name="install-CloudWatch-Agent-iam_permissions-fleet"></a>
+## Attach an IAM role to the instance<a name="install-CloudWatch-Agent-iam_permissions-fleet"></a>
 
 You must attach the **CloudWatchAgentServerRole** IAM role to the EC2 instance to be able to run the CloudWatch agent on the instance\. This role enables the CloudWatch agent to perform actions on the instance\.
 
 For more information, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-## Download the CloudWatch Agent Package on an Amazon EC2 Instance<a name="download-CloudWatch-Agent-on-EC2-Instance-fleet"></a>
+## Download the CloudWatch agent package on an Amazon EC2 instance<a name="download-CloudWatch-Agent-on-EC2-Instance-fleet"></a>
 
-You need to install the agent on each server where you will run the agent\. The CloudWatch agent is available as a package in Amazon Linux 2\. If you are using this operating system, you can install the package by entering the following command\. You must also make sure that the IAM role attached to the instance has the **CloudWatchAgentServerPolicy** attached\. For more information, see ﻿[Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)﻿\.
+You need to install the agent on each server where you will run the agent\. The CloudWatch agent is available as a package in Amazon Linux 2\. If you are using this operating system, you can install the package by entering the following command\. You must also make sure that the IAM role attached to the instance has the **CloudWatchAgentServerPolicy** attached\. For more information, see ﻿[Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)﻿\.
 
 ```
 sudo yum install amazon-cloudwatch-agent
 ```
 
-On all supported operating systems, you can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch Agent Package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+On all supported operating systems, you can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch agent package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
 
-### Download the CloudWatch Agent on an Amazon EC2 Instance Using Systems Manager<a name="download-CloudWatch-Agent-on-EC2-Instance-SSM-fleet"></a>
+**Note**  
+When you install or update the CloudWatch agent, only the **Uninstall and reinstall** option is supported\. You can't use the **In\-place update** option\.
+
+### Download the CloudWatch agent on an Amazon EC2 instance Using Systems Manager<a name="download-CloudWatch-Agent-on-EC2-Instance-SSM-fleet"></a>
 
 Before you can use Systems Manager to install the CloudWatch agent, you must make sure that the instance is configured correctly for Systems Manager\.
 
-#### Installing or Updating SSM Agent<a name="update-SSM-Agent-EC2instance-fleet"></a>
+#### Installing or updating SSM Agent<a name="update-SSM-Agent-EC2instance-fleet"></a>
 
 On an Amazon EC2 instance, the CloudWatch agent requires that the instance is running version 2\.2\.93\.0 or later\. Before you install the CloudWatch agent, update or install SSM Agent on the instance if you haven't already done so\. 
 
@@ -36,15 +39,15 @@ For information about installing or updating SSM Agent on an instance running Li
 
 For information about installing or updating SSM Agent on an instance running Windows Server, see [ Installing and Configuring SSM Agent on Windows Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-win.html) in the *AWS Systems Manager User Guide*\.
 
-#### \(Optional\) Verify Systems Manager Prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-fleet"></a>
+#### \(Optional\) Verify Systems Manager prerequisites<a name="install-CloudWatch-Agent-minimum-requirements-fleet"></a>
 
 Before you use Systems Manager Run Command to install and configure the CloudWatch agent, verify that your instances meet the minimum Systems Manager requirements\. For more information, see [Setting Up AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html) in the *AWS Systems Manager User Guide*\.
 
-#### Verify Internet Access<a name="install-CloudWatch-Agent-internet-access-fleet"></a>
+#### Verify internet access<a name="install-CloudWatch-Agent-internet-access-fleet"></a>
 
 Your Amazon EC2 instances must have outbound internet access in order to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
-#### Download the CloudWatch Agent Package<a name="install-CloudWatch-Agent-EC2-fleet"></a>
+#### Download the CloudWatch agent package<a name="install-CloudWatch-Agent-EC2-fleet"></a>
 
 Systems Manager Run Command enables you to manage the configuration of your instances\. You specify a Systems Manager document, specify parameters, and execute the command on one or more instances\. SSM Agent on the instance processes the command and configures the instance as specified\.
 
@@ -74,7 +77,7 @@ Systems Manager Run Command enables you to manage the configuration of your inst
 
 1. Optionally, in the **Targets and outputs** areas, select the button next to an instance name and choose **View output**\. Systems Manager should show that the agent was successfully installed\. 
 
-## \(Optional\) Modify the Common Configuration and Named Profile for CloudWatch Agent<a name="CloudWatch-Agent-profile-instance-fleet"></a>
+## \(Optional\) Modify the common configuration and named profile for CloudWatch agent<a name="CloudWatch-Agent-profile-instance-fleet"></a>
 
 The CloudWatch agent includes a configuration file called `common-config.toml`\. You can use this file optionally specify proxy and Region information\.
 
@@ -126,11 +129,11 @@ All lines are commented out initially\. To set the credential profile or proxy s
   If you specify a `shared_credential_file`, you must also remove the `#` from the beginning of the `[credentials]` line\.
 + Proxy settings – If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
-## Start the CloudWatch Agent<a name="start-CloudWatch-Agent-EC2-fleet"></a>
+## Start the CloudWatch agent<a name="start-CloudWatch-Agent-EC2-fleet"></a>
 
 You can start the agent using Systems Manager Run Command or the command line\.
 
-### Start the CloudWatch Agent Using Systems Manager Run Command<a name="start-CloudWatch-Agent-EC2-SSM-fleet"></a>
+### Start the CloudWatch agent using Systems Manager Run Command<a name="start-CloudWatch-Agent-EC2-SSM-fleet"></a>
 
 Follow these steps to start the agent using Systems Manager Run Command\.
 
@@ -154,7 +157,7 @@ Follow these steps to start the agent using Systems Manager Run Command\.
 
 1. In the **Optional Configuration Source** list, choose **ssm**\.
 
-1. In the **Optional Configuration Location** box, enter the name of the agent configuration file that you created and saved to Systems Manager Parameter Store, as explained in [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+1. In the **Optional Configuration Location** box, enter the name of the agent configuration file that you created and saved to Systems Manager Parameter Store, as explained in [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.
 
 1. In the **Optional Restart** list, choose **yes** to start the agent after you have finished these steps\.
 
@@ -162,7 +165,7 @@ Follow these steps to start the agent using Systems Manager Run Command\.
 
 1. Optionally, in the **Targets and outputs** areas, select the button next to an instance name and choose **View output**\. Systems Manager should show that the agent was successfully started\. 
 
-### Start the CloudWatch Agent on an Amazon EC2 Instance Using the Command Line<a name="start-CloudWatch-Agent-EC2-commands-fleet"></a>
+### Start the CloudWatch agent on an Amazon EC2 instance using the command line<a name="start-CloudWatch-Agent-EC2-commands-fleet"></a>
 
 Follow these steps to use the command line to install the CloudWatch agent on an Amazon EC2 instance\.
 

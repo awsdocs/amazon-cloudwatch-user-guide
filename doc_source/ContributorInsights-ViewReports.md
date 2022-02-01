@@ -1,4 +1,4 @@
-# Viewing Contributor Insights Reports<a name="ContributorInsights-ViewReports"></a>
+# Viewing Contributor Insights reports<a name="ContributorInsights-ViewReports"></a>
 
 To view graphs of report data and a ranked list of contributors found by your rules, follow these steps\.
 

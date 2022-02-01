@@ -1,4 +1,4 @@
-# Add or Remove a Graph from a CloudWatch Dashboard<a name="add_remove_graph_dashboard"></a>
+# Add or remove a graph from a CloudWatch dashboard<a name="add_remove_graph_dashboard"></a>
 
 You can add graphs containing one or more metrics to your dashboard for the resources you monitor\. You can remove the graphs when they're no longer needed\.
 
@@ -14,15 +14,15 @@ You can add graphs containing one or more metrics to your dashboard for the reso
 
 1. Choose **Metrics** and then choose **Configure**\.
 
-1. In the **All metrics** tab, select the metrics to graph\. If a specific metric doesn't appear in the dialog box because it hasn't published data in more than 14 days, you can add it manually\. For more information, see [Graph Metrics Manually on a CloudWatch Dashboard](add_old_metrics_to_graph.md)\.
+1. In the **All metrics** tab, select the metrics to graph\. If a specific metric doesn't appear in the dialog box because it hasn't published data in more than 14 days, you can add it manually\. For more information, see [Graph metrics manually on a CloudWatch dashboard](add_old_metrics_to_graph.md)\.
 
 1. \(Optional\) To change the type of graph, choose **Graph options**\. You can then choose between a line graph, stacked area chart, bar chart, pie chart, or number\.
 
 1. <a name="dynamic-labels"></a>\(Optional\) As you choose metrics to graph, you can specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics** and then **Dynamic labels**\.
 
-   By default, the dynamic values you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using Dynamic Labels](graph-dynamic-labels.md)\.
+   By default, the dynamic values you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using dynamic labels](graph-dynamic-labels.md)\.
 
-1. <a name="horizontal-annotations2"></a>\(Optional\) As you choose metrics to graph, you can change their color on the graph\. To do so, choose **Graphed metrics** and select the color square next to the metric to display a color picker box\. Choose another color square in the color picker\. Click outside the color picker to see your new color on the graph\. Alternatively, in the color picker, you can enter the six\-digit standard HTML hex color code for the color you want and press ENTER\.
+1. <a name="horizontal-annotations2"></a>\(Optional\) As you choose metrics to graph, you can change their color on the graph\. To do so, choose **Graphed metrics** and select the color square next to the metric to display a color picker box\. Choose another color square in the color picker\. Click outside the color picker to see your new color on the graph\. Alternatively, in the color picker, you can enter the six\-digit standard HTML hex color code for the color you want and press **Enter**\.
 
 1. \(Optional\) To view more information about the metric being graphed, hover over the legend\.
 

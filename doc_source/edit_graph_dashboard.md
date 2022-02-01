@@ -1,4 +1,4 @@
-# Edit a Graph on a CloudWatch Dashboard<a name="edit_graph_dashboard"></a>
+# Edit a graph on a CloudWatch dashboard<a name="edit_graph_dashboard"></a>
 
 You can edit a graph to change the title, statistic, or period, or to add or remove metrics\. If you have multiple metrics displayed on a graph, you can reduce the clutter by temporarily hiding the metrics that don't interest you\.
 
@@ -10,7 +10,7 @@ You can edit a graph to change the title, statistic, or period, or to add or rem
 
 1. Hover over the title of the graph and choose **Widget actions**, **Edit**\.
 
-1. To change the graph's title, select the title, enter a new title, and press ENTER\.
+1. To change the graph's title, select the title, enter a new title, and press **Enter**\.
 
 1. To change the type of graph, choose **Graph options**\. You can then choose between a line graph, stacked area chart, bar chart, pie chart, or number\.
 
@@ -22,9 +22,9 @@ You can edit a graph to change the title, statistic, or period, or to add or rem
 
    1. \(Optional\) To specify a dynamic label for a metric, choose **Dynamic labels**\. Dynamic labels display a statistic about the metric, and automatically update when the dashboard or graph is refreshed\. 
 
-      By default, the dynamic values you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using Dynamic Labels](graph-dynamic-labels.md)\.
+      By default, the dynamic values you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using dynamic labels](graph-dynamic-labels.md)\.
 
-   1. To change the color of one of the lines, select the color square next to the metric to display a color picker box\. Choose another color in the color picker, and click outside the color picker to see your new color on the graph\. Alternatively, in the color picker, you can enter the six\-digit HTML hex color code for the color you want and press ENTER\.
+   1. To change the color of one of the lines, select the color square next to the metric to display a color picker box\. Choose another color in the color picker, and click outside the color picker to see your new color on the graph\. Alternatively, in the color picker, you can enter the six\-digit HTML hex color code for the color you want and press **Enter**\.
 
    1. To change the statistic, choose **Statistic** in the lower half of the window, and choose the new statistic you want\. For more information, see [Statistics](cloudwatch_concepts.md#Statistic)\.
 

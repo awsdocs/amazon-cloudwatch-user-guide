@@ -134,6 +134,8 @@ const apiCanaryBlueprint = async function () {
             if (res.statusCode < 400) {
                 throw res.statusCode + ' ' + res.statusMessage;
             }
+            
+            resolve();
         });
     };
     

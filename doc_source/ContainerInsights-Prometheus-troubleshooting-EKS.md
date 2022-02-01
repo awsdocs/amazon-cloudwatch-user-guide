@@ -1,8 +1,8 @@
-# Prometheus Metrics Troubleshooting on Amazon EKS and Kubernetes Clusters<a name="ContainerInsights-Prometheus-troubleshooting-EKS"></a>
+# Prometheus metrics troubleshooting on Amazon EKS and Kubernetes clusters<a name="ContainerInsights-Prometheus-troubleshooting-EKS"></a>
 
 This section provides help for troubleshooting your Prometheus metrics setup on Amazon EKS and Kubernetes clusters\. 
 
-## General Troubleshooting Steps on Amazon EKS<a name="ContainerInsights-Prometheus-troubleshooting-general"></a>
+## General troubleshooting steps on Amazon EKS<a name="ContainerInsights-Prometheus-troubleshooting-general"></a>
 
 To confirm that the CloudWatch agent is running, enter the following command\.
 
@@ -12,7 +12,7 @@ kubectl get pod -n amazon-cloudwatch
 
 The output should include a row with cwagent\-prometheus\-*id* in the NAME column and Running in the STATUS column\.
 
-To display details about the running pod, enter the following command\. Replace *pod\-name* with the completename of your pod that has s name that starts with `cw-agent-prometheus`\.
+To display details about the running pod, enter the following command\. Replace *pod\-name* with the complete name of your pod that has a name that starts with `cw-agent-prometheus`\.
 
 ```
 kubectl describe pod pod-name -n amazon-cloudwatch
@@ -51,7 +51,7 @@ You can also confirm that Prometheus metrics and metadata are being ingested as 
    fields @timestamp, @message | sort @timestamp desc | limit 20
    ```
 
-## Logging Dropped Prometheus Metrics<a name="ContainerInsights-Prometheus-troubleshooting-droppedmetrics"></a>
+## Logging dropped Prometheus metrics<a name="ContainerInsights-Prometheus-troubleshooting-droppedmetrics"></a>
 
 This release does not collect Prometheus metrics of the histogram type\. You can use the CloudWatch agent to check whether any Prometheus metrics are being dropped because they are histogram metrics\. You can also log a list of the first 500 Prometheus metrics that are dropped and not sent to CloudWatch because they are histogram metrics\.
 
@@ -110,15 +110,15 @@ If you see those lines and want to know what metrics are being dropped, use the 
 
    Or, if you have Container Insights FluentD logging installed, the logs are also saved in the CloudWatch Logs log group **/aws/containerinsights/*cluster\_name*/application**\.
 
-   To query these logs, you can follow the steps for querying the application logs in [General Troubleshooting Steps on Amazon EKS](#ContainerInsights-Prometheus-troubleshooting-general)\.
+   To query these logs, you can follow the steps for querying the application logs in [General troubleshooting steps on Amazon EKS](#ContainerInsights-Prometheus-troubleshooting-general)\.
 
-## Where are the Prometheus Metrics Ingested as CloudWatch Logs Log Events?<a name="ContainerInsights-Prometheus-troubleshooting-metrics_ingested"></a>
+## Where are the Prometheus metrics ingested as CloudWatch Logs log events?<a name="ContainerInsights-Prometheus-troubleshooting-metrics_ingested"></a>
 
 The CloudWatch agent creates a log stream for each Prometheus scrape job configuration\. For example, in the `prometheus-eks.yaml` and `prometheus-k8s.yaml` files, the line `job_name: 'kubernetes-pod-appmesh-envoy'` scrapes App Mesh metrics\. The Prometheus target is defined as `kubernetes-pod-appmesh-envoy`\. So all App Mesh Prometheus metrics are ingested as CloudWatch Logs events in the log stream **kubernetes\-pod\-appmesh\-envoy** under the log group named **/aws/containerinsights/cluster\-name/Prometheus**\.
 
-## I Don't See Amazon EKS or Kubernetes Prometheus Metrics in CloudWatch Metrics<a name="ContainerInsights-Prometheus-troubleshooting-no-metrics"></a>
+## I don't see Amazon EKS or Kubernetes Prometheus metrics in CloudWatch metrics<a name="ContainerInsights-Prometheus-troubleshooting-no-metrics"></a>
 
-First, make sure that the Prometheus metrics are ingested as log events in the log group **/aws/containerinsights/cluster\-name/Prometheus**\. Use the information in [Where are the Prometheus Metrics Ingested as CloudWatch Logs Log Events?](#ContainerInsights-Prometheus-troubleshooting-metrics_ingested) to help you check the target log stream\. If the log stream is not created or there are no new log events in the log stream, check the following:
+First, make sure that the Prometheus metrics are ingested as log events in the log group **/aws/containerinsights/cluster\-name/Prometheus**\. Use the information in [Where are the Prometheus metrics ingested as CloudWatch Logs log events?](#ContainerInsights-Prometheus-troubleshooting-metrics_ingested) to help you check the target log stream\. If the log stream is not created or there are no new log events in the log stream, check the following:
 + Check that the Prometheus metrics exporter endpoints are set up correctly
 + Check that the Prometheus scraping configurations in the `config map: cwagent-prometheus` section of the CloudWatch agent YAML file is correct\. The configuration should be the same as it would be in a Prometheus configuration file\. For more information, see [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\.
 
@@ -143,6 +143,6 @@ If the Prometheus metrics are ingested as log events correctly, check that the e
 ],
 ```
 
-For more information about embedded metric format, see [Specification: Embedded Metric Format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
+For more information about embedded metric format, see [Specification: Embedded metric format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
 
-If there is no embedded metric format in the log events, check that the `metric_definitions` are configured correctly in the `config map: prometheus-cwagentconfig` section of the CloudWatch agent installation YAML file\. For more information, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
+If there is no embedded metric format in the log events, check that the `metric_definitions` are configured correctly in the `config map: prometheus-cwagentconfig` section of the CloudWatch agent installation YAML file\. For more information, see [Tutorial for adding a new Prometheus scrape target: Prometheus API Server metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.

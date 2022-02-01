@@ -1,14 +1,14 @@
-# Deploying the CloudWatch Agent to Collect EC2 Instance\-Level Metrics on Amazon ECS<a name="deploy-container-insights-ECS-instancelevel"></a>
+# Deploying the CloudWatch agent to collect EC2 instance\-level metrics on Amazon ECS<a name="deploy-container-insights-ECS-instancelevel"></a>
 
 To deploy the CloudWatch agent to collect instance\-level metrics from Amazon ECS clusters that are hosted on EC2 instance, use a quick start setup with a default configuration, or install the agent manually to be able to customize it\.
 
 Both methods require that you already have at least one Amazon ECS cluster deployed with an EC2 launch type\. These methods also assume that you have the AWS CLI installed\. Additionally, to run the commands in the following procedures, you must be logged on to an account or role that has the **IAMFullAccess** and **AmazonECS\_FullAccess** policies\.
 
 **Topics**
-+ [Quick Setup Using AWS CloudFormation](#deploy-container-insights-ECS-instancelevel-quickstart)
-+ [Manual and Custom Setup](#deploy-container-insights-ECS-instancelevel-manual)
++ [Quick setup using AWS CloudFormation](#deploy-container-insights-ECS-instancelevel-quickstart)
++ [Manual and custom setup](#deploy-container-insights-ECS-instancelevel-manual)
 
-## Quick Setup Using AWS CloudFormation<a name="deploy-container-insights-ECS-instancelevel-quickstart"></a>
+## Quick setup using AWS CloudFormation<a name="deploy-container-insights-ECS-instancelevel-quickstart"></a>
 
 To use the quick setup, enter the following command to use AWS CloudFormation to install the agent\. Replace *cluster\-name* and *cluster\-region* with the name and Region of your Amazon ECS cluster\.
 
@@ -28,7 +28,7 @@ aws cloudformation create-stack --stack-name CWAgentECS-${ClusterName}-${Region}
     --region ${Region}
 ```
 
-**\(Alternative\) Using Your Own IAM Roles**
+**\(Alternative\) Using your own IAM roles**
 
 If you want to use your own custom ECS task role and ECS task execution role instead of the **CWAgentECSTaskRole** and **CWAgentECSExecutionRole** roles, first make sure that the role to be used as the ECS task role has **CloudWatchAgentServerPolicy** attached\. Also, make sure that the role to be used as the ECS task execution role has both the **CloudWatchAgentServerPolicy** and **AmazonECSTaskExecutionRolePolicy** policies attached\. Then enter the following command\. In the command, replace *task\-role\-arn* with the ARN of your custom ECS task role, and replace *execution\-role\-arn* with the ARN of your custom ECS task execution role\.
 
@@ -46,7 +46,7 @@ aws cloudformation create-stack --stack-name CWAgentECS-${ClusterName}-${Region}
     --region ${Region}
 ```
 
-**Troubleshooting the Quick Setup**
+**Troubleshooting the quick setup**
 
 To check the status of the AWS CloudFormation stack, enter the following command\.
 
@@ -74,7 +74,7 @@ aws ecs describe-services --services cwagent-daemon-service --cluster $ClusterNa
 
 You can also use the CloudWatch Logs console to check the agent log\. Look for the **/ecs/ecs\-cwagent\-daemon\-service** log group\.
 
-**Deleting the AWS CloudFormation Stack for the CloudWatch Agent**
+**Deleting the AWS CloudFormation stack for the CloudWatch agent**
 
 If you need to delete the AWS CloudFormation stack, enter the following command\.
 
@@ -84,13 +84,13 @@ Region=cluster-region
 aws cloudformation delete-stack --stack-name CWAgentECS-${ClusterName}-${Region} --region ${Region}
 ```
 
-## Manual and Custom Setup<a name="deploy-container-insights-ECS-instancelevel-manual"></a>
+## Manual and custom setup<a name="deploy-container-insights-ECS-instancelevel-manual"></a>
 
 Follow the steps in this section to manually deploy the CloudWatch agent to collect instance\-level metrics from your Amazon ECS clusters that are hosted on EC2 instances\.
 
-### Necessary IAM Roles and Policies<a name="deploy-container-insights-ECS-instancelevel-IAMRoles"></a>
+### Necessary IAM roles and policies<a name="deploy-container-insights-ECS-instancelevel-IAMRoles"></a>
 
-Two IAM roles are required\. You must create them if they don't already exist\. For more information about these roles, see [Amazon ECS Task Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_IAM_role.html) and [Amazon ECS Task Execution Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html)\.
+Two IAM roles are required\. You must create them if they don't already exist\. For more information about these roles, see [IAM roles for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html) and [Amazon ECS Task Execution Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html)\.
 + An *ECS task role*, which is used by the CloudWatch agent to publish metrics\. If this role already exists, you must make sure it has the `CloudWatchAgentServerPolicy` policy attached\.
 + An *ECS task execution role*, which is used by Amazon ECS agent to launch the CloudWatch agent\. If this role already exists, you must make sure it has the `AmazonECSTaskExecutionRolePolicy` and `CloudWatchAgentServerPolicy` policies attached\.
 
@@ -125,7 +125,7 @@ aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/service-role/Ama
     --role-name CWAgentECSExecutionRole
 ```
 
-### Create the Task Definition and Launch the Daemon Service<a name="deploy-container-insights-ECS-instancelevel-taskdefinition"></a>
+### Create the task definition and launch the daemon service<a name="deploy-container-insights-ECS-instancelevel-taskdefinition"></a>
 
 Create a task definition and use it to launch the CloudWatch agent as a daemon service\. To create the task definition, enter the following command\. In the first lines, replace the placeholders with the actual values for your deployment\. *logs\-region* is the Region where CloudWatch Logs is located, and *cluster\-region* is the Region where your cluster is located\. *task\-role\-arn* is the Arn of the ECS task role that you are using, and *execution\-role\-arn* is the Arn of the ECS task execution role\.
 
@@ -164,7 +164,7 @@ aws ecs delete-service \
     --force
 ```
 
-### \(Optional\) Advanced Configuration<a name="deploy-container-insights-ECS-instancelevel-advanced"></a>
+### \(Optional\) Advanced configuration<a name="deploy-container-insights-ECS-instancelevel-advanced"></a>
 
 Optionally, you can use SSM to specify other configuration options for the CloudWatch agent in your Amazon ECS clusters that are hosted on EC2 instances\. These options are as follows:
 + `metrics_collection_interval` – How often in seconds that the CloudWatch agent collects metrics\. The default is 60\. The range is 1–172,000\.

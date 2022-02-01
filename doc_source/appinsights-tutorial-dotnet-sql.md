@@ -1,4 +1,4 @@
-# Tutorial: Set up monitors for \.NET applications using SQL Server<a name="appinsights-tutorial-dotnet-sql"></a>
+# Tutorial: Set up monitoring for \.NET applications using SQL Server<a name="appinsights-tutorial-dotnet-sql"></a>
 
 This tutorial demonstrates how to configure CloudWatch Application Insights to monitor an example solution and then simulate problem scenarios to test the solution\. In this example, a load balanced web application using SQL Server on the backend is deployed\. The web application and SQL Server are hosted on separate EC2 instances\.
 
@@ -49,13 +49,13 @@ This CloudFormation template can also be found in the aws\-samples GitHub repo a
 
 1. On the **Specify stack details** page, enter a name for the stack, such as `ApplicationInsightsTest`\.
 
-1. Review the default parameters under **Parameters** and modify the values to your preferences\. Enter a password for SQLServer\. Enter an existing EC2 key pair or create a new one in the EC2 console\. Choose **Next**\.
+1. Review the default parameters under **Parameters** and modify the values to your preferences\. Enter a password for SQLServer\. Verify that you follow the SQL Server password complexity requirements or the application will not work as expected\. Enter an existing EC2 key pair or create a new one in the EC2 console\. Choose **Next**\.
 
 1. On the **Configure stack options** page, under **Tags**, optionally add tags to help you identify your stack\. Select **Next**\.
 
 1. Review and confirm the settings on the **Review** page\. Select the box acknowledging that the template may create AWS Identity and Access Management \(IAM\) resources\.
 
-1. Choose **Create stack** to deploy the stack\.
+1. Choose **Create stack** to deploy the stack\. Reminder that you can only deploy this template from the `us-east-1` Region\.
 
 1. Monitor the status of the stack deployment from the **Events** tab of the Cloud Formation stack page\. When the stack is successfully deployed, continue to the next section\. 
 
@@ -75,7 +75,7 @@ This section demonstrates how to create a resource group from the resources depl
 
 **Set up resource group monitoring on CloudWatch Application Insights**
 
-1. Navigate to the [Amazon CloudWatch console](https://console.aws.amazon.com/cloudwatch) and choose **Settings** from the bottom of the left navigation pane\.
+1. Navigate to the [Amazon CloudWatch console](https://console.aws.amazon.com/cloudwatch) and choose **Application Insights** under **Insights** on the left navigation pane\.
 
 1. Choose **View applications** next to **Application Insights**\.
 
@@ -177,9 +177,9 @@ HTTP requests for an unhandled HTTP request to a web application results in an H
 
 1. Open the URL displayed under **Value** for the AdventureWorks application in a web browser\.
 
-1. Navigate to the customer details page of the Barley Adventure Works web application by suffixing the previously mentioned URL with `barleyapp/SalesOrderDetails/edit/5`\.
+1. Navigate to the customer details page of the Barley Adventure Works web application by suffixing the previously mentioned URL with `sampleapp/SalesOrderDetails/edit/5`\.
 
-1. Refresh the compiled URL request several times\. Your URL should look something like this: `http://<YourURL>.us-east-1.elb.amazonaws.com/barleyapp/SalesOrderDetails/edit/5` \.
+1. Refresh the compiled URL request several times\. Your URL should look something like this: `http://<YourURL>.us-east-1.elb.amazonaws.com/sampleapp/SalesOrderDetails/edit/5` \.
 
    An error message appears indicating that the file or directory cannot be found\.
 

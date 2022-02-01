@@ -1,4 +1,4 @@
-# Graphing a Metric<a name="graph_a_metric"></a>
+# Graphing a metric<a name="graph_a_metric"></a>
 
 You can select metrics and create graphs of the metric data using the CloudWatch console\.
 
@@ -6,7 +6,7 @@ CloudWatch supports the following statistics on metrics: `Average`, `Minimum`, `
 
 You can view your data at different levels of detail\. For example, you can choose a one\-minute view, which can be useful when troubleshooting\. Or, choose a less detailed, one\-hour view\. That can be useful when viewing a broader time range \(for example, 3 days\) so that you can see trends over time\. For more information, see [Periods](cloudwatch_concepts.md#CloudWatchPeriods)\.
 
-## Creating a Graph<a name="create-metric-graph"></a>
+## Creating a graph<a name="create-metric-graph"></a>
 
 **To graph a metric**
 
@@ -22,6 +22,12 @@ You can view your data at different levels of detail\. For example, you can choo
 
 1. To graph one or more metrics, select the check box next to each metric\. To select all metrics, select the check box in the heading row of the table\.
 
+1. Choose **View graphed metrics**\.
+
+1. \(Optional\) To change the statistic used in the graph, choose the new statistic in the **Statistic** column next to the metric name\.
+
+   For more information about CloudWatch statistics, see [CloudWatch statistics definitions](Statistics-definitions.md)\. For more information about the **p*xx* percentile statistics, see [Percentiles](cloudwatch_concepts.md#Percentiles)\.**
+
 1. \(Optional\) To change the type of graph, choose **Graph options**\. You can then choose between a line graph, stacked area chart, bar chart, pie chart, or number\.
 
 1. \(Optional\) To add an anomaly detection band that shows expected values for the metric, choose the anomaly detection icon under **Actions** next to the metric\.   
@@ -33,13 +39,13 @@ You can view your data at different levels of detail\. For example, you can choo
 
    1. \(Optional\) Choose **Edit model** to change how the anomaly detection model is calculated\. You can exclude past and future time periods from being used in the training for calculating the model\. It is critical to exclude unusual events system as system outage, deployments, and holidays from the training data\. You can also specify the time zone to use for the model for daylight saving time changes\.
 
-   For more information, see [Using CloudWatch Anomaly Detection](CloudWatch_Anomaly_Detection.md)\.
+   For more information, see [Using CloudWatch anomaly detection](CloudWatch_Anomaly_Detection.md)\.
 
    To hide the model from the graph, remove the checkmark from the line with the ` ANOMALY_DETECTION_BAND` function or choose the `X` icon\. To delete the model entirely, choose **Edit model**, **Delete model**\.
 
 1. \(Optional\) As you choose metrics to graph, specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric, and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics**, **Dynamic labels**\.
 
-   By default, the dynamic values that you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using Dynamic Labels](graph-dynamic-labels.md)\.
+   By default, the dynamic values that you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using dynamic labels](graph-dynamic-labels.md)\.
 
 1. To view more information about the metric being graphed, pause the mouse over the legend\.
 
@@ -65,13 +71,13 @@ You can view your data at different levels of detail\. For example, you can choo
 
 1. To add your graph to a dashboard, choose **Actions**, **Add to dashboard**\.
 
-## Updating a Graph<a name="update-metric-graph"></a>
+## Updating a graph<a name="update-metric-graph"></a>
 
 **To update your graph**
 
 1. To change the name of the graph, choose the pencil icon\.
 
-1. To change the time range, select one of the predefined values or choose **custom**\. For more information, see [Modifying the Time Range or Time Zone Format for a Graph](modify_graph_date_time.md)\.
+1. To change the time range, select one of the predefined values or choose **custom**\. For more information, see [Modifying the time range or time zone format for a graph](modify_graph_date_time.md)\.
 
 1. To change the statistic, choose the **Graphed metrics** tab\. Choose the column heading or an individual value and then choose one of the statistics or predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\)\.
 
@@ -97,7 +103,7 @@ You can view your data at different levels of detail\. For example, you can choo
 
 1. To change the refresh interval, choose **Refresh options** and then select **Auto refresh** or choose **1 Minute**, **2 Minutes**, **5 Minutes**, or **15 Minutes**\.
 
-## Duplicating a Metric<a name="duplicate-metric-graph"></a>
+## Duplicating a metric<a name="duplicate-metric-graph"></a>
 
 **To duplicate a metric**
 

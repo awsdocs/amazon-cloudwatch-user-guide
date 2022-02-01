@@ -1,4 +1,4 @@
-# Scraping Additional Prometheus sources and Importing Those Metrics<a name="ContainerInsights-Prometheus-Setup-configure-ECS"></a>
+# Scraping additional Prometheus sources and importing those metrics<a name="ContainerInsights-Prometheus-Setup-configure-ECS"></a>
 
 The CloudWatch agent with Prometheus monitoring needs two configurations to scrape the Prometheus metrics\. One is for the standard Prometheus configurations as documented in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. The other is for the CloudWatch agent configuration\.
 
@@ -8,13 +8,13 @@ For Amazon ECS clusters, the configurations are integrated with the Parameter St
 
 To scrape additional Prometheus metrics sources and import those metrics to CloudWatch, you modify both the Prometheus scrape configuration and the CloudWatch agent configuration, and then re\-deploy the agent with the updated configuration\.
 
-**VPC Security Group Requirements**
+**VPC security group requirements**
 
 The ingress rules of the security groups for the Prometheus workloads must open the Prometheus ports to the CloudWatch agent for scraping the Prometheus metrics by the private IP\.
 
 The egress rules of the security group for the CloudWatch agent must allow the CloudWatch agent to connect to the Prometheus workloads' port by private IP\. 
 
-## Prometheus Scrape Configuration<a name="ContainerInsights-Prometheus-Setup-config-global"></a>
+## Prometheus scrape configuration<a name="ContainerInsights-Prometheus-Setup-config-global"></a>
 
 The CloudWatch agent supports the standard Prometheus scrape configurations as documented in [<scrape\_config>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) in the Prometheus documentation\. You can edit this section to update the configurations that are already in this file, and add additional Prometheus scraping targets\. By default, the sample configuration file contains the following global configuration lines:
 
@@ -28,7 +28,7 @@ global:
 
 You can also define different values for these settings at the job level, to override the global configurations\.
 
-### Prometheus Scraping Jobs<a name="ContainerInsights-Prometheus-Setup-config-scrape"></a>
+### Prometheus scraping jobs<a name="ContainerInsights-Prometheus-Setup-config-scrape"></a>
 
 The CloudWatch agent YAML files already have some default scraping jobs configured\. For example, in the YAML files for Amazon ECS such as `cwagent-ecs-prometheus-metric-for-bridge-host.yaml`, the default scraping jobs are configured in the `ecs_service_discovery` section\.
 
@@ -55,15 +55,15 @@ The CloudWatch agent YAML files already have some default scraping jobs configur
                 }
 ```
 
-Each of these default targets are scraped, and the metrics are sent to CloudWatch in log events using embedded metric format\. For more information, see [Ingesting High\-Cardinality Logs and Generating Metrics with CloudWatch Embedded Metric Format](CloudWatch_Embedded_Metric_Format.md)\.
+Each of these default targets are scraped, and the metrics are sent to CloudWatch in log events using embedded metric format\. For more information, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
 
 Log events from Amazon ECS clusters are stored in the **/aws/ecs/containerinsights/*cluster\_name*/prometheus** log group\.
 
 Each scraping job is contained in a different log stream in this log group\.
 
-To add a new scraping target, you add a new entry in the `task_definition_list` section under the `ecs_service_discovery` section\. of the YAML file, and restart the agent\. For an example of this process, see [Tutorial for Adding a New Prometheus Scrape Target: Prometheus API Server Metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
+To add a new scraping target, you add a new entry in the `task_definition_list` section under the `ecs_service_discovery` section\. of the YAML file, and restart the agent\. For an example of this process, see [Tutorial for adding a new Prometheus scrape target: Prometheus API Server metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
 
-## CloudWatch Agent Configuration for Prometheus<a name="ContainerInsights-Prometheus-Setup-cw-agent-config"></a>
+## CloudWatch agent configuration for Prometheus<a name="ContainerInsights-Prometheus-Setup-cw-agent-config"></a>
 
 The CloudWatch agent configuration file has a `prometheus` section under `metrics_collected` for the Prometheus scraping configuration\. It includes the following configuration options:
 + **cluster\_name**— specifies the cluster name to be added as a label in the log event\. This field is optional\. If you omit it, the agent can detect the Amazon ECS cluster name\.
@@ -96,6 +96,8 @@ The CloudWatch agent configuration file has a `prometheus` section under `metric
     + `sd_job_name` specifies the Prometheus scrape job name\. If you omit this field, the CloudWatch agent uses the job name in the Prometheus scrape configuration\. 
 + **metric\_declaration**— are sections that specify the array of logs with embedded metric format to be generated\. There are `metric_declaration` sections for each Prometheus source that the CloudWatch agent imports from by default\. These sections each include the following fields:
   + `label_matcher` is a regular expression that checks the value of the labels listed in `source_labels`\. The metrics that match are enabled for inclusion in the embedded metric format sent to CloudWatch\. 
+
+    If you have multiple labels specified in `source_labels`, we recommend that you do not use `^` or `$` characters in the regular expression for `label_matcher`\.
   + `source_labels` specifies the value of the labels that are checked by the `label_matcher` line\.
   + `label_separator` specifies the separator to be used in the ` label_matcher` line if multiple `source_labels` are specified\. The default is `;`\. You can see this default used in the `label_matcher` line in the following example\.
   + `metric_selectors` is a regular expression that specifies the metrics to be collected and sent to CloudWatch\.

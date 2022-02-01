@@ -12,15 +12,18 @@ For a video demonstration of canaries, see the [Amazon CloudWatch Synthetics Dem
 
 
 
-You can run a canary once or on a regular schedule\. Scheduled canaries can run 24 hours a day, as often as once per minute\.
+You can run a canary once or on a regular schedule\. Canaries can run as often as once per minute\. You can use both cron and rate expressions to schedule canaries\.
 
-For information about security issues to consider before you create and run canaries, see [Security Considerations for Synthetics Canaries](servicelens_canaries_security.md)\. 
+For information about security issues to consider before you create and run canaries, see [Security considerations for Synthetics canaries](servicelens_canaries_security.md)\. 
 
 By default, canaries create several CloudWatch metrics in the `CloudWatchSynthetics` namespace\. These metrics have `CanaryName` as a dimension\. Canaries that use the `executeStep()` or `executeHttpStep()` function from the function library also have `StepName` as a dimension\. For more information about the canary function library, see [Library functions available for canary scripts](CloudWatch_Synthetics_Canaries_Function_Library.md)\.
 
-CloudWatch Synthetics integrates well with CloudWatch ServiceLens, which uses CloudWatch with AWS X\-Ray to provide an end\-to\-end view of your services to help you more efficiently pinpoint performance bottlenecks and identify impacted users\. Canaries that you create with CloudWatch Synthetics appear on the ServiceLens service map\. For more information about ServiceLens, see [Using ServiceLens to Monitor the Health of Your Applications](ServiceLens.md)\.
+CloudWatch Synthetics integrates well with CloudWatch ServiceLens, which uses CloudWatch with AWS X\-Ray to provide an end\-to\-end view of your services to help you more efficiently pinpoint performance bottlenecks and identify impacted users\. Canaries that you create with CloudWatch Synthetics appear on the ServiceLens service map\. For more information about ServiceLens, see [Using ServiceLens to monitor the health of your applications](ServiceLens.md)\.
 
-CloudWatch Synthetics is currently available in all commerical AWS Regions and the GovCloud Regions\.
+CloudWatch Synthetics is currently available in all commercial AWS Regions and the GovCloud Regions\.
+
+**Note**  
+In Asia Pacific \(Osaka\), AWS PrivateLink is not supported\. In Asia Pacific \(Jakarta\), AWS PrivateLink and X\-Ray are not supported\.
 
 **Topics**
 + [Required roles and permissions for CloudWatch canaries](CloudWatch_Synthetics_Canaries_Roles.md)
@@ -29,7 +32,8 @@ CloudWatch Synthetics is currently available in all commerical AWS Regions and t
 + [Sample code for canary scripts](CloudWatch_Synthetics_Canaries_Samples.md)
 + [Canaries and X\-Ray tracing](CloudWatch_Synthetics_Canaries_tracing.md)
 + [Running a canary on a VPC](CloudWatch_Synthetics_Canaries_VPC.md)
++ [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)
 + [Viewing canary statistics and details](CloudWatch_Synthetics_Canaries_Details.md)
 + [CloudWatch metrics published by canaries](CloudWatch_Synthetics_Canaries_metrics.md)
-+ [Editing or Deleting a Canary](synthetics_canaries_deletion.md)
++ [Editing or deleting a canary](synthetics_canaries_deletion.md)
 + [Monitoring canary events with Amazon EventBridge](monitoring-events-eventbridge.md)

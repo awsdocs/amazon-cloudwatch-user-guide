@@ -1,4 +1,4 @@
-# Compliance Validation for Amazon CloudWatch<a name="compliance-validation"></a>
+# Compliance validation for Amazon CloudWatch<a name="compliance-validation"></a>
 
 Third\-party auditors assess the security and compliance of Amazon CloudWatch as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, HIPAA, and others\.
 

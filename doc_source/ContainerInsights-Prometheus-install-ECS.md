@@ -1,4 +1,4 @@
-# Install the CloudWatch Agent with Prometheus Metrics Collection on Amazon ECS clusters<a name="ContainerInsights-Prometheus-install-ECS"></a>
+# Install the CloudWatch agent with Prometheus metrics collection on Amazon ECS clusters<a name="ContainerInsights-Prometheus-install-ECS"></a>
 
 This section explains how to set up the CloudWatch agent with Prometheus monitoring in a cluster running Amazon ECS\. After you do this, the agent automatically scrapes and imports metrics for the following workloads running in that cluster\.
 + AWS App Mesh
@@ -9,7 +9,7 @@ You can also configure the agent to scrape and import metrics from additional Pr
 ## Set up IAM roles<a name="ContainerInsights-Prometheus-Setup-ECS-IAM"></a>
 
 You need two IAM roles for the CloudWatch agent task definition\. If you specify **CreateIAMRoles=True** in the AWS CloudFormation stack to have Container Insights create these roles for you, the roles will be created with the correct permissions\. If you want to create them yourself or use existing roles, the following roles and permissions are required\.
-+ **CloudWatch agent ECS task role**— The CloudWatch agent container uses this role\. It must include the **CloudwatchAgentServerPolicy** policy and a customer\-managed policy which contains the following read\-only permissions:
++ **CloudWatch agent ECS task role**— The CloudWatch agent container uses this role\. It must include the **CloudWatchAgentServerPolicy** policy and a customer\-managed policy which contains the following read\-only permissions:
   + `ec2:DescribeInstances`
   + `ecs:ListTasks`
   + `ecs:ListServices`
@@ -19,7 +19,7 @@ You need two IAM roles for the CloudWatch agent task definition\. If you specify
   + `ecs:DescribeTaskDefinition`
 + **CloudWatch agent ECS task execution role**— This is the role that Amazon ECS requires to launch and execute your containers\. Ensure that your task execution role has the **AmazonSSMReadOnlyAccess**, **AmazonECSTaskExecutionRolePolicy**, and **CloudWatchAgentServerPolicy** policies attached\. If you want to store more sensitive data for Amazon ECS to use, see [ Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html)\.
 
-## Install the CloudWatch Agent with Prometheus Monitoring by using AWS CloudFormation<a name="ContainerInsights-Prometheus-Setup-ECS-CFN"></a>
+## Install the CloudWatch agent with Prometheus monitoring by using AWS CloudFormation<a name="ContainerInsights-Prometheus-Setup-ECS-CFN"></a>
 
 You use AWS CloudFormation to install the CloudWatch agent with Prometheus monitoring for Amazon ECS clusters\. The following list shows the parameters you will use in the AWS CloudFormation template\.
 + **ECSClusterName**— Specifies the target Amazon ECS cluster\.

@@ -1,10 +1,10 @@
-# Tutorial for Adding a New Prometheus Scrape Target: Redis on Amazon EKS and Kubernetes Clusters<a name="ContainerInsights-Prometheus-Setup-redis-eks"></a>
+# Tutorial for adding a new Prometheus scrape target: Redis on Amazon EKS and Kubernetes clusters<a name="ContainerInsights-Prometheus-Setup-redis-eks"></a>
 
 This tutorial provides a hands\-on introduction to scrape the Prometheus metrics of a sample Redis application on Amazon EKS and Kubernetes\. Redis \(https://redis\.io/\) is an open source \(BSD licensed\), in\-memory data structure store, used as a database, cache and message broker\. For more information, see [ redis](https://redis.io/)\.
 
 redis\_exporter \(MIT License licensed\) is used to expose the Redis prometheus metrics on the specified port \(default: 0\.0\.0\.0:9121\)\. For more information, see [ redis\_exporter](https://github.com/oliver006/redis_exporter)\.
 
-The docker images in the following two docker hub repositories are used in this tutorial: 
+The Docker images in the following two Docker Hub repositories are used in this tutorial: 
 + [ redis](https://hub.docker.com/_/redis?tab=description)
 + [ redis\_exporter](https://hub.docker.com/r/oliver006/redis_exporter)
 
@@ -101,7 +101,7 @@ The docker images in the following two docker hub repositories are used in this 
 
    The section you added puts the Redis metrics onto the CloudWatch agent allow list\. For a list of these metrics, see the following section\.
 
-1. If you already have the CloudWatch agent with Prometheus support deployed in this cluster, you must dlete it by entering the following command\.
+1. If you already have the CloudWatch agent with Prometheus support deployed in this cluster, you must delete it by entering the following command\.
 
    ```
    kubectl delete deployment cwagent-prometheus -n amazon-cloudwatch
@@ -136,7 +136,7 @@ The docker images in the following two docker hub repositories are used in this 
 This tutorial sends the following metrics to the **ContainerInsights/Prometheus** namespace in CloudWatch\. You can use the CloudWatch console to see the metrics in that namespace\.
 
 
-| Metric Name | Dimensions | 
+| Metric name | Dimensions | 
 | --- | --- | 
 |  `redis_net_input_bytes_total` |  ClusterName, Namespace  | 
 |  `redis_net_output_bytes_total` |  ClusterName, Namespace  | 

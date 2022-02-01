@@ -1,12 +1,12 @@
-# Installing the CloudWatch Agent on On\-Premises Servers<a name="install-CloudWatch-Agent-on-premise"></a>
+# Installing the CloudWatch agent on on\-premises servers<a name="install-CloudWatch-Agent-on-premise"></a>
 
 If you have downloaded the CloudWatch agent on one computer and created the agent configuration file you want, you can use that configuration file to install the agent on other on\-premises servers\. 
 
-## Download the CloudWatch Agent on an On\-Premises Server<a name="download-CloudWatch-Agent-onprem"></a>
+## Download the CloudWatch agent on an on\-premises server<a name="download-CloudWatch-Agent-onprem"></a>
 
-You can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch Agent Package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+You can download the CloudWatch agent package using either Systems Manager Run Command or an Amazon S3 download link\. For information about using an Amazon S3 download link, see [Download the CloudWatch agent package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
 
-### Download Using Systems Manager<a name="download-CloudWatch-Agent-onprem-fleet-sys"></a>
+### Download using Systems Manager<a name="download-CloudWatch-Agent-onprem-fleet-sys"></a>
 
 To use Systems Manager Run Command, you must register your on\-premises server with Amazon EC2 Systems Manager\. For more information, see [ Setting Up Systems Manager in Hybrid Environments](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html) in the *AWS Systems Manager User Guide*\.
 
@@ -42,9 +42,9 @@ For information about updating the SSM Agent on a server running Windows Server,
 
    The agent package is downloaded, and the next steps are to configure and start it\.
 
-## \(Installing on an On\-Premises Server\) Specify IAM Credentials and AWS Region<a name="install-CloudWatch-Agent-iam_user-SSM-onprem"></a>
+## \(Installing on an on\-premises server\) Specify IAM credentials and AWS Region<a name="install-CloudWatch-Agent-iam_user-SSM-onprem"></a>
 
-To enable the CloudWatch agent to send data from an on\-premises server, you must specify the access key and secret key of the IAM user that you created earlier\. For more information about creating this user, see [Create IAM Roles and Users for Use with the CloudWatch Agent](create-iam-roles-for-cloudwatch-agent.md)\.
+To enable the CloudWatch agent to send data from an on\-premises server, you must specify the access key and secret key of the IAM user that you created earlier\. For more information about creating this user, see [Create IAM roles and users for use with the CloudWatch agent](create-iam-roles-for-cloudwatch-agent.md)\.
 
 You also must specify the AWS Region to send the metrics to, using the `region` field\.
 
@@ -57,7 +57,7 @@ aws_secret_access_key=my_secret_key
 region = us-west-1
 ```
 
-For *my\_access\_key* and *my\_secret\_key*, use the keys from the IAM user that doesn't have the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for CloudWatch agent, see [Create IAM Users to Use with the CloudWatch Agent on On\-Premises Servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
+For *my\_access\_key* and *my\_secret\_key*, use the keys from the IAM user that doesn't have the permissions to write to Systems Manager Parameter Store\. For more information about the IAM users needed for CloudWatch agent, see [Create IAM users to use with the CloudWatch agent on on\-premises servers](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-users)\.
 
 If you name this profile `AmazonCloudWatchAgent`, you don't need to do anything more\. Optionally, you can give it a different name and specify that name as the value for `shared_credential_profile` in the` common-config.toml` file, which is explained in the following section\.
 
@@ -79,7 +79,7 @@ Following is an example of using the aws configure command to create a named pro
    aws configure --profile AmazonCloudWatchAgent
    ```
 
-## \(Optional\) Modifying the Common Configuration and Named Profile for CloudWatch Agent<a name="CloudWatch-Agent-profile-onprem"></a>
+## \(Optional\) Modifying the common configuration and named profile for CloudWatch agent<a name="CloudWatch-Agent-profile-onprem"></a>
 
 The CloudWatch agent includes a configuration file called `common-config.toml`\. You can optionally use this file to specify proxy and Region information\.
 
@@ -111,7 +111,7 @@ The default `common-config.toml` is as follows:
 ```
 
 All lines are commented out initially\. To set the credential profile or proxy settings, remove the `#` from that line and specify a value\. You can edit this file manually, or by using the `RunShellScript` Run Command in Systems Manager:
-+ `shared_credential_profile` – For on\-premises servers, this line specifies the IAM user credential profile to use to send data to CloudWatch\. If you keep this line commented out, `AmazonCloudWatchAgent` is used\. For more information about creating this profile, see [\(Installing on an On\-Premises Server\) Specify IAM Credentials and AWS Region](#install-CloudWatch-Agent-iam_user-SSM-onprem)\. 
++ `shared_credential_profile` – For on\-premises servers, this line specifies the IAM user credential profile to use to send data to CloudWatch\. If you keep this line commented out, `AmazonCloudWatchAgent` is used\. For more information about creating this profile, see [\(Installing on an on\-premises server\) Specify IAM credentials and AWS Region](#install-CloudWatch-Agent-iam_user-SSM-onprem)\. 
 
   On an EC2 instance, you can use this line to have the CloudWatch agent send data from this instance to CloudWatch in a different AWS Region\. To do so, specify a named profile that includes a `region` field specifying the name of the Region to send to\.
 
@@ -131,7 +131,7 @@ All lines are commented out initially\. To set the credential profile or proxy s
   If you specify a `shared_credential_file`, you must also remove the `#` from the beginning of the `[credentials]` line\.
 + Proxy settings – If your servers use HTTP or HTTPS proxies to contact AWS services, specify those proxies in the `http_proxy` and `https_proxy` fields\. If there are URLs that should be excluded from proxying, specify them in the `no_proxy` field, separated by commas\.
 
-## Starting the CloudWatch Agent<a name="start-CloudWatch-Agent-on-premise-SSM-onprem"></a>
+## Starting the CloudWatch agent<a name="start-CloudWatch-Agent-on-premise-SSM-onprem"></a>
 
 You can start the CloudWatch agent using either Systems Manager Run Command or the command line\.
 

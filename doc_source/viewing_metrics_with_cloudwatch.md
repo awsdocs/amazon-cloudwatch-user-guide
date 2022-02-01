@@ -1,10 +1,10 @@
-# Viewing Available Metrics<a name="viewing_metrics_with_cloudwatch"></a>
+# Viewing available metrics<a name="viewing_metrics_with_cloudwatch"></a>
 
 Metrics are grouped first by namespace, and then by the various dimension combinations within each namespace\. For example, you can view all EC2 metrics, EC2 metrics grouped by instance, or EC2 metrics grouped by Auto Scaling group\.
 
 Only the AWS services that you're using send metrics to Amazon CloudWatch\.
 
-For a list of AWS services that send metrics to CloudWatch, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\. From this page, you can also see the metrics and dimensions that are published by each of those services\.
+For a list of AWS services that send metrics to CloudWatch, see [AWS services that publish CloudWatch metrics](aws-services-cloudwatch-metrics.md)\. From this page, you can also see the metrics and dimensions that are published by each of those services\.
 
 **Note**  
 Metrics that have not had any new data points in the past two weeks do not appear in the console\. They also do not appear when you type their metric name or dimension names in the search box in the **All metrics** tab in the console, and they are not returned in the results of a [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\. The best way to retrieve these metrics is with the [get\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-data.html) or [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) commands in the AWS CLI\.  
@@ -36,7 +36,7 @@ If the old metric you want to view has a current metric with similar dimensions,
 1. \(Optional\) To add this graph to a CloudWatch dashboard, choose **Actions**, **Add to dashboard**\.
 
 **To view available metrics by namespace, dimension, or metric using the AWS CLI**  
-Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list CloudWatch metrics\. For a list of the namespaces, metrics, and dimensions for all services that publish metrics, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
+Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list CloudWatch metrics\. For a list of the namespaces, metrics, and dimensions for all services that publish metrics, see [AWS services that publish CloudWatch metrics](aws-services-cloudwatch-metrics.md)\.
 
 The following example specifies the `AWS/EC2` namespace to view all the metrics for Amazon EC2\.
 

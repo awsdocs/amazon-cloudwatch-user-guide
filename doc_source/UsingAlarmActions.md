@@ -1,4 +1,4 @@
-# Create Alarms to Stop, Terminate, Reboot, or Recover an EC2 Instance<a name="UsingAlarmActions"></a>
+# Create alarms to stop, terminate, reboot, or recover an EC2 instance<a name="UsingAlarmActions"></a>
 
 Using Amazon CloudWatch alarm actions, you can create alarms that automatically stop, terminate, reboot, or recover your EC2 instances\. You can use the stop or terminate actions to help you save money when you no longer need an instance to be running\. You can use the reboot and recover actions to automatically reboot those instances or recover them onto new hardware if a system impairment occurs\.
 
@@ -14,20 +14,20 @@ To create the service\-linked role for CloudWatch Events, use the following comm
 aws iam create-service-linked-role --aws-service-name events.amazonaws.com
 ```
 
-**Console Support**  
+**Console support**  
 You can create alarms using the CloudWatch console or the Amazon EC2 console\. The procedures in this documentation use the CloudWatch console\. For procedures that use the Amazon EC2 console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Permissions**  
 If you are using an AWS Identity and Access Management \(IAM\) account to create or modify an alarm that performs EC2 actions or Systems Manager OpsItem actions, you must have the `iam:CreateServiceLinkedRole` permission\.
 
 **Topics**
-+ [Adding Stop Actions to Amazon CloudWatch Alarms](#AddingStopActions)
-+ [Adding Terminate Actions to Amazon CloudWatch Alarms](#AddingTerminateActions)
-+ [Adding Reboot Actions to Amazon CloudWatch Alarms](#AddingRebootActions)
-+ [Adding Recover Actions to Amazon CloudWatch Alarms](#AddingRecoverActions)
-+ [Viewing the History of Triggered Alarms and Actions](#ViewAlarmHistory)
++ [Adding stop actions to Amazon CloudWatch alarms](#AddingStopActions)
++ [Adding terminate actions to Amazon CloudWatch alarms](#AddingTerminateActions)
++ [Adding reboot actions to Amazon CloudWatch alarms](#AddingRebootActions)
++ [Adding recover actions to Amazon CloudWatch alarms](#AddingRecoverActions)
++ [Viewing the history of triggered alarms and actions](#ViewAlarmHistory)
 
-## Adding Stop Actions to Amazon CloudWatch Alarms<a name="AddingStopActions"></a>
+## Adding stop actions to Amazon CloudWatch alarms<a name="AddingStopActions"></a>
 
 You can create an alarm that stops an Amazon EC2 instance when a certain threshold has been met\. For example, you may run development or test instances and occasionally forget to shut them off\. You can create an alarm that is triggered when the average CPU utilization percentage has been lower than 10 percent for 24 hours, signaling that it is idle and no longer in use\. You can adjust the threshold, duration, and period to suit your needs, plus you can add an SNS notification, so that you will receive an email when the alarm is triggered\.
 
@@ -69,7 +69,7 @@ Amazon EC2 instances that use an Amazon Elastic Block Store volume as the root d
 
    1. Choose **Create Alarm**\.
 
-## Adding Terminate Actions to Amazon CloudWatch Alarms<a name="AddingTerminateActions"></a>
+## Adding terminate actions to Amazon CloudWatch alarms<a name="AddingTerminateActions"></a>
 
 You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don't need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information about enabling and disabling termination protection for an instance, see [Enabling Termination Protection for an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -109,7 +109,7 @@ You can create an alarm that terminates an EC2 instance automatically when a cer
 
    1. Choose **Create Alarm**\.
 
-## Adding Reboot Actions to Amazon CloudWatch Alarms<a name="AddingRebootActions"></a>
+## Adding reboot actions to Amazon CloudWatch alarms<a name="AddingRebootActions"></a>
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically reboots the instance\. The reboot alarm action is recommended for Instance Health Check failures \(as opposed to the recover alarm action, which is suited for System Health Check failures\)\. An instance reboot is equivalent to an operating system reboot\. In most cases, it takes only a few minutes to reboot your instance\. When you reboot an instance, it remains on the same physical host, so your instance keeps its public DNS name, private IP address, and any data on its instance store volumes\.
 
@@ -152,7 +152,7 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
    1. Choose **Create Alarm**\.
 
-## Adding Recover Actions to Amazon CloudWatch Alarms<a name="AddingRecoverActions"></a>
+## Adding recover actions to Amazon CloudWatch alarms<a name="AddingRecoverActions"></a>
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair\. Terminated instances cannot be recovered\. A recovered instance is identical to the original instance, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata\.
 
@@ -213,7 +213,7 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
    1. Choose **Create Alarm**\.
 
-## Viewing the History of Triggered Alarms and Actions<a name="ViewAlarmHistory"></a>
+## Viewing the history of triggered alarms and actions<a name="ViewAlarmHistory"></a>
 
 You can view alarm and action history in the Amazon CloudWatch console\. Amazon CloudWatch keeps the last two weeks' worth of alarm and action history\.
 

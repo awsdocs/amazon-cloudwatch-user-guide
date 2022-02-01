@@ -1,4 +1,4 @@
-# Setting Up Container Insights on Amazon ECS for Cluster\- and Service\-Level Metrics<a name="deploy-container-insights-ECS-cluster"></a>
+# Setting up Container Insights on Amazon ECS for cluster\- and service\-level metrics<a name="deploy-container-insights-ECS-cluster"></a>
 
 You can enable Container Insights on new and existing Amazon ECS clusters\. Container Insights collects metrics at the cluster, task, and service levels\. For existing clusters, you use the AWS CLI\. For new clusters, use either the Amazon ECS console or the AWS CLI\.
 
@@ -10,7 +10,7 @@ You can use the AWS CLI to set account\-level permission to enable Container Ins
 aws ecs put-account-setting --name "containerInsights" --value "enabled"
 ```
 
-## Setting Up Container Insights on Existing Amazon ECS Clusters<a name="deploy-container-insights-ECS-existing"></a>
+## Setting up Container Insights on existing Amazon ECS clusters<a name="deploy-container-insights-ECS-existing"></a>
 
 To enable Container Insights on an existing Amazon ECS cluster, enter the following command\. You must be running version 1\.16\.200 or later of the AWS CLI for the following command to work\.
 
@@ -18,7 +18,7 @@ To enable Container Insights on an existing Amazon ECS cluster, enter the follow
 aws ecs update-cluster-settings --cluster myCICluster --settings name=containerInsights,value=enabled
 ```
 
-## Setting Up Container Insights on New Amazon ECS Clusters<a name="deploy-container-insights-ECS-new"></a>
+## Setting up Container Insights on new Amazon ECS clusters<a name="deploy-container-insights-ECS-new"></a>
 
 There are two ways to enable Container Insights on new Amazon ECS clusters\. You can configure Amazon ECS so that all new clusters are enabled for Container Insights by default\. Otherwise, you can enable a new cluster when you create it\.
 
@@ -57,11 +57,11 @@ If you haven't used the preceding procedure to enable Container Insights on all 
    1. Choose **Create**\.
 
 You can now create task definitions, run tasks, and launch services in the cluster\. For more information, see the following:
-+ [Creating a Task Definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
-+ [Running Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html)
-+ [Creating a Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service.html)
++ [Creating a task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
++ [Running tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html)
++ [Creating a service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service.html)
 
-### Setting Up Container Insights on New Amazon ECS Clusters Using the AWS CLI<a name="deploy-container-insights-ECS-CLI"></a>
+### Setting up Container Insights on new Amazon ECS clusters using the AWS CLI<a name="deploy-container-insights-ECS-CLI"></a>
 
 To enable Container Insights on all new clusters by default, enter the following command\.
 
@@ -75,7 +75,7 @@ If you didn't use the preceding command to enable Container Insights on all new 
 aws ecs create-cluster --cluster-name myCICluster --settings "name=containerInsights,value=enabled"
 ```
 
-## Disabling Container Insights on Amazon ECS Clusters<a name="deploy-container-insights-ECS-disable"></a>
+## Disabling Container Insights on Amazon ECS clusters<a name="deploy-container-insights-ECS-disable"></a>
 
 To disable Container Insights on an existing Amazon ECS cluster, enter the following command\.
 

@@ -1,12 +1,22 @@
-# Creating a CloudWatch Alarm Based on a Metric Math Expression<a name="Create-alarm-on-metric-math-expression"></a>
+# Creating a CloudWatch alarm based on a metric math expression<a name="Create-alarm-on-metric-math-expression"></a>
 
 To create an alarm based on a metric math expression, choose one or more CloudWatch metrics to use in the expression\. Then, specify the expression, threshold, and evaluation periods\.
+
+You can't create an alarm based on the **SEARCH** expression\. This is because search expressions return multiple time series, and an alarm based on a math expression can watch only one time series\.
 
 **To create an alarm based on a math expression**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
+1. In the navigation pane, choose **Alarms**, **All alarms**\.
+
+1. Choose **Create alarm**\.
+
+1. Choose **Select Metric**\.
+
+1. \(Optional\) If you have enabled cross\-account functionality in the CloudWatch console and the current account is a monitoring account, under **Search Metrics** choose choose a different AWS account that contains the metric that you want the alarm to watch\. For more information, see [Cross\-account cross\-Region CloudWatch console](Cross-Account-Cross-Region.md)\.
+
+   You can create cross\-account alarms, but not cross\-Region alarms\.
 
 1. Choose **Select Metric** and do one of the following:
    + Choose the service namespace that contains a specific metric\. Continue choosing options as they appear to narrow the choices\. When a list of metrics appears, select the check box next to the right metric\.
@@ -24,7 +34,7 @@ To create an alarm based on a metric math expression, choose one or more CloudWa
 
 1. Choose **Add a math expression**\. A new row appears for the expression\.
 
-1. On the new row, under the **Details** column, enter the math expression and press Enter\. For information about the functions and syntax that you can use, see [Metric Math Syntax and Functions](using-metric-math.md#metric-math-syntax)\.
+1. On the new row, under the **Details** column, enter the math expression and press Enter\. For information about the functions and syntax that you can use, see [Metric math syntax and functions](using-metric-math.md#metric-math-syntax)\.
 
    To use a metric or the result of another expression as part of the formula for this expression, use the value shown in the **Id** column: for example, **m1\+m2** or **e1\-MIN\(e1\)**\.
 
@@ -40,9 +50,9 @@ To create an alarm based on a metric math expression, choose one or more CloudWa
 
 1. Choose **Additional configuration**\. For **Datapoints to alarm**, specify how many evaluation periods \(data points\) must be in the `ALARM` state to trigger the alarm\. If the two values here match, you create an alarm that goes to `ALARM` state if that many consecutive periods are breaching\.
 
-   To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an Alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
+   To create an M out of N alarm, specify a lower number for the first value than you specify for the second value\. For more information, see [Evaluating an alarm](AlarmThatSendsEmail.md#alarm-evaluation)\.
 
-1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
+1. For **Missing data treatment**, choose how to have the alarm behave when some data points are missing\. For more information, see [Configuring how CloudWatch alarms treat missing data](AlarmThatSendsEmail.md#alarms-and-missing-data)\.
 
 1. Choose **Next**\.
 
@@ -52,7 +62,9 @@ To create an alarm based on a metric math expression, choose one or more CloudWa
 
    To have the alarm not send notifications, choose **Remove**\.
 
-1. To have the alarm perform Auto Scaling, EC2, or Systems Manager actions, choose the appropriate button and choose the alarm state and action to perform\.
+1. To have the alarm perform Auto Scaling, EC2, or Systems Manager actions, choose the appropriate button and choose the alarm state and action to perform\. Alarms can perform Systems Manager actions only when they go into ALARM state\. For more information about Systems Manager actions, see see [ Configuring CloudWatch to create OpsItems from alarms](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-create-OpsItems-from-CloudWatch-Alarms.html) and [ Incident creation](https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html)\.
+**Note**  
+To create an alarm that performs an SSM Incident Manager action, you must have certain permissions\. For more information, see [ Identity\-based policy examples for AWS Systems Manager Incident Manager](https://docs.aws.amazon.com/incident-manager/latest/userguide/security_iam_id-based-policy-examples.html)\.
 
 1. When finished, choose **Next**\.
 
@@ -60,4 +72,4 @@ To create an alarm based on a metric math expression, choose one or more CloudWa
 
 1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
 
-You can also add alarms to a dashboard\. For more information, see [Add an Alarm Widget to a CloudWatch Dashboard](add_remove_alarm_dashboard.md)\. 
+You can also add alarms to a dashboard\. For more information, see [Add an alarm widget to a CloudWatch dashboard](add_remove_alarm_dashboard.md)\. 

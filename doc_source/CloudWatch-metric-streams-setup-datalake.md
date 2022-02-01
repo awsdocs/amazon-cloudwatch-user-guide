@@ -1,6 +1,6 @@
 # Setting up a metric stream to an AWS service \(data lake scenario\)<a name="CloudWatch-metric-streams-setup-datalake"></a>
 
-You can use the CloudWatch console, the AWS CLI, AWS CloudFormation, or the AWS Cloud Development Kit \(AWS CDK\) to set up a metric stream\.
+You can use the CloudWatch console, the AWS CLI, AWS CloudFormation, or the AWS Cloud Development Kit \(CDK\) to set up a metric stream\.
 
 The Kinesis Data Firehose delivery stream that you use for your metric stream must be in the same account and the same Region where you set up the metric stream\. To achieve cross\-Region functionality, you can configure the Kinesis Data Firehose delivery stream to stream to a final destination that is in a different account or a different Region\.
 
@@ -68,9 +68,9 @@ You can use AWS CloudFormation to set up a metric stream\. For more information,
 
 1. Create the stream in AWS CloudFormation\. For more information, see [ AWS::CloudWatch::MetricStream](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-metricstream.html)\.
 
-## AWS Cloud Development Kit \(AWS CDK\)<a name="CloudWatch-metric-streams-setup-datalake-CDK"></a>
+## AWS Cloud Development Kit \(CDK\)<a name="CloudWatch-metric-streams-setup-datalake-CDK"></a>
 
-You can use AWS Cloud Development Kit \(AWS CDK\) to set up a metric stream\. 
+You can use AWS Cloud Development Kit \(CDK\) to set up a metric stream\. 
 
 **To use the AWS CDK to create a metric stream**
 

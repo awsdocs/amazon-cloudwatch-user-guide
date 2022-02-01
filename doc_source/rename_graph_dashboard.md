@@ -1,4 +1,4 @@
-# Rename a Graph on a CloudWatch Dashboard<a name="rename_graph_dashboard"></a>
+# Rename a graph on a CloudWatch dashboard<a name="rename_graph_dashboard"></a>
 
 You can change the default name that CloudWatch assigns to a graph on your dashboard\.
 

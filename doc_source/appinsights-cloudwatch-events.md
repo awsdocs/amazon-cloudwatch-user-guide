@@ -1,7 +1,7 @@
 # Application Insights CloudWatch Events and notifications for detected problems<a name="appinsights-cloudwatch-events"></a>
 
-For each application that is added to CloudWatch Application Insights, a CloudWatch Event is published for the following events on a best effort basis:
-+ **Problem Creation\.** Emitted when CloudWatch Application Insights detects a new problem\.
+For each application that is added to CloudWatch Application Insights, a CloudWatch event is published for the following events on a best effort basis:
++ **Problem creation\.** Emitted when CloudWatch Application Insights detects a new problem\.
   + Detail Type: ** "Application Insights Problem Detected"**
   + Detail:
     + `problemId`: The detected problem ID\.
@@ -10,7 +10,7 @@ For each application that is added to CloudWatch Application Insights, a CloudWa
     + `status`: The status of the problem\.
     + `severity`: The severity of the problem\.
     + `problemUrl`: The console URL for the problem\.
-+ **Problem Update\.** Emitted when the problem is updated with a new observation or when an existing observation is updated and the problem is subsequently updated; updates include a resolution or closure of the problem\.
++ **Problem update\.** Emitted when the problem is updated with a new observation or when an existing observation is updated and the problem is subsequently updated; updates include a resolution or closure of the problem\.
   + Detail Type: ** "Application Insights Problem Updated"**
   + Detail:
     + `problemId`: The created problem ID\.

@@ -10,7 +10,7 @@ The CloudWatch agent with Prometheus support scrapes the NGINX Prometheus metric
 
 Follow these steps to install the NGINX reverse proxy sample workload\.
 
-### Create the docker images<a name="ContainerInsights-Prometheus-nginx-ecs-setup-docker"></a>
+### Create the Docker images<a name="ContainerInsights-Prometheus-nginx-ecs-setup-docker"></a>
 
 **To create the Docker images for the NGINX reverse proxy sample workload**
 

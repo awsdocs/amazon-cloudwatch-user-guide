@@ -1,4 +1,4 @@
-# Amazon CloudWatch Concepts<a name="cloudwatch_concepts"></a>
+# Amazon CloudWatch concepts<a name="cloudwatch_concepts"></a>
 
 The following terminology and concepts are central to your understanding and use of Amazon CloudWatch:
 + [Namespaces](#Namespace)
@@ -15,7 +15,7 @@ A *namespace* is a container for CloudWatch metrics\. Metrics in different names
 
 There is no default namespace\. You must specify a namespace for each data point you publish to CloudWatch\. You can specify a namespace name when you create a metric\. These names must contain valid XML characters, and be fewer than 256 characters in length\. Possible characters are: alphanumeric characters \(0\-9A\-Za\-z\), period \(\.\), hyphen \(\-\), underscore \(\_\), forward slash \(/\), hash \(\#\), and colon \(:\)\.
 
-The AWS namespaces typically use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS Services That Publish CloudWatch Metrics](aws-services-cloudwatch-metrics.md)\.
+The AWS namespaces typically use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS services that publish CloudWatch metrics](aws-services-cloudwatch-metrics.md)\.
 
 ## Metrics<a name="Metric"></a>
 
@@ -27,9 +27,9 @@ Metrics exist only in the Region in which they are created\. Metrics cannot be d
 
 Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\. Each data point in a metric has a time stamp, and \(optionally\) a unit of measure\. You can retrieve statistics from CloudWatch for any metric\.
 
-For more information, see [Viewing Available Metrics](viewing_metrics_with_cloudwatch.md) and [Publishing Custom Metrics](publishingMetrics.md)\.
+For more information, see [Viewing available metrics](viewing_metrics_with_cloudwatch.md) and [Publishing custom metrics](publishingMetrics.md)\.
 
-### Time Stamps<a name="about_timestamp"></a>
+### Time stamps<a name="about_timestamp"></a>
 
 Each metric data point must be associated with a time stamp\. The time stamp can be up to two weeks in the past and up to two hours into the future\. If you do not provide a time stamp, CloudWatch creates a time stamp for you based on the time the data point was received\. 
 
@@ -37,7 +37,7 @@ Time stamps are `dateTime` objects, with the complete date plus hours, minutes, 
 
 CloudWatch alarms check metrics based on the current time in UTC\. Custom metrics sent to CloudWatch with time stamps other than the current UTC time can cause alarms to display the **Insufficient Data** state or result in delayed alarms\.
 
-### Metrics Retention<a name="metrics-retention"></a>
+### Metrics retention<a name="metrics-retention"></a>
 
 CloudWatch retains metric data as follows:
 + Data points with a period of less than 60 seconds are available for 3 hours\. These data points are high\-resolution custom metrics\. 
@@ -60,7 +60,7 @@ AWS services that send data to CloudWatch attach dimensions to each metric\. You
 
 For metrics produced by certain AWS services, such as Amazon EC2, CloudWatch can aggregate data across dimensions\. For example, if you search for metrics in the `AWS/EC2` namespace but do not specify any dimensions, CloudWatch aggregates all data for the specified metric to create the statistic that you requested\. CloudWatch does not aggregate across dimensions for your custom metrics\.
 
-### Dimension Combinations<a name="dimension-combinations"></a>
+### Dimension combinations<a name="dimension-combinations"></a>
 
 CloudWatch treats each unique combination of dimensions as a separate metric, even if the metrics have the same metric name\. You can only retrieve statistics using combinations of dimensions that you specifically published\. When you retrieve statistics, specify the same values for the namespace, metric name, and dimension parameters that were used when the metrics were created\. You can also specify the start and end times for CloudWatch to use for aggregation\.
 
@@ -79,7 +79,7 @@ If you publish only those four metrics, you can retrieve statistics for these co
 + `Server=Beta,Domain=Frankfurt`
 + `Server=Beta,Domain=Rio`
 
-You can't retrieve statistics for the following dimensions or if you specify no dimensions\. \(The exception is by using the metric math **SEARCH** function, which can retrieve statistics for multiple metrics\. For more information, see [Using Search Expressions in Graphs](using-search-expressions.md)\.\)
+You can't retrieve statistics for the following dimensions or if you specify no dimensions\. \(The exception is by using the metric math **SEARCH** function, which can retrieve statistics for multiple metrics\. For more information, see [Using search expressions in graphs](using-search-expressions.md)\.\)
 + `Server=Prod`
 + `Server=Beta`
 + `Domain=Frankfurt`
@@ -99,21 +99,11 @@ If you set an alarm on a high\-resolution metric, you can specify a high\-resolu
 
 ## Statistics<a name="Statistic"></a>
 
-*Statistics* are metric data aggregations over specified periods of time\. CloudWatch provides statistics based on the metric data points provided by your custom data or provided by other AWS services to CloudWatch\. Aggregations are made using the namespace, metric name, dimensions, and the data point unit of measure, within the time period you specify\. The following table describes the available statistics\.
+*Statistics* are metric data aggregations over specified periods of time\. CloudWatch provides statistics based on the metric data points provided by your custom data or provided by other AWS services to CloudWatch\. Aggregations are made using the namespace, metric name, dimensions, and the data point unit of measure, within the time period you specify\.
 
+For detailed definitions of the statistics supported by CloudWatch, see [CloudWatch statistics definitions](Statistics-definitions.md)\.
 
-| Statistic | Description | 
-| --- | --- | 
-| Minimum |  The lowest value observed during the specified period\. You can use this value to determine low volumes of activity for your application\.   | 
-| Maximum |  The highest value observed during the specified period\. You can use this value to determine high volumes of activity for your application\.   | 
-| Sum |  All values submitted for the matching metric added together\. This statistic can be useful for determining the total volume of a metric\.   | 
-| Average |  The value of `Sum` / `SampleCount` during the specified period\. By comparing this statistic with the `Minimum` and `Maximum`, you can determine the full scope of a metric and how close the average use is to the `Minimum` and `Maximum`\. This comparison helps you to know when to increase or decrease your resources as needed\.   | 
-| SampleCount |  The count \(number\) of data points used for the statistical calculation\.  | 
-| pNN\.NN |  The value of the specified percentile\. You can specify any percentile, using up to two decimal places \(for example, p95\.45\)\. Percentile statistics are not available for metrics that include any negative values\. For more information, see [Percentiles](#Percentiles)\.  | 
-
-You can add pre\-calculated statistics\. Instead of data point values, you specify values for `SampleCount`, `Minimum`, `Maximum`, and `Sum` \(CloudWatch calculates the average for you\)\. The values you add in this way are aggregated with any other values associated with the matching metric\. 
-
-### Units<a name="Unit"></a>
+## Units<a name="Unit"></a>
 
 Each statistic has a unit of measure\. Example units include `Bytes`, `Seconds`, `Count`, and `Percent`\. For the complete list of the units that CloudWatch supports, see the [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html) data type in the *Amazon CloudWatch API Reference*\.
 
@@ -121,11 +111,11 @@ You can specify a unit when you create a custom metric\. If you do not specify a
 
 Metric data points that specify a unit of measure are aggregated separately\. When you get statistics without specifying a unit, CloudWatch aggregates all data points of the same unit together\. If you have two otherwise identical metrics with different units, two separate data streams are returned, one for each unit\.
 
-### Periods<a name="CloudWatchPeriods"></a>
+## Periods<a name="CloudWatchPeriods"></a>
 
 A *period* is the length of time associated with a specific Amazon CloudWatch statistic\. Each statistic represents an aggregation of the metrics data collected for a specified period of time\. Periods are defined in numbers of seconds, and valid values for period are 1, 5, 10, 30, or any multiple of 60\. For example, to specify a period of six minutes, use 360 as the period value\. You can adjust how the data is aggregated by varying the length of the period\. A period can be as short as one second or as long as one day \(86,400 seconds\)\. The default value is 60 seconds\.
 
-Only custom metrics that you define with a storage resolution of 1 second support sub\-minute periods\. Even though the option to set a period below 60 is always available in the console, you should select a period that aligns to how the metric is stored\. For more information about metrics that support sub\-minute periods, see [High\-Resolution Metrics](publishingMetrics.md#high-resolution-metrics)\.
+Only custom metrics that you define with a storage resolution of 1 second support sub\-minute periods\. Even though the option to set a period below 60 is always available in the console, you should select a period that aligns to how the metric is stored\. For more information about metrics that support sub\-minute periods, see [High\-resolution metrics](publishingMetrics.md#high-resolution-metrics)\.
 
 When you retrieve statistics, you can specify a period, start time, and end time\. These parameters determine the overall length of time associated with the statistics\. The default values for the start time and end time get you the last hour's worth of statistics\. The values that you specify for the start time and end time determine how many periods CloudWatch returns\. For example, retrieving statistics using the default values for the period, start time, and end time returns an aggregated set of statistics for each minute of the previous hour\. If you prefer statistics aggregated in ten\-minute blocks, specify a period of 600\. For statistics aggregated over the entire hour, specify a period of 3600\.
 
@@ -133,7 +123,7 @@ When statistics are aggregated over a period of time, they are stamped with the 
 
 Periods are also important for CloudWatch alarms\. When you create an alarm to monitor a specific metric, you are asking CloudWatch to compare that metric to the threshold value that you specified\. You have extensive control over how CloudWatch makes that comparison\. Not only can you specify the period over which the comparison is made, but you can also specify how many evaluation periods are used to arrive at a conclusion\. For example, if you specify three evaluation periods, CloudWatch compares a window of three data points\. CloudWatch only notifies you if the oldest data point is breaching and the others are breaching or missing\. For metrics that are continuously emitted, CloudWatch doesn't notify you until three failures are found\.
 
-### Aggregation<a name="CloudWatchAggregation"></a>
+## Aggregation<a name="CloudWatchAggregation"></a>
 
 Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics\. You can publish as many data points as you want with the same or similar time stamps\. CloudWatch aggregates them according to the specified period length\. CloudWatch does not automatically aggregate data across Regions, but you can use metric math to aggregate metrics from different Regions\.
 
@@ -147,9 +137,9 @@ Amazon CloudWatch doesn't differentiate the source of a metric\. If you publish 
 
 A *percentile* indicates the relative standing of a value in a dataset\. For example, the 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value\. Percentiles help you get a better understanding of the distribution of your metric data\.
 
-Percentiles are often used to isolate anomalies\. In a typical distribution, 95 percent of the data is within two standard deviations from the mean and 99\.7 percent of the data is within three standard deviations from the mean\. Any data that falls outside three standard deviations is often considered to be an anomaly because it differs so greatly from the average value\. For example, suppose that you are monitoring the CPU utilization of your EC2 instances to ensure that your customers have a good experience\. If you monitor the average, this can hide anomalies\. If you monitor the maximum, a single anomaly can skew the results\. Using percentiles, you can monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load\.
+Percentiles are often used to isolate anomalies\. In a normal distribution, 95 percent of the data is within two standard deviations from the mean and 99\.7 percent of the data is within three standard deviations from the mean\. Any data that falls outside three standard deviations is often considered to be an anomaly because it differs so greatly from the average value\. For example, suppose that you are monitoring the CPU utilization of your EC2 instances to ensure that your customers have a good experience\. If you monitor the average, this can hide anomalies\. If you monitor the maximum, a single anomaly can skew the results\. Using percentiles, you can monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load\.
 
-Some CloudWatch metrics support percentiles as a statistic\. For these metrics, you can monitor your system and applications using percentiles as you would when using the other CloudWatch statistics \(Average, Minimum, Maximum, and Sum\)\. For example, when you create an alarm, you can use percentiles as the statistical function\. You can specify the percentile with up to two decimal places \(for example, p95\.45\)\.
+Some CloudWatch metrics support percentiles as a statistic\. For these metrics, you can monitor your system and applications using percentiles as you would when using the other CloudWatch statistics \(Average, Minimum, Maximum, and Sum\)\. For example, when you create an alarm, you can use percentiles as the statistical function\. You can specify the percentile with up to ten decimal places \(for example, p95\.0123456789\)\.
 
 Percentile statistics are available for custom metrics as long as you publish the raw, unsummarized data points for your custom metric\. Percentile statistics are not available for metrics when any of the metric values are negative numbers\.
 
@@ -165,6 +155,8 @@ The following AWS services include metrics that support percentile statistics\.
 + Kinesis
 + Amazon RDS
 
+CloudWatch also supports trimmed mean and other performance statistics, which can have a similar use as percentiles\. For more information, see [CloudWatch statistics definitions](Statistics-definitions.md)\.
+
 ## Alarms<a name="CloudWatchAlarms"></a>
 
 You can use an *alarm* to automatically initiate actions on your behalf\. An alarm watches a single metric over a specified time period, and performs one or more specified actions, based on the value of the metric relative to a threshold over time\. The action is a notification sent to an Amazon SNS topic or an Auto Scaling policy\. You can also add alarms to dashboards\.
@@ -173,6 +165,6 @@ Alarms invoke actions for sustained state changes only\. CloudWatch alarms do no
 
 When creating an alarm, select an alarm monitoring period that is greater than or equal to the metric's resolution\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances with a resolution of 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
 
- If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing Custom Metrics](publishingMetrics.md)\.
+ If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing custom metrics](publishingMetrics.md)\.
 
-For more information, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md) and [Creating an Alarm from a Metric on a Graph](create_alarm_metric_graph.md)\.
+For more information, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md) and [Creating an alarm from a metric on a graph](create_alarm_metric_graph.md)\.

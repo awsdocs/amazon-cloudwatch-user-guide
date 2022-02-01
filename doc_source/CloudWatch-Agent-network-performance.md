@@ -36,7 +36,7 @@ On Linux servers, to import ethtool metrics, add an `ethtool` section to the `me
 
 The following example displays part of the CloudWatch agent configuration file\. This configuration collects the standard ethtool metrics `rx_packets` and `tx_packets`, and the Amazon EC2 network performance metrics from only the `eth1` interface\.
 
-For more information about the CloudWatch agent configuration file, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\.
+For more information about the CloudWatch agent configuration file, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
 
 ```
 "metrics": {
@@ -63,9 +63,9 @@ For more information about the CloudWatch agent configuration file, see [ Manual
 
 ## Viewing network performance metrics<a name="CloudWatch-view-ENA-metrics"></a>
 
-After importing network performance metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view ethtool metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch Alarms](AlarmThatSendsEmail.md)\.
+After importing network performance metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view ethtool metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
-Because all of these metrics are aggregate counters, you can use CloudWatch metric math functions such as `RATE(METRICS())` to calculate the rate for these metrics in graphs or use them to set alarms\. For more information about metric math functions, see [Using Metric Math](using-metric-math.md)\.
+Because all of these metrics are aggregate counters, you can use CloudWatch metric math functions such as `RATE(METRICS())` to calculate the rate for these metrics in graphs or use them to set alarms\. For more information about metric math functions, see [Using metric math](using-metric-math.md)\.
 
 **To view network performance metrics in the CloudWatch console**
 

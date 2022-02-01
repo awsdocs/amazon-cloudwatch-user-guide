@@ -1,4 +1,4 @@
-# Using the Embedded Metric Format with AWS Distro for OpenTelemetry<a name="CloudWatch_Embedded_Metric_Format_OpenTelemetry"></a>
+# Using the embedded metric format with AWS Distro for OpenTelemetry<a name="CloudWatch_Embedded_Metric_Format_OpenTelemetry"></a>
 
 You can use the embedded metric format as a part of the OpenTelemetry project\. OpenTelemetry is an open\-source initiative that removes boundaries and restrictions between vendor\-specific formats for tracing, logs, and metrics by offering a single set of specifications and APIs\. For more information, see [OpenTelemetry](https://opentelemetry.io/)\.
 

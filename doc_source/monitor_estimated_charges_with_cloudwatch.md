@@ -1,4 +1,4 @@
-# Creating a Billing Alarm to Monitor Your Estimated AWS Charges<a name="monitor_estimated_charges_with_cloudwatch"></a>
+# Creating a billing alarm to monitor your estimated AWS charges<a name="monitor_estimated_charges_with_cloudwatch"></a>
 
 You can monitor your estimated AWS charges by using Amazon CloudWatch\. When you enable the monitoring of estimated charges for your AWS account, the estimated charges are calculated and sent several times daily to CloudWatch as metric data\.
 
@@ -9,11 +9,11 @@ The alarm triggers when your account billing exceeds the threshold you specify\.
 If you create a billing alarm at a time when your charges have already exceeded the threshold, the alarm goes to the `ALARM` state immediately\.
 
 **Topics**
-+ [Enabling Billing Alerts](#turning_on_billing_metrics)
-+ [Creating a Billing Alarm](#creating_billing_alarm_with_wizard)
-+ [Deleting a Billing Alarm](#deleting_billing_alarm)
++ [Enabling billing alerts](#turning_on_billing_metrics)
++ [Creating a billing alarm](#creating_billing_alarm_with_wizard)
++ [Deleting a billing alarm](#deleting_billing_alarm)
 
-## Enabling Billing Alerts<a name="turning_on_billing_metrics"></a>
+## Enabling billing alerts<a name="turning_on_billing_metrics"></a>
 
 Before you can create an alarm for your estimated charges, you must enable billing alerts, so that you can monitor your estimated AWS charges and create an alarm using billing metric data\. After you enable billing alerts, you can't disable data collection, but you can delete any billing alarms that you created\.
 
@@ -22,7 +22,7 @@ After you enable billing alerts for the first time, it takes about 15 minutes be
 **Requirements**
 + You must be signed in using account root user credentials or as an IAM user that has been given permission to view billing information\.
 + For consolidated billing accounts, billing data for each linked account can be found by logging in as the paying account\. You can view billing data for total estimated charges and estimated charges by service for each linked account, in addition to the consolidated account\.
-+ In a consolidated billing account, member linked account metrics are captured only if the payer account enables the **Receive Billing Alerts** preference\. If you change which account is your master/payer account, you must enable the billing alerts in the new master/payer account\.
++ In a consolidated billing account, member linked account metrics are captured only if the payer account enables the **Receive Billing Alerts** preference\. If you change which account is your management/payer account, you must enable the billing alerts in the new management/payer account\.
 + The account must not be part of the Amazon Partner Network \(APN\) because billing metrics are not published to CloudWatch for APN accounts\. For more information, see [AWS Partner Network](https://aws.amazon.com/partners/)\.
 
 **To enable the monitoring of estimated charges**
@@ -35,12 +35,12 @@ After you enable billing alerts for the first time, it takes about 15 minutes be
 
 1. Choose **Save preferences**\.
 
-## Creating a Billing Alarm<a name="creating_billing_alarm_with_wizard"></a>
+## Creating a billing alarm<a name="creating_billing_alarm_with_wizard"></a>
 
 **Important**  
-Before you can create a billing alarm,you must enable billing alerts in your account, or in the master/payer account if you are using consolidated billing\. For more information, see [Enabling Billing Alerts](#turning_on_billing_metrics)\.
+Before you can create a billing alarm,you must enable billing alerts in your account, or in the management/payer account if you are using consolidated billing\. For more information, see [Enabling billing alerts](#turning_on_billing_metrics)\.
 
-In this procedure, you create an alarm that sends an email message when your estimated charges for AWS exceed a specified threshold\. This procedure uses the advanced options\. For more information about using the simple options, see [Create a Billing Alarm](gs_monitor_estimated_charges_with_cloudwatch.md#gs_creating_billing_alarm) in *Monitor Your Estimated Charges Using CloudWatch*\.
+In this procedure, you create an alarm that sends a notification when your estimated charges for AWS exceed a specified threshold\. This procedure uses the advanced options\. For more information about using the simple options, see [Create a Billing Alarm](gs_monitor_estimated_charges_with_cloudwatch.md#gs_creating_billing_alarm) in *Monitor Your Estimated Charges Using CloudWatch*\.
 
 **To create a billing alarm using the CloudWatch console**
 
@@ -52,7 +52,7 @@ In this procedure, you create an alarm that sends an email message when your est
 
 1. Choose **Select metric**\. In the **All metrics** tab, choose **Billing**, **Total Estimated Charge**\.
 
-   If you don't see **Billing** or the **Total Estimated Charge** metric, you may need to enable billing alerts\. For more information, see [Enabling Billing Alerts](#turning_on_billing_metrics)\.
+   If you don't see **Billing** or the **Total Estimated Charge** metric, you may need to enable billing alerts\. For more information, see [Enabling billing alerts](#turning_on_billing_metrics)\.
 
 1. Select the check box next to **EstimatedCharges**, and choose **Select metric**\.
 
@@ -76,7 +76,7 @@ The preview graph displays your current charges for the month\.
 
 1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
 
-## Deleting a Billing Alarm<a name="deleting_billing_alarm"></a>
+## Deleting a billing alarm<a name="deleting_billing_alarm"></a>
 
 You can delete your billing alarm when you no longer need it\.
 

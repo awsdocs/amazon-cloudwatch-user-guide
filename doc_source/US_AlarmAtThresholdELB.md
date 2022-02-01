@@ -1,12 +1,12 @@
-# Creating a Load Balancer Latency Alarm That Sends Email<a name="US_AlarmAtThresholdELB"></a>
+# Creating a load balancer latency alarm that sends email<a name="US_AlarmAtThresholdELB"></a>
 
 You can set up an Amazon SNS notification and configure an alarm that monitors latency exceeding 100 ms for your Classic Load Balancer\.
 
-## Setting Up a Latency Alarm Using the AWS Management Console<a name="load-balancer-alarm-console"></a>
+## Setting up a latency alarm using the AWS Management Console<a name="load-balancer-alarm-console"></a>
 
 Use these steps to use the AWS Management Console to create a load balancer latency alarm\.
 
-**To create a load balancer latency alarm that sends email**
+**To create a load balancer latency alarm**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
@@ -36,13 +36,13 @@ Use these steps to use the AWS Management Console to create a load balancer late
 
 1. Choose **Create Alarm**\.
 
-## Setting Up a Latency Alarm Using the AWS CLI<a name="load-balancer-alarm-cli"></a>
+## Setting up a latency alarm using the AWS CLI<a name="load-balancer-alarm-cli"></a>
 
 Use these steps to use the AWS CLI to create a load balancer latency alarm\.
 
-**To create a load balancer latency alarm that sends email**
+**To create a load balancer latency alarm**
 
-1. Set up an SNS topic\. For more information, see [Setting Up Amazon SNS Notifications](US_SetupSNS.md)\.
+1. Set up an SNS topic\. For more information, see [Setting up Amazon SNS notifications](US_SetupSNS.md)\.
 
 1. Create the alarm using the [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command as follows:
 

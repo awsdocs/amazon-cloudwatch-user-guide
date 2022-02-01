@@ -1,4 +1,4 @@
-# Using the PutLogEvents API to Send Manually\-Created Embedded Metric Format Logs<a name="CloudWatch_Embedded_Metric_Format_Generation_PutLogEvents"></a>
+# Using the PutLogEvents API to send manually\-created embedded metric format logs<a name="CloudWatch_Embedded_Metric_Format_Generation_PutLogEvents"></a>
 
 You can send embedded metric format logs to CloudWatch Logs using the CloudWatch Logs PutLogEvents API\. When calling PutLogEvents, you need to include the following HTTP header to instruct CloudWatch Logs that the metrics should be extracted\.
 
@@ -23,7 +23,7 @@ import java.util.Collections;
 public class EmbeddedMetricsExample {
         public static void main(String[] args) {
 
-                final String usage = "To run this example, supply a region id (eg. us-east-1), log group, and stream name as command line arguments"
+                final String usage = "To run this example, supply a Region code (eg. us-east-1), log group, and stream name as command line arguments"
                                 + "Ex: PutLogEvents <region-id> <log-group-name> <stream-name>";
 
                 if (args.length != 3) {

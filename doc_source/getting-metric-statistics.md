@@ -1,9 +1,10 @@
-# Getting Statistics for a Metric<a name="getting-metric-statistics"></a>
+# Getting statistics for a metric<a name="getting-metric-statistics"></a>
 
 The following examples show you how to get statistics for the CloudWatch metrics for your resources, such as your EC2 instances\.
 
 **Topics**
-+ [Getting Statistics for a Specific Resource](US_SingleMetricPerInstance.md)
-+ [Aggregating Statistics Across Resources](GetSingleMetricAllDimensions.md)
-+ [Aggregating Statistics by Auto Scaling Group](GetMetricAutoScalingGroup.md)
-+ [Aggregating Statistics by Amazon Machine Image \(AMI\)](US_SingleMetricPerAMI.md)
++ [CloudWatch statistics definitions](Statistics-definitions.md)
++ [Getting statistics for a specific resource](US_SingleMetricPerInstance.md)
++ [Aggregating statistics across resources](GetSingleMetricAllDimensions.md)
++ [Aggregating statistics by Auto Scaling group](GetMetricAutoScalingGroup.md)
++ [Aggregating statistics by Amazon Machine Image \(AMI\)](US_SingleMetricPerAMI.md)

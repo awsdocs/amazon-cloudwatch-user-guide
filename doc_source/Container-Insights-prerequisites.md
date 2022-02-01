@@ -1,6 +1,6 @@
-# Verify Prerequisites<a name="Container-Insights-prerequisites"></a>
+# Verify prerequisites<a name="Container-Insights-prerequisites"></a>
 
-Before you install Container Insights on Amazon EKS or Kubernetes, verify the following:
+Before you install Container Insights on Amazon EKS or Kubernetes, verify the following\. These prerequisites apply whether you are using the CloudWatch agent or AWS Distro for OpenTelemetry to set up Container Insights on Amazon EKS clusters\.
 + You have a functional Amazon EKS or Kubernetes cluster with nodes attached in one of the Regions that supports the Container Insights for Amazon EKS and Kubernetes\. For the list of supported Regions, see [Using Container Insights](ContainerInsights.md)\.
 + You have `kubectl` installed and running\. For more information, see [Installing `kubectl`](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) in the *Amazon EKS User Guide*\.
 + If you're using Kubernetes running on AWS instead of using Amazon EKS, the following prerequisites are also necessary:

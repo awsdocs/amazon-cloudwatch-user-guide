@@ -1,17 +1,17 @@
-# Common Scenarios with the CloudWatch Agent<a name="CloudWatch-Agent-common-scenarios"></a>
+# Common scenarios with the CloudWatch agent<a name="CloudWatch-Agent-common-scenarios"></a>
 
 The following sections outline how to complete some common configuration and customization tasks when using the CloudWatch agent\. 
 
 **Topics**
-+ [Running the CloudWatch Agent as a Different User](#CloudWatch-Agent-run-as-user)
-+ [Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-adding-custom-dimensions)
-+ [Multiple CloudWatch Agent Configuration Files](#CloudWatch-Agent-multiple-config-files)
-+ [Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent](#CloudWatch-Agent-aggregating-metrics)
-+ [Collecting High\-Resolution Metrics With the CloudWatch agent](#CloudWatch-Agent-collect-high-resolution-metrics)
-+ [Sending Metrics and Logs to a Different Account](#CloudWatch-Agent-send-to-different-AWS-account)
-+ [Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent](#CloudWatch-Agent-logs-timestamp-differences)
++ [Running the CloudWatch agent as a different user](#CloudWatch-Agent-run-as-user)
++ [Adding custom dimensions to metrics collected by the CloudWatch agent](#CloudWatch-Agent-adding-custom-dimensions)
++ [Multiple CloudWatch agent configuration files](#CloudWatch-Agent-multiple-config-files)
++ [Aggregating or rolling up metrics collected by the CloudWatch agent](#CloudWatch-Agent-aggregating-metrics)
++ [Collecting high\-resolution metrics with the CloudWatch agent](#CloudWatch-Agent-collect-high-resolution-metrics)
++ [Sending metrics and logs to a different account](#CloudWatch-Agent-send-to-different-AWS-account)
++ [Timestamp differences between the unified CloudWatch agent and the earlier CloudWatch Logs agent](#CloudWatch-Agent-logs-timestamp-differences)
 
-## Running the CloudWatch Agent as a Different User<a name="CloudWatch-Agent-run-as-user"></a>
+## Running the CloudWatch agent as a different user<a name="CloudWatch-Agent-run-as-user"></a>
 
 On Linux servers, the CloudWatch runs as the root user by default\. To have the agent run as a different user, use the `run_as_user` parameter in the `agent` section in the CloudWatch agent configuration file\. This option is available only on Linux servers\.
 
@@ -19,14 +19,14 @@ If you're already running the agent with the root user and want to change to usi
 
 **To run the CloudWatch agent as a different user on an EC2 instance running Linux**
 
-1. Download and install a new CloudWatch agent package\. For more information, see [Download the CloudWatch Agent Package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+1. Download and install a new CloudWatch agent package\. For more information, see [Download the CloudWatch agent package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
 
 1. Create a new Linux user or use the default user named `cwagent` that the RPM or DEB file created\.
 
 1. Provide credentials for this user in one of these ways:
-   + If the file `.aws/credentials` exists in the home directory of the root user, you must create a credentials file for the user you are going to use to run the CloudWatch agent\. This credentials file will be `/home/username/.aws/credentials`\. Then set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the Common Configuration for Proxy or Region Information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
+   + If the file `.aws/credentials` exists in the home directory of the root user, you must create a credentials file for the user you are going to use to run the CloudWatch agent\. This credentials file will be `/home/username/.aws/credentials`\. Then set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the common configuration for proxy or Region information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
    + If the file `.aws/credentials` does not exist in the home directory of the root user, you can do one of the following:
-     + Create a credentials file for the user you are going to use to run the CloudWatch agent\. This credentials file will be `/home/username/.aws/credentials`\. Then set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the Common Configuration for Proxy or Region Information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
+     + Create a credentials file for the user you are going to use to run the CloudWatch agent\. This credentials file will be `/home/username/.aws/credentials`\. Then set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the common configuration for proxy or Region information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
      + Instead of creating a credentials file, attach an IAM role to the instance\. The agent uses this role as the credential provider\.
 
 1. In the CloudWatch agent configuration file, add the following line in the `agent` section:
@@ -35,7 +35,7 @@ If you're already running the agent with the root user and want to change to usi
    "run_as_user": "username"
    ```
 
-   Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
+   Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)
 
 1. Give the user necessary permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
 
@@ -47,13 +47,13 @@ If you're already running the agent with the root user and want to change to usi
 
 **To run the CloudWatch agent as a different user on an on\-premises server running Linux**
 
-1. Download and install a new CloudWatch agent package\. For more information, see [Download the CloudWatch Agent Package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
+1. Download and install a new CloudWatch agent package\. For more information, see [Download the CloudWatch agent package](download-cloudwatch-agent-commandline.md#download-CloudWatch-Agent-on-EC2-Instance-commandline-first)\.
 
 1. Create a new Linux user or use the default user named `cwagent` that the RPM or DEB file created\.
 
 1. Store the credentials of this user to a path that the user can access, such as `/home/username/.aws/credentials`\.
 
-1. Set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the Common Configuration for Proxy or Region Information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
+1. Set the value of the `shared_credential_file` parameter in `common-config.toml` to the pathname of the credential file\. For more information, see [\(Optional\) Modify the common configuration for proxy or Region information](install-CloudWatch-Agent-commandline-fleet.md#CloudWatch-Agent-profile-instance-first)\.
 
 1. In the CloudWatch agent configuration file, add the following line in the `agent` section:
 
@@ -61,7 +61,7 @@ If you're already running the agent with the root user and want to change to usi
    "run_as_user": "username"
    ```
 
-   Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)
+   Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)
 
 1. Give the user necessary permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
 
@@ -71,7 +71,7 @@ If you're already running the agent with the root user and want to change to usi
    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:configuration-file-path
    ```
 
-## Adding Custom Dimensions to Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-adding-custom-dimensions"></a>
+## Adding custom dimensions to metrics collected by the CloudWatch agent<a name="CloudWatch-Agent-adding-custom-dimensions"></a>
 
 To add custom dimensions such as tags to metrics collected by the agent, add the `append_dimensions` field to the section of the agent configuration file that lists those metrics\.
 
@@ -109,7 +109,7 @@ For example, the following example section of the configuration file adds a cust
 
 Remember that any time you change the agent configuration file, you must restart the agent to have the changes take effect\.
 
-## Multiple CloudWatch Agent Configuration Files<a name="CloudWatch-Agent-multiple-config-files"></a>
+## Multiple CloudWatch agent configuration files<a name="CloudWatch-Agent-multiple-config-files"></a>
 
 You can set up the CloudWatch agent to use multiple configuration files\. For example, you can use a common configuration file that collects a set of metrics and logs that you always want to collect from all servers in your infrastructure\. You can then use additional configuration files that collect metrics from certain applications or in certain situations\.
 
@@ -172,25 +172,26 @@ The following example configuration files illustrate a use for this feature\. Th
 
 ```
 {
-  "logs": {
-    "logs_collected": {
-      "files": {
-        "collect_list": [
-          {
-            "file_path": "/app/app.log*",
-            "log_group_name": "/app/app.log"
-          }
-        ]
-      }
+    "logs": {
+        "logs_collected": {
+            "files": {
+                "collect_list": [
+                    {
+                        "file_path": "/app/app.log*",
+                        "log_group_name": "/app/app.log"
+                    }
+                ]
+            }
+        }
     }
-  }
+}
 ```
 
 Any configuration files appended to the configuration must have different file names from each other and from the initial configuration file\. If you use `append-config` with a configuration file with the same file name as a configuration file that the agent is already using, the append command overwrites the information from the first configuration file instead of appending to it\. This is true even if the two configuration files with the same file name are on different file paths\.
 
 The preceding example shows the use of two configuration files, but there is no limit to the number of configuration files that you can append to the agent configuration\. You can also mix the use of configuration files located on servers and configurations located in Parameter Store\.
 
-## Aggregating or Rolling Up Metrics Collected by the CloudWatch Agent<a name="CloudWatch-Agent-aggregating-metrics"></a>
+## Aggregating or rolling up metrics collected by the CloudWatch agent<a name="CloudWatch-Agent-aggregating-metrics"></a>
 
 To aggregate or roll up metrics collected by the agent, add an `aggregation_dimensions` field to the section for that metric in the agent configuration file\.
 
@@ -226,7 +227,7 @@ To roll up metrics into one collection instead, use `[]`\.
 
 Remember that any time you change the agent configuration file, you must restart the agent to have the changes take effect\.
 
-## Collecting High\-Resolution Metrics With the CloudWatch agent<a name="CloudWatch-Agent-collect-high-resolution-metrics"></a>
+## Collecting high\-resolution metrics with the CloudWatch agent<a name="CloudWatch-Agent-collect-high-resolution-metrics"></a>
 
 The `metrics_collection_interval` field specifies the time interval for the metrics collected, in seconds\. By specifying a value of less than 60 for this field, the metrics are collected as high\-resolution metrics\.
 
@@ -272,7 +273,7 @@ Alternatively, the following example sets the `cpu` metrics to be collected ever
 
 Remember that any time you change the agent configuration file, you must restart the agent to have the changes take effect\.
 
-## Sending Metrics and Logs to a Different Account<a name="CloudWatch-Agent-send-to-different-AWS-account"></a>
+## Sending metrics and logs to a different account<a name="CloudWatch-Agent-send-to-different-AWS-account"></a>
 
 To have the CloudWatch agent send the metrics, logs, or both to a different account, specify a `role_arn` parameter in the agent configuration file on the sending server\. The `role_arn` value specifies an IAM role in the target account that the agent uses when sending data to the target account\. This role enables the sending account to assume a corresponding role in the target account when delivering the metrics or logs to the target account\.
 
@@ -309,9 +310,9 @@ Alternatively, the following example sets different roles for the sending accoun
     ....
 ```
 
-**Policies Needed**
+**Policies needed**
 
-When you specify a `role_arn` in the agent configuration file, you must also make sure the IAM roles of the sending and target accounts have certain policies\. The roles in both the sending and target accounts should have `CloudWatchAgentServerPolicy`\. For more information about assigning this policy to a role, see [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
+When you specify a `role_arn` in the agent configuration file, you must also make sure the IAM roles of the sending and target accounts have certain policies\. The roles in both the sending and target accounts should have `CloudWatchAgentServerPolicy`\. For more information about assigning this policy to a role, see [Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
 
 The role in the sending account also must include the following policy\. You add this policy on the **Permissions** tab in the IAM console when you edit the role\.
 
@@ -332,7 +333,7 @@ The role in the sending account also must include the following policy\. You add
 }
 ```
 
-The role in the target account must include the following policy so that it recognizes the IAM role used by the sending account\. You add this policy on the **Trust relationships** tab in the IAM console when you edit the role\. The role in the target account where you add this policy is the role you created in [Create IAM Roles and Users for Use With CloudWatch Agent](create-iam-roles-for-cloudwatch-agent-commandline.md)\. This role is the role specified in `agent-role-in-target-account` in the policy used by the sending account\.
+The role in the target account must include the following policy so that it recognizes the IAM role used by the sending account\. You add this policy on the **Trust relationships** tab in the IAM console when you edit the role\. The role in the target account where you add this policy is the role you created in [Create IAM roles and users for use with CloudWatch agent](create-iam-roles-for-cloudwatch-agent-commandline.md)\. This role is the role specified in `agent-role-in-target-account` in the policy used by the sending account\.
 
 ```
 {
@@ -351,12 +352,12 @@ The role in the target account must include the following policy so that it reco
 }
 ```
 
-## Timestamp Differences Between the Unified CloudWatch Agent and the Older CloudWatch Logs Agent<a name="CloudWatch-Agent-logs-timestamp-differences"></a>
+## Timestamp differences between the unified CloudWatch agent and the earlier CloudWatch Logs agent<a name="CloudWatch-Agent-logs-timestamp-differences"></a>
 
-The CloudWatch agent supports a different set of symbols for timestamp formats, compared to the older CloudWatch Logs agent\. These differences are shown in the following table\.
+The CloudWatch agent supports a different set of symbols for timestamp formats, compared to the earlier CloudWatch Logs agent\. These differences are shown in the following table\.
 
 
-| Symbols Supported by Both Agents | Symbols Supported Only by Unified CloudWatch Agent | Symbols Supported Only by Older CloudWatch Logs Agent | 
+| Symbols supported by both agents | Symbols supported only by unified CloudWatch agent | Symbols supported only by earlier CloudWatch Logs agent | 
 | --- | --- | --- | 
 |  %A, %a, %b, %B, %d, %f, %H, %l, %m, %M, %p, %S, %y, %Y, %Z, %z  |  %\-d, %\-l, %\-m, %\-M, %\-S  |  %c,%j, %U, %W, %w  | 
 

@@ -1,4 +1,4 @@
-# Tutorial for Scraping Redis Prometheus metrics on Amazon ECS Fargate<a name="ContainerInsights-Prometheus-Setup-redis-ecs"></a>
+# Tutorial for scraping Redis Prometheus metrics on Amazon ECS Fargate<a name="ContainerInsights-Prometheus-Setup-redis-ecs"></a>
 
 This tutorial provides a hands\-on introduction to scrape the Prometheus metrics of a sample Redis application in an Amazon ECS Fargate cluster\. The Redis Prometheus exporter target will be auto\-discovered by the CloudWatch agent with Prometheus metric support based on the container’s docker labels\.
 
@@ -6,13 +6,13 @@ Redis \(https://redis\.io/\) is an open source \(BSD licensed\), in\-memory data
 
 redis\_exporter \(MIT License licensed\) is used to expose the Redis prometheus metrics on the specified port \(default: 0\.0\.0\.0:9121\)\. For more information, see [ redis\_exporter](https://github.com/oliver006/redis_exporter)\.
 
-The docker images in the following two docker hub repositories are used in this tutorial: 
+The Docker images in the following two Docker Hub repositories are used in this tutorial: 
 + [ redis](https://hub.docker.com/_/redis?tab=description)
 + [ redis\_exporter](https://hub.docker.com/r/oliver006/redis_exporter)
 
 **Prerequisite**
 
-To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting Up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
+To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
 
 **Topics**
 + [Set the Amazon ECS Fargate cluster environment variable](#ContainerInsights-Prometheus-Setup-redis-ecs-variable)
@@ -23,7 +23,7 @@ To collect metrics from a sample Prometheus workload for Amazon ECS, you must be
 
 ## Set the Amazon ECS Fargate cluster environment variable<a name="ContainerInsights-Prometheus-Setup-redis-ecs-variable"></a>
 
-**To Set the Amazon ECS Fargate cluster environment variable**
+**To set the Amazon ECS Fargate cluster environment variable**
 
 1. Install the Amazon ECS CLI if you haven't already done so\. For more information, see [ Installing the Amazon ECS CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html)\.
 

@@ -1,4 +1,4 @@
-# Using the Client Libraries to Generate Embedded Metric Format Logs<a name="CloudWatch_Embedded_Metric_Format_Libraries"></a>
+# Using the client libraries to generate embedded metric format logs<a name="CloudWatch_Embedded_Metric_Format_Libraries"></a>
 
 Amazon provides open\-sourced client libraries, which you can use to create embedded metric format logs\. Currently those libraries are available in Node\.js, Python, and Java\. Support for other languages is planned\.
 

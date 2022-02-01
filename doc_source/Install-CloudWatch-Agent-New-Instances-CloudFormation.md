@@ -7,7 +7,7 @@ The template location is [ Deploy the Amazon CloudWatch agent to EC2 instances u
 
 + The templates in the `inline` directory have the CloudWatch agent configuration embedded into the AWS CloudFormation template\. By default, the Linux templates collect the metrics `mem_used_percent` and `swap_used_percent`, and the Windows templates collect `Memory % Committed Bytes In Use` and `Paging File % Usage`\.
 
-  To modify these templates to collect different metrics, modify the following section of the template\. The following example is from the template for Linux servers\. Follow the format and syntax of the agent configuration file to make these changes\. For more information, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\.
+  To modify these templates to collect different metrics, modify the following section of the template\. The following example is from the template for Linux servers\. Follow the format and syntax of the agent configuration file to make these changes\. For more information, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
 
   ```
   {
@@ -35,11 +35,11 @@ The template location is [ Deploy the Amazon CloudWatch agent to EC2 instances u
   ```
 **Note**  
 In the inline templates, all placeholder variables must have an exclamation mark \(\!\) before them as an escape character\. You can see this in the example template\. If you add other placeholder variables, be sure to add an exclamation mark before the name\.
-+ The templates in the `ssm` directory load an agent configuration file from Parameter Store\. To use these templates, you must first create a configuration file and upload it to Parameter Store\. You then provide the Parameter Store name of the file in the template\. You can create the configuration file manually or by using the wizard\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
++ The templates in the `ssm` directory load an agent configuration file from Parameter Store\. To use these templates, you must first create a configuration file and upload it to Parameter Store\. You then provide the Parameter Store name of the file in the template\. You can create the configuration file manually or by using the wizard\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.
 
 You can use both types of templates for installing the CloudWatch agent and for updating the agent configuration\.
 
-## Tutorial: Install and Configure the CloudWatch Agent Using an AWS CloudFormation Inline Template<a name="installing-CloudWatch-Agent-using-CloudFormation-Templates-inline"></a>
+## Tutorial: Install and configure the CloudWatch agent using an AWS CloudFormation inline template<a name="installing-CloudWatch-Agent-using-CloudFormation-Templates-inline"></a>
 
 This tutorial walks you through using AWS CloudFormation to install the CloudWatch agent on a new Amazon EC2 instance\. This tutorial installs on a new instance running Amazon Linux 2 using the inline templates, which don't require the use of the JSON configuration file or Parameter Store\. The inline template includes the agent configuration in the template\. In this tutorial, you use the default agent configuration contained in the template\.
 
@@ -61,7 +61,7 @@ After the procedure for installing the agent, the tutorial continues with how to
 
 1. On the **Specify Details** page, fill out the following parameters and choose **Next**:
    + **Stack name**: Choose a stack name for your AWS CloudFormation stack\. 
-   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent-commandline.md)\.
+   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances](create-iam-roles-for-cloudwatch-agent-commandline.md)\.
    + **InstanceAMI**: Choose an AMI that is valid in the Region where you're going to launch your stack\.
    + **InstanceType**: Choose a valid instance type\.
    + **KeyName**: To enable SSH access to the new instance, choose an existing Amazon EC2 key pair\. If you don't already have an Amazon EC2 key pair, you can create one in the AWS Management Console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
@@ -114,7 +114,7 @@ The next procedure demonstrates using AWS CloudFormation to update the CloudWatc
 
    After some time, you see `UPDATE_COMPLETE`\.
 
-## Tutorial: Install the CloudWatch Agent Using AWS CloudFormation and Parameter Store<a name="installing-CloudWatch-Agent-using-CloudFormation-Templates"></a>
+## Tutorial: Install the CloudWatch agent using AWS CloudFormation and Parameter Store<a name="installing-CloudWatch-Agent-using-CloudFormation-Templates"></a>
 
 This tutorial walks you through using AWS CloudFormation to install the CloudWatch agent on a new Amazon EC2 instance\. This tutorial installs on a new instance running Amazon Linux 2 using an agent configuration file that you create and save in Parameter Store\.
 
@@ -122,9 +122,9 @@ After the procedure for installing the agent, the tutorial continues with how to
 
 **To use AWS CloudFormation to install the CloudWatch agent on a new instance using a configuration from Parameter Store**
 
-1. If you haven't done so already, download the CloudWatch agent package to one of your computers so that you can create the agent configuration file\. For more information and downloading the agent using Parameter Store, see [Download and Configure the CloudWatch Agent](download-CloudWatch-Agent-on-EC2-Instance-SSM-first.md)\. For more information on downloading the package using the command line, see [Download and Configure the CloudWatch Agent Using the Command Line](download-cloudwatch-agent-commandline.md)\.
+1. If you haven't done so already, download the CloudWatch agent package to one of your computers so that you can create the agent configuration file\. For more information and downloading the agent using Parameter Store, see [Download and configure the CloudWatch agent](download-CloudWatch-Agent-on-EC2-Instance-SSM-first.md)\. For more information on downloading the package using the command line, see [Download and configure the CloudWatch agent using the command line](download-cloudwatch-agent-commandline.md)\.
 
-1. Create the agent configuration file and save it in Parameter Store\. For more information, see [Create the CloudWatch Agent Configuration File](create-cloudwatch-agent-configuration-file.md)\.
+1. Create the agent configuration file and save it in Parameter Store\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.
 
 1. Download the template from GitHub as follows:
 
@@ -140,7 +140,7 @@ After the procedure for installing the agent, the tutorial continues with how to
 
 1. On the **Specify Details** page, fill out the following parameters accordingly and choose **Next**:
    + **Stack name**: Choose a stack name for your AWS CloudFormation stack\. 
-   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
+   + **IAMRole**: Choose an IAM role that has permissions to write CloudWatch metrics and logs\. For more information, see [Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)\.
    + **InstanceAMI**: Choose an AMI that is valid in the Region where you're going to launch your stack\.
    + **InstanceType**: Choose a valid instance type\.
    + **KeyName**: To enable SSH access to the new instance, choose an existing Amazon EC2 key pair\. If you don't already have an Amazon EC2 key pair, you can create one in the AWS Management Console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
@@ -173,7 +173,7 @@ The next procedure demonstrates using AWS CloudFormation to update the CloudWatc
 
 1. Change the agent configuration file stored in Parameter Store to the new configuration that you want\.
 
-1. In the AWS CloudFormation template that you downloaded in the [Tutorial: Install the CloudWatch Agent Using AWS CloudFormation and Parameter Store](#installing-CloudWatch-Agent-using-CloudFormation-Templates) topic, change the version number\. For example, you might change `VERSION=1.0` to `VERSION=2.0`\.
+1. In the AWS CloudFormation template that you downloaded in the [Tutorial: Install the CloudWatch agent using AWS CloudFormation and Parameter Store](#installing-CloudWatch-Agent-using-CloudFormation-Templates) topic, change the version number\. For example, you might change `VERSION=1.0` to `VERSION=2.0`\.
 
 1. Open the AWS CloudFormation console at [https://console\.aws\.amazon\.com/cloudformation](https://console.aws.amazon.com/cloudformation/)\.
 
@@ -187,14 +187,14 @@ The next procedure demonstrates using AWS CloudFormation to update the CloudWatc
 
    After some time, you see `UPDATE_COMPLETE`\.
 
-## Troubleshooting Installation of the CloudWatch Agent with AWS CloudFormation<a name="CloudWatch-Agent-CloudFormation-troubleshooting"></a>
+## Troubleshooting installation of the CloudWatch agent with AWS CloudFormation<a name="CloudWatch-Agent-CloudFormation-troubleshooting"></a>
 
 This section helps you troubleshoot issues with installing and updating the CloudWatch agent using AWS CloudFormation\.
 
-### Detecting When an Update Fails<a name="CloudWatch-Agent-troubleshooting-Detecting-CloudFormation-update-issues"></a>
+### Detecting when an update fails<a name="CloudWatch-Agent-troubleshooting-Detecting-CloudFormation-update-issues"></a>
 
 If you use AWS CloudFormation to update your CloudWatch agent configuration, and use an invalid configuration, the agent stops sending any metrics to CloudWatch\. A quick way to check whether an agent configuration update succeeded is to look at the `cfn-init-cmd.log` file\. On a Linux server, the file is located at `/var/log/cfn-init-cmd.log`\. On a Windows instance, the file is located at `C:\cfn\log\cfn-init-cmd.log`\.
 
-### Metrics Are Missing<a name="CloudWatch-Agent-troubleshooting-Cloudformation-missing-metrics"></a>
+### Metrics are missing<a name="CloudWatch-Agent-troubleshooting-Cloudformation-missing-metrics"></a>
 
-If you don't see metrics that you expect to see after installing or updating the agent, confirm that the agent is configured to collect that metric\. To do this, check the `amazon-cloudwatch-agent.json` file to make sure that the metric is listed, and check that you are looking in the correct metric namespace\. For more information, see [CloudWatch Agent Files and Locations](troubleshooting-CloudWatch-Agent.md#CloudWatch-Agent-files-and-locations)\.
+If you don't see metrics that you expect to see after installing or updating the agent, confirm that the agent is configured to collect that metric\. To do this, check the `amazon-cloudwatch-agent.json` file to make sure that the metric is listed, and check that you are looking in the correct metric namespace\. For more information, see [CloudWatch agent files and locations](troubleshooting-CloudWatch-Agent.md#CloudWatch-Agent-files-and-locations)\.

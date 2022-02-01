@@ -1,17 +1,17 @@
-# Publishing Custom Metrics<a name="publishingMetrics"></a>
+# Publishing custom metrics<a name="publishingMetrics"></a>
 
 You can publish your own metrics to CloudWatch using the AWS CLI or an API\. You can view statistical graphs of your published metrics with the AWS Management Console\.
 
  CloudWatch stores data about a metric as a series of data points\. Each data point has an associated time stamp\. You can even publish an aggregated set of data points called a *statistic set*\.
 
 **Topics**
-+ [High\-Resolution Metrics](#high-resolution-metrics)
-+ [Using Dimensions](#usingDimensions)
-+ [Publishing Single Data Points](#publishingDataPoints)
-+ [Publishing Statistic Sets](#publishingDataPoints1)
-+ [Publishing the Value Zero](#publishingZero)
++ [High\-resolution metrics](#high-resolution-metrics)
++ [Using dimensions](#usingDimensions)
++ [Publishing single data points](#publishingDataPoints)
++ [Publishing statistic sets](#publishingDataPoints1)
++ [Publishing the value zero](#publishingZero)
 
-## High\-Resolution Metrics<a name="high-resolution-metrics"></a>
+## High\-resolution metrics<a name="high-resolution-metrics"></a>
 
 Each metric is one of the following:
 + Standard resolution, with data having a one\-minute granularity
@@ -23,7 +23,7 @@ High\-resolution metrics can give you more immediate insight into your applicati
 
 If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms with a period of 10 or 30 seconds\.
 
-## Using Dimensions<a name="usingDimensions"></a>
+## Using dimensions<a name="usingDimensions"></a>
 
 In custom metrics, the `--dimensions` parameter is common\. A dimension further clarifies what the metric is and what data it stores\. You can have up to 10 dimensions in one metric, and each dimension is defined by a name and value pair\.
 
@@ -47,7 +47,7 @@ aws cloudwatch get-metric-statistics --metric-name BucketSizeBytes --start-time 
 
 To see what dimensions are defined for a metric, use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
 
-## Publishing Single Data Points<a name="publishingDataPoints"></a>
+## Publishing single data points<a name="publishingDataPoints"></a>
 
 To publish a single data point for a new or existing metric, use the [put\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html) command with one value and time stamp\. For example, the following actions each publish one data point\.
 
@@ -91,7 +91,7 @@ The following is example output\.
 }
 ```
 
-## Publishing Statistic Sets<a name="publishingDataPoints1"></a>
+## Publishing statistic sets<a name="publishingDataPoints1"></a>
 
 You can aggregate your data before you publish to CloudWatch\. When you have multiple data points per minute, aggregating data minimizes the number of calls to put\-metric\-data\. For example, instead of calling put\-metric\-data multiple times for three data points that are within 3 seconds of each other, you can aggregate the data into a statistic set that you publish with one call, using the `--statistic-values` parameter\.
 
@@ -103,7 +103,7 @@ CloudWatch needs raw data points to calculate percentiles\. If you publish data 
 + The `SampleCount` of the statistic set is 1
 + The `Minimum` and the `Maximum` of the statistic set are equal
 
-## Publishing the Value Zero<a name="publishingZero"></a>
+## Publishing the value zero<a name="publishingZero"></a>
 
  When your data is more sporadic and you have periods that have no associated data, you can choose to publish the value zero \(`0`\) for that period or no value at all\. If you use periodic calls to `PutMetricData` to monitor the health of your application, you might want to publish zero instead of no value\. For example, you can set a CloudWatch alarm to notify you if your application fails to publish metrics every five minutes\. You want such an application to publish zeros for periods with no associated data\. 
 

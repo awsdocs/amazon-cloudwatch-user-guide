@@ -1,8 +1,8 @@
-# See Key Metrics From All AWS Services<a name="CloudWatch_Automatic_Dashboards_Cross_Service"></a>
+# See key metrics from all AWS services<a name="CloudWatch_Automatic_Dashboards_Cross_Service"></a>
 
 If you use six or more AWS services, the cross\-service dashboard is not displayed on the overview page\. You can switch to this dashboard to see key metrics from all the AWS services that you are using\.
 
-**To open the cross service dashboard**
+**To open the cross\-service dashboard**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
@@ -28,19 +28,19 @@ If you use six or more AWS services, the cross\-service dashboard is not display
 
 1. You can focus on resources in a particular resource group\. To do so, choose the resource group from the list at the top of the page where **All resources** is displayed\.
 
-   For more information, see [Focus on Metrics and Alarms in a Resource Group](CloudWatch_Automatic_Dashboards_Resource_Group.md)\.
+   For more information, see [Focus on metrics and alarms in a resource group](CloudWatch_Automatic_Dashboards_Resource_Group.md)\.
 
 1. To change the time range shown in all graphs and alarms currently displayed, select the range you want next to **Time range** at the top of the screen\. Choose **custom** to select from more time range options than those displayed by default\.
 
 1. Alarms are always refreshed once a minute\. To refresh the view, choose the refresh icon \(two curved arrows\) at the top right of the screen\. To change the automatic refresh rate for items on the screen other than alarms, choose the down arrow next to the refresh icon and choose the refresh rate you want\. You can also choose to turn off automatic refresh\.
 
-## Remove a Service from Appearing in the Cross Service Dashboard<a name="Remove_service_from_Cross_Service_Dashboard"></a>
+## Remove a service from appearing in the cross\-service dashboard<a name="Remove_service_from_Cross_Service_Dashboard"></a>
 
-You can prevent a service's metrics from appearing in the cross service dashboard\. This helps you focus your cross service dashboard on the services you most want to monitor\.
+You can prevent a service's metrics from appearing in the cross\-service dashboard\. This helps you focus your cross\-service dashboard on the services you most want to monitor\.
 
-If you remove a service from the cross service dashboard, the alarms for that service still appear in the views of your alarms\.
+If you remove a service from the cross\-service dashboard, the alarms for that service still appear in the views of your alarms\.
 
-**To remove a service's metrics from the cross service dashboard**
+**To remove a service's metrics from the cross\-service dashboard**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

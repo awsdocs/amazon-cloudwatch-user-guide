@@ -28,7 +28,7 @@ Resources:
         - 'arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy'
 ```
 
-**Step 3: \(Optional\) Add VPC Endpoint**
+**Step 3: \(Optional\) Add VPC endpoint**
 
 This step is necessary only for functions running in a private subnet with no internet access, and if you have not already configured a CloudWatch Logs virtual private cloud \(VPC\) endpoint\. For more information, see [ Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html)\.
 

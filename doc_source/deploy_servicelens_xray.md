@@ -13,5 +13,5 @@ To deploy X\-Ray, follow the standard X\-Ray setup\. For more information, see t
 After completing the X\-Ray setup, follow the steps in the following sections to integrate X\-Ray with CloudWatch Logs and enable segment metrics\.
 
 **Topics**
-+ [Integrating With CloudWatch Logs](deploy_servicelens_CloudWatch_agent_logintegration.md)
-+ [Enabling Segment Metrics From X\-Ray](deploy_servicelens_CloudWatch_agent_segments.md)
++ [Integrating with CloudWatch Logs](deploy_servicelens_CloudWatch_agent_logintegration.md)
++ [Enabling segment metrics from X\-Ray](deploy_servicelens_CloudWatch_agent_segments.md)

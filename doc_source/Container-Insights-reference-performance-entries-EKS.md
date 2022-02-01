@@ -1,11 +1,11 @@
-# Relevant Fields in Performance Log Events for Amazon EKS and Kubernetes<a name="Container-Insights-reference-performance-entries-EKS"></a>
+# Relevant fields in performance log events for Amazon EKS and Kubernetes<a name="Container-Insights-reference-performance-entries-EKS"></a>
 
 For Amazon EKS and Kubernetes, the containerized CloudWatch agent emits data as performance log events\. This enables CloudWatch to ingest and store high\-cardinality data\. CloudWatch uses the data in the performance log events to create aggregated CloudWatch metrics at the cluster, node, and pod levels without the need to lose granular details\.
 
 The following table lists the fields in these performance log events that are relevant to the collection of Container Insights metric data\. You can use CloudWatch Logs Insights to query for any of these fields to collect data or investigate issues\. For more information, see [Analyze Log Data With CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\.
 
 
-| Type | Log field | Source | Formula or Notes | 
+| Type | Log field | Source | Formula or notes | 
 | --- | --- | --- | --- | 
 |  Pod |  `pod_cpu_utilization`  |  Calculated  |  Formula: `pod_cpu_usage_total / node_cpu_limit`  | 
 |  Pod |  `pod_cpu_usage_total` `pod_cpu_usage_total` is reported in millicores\.  |  cadvisor  |   | 
@@ -58,7 +58,7 @@ The following table lists the fields in these performance log events that are re
 |  Service |  `service_number_of_running_pods`  |  API Server  |   | 
 |  Namespace |  `namespace_number_of_running_pods`  |  API Server  |   | 
 
-## Metrics Calculation Examples<a name="Container-Insights-calculation-examples"></a>
+## Metrics calculation examples<a name="Container-Insights-calculation-examples"></a>
 
 This section includes examples that show how some of the values in the preceding table are calculated\.
 

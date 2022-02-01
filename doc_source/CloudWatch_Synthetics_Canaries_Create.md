@@ -38,13 +38,19 @@ If you are writing your own script, you can use several functions that CloudWatc
 
 1. If you are using environment variables in your script, choose **Environment variables** and then specify a value for each environment variable defined in your script\. For more information, see [Environment variables](CloudWatch_Synthetics_Canaries_WritingCanary_Nodejs.md#CloudWatch_Synthetics_Environment_Variables)\.
 
-1. Under **Schedule**, choose whether to run this canary just once or run it regularly on a schedule\. When you use the CloudWatch console to create a canary, the options for canary frequency are once per minute, once per 5 minutes, and once per hour\. If you use the AWS CLI or APIs to create a canary, you can choose other frequency options\. 
+1. Under **Schedule**, choose whether to run this canary just once, run it continuously using a rate expression, or schedule it using a cron expression\.
+   + When you use the CloudWatch console to create a canary that runs continuously, you can choose a rate anywhere between once a minute and once an hour\.
+   + For more information about writing a cron expression for canary scheduling, see [Scheduling canary runs using cron](CloudWatch_Synthetics_Canaries_cron.md)\.
+
+1. \(Optional\) To set a timeout value for the canary, choose **Additional configuration** and then specify the timeout value\. Make it no shorter than 15 seconds to allow for Lambda cold starts and the time it takes to boot up the canary instrumentation\.
 
 1. Under **Data retention**, specify how long to retain information about both failed and successful canary runs\. The range is 1\-455 days\.
 
 1. Under **Data Storage**, select the S3 bucket to use to store the data from the canary runs\. The bucket name can't contain a period \(\.\)\. If you leave this blank, a default S3 bucket is used or created\.
 
    If you are using the `syn-nodejs-puppeteer-3.0` or later runtime, when you enter the URL for the bucket in the text box, you can specify a bucket in the current Region or in a different Region\. If you are using an earlier runtime version, the bucket must be in the current Region\.
+
+1. \(Optional\) By default, canaries store their artifacts on Amazon S3, and the artifacts are encrypted at rest using an AWS\-managed AWS KMS key\. You can use a different encryption option by choosing **Additional configuration** in the **Data Storage** section\. You can then choose the type of key to use for encryption\. For more information, see [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)\. 
 
 1. Under **Access permissions**, choose whether to create an IAM role to run the canary or use an existing one\.
 
@@ -66,7 +72,7 @@ If you are writing your own script, you can use several functions that CloudWatc
 
    If the endpoint is on a VPC, you must enable your canary to send information to CloudWatch and Amazon S3\. For more information, see [Running a canary on a VPC](CloudWatch_Synthetics_Canaries_VPC.md)\.
 
-1. \(Optional\) Under **Tags**, add one or more key\-value pairs as tags for this canary\. Tags can help you identify and organize your AWS resources and track your AWS costs\. For more information, see [Tagging Your Amazon CloudWatch Resources](CloudWatch-Tagging.md)\.
+1. \(Optional\) Under **Tags**, add one or more key\-value pairs as tags for this canary\. Tags can help you identify and organize your AWS resources and track your AWS costs\. For more information, see [Tagging your Amazon CloudWatch resources](CloudWatch-Tagging.md)\.
 
 1. \(Optional\) Under **Active tracing**, choose whether to enable active X\-Ray tracing for this canary\. This option is available only if the canary uses runtime version **syn\-nodejs\-2\.0** or later\. For more information, see [Canaries and X\-Ray tracing](CloudWatch_Synthetics_Canaries_tracing.md)\.
 

@@ -1,6 +1,6 @@
-# Contributor Insights Rule Syntax<a name="ContributorInsights-RuleSyntax"></a>
+# Contributor Insights rule syntax<a name="ContributorInsights-RuleSyntax"></a>
 
-This section explains the syntax for Contributor Insights rules\. Use this syntax only when you are creating a rule by entering a JSON block\. If you use the wizard to create a rule, you don't need to know the syntax\. For more information about creating rules using the wizard, see [Creating a Contributor Insights Rule](ContributorInsights-CreateRule.md)\.
+This section explains the syntax for Contributor Insights rules\. Use this syntax only when you are creating a rule by entering a JSON block\. If you use the wizard to create a rule, you don't need to know the syntax\. For more information about creating rules using the wizard, see [Creating a Contributor Insights rule](ContributorInsights-CreateRule.md)\.
 
 All matching of rules to log event field names and values is case sensitive\.
 
@@ -33,7 +33,7 @@ The following example illustrates the syntax for JSON logs\.
     },
     "AggregateOn": "Sum"
 }
-```Fields in Contributor Insights Rules
+```Fields in Contributor Insights rules
 
 Schema  
  The value of `Schema` for a rule that analyzes CloudWatch Logs data must always be `{"Name": "CloudWatchLogRule", "Version": 1}` 
@@ -73,7 +73,7 @@ See the following for filter examples:
 AggregateOn  
  Valid values are `Count` and `Sum`\. Specifies whether to aggregate the report based on a count of occurrences or a sum of the values of the field that is specified in the `ValueOf` field\. 
 
-**JSON Property Format Notation**
+**JSON property format notation**
 
 The `Keys`, `ValueOf`, and `Match` fields follow JSON property format with dot notation, where `$` represents the root of the JSON object\. This is followed by a period and then an alphanumeric string with the name of the subproperty\. Multiple property levels are supported\.
 
@@ -86,7 +86,7 @@ $.users[1].name
 $.requestParameters.instanceId
 ```
 
-**Additional Field in Rules for CLF Logs**
+**Additional field in rules for CLF logs**
 
 Common Log Format \(CLF\) log events do not have names for the fields like JSON does\. To provide the fields to use for Contributor Insights rules, a CLF log event can be treated as array with an index starting from 1\. You can specify the first field as **"1"**, the second field as **"2"**, and so on\.
 

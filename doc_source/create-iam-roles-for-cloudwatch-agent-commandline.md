@@ -1,4 +1,4 @@
-# Create IAM Roles and Users for Use With CloudWatch Agent<a name="create-iam-roles-for-cloudwatch-agent-commandline"></a>
+# Create IAM roles and users for use with CloudWatch agent<a name="create-iam-roles-for-cloudwatch-agent-commandline"></a>
 
 Access to AWS resources requires permissions\. You create an IAM role, an IAM user, or both to grant permissions that the CloudWatch agent needs to write metrics to CloudWatch\. If you're going to use the agent on Amazon EC2 instances, you must create an IAM role\. If you're going to use the agent on on\-premises servers, you must create an IAM user\.
 

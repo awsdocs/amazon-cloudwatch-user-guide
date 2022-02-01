@@ -1,4 +1,4 @@
-# Using Condition Keys to Limit Contributor Insights Users' Access to Log Groups<a name="iam-cw-condition-keys-contributor"></a>
+# Using condition keys to limit Contributor Insights users' access to log groups<a name="iam-cw-condition-keys-contributor"></a>
 
 To create a rule in Contributor Insights and see its results, a user must have the `cloudwatch:PutInsightRule` permission\. By default, a user with this permission can create a Contributor Insights rule that evaluates any log group in CloudWatch Logs and then see the results\. The results can contain contributor data for those log groups\.
 
@@ -32,9 +32,9 @@ The following policy allows the user access to write rules and view results for 
 }
 ```
 
-**Denies writing rules for specific log groups but allows writing rules all other log groups**
+**Deny writing rules for specific log groups but allow writing rules for all other log groups**
 
-The following policy explictly denies the user access to write rules and view rule results for the log group named `ExplicitlyDeniedLogGroup`, but allows writing rules and viewing rule results for all other log groups\.
+The following policy explicitly denies the user access to write rules and view rule results for the log group named `ExplicitlyDeniedLogGroup`, but allows writing rules and viewing rule results for all other log groups\.
 
 ```
 {

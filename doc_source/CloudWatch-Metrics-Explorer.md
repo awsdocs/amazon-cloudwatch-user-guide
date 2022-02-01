@@ -1,4 +1,4 @@
-# Use Metrics Explorer to Monitor Resources by Their Tags and Properties<a name="CloudWatch-Metrics-Explorer"></a>
+# Use metrics explorer to monitor resources by their tags and properties<a name="CloudWatch-Metrics-Explorer"></a>
 
 Metrics explorer is a tag\-based tool that enables you to filter, aggregate, and visualize your metrics by tags and resource properties, to enhance observability for your services\. This gives you a flexible and dynamic troubleshooting experience, so that you to create multiple graphs at a time and use these graphs to build your application health dashboards\.
 
@@ -53,11 +53,11 @@ To create a visualization with metrics explorer and optionally add it to a dashb
 To enable metrics explorer to discover EC2 metrics published by the CloudWatch agent, make sure that the CloudWatch agent configuration file contains the following values:
 + In the `metrics` section, make sure that the `aggregation_dimensions` parameter includes `["InstanceId"]`\. It can also contain other dimensions\.
 + In the `metrics` section, make sure that the `append_dimensions` parameter includes a `{"InstanceId":"${aws:InstanceId}"}` line\. It can also contain other lines\.
-+ In the `metrics` section,inside the `metrics_collected` section, check the sections for each resource type that you want metrics explorer to discover, such as the `cpu`, `disk`, and `memory` sections\. Make sure that each of these sections has a `"resources": ["*"] line.`\. `aggregation_dimensions` parameter includes `["InstanceId"]`\. It can also contain other dimensions\.
++ In the `metrics` section, inside the `metrics_collected` section, check the sections for each resource type that you want metrics explorer to discover, such as the `cpu`, `disk`, and `memory` sections\. Make sure that each of these sections has a `"resources": [ "*"] line.`\. 
 + In the `cpu` section of the `metrics_collected>` section, make sure there is a `"totalcpu": true` line\.
 
 The settings in the previous list cause the CloudWatch agent to publish aggregate metrics for disks, CPUs, and other resources that can be plotted in metrics explorer for all the instances that use it\.
 
 These settings will republish the metrics that you had previously set up to be published with multiple dimensions, adding to your metric costs\.
 
-For more information about editing the CloudWatch agent configuration file, see [ Manually Create or Edit the CloudWatch Agent Configuration File](CloudWatch-Agent-Configuration-File-Details.md)\. 
+For more information about editing the CloudWatch agent configuration file, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\. 

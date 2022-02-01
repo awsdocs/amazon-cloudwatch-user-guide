@@ -1,4 +1,4 @@
-# Searching for Available Metrics<a name="finding_metrics_with_cloudwatch"></a>
+# Searching for available metrics<a name="finding_metrics_with_cloudwatch"></a>
 
 You can search within all of the metrics in your account using targeted search terms\. Metrics are returned that have matching results within their namespace, metric name, or dimensions\.
 
@@ -15,7 +15,7 @@ Metrics that have not had any new data points in the past two weeks do not appea
 
    For example, if you search for **volume**, this shows the namespaces that contain metrics with this term in their name\.
 
-   For more information on search, see [Using Search Expressions in Graphs](using-search-expressions.md)
+   For more information on search, see [Using search expressions in graphs](using-search-expressions.md)
 
 1. To graph all the search results, choose **Graph search**
 

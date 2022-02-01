@@ -15,6 +15,7 @@ The following CloudWatch Synthetics library functions for Node\.js are useful fo
 + [Synthetics class](#CloudWatch_Synthetics_Library_Synthetics_Class_all)
 + [SyntheticsConfiguration class](#CloudWatch_Synthetics_Library_SyntheticsConfiguration)
 + [Synthetics logger](#CloudWatch_Synthetics_Library_SyntheticsLogger)
++ [SyntheticsLogHelper class](#CloudWatch_Synthetics_Library_SyntheticsLogHelper)
 
 ### Synthetics class<a name="CloudWatch_Synthetics_Library_Synthetics_Class_all"></a>
 
@@ -92,7 +93,16 @@ Function definitions:
 
 ##### setConfig\(options\) for all canaries<a name="CloudWatch_Synthetics_Library_setConfigall"></a>
 
-For canaries using `syn-nodejs-pupeteer-3.1` or later, the **\(options\)** for **setConfig** can include the following Boolean parameters that determine which metrics are published by the canary\. The default for each of these options is `true`\. The options that start with `aggregated` determine whether the metric is emitted without the `CanaryName` dimension\. You can use these metrics to see the aggregated results for all of your canaries\. The other options determine whether the metric is emitted with the `CanaryName` dimension\. You can use these metrics to see results for each individual canary\.
+For canaries using `syn-nodejs-puppeteer-3.2` or later, the **\(options\)** for **setConfig** can include the following parameters:
++ `includeRequestHeaders` \(boolean\)— Whether to include request headers in the report\. The default is `false`\.
++ `includeResponseHeaders` \(boolean\)— Whether to include response headers in the report\. The default is `false`\.
++ `restrictedHeaders` \(array\)— A list of header values to ignore, if headers are included\. This applies to both request and response headers\. For example, you can hide your credentials by passing **includeRequestHeaders** as `true` and **restrictedHeaders** as `['Authorization']`\. 
++ `includeRequestBody` \(boolean\)— Whether to include the request body in the report\. The default is `false`\.
++ `includeResponseBody` \(boolean\)— Whether to include the response body in the report\. The default is `false`\.
+
+**setConfig\(options\) regarding CloudWatch metrics**
+
+For canaries using `syn-nodejs-puppeteer-3.1` or later, the **\(options\)** for **setConfig** can include the following Boolean parameters that determine which metrics are published by the canary\. The default for each of these options is `true`\. The options that start with `aggregated` determine whether the metric is emitted without the `CanaryName` dimension\. You can use these metrics to see the aggregated results for all of your canaries\. The other options determine whether the metric is emitted with the `CanaryName` dimension\. You can use these metrics to see results for each individual canary\.
 
 For a list of CloudWatch metrics emitted by canaries, see [CloudWatch metrics published by canaries](CloudWatch_Synthetics_Canaries_metrics.md)\.
 + `failedCanaryMetric` \(boolean\)— Whether to emit the `Failed` metric \(with the `CanaryName` dimension\) for this canary\. The default is `true`\.
@@ -107,6 +117,21 @@ For a list of CloudWatch metrics emitted by canaries, see [CloudWatch metrics pu
 + `aggregated2xxMetric` \(boolean\)— Whether to emit the `2xx` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
 + `aggregated4xxMetric` \(boolean\)— Whether to emit the `4xx` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
 + `aggregated5xxMetric` \(boolean\)— Whether to emit the `5xx` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `visualMonitoringSuccessPercentMetric` \(boolean\)— Whether to emit the `visualMonitoringSuccessPercent` metric for this canary\. The default is `true`\.
++ `visualMonitoringTotalComparisonsMetric` \(boolean\)— Whether to emit the `visualMonitoringTotalComparisons` metric for this canary\. The default is `false`\.
++ `stepsReport` \(boolean\)— Whether to report a step execution summary\. The default is `true`\.
++ `includeUrlPassword` \(boolean\)— Whether to include a password that appears in the URL\. By default, passwords that appear in URLs are redacted from logs and reports, to prevent disclosing sensitive data\. The default is `false`\.
++ `restrictedUrlParameters` \(array\)— A list of URL path or query parameters to redact\. This applies to URLs appearing in logs, reports, and errors\. The parameter is case\-insensitive\. You can pass an asterisk \(\*\) as a value to redact all URL path and query parameter values\. The default is an empty array\.
++ `logRequest` \(boolean\)— Whether to log every request in canary logs\. For UI canaries, this logs each request sent by the browser\. The default is `true`\.
++ `logResponse` \(boolean\)— Whether to log every response in canary logs\. For UI canaries, this logs every response received by the browser\. The default is `true`\.
++ `logRequestBody` \(boolean\)— Whether to log request bodies along with the requests in canary logs\. This configuration applies only if `logRequest` is `true`\. The default is `false`\.
++ `logResponseBody` \(boolean\)— Whether to log response bodies along with the responses in canary logs\. This configuration applies only if `logResponse` is `true`\. The default is `false`\.
++ `logRequestHeaders` \(boolean\)— Whether to log request headers along with the requests in canary logs\. This configuration applies only if `logRequest` is `true`\. The default is `false`\.
+
+  Note that `includeRequestHeaders` enables headers in artifacts\.
++ `logResponseHeaders` \(boolean\)— Whether to log response headers along with the responses in canary logs\. This configuration applies only if `logResponse` is `true`\. The default is `false`\.
+
+  Note that `includeResponseHeaders` enables headers in artifacts\.
 
 **Note**  
 The `Duration` and `SuccessPercent` metrics are always emitted for each canary, both with and without the `CanaryName` metric\. 
@@ -225,10 +250,102 @@ Accepts a Boolean argument, which specifies whether to emit a `Duration` metric 
 
 Accepts a Boolean argument, which specifies whether to emit a `StepSuccess` metric with the `CanaryName` dimension for this canary\.
 
+##### Methods to enable or disable other features<a name="CloudWatch_Synthetics_Library_setConfig_methods"></a>
+
+**withHarFile\(\)**
+
+Accepts a Boolean argument, which specifies whether to create a HAR file for this canary\.
+
+**withStepsReport\(\)**
+
+Accepts a Boolean argument, which specifies whether to report a step execution summary for this canary\.
+
+**withIncludeUrlPassword\(\)**
+
+Accepts a Boolean argument, which specifies whether to include passwords that appear in URLs in logs and reports\.
+
+**withRestrictedUrlParameters\(\)**
+
+Accepts an array of URL path or query parameters to redact\. This applies to URLs appearing in logs, reports, and errors\. You can pass an asterisk \(\*\) as a value to redact all URL path and query parameter values
+
+**withLogRequest\(\)**
+
+Accepts a Boolean argument, which specifies whether to log every request in the canary's logs\.
+
+**withLogResponse\(\)**
+
+Accepts a Boolean argument, which specifies whether to log every response in the canary's logs\.
+
+**withLogRequestBody\(\)**
+
+Accepts a Boolean argument, which specifies whether to log every request body in the canary's logs\.
+
+**withLogResponseBody\(\)**
+
+Accepts a Boolean argument, which specifies whether to log every response body in the canary's logs\.
+
+**withLogRequestHeaders\(\)**
+
+Accepts a Boolean argument, which specifies whether to log every request header in the canary's logs\.
+
+**withLogResponseHeaders\(\)**
+
+Accepts a Boolean argument, which specifies whether to log every response header in the canary's logs\.
+
+**getHarFile\(\)**
+
+Returns whether the canary creates a HAR file\.
+
+**getStepsReport\(\)**
+
+Returns whether the canary reports a step execution summary\.
+
+**getIncludeUrlPassword\(\)**
+
+Returns whether the canary includes passwords that appear in URLs in logs and reports\.
+
+**getRestrictedUrlParameters\(\)**
+
+Returns whether the canary redacts URL path or query parameters\.
+
+**getLogRequest\(\)**
+
+Returns whether the canary logs every request in the canary's logs\.
+
+**getLogResponse\(\)**
+
+Returns whether the canary logs every response in the canary's logs\.
+
+**getLogRequestBody\(\)**
+
+Returns whether the canary logs every request body in the canary's logs\.
+
+**getLogResponseBody\(\)**
+
+Returns whether the canary logs every response body in the canary's logs\.
+
+**getLogRequestHeaders\(\)**
+
+Returns whether the canary logs every request header in the canary's logs\.
+
+**getLogResponseHeaders\(\)**
+
+Returns whether the canary logs every response header in the canary's logs\.
+
+**Functions for all canaries**
++ `withIncludeRequestHeaders`\(includeRequestHeaders\)
++ `withIncludeResponseHeaders`\(includeResponseHeaders\)
++ `withRestrictedHeaders`\(restrictedHeaders\)
++ `withIncludeRequestBody`\(includeRequestBody\)
++ `withIncludeResponseBody`\(includeResponseBody\)
++ `enableReportingOptions`\(\)— Enables all reporting options\-\- **includeRequestHeaders**, **includeResponseHeaders**, **includeRequestBody**, and **includeResponseBody**, \.
++ `disableReportingOptions`\(\)— Disables all reporting options\-\- **includeRequestHeaders**, **includeResponseHeaders**, **includeRequestBody**, and **includeResponseBody**, \.
+
 ##### setConfig\(options\) for UI canaries<a name="CloudWatch_Synthetics_Library_setConfigUI"></a>
 
 For UI canaries, **setConfig** can include the following Boolean parameters:
 + `continueOnStepFailure` \(boolean\)— Whether to continue with running the canary script after a step fails \(this refers to the **executeStep** function\)\. If any steps fail, the canary run will still be marked as failed\. The default is `false`\.
++ `harFile` \(boolean\)— Whether to create a HAR file\. The default is `True`\.
 + `screenshotOnStepStart` \(boolean\)— Whether to take a screenshot before starting a step\.
 + `screenshotOnStepSuccess` \(boolean\)— Whether to take a screenshot after completing a successful step\.
 + `screenshotOnStepFailure` \(boolean\)— Whether to take a screenshot after a step fails\.
@@ -308,20 +425,37 @@ You can enable and disable screenshots at any point in the code\. For example, t
 
 For API canaries, **setConfig** can include the following Boolean parameters:
 + `continueOnHttpStepFailure` \(boolean\)— Whether to continue with running the canary script after an HTTP step fails \(this refers to the **executeHttpStep** function\)\. If any steps fail, the canary run will still be marked as failed\. The default is `true`\.
-+ `includeRequestHeaders` \(boolean\)— Whether to include request headers in the report\. The default is `false`\.
-+ `includeResponseHeaders` \(boolean\)— Whether to include response headers in the report\. The default is `false`\.
-+ `restrictedHeaders` \(array\)— A list of header values to ignore, if headers are included\. This applies to both request and response headers\. For example, you can hide your credentials by passing **includeRequestHeaders** as `true` and **restrictedHeaders** as `['Authorization']`\. 
-+ `includeRequestBody` \(boolean\)— Whether to include the request body in the report\. The default is `false`\.
-+ `includeResponseBody` \(boolean\)— Whether to include the response body in the report\. The default is `false`\.
 
-**Functions for API canaries**
-+ `withIncludeRequestHeaders`\(includeRequestHeaders\)
-+ `withIncludeResponseHeaders`\(includeRequestHeaders\)
-+ `withRestrictedHeaders`\(restrictedHeaders\)
-+ `withIncludeRequestBody`\(includeRequestBody\)
-+ `withIncludeResponseBody`\(includeResponseBody\)
-+ `enableReportingOptions`\(\)— Enables all reporting options\-\- **includeRequestHeaders**, **includeResponseHeaders**, **includeRequestBody**, and **includeResponseBody**, \.
-+ `disableReportingOptions`\(\)— Disables all reporting options\-\- **includeRequestHeaders**, **includeResponseHeaders**, **includeRequestBody**, and **includeResponseBody**, \.
+#### Visual monitoring<a name="CloudWatch_Synthetics_Library_SyntheticsLogger_VisualTesting"></a>
+
+Visual monitoring compares screenshots taken during a canary run with screenshots taken during a baseline canary run\. If the discrepancy between the two screenshots is beyond a threshold percentage, the canary fails and you can see the areas with differences highlighted in color in the canary run report\. Visual monitoring is supported in canaries running **syn\-puppeteer\-node\-3\.2** and later\. It is not currently supported in canaries running Python and Selenium\.
+
+To enable visual monitoring, add the following line of code to the canary script\. For more details, see [SyntheticsConfiguration class](#CloudWatch_Synthetics_Library_SyntheticsConfiguration)\.
+
+```
+syntheticsConfiguration.withVisualCompareWithBaseRun(true);
+```
+
+The first time that the canary runs successfully after this line is added to the script, it uses the screenshots taken during that run as the baseline for comparison\. After that first canary run, you can use the CloudWatch console to edit the canary to do any of the following:
++ Set the next run of the canary as the new baseline\.
++ Draw boundaries on the current baseline screenshot to designate areas of the screenshot to ignore during visual comparisons\.
++ Remove a screenshot from being used for visual monitoring\.
+
+For more information about using the CloudWatch console to edit a canary, see [Editing or deleting a canary](synthetics_canaries_deletion.md)\.
+
+**Other options for visual monitoring**
+
+**syntheticsConfiguration\.withVisualVarianceThresholdPercentage\(desiredPercentage\)** 
+
+Set the acceptable percentage for screenshot variance in visual comparisons\.
+
+**syntheticsConfiguration\.withVisualVarianceHighlightHexColor\("\#fafa00"\)** 
+
+Set the highlight color that designates variance areas when you look at canary run reports that use visual monitoring\.
+
+**syntheticsConfiguration\.withFailCanaryRunOnVisualVariance\(failCanary\)** 
+
+Set whether or not the canary fails when there is a visual difference that is more than the threshold\. The default is to fail the canary\.
 
 ### Synthetics logger<a name="CloudWatch_Synthetics_Library_SyntheticsLogger"></a>
 
@@ -396,6 +530,134 @@ Example:
 ```
 log.warn("Exception encountered trying to publish CloudWatch Metric.", ex);
 ```
+
+### SyntheticsLogHelper class<a name="CloudWatch_Synthetics_Library_SyntheticsLogHelper"></a>
+
+The `SyntheticsLogHelper` class is available in the runtime `syn-nodejs-puppeteer-3.2` and later runtimes\. It is already initialized in the CloudWatch Synthetics library and is configured with Synthetics configuration\. You can add this as a dependency in your script\. This class enables you to sanitize URLs, headers, and error messages to redact sensitive information\.
+
+**Note**  
+Synthetics sanitizes all URLs and error messages it logs before including them in logs, reports, HAR files, and canary run errors based on the Synthetics configuration setting `restrictedUrlParameters`\. You have to use `getSanitizedUrl` or `getSanitizedErrorMessage` only if you are logging URLs or errors in your script\. Synthetics does not store any canary artifacts except for canary errors thrown by the script\. Canary run artifacts are stored in your customer account\. For more information, see [Security considerations for Synthetics canaries](servicelens_canaries_security.md)\.
+
+#### getSanitizedUrl\(url, stepConfig = null\)<a name="CloudWatch_Synthetics_Library_getSanitizedUrl"></a>
+
+This function is available in `syn-nodejs-puppeteer-3.2` and later\. It returns sanitized url strings based on the configuration\. You can choose to redact sensitive URL parameters such as password and access\_token by setting the property `restrictedUrlParameters`\. By default, passwords in URLs are redacted\. You can enable URL passwords if needed by setting `includeUrlPassword` to true\. 
+
+This function throws an error if the URL passed in is not a valid URL\.
+
+**Parameters **
++ *url* is a string and is the URL to sanitize\.
++  *stepConfig* \(Optional\) overrides the global Synthetics configuration for this function\. If `stepConfig` is not passed in, the global configuration is used to sanitize the URL\.
+
+**Example **
+
+This example uses the following sample URL: `https://example.com/learn/home?access_token=12345&token_type=Bearer&expires_in=1200`\. In this example, `access_token` contains your sensitive information which shouldn't be logged\. Note that the Synthetics services doesn't store any canary run artifacts\. Artifacts such as logs, screenshots, and reports are all stored in an Amazon S3 bucket in your customer account\.
+
+The first step is to set the Synthetics configuration\.
+
+```
+// Import Synthetics dependency
+const synthetics = require('Synthetics');
+
+// Import Synthetics logger for logging url
+const log = require('SyntheticsLogger');
+
+// Get Synthetics configuration
+const synConfig = synthetics.getConfiguration();
+
+// Set restricted parameters
+synConfig.setConfig({
+   restrictedUrlParameters: ['access_token'];
+});
+```
+
+Next, sanitize and log the URL
+
+```
+// Import SyntheticsLogHelper dependency
+const syntheticsLogHelper = require('SyntheticsLogHelper');
+
+const sanitizedUrl = synthetics.getSanitizedUrl('https://example.com/learn/home?access_token=12345&token_type=Bearer&expires_in=1200');
+```
+
+This logs the following in your canary log\.
+
+```
+My example url is: https://example.com/learn/home?access_token=REDACTED&token_type=Bearer&expires_in=1200
+```
+
+You can override the Synthetics configuration for a URL by passing in an optional parameter containing Synthetics configuration options, as in the following example\.
+
+```
+const urlConfig = {
+   restrictedUrlParameters = ['*']
+};
+const sanitizedUrl = synthetics.getSanitizedUrl('https://example.com/learn/home?access_token=12345&token_type=Bearer&expires_in=1200', urlConfig);
+logger.info('My example url is: ' + sanitizedUrl);
+```
+
+The preceding example redacts all query parameters, and is logged as follows:
+
+```
+My example url is: https://example.com/learn/home?access_token=REDACTED&token_type=REDACTED&expires_in=REDACTED
+```
+
+#### getSanitizedErrorMessage<a name="CloudWatch_Synthetics_Library_getSanitizedErrorMessage"></a>
+
+This function is available in `syn-nodejs-puppeteer-3.2` and later\. It returns sanitized error strings by sanitizing any URLs present based on the Synthetics configuration\. You can choose to override the global Synthetics configuration when you call this function by passing an optional `stepConfig` parameter\. 
+
+**Parameters **
++ *error* is the error to sanitize\. It can be an Error object or a string\.
++  *stepConfig* \(Optional\) overrides the global Synthetics configuration for this function\. If `stepConfig` is not passed in, the global configuration is used to sanitize the URL\.
+
+**Example **
+
+This example uses the following error: `Failed to load url: https://example.com/learn/home?access_token=12345&token_type=Bearer&expires_in=1200`
+
+The first step is to set the Synthetics configuration\.
+
+```
+// Import Synthetics dependency
+const synthetics = require('Synthetics');
+
+// Import Synthetics logger for logging url
+const log = require('SyntheticsLogger');
+
+// Get Synthetics configuration
+const synConfig = synthetics.getConfiguration();
+
+// Set restricted parameters
+synConfig.setConfig({
+   restrictedUrlParameters: ['access_token'];
+});
+```
+
+Next, sanitize and log the error message
+
+```
+// Import SyntheticsLogHelper dependency
+const syntheticsLogHelper = require('SyntheticsLogHelper');
+
+try {
+   // Your code which can throw an error containing url which your script logs
+} catch (error) {
+    const sanitizedErrorMessage = synthetics.getSanitizedErrorMessage(errorMessage);
+    logger.info(sanitizedErrorMessage);
+}
+```
+
+This logs the following in your canary log\.
+
+```
+Failed to load url: https://example.com/learn/home?access_token=REDACTED&token_type=Bearer&expires_in=1200
+```
+
+#### getSanitizedHeaders\(headers, stepConfig=null\)<a name="CloudWatch_Synthetics_Library_getSanitizedHeaders"></a>
+
+This function is available in `syn-nodejs-puppeteer-3.2` and later\. It returns sanitized headers based on the `restrictedHeaders` property of `syntheticsConfiguration`\. The headers specified in the `restrictedHeaders` property are redacted from logs, HAR files, and reports\. 
+
+**Parameters **
++ *headers* is an object containing the headers to sanitize\.
++ *stepConfig* \(Optional\) overrides the global Synthetics configuration for this function\. If `stepConfig` is not passed in, the global configuration is used to sanitize the headers\.
 
 ## Node\.js library classes and functions that apply to UI canaries only<a name="CloudWatch_Synthetics_Library_UIcanaries"></a>
 
@@ -499,6 +761,9 @@ The page \(Puppeteer object\) that is currently open in the current browser sess
 
 #### getRequestResponseLogHelper\(\);<a name="CloudWatch_Synthetics_Library_getRequestResponseLogHelper"></a>
 
+**Important**  
+In canaries that use the `syn-nodejs-puppeteer-3.2` runtime or later, this function is deprecated along with the `RequestResponseLogHelper` class\. Any use of this function causes a warning to appear in your canary logs\. This function will be removed in future runtime versions\. If you are using this function, use [RequestResponseLogHelper class](#CloudWatch_Synthetics_Library_RequestResponseLogHelper) instead\. 
+
 Use this function as a builder pattern for tweaking the request and response logging flags\.
 
 Example:
@@ -558,6 +823,9 @@ await synthetics.launch({
 
 #### RequestResponseLogHelper class<a name="CloudWatch_Synthetics_Library_RequestResponseLogHelper"></a>
 
+**Important**  
+In canaries that use the `syn-nodejs-puppeteer-3.2` runtime or later, this class is deprecated\. Any use of this class causes a warning to appear in your canary logs\. This function will be removed in future runtime versions\. If you are using this function, use [RequestResponseLogHelper class](#CloudWatch_Synthetics_Library_RequestResponseLogHelper) instead\.
+
 Handles the fine\-grained configuration and creation of string representations of request and response payloads\. 
 
 ```
@@ -606,6 +874,9 @@ Response:
 ```
 
 #### setRequestResponseLogHelper\(\);<a name="CloudWatch_Synthetics_Library_setRequestResponseLogHelper"></a>
+
+**Important**  
+In canaries that use the `syn-nodejs-puppeteer-3.2` runtime or later, this function is deprecated along with the `RequestResponseLogHelper` class\. Any use of this function causes a warning to appear in your canary logs\. This function will be removed in future runtime versions\. If you are using this function, use [RequestResponseLogHelper class](#CloudWatch_Synthetics_Library_RequestResponseLogHelper) instead\. 
 
 Use this function as a builder pattern for setting the request and response logging flags\.
 
@@ -833,7 +1104,7 @@ Or you can pass a set of options:
 
 ```
 let requestOptions = {
-        'hostname': ‘myproductsEndpoint.com,
+        'hostname': 'myproductsEndpoint.com',
         'method': 'GET',
         'path': '/test/product/validProductName',
         'port': 443,

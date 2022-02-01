@@ -1,4 +1,4 @@
-# Use Live Data<a name="cloudwatch-live-data"></a>
+# Use live data<a name="cloudwatch-live-data"></a>
 
 You can choose whether your metric widgets display *live data*\. Live data is data published within the last minute that has not been fully aggregated\.
 + If live data is turned **off**, only data points with an aggregation period of at least one minute in the past are shown\. For example, when using 5\-minute periods, the data point for 12:35 would be aggregated from 12:35 to 12:40, and displayed at 12:41\.
@@ -12,13 +12,13 @@ You can choose to enable live data for a whole dashboard, or for individual widg
 
 1. In the navigation pane, choose **Dashboards** and select a dashboard\.
 
-1. To permanently turn on or off live data for all widgets on the dashboard, do the following:
+1. To permanently turn live data on or off for all widgets on the dashboard, do the following:
 
    1. Choose **Actions**, **Settings**, **Bulk update live data\.**
 
    1. Choose **Live Data on** or **Live Data off**, and choose **Set**\.
 
-1. To temporarily override the live data settings of each widget, do this: choose **Actions**, then under **Overrides**, next to **Live data**, do one of the following:
+1. To temporarily override the live data settings of each widget, choose **Actions**\. Then, under **Overrides**, next to **Live data**, do one of the following:
    + Choose **On** to temporarily turn on live data for all widgets\. 
    + Choose **Off** to temporarily turn off live data for all widgets\.
    + Choose **Do not override** to preserve each widget's live data setting\.

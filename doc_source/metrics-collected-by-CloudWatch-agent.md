@@ -1,12 +1,12 @@
-# Metrics Collected by the CloudWatch Agent<a name="metrics-collected-by-CloudWatch-agent"></a>
+# Metrics collected by the CloudWatch agent<a name="metrics-collected-by-CloudWatch-agent"></a>
 
 You can collect metrics from servers by installing the CloudWatch agent on the server\. You can install the agent on both Amazon EC2 instances and on\-premises servers, and on computers running either Linux, Windows Server, or macOS\. If you install the agent on an Amazon EC2 instance, the metrics it collects are in addition to the metrics enabled by default on Amazon EC2 instances\.
 
-For information about installing the CloudWatch agent on an instance, see [Collecting Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](Install-CloudWatch-Agent.md)\.
+For information about installing the CloudWatch agent on an instance, see [Collecting metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)\.
 
 All metrics discussed in this section are collected directly by the CloudWatch agent\.
 
-## Metrics Collected by the CloudWatch Agent on Windows Server Instances<a name="windows-metrics-enabled-by-CloudWatch-agent"></a>
+## Metrics collected by the CloudWatch agent on Windows Server instances<a name="windows-metrics-enabled-by-CloudWatch-agent"></a>
 
 On a server running Windows Server, installing the CloudWatch agent enables you to collect the metrics associated with the counters in Windows Performance Monitor\. The CloudWatch metric names for these counters are created by putting a space between the object name and the counter name\. For example, the `% Interrupt Time` counter of the `Processor` object is given the metric name `Processor % Interrupt Time` in CloudWatch\. For more information about Windows Performance Monitor counters, see the Microsoft Windows Server documentation\.
 
@@ -27,7 +27,7 @@ For more information about using the ENA on Windows instances, see [ Enabling en
 |  `Link local packet rate allowance exceeded` |  The number of packets dropped because the PPS of the traffic to local proxy services exceeded the maximum for the network interface\. This impacts traffic to the DNS service, the Instance Metadata Service, and the Amazon Time Sync Service\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
 |  `PPS allowance exceeded` |  The number of packets queued and/or dropped because the bidirectional PPS exceeded the maximum for the instance\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
 
-## Metrics Collected by the CloudWatch Agent on Linux and macOS Instances<a name="linux-metrics-enabled-by-CloudWatch-agent"></a>
+## Metrics collected by the CloudWatch agent on Linux and macOS instances<a name="linux-metrics-enabled-by-CloudWatch-agent"></a>
 
 The following table lists the metrics that you can collect with the CloudWatch agent on Linux servers and macOS computers\.
 

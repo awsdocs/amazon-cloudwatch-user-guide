@@ -1,12 +1,14 @@
-# Setting Up Container Insights on Amazon EKS and Kubernetes<a name="deploy-container-insights-EKS"></a>
+# Setting up Container Insights on Amazon EKS and Kubernetes<a name="deploy-container-insights-EKS"></a>
 
 The overall process for setting up Container Insights on Amazon EKS or Kubernetes is as follows:
 
 1. Verify that you have the necessary prerequisites\.
 
-1. Set up the CloudWatch agent as a DaemonSet on your Amazon EKS cluster or Kubernetes cluster to send metrics to CloudWatch, and set up FluentD as a DaemonSet to send logs to CloudWatch Logs\.
+1. Set up the CloudWatch agent or the AWS Distro for OpenTelemetry as a DaemonSet on your cluster to send metrics to CloudWatch\. 
 
-   You can perform these steps at once as part of the quick start setup, or do them separately\.
+   Set up Fluent Bit or FluentD to send logs to CloudWatch Logs\.
+
+   You can perform these steps at once as part of the quick start setup if you are using the CloudWatch agent, or do them separately\.
 
 1. \(Optional\) Set up Amazon EKS control plane logging\.
 
@@ -15,8 +17,8 @@ The overall process for setting up Container Insights on Amazon EKS or Kubernete
 1. \(Optional\) Enable App Mesh Envoy Access Logs\.
 
 **Topics**
-+ [Verify Prerequisites](Container-Insights-prerequisites.md)
-+ [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md)
-+ [Set Up the CloudWatch Agent to Collect Cluster Metrics](Container-Insights-setup-metrics.md)
++ [Verify prerequisites](Container-Insights-prerequisites.md)
++ [Using the CloudWatch agent](Container-Insights-EKS-agent.md)
++ [Using AWS Distro for OpenTelemetry](Container-Insights-EKS-otel.md)
 + [Send logs to CloudWatch Logs](Container-Insights-EKS-logs.md)
-+ [Updating or Deleting Container Insights on Amazon EKS and Kubernetes](ContainerInsights-update-delete.md)
++ [Updating or deleting Container Insights on Amazon EKS and Kubernetes](ContainerInsights-update-delete.md)

@@ -2,6 +2,9 @@
 
 You can choose to enable active AWS X\-Ray tracing on canaries that use the `syn-nodejs-2.0` or later runtime\. With tracing enabled, traces are sent for all calls made by the canary that use the browser, the AWS SDK, or HTTP or HTTPS modules\. Canaries with tracing enabled appear on the service map in both CloudWatch ServiceLens and in X\-Ray, even when they don't send requests to other services or applications that have tracing enabled\. For more information about X\-Ray tracing, see [Traces ](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-traces)\.
 
+**Note**  
+Activating X\-Ray tracing on canaries is not yet supported in Asia Pacific \(Jakarta\)\.
+
 When a canary appears on a service map, it appears as a new client node type\. You can hover on a canary node to see data about latency, requests, and faults\. You can also choose the canary node to see more data at the bottom of the page\. From this area of the page, you can choose **View in Synthetics** to jump to the CloudWatch Synthetics console for more details about the canary, or choose **View Traces** to see more details about the traces from this canary's runs\.
 
 A canary with tracing enabled also has a **Tracing** tab in its details page, with details about traces and segments from the canary's runs\.

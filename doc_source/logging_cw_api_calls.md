@@ -1,4 +1,4 @@
-# Logging Amazon CloudWatch API Calls with AWS CloudTrail<a name="logging_cw_api_calls"></a>
+# Logging Amazon CloudWatch API calls with AWS CloudTrail<a name="logging_cw_api_calls"></a>
 
 Amazon CloudWatch and CloudWatch Synthetics are integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service\. CloudTrail captures API calls made by or on behalf of your AWS account\. The captured calls include calls from the console and code calls to API operations\.
 
@@ -20,10 +20,10 @@ For an ongoing record of events in your AWS account, including events for CloudW
 + [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
 
 **Topics**
-+ [CloudWatch Information in CloudTrail](#cw_info_in_ct)
-+ [CloudWatch Synthetics Information in CloudTrail](#cw_synthetics_info_in_ct)
++ [CloudWatch information in CloudTrail](#cw_info_in_ct)
++ [CloudWatch Synthetics information in CloudTrail](#cw_synthetics_info_in_ct)
 
-## CloudWatch Information in CloudTrail<a name="cw_info_in_ct"></a>
+## CloudWatch information in CloudTrail<a name="cw_info_in_ct"></a>
 
 CloudWatch supports logging the following actions as events in CloudTrail log files:
 + [DeleteAlarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DeleteAlarms.html)
@@ -42,12 +42,7 @@ CloudWatch supports logging the following actions as events in CloudTrail log fi
 + [PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html)
 + [SetAlarmState](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_SetAlarmState.html)
 
-You can log the following AWS SDK Metrics actions in CloudTrail log files\. These actions are used only by SDK Metrics and are not available for use in your code\. For more information, see [Monitor Applications Using AWS SDK Metrics](CloudWatch-Agent-SDK-Metrics.md)\.
-+ `GetPublishingConfiguration` – Used to determine how to publish metrics\.
-+ `GetPublishingSchema` – Used to determine how to publish metrics\.
-+ `PutPublishingMetrics` – Used to send CloudWatch Agent health metrics to AWS Support\.
-
-### Example: CloudWatch Log File Entries<a name="understanding-CloudWatch-entries-in-CloudTrail"></a>
+### Example: CloudWatch log file entries<a name="understanding-CloudWatch-entries-in-CloudTrail"></a>
 
 The following example shows a CloudTrail log entry that demonstrates the `PutMetricAlarm` action\.
 
@@ -166,7 +161,7 @@ The following log file entry shows that a user called the CloudWatch Logs `Creat
 }
 ```
 
-## CloudWatch Synthetics Information in CloudTrail<a name="cw_synthetics_info_in_ct"></a>
+## CloudWatch Synthetics information in CloudTrail<a name="cw_synthetics_info_in_ct"></a>
 
 CloudWatch Synthetics supports logging the following actions as events in CloudTrail log files:
 + [CreateCanary](https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_CreateCanary.html) 
@@ -183,7 +178,7 @@ CloudWatch Synthetics supports logging the following actions as events in CloudT
 + [UntagResource](https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UntagResource.html) 
 + [UpdateCanary](https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UpdateCanary.html) 
 
-### Example: CloudWatch Synthetics Log File Entries<a name="understanding-CloudWatch-Synthetics-entries-in-CloudTrail"></a>
+### Example: CloudWatch Synthetics log file entries<a name="understanding-CloudWatch-Synthetics-entries-in-CloudTrail"></a>
 
 The following example shows a CloudTrail Synthetics log entry that demonstrates the `DescribeCanaries` action\.
 

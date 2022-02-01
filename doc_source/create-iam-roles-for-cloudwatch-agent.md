@@ -1,4 +1,4 @@
-# Create IAM Roles and Users for Use with the CloudWatch Agent<a name="create-iam-roles-for-cloudwatch-agent"></a>
+# Create IAM roles and users for use with the CloudWatch agent<a name="create-iam-roles-for-cloudwatch-agent"></a>
 
 Access to AWS resources requires permissions\. You can create IAM roles and users that include the permissions that you need for the CloudWatch agent to write metrics to CloudWatch and for the CloudWatch agent to communicate with Amazon EC2 and AWS Systems Manager\. You use IAM roles on Amazon EC2 instances, and you use IAM users with on\-premises servers\.
 
@@ -12,7 +12,7 @@ The ability to write to Parameter Store is a broad and powerful permission\. You
 **Note**  
 We recently modified the following procedures by using new `CloudWatchAgentServerPolicy` and `CloudWatchAgentAdminPolicy` policies created by Amazon, instead of requiring customers to create these policies themselves\. To use these policies to write the agent configuration file to Parameter Store and then download it from Parameter Store, your agent configuration file must have a name that starts with `AmazonCloudWatch-`\. If you have a CloudWatch agent configuration file with a file name that doesn't start with `AmazonCloudWatch-`, these policies can't be used to write the file to Parameter Store or to download the file from Parameter Store\.
 
-## Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances<a name="create-iam-roles-for-cloudwatch-agent-roles"></a>
+## Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances<a name="create-iam-roles-for-cloudwatch-agent-roles"></a>
 
 The first procedure creates the IAM role that you must attach to each Amazon EC2 instance that runs the CloudWatch agent\. This role provides permissions for reading information from the instance and writing it to CloudWatch\.
 
@@ -81,7 +81,7 @@ The permissions for writing to Parameter Store provide broad access\. This role 
 
    The role is now created\.
 
-## Create IAM Users to Use with the CloudWatch Agent on On\-Premises Servers<a name="create-iam-roles-for-cloudwatch-agent-users"></a>
+## Create IAM users to use with the CloudWatch agent on on\-premises servers<a name="create-iam-roles-for-cloudwatch-agent-users"></a>
 
 The first procedure creates the IAM user that you need to run the CloudWatch agent\. This user provides permissions to send data to CloudWatch\.
 

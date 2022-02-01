@@ -1,12 +1,12 @@
-# Set Up Fluent Bit as a DaemonSet to Send Logs to CloudWatch Logs<a name="Container-Insights-setup-logs-FluentBit"></a>
+# Set up Fluent Bit as a DaemonSet to send logs to CloudWatch Logs<a name="Container-Insights-setup-logs-FluentBit"></a>
 
 The following sections help you deploy Fluent Bit to send logs from containers to CloudWatch Logs\.
 
 **Topics**
 + [Differences if you're already using Fluentd](#Container-Insights-setup-logs-FluentBit-migrate)
 + [Setting up Fluent Bit](#Container-Insights-FluentBit-setup)
-+ [Multiline Log Support](#ContainerInsights-fluentbit-multiline)
-+ [Reducing the Log Volume From Fluent Bit \(Optional\)](#ContainerInsights-fluentbit-volume)
++ [Multiline log support](#ContainerInsights-fluentbit-multiline)
++ [\(Optional\) Reducing the log volume from Fluent Bit](#ContainerInsights-fluentbit-volume)
 + [Troubleshooting](#Container-Insights-FluentBit-troubleshoot)
 + [Dashboard](#Container-Insights-FluentBit-dashboard)
 
@@ -39,12 +39,14 @@ The following list explains the differences between Fluentd and each Fluent Bit 
 
 ## Setting up Fluent Bit<a name="Container-Insights-FluentBit-setup"></a>
 
-To set up Fluent Bit to collect logs from your containers, you can follow the steps in [Quick Start Setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\.
+To set up Fluent Bit to collect logs from your containers, you can follow the steps in [Quick Start setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\.
+
+With either method, the IAM role that is attached to the cluster nodes must have sufficient permissions\. For more information about the permissions required to run an Amazon EKS cluster, see [Amazon EKS IAM Policies, Roles, and Permissions](https://docs.aws.amazon.com/eks/latest/userguide/IAM_policies.html) in the *Amazon EKS User Guide*\.
 
 In the following steps, you set up Fluent Bit as a daemonSet to send logs to CloudWatch Logs\. When you complete this step, Fluent Bit creates the following log groups if they don't already exist\.
 
 
-| Log Group Name | Log Source | 
+| Log group name | Log source | 
 | --- | --- | 
 |  `/aws/containerinsights/Cluster_Name/application`  |  All log files in `/var/log/containers`  | 
 |  `/aws/containerinsights/Cluster_Name/host`  |  Logs from `/var/log/dmesg`, `/var/log/secure`, and `/var/log/messages`  | 
@@ -122,7 +124,7 @@ If you want to verify your Fluent Bit setup, follow these steps\.
 
    There might be a slight delay in creating the `/dataplane` log group\. This is normal as these log groups only get created when Fluent Bit starts sending logs for that log group\.
 
-## Multiline Log Support<a name="ContainerInsights-fluentbit-multiline"></a>
+## Multiline log support<a name="ContainerInsights-fluentbit-multiline"></a>
 
 By default, the multiline log entry starter is any character with no white space\. This means that all log lines that start with a character that does not have white space are considered as a new multiline log entry\.
 
@@ -164,7 +166,7 @@ parsers.conf: |
         Time_Format         %Y-%m-%dT%H:%M:%S.%LZ
 ```
 
-## Reducing the Log Volume From Fluent Bit \(Optional\)<a name="ContainerInsights-fluentbit-volume"></a>
+## \(Optional\) Reducing the log volume from Fluent Bit<a name="ContainerInsights-fluentbit-volume"></a>
 
 By default, we send Fluent Bit application logs and Kubernetes metadata to CloudWatch\. If you want to reduce the volume of data being sent to CloudWatch, you can stop one or both of these data sources from being sent to CloudWatch\.
 
@@ -219,7 +221,7 @@ Run the following command and make sure that the status is `Running`\.
 kubectl get pods -n amazon-cloudwatch
 ```
 
-If the logs have errors related to IAM permissions, check the IAM role that is attached to the cluster nodes\. For more information about the permissions required to run an Amazon EKS cluster, see For more information about the permissions required to run an Amazon EKS cluster, see [Amazon EKS IAM Policies, Roles, and Permissions](https://docs.aws.amazon.com/eks/latest/userguide/IAM_policies.html) in the *Amazon EKS User Guide*\.
+If the logs have errors related to IAM permissions, check the IAM role that is attached to the cluster nodes\. For more information about the permissions required to run an Amazon EKS cluster, see [Amazon EKS IAM Policies, Roles, and Permissions](https://docs.aws.amazon.com/eks/latest/userguide/IAM_policies.html) in the *Amazon EKS User Guide*\.
 
 If the pod status is `CreateContainerConfigError`, get the exact error by running the following command\.
 
@@ -229,10 +231,10 @@ kubectl describe pod pod_name -n amazon-cloudwatch
 
 ## Dashboard<a name="Container-Insights-FluentBit-dashboard"></a>
 
-You can create a dashboard to monitor metrics of each running plugin\. You can see data for input and output bytes and for record processing rates as well as output errors and retry/failed rates\. To view these metrics, you will need to install the CloudWatch agent with Prometheus metrics collection for Amazon EKS and Kubernetes clusters\. For more information about how to set up the dashboard, see [Install the CloudWatch agent with Prometheus metrics collection on Amazon EKS and Kubernetes clusters](ContainerInsights-Prometheus-Setup.md)\.
+You can create a dashboard to monitor metrics of each running plugin\. You can see data for input and output bytes and for record processing rates as well as output errors and retry/failed rates\. To view these metrics, you will need to install the CloudWatch agent with Prometheus metrics collection for Amazon EKS and Kubernetes clusters\. For more information about how to set up the dashboard, see [Install the CloudWatch agent with Prometheus metrics collection on Amazon EKS and Kubernetes clustersInstall the CloudWatch agent with Prometheus metrics collection on Amazon EKS and Kubernetes clusters](ContainerInsights-Prometheus-Setup.md)\.
 
 **Note**  
-Before you can set up this dashboard, you must set up Container Insights for Prometheus metrics\. For more information, see [Container Insights Prometheus Metrics Monitoring](ContainerInsights-Prometheus.md)\.
+Before you can set up this dashboard, you must set up Container Insights for Prometheus metrics\. For more information, see [Container Insights Prometheus metrics monitoring](ContainerInsights-Prometheus.md)\.
 
 **To create a dashboard for the Fluent Bit Prometheus metrics**
 

@@ -10,7 +10,7 @@ If this issue happened when you created a canary, you must delete the canary, an
 
 If this issue happens when you update a canary, you can update the canary again and provide a new role that has the required permissions\.
 
-## "No test result returned" Error<a name="CloudWatch_Synthetics_Canaries_VPC_troubleshoot_noresult"></a>
+## "No test result returned" error<a name="CloudWatch_Synthetics_Canaries_VPC_troubleshoot_noresult"></a>
 
 If a canary displays a "no test result returned" error, one of the following issues might be the cause: 
 + If your VPC does not have internet access, you must use VPC endpoints to give the canary access to CloudWatch and Amazon S3\. You must enable the **DNS resolution** and **DNS hostname** options in the VPC for these endpoint addresses to resolve correctly\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)\.

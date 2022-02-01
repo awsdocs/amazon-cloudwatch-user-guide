@@ -1,4 +1,4 @@
-# Add a Dashboard to Your Favorites List<a name="add-dashboard-to-favorites"></a>
+# Add a dashboard to your Favorites list<a name="add-dashboard-to-favorites"></a>
 
 You can add a CloudWatch dashboard to a list of favorite dashboards to help you find it quickly\. The **Favorites** list appears at the bottom of the navigation pane\.
 

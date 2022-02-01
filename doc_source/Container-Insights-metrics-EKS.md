@@ -1,13 +1,13 @@
-# Amazon EKS and Kubernetes Container Insights Metrics<a name="Container-Insights-metrics-EKS"></a>
+# Amazon EKS and Kubernetes Container Insights metrics<a name="Container-Insights-metrics-EKS"></a>
 
 The following table lists the metrics and dimensions that Container Insights collects for Amazon EKS and Kubernetes\. These metrics are in the `ContainerInsights` namespace\. For more information, see [Metrics](cloudwatch_concepts.md#Metric)\.
 
-If you do not see any Container Insights metrics in your console, be sure that you have completed the setup of Container Insights\. Metrics do not appear before Container Insights has been set up completely\. For more information, see [Setting Up Container Insights](deploy-container-insights.md)\.
+If you do not see any Container Insights metrics in your console, be sure that you have completed the setup of Container Insights\. Metrics do not appear before Container Insights has been set up completely\. For more information, see [Setting up Container Insights](deploy-container-insights.md)\.
 
 When you use Container Insights to collect the following metrics, the metrics are charged as custom metrics\. For more information about CloudWatch pricing, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\. 
 
 
-| Metric Name | Dimensions | Description | 
+| Metric name | Dimensions | Description | 
 | --- | --- | --- | 
 |  `cluster_failed_node_count` |  ClusterName  |  The number of failed worker nodes in the cluster\. A node is considered failed if it is suffering from any *node conditions*\. For more information, see [Conditions](https://kubernetes.io/docs/concepts/architecture/nodes/#condition) in the Kubernetes documentation\.  | 
 |  `cluster_node_count` |  ClusterName  |  The total number of worker nodes in the cluster\.  | 

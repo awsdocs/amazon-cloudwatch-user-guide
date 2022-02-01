@@ -7,5 +7,5 @@ For both of these metrics, values are emitted only for metric streams that are i
 
 | Metric | Description | 
 | --- | --- | 
-|  `MetricUpdate`  |  The number metric updates sent to the metric stream\. If no metric updates are streamed during a time period, a value of 0 is emitted for this metric\. If you stop the metric stream, this metric stops being emitted until the metric stream is started again\. Valid Statistic: `Sum` Units: None | 
+|  `MetricUpdate`  |  The number of metric updates sent to the metric stream\. If no metric updates are streamed during a time period, a value of 0 is emitted for this metric\. If you stop the metric stream, this metric stops being emitted until the metric stream is started again\. Valid Statistic: `Sum` Units: None | 
 |  `PublishErrorRate`  |  The number of unrecoverable errors that occur when putting data into the Kinesis Data Firehose delivery stream\. If no errors occur during a time period, a value of 0 is emitted for this metric\. If you stop the metric stream, this metric stops being emitted until the metric stream is started again\. Valid Statistic: `Average` to see the rate of metric updates unable to be written\. This value will be between 0\.0 and 1\.0\. Units: None  | 

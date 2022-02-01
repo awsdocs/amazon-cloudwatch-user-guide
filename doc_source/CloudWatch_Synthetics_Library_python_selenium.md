@@ -2,7 +2,7 @@
 
 The following sections contain information about the CloudWatch Synthetics runtime versions for Python and Selenium Webdriver\. Selenium is an open\-source browser automation tool\. For more information about Selenium, see [www\.selenium\.dev/](https://www.selenium.dev)
 
-The naming convention for these runtime versions is `syn-language-frameworkmajorversion.minorversion`\.
+The naming convention for these runtime versions is `syn-language-framework-majorversion.minorversion`\.
 
 ## syn\-python\-selenium\-1\.0<a name="CloudWatch_Synthetics_runtimeversion-syn-python-selenium-1.0"></a>
 

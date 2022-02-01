@@ -1,8 +1,8 @@
-# ServiceLens Troubleshooting<a name="servicelens_troubleshooting"></a>
+# ServiceLens troubleshooting<a name="servicelens_troubleshooting"></a>
 
 The following sections can help if you're having issues with CloudWatch ServiceLens\.
 
-## I Don't See All My Logs<a name="servicelens_troubleshooting_Nologs"></a>
+## I don't see all my logs<a name="servicelens_troubleshooting_Nologs"></a>
 
 How to configure logs to appear in ServiceLens depends on the service\.
 + API Gateway logs appear if logging is turned on in API Gateway\.
@@ -10,7 +10,7 @@ How to configure logs to appear in ServiceLens depends on the service\.
 + Lambda logs appear if the request ID is in the log entry\. This happens automatically for the situations listed in the following table\. For other cases, where the runtime does not automatically include the trace ID, you can manually include the trace ID\.
 
 
-| Runtime | Method | Request ID Automatically in Log Entry? | 
+| Runtime | Method | Request ID automatically in log entry? | 
 | --- | --- | --- | 
 |  Java  |  context\.getLogger\.log aws\-lambda\-java\-log4j2  |  Yes  | 
 |  Java  |  System\.out\.println  |  No  | 
@@ -21,7 +21,7 @@ How to configure logs to appear in ServiceLens depends on the service\.
 |  Go  |  fmt\.Printf log\.Print  |  No  | 
 |  Ruby  |  puts  |  No  | 
 
-## I Don't See All My Alarms on the Service Map<a name="servicelens_troubleshooting_NoAlarms"></a>
+## I don't see all my alarms on the service map<a name="servicelens_troubleshooting_NoAlarms"></a>
 
 ServiceLens shows only the alert icon for a node if any alarms associated with that node are in the ALARM state\.
 
@@ -30,7 +30,7 @@ ServiceLens associates alarms with nodes using the following logic:
 + If the node represents an AWS resource, then the alarms on that specific resource are linked\. For example, a node of type `AWS::DynamoDB::Table` with the name “MyTable” is linked to all alarms that are based on a metric with the namespace `AWS/DynamoDB` and have the `TableName` dimension set to `MyTable`\.
 + If the node is of unknown type, which is identified by a dashed border around the name, then no alarms are associated with that node\.
 
-## I Don't See Some AWS Resources on the Service Map<a name="servicelens_troubleshooting_MissingResources"></a>
+## I don't see some AWS resources on the service map<a name="servicelens_troubleshooting_MissingResources"></a>
 
 For AWS resources to be traced on the service map, the AWS SDK must be captured using the X\-Ray SDK\. For more information about X\-Ray, see [What Is AWS X\-Ray](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html)\.
 
@@ -43,6 +43,6 @@ Not every AWS resource is represented by a dedicated node\. Some AWS services ar
 + `AWS::SQS::Queue`
 + `AWS::SNS::Topic`
 
-## There Are Too Many Nodes on My Service Map<a name="servicelens_troubleshooting_MapTooBig"></a>
+## There are too many nodes on my service map<a name="servicelens_troubleshooting_MapTooBig"></a>
 
 Use X\-Ray groups to break your map into multiple maps\. For more information, see [ Using Filter Expressions with Groups](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html#groups)\.

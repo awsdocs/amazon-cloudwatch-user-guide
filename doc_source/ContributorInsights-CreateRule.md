@@ -1,4 +1,4 @@
-# Creating a Contributor Insights Rule<a name="ContributorInsights-CreateRule"></a>
+# Creating a Contributor Insights rule<a name="ContributorInsights-CreateRule"></a>
 
 You can create rules to analyze log data\. Any logs in JSON or Common Log Format \(CLF\) can be evaluated\. This includes your custom logs that follow one of these formats and logs from AWS services such as Amazon VPC flow logs, Amazon Route 53 DNS query logs, Amazon ECS container logs, and logs from AWS CloudTrail, Amazon SageMaker, Amazon RDS, AWS AppSync and API Gateway\.
 
@@ -12,7 +12,7 @@ You can use built\-in sample rules when you create a rule or you can create your
 + VPC flow logs
 
 **Important**  
-When you grant a user the `cloudwatch:PutInsightRule` permission, by default that user can create a rule that evaluates any log group in CloudWatch Logs\. You can add IAM policy conditions that limit these permissions for a user to include and exclude specific log groups\. For more information, see [Using Condition Keys to Limit Contributor Insights Users' Access to Log Groups](iam-cw-condition-keys-contributor.md)\.
+When you grant a user the `cloudwatch:PutInsightRule` permission, by default that user can create a rule that evaluates any log group in CloudWatch Logs\. You can add IAM policy conditions that limit these permissions for a user to include and exclude specific log groups\. For more information, see [Using condition keys to limit Contributor Insights users' access to log groups](iam-cw-condition-keys-contributor.md)\.
 
 **To create a rule using a built\-in sample rule**
 
@@ -84,7 +84,7 @@ When you grant a user the `cloudwatch:PutInsightRule` permission, by default tha
 
       For example, if you want to analyze only the log events in an Apache log that contain errors, for **Match**, you would specify **RESPONSE\_CODE**, for **Condition**, you would specify **EqualTo**, and then you would enter **5\*\*** as the value to filter for\.
 
-      You can add as many as 10 filters in a rule\. Multiple filters are joined by AND logic, so only log events that match all filters are evaluated\.
+      You can add as many as four filters in a rule\. Multiple filters are joined by AND logic, so only log events that match all filters are evaluated\.
 
    1. For **Aggregate on**, choose **Count** or **Sum**\. Choosing **Count** causes the contributor ranking to be based on the number of occurrences\. Choosing **Sum** causes the ranking to be based on the aggregated sum of the values of the field that you specify for **Contribution**, **Value**\.
 
@@ -92,7 +92,7 @@ When you grant a user the `cloudwatch:PutInsightRule` permission, by default tha
 
    1. Choose the **Syntax** tab\.
 
-   1. In **Rule body**, enter the JSON object for your rule\. For information about rule syntax, see [Contributor Insights Rule Syntax](ContributorInsights-RuleSyntax.md)\. 
+   1. In **Rule body**, enter the JSON object for your rule\. For information about rule syntax, see [Contributor Insights rule syntax](ContributorInsights-RuleSyntax.md)\. 
 
 1. Choose whether to create the rule in a disabled or enabled state\. If you choose to enable it, the rule immediately starts analyzing your data\. You incur costs when you run enabled rules\. For more information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
@@ -114,7 +114,7 @@ You can disable, enable, or delete rules that you have created\.
 
 1. Choose **Actions**, and then choose the option you want\.<a name="finding_log_fields"></a>
 
-**Finding Log Fields**
+**Finding log fields**
 
 When you create a rule, you need to know the names of fields in the log entries in a log group\.
 

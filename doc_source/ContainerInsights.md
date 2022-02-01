@@ -16,12 +16,12 @@ Container Insights supports encryption with the customer master key \(CMK\) for 
 
 For more information, see [Encrypt Log Data in CloudWatch Logs Using AWS KMS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html)\.
 
-## Supported Platforms<a name="container-insights-platforms"></a>
+## Supported platforms<a name="container-insights-platforms"></a>
 
 Container Insights is available for Amazon Elastic Container Service, Amazon Elastic Kubernetes Service, and Kubernetes platforms on Amazon EC2 instances\.
 + For Amazon ECS, Container Insights collects metrics at the cluster, task and service levels on both Linux and Windows Server instances\. It can collect metrics at the instance\-level only on Linux instances\.
 
-  For Amazon ECS, network metrics are available only for containers in `bridge` network mode\. They are not available for containers in `awsvpc` network mode or `host` network mode\.
+  For Amazon ECS, network metrics are available only for containers in `bridge` network mode and `awsvpc` network mode\. They are not available for containers in `host` network mode\.
 + For Amazon Elastic Kubernetes Service, and Kubernetes platforms on Amazon EC2 instances, Container Insights is supported only on Linux instances\.
 + Currently, Container Insights isn't supported in AWS Batch\.
 
@@ -49,9 +49,12 @@ Container Insights for Amazon ECS is supported in the following Regions:
 + Europe \(London\)
 + Europe \(Paris\)
 + Europe \(Stockholm\)
++ Middle East \(Bahrain\)
 + South America \(São Paulo\)
 + AWS GovCloud \(US\-East\)
 + AWS GovCloud \(US\-West\)
++ China \(Beijing\)
++ China \(Ningxia\)
 
 **Supported Regions for Amazon EKS and Kubernetes**
 

@@ -1,12 +1,12 @@
-# Security Considerations for Synthetics Canaries<a name="servicelens_canaries_security"></a>
+# Security considerations for Synthetics canaries<a name="servicelens_canaries_security"></a>
 
 The following sections explain security issues that you should consider when creating and running canaries in Synthetics\.
 
-## Use Secure Connections<a name="servicelens_canaries_connections"></a>
+## Use secure connections<a name="servicelens_canaries_connections"></a>
 
 Because canary code and the results from canary test runs can contain sensitive information, do not have your canary connect to endpoints over unencrypted connections\. Always use encrypted connections, such as those that begin with `https://`\.
 
-## Canary Naming Considerations<a name="servicelens_canaries_security_canary_arn_name"></a>
+## Canary naming considerations<a name="servicelens_canaries_security_canary_arn_name"></a>
 
 The Amazon Resource Name \(ARN\) of a canary is included in the user\-agent header as a part of outbound calls made from the Puppeteer\-driven Chromium browser that is included as a part of the CloudWatch Synthetics wrapper library\. This helps identify CloudWatch Synthetics canary traffic and relate it back to the canaries that are making calls\. 
 
@@ -14,11 +14,11 @@ The canary ARN includes the canary name\. Choose canary names that do not reveal
 
 Additionally, be sure to point your canaries only at websites and endpoints that you control\.
 
-## Secrets in Canary Code<a name="servicelens_canaries_secrets"></a>
+## Secrets in canary code<a name="servicelens_canaries_secrets"></a>
 
 We recommend that you don't include secrets, such as access keys or database credentials, in your canary source code\. For more information about how to use AWS Secrets Manager to help keep your secrets safe, see [What is AWS Secrets Manager?](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)\.
 
-## Permissions Considerations<a name="servicelens_canaries_security_results"></a>
+## Permissions considerations<a name="servicelens_canaries_security_results"></a>
 
 We recommend that you restrict access to resources that are created or used by CloudWatch Synthetics\. Use tight permissions on the Amazon S3 buckets where canaries store test run results and other artifacts, such as logs and screenshots\.
 
@@ -32,7 +32,7 @@ https://s3.amazonaws.com/bucket/path/object.zip?versionId=version-id
 https://bucket.s3-region.amazonaws.com/path/object.zip?versionId=version-id
 ```
 
-## Stack Traces and Exception Messages<a name="servicelens_canaries_security_stack_traces"></a>
+## Stack traces and exception messages<a name="servicelens_canaries_security_stack_traces"></a>
 
 By default, CloudWatch Synthetics canaries capture any exception thrown by your canary script, no matter whether the script is custom or is from a blueprint\. CloudWatch Synthetics logs both the exception message and the stack trace to three locations:
 + Back into the CloudWatch Synthetics service to speed up debugging when you describe test runs
@@ -41,7 +41,9 @@ By default, CloudWatch Synthetics canaries capture any exception thrown by your 
 
 If you want to send and store less information, you can capture exceptions before they return to the CloudWatch Synthetics wrapper library\.
 
-## Scope Your IAM Roles Narrowly<a name="servicelens_canaries_security_canary_iam_scope"></a>
+You can also have request URLs in your errors\. CloudWatch Synthetics scans for any URLs in the error thrown by your script and redacts restricted URL parameters from them based on the **restrictedUrlParameters** configuration\. If you are logging error messages in your script, you can use [](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_getSanitizedErrorMessage) to redact URLs before logging\. 
+
+## Scope your IAM roles narrowly<a name="servicelens_canaries_security_canary_iam_scope"></a>
 
 We recommend that you do not configure your canary to visit potentially malicious URLs or endpoints\. Pointing your Canary to untrusted or unknown websites or endpoints could expose your Lambda function code to malicious user’s scripts\. Assuming a malicious website can break out of Chromium, it could have access to your Lambda code in a similar way to if you connected to it using an internet browser\. 
 
@@ -49,6 +51,24 @@ Run your Lambda function with an IAM execution role that has scoped\-down permis
 
 When you use the CloudWatch console to create a canary, it is created with a scoped\-down IAM execution role\.
 
-## Header Logging<a name="servicelens_canaries_security_logging"></a>
+## Senstive data redaction<a name="servicelens_canaries_security_logging"></a>
 
-By default, canary header logging logs only the request URL, response code, and response status\. Within your canary script, you can customize the logging to log more or less information\. 
+CloudWatch Synthetics captures URLs, status code, failure reason \(if any\), and headers and bodies of requests and responses\. This enables a canary user to understand, monitor, and debug canaries\. 
+
+ The configurations described in the following sections can be set at any point in canary execution\. You can also choose to apply different configurations to different synthetics steps\. 
+
+### Request URLs<a name="servicelens_canaries_security_logging_url"></a>
+
+By default, CloudWatch Synthetics logs request URLs, status codes, and the status reason for each URL in canary logs\. Request URLs can also appear in canary execution reports, HAR files, and so on\. Your request URL might contain sensitive query parameters, such as access tokens or passwords\. You can redact sensitive information from being logged by CloudWatch Synthetics\.
+
+To redact sensitive information, set the configuration property **restrictedUrlParameters**\. For more information, see [SyntheticsConfiguration class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsConfiguration)\. This causes CloudWatch Synthetics to redact URL parameters, including path and query parameter values, based on **restrictedUrlParameters** before logging\. If you are logging URLs in your script, you can use [](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_getSanitizedUrl) to redact URLs before logging\. For more information, see [SyntheticsLogHelper class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsLogHelper)\. 
+
+### Headers<a name="servicelens_canaries_security_logging_headers"></a>
+
+By default, CloudWatch Synthetics doesn't log request/response headers\. For UI canaries, this is the default behavior for canaries using runtime version `syn-nodejs-puppeteer-3.2` and later\.
+
+ If your headers don't contain sensitive information, you can enable headers in HAR file and HTTP reports by setting the **includeRequestHeaders** and **includeResponseHeaders** properties to `true`\. You can enable all headers but choose to restrict values of sensitive header keys\. For example, you can choose to only redact `Authorization` headers from artifacts produced by canaries\. 
+
+### Request and response body<a name="servicelens_canaries_security_logging_body"></a>
+
+By default, CloudWatch Synthetics doesn't log the request/response body in canary logs or reports\. This information is particularly useful for API canaries\. Synthetics captures all HTTP requests and can show headers, request and response bodies\. For more information, see [executeHttpStep\(stepName, requestOptions, \[callback\], \[stepConfig\]\)](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_executeHttpStep)\. You can choose to enable request/response body by setting the **includeRequestBody** and **includeResponseBody** properties to `true`\. 

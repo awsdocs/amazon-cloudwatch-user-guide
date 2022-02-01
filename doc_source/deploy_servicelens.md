@@ -6,4 +6,4 @@ Deploying ServiceLens requires two steps:
 
 **Topics**
 + [Deploying AWS X\-Ray](deploy_servicelens_xray.md)
-+ [Deploying the CloudWatch Agent and the X\-Ray Daemon](deploy_servicelens_CloudWatch_agent.md)
++ [Deploying the CloudWatch agent and the X\-Ray daemon](deploy_servicelens_CloudWatch_agent.md)

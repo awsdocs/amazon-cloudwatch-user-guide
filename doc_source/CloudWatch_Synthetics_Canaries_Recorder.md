@@ -8,9 +8,9 @@ After you start recording, the CloudWatch Synthetics Recorder detects your actio
 
 **Credits**: The CloudWatch Synthetics Recorder is based on the [ Headless recorder ](https://github.com/checkly/headless-recorder)\.
 
-## Installing the CloudWatch Synthetics recorder extension for Google Chrome<a name="CloudWatch_Synthetics_Canaries_Recorder-install"></a>
+## Installing the CloudWatch Synthetics Recorder extension for Google Chrome<a name="CloudWatch_Synthetics_Canaries_Recorder-install"></a>
 
-To use the CloudWatch Synthetics recorder, you can start creating a canary and choose the **Canary Recorder** blueprint\. If you do this when you haven't already downloaded the recorder, the CloudWatch Synthetics console provides a link to download it\.
+To use the CloudWatch Synthetics Recorder, you can start creating a canary and choose the **Canary Recorder** blueprint\. If you do this when you haven't already downloaded the recorder, the CloudWatch Synthetics console provides a link to download it\.
 
 Alternatively, you can follow these steps to download and install the recorder directly\.
 
@@ -22,11 +22,11 @@ Alternatively, you can follow these steps to download and install the recorder d
 
 ## Using the CloudWatch Synthetics Recorder for Google Chrome<a name="CloudWatch_Synthetics_Canaries_Recorder-using"></a>
 
-To use the CloudWatch Synthetics recorder to help you create a canary, you can choose **Create canary** in the CloudWatch console, and then choose **Use a blueprint**, **Canary Recorder**\. For more information, see [Creating a canary](CloudWatch_Synthetics_Canaries_Create.md)\. 
+To use the CloudWatch Synthetics Recorder to help you create a canary, you can choose **Create canary** in the CloudWatch console, and then choose **Use a blueprint**, **Canary Recorder**\. For more information, see [Creating a canary](CloudWatch_Synthetics_Canaries_Create.md)\. 
 
 Alternatively, you can use the recorder to record steps without immediately using them to create a canary\.
 
-**To use the CloudWatch Synthetics recorder to record your actions on a website**
+**To use the CloudWatch Synthetics Recorder to record your actions on a website**
 
 1. Navigate to the page that you want to monitor\.
 
@@ -46,7 +46,7 @@ Alternatively, you can use the recorder to record steps without immediately usin
 
 ## Known limitations of the CloudWatch Synthetics Recorder<a name="CloudWatch_Synthetics_Canaries_Recorder-limitations"></a>
 
-The CloudWatch Synthetics recorder for Google Chrome currently has the following limitations\.
+The CloudWatch Synthetics Recorder for Google Chrome currently has the following limitations\.
 + HTML elements that don’t have IDs will use CSS selectors\. This can break canaries if the webpage structure changes later\. We plan to provide some configuration options \(such as using data\-id\) around this in a future version of the recorder\. 
 + The recorder doesn't support actions such as double\-click or copy/paste, and doesn't support key combinations such as CMD\+0\. 
 + To verify the presence of an element or text on the page, users must add assertions after the script is generated\. The recorder doesn't support verifying an element without performing any action on that element\. This is similar to the “Verify text” or “Verify element” options in the canary workflow builder\. We plan to add some assertions support in a future version of the recorder\. 

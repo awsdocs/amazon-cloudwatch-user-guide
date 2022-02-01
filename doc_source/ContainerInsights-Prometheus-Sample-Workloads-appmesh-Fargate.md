@@ -1,8 +1,8 @@
-# Set Up AWS App Mesh sample workload on an Amazon EKS cluster with the Fargate launch type<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-Fargate"></a>
+# Set up AWS App Mesh sample workload on an Amazon EKS cluster with the Fargate launch type<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-Fargate"></a>
 
 Use these instructions if you are setting up App Mesh on a cluster running Amazon EKS with the Fargate launch type\.
 
-## Configure IAM Permissions<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh--fargate-iam"></a>
+## Configure IAM permissions<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh--fargate-iam"></a>
 
 To set up IAM permissions, enter the following command\. Replace *MyCluster* with the name of your cluster\.
 
@@ -24,7 +24,7 @@ eksctl create iamserviceaccount --cluster MyCluster \
 
 To install the App Mesh Kubernetes controller, follow the instructions in [App Mesh Controller](https://github.com/aws/eks-charts/tree/master/stable/appmesh-controller#app-mesh-controller)\. Be sure to follow the instructions for Amazon EKS with the Fargate launch type\.
 
-## Install a Sample Application<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-fargate-application"></a>
+## Install a sample application<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-fargate-application"></a>
 
 [aws\-app\-mesh\-examples](https://github.com/aws/aws-app-mesh-examples) contains several Kubernetes App Mesh walkthroughs\. For this tutorial, you install a sample color application that works for Amazon EKS clusters with the Fargate launch type\.
 
@@ -32,7 +32,7 @@ To install the App Mesh Kubernetes controller, follow the instructions in [App M
 
 1. Install the application using these instructions: [https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-fargate](https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-fargate)\. 
 
-   Those instructions assume that you are creating a new cluster wtih the correct Fargate profile\. If you want to use an Amazon EKS cluster that you've already set up, you can use the following commands to set up that cluster for this demonstration\. Replace *MyCluster* with the name of your cluster\.
+   Those instructions assume that you are creating a new cluster with the correct Fargate profile\. If you want to use an Amazon EKS cluster that you've already set up, you can use the following commands to set up that cluster for this demonstration\. Replace *MyCluster* with the name of your cluster\.
 
    ```
    eksctl create iamserviceaccount --cluster MyCluster \
@@ -71,7 +71,7 @@ To install the App Mesh Kubernetes controller, follow the instructions in [App M
 
 1. To see the CloudWatch Logs events, choose **Log groups** in the navigation pane\. The events are in the log group ` /aws/containerinsights/your_cluster_name/prometheus ` in the log stream `kubernetes-pod-appmesh-envoy`\.
 
-## Deleting the App Mesh Test Environment<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-fargate-delete"></a>
+## Deleting the App Mesh test environment<a name="ContainerInsights-Prometheus-Sample-Workloads-appmesh-fargate-delete"></a>
 
 When you have finished using App Mesh and the sample application, use the following commands to delete the unnecessary resources\. Delete the sample application by entering the following command:
 
