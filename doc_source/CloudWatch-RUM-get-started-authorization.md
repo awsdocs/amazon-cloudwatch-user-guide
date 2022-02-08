@@ -55,7 +55,7 @@ Amazon Cognito will then send the necessary security token to enable your applic
 
 ## Third\-party provider<a name="CloudWatch-RUM-get-started-authorization-thirdparty"></a>
 
-If you choose to private authentication from a third\-party provider, you must get credentials from the identity provider and forward them to AWS\. The best way to do this is by using a *security token vendor*\. You can use any security token vendor, including Amazon Cognito with AWS Security Token Service\. For more information about AWS STS, see [Welcome to the AWS Security Token Service API Reference](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html)\. 
+If you choose to use private authentication from a third\-party provider, you must get credentials from the identity provider and forward them to AWS\. The best way to do this is by using a *security token vendor*\. You can use any security token vendor, including Amazon Cognito with AWS Security Token Service\. For more information about AWS STS, see [Welcome to the AWS Security Token Service API Reference](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html)\. 
 
 If you want to use Amazon Cognito as the token vendor in this scenario, you can configure Amazon Cognito to work with an authentication provider\. For more information, see [Getting Started with Amazon Cognito Identity Pools \(Federated Identities\)](https://docs.aws.amazon.com/cognito/latest/developerguide/getting-started-with-identity-pools.html)\.
 
