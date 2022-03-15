@@ -1,8 +1,8 @@
 # Set up NGINX with sample traffic on Amazon EKS and Kubernetes<a name="ContainerInsights-Prometheus-Sample-Workloads-nginx"></a>
 
-NGINX is a web server that can also be used as a load balancer and reverse proxy\. For more information, see [NGINX](https://www.nginx.com/)\.
+NGINX is a web server that can also be used as a load balancer and reverse proxy\. For more information on how Kubernetes uses NGINX for Ingress, see [Ingress-NGINX](https://github.com/kubernetes/ingress-nginx)\.
 
-**To install NGINX with a sample traffic service to test Container Insights Prometheus support**
+**To install Ingress-NGINX with a sample traffic service to test Container Insights Prometheus support**
 
 1. Enter the following command to add the Helm ingress\-nginx repo:
 
