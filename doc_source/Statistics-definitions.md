@@ -36,7 +36,7 @@ For Trimmed Mean, Trimmed Count, Trimmed Sum, and Winsorized Mean, the following
 
 A percentile such as **p99** and a trimmed mean such as **tm99** measure similar, but not identical values\. Both **p99** and **tm99** ignore the 1% of the data points with the highest values, which are considered outliers\. After that, **p99** is the **maximum value of the remaining 99%, while **tm99** is the *average* of the remaining 99%\. If you are looking at the latency of web requests, **p99** tells you the worst customer experience, ignoring outliers, while **tm99** tells you the average customer experience, ignoring outliers\.
 
-Trimmed mean is a good latency statistic to watch if you are looking to optimize your customer experience\. For alarming on latency, we recomend to use a percentile statistic, to receive alerts early if there is an issue that leads to a partial loss of service\.
+Trimmed mean is a good latency statistic to watch if you are looking to optimize your customer experience\. For alarming on latency, we recommend to use a percentile statistic, to receive alerts early if there is an issue that leads to a partial loss of service\.
 
 ## Requirements to use percentiles, trimmed mean, and some other statistics<a name="Percentiles-trimmedmean-requirements"></a>
 
