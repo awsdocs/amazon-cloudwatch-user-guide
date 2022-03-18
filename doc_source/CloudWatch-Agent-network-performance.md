@@ -57,6 +57,7 @@ For more information about the CloudWatch agent configuration file, see [ Manual
           "linklocal_allowance_exceeded",
           "pps_allowance_exceeded"
          ]
+      }   
     }
  }
 ```
