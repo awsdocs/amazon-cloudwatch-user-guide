@@ -50,7 +50,7 @@ Alarms based on EC2 metrics can also perform EC2 actions, such as stopping, term
 
 Alarms can also perform actions to scale an Auto Scaling group\. For more information, see [ Step and simple scaling policies for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html)\.
 
-You can also configure alarms to create OpsItems in Systems Manager Ops Center or create incidents in AWS Systems Manager Incident Manager\. These actions be performed only when the alarm goes into ALARM state\. For more information, see [ Configuring CloudWatch to create OpsItems from alarms](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-create-OpsItems-from-CloudWatch-Alarms.html) and [ Incident creation](https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html)\.
+You can also configure alarms to create OpsItems in Systems Manager Ops Center or create incidents in AWS Systems Manager Incident Manager\. These actions will be performed only when the alarm goes into ALARM state\. For more information, see [ Configuring CloudWatch to create OpsItems from alarms](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-create-OpsItems-from-CloudWatch-Alarms.html) and [ Incident creation](https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html)\.
 
 ## Configuring how CloudWatch alarms treat missing data<a name="alarms-and-missing-data"></a>
 
@@ -64,7 +64,7 @@ Similar to how each alarm is always in one of three states, each specific data p
 + Missing
 
 For each alarm, you can specify CloudWatch to treat missing data points as any of the following:
-+ `notBreaching` – Missing data points are treated as "good" and within the threshold,
++ `notBreaching` – Missing data points are treated as "good" and within the threshold
 + `breaching` – Missing data points are treated as "bad" and breaching the threshold
 + `ignore` – The current alarm state is maintained
 + `missing` – If all data points in the alarm evaluation range are missing, the alarm transitions to INSUFFICIENT\_DATA\.
@@ -135,17 +135,17 @@ CloudWatch alarm evaluation includes logic to try to avoid false alarms, where t
 
 Suppose an alarm's most recent data is `- - - - X`, with four missing data points and then a breaching data point as the most recent data point\. Because the next data point may be non\-breaching, the alarm does not go immediately into ALARM state when the data is either `- - - - X` or `- - - X -` and **Datapoints to Alarm** is 3\. This way, false positives are avoided when the next data point is non\-breaching and causes the data to be `- - - X O` or `- - X - O`\.
 
-However, if the last few data points are `- - X - -`, the alarm goes into ALARM state even if missing data points are treated as missing\. This is because alarms are designed to always go into ALARM state when the oldest available breaching datapoint during the Evaluation Periods number of data points is at least as old as the value of **Datapoints to Alarm**, and all other more recent data points are breaching or missing\. In this case, the alarm goes into ALARM state even if the total number of datapoints available is lower than M \(**Datapoints to Alarm**\)\.
+However, if the last few data points are `- - X - -`, the alarm goes into ALARM state even if missing data points are treated as missing\. This is because alarms are designed to always go into ALARM state when the oldest available breaching datapoint during the **Evaluation Periods** number of data points is at least as old as the value of **Datapoints to Alarm**, and all other more recent data points are breaching or missing\. In this case, the alarm goes into ALARM state even if the total number of datapoints available is lower than M \(**Datapoints to Alarm**\)\.
 
 This alarm logic applies to M out of N alarms as well\. If the oldest breaching data point during the evaluation range is at least as old as the value of **Datapoints to Alarm**, and all of the more recent data points are either breaching or missing, the alarm goes into ALARM state no matter the value of M \(**Datapoints to Alarm**\)\.
 
 ## High\-resolution alarms<a name="high-resolution-alarms"></a>
 
- If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing custom metrics](publishingMetrics.md)\.
+If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing custom metrics](publishingMetrics.md)\.
 
 ## Alarms on math expressions<a name="alarms-on-metric-math-expressions"></a>
 
- You can set an alarm on the result of a math expression that is based on one or more CloudWatch metrics\. A math expression used for an alarm can include as many as 10 metrics\. Each metric must be using the same period\.
+You can set an alarm on the result of a math expression that is based on one or more CloudWatch metrics\. A math expression used for an alarm can include as many as 10 metrics\. Each metric must be using the same period\.
 
 For an alarm based on a math expression, you can specify how you want CloudWatch to treat missing data points for the underlying metrics when evaluating the alarm\. 
 
