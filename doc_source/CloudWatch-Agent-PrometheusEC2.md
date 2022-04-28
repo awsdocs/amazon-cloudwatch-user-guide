@@ -424,7 +424,7 @@ Next, set up the Prometheus scrape configuration in the CloudWatch agent configu
        os: windows
    ```
 
-1. Set up the CloudWatch agent configuration\. First, navigate to the correct directly\. On Linux, it is `/opt/aws/amazon-cloudwatch-agent/var/cwagent-config.json`\. On Windows, it is `C:\ProgramData\Amazon\AmazonCloudWatchAgent\cwagent-config.json`\.
+1. Set up the CloudWatch agent configuration\. First, navigate to the correct directory\. On Linux, it is `/opt/aws/amazon-cloudwatch-agent/var/cwagent-config.json`\. On Windows, it is `C:\ProgramData\Amazon\AmazonCloudWatchAgent\cwagent-config.json`\.
 
    The following is a sample configuration with Java/JHX Prometheus metrics defined\. Be sure to replace *path\-to\-Prometheus\-Scrape\-Configuration\-file* with the correct path\.
 
