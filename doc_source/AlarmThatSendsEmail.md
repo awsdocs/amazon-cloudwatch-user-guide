@@ -98,7 +98,7 @@ In columns 3\-6, the column headers are the possible values for how to treat mis
 | --- | --- | --- | --- | --- | --- | 
 |  0 \- X \- X  |  0  |  `OK`  |  `OK`  |  `OK`  |  `OK`  | 
 |  0 \- \- \- \-  |  2  |  `OK`  |  `OK`  |  `OK`  |  `OK`  | 
-|  \- \- \- \- \-  |  3  |  `INSUFFICIENT_DATA`  |  Retain current state  |  `ALARM`  |  `OK`  | 
+|  \- \- \- \- \-  |  3  |  `INSUFFICIENT_DATA`  |  `Retain current state`  |  `ALARM`  |  `OK`  | 
 |  0 X X \- X  |  0  |  `ALARM`  |  `ALARM`  |  `ALARM`  |  `ALARM`  | 
 |  \- \- X \- \-   |  2  |  `ALARM`  |  `Retain current state`  |  `ALARM`  |  `OK`  | 
 
