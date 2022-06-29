@@ -26,10 +26,10 @@ When you use Container Insights to collect the following metrics, the metrics ar
 |  `node_number_of_running_pods` |  NodeName, ClusterName, InstanceId ClusterName  |  The number of running pods per node in a cluster\.  | 
 |  `pod_cpu_reserved_capacity` |  PodName, Namespace, ClusterName ClusterName  |  The CPU capacity that is reserved per pod in a cluster\.  | 
 |  `pod_cpu_utilization` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The percentage of CPU units being used by pods\.  | 
-|  `pod_cpu_utilization_over_pod_limit` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The percentage of CPU units being used by pods that is over the pod limit\.  | 
+|  `pod_cpu_utilization_over_pod_limit` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The percentage of CPU units being used by pods relative to the pod limit\.  | 
 |  `pod_memory_reserved_capacity` |  PodName, Namespace, ClusterName ClusterName  |  The percentage of memory that is reserved for pods\.  | 
 |  `pod_memory_utilization` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The percentage of memory currently being used by the pod or pods\.  | 
-|  `pod_memory_utilization_over_pod_limit` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The percentage of memory that is being used by pods that is over the pod limit\.  | 
+|  `pod_memory_utilization_over_pod_limit` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The percentage of memory that is being used by pods relative to the pod limit\.  | 
 |  `pod_number_of_container_restarts` |  PodName, Namespace, ClusterName  |  The total number of container restarts in a pod\.  | 
 |  `pod_network_rx_bytes` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The number of bytes per second being received over the network by the pod\.  | 
 |  `pod_network_tx_bytes` |  PodName, Namespace, ClusterName Namespace, ClusterName Service, Namespace, ClusterName ClusterName  |  The number of bytes per second being transmitted over the network by the pod\.  | 
