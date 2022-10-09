@@ -2,7 +2,7 @@
 
 To deploy the CloudWatch agent to collect instance\-level metrics from Amazon ECS clusters that are hosted on EC2 instance, use a quick start setup with a default configuration, or install the agent manually to be able to customize it\.
 
-Both methods require that you already have at least one Amazon ECS cluster deployed with an EC2 launch type\. These methods also assume that you have the AWS CLI installed\. Additionally, to run the commands in the following procedures, you must be logged on to an account or role that has the **IAMFullAccess** and **AmazonECS\_FullAccess** policies\.
+Both methods require that you already have at least one Amazon ECS cluster deployed with an EC2 launch type and that the CloudWatch Agent container have access to the [EC2 Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. These methods also assume that you have the AWS CLI installed\. Additionally, to run the commands in the following procedures, you must be logged on to an account or role that has the **IAMFullAccess** and **AmazonECS\_FullAccess** policies\.
 
 **Topics**
 + [Quick setup using AWS CloudFormation](#deploy-container-insights-ECS-instancelevel-quickstart)
