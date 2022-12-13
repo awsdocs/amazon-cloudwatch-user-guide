@@ -16,8 +16,8 @@ Next, install the extension on the Lambda function\. Replace the ARN value for t
 
 ```
 import lambda = require('@aws-cdk/aws-lambda');
-const layerArn = `arn:aws:lambda:us-west-1:580247275435:layer:LambdaInsightsExtension:14`;
-const layer = lambda.LayerVersion.fromLayerVersionArn(this, `LayerFromArn`, layerArn);
+const layerArn = 'arn:aws:lambda:us-west-1:580247275435:layer:LambdaInsightsExtension:14';
+const layer = lambda.LayerVersion.fromLayerVersionArn(this, 'LayerFromArn', layerArn);
 ```
 
 If necessary, enable the virtual private cloud \(VPC\) endpoint for CloudWatch Logs\. This step is necessary only for functions running in a private subnet with no internet access, and if you have not already configured a CloudWatch Logs VPC endpoint\.
