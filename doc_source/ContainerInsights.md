@@ -80,5 +80,3 @@ Container Insights for Amazon EKS and Kubernetes is supported in the following R
 + South America \(São Paulo\)
 + AWS GovCloud \(US\-East\)
 + AWS GovCloud \(US\-West\)
-
-**Topics**
