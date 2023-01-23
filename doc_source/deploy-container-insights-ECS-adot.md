@@ -50,7 +50,7 @@ The first step is creating a task role in the cluster that the AWS OpenTelemetry
 
 1. Select the check box next to **AWSDistroOpenTelemetryPolicy**\.
 
-1. Coose **Next: Tags** and then choose **Next: Review\.**
+1. Choose **Next: Tags** and then choose **Next: Review\.**
 
 1. For **Role name** enter **AWSOpenTelemetryTaskRole** and then choose **Create role**\.
 
