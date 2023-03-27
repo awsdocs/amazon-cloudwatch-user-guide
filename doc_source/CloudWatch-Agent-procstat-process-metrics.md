@@ -12,7 +12,7 @@ The *procstat* plugin enables you to collect metrics from individual processes\.
 To use the procstat plugin, add a `procstat` section in the `metrics_collected` section of the CloudWatch agent configuration file\. There are three ways to specify the processes to monitor\. You can use only one of these methods, but you can use that method to specify one or more processes to monitor\.
 + `pid_file`: Selects processes by the names of the process identification number \(PID\) files they create\. 
 + `exe`: Selects the processes that have process names that match the string that you specify, using regular expression matching rules\. The match is a "contains" match, meaning that if you specify `agent` as the term to match, processes with names like `cloudwatchagent` match the term\. For more information, see [Syntax](https://github.com/google/re2/wiki/Syntax)\.
-+ `pattern`: Selects processes by the command lines used to start the processes\. All processes are selected that have command lines matching the specified string using regular expression matching rules\.The entire command line is checked, including parameters and options used with the command\.
++ `pattern`: Selects processes by the command lines used to start the processes\. All processes are selected that have command lines matching the specified string using regular expression matching rules\. The entire command line is checked, including parameters and options used with the command\.
 
    The match is a "contains" match, meaning that if you specify `-c` as the term to match, processes with parameters like `-config` match the term\. 
 
