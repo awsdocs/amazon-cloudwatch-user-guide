@@ -59,6 +59,6 @@ This method works only on Amazon EKS clusters\.
 
 1. If you haven't already, create the IAM role for your service account\. For more information, see [Creating an IAM role and policy for your service account](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)\. 
 
-   When you create the role, attach the **CloudWatchAgentServerPolicy** IAM policy to the role in addition to the policy that you create for the role\.
+   When you create the role, attach the **CloudWatchAgentServerPolicy** IAM policy to the role in addition to the policy that you create for the role\. Also, the associated Kubernetes ServiceAccount linked with this role should be created in `amazon-cloudwatch` namespace, where the CloudWatch and Fluent Bit daemonsets will be deployed in the upcoming steps.
 
 1. If you haven't already, associate the IAM role with a service account in your cluster\. For more information, see [Specifying an IAM role for your service account ](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html)
