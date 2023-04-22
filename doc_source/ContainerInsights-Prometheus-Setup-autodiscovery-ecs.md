@@ -176,7 +176,7 @@ Two task definition ARN regular expresion sections are defined:
     {
       "sd_job_name": "haproxy-prometheus",
       "sd_metrics_path": "/stats/metrics",
-      "sd_container_name_pattern": "^haproxy$" 
+      "sd_container_name_pattern": "^haproxy$",
       "sd_metrics_ports": "8404",
       "sd_service_name_pattern": ".*haproxy-service.*"
     }
