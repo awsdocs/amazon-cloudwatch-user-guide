@@ -39,6 +39,9 @@ The following list explains the differences between Fluentd and each Fluent Bit 
 
 ## Setting up Fluent Bit<a name="Container-Insights-FluentBit-setup"></a>
 
+**Important** 
+If you already have Fluentd configured as Container Insight and Fluentd DaemonSet is not running as expected (maybe the case when using the `containerd` runtime), you must uninstall it before installing Fluent-Bit to avoid Fluent-Bit from processing FLuentd's error log messages\.  Otherwise, you must uninstall Fluentd immediately after you have successfully installed Fluent-Bit\. The reason for uninstalling Fluentd (if it is working as expected) after installing Fluent-Bit is to ensure continuity in logging during this migration process.  Since both of these have the same purpose of sending Container Insight logs to CloudWatch, only one is needed\.
+
 To set up Fluent Bit to collect logs from your containers, you can follow the steps in [Quick Start setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\.
 
 With either method, the IAM role that is attached to the cluster nodes must have sufficient permissions\. For more information about the permissions required to run an Amazon EKS cluster, see [Amazon EKS IAM Policies, Roles, and Permissions](https://docs.aws.amazon.com/eks/latest/userguide/IAM_policies.html) in the *Amazon EKS User Guide*\.
