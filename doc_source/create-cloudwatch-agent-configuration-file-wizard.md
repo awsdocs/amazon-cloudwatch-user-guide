@@ -82,11 +82,13 @@ Parameter Store supports parameters in Standard and Advanced tiers\. These param
    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
    ```
 
-   On a server running Windows Server, enter the following:
+   On a server running Windows Server, run the following commands to launch the wizard:
 
    ```
    cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
-   amazon-cloudwatch-agent-config-wizard.exe
+   ```
+   ```
+   .\amazon-cloudwatch-agent-config-wizard.exe
    ```
 
 1. Answer the questions to customize the configuration file for your server\.
