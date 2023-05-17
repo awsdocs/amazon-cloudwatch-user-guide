@@ -22,7 +22,7 @@ The following example shows a component configuration in JSON format for API Gat
         { 
             "logType" : "API_GATEWAY_ACCESS",   
             "monitor" : true  
-        },
+        }
     ]
 }
 ```
