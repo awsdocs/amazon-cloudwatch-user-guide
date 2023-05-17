@@ -16,7 +16,7 @@ If you are not already using Fluentd, we recommend that you use Fluent Bit for t
 
 ## Fluent Bit and Fluentd performance comparison<a name="Container-Insights-EKS-logs-performance"></a>
 
-The following tables show the the performance advantage that Fluent Bit has over FluentD in memory and CPU usages\. The following numbers are just for reference and might change depending on the environment\.
+The following tables show the performance advantage that Fluent Bit has over FluentD in memory and CPU usages\. The following numbers are just for reference and might change depending on the environment\.
 
 
 | Logs per second | Fluentd CPU usage | Fluent Bit CPU usage with Fluentd\-compatible configuration | Fluent Bit CPU usage with optimized configuration | 
