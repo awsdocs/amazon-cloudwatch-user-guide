@@ -70,6 +70,12 @@ For each download link, there is a general link as well as links for each Region
 
    This command also works from within PowerShell\. For more information about MSI command options, see [Command\-Line Options](https://docs.microsoft.com/en-us/windows/desktop/Msi/command-line-options) in the Microsoft Windows documentation\.
 
+   If you downloaded a PKG package on a macOS server, change to the directory containing the package and enter the following:
+
+   ```
+   sudo installer -pkg ./amazon-cloudwatch-agent.pkg -target /
+   ```
+
 ## \(Installing on an EC2 instance\) Attaching an IAM role<a name="install-CloudWatch-Agent-iam_permissions-first"></a>
 
 To enable the CloudWatch agent to send data from the instance, you must attach an IAM role to the instance\. The role to attach is **CloudWatchAgentServerRole**\.
