@@ -2,6 +2,7 @@
 
 **Topics**
 + [Creating a CloudWatch Synthetics canary from scratch](#CloudWatch_Synthetics_Canaries_write_from_scratch)
++ [Packaging your canary files](#CloudWatch_Synthetics_Canaries_package)
 + [Changing an existing Puppeteer script to use as a Synthetics canary](#CloudWatch_Synthetics_Canaries_modify_puppeteer_script)
 + [Environment variables](#CloudWatch_Synthetics_Environment_Variables)
 + [Integrating your canary with other AWS services](#CloudWatch_Synthetics_Canaries_AWS_integrate)
@@ -41,11 +42,7 @@ exports.handler = async () => {
 };
 ```
 
-Next, we'll expand the script to use Synthetics logging and make a call using the AWS SDK\. For demonstration purposes, this script will create a Amazon DynamoDB client and make a call to the DynamoDB listTables API\. It logs the response to the request and logs either pass or fail depending on whether the request was successful\.
-
-If you have more than a single `.js` file or you have a dependency that your script depends on, you can bundle them all into a single ZIP file that contains the folder structure `nodejs/node_modules/myCanaryFilename.js file and other folders and files`\.
-
-Be sure to set your canary’s script entry point as `myCanaryFilename.handler` to match the file name of your script’s entry point\.
+Next, we'll expand the script to use Synthetics logging and make a call using the AWS SDK\. For demonstration purposes, this script will create an Amazon DynamoDB client and make a call to the DynamoDB listTables API\. It logs the response to the request and logs either pass or fail depending on whether the request was successful\.
 
 ```
 const log = require('SyntheticsLogger');
@@ -77,6 +74,16 @@ exports.handler = async () => {
 };
 ```
 
+## Packaging your canary files<a name="CloudWatch_Synthetics_Canaries_package"></a>
+
+If you are uploading your canary scripts using an Amazon S3 location, your zip file should include your script under this folder structure: `nodejs/node_modules/myCanaryFilename.js file`\.
+
+If you have more than a single `.js` file or you have a dependency that your script depends on, you can bundle them all into a single ZIP file that contains the folder structure `nodejs/node_modules/myCanaryFilename.js file and other folders and files`\. If you are using `syn-nodejs-puppeteer-3.4` or later, you can optionally put your canary files in another folder and creating your folder structure like this: `nodejs/node_modules/myFolder/myCanaryFilename.js file and other folders and files`\.
+
+**Handler name**
+
+Be sure to set your canary’s script entry point \(handler\) as `myCanaryFilename.functionName` to match the file name of your script’s entry point\. If you are using a runtime earlier than `syn-nodejs-puppeteer-3.4`, then `functionName` must be `handler`\. If you are using `syn-nodejs-puppeteer-3.4` or later, you can choose any function name as the handler\. If you are using `syn-nodejs-puppeteer-3.4` or later, you can also optionally store the canary in a separate folder such as `nodejs/node_modules/myFolder/my_canary_filename`\. If you store it in a separate folder, specify that path in your script entry point, such as `myFolder/my_canary_filename.functionName`\.
+
 ## Changing an existing Puppeteer script to use as a Synthetics canary<a name="CloudWatch_Synthetics_Canaries_modify_puppeteer_script"></a>
 
 This section explains how to take Puppeteer scripts and modify them to run as Synthetics canary scripts\. For more information about Puppeteer, see [Puppeteer API v1\.14\.0](https://github.com/puppeteer/puppeteer/blob/v1.14.0/docs/api.md)\. 
@@ -97,7 +104,7 @@ const puppeteer = require('puppeteer');
 ```
 
 The conversion steps are as follows:
-+ Create and export a `handler` function\. The handler is the entry point function for the script\.
++ Create and export a `handler` function\. The handler is the entry point function for the script\. If you are using a runtime earlier than `syn-nodejs-puppeteer-3.4`, the handler function must be named `handler`\. If you are using `syn-nodejs-puppeteer-3.4` or later, the function can have any name, but it must be the same name that is used in the script\. Also, if you are using `syn-nodejs-puppeteer-3.4` or later, you can store your scripts under any folder and specify that folder as part of the handler name\.
 
   ```
   const basicPuppeteerExample = async function () {};
@@ -142,6 +149,9 @@ You can use environment variables when creating canaries\. This allows you to wr
 For example, suppose your organization has endpoints such as `prod`, `dev`, and `pre-release` for the different stages of your software development, and you need to create canaries to test each of these endpoints\. You can write a single canary script that tests your software and then specify different values for the endpoint environment variable when you create each of the three canaries\. Then, when you create a canary, you specify the script and the values to use for the environment variables\.
 
 The names of environment variables can contain letters, numbers, and the underscore character\. They must start with a letter and be at least two characters\. The total size of your environment variables can't exceed 4 KB\. You can't specify any Lambda reserved environment variables as the names of your environment variables\. For more information about reserved environment variables, see [ Runtime environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime)\.
+
+**Important**  
+The environment variables keys and values are not encrypted\. Do not store sensitive information in them\.
 
 The following example script uses two environment variables\. This script is for a canary that checks whether a webpage is available\. It uses environment variables to parameterize both the URL that it checks and the CloudWatch Synthetics log level that it uses\. 
 
@@ -233,7 +243,7 @@ aws synthetics create-canary --cli-input-json '{
 
 All canaries can use the AWS SDK library\. You can use this library when you write your canary to integrate the canary with other AWS services\.
 
-To do so, you need to add the following code to your canary\. AWS For these examples, AWS Secrets Manager is used as the service that the canary is integrating with\.
+To do so, you need to add the following code to your canary\. For these examples, AWS Secrets Manager is used as the service that the canary is integrating with\.
 + Import the AWS SDK\.
 
   ```

@@ -1,4 +1,4 @@
-# Editing or deleting a canary<a name="synthetics_canaries_deletion"></a>
+# Edit or delete a canary<a name="synthetics_canaries_deletion"></a>
 
 You can edit or delete an existing canary\.
 
@@ -10,7 +10,7 @@ When you edit a canary, even if you don't change its schedule, the schedule is r
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Canaries**\.
+1. In the navigation pane, choose **Application monitoring**, **Synthetics Canaries**\.
 
 1. Select the button next to the canary name, and choose **Actions**, **Edit**\.
 
@@ -26,12 +26,12 @@ When you edit a canary, even if you don't change its schedule, the schedule is r
 
 **Delete canary**
 
-When you delete a canary, resources used and created by the canary are not automatically deleted\. After you delete a canary that you do not intend to use again, you should also delete the following:
+When you delete a canary, you can choose whether to also delete other resources used and created by the canary\. When you delete a canary, you should also delete the following:
 + Lambda functions and layers used by this canary\. Their prefix is `cwsyn-MyCanaryName`\.
 + CloudWatch alarms created for this canary\. These alarms have a name that starts with `Synthetics-Alarm-MyCanaryName`\. For more information about deleting alarms, see [Editing or deleting a CloudWatch alarm](Edit-CloudWatch-Alarm.md)\.
 + Amazon S3 objects and buckets, such as the canary's results location and artifact location\.
 + IAM roles created for the canary\. These have the name `role/service-role/CloudWatchSyntheticsRole-MyCanaryName`\. 
-+ Log groups in CloudWatch Logs created for the canary\. These logs groups have the following names: `/aws/lambda/cwsyn-MyCanaryName`\. 
++ Log groups in CloudWatch Logs created for the canary\. These logs groups have the following names: `/aws/lambda/cwsyn-MyCanaryName-randomId`\. 
 
 Before you delete a canary, you might want to view the canary details and make note of this information\. That way, you can delete the correct resources after you delete the canary\.
 
@@ -39,9 +39,17 @@ Before you delete a canary, you might want to view the canary details and make n
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Canaries**\.
+1. In the navigation pane, choose **Application monitoring**, **Synthetics Canaries**\.
+
+1. If the canary is currently in the `RUNNING` state, you must stop it\. Only canaries in the `STOPPED`, `READY(NOT_STARTED)`, or `ERROR` states can be deleted\.
+
+   To stop the canary, select the button next to the canary name, and choose **Actions**, **Stop**\.
 
 1. Select the button next to the canary name, and choose **Actions**, **Delete**\.
+
+1. Choose whether to also delete the other resources created for and used by the canary\. This includes the Lambda function and layers, and the canary's IAM role and IAM policy\.
+
+   To delete the canary's IAM role and IAM policy, you must have sufficient permissions\. For more information, see [AWS managed \(predefined\) policies for CloudWatch Synthetics](auth-and-access-control-cw.md#managed-policies-cloudwatch-canaries)\.
 
 1. Enter **Delete** into the box and choose **Delete**\.
 

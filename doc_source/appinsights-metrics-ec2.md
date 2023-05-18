@@ -5,6 +5,7 @@ CloudWatch Application Insights supports the following metrics:
 **Topics**
 + [CloudWatch built\-in metrics](#appinsights-metrics-ec2-built-in)
 + [CloudWatch agent metrics \(Windows server\)](#appinsights-metrics-ec2-windows)
++ [CloudWatch agent process metrics \(Windows server\)](#appinsights-metrics-procstat-ec2-windows)
 + [CloudWatch agent metrics \(Linux server\)](#appinsights-metrics-ec2-linux)
 
 ## CloudWatch built\-in metrics<a name="appinsights-metrics-ec2-built-in"></a>
@@ -250,6 +251,28 @@ Resource API Calls/sec
 Cluster Handles/sec
 
 Resource Handles/sec
+
+## CloudWatch agent process metrics \(Windows server\)<a name="appinsights-metrics-procstat-ec2-windows"></a>
+
+Process metrics are collected using the [CloudWatch agent procstat plugin](CloudWatch-Agent-procstat-process-metrics.md)\. Only Amazon EC2 instances running Windows workloads support process metrics\.
+
+procstat cpu\_time\_system
+
+procstat cpu\_time\_user
+
+procstat cpu\_usage
+
+procstat memory\_rss
+
+procstat memory\_vms
+
+procstat read\_bytes
+
+procstat write\_bytes
+
+\.procstat read\_count
+
+procstat write\_count
 
 ## CloudWatch agent metrics \(Linux server\)<a name="appinsights-metrics-ec2-linux"></a>
 

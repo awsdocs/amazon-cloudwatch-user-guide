@@ -1,44 +1,44 @@
-# Creating a CloudWatch alarm based on a metric math expression<a name="Create-alarm-on-metric-math-expression"></a>
+# Create a CloudWatch alarm based on a metric math expression<a name="Create-alarm-on-metric-math-expression"></a>
 
 To create an alarm based on a metric math expression, choose one or more CloudWatch metrics to use in the expression\. Then, specify the expression, threshold, and evaluation periods\.
 
 You can't create an alarm based on the **SEARCH** expression\. This is because search expressions return multiple time series, and an alarm based on a math expression can watch only one time series\.
 
-**To create an alarm based on a math expression**
+**To create an alarm that's based on a metric math expression**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Alarms**, **All alarms**\.
+1. In the navigation pane, choose **Alarms**, and then choose **All alarms**\.
 
 1. Choose **Create alarm**\.
 
-1. Choose **Select Metric**\.
+1. Choose **Select Metric**, and then perform one of the following actions:
+   + Select a namespace from the **AWS namespaces** dropdown or **Custom namespaces** dropdown\. After you select a namespace, you continue choosing options until a list of metrics appears, where you select the checkbox next to the correct metric\.
+   + Use the search box to find a metric, account ID, dimension, or resource ID\. After you enter the metric, dimension, or resource ID, you continue choosing options until a list of metrics appears, where you select the check box next to the correct metric\.
 
-1. \(Optional\) If you have enabled cross\-account functionality in the CloudWatch console and the current account is a monitoring account, under **Search Metrics** choose choose a different AWS account that contains the metric that you want the alarm to watch\. For more information, see [Cross\-account cross\-Region CloudWatch console](Cross-Account-Cross-Region.md)\.
+1. \(Optional\) If you want to add another metric to a metric math expression, you can use the search box to find a specific metric\. You can add as many as 10 metrics to a metric math expression\.
 
-   You can create cross\-account alarms, but not cross\-Region alarms\.
+1. Select the **Graphed metrics** tab\. For each of the metrics that you previously added, perform the following actions:
 
-1. Choose **Select Metric** and do one of the following:
-   + Choose the service namespace that contains a specific metric\. Continue choosing options as they appear to narrow the choices\. When a list of metrics appears, select the check box next to the right metric\.
-   + In the search box, enter the name of a metric, dimension, or resource ID and press Enter\. Choose one of the results and continue until a list of metrics appears\. Select the check box next to the right metric\. 
+   1. Under the **Statistic** column, select the dropdown menu\. In the dropdown menu, choose one of the predefined statistics or percentiles\. Use the search box in the dropdown menu to specify a custom percentile\.
 
-   \(Optional\) To add another metric to use in the math expression, under **All metrics**, choose **All**, find the specific metric, and then select the check box next to it\. You can add up to 10 metrics\.
+   1. Under the **Period** column, select the dropdown menu\. In the dropdown menu, choose one of the predefined evaluation periods\.
 
-1. Choose **Graphed metrics**\. For each metric added, do the following:
+      While you're creating your alarm, you can specify whether the Y\-axis legend appears on the left or right side of your graph\.
+**Note**  
+When CloudWatch evaluates alarms, periods are aggregated into single data points\.
 
-   1. Under **Statistic**, choose one of the statistics or predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\)\.
+1. Choose the **Add math** dropdown, and then select **Start with an empty expression** from the list of predefined metric math expressions\.
 
-   1. Under **Period**, choose the evaluation period for the alarm\. When evaluating the alarm, each period is aggregated into one data point\.
+   After you choose **Start with an empty expression**, a math expression box appears where you apply or edit math expressions\.
 
-      You can also choose whether the y\-axis legend appears on the left or right while you're creating the alarm\. This preference is used only while you're creating the alarm\.
+1. In the math expression box, enter your math expression, and then choose **Apply**\.
 
-1. Choose **Add a math expression**\. A new row appears for the expression\.
+   After you choose **Apply**, an **ID** column appears next to the **Label** column\.
 
-1. On the new row, under the **Details** column, enter the math expression and press Enter\. For information about the functions and syntax that you can use, see [Metric math syntax and functions](using-metric-math.md#metric-math-syntax)\.
+   To use a metric or the result of another metric math expression as part of your current math expression's formula, you use the value that's shown under the **ID** column\. To change the value of **ID**, you select the pen\-and\-paper icon next to the current value\. The new value must begin with a lowercase letter and can include numbers, letters, and the underscore symbol\. Changing the value of **ID** to a more significant name can make your alarm graph easier to understand\.
 
-   To use a metric or the result of another expression as part of the formula for this expression, use the value shown in the **Id** column: for example, **m1\+m2** or **e1\-MIN\(e1\)**\.
-
-   You can change the value of **Id**\. It can include numbers, letters, and underscores, and it must start with a lowercase letter\. Changing the value of **Id** to a more meaningful name can also make the alarm graph easier to understand\. 
+   For information about the functions that are available for metric math, see [Metric math syntax and functions](using-metric-math.md#metric-math-syntax)\.
 
 1. \(Optional\) Add more math expressions, using both metrics and the results of other math expressions in the formulas of the new math expressions\.
 
@@ -68,8 +68,8 @@ To create an alarm that performs an SSM Incident Manager action, you must have c
 
 1. When finished, choose **Next**\.
 
-1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. Then choose **Next**\.
+1. Enter a name and description for the alarm\. The name must contain only UTF\-8 characters, and can't contain ASCII control characters\. Then choose **Next**\.
 
 1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
 
-You can also add alarms to a dashboard\. For more information, see [Add an alarm widget to a CloudWatch dashboard](add_remove_alarm_dashboard.md)\. 
+You can also add alarms to a dashboard\. For more information, see [ Add or remove an alarm widget from a CloudWatch dashboard ](add_remove_alarm_dashboard.md)\. 

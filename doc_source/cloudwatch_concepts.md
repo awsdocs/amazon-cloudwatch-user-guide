@@ -9,11 +9,13 @@ The following terminology and concepts are central to your understanding and use
 + [Percentiles](#Percentiles)
 + [Alarms](#CloudWatchAlarms)
 
+ For information about the service quotas for CloudWatch metrics, alarms, API requests, and alarm email notifications, see [CloudWatch service quotas](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_limits.html)\. 
+
 ## Namespaces<a name="Namespace"></a>
 
 A *namespace* is a container for CloudWatch metrics\. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics\.
 
-There is no default namespace\. You must specify a namespace for each data point you publish to CloudWatch\. You can specify a namespace name when you create a metric\. These names must contain valid XML characters, and be fewer than 256 characters in length\. Possible characters are: alphanumeric characters \(0\-9A\-Za\-z\), period \(\.\), hyphen \(\-\), underscore \(\_\), forward slash \(/\), hash \(\#\), and colon \(:\)\.
+There is no default namespace\. You must specify a namespace for each data point you publish to CloudWatch\. You can specify a namespace name when you create a metric\. These names must contain valid ASCII characters, and be 255 or fewer characters\. Possible characters are: alphanumeric characters \(0\-9A\-Za\-z\), period \(\.\), hyphen \(\-\), underscore \(\_\), forward slash \(/\), hash \(\#\), and colon \(:\)\. A namespace must contain at least one non\-whitespace character\.
 
 The AWS namespaces typically use the following naming convention: `AWS/service`\. For example, Amazon EC2 uses the `AWS/EC2` namespace\. For the list of AWS namespaces, see [AWS services that publish CloudWatch metrics](aws-services-cloudwatch-metrics.md)\.
 
@@ -21,13 +23,13 @@ The AWS namespaces typically use the following naming convention: `AWS/service`\
 
 *Metrics* are the fundamental concept in CloudWatch\. A metric represents a time\-ordered set of data points that are published to CloudWatch\. Think of a metric as a variable to monitor, and the data points as representing the values of that variable over time\. For example, the CPU usage of a particular EC2 instance is one metric provided by Amazon EC2\. The data points themselves can come from any application or business activity from which you collect data\.
 
-By default, many AWS services provide free metrics for resources \(such as Amazon EC2 instances, Amazon EBS volumes, and Amazon RDS DB instances\)\. For a charge, you can also enable detailed monitoring for some resources, such as your Amazon EC2 instances, or publish your own application metrics\. For custom metrics, you can add the data points in any order, and at any rate you choose\. You can retrieve statistics about those data points as an ordered set of time\-series data\.
+By default, many AWS services provide metrics at no charge for resources \(such as Amazon EC2 instances, Amazon EBS volumes, and Amazon RDS DB instances\)\. For a charge, you can also enable detailed monitoring for some resources, such as your Amazon EC2 instances, or publish your own application metrics\. For custom metrics, you can add the data points in any order, and at any rate you choose\. You can retrieve statistics about those data points as an ordered set of time\-series data\.
 
 Metrics exist only in the Region in which they are created\. Metrics cannot be deleted, but they automatically expire after 15 months if no new data is published to them\. Data points older than 15 months expire on a rolling basis; as new data points come in, data older than 15 months is dropped\.
 
 Metrics are uniquely defined by a name, a namespace, and zero or more dimensions\. Each data point in a metric has a time stamp, and \(optionally\) a unit of measure\. You can retrieve statistics from CloudWatch for any metric\.
 
-For more information, see [Viewing available metrics](viewing_metrics_with_cloudwatch.md) and [Publishing custom metrics](publishingMetrics.md)\.
+For more information, see [View available metrics](viewing_metrics_with_cloudwatch.md) and [Publish custom metrics](publishingMetrics.md)\.
 
 ### Time stamps<a name="about_timestamp"></a>
 
@@ -52,7 +54,7 @@ Metrics that have not had any new data points in the past two weeks do not appea
 
 ## Dimensions<a name="Dimension"></a>
 
-A *dimension* is a name/value pair that is part of the identity of a metric\. You can assign up to 10 dimensions to a metric\.
+A *dimension* is a name/value pair that is part of the identity of a metric\. You can assign up to 30 dimensions to a metric\.
 
 Every metric has specific characteristics that describe it, and you can think of dimensions as categories for those characteristics\. Dimensions help you design a structure for your statistics plan\. Because dimensions are part of the unique identifier for a metric, whenever you add a unique name/value pair to one of your metrics, you are creating a new variation of that metric\.
 
@@ -79,7 +81,7 @@ If you publish only those four metrics, you can retrieve statistics for these co
 + `Server=Beta,Domain=Frankfurt`
 + `Server=Beta,Domain=Rio`
 
-You can't retrieve statistics for the following dimensions or if you specify no dimensions\. \(The exception is by using the metric math **SEARCH** function, which can retrieve statistics for multiple metrics\. For more information, see [Using search expressions in graphs](using-search-expressions.md)\.\)
+You can't retrieve statistics for the following dimensions or if you specify no dimensions\. \(The exception is by using the metric math **SEARCH** function, which can retrieve statistics for multiple metrics\. For more information, see [Use search expressions in graphs](using-search-expressions.md)\.\)
 + `Server=Prod`
 + `Server=Beta`
 + `Domain=Frankfurt`
@@ -121,7 +123,7 @@ When you retrieve statistics, you can specify a period, start time, and end time
 
 When statistics are aggregated over a period of time, they are stamped with the time corresponding to the beginning of the period\. For example, data aggregated from 7:00pm to 8:00pm is stamped as 7:00pm\. Additionally, data aggregated between 7:00pm and 8:00pm begins to be visible at 7:00pm, then the values of that aggregated data may change as CloudWatch collects more samples during the period\.
 
-Periods are also important for CloudWatch alarms\. When you create an alarm to monitor a specific metric, you are asking CloudWatch to compare that metric to the threshold value that you specified\. You have extensive control over how CloudWatch makes that comparison\. Not only can you specify the period over which the comparison is made, but you can also specify how many evaluation periods are used to arrive at a conclusion\. For example, if you specify three evaluation periods, CloudWatch compares a window of three data points\. CloudWatch only notifies you if the oldest data point is breaching and the others are breaching or missing\. For metrics that are continuously emitted, CloudWatch doesn't notify you until three failures are found\.
+Periods are also important for CloudWatch alarms\. When you create an alarm to monitor a specific metric, you are asking CloudWatch to compare that metric to the threshold value that you specified\. You have extensive control over how CloudWatch makes that comparison\. Not only can you specify the period over which the comparison is made, but you can also specify how many evaluation periods are used to arrive at a conclusion\. For example, if you specify three evaluation periods, CloudWatch compares a window of three data points\. CloudWatch only notifies you if the oldest data point is breaching and the others are breaching or missing\.
 
 ## Aggregation<a name="CloudWatchAggregation"></a>
 
@@ -165,6 +167,6 @@ Alarms invoke actions for sustained state changes only\. CloudWatch alarms do no
 
 When creating an alarm, select an alarm monitoring period that is greater than or equal to the metric's resolution\. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes\. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds \(5 minutes\)\. Detailed monitoring for Amazon EC2 provides metrics for your instances with a resolution of 1 minute\. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds \(1 minute\)\.
 
- If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publishing custom metrics](publishingMetrics.md)\.
+ If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms\. For more information about high\-resolution metrics, see [Publish custom metrics](publishingMetrics.md)\.
 
-For more information, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md) and [Creating an alarm from a metric on a graph](create_alarm_metric_graph.md)\.
+For more information, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md) and [Create an alarm from a metric on a graph](create_alarm_metric_graph.md)\.

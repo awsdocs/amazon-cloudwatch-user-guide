@@ -8,7 +8,7 @@ For information about other services that support service\-linked roles, see [AW
 
 ## Service\-linked role permissions for CloudWatch Application Insights<a name="service-linked-role-permissions"></a>
 
-CloudWatch Application Insights uses the service\-linked role named **AWSServiceRoleForApplicationInsights**\. Application Insights uses this role to perform operations such as analyzing the resource groups of the customer, creating CloudFormation stacks to create alarms on metrics, and configuring the CloudWatch Agent on EC2 instances\. This service\-linked role is attached to the following managed policy: `CloudwatchApplicationInsightsServiceLinkedRolePolicy`\. For updates to this policy, see [Application Insights updates to AWS managed policies](security-iam-awsmanpol-appinsights.md#security-iam-awsmanpol-appinsights-updates)\.
+CloudWatch Application Insights uses the service\-linked role named **AWSServiceRoleForApplicationInsights**\. Application Insights uses this role to perform operations such as analyzing the resource groups of the customer, creating CloudFormation stacks to create alarms on metrics, and configuring the CloudWatch Agent on EC2 instances\. This service\-linked role has an IAM policy attached to it named `CloudwatchApplicationInsightsServiceLinkedRolePolicy`\. For updates to this policy, see [Application Insights updates to AWS managed policies](security-iam-awsmanpol-appinsights.md#security-iam-awsmanpol-appinsights-updates)\.
 
 The role permissions policy allows CloudWatch Application Insights to complete the following actions on resources\.
 
@@ -70,7 +70,8 @@ The role permissions policy allows CloudWatch Application Insights to complete t
       "Effect": "Allow",
       "Action": [
         "cloudFormation:DescribeStacks",
-        "cloudFormation:ListStackResources"
+        "cloudFormation:ListStackResources",
+        "cloudFormation:ListStacks"
       ],
       "Resource": [
         "*"
@@ -177,7 +178,8 @@ The role permissions policy allows CloudWatch Application Insights to complete t
     {
       "Effect": "Allow",
       "Action": [
-        "ssm:ListCommandInvocations"
+        "ssm:ListCommandInvocations",
+        "ssm:GetCommandInvocation"
       ],
       "Resource": [
         "*"
@@ -199,7 +201,10 @@ The role permissions policy allows CloudWatch Application Insights to complete t
       "Action": [
         "ec2:DescribeInstances",
         "ec2:DescribeVolumes",
-        "ec2:DescribeVolumeStatus"
+        "ec2:DescribeVolumeStatus",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeVpcAttribute",
+        "ec2:DescribeNatGateways"
       ],
       "Resource": [
         "*"
@@ -339,7 +344,8 @@ The role permissions policy allows CloudWatch Application Insights to complete t
         "eks:ListClusters",
         "eks:ListFargateProfiles",
         "eks:ListNodegroups",
-        "fsx:DescribeFileSystems"
+        "fsx:DescribeFileSystems",
+        "fsx:DescribeVolumes"
       ],
       "Resource": [
         "*"
@@ -364,7 +370,7 @@ The role permissions policy allows CloudWatch Application Insights to complete t
         "sqs:ListQueues"
       ],
       "Resource": "*"
-    }
+    },
     {
       "Effect": "Allow",
       "Action": [
@@ -382,6 +388,45 @@ The role permissions policy allows CloudWatch Application Insights to complete t
       "Resource": [
         "arn:aws:logs:*:*:log-group:*",
         "arn:aws:logs:*:*:destination:AmazonCloudWatch-ApplicationInsights-LogIngestionDestination*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "elasticfilesystem:DescribeFileSystems"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53:GetHostedZone",
+        "route53:GetHealthCheck",
+        "route53:ListHostedZones",
+        "route53:ListHealthChecks",
+        "route53:ListQueryLoggingConfigs"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53resolver:ListFirewallRuleGroupAssociations",
+        "route53resolver:GetFirewallRuleGroup",
+        "route53resolver:ListFirewallRuleGroups",
+        "route53resolver:ListResolverEndpoints",
+        "route53resolver:GetResolverQueryLogConfig",
+        "route53resolver:ListResolverQueryLogConfigs",
+        "route53resolver:ListResolverQueryLogConfigAssociations",
+        "route53resolver:GetResolverEndpoint",
+        "route53resolver:GetFirewallRuleGroupAssociation"
+      ],
+      "Resource": [
+        "*"
       ]
     }
   ]

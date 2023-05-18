@@ -1,37 +1,10 @@
 # Required roles and permissions for CloudWatch canaries<a name="CloudWatch_Synthetics_Canaries_Roles"></a>
 
-To view canary details and the results of canary runs, you must be signed in as an IAM user who has either the `CloudWatchSyntheticsFullAccess` or the `CloudWatchSyntheticsReadOnlyAccess` attached\. To read all Synthetics data in the console, you also need the `AmazonS3ReadOnlyAccess` and `CloudWatchReadOnlyAccess` policies\. To view the source code used by canaries, you also need the `AWSLambda_ReadOnlyAccess` policy\.
-
-To create canaries, you must be signed in as an IAM user who has the `CloudWatchSyntheticsFullAccess` policy or a similar set of permissions\. To create IAM roles for the canaries, you also need the following inline policy statement:
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "iam:CreateRole",
-                "iam:CreatePolicy",
-                "iam:AttachRolePolicy"
-            ],
-            "Resource": [
-                "arn:aws:iam::*:role/service-role/CloudWatchSyntheticsRole*",
-                "arn:aws:iam::*:policy/service-role/CloudWatchSyntheticsPolicy*"
-            ]
-        }
-    ]
-}
-```
-
-**Important**  
-Granting a user the `iam:CreateRole`, `iam:CreatePolicy`, and `iam:AttachRolePolicy` permissions gives that user full administrative access to your AWS account\. For example, a user with these permissions can create a policy that has full permissions for all resources and can attach that policy to any role\. Be very careful about who you grant these permissions to\.
-
-For information about attaching policies and granting permissions to users, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) and [To embed an inline policy for a user or role](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console)\.
+Both the users who create and manage canaries, and the canaries themselves, must have certain permissions\.
 
 ## AWS managed policies for CloudWatch Synthetics<a name="CloudWatch_Synthetics_IAMManagedPolicies"></a>
 
-To add permissions to users, groups, and roles, it is easier to use AWS managed policies than to write policies yourself\. It takes time and expertise to create IAM customer managed policies that provide your team with only the permissions they need\. To get started quickly, you can use our AWS managed policies\. These policies cover common use cases and are available in your AWS account\. For more information about AWS managed policies, see [ AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) AWS managed policies in the IAM User Guide\.
+To add permissions to users, groups, and roles, it is easier to use AWS managed policies than to write policies yourself\. It takes time and expertise to create IAM customer managed policies that provide your team with only the permissions they need\. To get started quickly, you can use our AWS managed policies\. These policies cover common use cases and are available in your AWS account\. For more information about AWS managed policies, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) AWS managed policies in the IAM User Guide\.
 
 AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally change the permissions in an AWS managed policy\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\.
 

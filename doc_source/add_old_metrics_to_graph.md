@@ -6,9 +6,9 @@ If a metric hasn't published data in the past 14 days, you can't find it when se
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
-1. The dashboard must already contain a graph where you want to add the metric\. If it doesn't, create the graph and add any metric to it\. For more information, see [Add or remove a graph from a CloudWatch dashboard](add_remove_graph_dashboard.md)\.
+1. The dashboard must already contain a graph where you want to add the metric\. If it doesn't, create the graph and add any metric to it\. For more information, see [ Add or remove a graph from a CloudWatch dashboard ](add_remove_graph_dashboard.md)\.
 
 1. Choose **Actions**, **View/edit source**\.
 

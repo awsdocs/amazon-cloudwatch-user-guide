@@ -32,7 +32,7 @@ When you add a launch, you can use a feature that you have already created, or c
 
       Specify one of the variations to be the default\. This is the baseline that the other variations will be compared to, and should be the variation that is being served to your users now\. If you stop an experiment, this default variation will then be served to all users\.
 
-   1. Choose **Sample code**\. The code example shows what you need to add to your application to set up the variations and assign user sessions to them\. You can choose between JavaScript and Java for the code\.
+   1. Choose **Sample code**\. The code example shows what you need to add to your application to set up the variations and assign user sessions to them\. You can choose between JavaScript, Java, and Python for the code\.
 
       You don't need to add the code to your application right now, but you must do so before you start the launch\.
 
@@ -40,7 +40,15 @@ When you add a launch, you can use a feature that you have already created, or c
 
 1. For **Launch configuration**, choose whether to start the launch immediately or schedule it to start later\.
 
-1. For **Serve**, select the traffic percentage to assign to each variation\. You can also choose to exclude variations from being served to users\.
+1. \(Optional\) To specify different traffic splits for audience segments that you have defined, instead of the traffic split that you will use for your general audience, choose **Add Segment Overrides**\.
+
+   In **Segment Overrides**, select a segment and define the traffic split to use for that segment\.
+
+   You can optionally define more segments to define traffic splits for by choosing **Add Segment Override**\. A launch can have up to six segment overrides\.
+
+   For more information, see [Use segments to focus your audience](CloudWatch-Evidently-segments.md)\.
+
+1. For **Traffic configuration**, select the traffic percentage to assign to each variation for the general audience that doesn't match the segment overrides\. You can also choose to exclude variations from being served to users\.
 
    The **Traffic summary** shows how much of your overall traffic is available for this launch\.
 
@@ -66,7 +74,7 @@ If you use RUM metrics, and the app monitor is not configured to sample 100% of 
 
    To acknowledge that CloudWatch Evidently will add these tags, choose **Allow Evidently to tag the alarm resource identified below with this launch resource\.** Then, choose **Associate alarm** and enter the alarm name\.
 
-   For information about creating CloudWatch alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
+   For information about creating CloudWatch alarms, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 1. \(Optional\) To add tags to this launch, choose **Tags**, **Add new tag**\.
 

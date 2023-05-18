@@ -1,7 +1,7 @@
 # Deploying other CloudWatch agent features in your containers<a name="ContainerInsights-other-agent-features"></a>
 
 You can deploy additional monitoring features in your containers using the CloudWatch agent\. These features include the following:
-+ **Embedded Metric Format**— For more information, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
++ **Embedded Metric Format**— For more information, see [Ingest high\-cardinality logs to generate metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
 + **StatsD**— For more information, see [Retrieve custom metrics with StatsD ](CloudWatch-Agent-custom-metrics-statsd.md)\.
 
 Instructions and necessary files are located on GitHub at the following locations:

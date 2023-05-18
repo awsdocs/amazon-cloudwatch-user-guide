@@ -6,7 +6,7 @@ The overall process for setting up Container Insights on Amazon EKS or Kubernete
 
 1. Set up the CloudWatch agent or the AWS Distro for OpenTelemetry as a DaemonSet on your cluster to send metrics to CloudWatch\. 
 
-   Set up Fluent Bit or FluentD to send logs to CloudWatch Logs\.
+   Set up Fluent Bit or Fluentd to send logs to CloudWatch Logs\.
 
    You can perform these steps at once as part of the quick start setup if you are using the CloudWatch agent, or do them separately\.
 

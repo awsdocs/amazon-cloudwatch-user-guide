@@ -14,7 +14,7 @@ This procedure explains how to view the metrics that Container Insights automati
 
 1. Use the drop\-down boxes near the top to select the type of resource to view, as well as the specific resource\.
 
-You can set a CloudWatch alarm on any metric that Container Insights collects\. For more information, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)
+You can set a CloudWatch alarm on any metric that Container Insights collects\. For more information, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)
 
 **Note**  
 If you have already set up CloudWatch Application Insights to monitor your containerized applications, the Application Insights dashboard appears below the Container Insights dashboard\. If you have not already enabled Application Insights, you can do so by choosing **Auto\-configure Application Insights** below the performance view in the Container Insights dashboard\.  
@@ -22,7 +22,7 @@ For more information about Application Insights and containerized applications, 
 
 ## Viewing the top contributors<a name="Container-Insights-view-metrics-topn"></a>
 
-For some of the views in Container Insights performance monitoring, you can also see the top contributors by memory or CPU, or the most recently active resources\. This is available when you select any of the following dasbhoards in the drop\-down box near the top of the page:
+For some of the views in Container Insights performance monitoring, you can also see the top contributors by memory or CPU, or the most recently active resources\. This is available when you select any of the following dashboards in the drop\-down box near the top of the page:
 + ECS Services
 + ECS Tasks
 + EKS Namespaces

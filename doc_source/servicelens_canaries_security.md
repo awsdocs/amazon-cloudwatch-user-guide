@@ -14,9 +14,13 @@ The canary ARN includes the canary name\. Choose canary names that do not reveal
 
 Additionally, be sure to point your canaries only at websites and endpoints that you control\.
 
-## Secrets in canary code<a name="servicelens_canaries_secrets"></a>
+## Secrets and sensitive information in canary code<a name="servicelens_canaries_secrets"></a>
 
-We recommend that you don't include secrets, such as access keys or database credentials, in your canary source code\. For more information about how to use AWS Secrets Manager to help keep your secrets safe, see [What is AWS Secrets Manager?](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)\.
+If you pass your canary code directly into the canary using a zip file, the contents of the script can be seen in AWS CloudTrail logs\.
+
+If you have sensitive information or secrets \(such as access keys or database credentials\) in a canary script, we strongly recommend that you store the script as a versioned object in Amazon S3 and pass the Amazon S3 location into the canary, instead of passing the canary code by a zip file\.
+
+If you do use a zip file to pass the canary script, we strongly recommend that you don't include secrets or sensitive information in your canary source code\. For more information about how to use AWS Secrets Manager to help keep your secrets safe, see [What is AWS Secrets Manager?](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)\.
 
 ## Permissions considerations<a name="servicelens_canaries_security_results"></a>
 
@@ -41,7 +45,7 @@ By default, CloudWatch Synthetics canaries capture any exception thrown by your 
 
 If you want to send and store less information, you can capture exceptions before they return to the CloudWatch Synthetics wrapper library\.
 
-You can also have request URLs in your errors\. CloudWatch Synthetics scans for any URLs in the error thrown by your script and redacts restricted URL parameters from them based on the **restrictedUrlParameters** configuration\. If you are logging error messages in your script, you can use [](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_getSanitizedErrorMessage) to redact URLs before logging\. 
+You can also have request URLs in your errors\. CloudWatch Synthetics scans for any URLs in the error thrown by your script and redacts restricted URL parameters from them based on the **restrictedUrlParameters** configuration\. If you are logging error messages in your script, you can use [getSanitizedErrorMessage ](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_getSanitizedErrorMessage) to redact URLs before logging\. 
 
 ## Scope your IAM roles narrowly<a name="servicelens_canaries_security_canary_iam_scope"></a>
 
@@ -51,7 +55,7 @@ Run your Lambda function with an IAM execution role that has scoped\-down permis
 
 When you use the CloudWatch console to create a canary, it is created with a scoped\-down IAM execution role\.
 
-## Senstive data redaction<a name="servicelens_canaries_security_logging"></a>
+## Sensitive data redaction<a name="servicelens_canaries_security_logging"></a>
 
 CloudWatch Synthetics captures URLs, status code, failure reason \(if any\), and headers and bodies of requests and responses\. This enables a canary user to understand, monitor, and debug canaries\. 
 
@@ -61,7 +65,7 @@ CloudWatch Synthetics captures URLs, status code, failure reason \(if any\), and
 
 By default, CloudWatch Synthetics logs request URLs, status codes, and the status reason for each URL in canary logs\. Request URLs can also appear in canary execution reports, HAR files, and so on\. Your request URL might contain sensitive query parameters, such as access tokens or passwords\. You can redact sensitive information from being logged by CloudWatch Synthetics\.
 
-To redact sensitive information, set the configuration property **restrictedUrlParameters**\. For more information, see [SyntheticsConfiguration class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsConfiguration)\. This causes CloudWatch Synthetics to redact URL parameters, including path and query parameter values, based on **restrictedUrlParameters** before logging\. If you are logging URLs in your script, you can use [](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_getSanitizedUrl) to redact URLs before logging\. For more information, see [SyntheticsLogHelper class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsLogHelper)\. 
+To redact sensitive information, set the configuration property **restrictedUrlParameters**\. For more information, see [SyntheticsConfiguration class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsConfiguration)\. This causes CloudWatch Synthetics to redact URL parameters, including path and query parameter values, based on **restrictedUrlParameters** before logging\. If you are logging URLs in your script, you can use [getSanitizedUrl\(url, stepConfig = null\)](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_getSanitizedUrl) to redact URLs before logging\. For more information, see [SyntheticsLogHelper class](CloudWatch_Synthetics_Canaries_Library_Nodejs.md#CloudWatch_Synthetics_Library_SyntheticsLogHelper)\. 
 
 ### Headers<a name="servicelens_canaries_security_logging_headers"></a>
 

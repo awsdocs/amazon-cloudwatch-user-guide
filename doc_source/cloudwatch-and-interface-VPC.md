@@ -26,6 +26,7 @@ CloudWatch currently supports VPC endpoints in the following AWS Regions:
 + Europe \(Ireland\)
 + Europe \(London\)
 + Europe \(Paris\)
++ Middle East \(UAE\)
 + South America \(São Paulo\)
 + AWS GovCloud \(US\-East\)
 + AWS GovCloud \(US\-West\)
@@ -38,7 +39,7 @@ You do not need to change the settings for CloudWatch\. CloudWatch calls other A
 
 ### Controlling access to your CloudWatch VPC endpoint<a name="CloudWatch-VPC-endpoint-policy"></a>
 
-A VPC endpoint policy is an IAM resource policy that you attach to an endpoint when you create or modify the endpoint\. If you don't attach a policy when you create an endpoint, Amazon VPC attaches a default policy for you that allows full access to the service\. An endpoint policy doesn't override or replace IAM user policies or service\-specific policies\. It's a separate policy for controlling access from the endpoint to the specified service\. 
+A VPC endpoint policy is an IAM resource policy that you attach to an endpoint when you create or modify the endpoint\. If you don't attach a policy when you create an endpoint, Amazon VPC attaches a default policy for you that allows full access to the service\. An endpoint policy doesn't override or replace user policies or service\-specific policies\. It's a separate policy for controlling access from the endpoint to the specified service\. 
 
 Endpoint policies must be written in JSON format\. 
 
@@ -98,11 +99,11 @@ CloudWatch Synthetics currently supports VPC endpoints in the following AWS Regi
 
 To start using CloudWatch Synthetics with your VPC, create an interface VPC endpoint for CloudWatch Synthetics\. The service name to choose is `com.amazonaws.region.synthetics`\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint.html) in the *Amazon VPC User Guide*\.
 
-You do not need to change the settings for CloudWatch Synthetics\. CloudWatch Synthetics communicates with other AWS services using either public endpoints or private interface VPC endpoints, whichever are in use\. For example, if you create an interface VPC endpoint for CloudWatch Synthetics, and you already have an interface endpoint for Amazon S3, CloudWatch Synthetics begins communicating with Amazon S3 through the interface VPC endpoint by default\.
+You do not need to change the settings for CloudWatch Synthetics\. CloudWatch Synthetics communicates with other AWS services using either public endpoints or private interface VPC endpoints, whichever are in use\. For example, if you create an interface VPC endpoint for CloudWatch Synthetics, and you already have a gateway endpoint for Amazon S3, CloudWatch Synthetics begins communicating with Amazon S3 through the interface VPC endpoint by default\.
 
 ### Controlling access to your CloudWatch Synthetics VPC endpoint<a name="CloudWatch-Synthetics-VPC-endpoint-policy"></a>
 
-A VPC endpoint policy is an IAM resource policy that you attach to an endpoint when you create or modify the endpoint\. If you don't attach a policy when you create an endpoint, we attach a default policy for you that allows full access to the service\. An endpoint policy doesn't override or replace IAM user policies or service\-specific policies\. It's a separate policy for controlling access from the endpoint to the specified service\. 
+A VPC endpoint policy is an IAM resource policy that you attach to an endpoint when you create or modify the endpoint\. If you don't attach a policy when you create an endpoint, we attach a default policy for you that allows full access to the service\. An endpoint policy doesn't override or replace user policies or service\-specific policies\. It's a separate policy for controlling access from the endpoint to the specified service\. 
 
 Endpoint policies affect canaries that are managed privately by VPC\. They are not needed for canaries that run on private subnets\.
 

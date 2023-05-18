@@ -34,6 +34,11 @@ If you upgrade a canary and it fails, see [Troubleshooting a failed canary](Clou
 
 | Runtime Version | Deprecation date | 
 | --- | --- | 
+|  `syn-nodejs-puppeteer-3.4`  |  November 13, 2022  | 
+|  `syn-nodejs-puppeteer-3.3`  |  November 13, 2022  | 
+|  `syn-nodejs-puppeteer-3.2`  |  November 13, 2022  | 
+|  `syn-nodejs-puppeteer-3.1`  |  November 13, 2022  | 
+|  `syn-nodejs-puppeteer-3.0`  |  November 13, 2022  | 
 |  `syn-nodejs-2.2`  |  May 28, 2021  | 
 |  `syn-nodejs-2.1`  |  May 28, 2021  | 
 |  `syn-nodejs-2.0`  |  May 28, 2021  | 

@@ -30,7 +30,7 @@ To install the App Mesh Kubernetes controller, follow the instructions in [App M
 
 **To use a sample App Mesh application to test Container Insights**
 
-1. Install the application using these instructions: [https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-fargate](https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-fargate)\. 
+1. Install the application using these instructions: [https://github.com/aws/aws-app-mesh-examples/tree/main/walkthroughs/howto-k8s-fargate](https://github.com/aws/aws-app-mesh-examples/tree/main/walkthroughs/howto-k8s-fargate)\. 
 
    Those instructions assume that you are creating a new cluster with the correct Fargate profile\. If you want to use an Amazon EKS cluster that you've already set up, you can use the following commands to set up that cluster for this demonstration\. Replace *MyCluster* with the name of your cluster\.
 

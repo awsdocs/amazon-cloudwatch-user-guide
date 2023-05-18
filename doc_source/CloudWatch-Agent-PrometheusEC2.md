@@ -2,7 +2,7 @@
 
 The following sections explain how to install the CloudWatch agent with Prometheus monitoring on EC2 instances, and how to configure the agent to scrape additional targets\. It also provides tutorials for setting up sample workloads to use testing with Prometheus monitoring\.
 
-For information about the operating systems supported by the CloudWatch agent, see [Collecting metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)
+For information about the operating systems supported by the CloudWatch agent, see [Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)
 
 **VPC security group requirements**
 
@@ -39,7 +39,7 @@ scrape_configs:
     - files: ["C:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\prometheus_sd_1.yaml", "C:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\prometheus_sd_2.yaml"]
 ```
 
-The `global` section specifies parameters that are valid in all configuration contexts\. They also serve as defaults for other configuraiton sections\. It contains the following parameters:
+The `global` section specifies parameters that are valid in all configuration contexts\. They also serve as defaults for other configuration sections\. It contains the following parameters:
 + `scrape_interval`— Defines how frequently to scrape targets\.
 + `scrape_timeout`— Defines how long to wait before a scrape request times out\.
 
@@ -98,7 +98,7 @@ The CloudWatch agent configuration file includes `prometheus` sections under bot
 + **cluster\_name**— specifies the cluster name to be added as a label in the log event\. This field is optional\. 
 + **log\_group\_name**— specifies the log group name for the scraped Prometheus metrics\.
 + **prometheus\_config\_path**— specifies the Prometheus scrape configuration file path\.
-+ **emf\_processor**— specifies the embedded metric format processor configuration\. For more information about embedded metric format, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\. 
++ **emf\_processor**— specifies the embedded metric format processor configuration\. For more information about embedded metric format, see [Ingest high\-cardinality logs to generate metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\. 
 
   The `emf_processor` section can contain the following parameters:
   + **metric\_declaration\_dedup**— It set to true, the de\-duplication function for the embedded metric format metrics is enabled\.

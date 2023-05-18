@@ -1,16 +1,23 @@
 # See key metrics from all AWS services<a name="CloudWatch_Automatic_Dashboards_Cross_Service"></a>
 
-If you use six or more AWS services, the cross\-service dashboard is not displayed on the overview page\. You can switch to this dashboard to see key metrics from all the AWS services that you are using\.
+ You can switch to the Cross\-service dashboard screen and interact with dashboards for all of the AWS services that you're using\. The CloudWatch Console displays your dashboards in alphabetical order and shows one or two key metrics on each dashboard\. 
 
-**To open the cross\-service dashboard**
+**Note**  
+ If you're using five or more AWS services, the CloudWatch Console won't display the Cross\-service dashboard on the Overview screen\. 
+
+**To open the Cross\-service dashboard**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-   The overview appears\.
+    You're directed to the Overview screen\. 
 
-1. Near the bottom of the page, choose **View cross service dashboard**\.
+1.  From the Overview screen, select the dropdown that reads **Overview**, and then choose **Cross service dashboard**\.
 
-   The cross\-service dashboard appears, showing each AWS service you are using, displayed in alphabetical order\. For each service, one or two key metrics are displayed\.
+    You're directed to the Cross service dashboard screen\. 
+
+1.  \(Optional\) If you're using the original interface, scroll to the section **Cross\-service dashboard**, and then choose **View Cross\-service dashboard**\. 
+
+    You're directed to the Cross\-service dashboard screen\. 
 
 1. You can focus on a particular service in two ways:
 

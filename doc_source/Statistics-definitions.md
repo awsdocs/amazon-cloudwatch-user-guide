@@ -4,7 +4,7 @@ Statistics are metric data aggregations over specified periods of time\. When yo
 
 CloudWatch supports the following statistics for metrics\.
 + **SampleCount** is the number of data points during the period\.
-+ **Sum** is sum of the values of the all data points collected during the period\.
++ **Sum** is the sum of the values of the all data points collected during the period\.
 + **Average** is the value of `Sum/SampleCount` during the specified period\.
 + **Minimum** is the lowest value observed during the specified period\.
 + **Maximum** is the highest value observed during the specified period\.
@@ -28,7 +28,7 @@ For Trimmed Mean, Trimmed Count, Trimmed Sum, and Winsorized Mean, the following
 + Trimmed mean, Trimmed Count, Trimmed Sum, and Winsorized Mean can all be abbreviated using uppercase letters when specifying a range, such as **TM\(5%:95%\)**, **TM\(100:200\)**, or **TM\(:95%\)**\. They can only be abbreviated using lowercase letters when you specifying only one number, such as **tm99**\.
 
 ## Statistics use cases<a name="Statistics-usecases"></a>
-+ **Trimmed mean** is most useful for metrics with a large sample size, such as webpage latency\. For example, **tm99** disregards extreme high outliers that could result from network problems or human errors, to give a more accurate number for the average latency of typical requests\. Similarly, **TM\(10%:\)** disregards the lowest 10% of latency values, such as those resulting from cache hits\. And **TM\(10%:99%\)** excludes both of these types of outliers\.
++ **Trimmed mean** is most useful for metrics with a large sample size, such as webpage latency\. For example, **tm99** disregards extreme high outliers that could result from network problems or human errors, to give a more accurate number for the average latency of typical requests\. Similarly, **TM\(10%:\)** disregards the lowest 10% of latency values, such as those resulting from cache hits\. And **TM\(10%:99%\)** excludes both of these types of outliers\. We recommend that you use trimmed mean for monitoring latency\. 
 + It is a good idea to keep watch on trimmed count whenever you are using trimmed mean, to make sure that the number of values being used in your trimmed mean calculations are enough to be statistically significant\.
 + Percentile rank enables you to put values into "bins" of ranges, and you can use this to manually create a histogram\. To do this, break your values down into various bins, such as **PR\(:1\)**, **PR\(1:5\)**, **PR\(5:10\)**, and **PR\(10:\)**\. Put each of these bins into a visualization as bar charts, and you have a histogram\.
 
@@ -36,7 +36,7 @@ For Trimmed Mean, Trimmed Count, Trimmed Sum, and Winsorized Mean, the following
 
 A percentile such as **p99** and a trimmed mean such as **tm99** measure similar, but not identical values\. Both **p99** and **tm99** ignore the 1% of the data points with the highest values, which are considered outliers\. After that, **p99** is the **maximum value of the remaining 99%, while **tm99** is the *average* of the remaining 99%\. If you are looking at the latency of web requests, **p99** tells you the worst customer experience, ignoring outliers, while **tm99** tells you the average customer experience, ignoring outliers\.
 
-Trimmed mean is a good latency statistic to watch if you are looking to optimize your customer experience\. For alarming on latency, we recommend to use a percentile statistic, to receive alerts early if there is an issue that leads to a partial loss of service\.
+Trimmed mean is a good latency statistic to watch if you are looking to optimize your customer experience\.
 
 ## Requirements to use percentiles, trimmed mean, and some other statistics<a name="Percentiles-trimmedmean-requirements"></a>
 

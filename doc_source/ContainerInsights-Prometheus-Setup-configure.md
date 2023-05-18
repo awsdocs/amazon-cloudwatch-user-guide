@@ -73,7 +73,7 @@ The CloudWatch agent YAML files already have some default scraping jobs configur
         target_label: pod_phase
 ```
 
-Each of these default targets are scraped, and the metrics are sent to CloudWatch in log events using embedded metric format\. For more information, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
+Each of these default targets are scraped, and the metrics are sent to CloudWatch in log events using embedded metric format\. For more information, see [Ingest high\-cardinality logs to generate metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
 
 Log events from Amazon EKS and Kubernetes clusters are stored in the **/aws/containerinsights/*cluster\_name*/prometheus** log group in CloudWatch Logs\. Log events from Amazon ECS clusters are stored in the **/aws/ecs/containerinsights/*cluster\_name*/prometheus** log group\.
 
@@ -98,7 +98,7 @@ The CloudWatch agent configuration file has a `prometheus` section under `metric
   + `sd_result_file` is the path of the YAML file for the Prometheus target results\. The Prometheus scrape configuration will refer to this file\.
   + `docker_label` is an optional section that you can use to specify the configuration for docker label\-based service discovery\. If you omit this section, docker label\-based discovery is not used\. This section can contain the following fields:
     + `sd_port_label` is the container's docker label name that specifies the container port for Prometheus metrics\. The default value is `ECS_PROMETHEUS_EXPORTER_PORT`\. If the container does not have this docker label, the CloudWatch agent will skip it\.
-    + `sd_metrics_path_label` is the container's docker label name that specifies the Prometheus metrics path\. The default value is `ECS_PROMETHEUS_METRICS_PATH`\. If the container does not have this docker label, the the agent assumes the default path `/metrics`\.
+    + `sd_metrics_path_label` is the container's docker label name that specifies the Prometheus metrics path\. The default value is `ECS_PROMETHEUS_METRICS_PATH`\. If the container does not have this docker label, the agent assumes the default path `/metrics`\.
     + `sd_job_name_label` is the container's docker label name that specifies the Prometheus scrape job name\. The default value is `job`\. If the container does not have this docker label, the CloudWatch agent uses the job name in the Prometheus scrape configuration\.
   + `task_definition_list` is an optional section that you can use to specify the configuration of task definition\-based service discovery\. If you omit this section, task definition\-based discovery is not used\. This section can contain the following fields:
     + `sd_task_definition_arn_pattern` is the pattern to use to specify the Amazon ECS task definitions to discover\. This is a regular expression\.

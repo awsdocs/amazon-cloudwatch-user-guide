@@ -6,9 +6,11 @@ You can arrange and resize graphs on your CloudWatch dashboard\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
-1. Hover over the title of the graph until the selection icon appears\. Select and drag the graph to a new location on the dashboard\.
+1. Do one of the following:
+   + Hover over the title of the graph until the selection icon appears\. Select and drag the graph to a new location on the dashboard\.
+   + To move the widget to either the top left or bottom left of the dashboard, choose the vertical ellipsis at the upper right of the widget to open the **Widget actions** menu\. Then choose **Move**, and choose where to move tbe widget to\.
 
 1. Choose **Save dashboard**\.
 
@@ -16,7 +18,7 @@ You can arrange and resize graphs on your CloudWatch dashboard\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and choose a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
 1. To increase or decrease the size, hover over the graph and drag the lower right corner of the graph\. Stop dragging the corner when you have the size that you want\.
 
@@ -26,6 +28,6 @@ You can arrange and resize graphs on your CloudWatch dashboard\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
 1. Select the graph\. Alternatively, hover over the title of the graph and choose **Widget actions**, **Enlarge**\.

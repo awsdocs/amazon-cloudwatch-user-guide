@@ -87,7 +87,7 @@ const pageLoadBlueprint = async function () {
     await synthetics.takeScreenshot('loaded', 'loaded');
     
     //If the response status code is not a 2xx success code
-    if (response.status() < 200 || response.status() :gt; 299) {
+    if (response.status() < 200 || response.status() > 299) {
         throw "Failed to load page!";
     }
 };

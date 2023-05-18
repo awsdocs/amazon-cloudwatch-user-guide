@@ -52,7 +52,7 @@ This section might be useful if you all or some pod metrics are missing after yo
 These errors can be caused by changes in the container runtime, such as containerd or the docker systemd cgroup driver\. You can usually solve this by updating your deployment manifest so that the containerd socket from the host is mounted into the container\. See the following example:
 
 ```
-# For full example see https://github.com/aws-samples/amazon-cloudwatch-container-insights/blob/master/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml
+# For full example see https://github.com/aws-samples/amazon-cloudwatch-container-insights/blob/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -117,15 +117,15 @@ This was a regression introduced in version 1\.247347\.6b250880 of the CloudWatc
 
 ## Latest docker image mentioned in release notes not found from Dockerhub<a name="ContainerInsights-troubleshooting-docker-image"></a>
 
-We update the release note and tag on Github before we start the actual release internally\. It usually takes 1\-2 weeks to see the latest docker image on registries after we bump the version number on Github\. There is no nightly release for the CloudWatch agent container image\. You can build the image directly from source at the following location: [https://github\.com/aws/amazon\-cloudwatch\-agent/tree/master/amazon\-cloudwatch\-container\-insights/cloudwatch\-agent\-dockerfile](https://github.com/aws/amazon-cloudwatch-agent/tree/master/amazon-cloudwatch-container-insights/cloudwatch-agent-dockerfile)
+We update the release note and tag on Github before we start the actual release internally\. It usually takes 1\-2 weeks to see the latest docker image on registries after we bump the version number on Github\. There is no nightly release for the CloudWatch agent container image\. You can build the image directly from source at the following location: [https://github\.com/aws/amazon\-cloudwatch\-agent/tree/latest/amazon\-cloudwatch\-container\-insights/cloudwatch\-agent\-dockerfile](https://github.com/aws/amazon-cloudwatch-agent/tree/latest/amazon-cloudwatch-container-insights/cloudwatch-agent-dockerfile)
 
 ## CrashLoopBackoff error on the CloudWatch agent<a name="ContainerInsights-troubleshooting-crashloopbackoff"></a>
 
 If you see a `CrashLoopBackOff` error for the CloudWatch agent, make sure that your IAM permissions are set correctly\. For more information, see [Verify prerequisites](Container-Insights-prerequisites.md)\.
 
-## CloudWatch agent or FluentD pod stuck in pending<a name="ContainerInsights-troubleshooting-pending"></a>
+## CloudWatch agent or Fluentd pod stuck in pending<a name="ContainerInsights-troubleshooting-pending"></a>
 
-If you have a CloudWatch agent or FluentD pod stuck in `Pending` or with a `FailedScheduling` error, determine if your nodes have enough compute resources based on the number of cores and amount of RAM required by the agents\. Enter the following command to describe the pod:
+If you have a CloudWatch agent or Fluentd pod stuck in `Pending` or with a `FailedScheduling` error, determine if your nodes have enough compute resources based on the number of cores and amount of RAM required by the agents\. Enter the following command to describe the pod:
 
 ```
 kubectl describe pod cloudwatch-agent-85ppg -n amazon-cloudwatch

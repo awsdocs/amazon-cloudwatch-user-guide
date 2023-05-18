@@ -30,15 +30,15 @@ You can use the AWS Management Console to create a cross\-account cross\-Region 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Metrics**\.
+1. In the navigation pane, choose **Metrics**, and then choose **All metrics**\.
 
-1. Under **All metrics**, choose the account and Region that you want to add metrics from\.
+1.  Select the account and Region that you want to add metrics from\. You can select your account and Region from the account and Region dropdown menus near the top\-right of the screen\.
 
 1. Add the metrics you want to the graph\. For more information, see [Graphing metrics](graph_metrics.md)\.
 
 1. Repeat steps 4\-5 to add metrics from other accounts and Regions\.
 
-1. \(Optional\) Choose the **Graphed metrics** tab and add a metric math function that uses the metrics that you have chosen\. For more information, see [Using metric math](using-metric-math.md)\.
+1. \(Optional\) Choose the **Graphed metrics** tab and add a metric math function that uses the metrics that you have chosen\. For more information, see [Use metric math](using-metric-math.md)\.
 
    You can also set up a single graph to include multiple `SEARCH` functions\. Each search can refer to a different account or Region\.
 

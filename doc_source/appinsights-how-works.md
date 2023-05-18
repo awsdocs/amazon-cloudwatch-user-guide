@@ -44,6 +44,7 @@ The packages listed in this section are used by Application Insights, and can be
 + [`AWSObservabilityExporter-JMXExporterInstallAndConfigure`](#configure-java)
 + [`AWSObservabilityExporter-SAP-HANADBExporterInstallAndConfigure`](#appinsights-ssm-sap-prometheus)
 + [`AWSObservabilityExporter-HAClusterExporterInstallAndConfigure`](#appinsights-ssm-sap-prometheus-ha)
++ [`AWSObservabilityExporter-SAP-SAPHostExporterInstallAndConfigure`](#appinsights-ssm-sap-host-exporter)
 
 ### `AWSObservabilityExporter-JMXExporterInstallAndConfigure`<a name="configure-java"></a>
 
@@ -62,7 +63,7 @@ The `AWSObservabilityExporter-JMXExporterInstallAndConfigure` package is an SSM 
 
 1. Copy the Prometheus JMX exporter YAML configuration file encoded as Base64 to a new SSM parameter in [SSM Parameter Store](https://console.aws.amazon.com/systems-manager/parameters)\.
 
-1. Navigate to the [SSM Distributor](https://console.aws.amazon.com/systems-manager/distributor) console and open the **Third party** tab\. Select **AWSObservabilityExporter\-JMXExporterInstallAndConfigure** and choose **Install one time**\.
+1. Navigate to the [SSM Distributor](https://console.aws.amazon.com/systems-manager/distributor) console and open the **Owned by Amazon** tab\. Select **AWSObservabilityExporter\-JMXExporterInstallAndConfigure** and choose **Install one time**\.
 
 1. Update the SSM parameter you created in the first step by replacing "Additional Arguments" with the following:
 
@@ -200,7 +201,7 @@ To use [AWS Systems Manager Distributor](https://docs.aws.amazon.com/systems-man
 + SSM agent version 2\.3\.1550\.0 or later installed
 + SAP HANA database
 + Linux operating system \(SUSE Linux, RedHat Linux\)
-+ A secret with SAP HANA database monitoring credentials, using AWS Secrets Manager\. Create a secret using the key/value pairs format, specify the key username, and enter the database user for the value\. Add a second key password, and then enter the password for the value\. For more information about how to create secrets, see [Create a secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) in the *AWS Secrets Manager User Guide*\. The secret must be formatted as follows:
++ A secret with SAP HANA database monitoring credentials, using AWS Secrets Manager\. Create a secret using the key/value pairs format, specify the key user name, and enter the database user for the value\. Add a second key password, and then enter the password for the value\. For more information about how to create secrets, see [Create a secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) in the *AWS Secrets Manager User Guide*\. The secret must be formatted as follows:
 
   ```
   {
@@ -276,3 +277,59 @@ The `AWSObservabilityExporter-HAClusterExporterInstallAndConfigure` package is a
    ```
 
 1. Select the Amazon EC2 instances with SAP HANA database, and choose **Run**\.
+
+### `AWSObservabilityExporter-SAP-SAPHostExporterInstallAndConfigure`<a name="appinsights-ssm-sap-host-exporter"></a>
+
+You can retrieve workload\-specific SAP NetWeaver metrics from [Prometheus SAP host exporter](https://prometheus.io/docs/instrumenting/exporters/#third-party-exporters) for Application Insights to configure and monitor alarms for SAP NetWeaver Distributed and High Availability deployments\. For more information, see [Get started with Amazon CloudWatch Application Insights](appinsights-getting-started.md)\.
+
+To use [AWS Systems Manager Distributor](https://docs.aws.amazon.com/systems-manager/latest/userguide/distributor.html) to package, install, and configure the SAP host exporter package independently of Application Insights, complete the following steps\.
+
+**Prerequisites for using the Prometheus SAP host exporter SSM package**
++ SSM agent version 2\.3\.1550\.0 or later installed
++ SAP NetWeaver application servers
++ Linux operating system \(SUSE Linux, RedHat Linux\)
+
+**Install and configure the `AWSObservabilityExporter-SAP-SAPHostExporterInstallAndConfigure` package**  
+The `AWSObservabilityExporter-SAP-SAPHostExporterInstallAndConfigure` package is an SSM Distributor package that you can use to install and configure SAP NetWeaver Prometheus metrics exporter\. When SAP NetWeaver metrics are sent by the Prometheus exporter, the CloudWatch agent can be configured to retrieve the metrics for the CloudWatch service\.
+
+1. Create an SSM parameter in [SSM Parameter Store](https://console.aws.amazon.com/systems-manager/parameters) to store the Exporter configurations in JSON format\. The following is an example parameter value\.
+
+   ```
+   {\"address\":\"0.0.0.0\",\"port\":\"9680\",\"log-level\":\"info\",\"is-HA\":false}
+   ```
+   + **address**
+
+     The target address to which to send the Prometheus metrics\. The default value is `localhost`\.
+   + **port**
+
+     The target port to which to send the Prometheus metrics\. The default value is `9680`\.
+   + **is\-HA**
+
+     `true` for SAP NetWeaver High Availability deployments\. For all other deployments the value is `false`\.
+
+1. Navigate to the [SSM Distributor](https://console.aws.amazon.com/systems-manager/distributor) console and open the **Owned by Amazon** tab\. Select **AWSObservabilityExporter\-SAP\-SAPHostExporterInstallAndConfigure** and choose **Install one time**\.
+
+1. Update the SSM parameter you created in the first step by replacing "Additional Arguments" with the following:
+
+   ```
+   {
+     "SSM_EXPORTER_CONFIG": "{{ssm:<SSM_CONFIGURATIONS_PARAMETER_STORE_NAME>}}",
+     "SSM_SID": "<SAP_DATABASE_SID>",
+     "SSM_INSTANCES_NUM": "<instances_number seperated by comma>"
+   }
+   ```
+
+   **Example**
+
+   ```
+   {
+     "SSM_EXPORTER_CONFIG": "{{ssm:exporter_config_paramter}}",
+     "SSM_INSTANCES_NUM": "11,12,10",
+     "SSM_SID": "PR1"
+   }
+   ```
+
+1. Select the Amazon EC2 instances with SAP NetWeaver applications, and choose **Run**\.
+
+**Note**  
+The Prometheus exporter services the SAP NetWeaver metrics on a local endpoint\. The local endpoint can be accessed by only the operating system users on the Amazon EC2 instance\. Therefore, after the exporter package is installed, the metrics are available to all of the operating system users\. The default local endpoint is `localhost:9680/metrics`\.

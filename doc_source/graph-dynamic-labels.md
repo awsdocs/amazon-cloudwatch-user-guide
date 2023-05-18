@@ -1,4 +1,4 @@
-# Using dynamic labels<a name="graph-dynamic-labels"></a>
+# Use dynamic labels<a name="graph-dynamic-labels"></a>
 
 You can use dynamic labels with your graphs\. Dynamic labels add a dynamically updated value to the label for the selected metric\. You can add a wide range of values to the labels, as shown in the following tables\.
 
@@ -35,7 +35,8 @@ Within a dynamic label, you can use the following values relating to properties 
 |  $\{MIN\_TIME\} |  The timestamp of the data point that has the lowest metric value, of the data points that are currently shown in the graph\.  | 
 |  $\{MIN\_TIME\_RELATIVE\} |  The absolute time difference between now and the timestamp of the data point with the lowest value, of those data points that are currently shown in the graph\.  | 
 |  $\{PROP\('AccountId'\)\} |  The AWS account ID of the metric\.  | 
-|  $\{PROP\('Dim\.*dimension\_name*'\)\} |  The value of the specified dimension\.  | 
+|  $\{PROP\('AccountLabel'\)\} |  The label specified for the source account that owns this metric, in CloudWatch cross\-account observabiility\.  | 
+|  $\{PROP\('Dim\.*dimension\_name*'\)\} |  The value of the specified dimension\. Replace *dimension\_name* with the case\-sensitive name of your dimension\.  | 
 |  $\{PROP\('MetricName'\)\} |  The name of the metric\.  | 
 |  $\{PROP\('Namespace'\)\} |  The namespace of the metric\.  | 
 |  $\{PROP\('Period'\)\} |  The period of the metric, in seconds\.  | 
@@ -43,6 +44,6 @@ Within a dynamic label, you can use the following values relating to properties 
 |  $\{PROP\('Stat'\)\} |  The metric statistic that is being graphed\.  | 
 |  $\{SUM\} |  The sum of the values in the time range currently shown in the graph\.  | 
 
-For example, suppose you have a search expression **SEARCH\(' \{AWS/Lambda, FunctionName\} Errors ', 'Sum', 300\)**, which finds the `Errors` for each of your Lambda functions\. If you set the label to be `[max: ${MAX} Errors for Function Name ${LABEL}]`, the label for each metric is **\[max: *number* Errors for Function Name *Name*\]**\.
+For example, suppose you have a search expression **SEARCH\(' \{AWS/Lambda, FunctionName\} Errors ', 'Sum'\)**, which finds the `Errors` for each of your Lambda functions\. If you set the label to be `[max: ${MAX} Errors for Function Name ${LABEL}]`, the label for each metric is **\[max: *number* Errors for Function Name *Name*\]**\.
 
 You can add up to five dynamic values to a label\. You can use the `${LABEL}` placeholder only once within each label\.

@@ -2,7 +2,7 @@
 
 To collect metrics from a sample Prometheus workload for Amazon ECS, you must be running Container Insights in the cluster\. For information about installing Container Insights, see [Setting up Container Insights on Amazon ECS](deploy-container-insights-ECS.md)\.
 
-First, follow this [ walkthrough](https://github.com/aws/aws-app-mesh-examples/tree/master/examples/apps/colorapp#app-mesh-walkthrough-deploy-the-color-app-on-ecs) to deploy the sample color app on your Amazon ECS cluster\. After you finish, you will have App Mesh Prometheus metrics exposed on port 9901\.
+First, follow this [ walkthrough](https://github.com/aws/aws-app-mesh-examples/tree/main/examples/apps/colorapp#app-mesh-walkthrough-deploy-the-color-app-on-ecs) to deploy the sample color app on your Amazon ECS cluster\. After you finish, you will have App Mesh Prometheus metrics exposed on port 9901\.
 
 Next, follow these steps to install the CloudWatch agent with Prometheus monitoring on the same Amazon ECS cluster where you installed the color app\. The steps in this section install the CloudWatch agent in bridge network mode\. 
 
@@ -13,7 +13,7 @@ The environment variables `ENVIRONMENT_NAME`, `AWS_PROFILE`, and `AWS_DEFAULT_RE
 1. Download the AWS CloudFormation template by entering the following command\.
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
    ```
 
 1. Set the network mode by entering the following commands\.

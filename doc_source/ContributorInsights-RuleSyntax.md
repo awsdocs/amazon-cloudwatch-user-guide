@@ -1,6 +1,6 @@
 # Contributor Insights rule syntax<a name="ContributorInsights-RuleSyntax"></a>
 
-This section explains the syntax for Contributor Insights rules\. Use this syntax only when you are creating a rule by entering a JSON block\. If you use the wizard to create a rule, you don't need to know the syntax\. For more information about creating rules using the wizard, see [Creating a Contributor Insights rule](ContributorInsights-CreateRule.md)\.
+This section explains the syntax for Contributor Insights rules\. Use this syntax only when you are creating a rule by entering a JSON block\. If you use the wizard to create a rule, you don't need to know the syntax\. For more information about creating rules using the wizard, see [Create a Contributor Insights rule](ContributorInsights-CreateRule.md)\.
 
 All matching of rules to log event field names and values is case sensitive\.
 
@@ -42,6 +42,12 @@ LogGroupNames
  An array of strings\. For each element in the array, you can optionally use `*` at the end of a string to include all log groups with names that start with that prefix\.   
 Be careful about using wildcards with log group names\. You incur charges or each log event that matches a rule\. If you accidentally search more log groups than you intend, you might incur unexpected charges\. For more information, see [Amazon CloudWatch Pricing](http://aws.amazon.com/cloudwatch/pricing)\.
 
+LogGroupARNs  
+If you are creating this rule in a CloudWatch cross\-account observability monitoring account, you can use `LogGroupARNs` to specify log groups in source accounts that are linked to the monitoring account, and to specify log groups in the monitoring account itself\. You must specify either `LogGroupNames` or `LogGroupARNs` in your rule, but not both\.  
+ `LogGroupARNs` is an array of strings\. For each element in the array, you can optionally use `*` as a wildcard in certain situations\. For example you can specify `arn:aws:logs:us-west-1:*:log-group/MyLogGroupName2` to specify log groups named `MyLogGroupName2` in all source accounts and in the monitoring account, in the US West \(N\. California\) Region\. You can also specify `arn:aws:logs:us-west-1:111122223333:log-group/GroupNamePrefix*` to specify all log groups in US West \(N\. California\) in 111122223333 that have names starting with `GroupNamePrefix`\.  
+You can't specify a partial AWS account ID as a prefix with a wild card\.   
+Be careful about using wildcards with log group ARNs\. You incur charges or each log event that matches a rule\. If you accidentally search more log groups than you intend, you might incur unexpected charges\. For more information, see [Amazon CloudWatch Pricing](http://aws.amazon.com/cloudwatch/pricing)\.
+
 LogFormat  
  Valid values are `JSON` and `CLF`\. 
 
@@ -61,7 +67,7 @@ The `Match` field specifies a log field to evaluate in the filter\. The log fiel
 The matching operator field must be one of the following: `In`, `NotIn`, `StartsWith`, `GreaterThan`, `LessThan`, `EqualTo`, `NotEqualTo`, or `IsPresent`\. If the operator field is `In`, `NotIn`, or `StartsWith`, it is followed by an array of string values to check for\. Contributor Insights evaluates the array of string values with an OR operator\. The array can include as many as 10 string values\.  
 If the operator field is `GreaterThan`, `LessThan`, `EqualTo`, or `NotEqualTo`, it is followed by a single numerical value to compare with\.  
 If the operator field is `IsPresent`, it is followed by either `true` or `false`\. This operator matches log events based on whether the specified log field is present in the log event\. The `isPresent` works only with values in the leaf node of JSON properties\. For example, a filter that looks for matches to `c-count` does not evaluate a log event with a value of `details.c-count.c1`\.  
-See the following for filter examples:  
+See the following four filter examples:  
 
 ```
 {"Match": "$.httpMethod", "In": [ "PUT", ] }

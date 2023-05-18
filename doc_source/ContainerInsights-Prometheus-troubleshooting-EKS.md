@@ -108,7 +108,7 @@ If you see those lines and want to know what metrics are being dropped, use the 
    kubectl logs -l "app=cwagent-prometheus" -n amazon-cloudwatch --tail=-1
    ```
 
-   Or, if you have Container Insights FluentD logging installed, the logs are also saved in the CloudWatch Logs log group **/aws/containerinsights/*cluster\_name*/application**\.
+   Or, if you have Container Insights Fluentd logging installed, the logs are also saved in the CloudWatch Logs log group **/aws/containerinsights/*cluster\_name*/application**\.
 
    To query these logs, you can follow the steps for querying the application logs in [General troubleshooting steps on Amazon EKS](#ContainerInsights-Prometheus-troubleshooting-general)\.
 
@@ -145,4 +145,4 @@ If the Prometheus metrics are ingested as log events correctly, check that the e
 
 For more information about embedded metric format, see [Specification: Embedded metric format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
 
-If there is no embedded metric format in the log events, check that the `metric_definitions` are configured correctly in the `config map: prometheus-cwagentconfig` section of the CloudWatch agent installation YAML file\. For more information, see [Tutorial for adding a new Prometheus scrape target: Prometheus API Server metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.
+If there is no embedded metric format in the log events, check that the `metric_declaration` section is configured correctly in the `config map: prometheus-cwagentconfig` section of the CloudWatch agent installation YAML file\. For more information, see [Tutorial for adding a new Prometheus scrape target: Prometheus API Server metrics](ContainerInsights-Prometheus-Setup-configure.md#ContainerInsights-Prometheus-Setup-new-exporters)\.

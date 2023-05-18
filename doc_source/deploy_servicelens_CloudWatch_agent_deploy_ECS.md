@@ -6,7 +6,7 @@ On Amazon ECS, you deploy the CloudWatch agent as a sidecar to your application 
 
 You must create two IAM roles\. If you already have created these roles, you may need to add permissions to them\.
 + **ECS task role—** Containers use this role to run\. The permissions should be whatever your applications need, plus **CloudWatchAgentServerPolicy** and **AWSXRayDaemonWriteAccess**\. 
-+ **ECS task definition role—** Amazon ECS uses this role to launch and execute your containers\. If you have already created this role, attach the **AmazonSSMReadOnlyAccess**, **AmazonECSTaskExecutionRolePolicy**, and **CloudWatchAgentServerPolicy** policies to it\.
++ **ECS task execution role—** Amazon ECS uses this role to launch and execute your containers\. If you have already created this role, attach the **AmazonSSMReadOnlyAccess**, **AmazonECSTaskExecutionRolePolicy**, and **CloudWatchAgentServerPolicy** policies to it\.
 
   If you need to store more sensitive data for Amazon ECS to use, see [Specifying Sensitive Data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) for more information\.
 

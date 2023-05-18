@@ -1,9 +1,8 @@
 # Query your metrics with CloudWatch Metrics Insights<a name="query_with_cloudwatch-metrics-insights"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
 CloudWatch Metrics Insights is a powerful high\-performance SQL query engine that you can use to query your metrics at scale\. You can identify trends and patterns within all of your CloudWatch metrics in real time\.
+
+You can also set alarms on any Metrics Insights queries that return a single time series\. This can be especially useful to create alarms that watch aggregated metrics across a fleet of your infrastructure or applications\. Create the alarm once, and it dynamically adjusts as resources are added to or removed from the fleet\.
 
 You can perform a Metrics Insights query using the CloudWatch console, or by using `GetMetricData` or `PutDashboard` using the AWS CLI or the AWS SDKs\. Queries run in the console are free of charge\. For more information about CloudWatch pricing, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
@@ -14,7 +13,8 @@ With Metrics Insights you can run queries at scale\. By using the **GROUP BY** c
 **Topics**
 + [Build your queries](cloudwatch-metrics-insights-buildquery.md)
 + [Metrics Insights query components and syntax](cloudwatch-metrics-insights-querylanguage.md)
-+ [Using Metrics Insights queries with metric math](cloudwatch-metrics-insights-math.md)
++ [Create alarms on Metrics Insights queries](cloudwatch-metrics-insights-alarms.md)
++ [Use Metrics Insights queries with metric math](cloudwatch-metrics-insights-math.md)
 + [SQL inference](cloudwatch-metrics-insights-inference.md)
 + [Metrics Insights sample queries](cloudwatch-metrics-insights-queryexamples.md)
 + [Metrics Insights limits](cloudwatch-metrics-insights-limits.md)

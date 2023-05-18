@@ -14,7 +14,7 @@ The following steps explain how to add a metrics explorer widget to a dashboard 
 
 1. Choose the name of the dashboard where you want to add the metrics explorer widget\.
 
-1. Choose **Add widget**\.
+1. Choose the **\+** symbol\.
 
 1. Choose **Explorer** and then choose **Next**\. 
 **Note**  

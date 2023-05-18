@@ -66,7 +66,7 @@ To collect metrics from a sample Prometheus workload for Amazon ECS, you must be
 1. Download the Memcached AWS CloudFormation template by entering the following command\.
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/sample_traffic/memcached/memcached-traffic-sample.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/sample_traffic/memcached/memcached-traffic-sample.yaml
    ```
 
 1. Set the IAM role names to be created for Memcached by entering the following commands\.
@@ -108,7 +108,7 @@ In the Memcached task definition, two containers are defined:
 1. Download the latest version of `cwagent-ecs-prometheus-metric-for-awsvpc.yaml` by entering the following command\.
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
    ```
 
 1. Open the file with a text editor, and find the full CloudWatch agent configuration behind the `value` key in the `resource:CWAgentConfigSSMParameter` section\.
@@ -242,7 +242,7 @@ You can also create a CloudWatch dashboard for your Memcached Prometheus metrics
 1. Enter the following command to create the dashboard\.
 
    ```
-   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/sample_cloudwatch_dashboards/memcached/cw_dashboard_memcached.json \
+   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/sample_cloudwatch_dashboards/memcached/cw_dashboard_memcached.json \
    | sed "s/{{YOUR_AWS_REGION}}/$AWS_REGION/g" \
    | sed "s/{{YOUR_CLUSTER_NAME}}/$ECS_CLUSTER_NAME/g" \
    | sed "s/{{YOUR_TASK_DEF_FAMILY}}/$ECS_TASK_DEF_FAMILY/g" \

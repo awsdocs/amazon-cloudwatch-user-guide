@@ -9,7 +9,7 @@ You can use the model of expected values in two ways:
 
   You can choose whether the alarm is triggered when the metric value is above the band of expected values, below the band, or both\.
 
-  For more information, see [Creating a CloudWatch alarm based on anomaly detection](Create_Anomaly_Detection_Alarm.md)\.
+  For more information, see [Create a CloudWatch alarm based on anomaly detection](Create_Anomaly_Detection_Alarm.md)\.
 + When viewing a graph of metric data, overlay the expected values onto the graph as a band\. This makes it visually clear which values in the graph are out of the normal range\. For more information, see [Creating a graph](graph_a_metric.md#create-metric-graph)\.
 
   You can enable anomaly detection using the AWS Management Console, the AWS CLI, AWS CloudFormation, or the AWS SDK\. You can enable anomaly detection on metrics vended by AWS and also on custom metrics\.

@@ -1,6 +1,6 @@
 # \(Optional\) Step 3: Manually modify the code snippet to configure the CloudWatch RUM web client<a name="CloudWatch-RUM-modify-snippet"></a>
 
-You can modify the code snippet before inserting it into your application, to activate or deactivate several options\. For more information, see the [ CloudWatch RUM web client documentation](https://github.com/aws-observability/aws-rum-web/blob/main/docs/cdn_installation.md)\.
+You can modify the code snippet before inserting it into your application, to activate or deactivate several options\. For more information, see the [ CloudWatch RUM web client documentation\.](https://github.com/aws-observability/aws-rum-web/blob/main/docs/cdn_installation.md)
 
 There are three configuration options that you should definitely be aware of, as discussed in these sections\.
 
@@ -12,7 +12,19 @@ If this is the case for your application, we strongly recommend that you disable
 
 ## Manually recording page views<a name="CloudWatch-RUM-pageload"></a>
 
-By default, the web client records page views when the page first loads and when the browser's history API is called\. The page ID is `window.location.pathname`\. In some cases, the web client's instrumentation will not record the desired page ID\. In this case, you must disable the web client's page view automation by using the `disableAutoPageView` configuration, and the application must be instrumented to record page views using the `recordPageView command`\.
+By default, the web client records page views when the page first loads and when the browser's history API is called\. The default page ID is `window.location.pathname`\. However, in some cases you might want to override this behavior and instrument the application to record page views programmatically\. Doing so gives you control over the page ID and when it is recorded\. For example, consider a web application that has a URI with a variable identifier, such as `/entity/123` or `/entity/456`\. By default, CloudWatch RUM generates a page view event for each URI with a distinct page ID matching the pathname, but you might want to group them by the same page ID instead\. To accomplish this, disable the web client's page view automation by using the `disableAutoPageView` configuration, and use the `recordPageView` command to set the desired page ID\. For more information, see [ Application\-specific Configurations](https://github.com/aws-observability/aws-rum-web/blob/main/docs/configuration.md) on GitHub\.
+
+**Embedded script example:**
+
+```
+cwr('recordPageView', { pageId: 'entityPageId' });
+```
+
+**JavaScript module example:**
+
+```
+awsRum.recordPageView({ pageId: 'entityPageId' });
+```
 
 ## Enabling X\-Ray end\-to\-end tracing<a name="CloudWatch-RUM-xraytraceheader"></a>
 

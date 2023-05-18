@@ -1,8 +1,5 @@
 # Build your queries<a name="cloudwatch-metrics-insights-buildquery"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
 You can run a CloudWatch Metrics Insights query using the CloudWatch console, the AWS CLI, or the AWS SDKs\. Queries run in the console are free of charge\. For more information about CloudWatch pricing, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
 For more information about using the AWS SDKs to perform a Metrics Insights query, see [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)\.

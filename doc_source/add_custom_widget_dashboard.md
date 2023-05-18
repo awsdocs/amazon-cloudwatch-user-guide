@@ -1,6 +1,6 @@
 # Add a custom widget to a CloudWatch dashboard<a name="add_custom_widget_dashboard"></a>
 
-A *custom widget* is a CloudWatch dashboard widget that can call any AWS Lambda function with custom parameters\. It then displays the returned HTML or JSON\. Custom widgets are a simple way to build a custom data view on a dashboard\. If you can write Lambda code and create HTML, you can create a useful custom widget\. Additionally, Amazon provides several pre\-built custom widgets that you can create without any code\.
+A *custom widget* is a CloudWatch dashboard widget that can call any AWS Lambda function with custom parameters\. It then displays the returned HTML or JSON\. Custom widgets are a simple way to build a custom data view on a dashboard\. If you can write Lambda code and create HTML, you can create a useful custom widget\. Additionally, Amazon provides several prebuilt custom widgets that you can create without any code\.
 
 When you create a Lambda function to use as a custom widget, we strongly recommend that you include the prefix **customWidget** in the function name\. This helps you know which of your Lambda functions are safe to use when you add custom widgets to your dashboard\.
 

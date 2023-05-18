@@ -1,4 +1,4 @@
-# Amazon Relational Database Service instance<a name="component-configuration-examples-rds"></a>
+# Amazon Relational Database Service \(RDS\) instance<a name="component-configuration-examples-rds"></a>
 
 The following example shows a component configuration in JSON format for an Amazon RDS instance\.
 

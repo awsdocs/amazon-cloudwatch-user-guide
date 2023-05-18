@@ -32,11 +32,13 @@ When you add an experiment, you can use a feature that you have already created,
 
       Specify one of the variations to be the default\. This is the baseline that the other variations will be compared to, and should be the variation that is being served to your users now\. If you stop an experiment that uses this feature, the default variation is then served to the percentage of users that were in the experiment previously\.
 
-   1. Choose **Sample code**\. The code example shows what you need to add to your application to set up the variations and assign user sessions to them\. You can choose between JavaScript and Java for the code\.
+   1. Choose **Sample code**\. The code example shows what you need to add to your application to set up the variations and assign user sessions to them\. You can choose between JavaScript, Java, and Python for the code\.
 
       You don't need to add the code to your application right now, but you must do so before you start the experiment\. For more information, see [Adding code to your application](CloudWatch-Evidently-code-application.md)\.
 
-1. For **Audience**, first specify the percentage of the available users whose sessions will be used in the experiment\. Then allocate the traffic for the different variations that the experiment uses\.
+1. For **Audience**, optionally select a segment that you have created if you want this experiment to apply only to the users who match that segment\. For more information about segments, see [Use segments to focus your audience](CloudWatch-Evidently-segments.md)\.
+
+1. For **Traffic split for the experiment**, specify the percentage of the selected audience whose sessions will be used in the experiment\. Then allocate the traffic for the different variations that the experiment uses\.
 
    If a launch and an experiment are both running at the same time for the same feature, the audience is first directed to the launch\. Then, the percentage of traffic specified for the launch is taken from the overall audience\. After that, the percentage that you specify here is the percentage of the remaining audience that is used for the experiment\. Any remaining traffic after that is served the default variation\.
 

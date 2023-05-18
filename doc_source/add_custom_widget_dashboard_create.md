@@ -6,9 +6,9 @@ To create a custom widget, you can use one of the samples provided by Amazon, or
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards**, and then select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
-1. Choose **Add widget**\.
+1. Choose the **\+** symbol\.
 
 1. Choose **Custom widget**\.
 

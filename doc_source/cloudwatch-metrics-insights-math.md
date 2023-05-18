@@ -1,9 +1,6 @@
-# Using Metrics Insights queries with metric math<a name="cloudwatch-metrics-insights-math"></a>
+# Use Metrics Insights queries with metric math<a name="cloudwatch-metrics-insights-math"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
-You can use a Metrics Insights query as an input to a metric math function\. For more information about metric math, see [Using metric math](using-metric-math.md)\.
+You can use a Metrics Insights query as an input to a metric math function\. For more information about metric math, see [Use metric math](using-metric-math.md)\.
 
 A Metrics Insights query that does not include a **GROUP BY** clause returns a single time series\. Therefore, its returned results can be used with any metric math function that takes a single time series as input\.
 

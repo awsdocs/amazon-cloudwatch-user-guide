@@ -32,21 +32,21 @@ The following list explains the differences between Fluentd and each Fluent Bit 
   Under `/aws/containerinsights/Cluster_Name/dataplane`
   + Fluent Bit optimized configuration sends logs to `kubernetes-nodeName.dataplaneServiceLog`
   + Fluentd sends logs to `dataplaneServiceLog-Kubernetes-nodeName`
-+ The `kube-proxy` and `aws-node` log files that Container Insights writes are in different locations\. In FluentD configuration, they are in `/aws/containerinsights/Cluster_Name/application`\. In the Fluent Bit optimized configuration, they are in `/aws/containerinsights/Cluster_Name/dataplane`\.
++ The `kube-proxy` and `aws-node` log files that Container Insights writes are in different locations\. In Fluentd configuration, they are in `/aws/containerinsights/Cluster_Name/application`\. In the Fluent Bit optimized configuration, they are in `/aws/containerinsights/Cluster_Name/dataplane`\.
 + Most metadata such as `pod_name` and `namespace_name` are the same in Fluent Bit and Fluentd, but the following are different\.
   + The Fluent Bit optimized configuration uses `docker_id` and Fluentd use `Docker.container_id`\.
   + Both Fluent Bit configurations do not use the following metadata\. They are present only in Fluentd: `container_image_id`, `master_url`, `namespace_id`, and `namespace_labels`\.
 
 ## Setting up Fluent Bit<a name="Container-Insights-FluentBit-setup"></a>
 
-**Important** 
-If you already have Fluentd configured as Container Insight and Fluentd DaemonSet is not running as expected (maybe the case when using the `containerd` runtime), you must uninstall it before installing Fluent-Bit to avoid Fluent-Bit from processing FLuentd's error log messages\.  Otherwise, you must uninstall Fluentd immediately after you have successfully installed Fluent-Bit\. The reason for uninstalling Fluentd (if it is working as expected) after installing Fluent-Bit is to ensure continuity in logging during this migration process.  Since both of these have the same purpose of sending Container Insight logs to CloudWatch, only one is needed\.
-
 To set up Fluent Bit to collect logs from your containers, you can follow the steps in [Quick Start setup for Container Insights on Amazon EKS and Kubernetes](Container-Insights-setup-EKS-quickstart.md) or you can follow the steps in this section\.
 
 With either method, the IAM role that is attached to the cluster nodes must have sufficient permissions\. For more information about the permissions required to run an Amazon EKS cluster, see [Amazon EKS IAM Policies, Roles, and Permissions](https://docs.aws.amazon.com/eks/latest/userguide/IAM_policies.html) in the *Amazon EKS User Guide*\.
 
 In the following steps, you set up Fluent Bit as a daemonSet to send logs to CloudWatch Logs\. When you complete this step, Fluent Bit creates the following log groups if they don't already exist\.
+
+**Important**  
+If you already have FluentD configured in Container Inisghts and the FluentD DaemonSet is not running as expected \(this can happen if you use the `containerd` runtime\), you must uninstall it before installing Fluent Bit to prevent Fluent Bit from processing the FluentD error log messages\. Otherwise, you must uninstall FluentD immediately after you have successfully installed Fluent Bit\. Uninstalling Fluentd after installing Fluent Bit ensures ontinuity in logging during this migration process\. Only one of Fluent Bit or FluentD is needed to send logs to CloudWatch Logs\.
 
 
 | Log group name | Log source | 
@@ -114,7 +114,7 @@ If you want to verify your Fluent Bit setup, follow these steps\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Logs**\.
+1. In the navigation pane, choose **Log groups**\.
 
 1. Make sure that you're in the Region where you deployed Fluent Bit\.
 

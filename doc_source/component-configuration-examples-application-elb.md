@@ -4,53 +4,53 @@ The following example shows a component configuration in JSON format for Applica
 
 ```
 {
-  "alarmMetrics" : [
+  "alarmMetrics": [
     {
-      "alarmMetricName" : "ActiveConnectionCount",
+      "alarmMetricName": "ActiveConnectionCount",
     }, {
-      "alarmMetricName" : "TargetResponseTime"
+      "alarmMetricName": "TargetResponseTime"
     }
   ],  
-  "subComponents" : [
+  "subComponents": [
     {
-      "subComponentType" : "AWS::EC2::Instance",
-      "alarmMetrics" : [
+      "subComponentType": "AWS::EC2::Instance",
+      "alarmMetrics": [
         {
-          "alarmMetricName" : "CPUUtilization",
+          "alarmMetricName": "CPUUtilization",
         }, {
-          "alarmMetricName" : "StatusCheckFailed"
+          "alarmMetricName": "StatusCheckFailed"
         }
       ],
-      "logs" : [
+      "logs": [
         {
-          "logGroupName" : "my_log_group",
-          "logPath" : "C:\\LogFolder\\*",
-          "logType" : "APPLICATION",
+          "logGroupName": "my_log_group",
+          "logPath": "C:\\LogFolder\\*",
+          "logType": "APPLICATION",
         }
       ],
-      "windowsEvents" : [
+      "windowsEvents": [
         {
-          "logGroupName" : "my_log_group_2",
-          "eventName" : "Application",
-          "eventLevels" : [ "ERROR", "WARNING", "CRITICAL" ]
+          "logGroupName": "my_log_group_2",
+          "eventName": "Application",
+          "eventLevels": [ "ERROR", "WARNING", "CRITICAL" ]
         }
       ]
     }, {
-      "subComponentType" : "AWS::EC2::Volume",
-      "alarmMetrics" : [
+      "subComponentType": "AWS::EC2::Volume",
+      "alarmMetrics": [
         {
-          "alarmMetricName" : "VolumeQueueLength",
+          "alarmMetricName": "VolumeQueueLength",
         }, {
-          "alarmMetricName" : "BurstBalance"
+          "alarmMetricName": "BurstBalance"
         }
       ]
     }
   ],
 
-  "alarms" : [
+  "alarms": [
     {
-      "alarmName" : "my_alb_alarm",
-      "severity" : "LOW"
+      "alarmName": "my_alb_alarm",
+      "severity": "LOW"
     }
   ]
 }

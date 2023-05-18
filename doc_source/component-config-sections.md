@@ -7,6 +7,9 @@ A component configuration includes several major sections\. Sections in a compon
 + **logs \(optional\)**
 
   A list of [logs](#component-configuration-log) to monitor for the component\. Only EC2 instances can have a logs section\. 
++ **processes \(optional\)**
+
+  A list of [processes](#component-configuration-process) to monitor for the component\. Only EC2 instances can have a processes section\. 
 + **subComponents \(optional\)**
 
   Nested instance and volume subComponent configuration for the component\. The following types of components can have nested instances and a subComponents section: ELB, ASG, custom\-grouped EC2 instances , and EC2 instances\.
@@ -24,7 +27,10 @@ A component configuration includes several major sections\. Sections in a compon
   SAP HANA Prometheus Exporter configuration\.
 + **haClusterPrometheusExporter \(optional\)**
 
-   HA Cluster Prometheus Exporter configuration\.
+  HA Cluster Prometheus Exporter configuration\.
++ **netWeaverPrometheusExporter \(optional\) **
+
+  SAP NetWeaver Prometheus Exporter configuration\.
 
 The following example shows the syntax for the **subComponents section fragment** in JSON format\.
 
@@ -37,6 +43,9 @@ The following example shows the syntax for the **subComponents section fragment*
     ],
     "logs" : [
       list of logs
+    ],
+    "processes": [
+      list of processes
     ],
     "windowsEvents" : [
       list of windows events channels configurations
@@ -58,9 +67,11 @@ This section describes the properties of each component configuration section\.
 **Topics**
 + [Metric](#component-config-metric)
 + [Log](#component-configuration-log)
++ [Process](#component-configuration-process)
 + [JMX Prometheus Exporter](#component-configuration-prometheus)
 + [HANA Prometheus Exporter](#component-configuration-hana-prometheus)
 + [HA Cluster Prometheus Exporter](#component-configuration-ha-cluster-prometheus)
++ [NetWeaver Prometheus Exporter](#component-configuration-netweaver-prometheus)
 + [Windows Events](#windows-events)
 + [Alarm](#component-configuration-alarms)
 
@@ -134,6 +145,8 @@ Defines a log to be monitored for the component\.
   + `SAP_HANA_LOGS`
   + `SAP_HANA_TRACE`
   + `SAP_HANA_HIGH_AVAILABILITY`
+  + `SAP_NETWEAVER_DEV_TRACE_LOGS`
+  + `PACEMAKER_HIGH_AVAILABILITY`
 + **encoding \(optional\)**
 
   The type of encoding of the logs to be monitored\. The specified encoding should be included in the list of [CloudWatch agent supported encodings](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html)\. If not provided, CloudWatch Application Insights uses the default encoding of type utf\-8, except for: 
@@ -142,6 +155,29 @@ Defines a log to be monitored for the component\.
 + **monitor \(optional\)**
 
   Boolean that indicates whether to monitor the logs\. The default value is `true`\.
+
+### Process<a name="component-configuration-process"></a>
+
+Defines a process to be monitored for the component\.
+
+**JSON** 
+
+```
+{
+  "processName" : "monitoredProcessName",
+  "alarmMetrics" : [
+      list of alarm metrics
+  ] 
+}
+```
+
+**Properties**
++ **processName \(required\)**
+
+  The name of the process to be monitored for the component\. The process name must not contain a process stem, such as `sqlservr` or `sqlservr.exe`\.
++ **alarmMetrics \(required\)**
+
+  A list of [metrics](#component-config-metric) to monitor for this process\. To view process metrics supported by CloudWatch Application Insights, see [ Amazon Elastic Compute Cloud \(EC2\) ](appinsights-metrics-ec2.md)\.
 
 ### JMX Prometheus Exporter<a name="component-configuration-prometheus"></a>
 
@@ -213,6 +249,33 @@ Defines the HA Cluster Prometheus Exporter settings\.
 + **prometheusPort \(optional\)**
 
   The target port to which Prometheus sends metrics\. If not specified, the default port 9664 is used\.
+
+### NetWeaver Prometheus Exporter<a name="component-configuration-netweaver-prometheus"></a>
+
+Defines the NetWeaver Prometheus Exporter settings\.
+
+**JSON** 
+
+```
+"netWeaverPrometheusExporter": {
+    "sapSid": "SAP NetWeaver  SID",
+    "instanceNumbers": [ "Array of instance Numbers of SAP NetWeaver system "],
+"prometheusPort": "Target port to emit Prometheus metrics"
+}
+```
+
+**Properties**
++ **sapSid**
+
+  The 3 character SAP system ID \(SID\) of the SAP NetWeaver system\.
++ **instanceNumbers**
+
+  Array of the instance Numbers of SAP NetWeaver system\.
+
+  **Example: **`"instanceNumbers": [ "00", "01"]`
++ **prometheusPort \(optional\)**
+
+  The target port to which to send Prometheus metrics\. If not specified, the default port `9680` is used\.
 
 ### Windows Events<a name="windows-events"></a>
 

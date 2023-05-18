@@ -2,80 +2,161 @@
 
 The following code examples show how to enable Amazon CloudWatch alarm actions\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
+------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/CloudWatch#code-examples)\. 
+  
+
+```
+    /// <summary>
+    /// Enable the actions for a list of alarms from CloudWatch.
+    /// </summary>
+    /// <param name="alarmNames">A list of names of alarms.</param>
+    /// <returns>True if successful.</returns>
+    public async Task<bool> EnableAlarmActions(List<string> alarmNames)
+    {
+        var enableAlarmActionsResult = await _amazonCloudWatch.EnableAlarmActionsAsync(
+            new EnableAlarmActionsRequest()
+            {
+                AlarmNames = alarmNames
+            });
+
+        return enableAlarmActionsResult.HttpStatusCode == HttpStatusCode.OK;
+    }
+```
++  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/goto/DotNetSDKV3/monitoring-2010-08-01/EnableAlarmActions) in *AWS SDK for \.NET API Reference*\. 
+
+------
+#### [ C\+\+ ]
+
+**SDK for C\+\+**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/cloudwatch#code-examples)\. 
+Include the required files\.  
+
+```
+#include <aws/core/Aws.h>
+#include <aws/monitoring/CloudWatchClient.h>
+#include <aws/monitoring/model/EnableAlarmActionsRequest.h>
+#include <aws/monitoring/model/PutMetricAlarmRequest.h>
+#include <iostream>
+```
+Enable the alarm actions\.  
+
+```
+    Aws::CloudWatch::CloudWatchClient cw;
+    Aws::CloudWatch::Model::PutMetricAlarmRequest request;
+    request.SetAlarmName(alarm_name);
+    request.SetComparisonOperator(
+        Aws::CloudWatch::Model::ComparisonOperator::GreaterThanThreshold);
+    request.SetEvaluationPeriods(1);
+    request.SetMetricName("CPUUtilization");
+    request.SetNamespace("AWS/EC2");
+    request.SetPeriod(60);
+    request.SetStatistic(Aws::CloudWatch::Model::Statistic::Average);
+    request.SetThreshold(70.0);
+    request.SetActionsEnabled(false);
+    request.SetAlarmDescription("Alarm when server CPU exceeds 70%");
+    request.SetUnit(Aws::CloudWatch::Model::StandardUnit::Seconds);
+    request.AddAlarmActions(actionArn);
+
+    Aws::CloudWatch::Model::Dimension dimension;
+    dimension.SetName("InstanceId");
+    dimension.SetValue(instanceId);
+    request.AddDimensions(dimension);
+
+    auto outcome = cw.PutMetricAlarm(request);
+    if (!outcome.IsSuccess())
+    {
+        std::cout << "Failed to create CloudWatch alarm:" <<
+            outcome.GetError().GetMessage() << std::endl;
+        return;
+    }
+
+    Aws::CloudWatch::Model::EnableAlarmActionsRequest enable_request;
+    enable_request.AddAlarmNames(alarm_name);
+
+    auto enable_outcome = cw.EnableAlarmActions(enable_request);
+    if (!enable_outcome.IsSuccess())
+    {
+        std::cout << "Failed to enable alarm actions:" <<
+            enable_outcome.GetError().GetMessage() << std::endl;
+        return;
+    }
+
+    std::cout << "Successfully created alarm " << alarm_name <<
+        " and enabled actions on it." << std::endl;
+```
++  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/goto/SdkForCpp/monitoring-2010-08-01/EnableAlarmActions) in *AWS SDK for C\+\+ API Reference*\. 
+
+------
+#### [ Java ]
+
+**SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/cloudwatch#readme)\. 
+  
+
+```
+    public static void enableActions(CloudWatchClient cw, String alarm) {
+
+        try {
+            EnableAlarmActionsRequest request = EnableAlarmActionsRequest.builder()
+                .alarmNames(alarm)
+                .build();
+
+            cw.enableAlarmActions(request);
+            System.out.printf("Successfully enabled actions on alarm %s", alarm);
+
+        } catch (CloudWatchException e) {
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
+        }
+   }
+```
++  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/goto/SdkForJavaV2/monitoring-2010-08-01/EnableAlarmActions) in *AWS SDK for Java 2\.x API Reference*\. 
+
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/cloudwatch#code-examples)\. 
 Create the client in a separate module and export it\.  
 
 ```
 import { CloudWatchClient } from "@aws-sdk/client-cloudwatch";
-// Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
-// Create an Amazon CloudWatch service client object.
-export const cwClient = new CloudWatchClient({ region: REGION });
+import { DEFAULT_REGION } from "libs/utils/util-aws-sdk.js";
+
+export const client = new CloudWatchClient({ region: DEFAULT_REGION });
 ```
 Import the SDK and client modules and call the API\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js
-import {
-  PutMetricAlarmCommand,
-  EnableAlarmActionsCommand,
-} from "@aws-sdk/client-cloudwatch";
-import { cwClient } from "./libs/cloudWatchClient.js";
+import { EnableAlarmActionsCommand } from "@aws-sdk/client-cloudwatch";
+import { client } from "../libs/client.js";
 
-// Set the parameters
-export const params = {
-  AlarmName: "ALARM_NAME", //ALARM_NAME
-  ComparisonOperator: "GreaterThanThreshold",
-  EvaluationPeriods: 1,
-  MetricName: "CPUUtilization",
-  Namespace: "AWS/EC2",
-  Period: 60,
-  Statistic: "Average",
-  Threshold: 70.0,
-  ActionsEnabled: true,
-  AlarmActions: ["ACTION_ARN"], //e.g., "arn:aws:automate:us-east-1:ec2:stop"
-  AlarmDescription: "Alarm when server CPU exceeds 70%",
-  Dimensions: [
-    {
-      Name: "InstanceId",
-      Value: "INSTANCE_ID",
-    },
-  ],
-  Unit: "Percent",
-};
+const run = async () => {
+  const command = new EnableAlarmActionsCommand({
+    AlarmNames: [process.env.CLOUDWATCH_ALARM_NAME], // Set the value of CLOUDWATCH_ALARM_NAME to the name of an existing alarm.
+  });
 
-export const run = async () => {
   try {
-    const data = await cwClient.send(new PutMetricAlarmCommand(params));
-    console.log("Alarm action added; RequestID:", data);
-    return data;
-    const paramsEnableAlarmAction = {
-      AlarmNames: [params.AlarmName],
-    };
-    try {
-      const data = await cwClient.send(
-        new EnableAlarmActionsCommand(paramsEnableAlarmAction)
-      );
-      console.log("Alarm action enabled; RequestID:", data.$metadata.requestId);
-    } catch (err) {
-      console.log("Error", err);
-      return data;
-    }
+    return await client.send(command);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-// Uncomment this line to run execution within this file.
-// run();
+
+export default run();
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/cloudwatch)\. 
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/cloudwatch-examples-using-alarm-actions.html#cloudwatch-examples-using-alarm-actions-enabling)\. 
 +  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cloudwatch/classes/enablealarmactionscommand.html) in *AWS SDK for JavaScript API Reference*\. 
 
-**SDK for JavaScript V2**  
+**SDK for JavaScript \(v2\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascript/example_code/cloudwatch#code-examples)\. 
 Import the SDK and client modules and call the API\.  
 
 ```
@@ -126,14 +207,37 @@ cw.putMetricAlarm(params, function(err, data) {
   }
 });
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascript/example_code/cloudwatch)\. 
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/cloudwatch-examples-using-alarm-actions.html#cloudwatch-examples-using-alarm-actions-enabling)\. 
 +  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/monitoring-2010-08-01/EnableAlarmActions) in *AWS SDK for JavaScript API Reference*\. 
+
+------
+#### [ Kotlin ]
+
+**SDK for Kotlin**  
+This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/cloudwatch#code-examples)\. 
+  
+
+```
+suspend fun enableActions(alarm: String) {
+
+    val request = EnableAlarmActionsRequest {
+        alarmNames = listOf(alarm)
+    }
+
+    CloudWatchClient { region = "us-east-1" }.use { cwClient ->
+        cwClient.enableAlarmActions(request)
+        println("Successfully enabled actions on alarm $alarm")
+    }
+}
+```
++  For API details, see [EnableAlarmActions](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/cloudwatch#code-examples)\. 
   
 
 ```
@@ -170,9 +274,30 @@ class CloudWatchWrapper:
                 alarm_name)
             raise
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/cloudwatch)\. 
 +  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/goto/boto3/monitoring-2010-08-01/EnableAlarmActions) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
+#### [ SAP ABAP ]
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using CloudWatch with an AWS SDK](sdk-general-information-section.md)\.
+**SDK for SAP ABAP**  
+This documentation is for an SDK in developer preview release\. The SDK is subject to change and is not recommended for use in production\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/sap-abap/services/cloudwatch#code-examples)\. 
+  
+
+```
+    "Enable actions on the specified alarm."
+    TRY.
+        lo_cwt->enablealarmactions(
+          it_alarmnames = it_alarm_names
+        ).
+        MESSAGE 'Alarm actions enabled.' TYPE 'I'.
+      CATCH /aws1/cx_rt_service_generic INTO DATA(lo_exception).
+        DATA(lv_error) = |"{ lo_exception->av_err_code }" - { lo_exception->av_err_msg }|.
+        MESSAGE lv_error TYPE 'E'.
+    ENDTRY.
+```
++  For API details, see [EnableAlarmActions](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 
+
+------
+
+For a complete list of AWS SDK developer guides and code examples, see [Using CloudWatch with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

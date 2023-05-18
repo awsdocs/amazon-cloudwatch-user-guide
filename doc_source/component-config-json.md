@@ -10,6 +10,9 @@ The following example shows a template fragment in JSON format\.
   "logs" : [
     list of logs
   ],
+  "processes" : [
+   list of processes
+  ],
   "windowsEvents" : [
     list of windows events channels configurations
   ],
@@ -24,6 +27,9 @@ The following example shows a template fragment in JSON format\.
   },
   "haClusterPrometheusExporter": {
       HA Cluster Prometheus Exporter configuration
+  },
+  "netWeaverPrometheusExporter": {
+      SAP NetWeaver Prometheus Exporter configuration
   },
   "subComponents" : [
     {

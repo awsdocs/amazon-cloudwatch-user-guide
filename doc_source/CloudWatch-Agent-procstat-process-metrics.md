@@ -129,6 +129,15 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 | Metric name | Available on | Description | 
 | --- | --- | --- | 
 |  `cpu_time` |  Linux |  The amount of time that the process uses the CPU\. This metric is measured in hundredths of a second\. Unit: Count  | 
+|  `cpu_time_guest` |  Linux |  The amount of time that the process is in guest mode\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_guest_nice` |  Linux |  The amount of time that the process is running in a niced guest\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_idle` |  Linux |  The amount of time that the process is in idle mode\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_iowait` |  Linux |  The amount of time that the process is waiting for I/O operations to complete\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_irq` |  Linux |  The amount of time that the process is servicing interrupts\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_nice` |  Linux |  The amount of time that the process is in nice mode\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_soft_irq` |  Linux |  The amount of time that the process is servicing software interrupts\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_steal` |  Linux |  The amount of time spent running in other operating systems when running in a virtualized environment\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
+|  `cpu_time_stolen` |  Linux, Windows Server |  The amount of time that the process is in *stolen time*, which is time spent in other operating systems in a virtualized environment\. This metric is measured in hundredths of a second\. Type: Float Unit: None  | 
 |  `cpu_time_system` |  Linux, Windows Server, macOS |  The amount of time that the process is in system mode\. This metric is measured in hundredths of a second\. Type: Float Unit: Count  | 
 |  `cpu_time_user` |  Linux, Windows Server, macOS |  The amount of time that the process is in user mode\. This metric is measured in hundredths of a second\. Unit: Count  | 
 |  `cpu_usage` |  Linux, Windows Server, macOS |  The percentage of time that the process is active in any capacity\. Unit: Percent  | 
@@ -138,21 +147,31 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 |  `memory_stack` |  Linux, macOS |  The amount of stack memory that the process is using\. Unit: Bytes  | 
 |  `memory_swap` |  Linux, macOS |  The amount of swap memory that the process is using\. Unit: Bytes  | 
 |  `memory_vms` |  Linux, Windows Server, macOS |  The amount of virtual memory that the process is using\. Unit: Bytes  | 
-|  pid |  Linux, Windows Server, macOS |  Process identifier \(ID\)\. Unit: Count  | 
-|  pid\_count |  Linux, Windows Server\. macOS |  The number of process IDs associated with the process\. On Linux servers and macOS computers the full name of this metric is `procstat_lookup_pid_count` and on Windows Server it is `procstat_lookup pid_count`\. Unit: Count  | 
+|  `num_fds` |  Linux |  The number of file descriptors that this process has open\. Unit: None  | 
+|  `num_threads` |  Linux, Windows, macOS |  The number of threads in this process\. Unit: None  | 
+|  `pid` |  Linux, Windows Server, macOS |  Process identifier \(ID\)\. Unit: None  | 
+|  `pid_count` |  Linux, Windows Server\. macOS |  The number of process IDs associated with the process\. On Linux servers and macOS computers the full name of this metric is `procstat_lookup_pid_count` and on Windows Server it is `procstat_lookup pid_count`\. Unit: None  | 
 |  `read_bytes` |  Linux, Windows Server |  The number of bytes that the process has read from disks\. Unit: Bytes  | 
 |  `write_bytes` |  Linux, Windows Server |  The number of bytes that the process has written to disks\. Unit: Bytes  | 
-|  `read_count` |  Linux, Windows Server |  The number of disk read operations that the process has executed\. Unit: Count  | 
-|  `write_count` |  Linux, Windows Server |  The number of disk write operations that the process has executed\. Unit: Count  | 
-|  `involuntary_context_switches` |  Linux |  The number of times that the process was involuntarily context\-switched\.  Unit: Count  | 
-|  `voluntary_context_switches` |  Linux |  The number of times that the process was context\-switched voluntarily\.  Unit: Count  | 
-|  `realtime_priority` |  Linux |  The current usage of real\-time priority for the process\. Unit: Count  | 
-|  `nice_priority` |  Linux |  The current usage of nice priority for the process\. Unit: Count  | 
-|  `signals_pending` |  Linux |  The number of signals pending to be handled by the process\. Unit: Count  | 
-|  `rlimit_cpu_time_hard` |  Linux |  The hard CPU time resource limit for the process\. Unit: Count  | 
-|  `rlimit_cpu_time_soft` |  Linux |  The soft CPU time resource limit for the process\. Unit: Count  | 
-|  `rlimit_file_locks_hard` |  Linux |  The hard file locks resource limit for the process\. Unit: Count  | 
-|  `rlimit_file_locks_soft` |  Linux |  The soft file locks resource limit for the process\. Unit: Count  | 
+|  `read_count` |  Linux, Windows Server |  The number of disk read operations that the process has executed\. Unit: None  | 
+|  `rlimit_realtime_priority_hard` |  Linux |  The hard limit on the real\-time priority that can be set for this process\. Unit: None  | 
+|  `rlimit_realtime_priority_soft` |  Linux |  The soft limit on the real\-time priority that can be set for this process\. Unit: None  | 
+|  `rlimit_signals_pending_hard` |  Linux |  The hard limit on maximum number of signals that can be queued by this process\. Unit: None  | 
+|  `rlimit_signals_pending_soft` |  Linux |  The soft limit on maximum number of signals that can be queued by this process\. Unit: None  | 
+|  `rlimit_nice_priority_hard` |  Linux |  The hard limit on the maximum nice priority that can be set by this process\. Unit: None  | 
+|  `rlimit_nice_priority_soft` |  Linux |  The soft limit on the maximum nice priority that can be set by this process\. Unit: None  | 
+|  `rlimit_num_fds_hard` |  Linux |  The hard limit on the maximum number of file descriptors that this process can have open\. Unit: None  | 
+|  `rlimit_num_fds_soft` |  Linux |  The soft limit on the maximum number of file descriptors that this process can have open\. Unit: None  | 
+|  `write_count` |  Linux, Windows Server |  The number of disk write operations that the process has executed\. Unit: None  | 
+|  `involuntary_context_switches` |  Linux |  The number of times that the process was involuntarily context\-switched\.  Unit: None  | 
+|  `voluntary_context_switches` |  Linux |  The number of times that the process was context\-switched voluntarily\.  Unit: None  | 
+|  `realtime_priority` |  Linux |  The current usage of real\-time priority for the process\. Unit: None  | 
+|  `nice_priority` |  Linux |  The current usage of nice priority for the process\. Unit: None  | 
+|  `signals_pending` |  Linux |  The number of signals pending to be handled by the process\. Unit: None  | 
+|  `rlimit_cpu_time_hard` |  Linux |  The hard CPU time resource limit for the process\. Unit: None  | 
+|  `rlimit_cpu_time_soft` |  Linux |  The soft CPU time resource limit for the process\. Unit: None  | 
+|  `rlimit_file_locks_hard` |  Linux |  The hard file locks resource limit for the process\. Unit: None  | 
+|  `rlimit_file_locks_soft` |  Linux |  The soft file locks resource limit for the process\. Unit: None  | 
 |  `rlimit_memory_data_hard` |  Linux |  The hard resource limit on the process for memory used for data\. Unit: Bytes  | 
 |  `rlimit_memory_data_soft` |  Linux |  The soft resource limit on the process for memory used for data\. Unit: Bytes  | 
 |  `rlimit_memory_locked_hard` |  Linux |  The hard resource limit on the process for locked memory\. Unit: Bytes  | 
@@ -162,10 +181,11 @@ The CloudWatch agent adds `procstat` to the beginning of the following metric na
 |  `rlimit_memory_stack_hard` |  Linux |  The hard resource limit on the process stack\. Unit: Bytes  | 
 |  `rlimit_memory_stack_soft` |  Linux |  The soft resource limit on the process stack\. Unit: Bytes  | 
 |  `rlimit_memory_vms_hard` |  Linux |  The hard resource limit on the process for virtual memory\. Unit: Bytes  | 
+|  `rlimit_memory_vms_soft` |  Linux |  The soft resource limit on the process for virtual memory\. Unit: Bytes  | 
 
 ## Viewing process metrics imported by the CloudWatch agent<a name="CloudWatch-view-procstat-metrics"></a>
 
-After importing process metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view process metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
+After importing process metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view process metrics as a time series graph\. For more information about setting alarms, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 **To view process metrics in the CloudWatch console**
 

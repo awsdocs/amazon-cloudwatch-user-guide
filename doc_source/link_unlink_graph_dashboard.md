@@ -6,7 +6,7 @@ You can link the graphs on your dashboard together, so that when you zoom in or 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
 1. Choose **Actions** and then **Link graphs**\.
 
@@ -14,6 +14,6 @@ You can link the graphs on your dashboard together, so that when you zoom in or 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
 1. Clear **Actions** and then **Link graphs**\.

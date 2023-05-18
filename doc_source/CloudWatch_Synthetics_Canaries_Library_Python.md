@@ -65,6 +65,98 @@ Disables all screenshot options \(get\_screenshot\_on\_step\_start, get\_screens
 
 Enables all screenshot options \(get\_screenshot\_on\_step\_start, get\_screenshot\_on\_step\_success, and get\_screenshot\_on\_step\_failure\)\. By default, all these methods are enabled\.
 
+**setConfig\(options\) regarding CloudWatch metrics**
+
+For canaries using `syn-python-selenium-1.1` or later, the **\(options\)** for **setConfig** can include the following Boolean parameters that determine which metrics are published by the canary\. The default for each of these options is `true`\. The options that start with `aggregated` determine whether the metric is emitted without the `CanaryName` dimension\. You can use these metrics to see the aggregated results for all of your canaries\. The other options determine whether the metric is emitted with the `CanaryName` dimension\. You can use these metrics to see results for each individual canary\.
+
+For a list of CloudWatch metrics emitted by canaries, see [CloudWatch metrics published by canaries](CloudWatch_Synthetics_Canaries_metrics.md)\.
++ `failed_canary_metric` \(boolean\)— Whether to emit the `Failed` metric \(with the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `failed_requests_metric` \(boolean\)— Whether to emit the `Failed requests` metric \(with the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `2xx_metric` \(boolean\)— Whether to emit the `2xx` metric \(with the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `4xx_metric` \(boolean\)— Whether to emit the `4xx` metric \(with the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `5xx_metric` \(boolean\)— Whether to emit the `5xx` metric \(with the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `step_duration_metric` \(boolean\)— Whether to emit the `Step duration` metric \(with the `CanaryName` `StepName` dimensions\) for this canary\. The default is `true`\.
++ `step_success_metric` \(boolean\)— Whether to emit the `Step success` metric \(with the `CanaryName` `StepName` dimensions\) for this canary\. The default is `true`\.
++ `aggregated_failed_canary_metric` \(boolean\)— Whether to emit the `Failed` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `aggregated_failed_requests_metric` \(boolean\)— Whether to emit the `Failed Requests` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `aggregated_2xx_metric` \(boolean\)— Whether to emit the `2xx` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `aggregated_4xx_metric` \(boolean\)— Whether to emit the `4xx` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
++ `aggregated_5xx_metric` \(boolean\)— Whether to emit the `5xx` metric \(without the `CanaryName` dimension\) for this canary\. The default is `true`\.
+
+**with\_2xx\_metric\(2xx\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `2xx` metric with the `CanaryName` dimension for this canary\.
+
+**with\_4xx\_metric\(4xx\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `4xx` metric with the `CanaryName` dimension for this canary\.
+
+**with\_5xx\_metric\(5xx\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `5xx` metric with the `CanaryName` dimension for this canary\.
+
+**withAggregated2xxMetric\(aggregated2xxMetric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `2xx` metric with no dimension for this canary\.
+
+**withAggregated4xxMetric\(aggregated4xxMetric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `4xx` metric with no dimension for this canary\.
+
+**with\_aggregated\_5xx\_metric\(aggregated\_5xx\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `5xx` metric with no dimension for this canary\.
+
+**with\_aggregated\_failed\_canary\_metric\(aggregated\_failed\_canary\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `Failed` metric with no dimension for this canary\.
+
+**with\_aggregated\_failed\_requests\_metric\(aggregated\_failed\_requests\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `Failed requests` metric with no dimension for this canary\.
+
+**with\_failed\_canary\_metric\(failed\_canary\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `Failed` metric with the `CanaryName` dimension for this canary\.
+
+**with\_failed\_requests\_metric\(failed\_requests\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `Failed requests` metric with the `CanaryName` dimension for this canary\.
+
+**with\_step\_duration\_metric\(step\_duration\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `Duration` metric with the `CanaryName` dimension for this canary\.
+
+**with\_step\_success\_metric\(step\_success\_metric\)**
+
+Accepts a Boolean argument, which specifies whether to emit a `StepSuccess` metric with the `CanaryName` dimension for this canary\.
+
+##### Methods to enable or disable metrics<a name="CloudWatch_Synthetics_Python_setConfig_metrics"></a>
+
+**disable\_aggregated\_request\_metrics\(\)**
+
+Disables the canary from emitting all request metrics that are emitted with no `CanaryName` dimension\.
+
+**disable\_request\_metrics\(\)**
+
+Disables all request metrics, including both per\-canary metrics and metrics aggregated across all canaries\.
+
+**disable\_step\_metrics\(\)**
+
+Disables all step metrics, including both step success metrics and step duration metrics\.
+
+**enable\_aggregated\_request\_metrics\(\)**
+
+Enables the canary to emit all request metrics that are emitted with no `CanaryName` dimension\.
+
+**enable\_request\_metrics\(\)**
+
+Enables all request metrics, including both per\-canary metrics and metrics aggregated across all canaries\.
+
+**enable\_step\_metrics\(\)**
+
+Enables all step metrics, including both step success metrics and step duration metrics\.
+
 **Usage in UI canaries**
 
 First, import the synthetics dependency and fetch the configuration\. Then, set the configuration for each option by calling the setConfig method using one of the following options\.
@@ -96,6 +188,11 @@ synthetics_configuration.disable_step_screenshots()
 ```
 
 You can enable and disable screenshots at any point in the code\. For example, to disable screenshots only for one step, disable them before running that step and then enable them after the step\.
+
+##### set\_config\(options\) for UI canaries<a name="CloudWatch_Synthetics_Library_Python_UI"></a>
+
+Starting with `syn-python-selenium-1.1`, for UI canaries, `set_config` can include the following Boolean parameters:
++ `continue_on_step_failure` \(boolean\)— Whether to continue with running the canary script after a step fails \(this refers to the **executeStep** function\)\. If any steps fail, the canary run will still be marked as failed\. The default is `false`\.
 
 ### SyntheticsLogger class<a name="CloudWatch_Synthetics_Library_SyntheticsLogger_Python"></a>
 
@@ -316,4 +413,25 @@ Example:
 ```
 browser = synthetics_webdriver.Chrome()
 browser.get("https://example.com/)
+```
+
+To launch a browser in incognito mode, use the following:
+
+```
+add_argument('——incognito')
+```
+
+To add proxy settings, use the following:
+
+```
+add_argument('--proxy-server=%s' % PROXY)
+```
+
+Example:
+
+```
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_argument("——incognito")
+browser = syn_webdriver.Chrome(chrome_options=chrome_options)
 ```

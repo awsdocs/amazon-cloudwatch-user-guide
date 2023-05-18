@@ -1,8 +1,12 @@
 # View experiment results in the dashboard<a name="CloudWatch-Evidently-experiment-dashboard"></a>
 
-You can see the statistical results of an experiment while it is ongoing and after it is completed\.
+You can see the statistical results of an experiment while it is ongoing and after it is completed\. Experiment results are available up to 63 days after the start of the experiment\. They are not available after that because of CloudWatch data retention policies\.
 
 No statistical results are displayed until each variation has at least 100 events\.
+
+Evidently performs an additional offline p\-value analysis at the end of the experiment\. Offline p\-value analysis can detect statistical significance in some cases where the anytime p\-values used during the experiment do not find statistical significance\.
+
+For more information about how CloudWatch Evidently calculates experiment results, see [How Evidently calculates results](CloudWatch-Evidently-calculate-results.md)\. 
 
 **To see the results of an experiment**
 

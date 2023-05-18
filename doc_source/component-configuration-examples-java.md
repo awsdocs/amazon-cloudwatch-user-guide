@@ -4,22 +4,22 @@ The following example shows a component configuration in JSON format for Java\.
 
 ```
 {
-  "alarmMetrics" : [ {
-    "alarmMetricName" : "java_lang_threading_threadcount",
-    "monitor" : true
+  "alarmMetrics": [ {
+    "alarmMetricName": "java_lang_threading_threadcount",
+    "monitor": true
   },
   {
-    "alarmMetricName" : "java_lang_memory_heapmemoryusage_used",
-    "monitor" : true
+    "alarmMetricName": "java_lang_memory_heapmemoryusage_used",
+    "monitor": true
   },
   {
-    "alarmMetricName" : "java_lang_memory_heapmemoryusage_committed",
-    "monitor" : true
+    "alarmMetricName": "java_lang_memory_heapmemoryusage_committed",
+    "monitor": true
   }],
-  "logs" : [ ],
+  "logs": [ ],
   "JMXPrometheusExporter": {
-      "hostPort":"8686",
-      "prometheusPort":"9404"
+      "hostPort": "8686",
+      "prometheusPort": "9404"
   }
 }
 ```

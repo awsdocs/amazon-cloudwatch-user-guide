@@ -1,6 +1,6 @@
 # Alarm events and EventBridge<a name="cloudwatch-and-eventbridge"></a>
 
-CloudWatch sends events to Amazon EventBridge whenever a CloudWatch alarm changes alarm state\. You can use EventBridge and these events to write rules that take actions, such as notifying you, when an alarm changes state\. For more information, see [What is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/what-is-amazon-eventbridge.html)
+CloudWatch sends events to Amazon EventBridge whenever a CloudWatch alarm is created, updated, deleted, or changes alarm state\. You can use EventBridge and these events to write rules that take actions, such as notifying you, when an alarm changes state\. For more information, see [What is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/what-is-amazon-eventbridge.html)
 
 CloudWatch guarantees the delivery of alarm state change events to EventBridge\.
 
@@ -180,6 +180,370 @@ This section includes example events from CloudWatch\.
                 "label": "CPUUtilization (expected)",
                 "returnData": true
             }]
+        }
+    }
+}
+```
+
+**State change for a composite alarm with a suppressor alarm**
+
+```
+{
+    "version": "0",
+    "id": "d3dfc86d-384d-24c8-0345-9f7986db0b80",
+    "detail-type": "CloudWatch Alarm State Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-07-22T15:57:45Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServiceAggregatedAlarm"
+    ],
+    "detail": {
+        "alarmName": "ServiceAggregatedAlarm",
+        "state": {
+            "actionsSuppressedBy": "WaitPeriod",
+            "actionsSuppressedReason": "Actions suppressed by WaitPeriod",
+            "value": "ALARM",
+            "reason": "arn:aws:cloudwatch:us-east-1:123456789012:alarm:SuppressionDemo.EventBridge.FirstChild transitioned to ALARM at Friday 22 July, 2022 15:57:45 UTC",
+            "reasonData": "{\"triggeringAlarms\":[{\"arn\":\"arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServerCpuTooHigh\",\"state\":{\"value\":\"ALARM\",\"timestamp\":\"2022-07-22T15:57:45.394+0000\"}}]}",
+            "timestamp": "2022-07-22T15:57:45.394+0000"
+        },
+        "previousState": {
+            "value": "OK",
+            "reason": "arn:aws:cloudwatch:us-east-1:123456789012:alarm:SuppressionDemo.EventBridge.Main was created and its alarm rule evaluates to OK",
+            "reasonData": "{\"triggeringAlarms\":[{\"arn\":\"arn:aws:cloudwatch:us-east-1:123456789012:alarm:TotalNetworkTrafficTooHigh\",\"state\":{\"value\":\"OK\",\"timestamp\":\"2022-07-14T16:28:57.770+0000\"}},{\"arn\":\"arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServerCpuTooHigh\",\"state\":{\"value\":\"OK\",\"timestamp\":\"2022-07-14T16:28:54.191+0000\"}}]}",
+            "timestamp": "2022-07-22T15:56:14.552+0000"
+        },
+        "configuration": {
+            "alarmRule": "ALARM(ServerCpuTooHigh) OR ALARM(TotalNetworkTrafficTooHigh)",
+            "actionsSuppressor": "ServiceMaintenanceAlarm",
+            "actionsSuppressorWaitPeriod": 120,
+            "actionsSuppressorExtensionPeriod": 180
+        }
+    }
+}
+```
+
+**Creation of a composite alarm**
+
+```
+{
+
+    "version": "0",
+    "id": "91535fdd-1e9c-849d-624b-9a9f2b1d09d0",
+    "detail-type": "CloudWatch Alarm Configuration Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-03-03T17:06:22Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServiceAggregatedAlarm"
+    ],
+    "detail": {
+        "alarmName": "ServiceAggregatedAlarm",
+        "operation": "create",
+        "state": {
+            "value": "INSUFFICIENT_DATA",
+            "timestamp": "2022-03-03T17:06:22.289+0000"
+        },
+        "configuration": {
+            "alarmRule": "ALARM(ServerCpuTooHigh) OR ALARM(TotalNetworkTrafficTooHigh)",
+            "alarmName": "ServiceAggregatedAlarm",
+            "description": "Aggregated monitor for instance",
+            "actionsEnabled": true,
+            "timestamp": "2022-03-03T17:06:22.289+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+        }
+    }
+}
+```
+
+**Creation of a composite alarm with a suppressor alarm**
+
+```
+{
+    "version": "0",
+    "id": "454773e1-09f7-945b-aa2c-590af1c3f8e0",
+    "detail-type": "CloudWatch Alarm Configuration Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-07-14T13:59:46Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServiceAggregatedAlarm"
+    ],
+    "detail": {
+        "alarmName": "ServiceAggregatedAlarm",
+        "operation": "create",
+        "state": {
+            "value": "INSUFFICIENT_DATA",
+            "timestamp": "2022-07-14T13:59:46.425+0000"
+        },
+        "configuration": {
+            "alarmRule": "ALARM(ServerCpuTooHigh) OR ALARM(TotalNetworkTrafficTooHigh)",
+            "actionsSuppressor": "ServiceMaintenanceAlarm",
+            "actionsSuppressorWaitPeriod": 120,
+            "actionsSuppressorExtensionPeriod": 180,
+            "alarmName": "ServiceAggregatedAlarm",
+            "actionsEnabled": true,
+            "timestamp": "2022-07-14T13:59:46.425+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+        }
+    }
+}
+```
+
+**Update of a metric alarm**
+
+```
+{
+
+    "version": "0",
+    "id": "bc7d3391-47f8-ae47-f457-1b4d06118d50",
+    "detail-type": "CloudWatch Alarm Configuration Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-03-03T17:06:34Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServerCpuTooHigh"
+    ],
+    "detail": {
+        "alarmName": "ServerCpuTooHigh",
+        "operation": "update",
+        "state": {
+            "value": "INSUFFICIENT_DATA",
+            "timestamp": "2022-03-03T17:06:13.757+0000"
+        },
+        "configuration": {
+            "evaluationPeriods": 1,
+            "threshold": 80,
+            "comparisonOperator": "GreaterThanThreshold",
+            "treatMissingData": "ignore",
+            "metrics": [
+                {
+                    "id": "86bfa85f-b14c-ebf7-8916-7da014ce23c0",
+                    "metricStat": {
+                        "metric": {
+                            "namespace": "AWS/EC2",
+                            "name": "CPUUtilization",
+                            "dimensions": {
+                                "InstanceId": "i-12345678901234567"
+                            }
+                        },
+                        "period": 300,
+                        "stat": "Average"
+                    },
+                    "returnData": true
+                }
+            ],
+            "alarmName": "ServerCpuTooHigh",
+            "description": "Goes into alarm when server CPU utilization is too high!",
+            "actionsEnabled": true,
+            "timestamp": "2022-03-03T17:06:34.267+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+        },
+        "previousConfiguration": {
+            "evaluationPeriods": 1,
+            "threshold": 70,
+            "comparisonOperator": "GreaterThanThreshold",
+            "treatMissingData": "ignore",
+            "metrics": [
+                {
+                    "id": "d6bfa85f-893e-b052-a58b-4f9295c9111a",
+                    "metricStat": {
+                        "metric": {
+                            "namespace": "AWS/EC2",
+                            "name": "CPUUtilization",
+                            "dimensions": {
+                                "InstanceId": "i-12345678901234567"
+                            }
+                        },
+                        "period": 300,
+                        "stat": "Average"
+                    },
+                    "returnData": true
+                }
+            ],
+            "alarmName": "ServerCpuTooHigh",
+            "description": "Goes into alarm when server CPU utilization is too high!",
+            "actionsEnabled": true,
+            "timestamp": "2022-03-03T17:06:13.757+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+        }
+    }
+}
+```
+
+**Update of a composite alarm with a suppressor alarm**
+
+```
+{
+    "version": "0",
+    "id": "4c6f4177-6bd5-c0ca-9f05-b4151c54568b",
+    "detail-type": "CloudWatch Alarm Configuration Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-07-14T13:59:56Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServiceAggregatedAlarm"
+    ],
+    "detail": {
+        "alarmName": "ServiceAggregatedAlarm",
+        "operation": "update",
+        "state": {
+            "actionsSuppressedBy": "WaitPeriod",
+            "value": "ALARM",
+            "timestamp": "2022-07-14T13:59:46.425+0000"
+        },
+        "configuration": {
+            "alarmRule": "ALARM(ServerCpuTooHigh) OR ALARM(TotalNetworkTrafficTooHigh)",
+            "actionsSuppressor": "ServiceMaintenanceAlarm",
+            "actionsSuppressorWaitPeriod": 120,
+            "actionsSuppressorExtensionPeriod": 360,
+            "alarmName": "ServiceAggregatedAlarm",
+            "actionsEnabled": true,
+            "timestamp": "2022-07-14T13:59:56.290+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+        },
+        "previousConfiguration": {
+            "alarmRule": "ALARM(ServerCpuTooHigh) OR ALARM(TotalNetworkTrafficTooHigh)",
+            "actionsSuppressor": "ServiceMaintenanceAlarm",
+            "actionsSuppressorWaitPeriod": 120,
+            "actionsSuppressorExtensionPeriod": 180,
+            "alarmName": "ServiceAggregatedAlarm",
+            "actionsEnabled": true,
+            "timestamp": "2022-07-14T13:59:46.425+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+        }
+    }
+}
+```
+
+**Deletion of a metric math alarm**
+
+```
+{
+
+    "version": "0",
+    "id": "f171d220-9e1c-c252-5042-2677347a83ed",
+    "detail-type": "CloudWatch Alarm Configuration Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-03-03T17:07:13Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:TotalNetworkTrafficTooHigh"
+    ],
+    "detail": {
+        "alarmName": "TotalNetworkTrafficTooHigh",
+        "operation": "delete",
+        "state": {
+            "value": "INSUFFICIENT_DATA",
+            "timestamp": "2022-03-03T17:06:17.672+0000"
+        },
+        "configuration": {
+            "evaluationPeriods": 1,
+            "threshold": 10000,
+            "comparisonOperator": "GreaterThanThreshold",
+            "treatMissingData": "ignore",
+            "metrics": [{
+                    "id": "m1",
+                    "metricStat": {
+                        "metric": {
+                            "namespace": "AWS/EC2",
+                            "name": "NetworkIn",
+                            "dimensions": {
+                                "InstanceId": "i-12345678901234567"
+                            }
+                        },
+                        "period": 300,
+                        "stat": "Maximum"
+                    },
+                    "returnData": false
+                },
+                {
+                    "id": "m2",
+                    "metricStat": {
+                        "metric": {
+                            "namespace": "AWS/EC2",
+                            "name": "NetworkOut",
+                            "dimensions": {
+                                "InstanceId": "i-12345678901234567"
+                            }
+                        },
+                        "period": 300,
+                        "stat": "Maximum"
+                    },
+                    "returnData": false
+                },
+                {
+                    "id": "e1",
+                    "expression": "SUM(METRICS())",
+                    "label": "Total Network Traffic",
+                    "returnData": true
+                }
+            ],
+            "alarmName": "TotalNetworkTrafficTooHigh",
+            "description": "Goes into alarm if total network traffic exceeds 10Kb",
+            "actionsEnabled": true,
+            "timestamp": "2022-03-03T17:06:17.672+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
+
+        }
+    }
+}
+```
+
+**Deletion of a composite alarm with a suppressor alarm**
+
+```
+{
+    "version": "0",
+    "id": "e34592a1-46c0-b316-f614-1b17a87be9dc",
+    "detail-type": "CloudWatch Alarm Configuration Change",
+    "source": "aws.cloudwatch",
+    "account": "123456789012",
+    "time": "2022-07-14T14:00:01Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:alarm:ServiceAggregatedAlarm"
+    ],
+    "detail": {
+        "alarmName": "ServiceAggregatedAlarm",
+        "operation": "delete",
+        "state": {
+            "actionsSuppressedBy": "WaitPeriod",
+            "value": "ALARM",
+            "timestamp": "2022-07-14T13:59:46.425+0000"
+        },
+        "configuration": {
+            "alarmRule": "ALARM(ServerCpuTooHigh) OR ALARM(TotalNetworkTrafficTooHigh)",
+            "actionsSuppressor": "ServiceMaintenanceAlarm",
+            "actionsSuppressorWaitPeriod": 120,
+            "actionsSuppressorExtensionPeriod": 360,
+            "alarmName": "ServiceAggregatedAlarm",
+            "actionsEnabled": true,
+            "timestamp": "2022-07-14T13:59:56.290+0000",
+            "okActions": [],
+            "alarmActions": [],
+            "insufficientDataActions": []
         }
     }
 }

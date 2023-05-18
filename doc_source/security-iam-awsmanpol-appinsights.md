@@ -10,7 +10,7 @@ To add permissions to users, groups, and roles, it is easier to use AWS managed 
 
 AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally add additional permissions to an AWS managed policy to support new features\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\. Services are most likely to update an AWS managed policy when a new feature is launched or when new operations become available\. Services do not remove permissions from an AWS managed policy, so policy updates won't break your existing permissions\.
 
-Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ViewOnlyAccess** AWS managed policy provides read\-only access to many AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
+Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the `ViewOnlyAccess` AWS managed policy provides read\-only access to many AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
 
 
 
@@ -18,19 +18,7 @@ Additionally, AWS supports managed policies for job functions that span multiple
 
 
 
-**Topics**
-+ [AWS managed policy: CloudWatchApplicationInsightsFullAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsFullAccess)
-+ [AWS managed policy: CloudWatchApplicationInsightsReadOnlyAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsReadOnlyAccess)
-+ [AWS managed policy: CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy)
-+ [Application Insights updates to AWS managed policies](#security-iam-awsmanpol-appinsights-updates)
 
-
-
-**Topics**
-+ [AWS managed policy: CloudWatchApplicationInsightsFullAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsFullAccess)
-+ [AWS managed policy: CloudWatchApplicationInsightsReadOnlyAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsReadOnlyAccess)
-+ [AWS managed policy: CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy)
-+ [Application Insights updates to AWS managed policies](#security-iam-awsmanpol-appinsights-updates)
 
 ## AWS managed policy: CloudWatchApplicationInsightsFullAccess<a name="security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsFullAccess"></a>
 
@@ -96,7 +84,8 @@ This policy includes the following permissions\.
         "eks:ListClusters",
         "eks:ListNodegroups",
         "fsx:DescribeFileSystems",
-        "logs:DescribeLogGroups"
+        "logs:DescribeLogGroups",
+        "elasticfilesystem:DescribeFileSystems"
       ],
       "Resource": "*"
     },
@@ -184,6 +173,13 @@ View details about updates to AWS managed policies for Application Insights sinc
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to list CloudFormation stacks\.  These permissions are required for Amazon CloudWatch Application Insights to analyze and monitor AWS resources nested in the CloudFormation stack\.  | April 24, 2023 | 
+|  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to get list of Amazon VPC and Route 53 resources\.  These permissions are required for Amazon CloudWatch Application Insights to automatically set up best practice network monitoring with Amazon CloudWatch\.  | January 23, 2023 | 
+|  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to get SSM command invocation results\. These permissions are required for Amazon CloudWatch Application Insights to automatically detect and monitor workloads running on Amazon EC2 instances\.  | December 19, 2022 | 
+|  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to describe Amazon VPC and Route 53 resources\. These permissions are required for Amazon CloudWatch Application Insights to read customer Amazon VPC and Route 53 resource configurations, and to help customers automatically set up best practice network monitoring with Amazon CloudWatch\.  | December 19, 2022 | 
+|  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to describe EFS resources\. These permissions are required for Amazon CloudWatch Application Insights to read Amazon EFS customer resource configurations, and to help customers automatically set up best practices for EFS monitoring with CloudWatch\.  | October 3, 2022 | 
+|  [CloudWatchApplicationInsightsFullAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsFullAccess) – Update to an existing policy  |  Application Insights added new permissions to describe the EFS file system\. These permissions are required for Amazon CloudWatch Application Insights to create account\-based applications by querying all of the supported resources in an account\.   | October 3, 2022 | 
+|  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to retrieve information about FSx resources\. These permissions are required for Amazon CloudWatch Application Insights to monitor workloads by retrieving sufficient information about the underlying FSx volumes\.  | September 12, 2022 | 
 |  [CloudWatchApplicationInsightsFullAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsFullAccess) – Update to an existing policy  |  Application Insights added a new permission to describe log groups\. This permissions is required for Amazon CloudWatch Application Insights to ensure that the correct permissions for monitoring log groups are in an account when creating a new application\.  | January 24, 2022 | 
 |  [CloudwatchApplicationInsightsServiceLinkedRolePolicy](#security-iam-awsmanpol-appinsights-CloudwatchApplicationInsightsServiceLinkedRolePolicy) – Update to an existing policy  |  Application Insights added new permissions to create and delete CloudWatch Log Subscription Filters\. These permissions are required for Amazon CloudWatch Application Insights to create Subscription Filters to facilitate log monitoring of resources within configured applications\.   | January 24, 2022 | 
 |  [CloudWatchApplicationInsightsFullAccess](#security-iam-awsmanpol-appinsights-CloudWatchApplicationInsightsFullAccess) – Update to an existing policy  |  Application Insights added new permissions to describe target groups and target health for Elastic Load Balancers\. These permissions are required for Amazon CloudWatch Application Insights to create account\-based applications by querying all of the supported resources in an account\.  | November 4, 2021 | 

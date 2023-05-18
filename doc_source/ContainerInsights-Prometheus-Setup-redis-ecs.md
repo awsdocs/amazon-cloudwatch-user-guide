@@ -90,7 +90,7 @@ To collect metrics from a sample Prometheus workload for Amazon ECS, you must be
 1. Download the Redis AWS CloudFormation template by entering the following command\.
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/sample_traffic/redis/redis-traffic-sample.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/sample_traffic/redis/redis-traffic-sample.yaml
    ```
 
 1. Set the IAM role names to be created for Redis by entering the following commands\.
@@ -135,7 +135,7 @@ In the Redis task definition, two containers are defined:
 1. Download the latest version of `cwagent-ecs-prometheus-metric-for-awsvpc.yaml` by entering the following command\.
 
    ```
-   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
+   curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
    ```
 
 1. Open the file with a text editor, and find the full CloudWatch agent configuration behind the `value` key in the `resource:CWAgentConfigSSMParameter` section\.
@@ -285,7 +285,7 @@ You can also create a CloudWatch dashboard for your Redis Prometheus metrics\.
 1. Enter the following command to create the dashboard\.
 
    ```
-   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/redis/cw_dashboard_redis.json \
+   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/redis/cw_dashboard_redis.json \
    | sed "s/{{YOUR_AWS_REGION}}/${REGION_NAME}/g" \
    | sed "s/{{YOUR_CLUSTER_NAME}}/${CLUSTER_NAME}/g" \
    | sed "s/{{YOUR_NAMESPACE}}/${NAMESPACE}/g" \

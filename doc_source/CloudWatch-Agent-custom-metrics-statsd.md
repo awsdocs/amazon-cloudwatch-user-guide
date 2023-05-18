@@ -18,7 +18,7 @@ You can use any `StatsD` client that follows this format to send the metrics to 
 
 To collect these custom metrics, add a `"statsd": {}` line to the `metrics_collected` section of the agent configuration file\. You can add this line manually\. If you use the wizard to create the configuration file, it's done for you\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.
 
-The `StatsD` default configuration works for most users\. There are three optional fields that you can add to the **statsd** section of the agent configuration file as needed:
+The `StatsD` default configuration works for most users\. There are four optional fields that you can add to the **statsd** section of the agent configuration file as needed:
 + `service_address` – The service address to which the CloudWatch agent should listen\. The format is `ip:port`\. If you omit the IP address, the agent listens on all available interfaces\. Only the UDP format is supported, so you don't need to specify a UDP prefix\. 
 
   The default value is `:8125`\.
@@ -28,6 +28,7 @@ The `StatsD` default configuration works for most users\. There are three option
   For example, if `metrics_collection_interval` is 10 and `metrics_aggregation_interval` is 60, CloudWatch collects data every 10 seconds\. After each minute, the six data readings from that minute are aggregated into a single data point, which is sent to CloudWatch\.
 
   The range is 0–172,000\. Setting `metrics_aggregation_interval` to 0 disables the aggregation of `StatsD` metrics\.
++ `allowed_pending_messages` – The number of UDP messages that are allowed to queue up\. When the queue is full, the StatsD server starts dropping packets\. The default value is 10000\.
 
 The following is an example of the **statsd** section of the agent configuration file, using the default port and custom collection and aggregation intervals\.
 
@@ -47,7 +48,7 @@ The following is an example of the **statsd** section of the agent configuration
 
 ## Viewing StatsD metrics imported by the CloudWatch agent<a name="CloudWatch-view-statsd-metrics"></a>
 
-After importing StatsD metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view StatsD metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
+After importing StatsD metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view StatsD metrics as a time series graph\. For more information about setting alarms, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 **To view StatsD metrics in the CloudWatch console**
 

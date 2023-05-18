@@ -1,4 +1,4 @@
-# Graphing a metric<a name="graph_a_metric"></a>
+# Graph a metric<a name="graph_a_metric"></a>
 
 You can select metrics and create graphs of the metric data using the CloudWatch console\.
 
@@ -6,15 +6,17 @@ CloudWatch supports the following statistics on metrics: `Average`, `Minimum`, `
 
 You can view your data at different levels of detail\. For example, you can choose a one\-minute view, which can be useful when troubleshooting\. Or, choose a less detailed, one\-hour view\. That can be useful when viewing a broader time range \(for example, 3 days\) so that you can see trends over time\. For more information, see [Periods](cloudwatch_concepts.md#CloudWatchPeriods)\.
 
+If you are using an account that is set up as a monitoring account in CloudWatch cross\-account observability, you can graph metrics from the source accounts linked to this monitoring account\. For more information, see [CloudWatch cross\-account observability](CloudWatch-Unified-Cross-Account.md)\.
+
 ## Creating a graph<a name="create-metric-graph"></a>
 
 **To graph a metric**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Metrics**\.
+1. In the navigation pane, choose **Metrics**, **All metrics**\.
 
-1. On the **All metrics** tab, enter a search term in the search field, such as a metric name or resource name, and press **Enter**\.
+1. In the **Browse** tab, enter a search term in the search field, such as a metric name, account ID, or resource name\.
 
    For example, if you search for the `CPUUtilization` metric, you see the namespaces and dimensions with this metric\.
 
@@ -45,7 +47,7 @@ You can view your data at different levels of detail\. For example, you can choo
 
 1. \(Optional\) As you choose metrics to graph, specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric, and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics**, **Dynamic labels**\.
 
-   By default, the dynamic values that you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Using dynamic labels](graph-dynamic-labels.md)\.
+   By default, the dynamic values that you add to the label appear at the beginning of the label\. You can then choose the **Label** value for the metric to edit the label\. For more information, see [Use dynamic labels](graph-dynamic-labels.md)\.
 
 1. To view more information about the metric being graphed, pause the mouse over the legend\.
 
@@ -77,7 +79,7 @@ You can view your data at different levels of detail\. For example, you can choo
 
 1. To change the name of the graph, choose the pencil icon\.
 
-1. To change the time range, select one of the predefined values or choose **custom**\. For more information, see [Modifying the time range or time zone format for a graph](modify_graph_date_time.md)\.
+1. To change the time range, select one of the predefined values or choose **custom**\. For more information, see [Modify the time range or time zone format for a graph](modify_graph_date_time.md)\.
 
 1. To change the statistic, choose the **Graphed metrics** tab\. Choose the column heading or an individual value and then choose one of the statistics or predefined percentiles, or specify a custom percentile \(for example, **p95\.45**\)\.
 

@@ -13,7 +13,7 @@ If you are writing your own script, you can use several functions that CloudWatc
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Canaries**\.
+1. In the navigation pane, choose **Application monitoring**, **Synthetics Canaries**\.
 
    
 
@@ -34,7 +34,7 @@ If you are writing your own script, you can use several functions that CloudWatc
 
    If you want the canary to test an endpoint on a VPC, you must also enter information about your VPC later in this procedure\. 
 
-1. If you are using your own script for the canary, under **Lambda handler**, enter the entry point where you want the canary to start\. The string that you enter must end with `.handler`\.
+1. If you are using your own script for the canary, under **Lambda handler**, enter the entry point where you want the canary to start\. If you use a runtime earlier than `syn-nodejs-puppeteer-3.4` or `syn-python-selenium-1.1`, the string that you enter must end with `.handler`\. If you use `syn-nodejs-puppeteer-3.4` or `syn-python-selenium-1.1` or a later runtime, this restriction does not apply\.
 
 1. If you are using environment variables in your script, choose **Environment variables** and then specify a value for each environment variable defined in your script\. For more information, see [Environment variables](CloudWatch_Synthetics_Canaries_WritingCanary_Nodejs.md#CloudWatch_Synthetics_Environment_Variables)\.
 
@@ -46,6 +46,8 @@ If you are writing your own script, you can use several functions that CloudWatc
 
 1. Under **Data retention**, specify how long to retain information about both failed and successful canary runs\. The range is 1\-455 days\.
 
+   This setting affects only the data that CloudWatch Synthetics stores and displays in the console\. It does not affect the data stored in your Amazon S3 buckets, or logs or metrics that are published by the canary\.
+
 1. Under **Data Storage**, select the S3 bucket to use to store the data from the canary runs\. The bucket name can't contain a period \(\.\)\. If you leave this blank, a default S3 bucket is used or created\.
 
    If you are using the `syn-nodejs-puppeteer-3.0` or later runtime, when you enter the URL for the bucket in the text box, you can specify a bucket in the current Region or in a different Region\. If you are using an earlier runtime version, the bucket must be in the current Region\.
@@ -53,6 +55,8 @@ If you are writing your own script, you can use several functions that CloudWatc
 1. \(Optional\) By default, canaries store their artifacts on Amazon S3, and the artifacts are encrypted at rest using an AWS\-managed AWS KMS key\. You can use a different encryption option by choosing **Additional configuration** in the **Data Storage** section\. You can then choose the type of key to use for encryption\. For more information, see [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)\. 
 
 1. Under **Access permissions**, choose whether to create an IAM role to run the canary or use an existing one\.
+
+   If you have CloudWatch Synthetics create the role, it automatically includes all the necessary permissions\. If you want to create the role yourself, see [Required roles and permissions for canaries](CloudWatch_Synthetics_Canaries_CanaryPermissions.md) for information about the necessary permissions\.
 
    If you use the CloudWatch console to create a role for a canary when you create the canary, you can't re\-use the role for other canaries, because these roles are specific to just one canary\. If you have manually created a role that works for multiple canaries, you can use that existing role\.
 
@@ -84,4 +88,4 @@ When you create a canary, the following resources are created:
 + An S3 bucket with the name `cw-syn-results-accountID-region`\.
 + Alarms with the name `Synthetics-Alarm-MyCanaryName`, if you want alarms to be created for the canary\.
 + Lambda functions and layers, if you use a blueprint to create the canary\. These resources have the prefix `cwsyn-MyCanaryName`\.
-+ CloudWatch Logs log groups with the name `/aws/lambda/cwsyn-MyCanaryName`\.
++ CloudWatch Logs log groups with the name `/aws/lambda/cwsyn-MyCanaryName-randomId`\.

@@ -251,9 +251,14 @@ When you have the CloudWatch agent installed and running, you can send the embed
 
 The log events must also follow the embedded metric format specification\. For more information, see [Specification: Embedded metric format ](CloudWatch_Embedded_Metric_Format_Specification.md)\.
 
+If you plan to create alarms on metrics created using embedded metric format, see [Setting alarms on metrics created with embedded metric format](CloudWatch_Embedded_Metric_Format_Alarms.md) for recommendations\.
+
 The following is an example of sending log events manually from a Linux bash shell\. You can instead use the UDP socket interfaces provided by your programming language of choice\. 
 
 ```
-echo '{"_aws":{"Timestamp":1574109732004,"LogGroupName":"Foo","CloudWatchMetrics":[{"Namespace":"MyApp","Dimensions":[["Operation"]],"Metrics":[{"Name":"ProcessingLatency","Unit":"Milliseconds"}]}]},"Operation":"Aggregator","ProcessingLatency":100}' \
+echo '{"_aws":{"Timestamp":1574109732004,"LogGroupName":"Foo","CloudWatchMetrics":[{"Namespace":"MyApp","Dimensions":[["Operation"]],"Metrics":[{"Name":"ProcessingLatency","Unit":"Milliseconds","StorageResolution":60}]}]},"Operation":"Aggregator","ProcessingLatency":100}' \
 > /dev/udp/0.0.0.0/25888
 ```
+
+**Note**  
+ With the embedded metric format, you can track the processing of your EMF logs by metrics that are published in the `AWS/Logs` namespace of your account\. These can be used to track failed metric generation from EMF, as well as whether failures happen due to parsing or validation\. For more details see [Monitoring with CloudWatch metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html)\. 

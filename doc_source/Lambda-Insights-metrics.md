@@ -9,7 +9,7 @@ The following metrics are available as time series aggregated data in CloudWatch
 | --- | --- | --- | 
 |  `cpu_total_time` |  function\_name function\_name, version  |  Sum of `cpu_system_time` and `cpu_user_time`\. Unit: Milliseconds  | 
 |  `init_duration` |  function\_name function\_name, version  |  The amount of time spent in the `init` phase of the Lambda execution environment lifecycle\. Unit: Milliseconds  | 
-|  `memory _utilization` |  function\_name function\_name, version  |  The maximum memory measured as a percentage of the memory allocated to the function\. Unit: Percent  | 
+|  `memory_utilization` |  function\_name function\_name, version  |  The maximum memory measured as a percentage of the memory allocated to the function\. Unit: Percent  | 
 |  `rx_bytes` |  function\_name function\_name, version  |  The number of bytes received by the function\. Unit: Bytes  | 
 |  `tx_bytes` |  function\_name function\_name, version  |  The number of bytes sent by the function\. Unit: Bytes  | 
 |  `total_memory` |  function\_name function\_name, version  |  The amount of memory allocated to your Lambda function\. This is the same as your function’s memory size\. Unit: Megabytes  | 
@@ -18,7 +18,7 @@ The following metrics are available as time series aggregated data in CloudWatch
 
 The following metrics can be found in the embedded metric format log entries by using CloudWatch Logs Insights\. For more information about CloudWatch Logs Insights, see [ Analyzing Log Data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html)\.
 
-For more information about embedded metric format, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
+For more information about embedded metric format, see [Ingest high\-cardinality logs to generate metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
 
 
 | Metric name | Description | 
@@ -28,7 +28,7 @@ For more information about embedded metric format, see [Ingesting high\-cardinal
 |  `cpu_user_time` |  The amount of time the CPU spent executing user code\. Unit: Milliseconds  | 
 |  `fd_max` |  The maximum number of file descriptors available\. Unit: Count  | 
 |  `fd_use` |  The maximum number of file descriptors in use\. Unit: Count  | 
-|  `memory _utilization` |  The maximum memory measured as a percentage of the memory allocated to the function\. Unit: Percent  | 
+|  `memory_utilization` |  The maximum memory measured as a percentage of the memory allocated to the function\. Unit: Percent  | 
 |  `rx_bytes` |  The number of bytes received by the function\. Unit: Bytes  | 
 |  `tx_bytes` |  The number of bytes sent by the function\. Unit: Bytes  | 
 |  `threads_max` |  The number of threads in use by the function process\. As a function author, you don't control the initial number of threads created by the runtime\. Unit: Count  | 

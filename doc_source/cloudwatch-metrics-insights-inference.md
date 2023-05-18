@@ -1,8 +1,5 @@
 # SQL inference<a name="cloudwatch-metrics-insights-inference"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
 CloudWatch Metrics Insights uses several mechanisms to infer the intention of a given SQL query\.
 
 **Topics**

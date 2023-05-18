@@ -21,6 +21,7 @@ For an ongoing record of events in your AWS account, including events for CloudW
 
 **Topics**
 + [CloudWatch information in CloudTrail](#cw_info_in_ct)
++ [CloudWatch Internet Monitor in CloudTrail](#cw_im_info_in_ct)
 + [CloudWatch Synthetics information in CloudTrail](#cw_synthetics_info_in_ct)
 
 ## CloudWatch information in CloudTrail<a name="cw_info_in_ct"></a>
@@ -161,6 +162,107 @@ The following log file entry shows that a user called the CloudWatch Logs `Creat
 }
 ```
 
+## CloudWatch Internet Monitor in CloudTrail<a name="cw_im_info_in_ct"></a>
+
+CloudWatch Internet Monitor supports logging the following actions as events in CloudTrail log files: \(Links to API Reference Guide to be added at release\)
+
+### Example: CloudWatch Internet Monitor log file entries<a name="understanding-CloudWatch-IM-entries-in-CloudTrail"></a>
+
+The following example shows a CloudTrail Internet Monitor log entry that demonstrates the `ListMonitors` action\.
+
+```
+{
+        "eventVersion": "1.08",
+        "userIdentity": {
+            "type": "AssumedRole",
+            "principalId": "EX_PRINCIPAL_ID",
+            "arn": "arn:aws:iam::000000000000:assumed-role/role_name",
+            "accountId":"123456789012",
+            "accessKeyId":"AKIAIOSFODNN7EXAMPLE",
+            "sessionContext": {
+                "sessionIssuer": {
+                "type": "Role",
+                "principalId": "EX_PRINCIPAL_ID",
+                "arn": "arn:aws:iam::000000000000:role/Admin",
+                "accountId":"123456789012",
+                "userName": "SAMPLE_NAME"
+                },
+                "webIdFederationData": {},
+                "attributes": {
+                    "creationDate": "2022-10-11T17:25:41Z",
+                    "mfaAuthenticated": "false"
+                }
+            }
+        },
+        "eventTime": "2022-10-11T17:30:18Z",
+        "eventSource": "internetmonitor.amazonaws.com",
+        "eventName": "ListMonitors",
+        "awsRegion": "us-east-2",
+        "sourceIPAddress": "192.0.2.0",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+        "requestParameters": null,
+        "responseElements": null,
+        "requestID": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+        "eventID": "a1b2c3d4-5678-90ab-cdef-EXAMPLEbbbbb",
+        "readOnly": true,
+        "eventType": "AwsApiCall",
+        "managementEvent": true,
+        "recipientAccountId": "111122223333",
+        "eventCategory": "Management"
+    }
+```
+
+The following example shows a CloudTrail Internet Monitor log entry that demonstrates the `CreateMonitor` action\.
+
+```
+{
+        "eventVersion": "1.08",
+        "userIdentity": {
+            "type": "AssumedRole",
+            "principalId": "EX_PRINCIPAL_ID",
+            "arn": "arn:aws:iam::000000000000:assumed-role/role_name",
+            "accountId":"123456789012",
+            "accessKeyId":"AKIAIOSFODNN7EXAMPLE",
+            "sessionContext": {
+                "sessionIssuer": {
+                "type": "Role",
+                "principalId": "EX_PRINCIPAL_ID",
+                "arn": "arn:aws:iam::000000000000:role/Admin",
+                "accountId":"123456789012",
+                "userName": "SAMPLE_NAME"
+                },
+                "webIdFederationData": {},
+                "attributes": {
+                    "creationDate": "2022-10-11T17:25:41Z",
+                    "mfaAuthenticated": "false"
+                }
+            }
+        },
+        "eventTime": "2022-10-11T17:30:08Z",
+        "eventSource": "internetmonitor.amazonaws.com",
+        "eventName": "CreateMonitor",
+        "awsRegion": "us-east-2",
+        "sourceIPAddress": "192.0.2.0",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+        "requestParameters": {
+            "MonitorName": "TestMonitor",
+            "Resources": ["arn:aws:ec2:us-east-2:444455556666:vpc/vpc-febc0b95"],
+            "ClientToken": "a1b2c3d4-5678-90ab-cdef-EXAMPLE33333"
+        },
+        "responseElements": {
+            "Arn": "arn:aws:internetmonitor:us-east-2:444455556666:monitor/ct-onboarding-test",
+            "Status": "PENDING"
+        },
+        "requestID": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+        "eventID": "a1b2c3d4-5678-90ab-cdef-EXAMPLEbbbbb",
+        "readOnly": false,
+        "eventType": "AwsApiCall",
+        "managementEvent": true,
+        "recipientAccountId": "111122223333",
+        "eventCategory": "Management"
+    }
+```
+
 ## CloudWatch Synthetics information in CloudTrail<a name="cw_synthetics_info_in_ct"></a>
 
 CloudWatch Synthetics supports logging the following actions as events in CloudTrail log files:
@@ -196,7 +298,7 @@ The following example shows a CloudTrail Synthetics log entry that demonstrates 
                 "type": "Role",
                 "principalId": "EX_PRINCIPAL_ID",
                 "arn": "arn:aws:iam::111222333444:role/Administrator",
-       "accountId":"123456789012",
+                "accountId":"123456789012",
                 "userName": "SAMPLE_NAME"
             },
             "webIdFederationData": {},
@@ -252,7 +354,7 @@ The following example shows a CloudTrail Synthetics log entry that demonstrates 
     "eventSource": "synthetics.amazonaws.com",
     "eventName": "UpdateCanary",
     "awsRegion": "us-east-1",
-    "sourceIPAddress": "127.0.0.1",
+    "sourceIPAddress": "192.0.2.0",
     "userAgent": "aws-internal/3 aws-sdk-java/1.11.590 Linux/4.9.184-0.1.ac.235.83.329.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.212-b03 java/1.8.0_212 vendor/Oracle_Corporation",
     "requestParameters": {
         "Schedule": {

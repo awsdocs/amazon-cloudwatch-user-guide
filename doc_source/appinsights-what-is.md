@@ -44,7 +44,73 @@ For definitions of other key concepts for CloudWatch Application Insights, see [
 
 ## Pricing<a name="appinsights-pricing"></a>
 
-CloudWatch Application Insights sets up recommended metrics and logs for selected application resources using CloudWatch Metrics, Logs, and CloudWatch Events for notifications on detected problems\. These features are charged to your AWS account according to [CloudWatch pricing](https://aws.amazon.com/cloudwatch/pricing)\. For the detected problems, it creates [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) and [automatic dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)\. You are not charged for setup assistance, monitoring data analysis, or problem detection\. 
+CloudWatch Application Insights sets up recommended metrics and logs for selected application resources using CloudWatch metrics, Logs, and Events for notifications on detected problems\. These features are charged to your AWS account according to [CloudWatch pricing](https://aws.amazon.com/cloudwatch/pricing)\. For detected problems, [SSM OpsItems](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-working-with-OpsItems.html) are also created by Application Insights to notify you about problems\. Additionally, Application Insights creates [SSM Parameter Store parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) to configure the CloudWatch agents on your instances\. The Amazon EC2 Systems Manager features are charged according to [SSM pricing](http://aws.amazon.com/systems-manager/pricing/)\. You are not charged for setup assistance, monitoring, data analysis, or problem detection\.
+
+### Costs for CloudWatch Application Insights<a name="appinsights-pricing-ec2"></a>
+
+Costs for Amazon EC2 include usage of the following features:
++ CloudWatch Agent
+  + CloudWatch Agent log groups
+  + CloudWatch Agent metrics
+  + Prometheus log groups \(for JMX workloads\)
+
+Costs for all resources include usage of the following features:
++ CloudWatch alarms \(majority of cost\)
++ SSM OpsItems \(minimal cost\)
+
+### Example cost calculation<a name="appinsights-pricing-example"></a>
+
+The costs in this example are considered according to the following scenario\.
+
+You created a resource group that includes the following:
++ An Amazon EC2 instance with SQL Server installed\.
++ An attached Amazon EBS volume\.
+
+When you onboard this resource group with CloudWatch Application Insights, the SQL Server workload installed on the Amazon EC2 instance is detected\. CloudWatch Application Insights starts monitoring the following metrics\.
+
+The following metrics are monitored for the SQL Server instance:
++ CPUUtilization
++ StatusCheckFailed
++ Memory % Committed Bytes in Use
++ Memory Available Mbytes
++ Network Interface Bytes Total/sec
++ Paging File % Usage
++ Physical Disk % Disk Time
++ Processor % Processor Time
++ SQLServer:Buffer Manager cache hit ratio
++ SQLServer:Buffer Manager life expectancy
++ SQLServer:General Statistics Processes blocked
++ SQLServer:General Statistics User Connections
++ SQLServer:Locks Number of Deadlocks/sec
++ SQLServer:SQL Statistics Batch Requests/sec
++ System Processor Queue Length
+
+The following metrics are monitored for the volumes attached to the SQL Server instance:
++ VolumeReadBytes
++ VolumeWriteBytes
++ VolumeReadOps
++ VolumeWriteOps
++ VolumeTotalReadTime
++ VolumeTotalWriteTime
++ VolumeIdleTime
++ VolumeQueueLength
++ VolumeThroughputPercentage
++ VolumeConsumedReadWriteOps
++ BurstBalance
+
+For this scenario, the costs are calculated according to the [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/) page and the [SSM pricing](http://aws.amazon.com/systems-manager/pricing/) page:
++ **Custom metrics**
+
+  For this scenario, 13 of the above metrics are emitted to CloudWatch using the CloudWatch agent\. These metrics are treated as custom metrics\. The cost for each custom metric is $\.3/month\. The total cost for these custom metrics is 13 \* $\.3 = $3\.90/month\.
++ **Alarms**
+
+  For this scenario, CloudWatch Application Insights monitors 26 metrics in total, which creates 26 alarms\. The cost for each alarm is $\.1/month\. The total cost for alarms is 26 \* $\.1 = $2\.60/month\. 
++ **Data ingestion and error logs**
+
+  The cost of data ingestion is $\.05/GB and storage for the SQL Server error log is $\.03/GB\. The total cost for data ingestion and the error log is $\.05/GB \+ $\.03/GB= $\.08/GB\.
++ **Amazon EC2 Systems Manager OpsItems**
+
+  An SSM OpsItem is created for each problem detected by CloudWatch Application Insights\. For *n* number of problems in your application, the total cost is $\.00267 \* *n*/month\.
 
 ## Related services<a name="appinsights-related-services"></a>
 
@@ -70,16 +136,17 @@ The following services are used along with CloudWatch Application Insights:
 Application Insights supports only REST API protocols \(v1 of the API Gateway service\)\.
 + **Amazon Elastic Container Service \(Amazon ECS\)** is a fully managed container orchestration service\. You can use Amazon ECS to run your most sensitive and mission\-critical applications\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)\.
 + **Amazon Elastic Kubernetes Service \(Amazon EKS\)** is a managed service that you can use to run Kubernetes on AWS without having to install, operate, and maintain your own Kubernetes control plane or nodes\. Kubernetes is an open\-source system for automating the deployment, scaling, and management of containerized applications\. For more information, see the [Amazon EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html)\.
-+ **Kubernetes on Amazon EC2**\. Kubernetes is open\-source software that helps you deploy and manage containerized applications at scale\. Kubernetes manages clusters of Amazon EC2 compute instances and runs containers on those instances with processes for deployment, maintenance, and scaling\. With Kubernetes you can run any type of containerized application with the same toolset on\-premises and in the cloud\. For more information, see [Running Kubernetes on AWS EC2](https://v1-18.docs.kubernetes.io/docs/setup/production-environment/turnkey/aws/)\.
++ **Kubernetes on Amazon EC2**\. Kubernetes is open\-source software that helps you deploy and manage containerized applications at scale\. Kubernetes manages clusters of Amazon EC2 compute instances and runs containers on those instances with processes for deployment, maintenance, and scaling\. With Kubernetes, you can run any type of containerized application with the same toolset on\-premises and in the cloud\. For more information, see [Kubernetes Documentation: Getting started](https://kubernetes.io/docs/setup/)\.
 + **Amazon FSx** helps you to launch and run popular file systems that are fully managed by AWS\. With Amazon FSx, you can leverage the feature sets and performance of common open source and commercially\-licensed file systems to avoid time\-consuming administrative tasks\. For more information, see the [Amazon FSx Documentation](https://docs.aws.amazon.com/fsx/)\.
 + **Amazon Simple Notification Service \(SNS\)** is a fully\-managed messaging service for both application\-to\-application and application\-to\-person communication\. You can configure Amazon SNS for monitoring by Application Insights\. When Amazon SNS is configured as a resource for monitoring, Application Insights tracks SNS metrics to help determine why SNS messages may encounter issues or fail\.
++ **Amazon Elastic File System \(Amazon EFS\)** is a fully\-managed elastic NFS file system for use with AWS Cloud services and on\-premises resources\. It is built to scale to petabytes on demand without disrupting applications\. It grows and shrinks automatically as you add and remove files, which eliminates the need to provision and manage capacity to accommodate growth\. For more information, see the [Amazon Elastic File System documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html)\.
 
 **Related third\-party services**
 + For some workloads and applications monitored in Application Insights, **Prometheus JMX exporter** is installed using AWS Systems Manager Distributor so that CloudWatch Application Insights can retrieve Java\-specific metrics\. When you choose to monitor a Java application, Application Insights automatically installs the Prometheus JMX exporter for you\. 
 
 ## Supported application components<a name="appinsights-components"></a>
 
-CloudWatch Application Insights scans your resource group to identify application components\. Components can be standalone, auto\-grouped \(such as instances in an Auto Scaling group or behind a load balancer\), or custom \(by grouping together individual EC2 instances\)\. 
+CloudWatch Application Insights scans your resource group to identify application components\. Components can be standalone, auto\-grouped \(such as instances in an Auto Scaling group or behind a load balancer\), or custom \(by grouping together individual Amazon EC2 instances\)\. 
 
 The following components are supported by CloudWatch Application Insights:
 
@@ -88,7 +155,7 @@ The following components are supported by CloudWatch Application Insights:
 + Amazon EBS
 + Amazon RDS
 + Elastic Load Balancing: Application Load Balancer and Classic Load Balancer \(all target instances of these load balancers are identified and configured\)\.
-+ Amazon EC2 Auto Scaling groups: AWS Auto Scaling \(Auto Scaling groups are dynamically configured for all target instances; if your application scales up, CloudWatch Application Insights automatically configure the new instances\)\. Auto Scaling groups are not supported for CloudFormation\-based Resource Groups\. 
++ Amazon EC2 Auto Scaling groups: AWS Auto Scaling \(Auto Scaling groups are dynamically configured for all target instances; if your application scales up, CloudWatch Application Insights automatically configures the new instances\)\. Auto Scaling groups are not supported for CloudFormation stack\-based resource groups\.
 + AWS Lambda
 + Amazon Simple Queue Service \(Amazon SQS\)
 + Amazon DynamoDB table
@@ -109,7 +176,9 @@ You can use CloudWatch Application Insights to monitor your applications running
 + Worker‐tier: 
   + \.NET Framework 
   + \.NET Core
-+ Applications: Java
++ Applications:
+  + Java
+  + SAP NetWeaver distributed and high availability deployments 
 + Active Directory
 + SharePoint
 + Databases: 

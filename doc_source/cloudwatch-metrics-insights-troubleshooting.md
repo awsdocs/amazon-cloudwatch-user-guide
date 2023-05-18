@@ -1,8 +1,5 @@
 # Troubleshooting Metrics Insights<a name="cloudwatch-metrics-insights-troubleshooting"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
 ## The results include "Other," but I don't have this as a dimension<a name="cloudwatch-metrics-insights-troubleshooting-other"></a>
 
 This means that the query includes a **GROUP BY** clause that specifies a label key that is not used in some of the metrics that are returned by the query\. In this case, a null group named `Other` is returned\. The metrics that do not include that label key are probably aggregated metrics that return values aggregated across all values of that label key\.

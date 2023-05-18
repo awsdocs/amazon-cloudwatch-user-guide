@@ -43,11 +43,11 @@ We have also provided custom dashboards for NGINX, App Mesh, Memcached, HAProxy,
 1. Choose **Actions**, **View/edit source**\.
 
 1. Download one of the following JSON files:
-   + [ NGINX custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/nginx-ingress/cw_dashboard_nginx_ingress_controller.json)\.
-   + [ App Mesh custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/appmesh/cw_dashboard_awsappmesh.json)\.
-   + [ Memcached custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/memcached/cw_dashboard_memcached.json)
-   + [ HAProxy\-Ingress custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/haproxy-ingress/cw_dashboard_haproxy_ingress.json)
-   + [ Java/JMX custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/javajmx/cw_dashboard_javajmx.json)\.
+   + [ NGINX custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/nginx-ingress/cw_dashboard_nginx_ingress_controller.json)\.
+   + [ App Mesh custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/appmesh/cw_dashboard_awsappmesh.json)\.
+   + [ Memcached custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/memcached/cw_dashboard_memcached.json)
+   + [ HAProxy\-Ingress custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/haproxy-ingress/cw_dashboard_haproxy_ingress.json)
+   + [ Java/JMX custom dashboard source on Github](https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/javajmx/cw_dashboard_javajmx.json)\.
 
 1. Open the JSON file that you downloaded with a text editor, and make the following changes:
    + Replace all the `{{YOUR_CLUSTER_NAME}}` strings with the exact name of your cluster\. Make sure not to add whitespaces before or after the text\.

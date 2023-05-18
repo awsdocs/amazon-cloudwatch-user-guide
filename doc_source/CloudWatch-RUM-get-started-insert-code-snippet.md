@@ -3,7 +3,7 @@
 Next, you insert the code snippet that you created in the previous section into your application\.
 
 **Warning**  
-The web client, downloaded and configured by the code snippet, uses cookies \(or similar technologies\) to help you collect end user data\. Before you insert the code snippet, see [Data protection and data privacy with CloudWatch RUM](CloudWatch-RUM-privacy.md)\.
+The web client, downloaded and configured by the code snippet, uses cookies \(or similar technologies\) to help you collect end user data\. Before you insert the code snippet, see [Filtering by metadata attributes in the consoleData protection and data privacy with CloudWatch RUM](CloudWatch-RUM-privacy.md)\.
 
 If you don't have the code snippet that was previously generated, you can find it by following the directions in [How do I find a code snippet that I've already generated?](CloudWatch-RUM-find-code-snippet.md)\.
 

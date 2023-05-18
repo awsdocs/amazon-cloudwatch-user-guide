@@ -4,15 +4,17 @@ You can use Contributor Insights to analyze log data and create time series that
 
 You can build your rules from scratch, and when you use the AWS Management Console you can also use sample rules that AWS has created\. Rules define the log fields that you want to use to define contributors, such as `IpAddress`\. You can also filter the log data to find and analyze the behavior of individual contributors\.
 
-CloudWatch also provides built\-in rules that you can use to analyze metrics from other AWS services\. Currently, built\-in rules are available for Amazon DynamoDB\.
+CloudWatch also provides built\-in rules that you can use to analyze metrics from other AWS services\.
 
 All rules analyze incoming data in real time\.
+
+If you are signed in to an account that is set up as a monitoring account in CloudWatch cross\-account observability, you can create Contributor Insights rules in that monitoring account that analyze log groups in source accounts and in the monitoring account\. You can also create a single rule that analyzes log groups in multiple accounts\. For more information, see [CloudWatch cross\-account observability](CloudWatch-Unified-Cross-Account.md)\.
 
 **Note**  
 If you use Contributor Insights, you are charged for each occurrence of a log event that matches a rule\. For more information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
 **Topics**
-+ [Creating a Contributor Insights rule](ContributorInsights-CreateRule.md)
++ [Create a Contributor Insights rule](ContributorInsights-CreateRule.md)
 + [Contributor Insights rule syntax](ContributorInsights-RuleSyntax.md)
 + [Contributor Insights rule examples](ContributorInsights-Rule-Examples.md)
 + [Viewing Contributor Insights reports](ContributorInsights-ViewReports.md)

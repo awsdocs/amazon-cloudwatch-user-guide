@@ -169,7 +169,7 @@ You can also create a CloudWatch dashboard for your Redis Prometheus metrics\.
 1. Enter the following command to create the dashboard\.
 
    ```
-   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/redis/cw_dashboard_redis.json \
+   curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/sample_cloudwatch_dashboards/redis/cw_dashboard_redis.json \
    | sed "s/{{YOUR_AWS_REGION}}/${REGION_NAME}/g" \
    | sed "s/{{YOUR_CLUSTER_NAME}}/${CLUSTER_NAME}/g" \
    | sed "s/{{YOUR_NAMESPACE}}/${NAMESPACE}/g" \

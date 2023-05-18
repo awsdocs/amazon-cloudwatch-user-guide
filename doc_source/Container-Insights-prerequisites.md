@@ -5,7 +5,7 @@ Before you install Container Insights on Amazon EKS or Kubernetes, verify the fo
 + You have `kubectl` installed and running\. For more information, see [Installing `kubectl`](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) in the *Amazon EKS User Guide*\.
 + If you're using Kubernetes running on AWS instead of using Amazon EKS, the following prerequisites are also necessary:
   + Be sure that your Kubernetes cluster has enabled role\-based access control \(RBAC\)\. For more information, see [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) in the Kubernetes Reference\. 
-  + Your kubelet has enabled Webhook authorization mode\. For more information, see [Kubelet authentication/authorization](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/) in the Kubernetes Reference\.
+  + Your kubelet has enabled Webhook authorization mode\. For more information, see [Kubelet authentication/authorization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-authn-authz/) in the Kubernetes Reference\.
   + Your container runtime is Docker\.
 
 You must also grant IAM permissions to enable your Amazon EKS worker nodes to send metrics and logs to CloudWatch\. There are two ways to do this:
@@ -57,8 +57,8 @@ This method works only on Amazon EKS clusters\.
 
 1. If you haven't already, enable IAM roles for service accounts on your cluster\. For more information, see [Enabling IAM roles for service accounts on your cluster ](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)\. 
 
-1. If you haven't already, create the IAM role for your service account\. For more information, see [Creating an IAM role and policy for your service account](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)\. 
+1. If you haven't already, configure the service account to use an IAM role\. For more information, see [Configuring a Kubernetes service account to assume an IAM role](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html)\. 
 
-   When you create the role, attach the **CloudWatchAgentServerPolicy** IAM policy to the role in addition to the policy that you create for the role\. Also, the associated Kubernetes ServiceAccount linked with this role should be created in `amazon-cloudwatch` namespace, where the CloudWatch and Fluent Bit daemonsets will be deployed in the upcoming steps.
+   When you create the role, attach the **CloudWatchAgentServerPolicy** IAM policy to the role in addition to the policy that you create for the role\. Also, the associated Kubernetes Service Account that is linked to this role should be created in the `amazon-cloudwatch` namespace, where the CloudWatch and Fluent it daemonsets will be deployed in the upcoming steps
 
-1. If you haven't already, associate the IAM role with a service account in your cluster\. For more information, see [Specifying an IAM role for your service account ](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html)
+1. If you haven't already, associate the IAM role with a service account in your cluster\. For more information, see [Configuring a Kubernetes service account to assume an IAM role](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html)\.

@@ -31,7 +31,6 @@ Each request in an API canary consists of the following information:
 + The *method*, which is the type of request that is sent to the server\. REST APIs support GET \(read\), POST \(write\), PUT \(update\), PATCH \(update\), and DELETE \(delete\) operations\.
 + The *headers*, which provide information to both the client and the server\. They are used for authentication and providing information about the body content\. For a list of valid headers, see [HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)\.
 + The *data* \(or *body*\), which contains information to be sent to the server\. This is used only for POST, PUT, PATCH, or DELETE requests\.
-+ The URL that you request\.
 
 The API canary blueprint supports GET and POST methods\. When you use this blueprint, you must specify headers\. For example, you can specify **Authorization** as a **Key** and specify the necessary authorization data as the **Value** for that key\.
 
@@ -39,7 +38,11 @@ If you are testing a POST request, you also specify the content to post in the *
 
 **Integration with API Gateway**
 
-The API blueprint is integrated with Amazon API Gateway\. This enables you to select an API Gateway API and stage from the same AWS account and Region as the canary, or to upload a Swagger template from API Gateway for cross\-account and cross\-Region API monitroing\. You can then choose the rest of the details in the console to create the canary, instead of entering them from scratch\. For more information about API Gateway, see [What is Amazon API Gateway?](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) 
+The API blueprint is integrated with Amazon API Gateway\. This enables you to select an API Gateway API and stage from the same AWS account and Region as the canary, or to upload a Swagger template from API Gateway for cross\-account and cross\-Region API monitoring\. You can then choose the rest of the details in the console to create the canary, instead of entering them from scratch\. For more information about API Gateway, see [What is Amazon API Gateway?](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) 
+
+**Using a private API**
+
+You can create a canary that uses a private API in Amazon API Gateway\. For more information, see [Creating a private API in Amazon API Gateway?](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-private-apis.html)
 
 ## Broken link checker<a name="CloudWatch_Synthetics_Canaries_Blueprints_Broken_Links"></a>
 
@@ -78,7 +81,7 @@ The first time that the canary runs successfully after this line is added to the
 + Draw boundaries on the current baseline screenshot to designate areas of the screenshot to ignore during visual comparisons\.
 + Remove a screenshot from being used for visual monitoring\.
 
-For more information about using the CloudWatch console to edit a canary, see [Editing or deleting a canary](synthetics_canaries_deletion.md)\.
+For more information about using the CloudWatch console to edit a canary, see [Edit or delete a canary](synthetics_canaries_deletion.md)\.
 
 You can also change the canary run that is used as the baseline by using the `nextrun` or `lastrun` parameters or specifing a canary run ID in the [UpdateCanary](https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UpdateCanary.html) API\.
 

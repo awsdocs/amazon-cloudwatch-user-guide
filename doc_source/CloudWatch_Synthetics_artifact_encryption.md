@@ -1,6 +1,6 @@
 # Encrypting canary artifacts<a name="CloudWatch_Synthetics_artifact_encryption"></a>
 
-CloudWatch Synthetics stores canary artifacts such as screenshots, HAR files, and reports in your Amazon S3 bucket\. By default, these artifacts are encrypted at rest using an AWS managed key\. For more information, see [AWS managed keys](https://docs.aws.amazon.com/eventbridge/latest/userguide/kms/latest/developerguide/concepts.html#aws-managed-cmk.html)\. 
+CloudWatch Synthetics stores canary artifacts such as screenshots, HAR files, and reports in your Amazon S3 bucket\. By default, these artifacts are encrypted at rest using an AWS managed key\. For more information, see [Customer keys and AWS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt.html)\. 
 
 You can choose to use a different encryption option\. CloudWatch Synthetics supports the following:
 + **SSE\-S3**– Server\-side encryption \(SSE\) with an Amazon S3\-managed key\.
@@ -43,11 +43,11 @@ To use a customer managed key, you need the following settings:
       "Resource": "*"
   }
   ```
-+ If you are using a cross\-account KMS key, see [Allowing users in other accounts to use a KMS key?](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html)\.
++ If you are using a cross\-account KMS key, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html)\.
 
 **Viewing encrypted canary artifacts when using a customer managed key**
 
-To view canary artifacts, update your customer managed key to give AWS KMS the decrypt permission to the user viewing the artifacts\. Alternatively, add decrypt permissions to the IAM user or IAM role that is viewing the artifacts\.
+To view canary artifacts, update your customer managed key to give AWS KMS the decrypt permission to the user viewing the artifacts\. Alternatively, add decrypt permissions to the user or IAM role that is viewing the artifacts\.
 
 The default AWS KMS policy enables IAM policies in the account to allow access to the KMS keys\. If you are using a cross\-account KMS key, see [Why are cross\-account users getting Access Denied errors when they try to access Amazon S3 objects encrypted by a custom AWS KMS key?](http://aws.amazon.com/premiumsupport/knowledge-center/cross-account-access-denied-error-s3/)\. 
 

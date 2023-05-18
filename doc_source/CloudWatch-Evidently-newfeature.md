@@ -24,7 +24,7 @@ Before you can add a feature, you must create a project\. For more information, 
 
    Specify one of the variations to be the default\. This is the baseline that the other variations will be compared to, and should be the variation that is being served to your users now\. This is also the variation that is served to users who are not added to a launch or experiment for this feature\.
 
-1. Choose **Sample code**\. The code example shows what you need to add to your application to set up the variations and assign user sessions to them\. You can choose between JavaScript and Java for the code\.
+1. Choose **Sample code**\. The code example shows what you need to add to your application to set up the variations and assign user sessions to them\. You can choose between JavaScript, Java, and Python for the code\.
 
    You don't need to add the code to your application right now, but you must do so before you start a launch or an experiment\.
 
@@ -32,7 +32,7 @@ Before you can add a feature, you must create a project\. For more information, 
 
 1. \(Optional\) To specify that certain users always see a certain variation, choose **Overrides**, **Add override**\. Then, specify a user by entering their user ID, account ID, or some other identifier in **Identifier**, and specify which variation they should see\.
 
-   This can be useful for members of your own testing team or other internal users when you want to make sure they see a specific variation\.
+   This can be useful for members of your own testing team or other internal users when you want to make sure they see a specific variation\. The sessions of users who are assigned overrides do not contribute to launch or experiment metrics\.
 
    You can repeat this for as many as 10 users by choosing **Add override** again\.
 

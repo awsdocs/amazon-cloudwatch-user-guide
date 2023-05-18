@@ -1,8 +1,12 @@
 # Cross\-account cross\-Region CloudWatch console<a name="Cross-Account-Cross-Region"></a>
 
-You can add *cross\-account* functionality to your CloudWatch console\. This functionality provides you with cross\-account visibility to your dashboards, alarms, metrics, and automatic dashboards without having to log in and log out of different accounts\.
+To get the richest cross\-account observability and discovery experience for your metrics, logs, and traces, we recommend that you use CloudWatch cross\-account observability\. For more information, see [CloudWatch cross\-account observability](CloudWatch-Unified-Cross-Account.md)\.
 
-You can then create dashboards that summarize CloudWatch data from multiple AWS accounts and multiple AWS Regions into a single dashboard\. You can also create an alarm in one account that watches a metric located in a different account\.
+CloudWatch also offers a cross\-account, cross\-Region CloudWatch dashboard\. This functionality provides you with cross\-account visibility to your dashboards, alarms, metrics, and automatic dashboards\. It does not provide cross\-account visibility for logs or for traces\.
+
+If you are also using CloudWatch cross\-account observability, one use case for this cross\-account CloudWatch dashboard is to let one of your CloudWatch cross\-account observability source accounts see the metrics from another source account\.
+
+The rest of this section describes the cross\-account, cross\-Region dashboard\. You can use it to create dashboards that summarize CloudWatch data from multiple AWS accounts and multiple AWS Regions into a single dashboard\. You can also create an alarm in one account that watches a metric located in a different account\.
 
 Many organizations have their AWS resources deployed in multiple accounts, to provide billing and security boundaries\. In this case, we recommend that you designate one or more of your accounts as your monitoring accounts, and build your cross\-account dashboards in these accounts\.
 
@@ -32,9 +36,9 @@ This will grant the read\-only permissions that you choose in step 5 to all user
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Settings**, then choose **Configure**\.
+1. In the navigation pane, choose **Settings**\.
 
-1. Choose **Share data**\.
+1. For **Share your CloudWatch data**, choose **Configure**\.
 
 1. For **Sharing**, choose **Specific accounts** and enter the IDs of the accounts that you want to share data with\.
 
@@ -122,9 +126,9 @@ When you complete the following procedure, CloudWatch creates a service\-linked 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Settings**, then in the **Cross\-account cross\-region** section, choose **Configure**\.
+1. In the navigation pane, choose **Settings**, and then, in the **Cross\-account cross\-region** section, choose **Configure**\.
 
-1. Select **Show selector in the console** to enable an account selector to appear in the CloudWatch console when you are graphing a metric or creating an alarm\.
+1. Under the **View cross\-account cross\-region** section, choose **Enable**, and then select the **Show selector in the console** checkbox to enable an account selector to appear in the CloudWatch console when you're graphing a metric or creating an alarm\.
 
 1. Under **View cross\-account cross\-region**, choose one of the following options:
    + **Account Id Input**\. This option prompts you to manually input an account ID each time that you want to switch accounts when you view cross\-account data\.

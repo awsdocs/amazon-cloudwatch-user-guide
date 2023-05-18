@@ -1,6 +1,6 @@
 # Common scenarios with the CloudWatch agent<a name="CloudWatch-Agent-common-scenarios"></a>
 
-The following sections outline how to complete some common configuration and customization tasks when using the CloudWatch agent\. 
+The following sections outline how to complete common configuration and customization tasks for the CloudWatch agent\. 
 
 **Topics**
 + [Running the CloudWatch agent as a different user](#CloudWatch-Agent-run-as-user)
@@ -37,7 +37,7 @@ If you're already running the agent with the root user and want to change to usi
 
    Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)
 
-1. Give the user necessary permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
+1. Give the user the required permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
 
 1. Start the agent with the configuration file that you just modified\.
 
@@ -63,7 +63,7 @@ If you're already running the agent with the root user and want to change to usi
 
    Make other modifications to the configuration file as needed\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)
 
-1. Give the user necessary permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
+1. Give the user required permissions\. The user must have Read \(r\) permissions for the log files to be collected, and must have Execute \(x\) permission on every directory in the log files' path\.
 
 1. Start the agent with the configuration file that you just modified\.
 

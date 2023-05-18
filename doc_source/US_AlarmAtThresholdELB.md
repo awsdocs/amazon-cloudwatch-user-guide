@@ -1,4 +1,4 @@
-# Creating a load balancer latency alarm that sends email<a name="US_AlarmAtThresholdELB"></a>
+# Create a load balancer latency alarm that sends email<a name="US_AlarmAtThresholdELB"></a>
 
 You can set up an Amazon SNS notification and configure an alarm that monitors latency exceeding 100 ms for your Classic Load Balancer\.
 
@@ -10,7 +10,9 @@ Use these steps to use the AWS Management Console to create a load balancer late
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
+1. In the navigation pane, choose **Alarms**, **All Alarms**\.
+
+1. Choose **Create alarm**\.
 
 1. Under **CloudWatch Metrics by Category**, choose the **ELB Metrics** category\.
 
@@ -22,7 +24,7 @@ Use these steps to use the AWS Management Console to create a load balancer late
 
 1. Choose **Next**\.
 
-1. Under **Alarm Threshold**, enter a unique name for the alarm \(for example, **myHighCpuAlarm**\) and a description of the alarm \(for example, **Alarm when Latency exceeds 100s**\)\. Alarm names must contain only ASCII characters\.
+1. Under **Alarm Threshold**, enter a unique name for the alarm \(for example, **myHighCpuAlarm**\) and a description of the alarm \(for example, **Alarm when Latency exceeds 100s**\)\. Alarm names must contain only UTF\-8 characters, and can't contain ASCII control characters
 
 1. Under **Whenever**, for **is**, choose **>** and enter **0\.1**\. For **for**, enter **3**\.
 

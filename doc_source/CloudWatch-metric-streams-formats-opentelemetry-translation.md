@@ -18,6 +18,8 @@ The Summary datapoint enables CloudWatch to export all of these statistics using
 + `count` contains the SampleCount statistic\.
 + `quantile_values` contains two `valueAtQuantile.value` objects:
   + `valueAtQuantile.quantile = 0.0` with `valueAtQuantile.value = Min value`
+  + `valueAtQuantile.quantile = 0.99` with `valueAtQuantile.value = p99 value`
+  + `valueAtQuantile.quantile = 0.999` with `valueAtQuantile.value = p99.9 value`
   + `valueAtQuantile.quantile = 1.0` with `valueAtQuantile.value = Max value`
 
 Resources that consume the metric stream can calculate the Average statistic as **Sum/SampleCount**\.

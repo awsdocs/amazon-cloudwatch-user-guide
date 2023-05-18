@@ -12,9 +12,104 @@ When using `syn-nodejs-puppeteer-3.0` runtime version, make sure that your canar
 
 The Lambda code in a canary is configured to have a maximum memory of 1 GB\. Each run of a canary times out after a configured timeout value\. If no timeout value is specified for a canary, CloudWatch chooses a timeout value based on the canary's frequency\. If you configure a timeout value, make it no shorter than 15 seconds to allow for Lambda cold starts and the time it takes to boot up the canary instrumentation\.
 
+**Important**  
+The following CloudWatch Synthetics runtime versions were deprecated on November 13, 2022\. This is because AWS Lambda deprecated the Lambda Node\.js 12 runtime on November 14, 2022\.  
+`syn-nodejs-puppeteer-3.4`
+`syn-nodejs-puppeteer-3.3`
+`syn-nodejs-puppeteer-3.2`
+`syn-nodejs-puppeteer-3.1`
+`syn-nodejs-puppeteer-3.0`
+For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
+
+## syn\-nodejs\-puppeteer\-4\.0<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-4.0"></a>
+
+The `syn-nodejs-puppeteer-4.0` runtime is the newest runtime version for Node\.js and Puppeteer\.
+
+**Major dependencies**:
++ Lambda runtime Node\.js 16\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 92\.0\.4512
+
+**New features in syn\-nodejs\-puppeteer\-4\.0**:
++ **Dependency upgrade**— The Node\.js dependency is updated to 16\.x\.
+
+## syn\-nodejs\-puppeteer\-3\.9<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.9"></a>
+
+**Major dependencies**:
++ Lambda runtime Node\.js 14\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 92\.0\.4512
+
+**New features in syn\-nodejs\-puppeteer\-3\.9**:
++ **Dependency upgrades**— Upgrades some third\-party dependency packages\.
+
+## syn\-nodejs\-puppeteer\-3\.8<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.8"></a>
+
+**Major dependencies**:
++ Lambda runtime Node\.js 14\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 92\.0\.4512
+
+**New features in syn\-nodejs\-puppeteer\-3\.8**:
++ **Profile cleanup**— Chromium profiles are now cleaned up after each canary run\.
+
+**Bug fixes in syn\-nodejs\-puppeteer\-3\.8**:
++ **Bug fixes**— Previously, visual monitoring canaries would sometimes stop working properly after a run with no screenshots\. This is now fixed\.
+
+## syn\-nodejs\-puppeteer\-3\.7<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.7"></a>
+
+**Major dependencies**:
++ Lambda runtime Node\.js 14\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 92\.0\.4512
+
+**New features in syn\-nodejs\-puppeteer\-3\.7**:
++ **Logging enhancement**— The canary will upload logs to Amazon S3 even if it times out or crashes\.
++ **Lambda layer size reduced**— The size of the Lambda layer used for canaries is reduced by 34%\.
+
+**Bug fixes in syn\-nodejs\-puppeteer\-3\.7**:
++ **Bug fixes**— Japanese, Simplified Chinese, and Traditional Chinese fonts will render properly\.
+
+## syn\-nodejs\-puppeteer\-3\.6<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.6"></a>
+
+**Major dependencies**:
++ Lambda runtime Node\.js 14\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 92\.0\.4512
+
+**New features in syn\-nodejs\-puppeteer\-3\.6**:
++ **More precise timestamps**— The start time and stop time of canary runs are now precise to the millisecond\.
+
+## syn\-nodejs\-puppeteer\-3\.5<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.5"></a>
+
+**Major dependencies**:
++ Lambda runtime Node\.js 14\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 92\.0\.4512
+
+**New features in syn\-nodejs\-puppeteer\-3\.5**:
++ **Updated dependencies**— The only new features in this runtime are the updated dependencies\.
+
+## syn\-nodejs\-puppeteer\-3\.4<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.4"></a>
+
+**Important**  
+This runtime version was be deprecated on November 13, 2022\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
+
+**Major dependencies**:
++ Lambda runtime Node\.js 12\.x
++ Puppeteer\-core version 5\.5\.0
++ Chromium version 88\.0\.4298\.0
+
+**New features in syn\-nodejs\-puppeteer\-3\.4**:
++ **Custom handler function**— You can now use a custom handler function for your canary scripts\. Previous runtimes required the script entry point to include `.handler`\. 
+
+  You can also put canary scripts in any folder and pass the folder name as part of the handler\. For example, `MyFolder/MyScriptFile.functionname` can be used as an entry point\.
++ **Expanded HAR file information**— You can now see bad, pending, and incomplete requests in the HAR files produced by canaries\.
+
 ## syn\-nodejs\-puppeteer\-3\.3<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.3"></a>
 
-The `syn-nodejs-puppeteer-3.3` runtime is the newest runtime version\.
+**Important**  
+This runtime version was deprecated on November 13, 2022\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 12\.x
@@ -25,6 +120,9 @@ The `syn-nodejs-puppeteer-3.3` runtime is the newest runtime version\.
 + **More options for artifact encryption**— For canaries using this runtime or later, instead of using an AWS managed key to encrypt artifacts that the canary stores in Amazon S3, you can choose to use an AWS KMS customer managed key or an Amazon S3\-managed key\. For more information, see [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)\. 
 
 ## syn\-nodejs\-puppeteer\-3\.2<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.2"></a>
+
+**Important**  
+This runtime version was deprecated on November 13, 2022\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 12\.x
@@ -38,6 +136,9 @@ The `syn-nodejs-puppeteer-3.3` runtime is the newest runtime version\.
 
 ## syn\-nodejs\-puppeteer\-3\.1<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.1"></a>
 
+**Important**  
+This runtime version was deprecated on November 13, 2022\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
+
 **Major dependencies**:
 + Lambda runtime Node\.js 12\.x
 + Puppeteer\-core version 5\.5\.0
@@ -49,6 +150,9 @@ The `syn-nodejs-puppeteer-3.3` runtime is the newest runtime version\.
 + **Heartbeat monitor blueprint can monitor multiple URLs**— You can use the heartbeat monitoring blueprint in the CloudWatch console to monitor multiple URLs and see the status, duration, associated screenshots, and failure reason for each URL in the step summary of the canary run report\.
 
 ## syn\-nodejs\-puppeteer\-3\.0<a name="CloudWatch_Synthetics_runtimeversion-nodejs-puppeteer-3.0"></a>
+
+**Important**  
+This runtime version was deprecated on November 13, 2022\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 12\.x
@@ -67,7 +171,7 @@ The `syn-nodejs-puppeteer-3.3` runtime is the newest runtime version\.
 This section contains information about the `syn-nodejs-2.2` runtime version\.
 
 **Important**  
-This runtime version is scheduled to be deprecated on May 28, 2021\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
+This runtime version was deprecated on May 28, 2021\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 10\.x
@@ -89,7 +193,7 @@ This runtime version is scheduled to be deprecated on May 28, 2021\. For more in
 ## syn\-nodejs\-2\.1<a name="CloudWatch_Synthetics_runtimeversion-2.1"></a>
 
 **Important**  
-This runtime version is scheduled to be deprecated on May 28, 2021\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
+This runtime version was deprecated on May 28, 2021\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 10\.x
@@ -105,7 +209,7 @@ There can be a small increase in canary duration when using syn\-nodejs\-2\.0 or
 ## syn\-nodejs\-2\.0<a name="CloudWatch_Synthetics_runtimeversion-2.0"></a>
 
 **Important**  
-This runtime version is scheduled to be deprecated on May 28, 2021\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
+This runtime version was deprecated on May 28, 2021\. For more information, see [CloudWatch Synthetics runtime support policy](CloudWatch_Synthetics_Canaries_Library.md#CloudWatch_Synthetics_Canaries_runtime_support)\.
 
 **Major dependencies**:
 + Lambda runtime Node\.js 10\.x

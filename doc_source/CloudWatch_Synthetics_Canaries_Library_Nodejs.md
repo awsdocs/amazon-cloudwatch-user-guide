@@ -146,6 +146,10 @@ Disables the canary from emitting all request metrics that are emitted with no `
 
 Disables all request metrics, including both per\-canary metrics and metrics aggregated across all canaries\.
 
+**disableStepMetrics\(\)**
+
+Disables all step metrics, including both step success metrics and step duration metrics\.
+
 **enableAggregatedRequestMetrics\(\)**
 
 Enables the canary to emit all request metrics that are emitted with no `CanaryName` dimension\.
@@ -153,6 +157,10 @@ Enables the canary to emit all request metrics that are emitted with no `CanaryN
 **enableRequestMetrics\(\)**
 
 Enables all request metrics, including both per\-canary metrics and metrics aggregated across all canaries\.
+
+**enableStepMetrics\(\)**
+
+Enables all step metrics, including both step success metrics and step duration metrics\.
 
 **get2xxMetric\(\)**
 
@@ -242,7 +250,7 @@ Accepts a Boolean argument, which specifies whether to emit a `Failed` metric wi
 
 Accepts a Boolean argument, which specifies whether to emit a `Failed requests` metric with the `CanaryName` dimension for this canary\.
 
-**withStepDurationMetric\(stepSuccessMetric\)**
+**withStepDurationMetric\(stepDurationMetric\)**
 
 Accepts a Boolean argument, which specifies whether to emit a `Duration` metric with the `CanaryName` dimension for this canary\.
 
@@ -441,7 +449,7 @@ The first time that the canary runs successfully after this line is added to the
 + Draw boundaries on the current baseline screenshot to designate areas of the screenshot to ignore during visual comparisons\.
 + Remove a screenshot from being used for visual monitoring\.
 
-For more information about using the CloudWatch console to edit a canary, see [Editing or deleting a canary](synthetics_canaries_deletion.md)\.
+For more information about using the CloudWatch console to edit a canary, see [Edit or delete a canary](synthetics_canaries_deletion.md)\.
 
 **Other options for visual monitoring**
 
@@ -906,7 +914,7 @@ This example captures and uploads a screenshot named `01-navigateToUrl-loaded.pn
 
 You can take a screenshot for a particular canary step by passing the `stepName` as the first parameter\. Screenshots are linked to the canary step in your reports, to help you track each step while debugging\.
 
-CloudWatch Synthetics canaries automatically take screeenshots before starting a step \(the `executeStep` function\) and after the step completion \(unless you configure the canary to disable screenshots\)\. You can take more screenshots by passing in the step name in the `takeScreesnot` function\.
+CloudWatch Synthetics canaries automatically take screenshots before starting a step \(the `executeStep` function\) and after the step completion \(unless you configure the canary to disable screenshots\)\. You can take more screenshots by passing in the step name in the `takeScreenshot` function\.
 
 The following example takes screenshot with the `signupForm` as the value of the `stepName`\. The screenshot will be named `02-signupForm-address` and will be linked to the step named `signupForm` in the canary report\.
 

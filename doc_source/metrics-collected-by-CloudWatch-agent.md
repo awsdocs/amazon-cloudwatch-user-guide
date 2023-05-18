@@ -2,7 +2,7 @@
 
 You can collect metrics from servers by installing the CloudWatch agent on the server\. You can install the agent on both Amazon EC2 instances and on\-premises servers, and on computers running either Linux, Windows Server, or macOS\. If you install the agent on an Amazon EC2 instance, the metrics it collects are in addition to the metrics enabled by default on Amazon EC2 instances\.
 
-For information about installing the CloudWatch agent on an instance, see [Collecting metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)\.
+For information about installing the CloudWatch agent on an instance, see [Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)\.
 
 All metrics discussed in this section are collected directly by the CloudWatch agent\.
 
@@ -11,21 +11,6 @@ All metrics discussed in this section are collected directly by the CloudWatch a
 On a server running Windows Server, installing the CloudWatch agent enables you to collect the metrics associated with the counters in Windows Performance Monitor\. The CloudWatch metric names for these counters are created by putting a space between the object name and the counter name\. For example, the `% Interrupt Time` counter of the `Processor` object is given the metric name `Processor % Interrupt Time` in CloudWatch\. For more information about Windows Performance Monitor counters, see the Microsoft Windows Server documentation\.
 
 The default namespace for metrics collected by the CloudWatch agent is `CWAgent`, although you can specify a different namespace when you configure the agent\.
-
-### Advanced network metrics with the Elastic Network Adapter \(ENA\)<a name="windows-advanced-network-metrics"></a>
-
-On Windows servers that have the Elastic Network Adapter \(ENA\) enabled, the CloudWatch agent also collects the following advanced network metrics\.
-
-For more information about using the ENA on Windows instances, see [ Enabling enhanced networking with the Elastic Network Adapter \(ENA\) on Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/enhanced-networking-ena.html)
-
-
-| Metric | Description | 
-| --- | --- | 
-|  `Aggregate inbound BW allowance exceeded` |  The number of packets queued and/or dropped because the inbound aggregate bandwidth exceeded the maximum for the instance\.\. This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
-|  `Aggregate outbound BW allowance exceeded` |  The number of packets queued and/or dropped because the outbound aggregate bandwidth exceeded the maximum for the instance\.\. This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
-|  `Connection tracking allowance exceeded` |  The number of packets dropped because connection tracking exceeded the maximum for the instance and new connections could not be established\. This can result in packet loss for traffic to or from the instance\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
-|  `Link local packet rate allowance exceeded` |  The number of packets dropped because the PPS of the traffic to local proxy services exceeded the maximum for the network interface\. This impacts traffic to the DNS service, the Instance Metadata Service, and the Amazon Time Sync Service\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
-|  `PPS allowance exceeded` |  The number of packets queued and/or dropped because the bidirectional PPS exceeded the maximum for the instance\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](CloudWatch-Agent-network-performance.md) Unit: None  | 
 
 ## Metrics collected by the CloudWatch agent on Linux and macOS instances<a name="linux-metrics-enabled-by-CloudWatch-agent"></a>
 
@@ -121,3 +106,93 @@ The following table lists the metrics that you can collect with the CloudWatch a
 |  `swap_free` |  The amount of swap space that isn't being used\. Unit: Bytes  | 
 |  `swap_used` |  The amount of swap space currently in use\. Unit: Bytes  | 
 |  `swap_used_percent` |  The percentage of swap space currently in use\. Unit: Percent  | 
+
+## Definitions of memory metrics collected by the CloudWatch agent<a name="CloudWatch-agent-metrics-definitions"></a>
+
+When the CloudWatch agent collects memory metrics, the source is the host's memory management subsystem\. For example, the Linux kernel exposes OS\-maintained data in `/proc`\. For memory, the data is in `/proc/meminfo`\. 
+
+Each different operating system and architecture has different calculations of the resources that are used by processes\. For more information, see the following sections\.
+
+During each collection interval, the CloudWatch agent on each instance collects the instance resources and calculates the resources being used by all processes which are running in that instance\. This information is reported back to CloudWatch metrics\. You can configure the length of the collection interval in the CloudWatch agent configuration file\. For more information, see [ CloudWatch agent configuration file: Agent section](CloudWatch-Agent-Configuration-File-Details.md#CloudWatch-Agent-Configuration-File-Agentsection)\.
+
+The following list explains how the memory metrics that the CloudWatch agent collects are defined\.
++ **Active Memory**– Memory that is being used by a process\. In other words, the memory used by current running apps\.
++  **Available Memory**– The memory that can be instantly given to the processes without the system going into swap \(also known as virtual memory\)\. 
++ **Buffer Memory**– The data area shared by hardware devices or program processes that operate at different speeds and priorities\.
++ **Cached Memory**– Stores program instructions and data that are used repeatedly in the operation of programs that the CPU is likely to need next\.
++ **Free Memory**– Memory that is not being used at all and is readily available\. It is completely free for the system to be used when needed\.
++ **Inactive Memory**– Pages that have not been accessed "recently"\.
++ **Total Memory**– The size of the actual physical memory RAM\.
++ **Used Memory**– Memory that is currently in use by programs and processes\.
+
+**Topics**
++ [Linux: Metrics collected and calculations used](#CloudWatch-agent-metrics-definitions-calculations)
++ [macOS: Metrics collected and calculations used](#CloudWatch-agent-metrics-definitions-calculations)
++ [Windows: Metrics collected](#CloudWatch-agent-metrics-definitions-calculations)
++ [Example: Calculating memory metrics on Linux](#CloudWatch-agent-metrics-definitions-LinuxExample)
+
+### Linux: Metrics collected and calculations used<a name="CloudWatch-agent-metrics-definitions-calculations"></a>
+
+Metrics collected and units:
++ Active \(Bytes\)
++ Available \(Bytes\)
++ Available Percent \(Percent\)
++ Buffered \(Bytes\)
++ Cached \(Bytes\)
++ Free \(Bytes\)
++ Inactive \(Bytes\)
++ Total \(Bytes\)
++ Used \(Bytes\)
++ Used Percent \(Percent\)
+
+**Used memory** = Total Memory \- Free Memory \- Cached memory \- Buffer memory
+
+**Total memory** = Used Memory \+ Free Memory \+ Cached memory \+ Buffer memory
+
+### macOS: Metrics collected and calculations used<a name="CloudWatch-agent-metrics-definitions-calculations"></a>
+
+Metrics collected and units:
++ Active \(Bytes\)
++ Available \(Bytes\)
++ Available Percent \(Percent\)
++ Free \(Bytes\)
++ Inactive \(Bytes\)
++ Total \(Bytes\)
++ Used \(Bytes\)
++ Used Percent \(Percent\)
+
+**Available memory** = Free Memory \+ Inactive memory
+
+**Used memory** = Total Memory \- Available memory
+
+**Total memory** = Available Memory \+ Used Memory
+
+### Windows: Metrics collected<a name="CloudWatch-agent-metrics-definitions-calculations"></a>
+
+The metrics collected on Windows hosts are listed below\. All of these metrics have `None` for `Unit`\.
++ Available bytes
++ Cache Faults/sec
++ Page Faults/sec
++ Pages/sec
+
+There are no calculations used for Windows metrics becuase the CloudWatch agent parses events from performance counters\.
+
+### Example: Calculating memory metrics on Linux<a name="CloudWatch-agent-metrics-definitions-LinuxExample"></a>
+
+As an example, suppose that entering the **free \-m** command on a Linux host shows the following results:
+
+```
+             total       used       free     shared    buff/cache     Available
+Mem:         7441         117       6592          0           732          7101
+Swap:           0           0          0
+```
+
+In this example, the CloudWatch agent will collect the following values:
++ `mem_total`: 7441\.92 MB
++ `mem_available`: 7101\.85 MB \(free \+ cache\)
++ `mem_free`: 6592\.85 MB
++ `mem_cached`: 2\.64 MB
++ `mem_used`: 116\.84 MB \(total \- free \-buff/cache\)
++ `mem_buffered`: 729\.59 MB
++ `mem_available_percent`: 95\.43%
++ `mem_used_percent`: 1\.56%

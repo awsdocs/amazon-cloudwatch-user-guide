@@ -1,0 +1,16 @@
+# Filtering and viewing historical data in Amazon CloudWatch Internet Monitor \(Historical explorer tab\)<a name="CloudWatch-IM-historical-explorer"></a>
+
+Use the **Historical explorer** tab in the CloudWatch console, under Internet Monitor, to filter and view data for your application that's in CloudWatch Logs\. Internet Monitor publishes measurements to CloudWatch Logs specific to your application for availability, performance, monitored bytes transferred \(or client connection count, for WorkSpaces directories only\), and round\-trip time for your monitored city\-networks in AWS Regions\.
+
+**Note**  
+Internet Monitor publishes internet measurements to CloudWatch Logs every five minutes for the top 500 \(by traffic volume\) city\-networks \(that is, client locations and ASNs, typically internet service providers or ISPs\) that send traffic to each monitor\. Optionally, you can choose to publish internet measurements for all monitored city\-networks \(up to the 500,000 city\-networks service limit\) to an Amazon S3 bucket\. For more information, see [Publishing internet measurements to Amazon S3 in Amazon CloudWatch Internet Monitor](CloudWatch-IM-get-started.Publish-to-S3.md)\.
+
+To start exploring your application's data, select a time period\. Then, choose a specific geographical location, such a city, and \(optionally\) other filters\. Internet Monitor applies the filters to the data in the internet measurements logs that it has published for the city\-networks for your application traffic\. Then you can see graphs of the data that show the performance score, availability score, monitored bytes transferred \(for VPCs and CloudFront distributions\) or client connection counts \(for WorkSpaces directories\), and round\-trip time \(RTT\) for your application over time\.
+
+The **All events** table below the graphs shows you the health events that your filter returns for your application traffic, with information about each event\. It includes the following columns\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-historical-explorer.html)
+
+Alternatively, you can look at your application's measurements by accessing the logs directly for each data point\. In the **Actions** menu, choose **View CloudWatch Logs**\. Note that because measurement events are published to your account when they're created, you can create other CloudWatch dashboards or alarms based on them as well\. For more information, see [Getting insights to improve application performance in Amazon CloudWatch Internet Monitor \(Traffic insights tab\)](CloudWatch-IM-insights.md) and [Creating alarms with Amazon CloudWatch Internet Monitor](CloudWatch-IM-create-alarm.md)\.
+
+In addition to exploring and analyzing Internet Monitor measurements and metrics, and creating dashboards and alarms based on them, you can use Internet Monitor to help you understand ways that you could improve performance for your application\. The **Traffic insights** tab has several ways to help you explore options\. For more information, see **Traffic optimization suggestions** on the [Traffic insights](CloudWatch-IM-insights.md) tab\. In addition, you can see the specific examples in the [Internet Monitor use cases](CloudWatch-IM-use-cases.md) chapter\.

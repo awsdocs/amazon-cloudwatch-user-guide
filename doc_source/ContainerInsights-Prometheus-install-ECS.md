@@ -49,7 +49,7 @@ export CREATE_IAM_ROLES=True
 export ECS_TASK_ROLE_NAME=your_selected_ecs_task_role_name
 export ECS_EXECUTION_ROLE_NAME=your_selected_ecs_execution_role_name
 
-curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
+curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
 
 aws cloudformation create-stack --stack-name CWAgent-Prometheus-ECS-${ECS_CLUSTER_NAME}-EC2-${ECS_NETWORK_MODE} \
     --template-body file://cwagent-ecs-prometheus-metric-for-bridge-host.yaml \
@@ -75,7 +75,7 @@ export ECS_TASK_ROLE_NAME=your_selected_ecs_task_role_name
 export ECS_EXECUTION_ROLE_NAME=your_selected_ecs_execution_role_name
 
 
-curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
+curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-bridge-host.yaml
 
 aws cloudformation create-stack --stack-name CWAgent-Prometheus-ECS-${ECS_CLUSTER_NAME}-EC2-${ECS_NETWORK_MODE} \
     --template-body file://cwagent-ecs-prometheus-metric-for-bridge-host.yaml \
@@ -102,7 +102,7 @@ export ECS_CLUSTER_SUBNET=your_subnet_eg_subnet-xxxxxxxxxx
 export ECS_TASK_ROLE_NAME=your_selected_ecs_task_role_name
 export ECS_EXECUTION_ROLE_NAME=your_selected_ecs_execution_role_name
 
-curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
+curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
 
 aws cloudformation create-stack --stack-name CWAgent-Prometheus-ECS-${ECS_CLUSTER_NAME}-${ECS_LAUNCH_TYPE}-awsvpc \
     --template-body file://cwagent-ecs-prometheus-metric-for-awsvpc.yaml \
@@ -131,7 +131,7 @@ export ECS_CLUSTER_SUBNET=your_subnet_eg_subnet-xxxxxxxxxx
 export ECS_TASK_ROLE_NAME=your_selected_ecs_task_role_name
 export ECS_EXECUTION_ROLE_NAME=your_selected_ecs_execution_role_name            
 
-curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/master/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
+curl -O https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/replica-service/cwagent-prometheus/cloudformation-quickstart/cwagent-ecs-prometheus-metric-for-awsvpc.yaml
 
 aws cloudformation create-stack --stack-name CWAgent-Prometheus-ECS-${ECS_CLUSTER_NAME}-${ECS_LAUNCH_TYPE}-awsvpc \
     --template-body file://cwagent-ecs-prometheus-metric-for-awsvpc.yaml \

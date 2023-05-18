@@ -1,4 +1,4 @@
-# Aggregating statistics by Amazon Machine Image \(AMI\)<a name="US_SingleMetricPerAMI"></a>
+# Aggregate statistics by Amazon Machine Image \(AMI\)<a name="US_SingleMetricPerAMI"></a>
 
 You can aggregate statistics for the EC2 instances that have detailed monitoring enabled\. Instances that use basic monitoring aren't included\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 

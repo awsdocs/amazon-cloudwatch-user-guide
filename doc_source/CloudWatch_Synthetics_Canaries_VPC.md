@@ -18,7 +18,7 @@ Follow these steps to give internet access to your VPC canary\.
 
 1. Add a new route to the route table in the private subnet where the canary is launched\. Specify the following:
    + For **Destination**, enter **0\.0\.0\.0/0**
-   + For **Target**, choose **NAT Gateway**, and then chooose the ID of the NAT gateway that you created\.
+   + For **Target**, choose **NAT Gateway**, and then choose the ID of the NAT gateway that you created\.
    + Choose **Save routes**\.
 
    For more information about adding the route to the route table, see [Add and remove routes from a route table](https://docs.aws.amazon.com/vpc/latest/userguide/WorkWithRouteTables.html#AddRemoveRoutes)\.

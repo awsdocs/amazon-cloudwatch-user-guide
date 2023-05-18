@@ -1,6 +1,6 @@
 # Set up, configure, and manage your application for monitoring using the command line<a name="appinsights-setting-up-command"></a>
 
-This section provides steps for setting up, configuring, and managing your application for monitoring using the AWS CLI and AAWS Tools for Windows PowerShell\.
+This section provides steps for setting up, configuring, and managing your application for monitoring using the AWS CLI and AWS Tools for Windows PowerShell\.
 
 **Topics**
 + [Add and manage an application](#appinsights-config-app-command)
@@ -143,7 +143,7 @@ Update-CWAIApplication -ResourceGroupName my-resource-group -OpsCenterEnabled tr
 
 ### Update a custom component<a name="appinsights-update-component"></a>
 
-**Update a custom component using the AWS CLI AWS CLI**  
+**Update a custom component using the AWS CLI**  
 You can use the AWS CLI to update a custom component called `my-component` with a new component name, `my-new-component`, and an updated group of instances, by using the following command\.
 
 ```

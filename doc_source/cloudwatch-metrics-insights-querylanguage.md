@@ -1,8 +1,5 @@
 # Metrics Insights query components and syntax<a name="cloudwatch-metrics-insights-querylanguage"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
 CloudWatch Metrics Insights syntax is as follows\.
 
 ```
@@ -20,7 +17,7 @@ The possible clauses in a Metrics Insights query are as follows\. None of the ke
 Required\. Specifies the function to use to aggregate observations in each time bucket \(detemined by the provided period\)\. Also specifies the name of the metric to query\.  
 The valid values for **FUNCTION** are `AVG`, `COUNT`, `MAX`, `MIN`, and `SUM`\.  
 + `AVG` calculates the average of the observations matched by the query\.
-+ `COUNT` returnst the count of the observations matched by the query\.
++ `COUNT` returns the count of the observations matched by the query\.
 + `MAX` returns the maximum value of the observations matched by the query\.
 + `MIN` returns the minimum value of the observations matched by the query\.
 + `SUM` calculates the sum of the observations matched by the query\.
@@ -75,7 +72,7 @@ If a metric namespace, metric name, or label key, contains a word that is a rese
 
 For a complete list of reserved keywords, see [Reserved keywords](cloudwatch-metrics-insights-reserved-keywords.md)\.
 
-## Building a rich query step by step<a name="cloudwatch-metrics-insights-syntaxexample"></a>
+## Build a rich query step by step<a name="cloudwatch-metrics-insights-syntaxexample"></a>
 
 This section illustrates building a full example that uses all possible clauses, step by step\.
 

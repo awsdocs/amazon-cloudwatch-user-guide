@@ -1,4 +1,4 @@
-# Collecting metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent<a name="Install-CloudWatch-Agent"></a>
+# Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent<a name="Install-CloudWatch-Agent"></a>
 
 The unified CloudWatch agent enables you to do the following:
 + Collect internal system\-level metrics from Amazon EC2 instances across operating systems\. The metrics can include in\-guest metrics, in addition to the metrics for EC2 instances\. The additional metrics that can be collected are listed in [Metrics collected by the CloudWatch agent](metrics-collected-by-CloudWatch-agent.md)\.
@@ -21,16 +21,17 @@ The steps in this section explain how to install the unified CloudWatch agent on
 **Supported operating systems**
 
 The CloudWatch agent is supported on x86\-64 architecture on the following operating systems:
-+ Amazon Linux version 2014\.03\.02 or later
 + Amazon Linux 2
++ Amazon Linux version 2014\.03\.02 or later
 + Ubuntu Server versions 20\.04, 18\.04, 16\.04, and 14\.04
-+ CentOS versions 8\.0, 7\.6, 7\.2, and 7\.0
-+ Red Hat Enterprise Linux \(RHEL\) versions 8, 7\.7, 7\.6, 7\.5, 7\.4, 7\.2, and 7\.0
-+ Debian version 10 and version 8\.0
++ CentOS version 8 stream and version 7
++ Red Hat Enterprise Linux \(RHEL\) versions 8\.4, 8\.3, 8\.2, 8\.1, 8\.0, 7\.7, 7\.6, 7\.5, 7\.4, 7\.2, and 7\.0
++ Debian version 10
 + SUSE Linux Enterprise Server \(SLES\) version 15 and version 12
-+ Oracle Linux versions 7\.8, 7\.6, and 7\.5
-+ macOS, including EC2 Mac1 instances
-+ 64\-bit versions of Windows Server 2019, Windows Server 2016, and Windows Server 2012
++ Oracle Linux versions 8\.6, 8\.4, 8\.3, 8\.2, 8\.1, 7\.8, 7\.6, and 7\.5
++ The following macOS computers: EC2 Mac1 instances, and computers running macOS 13 \(Ventura\), macOS 12 \(Monterey\), and macOS 11 \(Big Sur\) 
++ 64\-bit versions of Windows Server 2022, Windows Server 2019, Windows Server 2016, and Windows Server 2012 R2
++ 64\-bit Windows 10 running on x86\-64 computers
 
 The agent is supported on ARM64 architecture on the following operating systems:
 + Amazon Linux 2
@@ -54,6 +55,6 @@ You can download and install the CloudWatch agent manually using the command lin
 + [Installing the CloudWatch agent](install-CloudWatch-Agent-on-EC2-Instance.md)
 + [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)
 + [Metrics collected by the CloudWatch agent](metrics-collected-by-CloudWatch-agent.md)
-+ [OpenTelemetry support in the CloudWatch agent](CloudWatch-Agent-open-telemetry.md)
++ [Use the AWS OpenTelemetry Collector with the CloudWatch agent](CloudWatch-Agent-open-telemetry.md)
 + [Common scenarios with the CloudWatch agent](CloudWatch-Agent-common-scenarios.md)
 + [Troubleshooting the CloudWatch agent](troubleshooting-CloudWatch-Agent.md)

@@ -24,42 +24,42 @@ There are two ways to enable Container Insights on new Amazon ECS clusters\. You
 
 ### Using the AWS Management Console<a name="deploy-container-insights-ECS-new-console"></a>
 
-You can enable Container Insights on all new clusters by default, or on an individual cluster as you create it\.
+You can turn on Container Insights on all new clusters by default, or on an individual cluster as you create it\.
 
-**To enable Container Insights on all new clusters by default**
+**To turn on Container Insights on all new clusters by default**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. In the navigation pane, choose **Account Settings**\.
+1. In the navigation page, choose **Account Settings**\.
 
-1. Select the check box at the bottom of the page to enable the Container Insights default\.
+1. Choose **Update**\.
+
+1.  To use CloudWatch Container Insights by default for clusters, under **CloudWatch Container Insights**, select or clear **CloudWatch Container Insights**\.
+
+1. Choose **Save changes**\.
 
 If you haven't used the preceding procedure to enable Container Insights on all new clusters by default, use the following steps to create a cluster with Container Insights enabled\.
 
-**To create a cluster with Container Insights enabled**
+**To create a cluster with Container Insights turned on**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
-1. Choose **Create cluster**\.
+1. In the navigation pane, choose **Clusters**\.
 
-1. On the next page, do the following:
+1. On the **Clusters** page, choose **Create cluster**\.
 
-   1. Name your cluster\.
+1. Under **Cluster configuration**, for **Cluster name**, enter a unique name\.
 
-   1. If you don’t have a VPC already, select the check box to create one\. You can use the default values for the VPC\.
+   The name can contain up to 255 letters \(uppercase and lowercase\), numbers, and hyphens\.
 
-   1. Fill out all other needed information, including instance type\.
-
-   1. Select **Enabled Container Insights**\.
-
-   1. Choose **Create**\.
+1. To turn on Container Insights, expand **Monitoring**, and then turn on **Use Container Insights**\.
 
 You can now create task definitions, run tasks, and launch services in the cluster\. For more information, see the following:
 + [Creating a task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
-+ [Running tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html)
-+ [Creating a service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service.html)
++ [Running tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task-v2.html)
++ [Creating a service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html)
 
 ### Setting up Container Insights on new Amazon ECS clusters using the AWS CLI<a name="deploy-container-insights-ECS-CLI"></a>
 

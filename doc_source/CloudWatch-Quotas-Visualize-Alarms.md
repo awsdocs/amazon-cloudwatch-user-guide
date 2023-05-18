@@ -4,6 +4,7 @@ For some AWS services, you can use the usage metrics to visualize your current s
 
 Currently, the following services integrate their usage metrics with Service Quotas:
 + AWS CloudHSM
++ [Amazon Chime SDK](https://docs.aws.amazon.com/chime-sdk/latest/dg/usage-metrics.html) 
 + [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Usage-Metrics.html)
 + [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html#CloudWatchLogs-Usage-Metrics)
 + [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/metrics-dimensions.html)
@@ -11,9 +12,10 @@ Currently, the following services integrate their usage metrics with Service Quo
 + [Amazon Elastic Container Registry](https://docs.aws.amazon.com/AmazonECR/latest/userguide/monitoring-usage.html)
 + [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/monitoring-fargate-usage.html)
 + [AWS Fault Injection Simulator](https://docs.aws.amazon.com/fis/latest/userguide/monitoring-cloudwatch.html)
-+ [ AWS Interactive Video Service](https://docs.aws.amazon.com/ivs/latest/userguide/service-quotas.html#quotas-cloudwatch-integration)
++ [AWS Interactive Video Service](https://docs.aws.amazon.com/ivs/latest/userguide/service-quotas.html#quotas-cloudwatch-integration)
 + AWS Key Management Service
 + [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/dev/monitoring-with-cloudwatch-metrics.html#fh-metrics-usage)
++  [Amazon Location Service](https://docs.aws.amazon.com/location/latest/developerguide/monitoring-using-cloudwatch.html#metrics-exported-to-cloudwatch)
 + [AWS RoboMaker](https://docs.aws.amazon.com/robomaker/latest/dg/monitoring-aws-robomaker-cloudwatch.html)
 
 **To visualize a service quota and optionally set an alarm**

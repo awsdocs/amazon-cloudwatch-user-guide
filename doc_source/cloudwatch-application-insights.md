@@ -11,6 +11,6 @@ When you add your applications to Amazon CloudWatch Application Insights, it sca
 + [Work with component configurations](component-config.md)
 + [Use CloudFormation templates](appinsights-cloudformation.md)
 + [Tutorial: Set up monitoring for SAP HANA](appinsights-tutorial-sap-hana.md)
-+ [Tutorial: Set up monitoring for \.NET and SQL](appinsights-tutorial-dotnet-sql.md)
++ [Tutorial: Set up monitoring for SAP NetWeaver](appinsights-tutorial-sap-netweaver.md)
 + [View and troubleshoot Application Insights](appinsights-troubleshooting.md)
 + [Supported logs and metrics](appinsights-logs-and-metrics.md)

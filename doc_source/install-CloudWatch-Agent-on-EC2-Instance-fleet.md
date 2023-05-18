@@ -10,7 +10,7 @@ After you have a CloudWatch agent configuration saved in Parameter Store, you ca
 
 ## Attach an IAM role to the instance<a name="install-CloudWatch-Agent-iam_permissions-fleet"></a>
 
-You must attach the **CloudWatchAgentServerRole** IAM role to the EC2 instance to be able to run the CloudWatch agent on the instance\. This role enables the CloudWatch agent to perform actions on the instance\.
+You must attach the **CloudWatchAgentServerRole** IAM role to the EC2 instance to be able to run the CloudWatch agent on the instance\. This role enables the CloudWatch agent to perform actions on the instance\. You should have created this role previously\. For more information see [Create IAM roles and users for use with CloudWatch agent](create-iam-roles-for-cloudwatch-agent-commandline.md)\.
 
 For more information, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -79,7 +79,7 @@ Systems Manager Run Command enables you to manage the configuration of your inst
 
 ## \(Optional\) Modify the common configuration and named profile for CloudWatch agent<a name="CloudWatch-Agent-profile-instance-fleet"></a>
 
-The CloudWatch agent includes a configuration file called `common-config.toml`\. You can use this file optionally specify proxy and Region information\.
+The CloudWatch agent includes a configuration file called `common-config.toml`\. You can use this file to optionally specify proxy and Region information\.
 
 On a server running Linux, this file is in the `/opt/aws/amazon-cloudwatch-agent/etc` directory\. On a server running Windows Server, this file is in the `C:\ProgramData\Amazon\AmazonCloudWatchAgent` directory\.
 

@@ -77,7 +77,7 @@ After you configure Amazon Cognito to work with your identity provider, you also
 + Add the following to your application to have it pass the credentials from your provider to CloudWatch RUM\. Insert the line so that it runs after a user has signed in to your application and the application has received the credentials to use to access AWS\.
 
   ```
-  cwr(‘setAwsCredentials’, {/* Credentials or CredentialProvider */});
+  cwr('setAwsCredentials', {/* Credentials or CredentialProvider */});
   ```
 
 For more information about credential providers in the AWS JavaScript SDK, see [Setting credentials in a web browser](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/setting-credentials-browser.html) in the v3 developer guide for SDK for JavaScript, [Setting credentials in a web browser](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-browser.html) in the v2 developer guide for SDK for JavaScript, , and [@aws\-sdk/credential\-providers](https://www.npmjs.com/package/@aws-sdk/credential-providers)\. 

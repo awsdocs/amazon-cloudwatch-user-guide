@@ -49,13 +49,13 @@ To make sure that you get the full benefit of the resource health view, check th
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **ServiceLens**, **Resource Health**\.
+1. In the navigation pane, choose **Application monitoring**, **Resource Health**\.
 
    The resource health page appears, showing a square for each host in your account\. Each square is colored based on the current status of that host, based on the setting for **Color by**\. Host squares with an alarm symbol have one or more alarms currently in ALARM state\.
 
    You can see up to 500 hosts in a single view\. If you have more hosts in your account, use the filter settings in step 6 of this procedure\.
 
-1. To change what criteria is used to show each host's health, choose a setting for **Color by**\. You can choose **CPU Utilization**, **Memory Utilization**, or **Status check**\. Memory utilization metrics are available only for hosts that are running the CloudWatch agent and have it configured to collect memory metrics and send them to the default `CWAgent` namespace\. For more information, see [Collecting metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)\.
+1. To change what criteria is used to show each host's health, choose a setting for **Color by**\. You can choose **CPU Utilization**, **Memory Utilization**, or **Status check**\. Memory utilization metrics are available only for hosts that are running the CloudWatch agent and have it configured to collect memory metrics and send them to the default `CWAgent` namespace\. For more information, see [Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](Install-CloudWatch-Agent.md)\.
 
 1. To change the thresholds and the colors that are used for the health indicators in the grid, choose the gear icon above the grid\.
 

@@ -12,7 +12,7 @@ Amazon has now launched Fluent Bit as the default log solution for Container Ins
 
 ## Quick Start with the CloudWatch agent and Fluent Bit<a name="Container-Insights-setup-EKS-quickstart-FluentBit"></a>
 
-There are two configurations for Fluent Bit: an optimized version and a version that provides an experience more similar to FluentD\. The Quick Start configuration uses the optimized version\. For more details about the FluentD\-compatible configuration, see [Set up Fluent Bit as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)\.
+There are two configurations for Fluent Bit: an optimized version and a version that provides an experience more similar to Fluentd\. The Quick Start configuration uses the optimized version\. For more details about the Fluentd\-compatible configuration, see [Set up Fluent Bit as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md)\.
 
 To deploy Container Insights using the quick start, enter the following command\.
 
@@ -45,7 +45,7 @@ curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-i
 
 **Migrating from Fluentd**
 
-If you already have Fluentd configured and want to move to Fluent Bit, you must delete the FluentD pods after you install Fluent Bit\. You can use the following command to delete FluentD\.
+If you already have Fluentd configured and want to move to Fluent Bit, you must delete the Fluentd pods after you install Fluent Bit\. You can use the following command to delete Fluentd\.
 
 ```
 curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluentd/fluentd.yaml | kubectl delete -f -
@@ -62,9 +62,14 @@ curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-i
 
 ## Quick Start with the CloudWatch agent and Fluentd<a name="Container-Insights-setup-EKS-quickstart-Fluentd"></a>
 
-If you are already using Fluentd in your Kubernetes cluster and want to extend it to be the log solution for Container Insights, we provide a FluentD configuration for you to do so\.
+If you are already using Fluentd in your Kubernetes cluster and want to extend it to be the log solution for Container Insights, we provide a Fluentd configuration for you to do so\.
 
-To deploy the CloudWatch agent and Fluentd using the quick start, use the following command\. The following setup contains a community supported FluentD container image\. You can replace the image with your own FluentD image as long as it meets the FluentD image requirements\. For more information, see [\(Optional\) Set up FluentD as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs.md)\.
+**Warning**  
+Container Insights support for Fluentd is now in maintenance mode, which means that AWS will not provide any further updates for Fluentd and that we are planning to deprecate it in near future\. Additionally, the current Fluentd configuration for Container Insights is using an old version of the Fluentd Image `fluent/fluentd-kubernetes-daemonset:v1.7.3-debian-cloudwatch-1.0` which does not have the latest improvement and security patches\. For the latest Fluentd image supported by the open source community, see [fluentd\-kubernetes\-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset)\.   
+We strongly recommend that you migrate to use FluentBit with Container Insights whenever possible\. Using FluentBit as the log forwarder for Container Insights provides significant performance gains\.   
+For more information, see [Set up Fluent Bit as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs-FluentBit.md) and [ Differences if you're already using Fluentd](Container-Insights-setup-logs-FluentBit.md#Container-Insights-setup-logs-FluentBit-migrate)\.
+
+To deploy the CloudWatch agent and Fluentd using the quick start, use the following command\. The following setup contains a community supported Fluentd container image\. You can replace the image with your own Fluentd image as long as it meets the Fluentd image requirements\. For more information, see [\(Optional\) Set up Fluentd as a DaemonSet to send logs to CloudWatch Logs](Container-Insights-setup-logs.md)\.
 
 ```
 curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluentd-quickstart.yaml | sed "s/{{cluster_name}}/cluster-name/;s/{{region_name}}/cluster-region/" | kubectl apply -f -

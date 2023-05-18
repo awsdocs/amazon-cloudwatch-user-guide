@@ -84,31 +84,21 @@ The next step is creating a task definition\.
 
 **To create a task definition for AWS Distro for OpenTelemetry**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. In the left navigation pane, choose **Task Definitions** and then choose **Create new Task Definition**\.
+1. In the navigation pane, choose **Task definitions**
 
-1. Select either **FARGATE** or **EC2** and then choose **Next step**\.
+1. Choose **Create new task definition**, **Create new task definition**\.
 
-1. Enter a task definition name such as **aws\-otel**\.
+1. For **Task definition family**, specify a unique name for the task definition\.
 
-1. For **Task Role**, select **AWSOpenTelemetryTaskRole** which you created earlier\.
+1. Configure your containers, and then choose **Next**\.
 
-1. For **Task execution role**, select **AWSOpenTelemetryTaskExecutionRole** which you created earlier\.
+1. Under **Metrics and logging**, select **Use metric collection**\.
 
-1. Fill in the **Task memory** and **Task CPU**\.
+1. Choose **Next**\.
 
-1. Under **Container Definitions**, choose **Add container**\.
-
-1. For **Container name**, enter **aws\-otel\-collector**\. For **Image**, enter **public\.ecr\.aws/aws\-observability/aws\-otel\-collector**\.
-
-1. Under **ENVIRONMENT**, for **Command** enter **\-\-config=/etc/ecs/container\-insights/otel\-task\-metrics\-config\.yaml** 
-
-   This YAML file is included in the Docker image, and includes the configuration to consume container metrics\.
-
-1. If you're using the EC2 launch type, enter a port mapping of 55680 for TCP\.
-
-1. Finish the steps for adding the container\.
+1. Choose **Create**\.
 
 For more information about using the AWS OpenTelemetry collector with Amazon ECS, see [Setting up AWS Distro for OpenTelemetry Collector in Amazon Elastic Container Service](https://aws-otel.github.io/docs/setup/ecs)\.
 
@@ -118,13 +108,19 @@ The final step is running the task that you've created\.
 
 **To run the task for AWS Distro for OpenTelemetry**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the left navigation pane, choose **Task Definitions** and then select the task that you just created\.
 
-1. Choose **Actions**, **Run Task**\. 
+1. Choose **Actions**, **Deploy**, **Run task**\. 
 
-   Next, you can check for the new metrics in the CloudWatch console\.
+1. Choose **Deploy**, **Run task**\.
+
+1. In the **Compute options** section, from **Existing cluster**, choose the cluster\.
+
+1. Choose **Create**\.
+
+1. Next, you can check for the new metrics in the CloudWatch console\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

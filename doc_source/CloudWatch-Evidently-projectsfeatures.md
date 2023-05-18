@@ -4,6 +4,8 @@ To get started with CloudWatch Evidently, for either a feature launch or an A/B 
 
 **Topics**
 + [Create a new project](CloudWatch-Evidently-newproject.md)
++ [Use client\-side evaluation \- powered by AWS AppConfig](CloudWatch-Evidently-client-side-evaluation.md)
 + [Add a feature to a project](CloudWatch-Evidently-newfeature.md)
++ [Use segments to focus your audience](CloudWatch-Evidently-segments.md)
 + [Create a launch](CloudWatch-Evidently-newlaunch.md)
 + [Create an experiment](CloudWatch-Evidently-newexperiment.md)

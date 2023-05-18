@@ -1,4 +1,4 @@
-# Creating a storage throughput alarm that sends email<a name="US_AlarmAtThresholdEBS"></a>
+# Create a storage throughput alarm that sends email<a name="US_AlarmAtThresholdEBS"></a>
 
 You can set up an SNS notification and configure an alarm that is triggered when Amazon EBS exceeds 100 MB throughput\.
 
@@ -10,7 +10,9 @@ Use these steps to use the AWS Management Console to create an alarm based on Am
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
+1. In the navigation pane, choose **Alarms**, **All Alarms**\.
+
+1. Choose **Create alarm**\.
 
 1. Under **EBS Metrics**, choose a metric category\.
 
@@ -18,7 +20,7 @@ Use these steps to use the AWS Management Console to create an alarm based on Am
 
 1. For the statistic, choose **Average**\. For the period, choose **5 Minutes**\. Choose **Next**\.
 
-1. Under **Alarm Threshold**, enter a unique name for the alarm \(for example, **myHighWriteAlarm**\) and a description of the alarm \(for example, **VolumeWriteBytes exceeds 100,000 KiB/s**\)\. Alarm names must contain only ASCII characters\.
+1. Under **Alarm Threshold**, enter a unique name for the alarm \(for example, **myHighWriteAlarm**\) and a description of the alarm \(for example, **VolumeWriteBytes exceeds 100,000 KiB/s**\)\. Alarm names must contain only UTF\-8 characters, and can't contain ASCII control characters
 
 1. Under **Whenever**, for **is**, choose **>** and enter **100000**\. For **for**, enter **15** consecutive periods\.
 

@@ -1,4 +1,4 @@
-# Creating a CPU usage alarm<a name="US_AlarmAtThresholdEC2"></a>
+# Create a CPU usage alarm<a name="US_AlarmAtThresholdEC2"></a>
 
 You can create an CloudWatch alarm that sends a notification using Amazon SNS when the alarm changes state from `OK` to `ALARM`\.
 
@@ -12,7 +12,9 @@ Use these steps to use the AWS Management Console to create a CPU usage alarm\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Alarms**, **Create Alarm**\.
+1. In the navigation pane, choose **Alarms**, **All Alarms**\.
+
+1. Choose **Create alarm**\.
 
 1. Choose **Select metric**\.
 
@@ -50,7 +52,7 @@ Use these steps to use the AWS Management Console to create a CPU usage alarm\.
 
 1. When finished, choose **Next**\.
 
-1. Enter a name and description for the alarm\. The name must contain only ASCII characters\. Then choose **Next**\.
+1. Enter a name and description for the alarm\. The name must contain only UTF\-8 characters, and can't contain ASCII control characters\. Then choose **Next**\.
 
 1. Under **Preview and create**, confirm that the information and conditions are what you want, then choose **Create alarm**\.
 

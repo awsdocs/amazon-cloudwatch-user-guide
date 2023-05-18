@@ -53,4 +53,8 @@ To start using CloudWatch RUM with your application, you create an *app monitor*
 
 1. Choose **Add app monitor**\.
 
-1. After the JavaScript code snippet is created, choose **Copy to clipboard** or **Download**, and then choose **Done**\.
+1. In the **Sample code** section, you can copy the code snippet to use to add to your application\. We recommend that you choose **JavaScript** or **TypeScript** and use NPM to install the CloudWatch RUM web client as a JavaScript module\.
+
+   Alternatively, you can choose **HTML** to use a content delivery network \(CDN\) to install the CloudWatch RUM web client\. The disadvantage of using a CDN is that the web client is often blocked by ad blockers\.
+
+1. Choose **Copy** or **Download**, and then choose **Done**\.

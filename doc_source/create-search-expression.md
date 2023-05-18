@@ -1,6 +1,8 @@
-# Creating a CloudWatch graph with a search expression<a name="create-search-expression"></a>
+# Create a CloudWatch graph with a search expression<a name="create-search-expression"></a>
 
 On the CloudWatch console, you can access search capability when you add a graph to a dashboard, or by using the **Metrics** view\. 
+
+You can't create an alarm based on a **SEARCH** expression\. This is because search expressions return multiple time series, and an alarm based on a math expression can watch only one time series\.
 
 **To add a graph with a search expression to an existing dashboard**
 
@@ -14,13 +16,13 @@ On the CloudWatch console, you can access search capability when you add a graph
 
 1. On the **Graphed metrics** tab, choose **Add a math expression**\.
 
-1.  For **Details**, enter the search expression that you want\. For example, **SEARCH\('\{AWS/EC2,InstanceId\} MetricName="CPUUtilization" ', 'Average', 300\)** 
+1.  For **Details**, enter the search expression that you want\. For example, **SEARCH\('\{AWS/EC2,InstanceId\} MetricName="CPUUtilization"', 'Average'\)** 
 
 1. \(Optional\) To add another search expression or math expression to the graph, choose **Add a math expression**
 
 1. \(Optional\) After you add a search expression, you can specify a dynamic label to appear on the graph legend for each metric\. Dynamic labels display a statistic about the metric and automatically update when the dashboard or graph is refreshed\. To add a dynamic label, choose **Graphed metrics** and then **Dynamic labels**\.
 
-   By default, the dynamic values you add to the label appear at the beginning of the label\. You can then click the **Label** value for the metric to edit the label\. For more information, see [Using dynamic labels](graph-dynamic-labels.md)\.
+   By default, the dynamic values you add to the label appear at the beginning of the label\. You can then click the **Label** value for the metric to edit the label\. For more information, see [Use dynamic labels](graph-dynamic-labels.md)\.
 
 1. \(Optional\) To add a single metric to the graph, choose the **All metrics** tab and drill down to the metric you want\.
 

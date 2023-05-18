@@ -7,11 +7,11 @@ Amazon CloudWatch Evidently collects and stores data related to project configur
 
 Resource metadata is stored in Amazon DynamoDB\. The data is encrypted at rest by default, using AWS owned keys\. These keys are a collection of AWS KMS keys that an AWS service owns and manages for use in multiple AWS accounts\. Customers can’t view, manage, or audit the use of these keys\. Customers are also not required to take action or change programs to protect the keys that encrypt their data\.
 
-For more information, see [ AWS owned keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk) in the AWS Key Management Service Developer Guide\.
+For more information, see [AWS owned keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk) in the AWS Key Management Service Developer Guide\.
 
 Evidently metric events and evaluation events are delivered directly to customer\-owned locations\.
 
-Evidently also temporarily creates and stores evaluation logs in Amazon Elastic Container Service hosts before being rotated to Ingestion Hub\. These logs are currently retained for a maximum of three seconds and deleted after processing\. Data in transit is automatically encrypted with HTTPS\. This data will be delivered to customer\-owned locations\.
+ Data in transit is automatically encrypted with HTTPS\. This data will be delivered to customer\-owned locations\.
 
 You can also choose to store evaluation events in Amazon Simple Storage Service or Amazon CloudWatch Logs\. For more information about how you can secure your data in these services, see [ Enabling Amazon S3 default bucket encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-bucket-encryption.html) and [ Encrypting log data in CloudWatch Logs using AWS KMS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html)\.
 

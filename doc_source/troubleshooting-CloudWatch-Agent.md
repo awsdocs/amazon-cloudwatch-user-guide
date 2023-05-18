@@ -11,6 +11,7 @@ Use the following information to help troubleshoot problems with the CloudWatch 
 + [The CloudWatch agent won't start on Windows Server](#CloudWatch-Agent-troubleshooting-Windows-start)
 + [Unable to find credentials on Windows Server](#CloudWatch-Agent-troubleshooting-Windows-credentials)
 + [Where are the metrics?](#CloudWatch-Agent-troubleshooting-no-metrics)
++ [The CloudWatch agent takes a long time to run in a container or logs a hop limit error](#CloudWatch-Agent-container-slow)
 + [I updated my agent configuration but don’t see the new metrics or logs in the CloudWatch console](#CloudWatch-Agent-troubleshooting-update-no-new-metrics)
 + [CloudWatch agent files and locations](#CloudWatch-Agent-files-and-locations)
 + [Finding information about CloudWatch agent versions](#CloudWatch-Agent-troubleshooting-agent-version)
@@ -133,6 +134,23 @@ If the CloudWatch agent has been running but you can't find metrics collected by
 
 When you first download the CloudWatch agent package, the agent configuration file is `amazon-cloudwatch-agent.json`\. This file is in the directory where you ran the configuration wizard, or you might have moved it to a different directory\. If you use the configuration wizard, the agent configuration file output from the wizard is named `config.json`\. For more information about the configuration file, including the `namespace` field, see [ CloudWatch agent configuration file: Metrics section](CloudWatch-Agent-Configuration-File-Details.md#CloudWatch-Agent-Configuration-File-Metricssection)\. 
 
+## The CloudWatch agent takes a long time to run in a container or logs a hop limit error<a name="CloudWatch-Agent-container-slow"></a>
+
+When you run the CloudWatch agent as a container service and want to add Amazon EC2 metric dimensions to all metrics collected by the agent, you might see the following errors in version v1\.247354\.0 of the agent:
+
+```
+2022-06-07T03:36:11Z E! [processors.ec2tagger] ec2tagger: Unable to retrieve Instance Metadata Tags. This plugin must only be used on an EC2 instance.
+2022-06-07T03:36:11Z E! [processors.ec2tagger] ec2tagger: Please increase hop limit to 2 by following this document https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#configuring-IMDS-existing-instances.
+2022-06-07T03:36:11Z E! [telegraf] Error running agent: could not initialize processor ec2tagger: EC2MetadataRequestError: failed to get EC2 instance identity document
+caused by: EC2MetadataError: failed to make EC2Metadata request
+        status code: 401, request id: 
+caused by:
+```
+
+You might see this error if the agent tries to get metadata from IMDSv2 inside a container without an appropriate hop limit\. In versions of the agent earlier than v1\.247354\.0, you can experience this issue without seeing the log message\. 
+
+To solve this, increase the hop limit to 2 by following the instructions in [ Configure the instance metadata options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#configuring-IMDS-existing-instances.)\.
+
 ## I updated my agent configuration but don’t see the new metrics or logs in the CloudWatch console<a name="CloudWatch-Agent-troubleshooting-update-no-new-metrics"></a>
 
 If you update your CloudWatch agent configuration file, the next time that you start the agent, you need to use the **fetch\-config** option\. For example, if you stored the updated file on the local computer, enter the following command:
@@ -154,6 +172,7 @@ The following table lists the files installed by and used with the CloudWatch ag
 |  The JSON file used to configure the agent immediately after the wizard creates it\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\. |  `/opt/aws/amazon-cloudwatch-agent/bin/config.json`   |  `$Env:ProgramFiles\Amazon\AmazonCloudWatchAgent\config.json`  | 
 |  The JSON file used to configure the agent if this configuration file has been downloaded from Parameter Store\. |  `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json` or `/etc/amazon/amazon-cloudwatch-agent/amazon-cloudwatch-agent.json`  |  `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent.json`  | 
 |  TOML file used to specify Region and credential information to be used by the agent, overriding system defaults\. |  `/opt/aws/amazon-cloudwatch-agent/etc/common-config.toml` or `/etc/amazon/amazon-cloudwatch-agent/common-config.toml`  |  `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\common-config.toml`  | 
+|  TOML file that contains the converted contents of the JSON configuration file\. The `amazon-cloudwatch-agent-ctl` script generates this file\. Users should not directly modify this file\. It can be useful for verifying that JSON to TOML translation was successful\.  |  `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.toml` or `/etc/amazon/amazon-cloudwatch-agent/amazon-cloudwatch-agent.toml`  |  `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent.toml`  | 
 
 ## Finding information about CloudWatch agent versions<a name="CloudWatch-Agent-troubleshooting-agent-version"></a>
 
@@ -180,7 +199,16 @@ You can also download a README file about the latest changes to the agent, and a
 
 The agent generates a log while it runs\. This log includes troubleshooting information\. This log is the `amazon-cloudwatch-agent.log` file\. This file is located in `/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log` on Linux servers and in `$Env:ProgramData\Amazon\AmazonCloudWatchAgent\Logs\amazon-cloudwatch-agent.log` on servers running Windows Server\.
 
-You can configure the agent to log additional details in the `amazon-cloudwatch-agent.log` file\. In the agent configuration file, in the `agent` section, set the `debug` field to `true`, then reconfigure and restart the CloudWatch agent\. To disable the logging of this extra information, set the `debug` field to `false` reconfigure and restart the agent\. For more information, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
+You can configure the agent to log additional details in the `amazon-cloudwatch-agent.log` file\. In the agent configuration file, in the `agent` section, set the `debug` field to `true`, then reconfigure and restart the CloudWatch agent\. To disable the logging of this extra information, set the `debug` field to `false`\. Then, reconfigure and restart the agent\. For more information, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
+
+In versions 1\.247350\.0 and later of the CloudWatch agent, you can optionally set the `aws_sdk_log_level` field in the `agent` section of the agent configuration file to one or more of the following options\. Separate multiple options with the `|` character\.
++ `LogDebug`
++ `LogDebugWithSigning`
++ `LogDebugWithHTTPBody`
++ `LogDebugRequestRetries`
++ `LogDebugWithEventStreamBody`
+
+For more information about these options, see [LogLevelType](https://docs.aws.amazon.com/sdk-for-go/api/aws/#LogLevelType)\.
 
 ## Stopping and restarting the CloudWatch agent<a name="CloudWatch-Agent-troubleshooting-stopping-restarting"></a>
 

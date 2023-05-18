@@ -8,7 +8,11 @@ Canaries offer programmatic access to a headless Google Chrome Browser via Puppe
 
 Canaries check the availability and latency of your endpoints and can store load time data and screenshots of the UI\. They monitor your REST APIs, URLs, and website content, and they can check for unauthorized changes from phishing, code injection and cross\-site scripting\.
 
-For a video demonstration of canaries, see the [Amazon CloudWatch Synthetics Demo](https://www.youtube.com/watch?v=hF3NM9j-u7I) video\.
+For a video demonstration of canaries, see the following:
++ [Introduction to Amazon CloudWatch Synthetics](https://www.youtube.com/watch?v=MItluIsvfTo)
++ [Amazon CloudWatch Synthetics Demo](https://www.youtube.com/watch?v=hF3NM9j-u7I)
++ [Create Canaries Using Amazon CloudWatch Synthetics](https://www.youtube.com/watch?v=DSx65wW7lr0)
++ [Visual Monitoring with Amazon CloudWatch Synthetics](https://www.youtube.com/watch?v=_PCs-ucZz7E)
 
 
 
@@ -28,6 +32,7 @@ In Asia Pacific \(Osaka\), AWS PrivateLink is not supported\. In Asia Pacific \(
 **Topics**
 + [Required roles and permissions for CloudWatch canaries](CloudWatch_Synthetics_Canaries_Roles.md)
 + [Creating a canary](CloudWatch_Synthetics_Canaries_Create.md)
++ [Groups](CloudWatch_Synthetics_Groups.md)
 + [Troubleshooting a failed canary](CloudWatch_Synthetics_Canaries_Troubleshoot.md)
 + [Sample code for canary scripts](CloudWatch_Synthetics_Canaries_Samples.md)
 + [Canaries and X\-Ray tracing](CloudWatch_Synthetics_Canaries_tracing.md)
@@ -35,5 +40,6 @@ In Asia Pacific \(Osaka\), AWS PrivateLink is not supported\. In Asia Pacific \(
 + [Encrypting canary artifacts](CloudWatch_Synthetics_artifact_encryption.md)
 + [Viewing canary statistics and details](CloudWatch_Synthetics_Canaries_Details.md)
 + [CloudWatch metrics published by canaries](CloudWatch_Synthetics_Canaries_metrics.md)
-+ [Editing or deleting a canary](synthetics_canaries_deletion.md)
++ [Edit or delete a canary](synthetics_canaries_deletion.md)
++ [Start, stop, delete, or update runtime for multiple canaries](synthetics_canaries_multi-action.md)
 + [Monitoring canary events with Amazon EventBridge](monitoring-events-eventbridge.md)

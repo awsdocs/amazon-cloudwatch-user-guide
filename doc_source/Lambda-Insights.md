@@ -4,7 +4,7 @@ CloudWatch Lambda Insights is a monitoring and troubleshooting solution for serv
 
 Lambda Insights uses a new CloudWatch Lambda extension, which is provided as a Lambda layer\. When you install this extension on a Lambda function, it collects system\-level metrics and emits a single performance log event for every invocation of that Lambda function\. CloudWatch uses embedded metric formatting to extract metrics from the log events\.
 
-For more information about Lambda extensions, see [ Using AWS Lambda extensions](https://docs.aws.amazon.com/lambda/latest/dg/using-extensions.html)\. For more information about embedded metric format, see [Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
+For more information about Lambda extensions, see [ Using AWS Lambda extensions](https://docs.aws.amazon.com/lambda/latest/dg/using-extensions.html)\. For more information about embedded metric format, see [Ingest high\-cardinality logs to generate metrics with CloudWatch embedded metric format](CloudWatch_Embedded_Metric_Format.md)\.
 
 You can use Lambda Insights with any Lambda function that uses a Lambda runtime that supports Lambda extensions\. For a list of these runtimes, see [ Lambda Extensions API](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-extensions-api.html)\.
 

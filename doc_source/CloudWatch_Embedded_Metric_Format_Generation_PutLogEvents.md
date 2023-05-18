@@ -1,6 +1,6 @@
 # Using the PutLogEvents API to send manually\-created embedded metric format logs<a name="CloudWatch_Embedded_Metric_Format_Generation_PutLogEvents"></a>
 
-You can send embedded metric format logs to CloudWatch Logs using the CloudWatch Logs PutLogEvents API\. When calling PutLogEvents, you need to include the following HTTP header to instruct CloudWatch Logs that the metrics should be extracted\.
+You can send embedded metric format logs to CloudWatch Logs using the CloudWatch Logs PutLogEvents API\. When calling PutLogEvents, you may optionally include the following HTTP header to instruct CloudWatch Logs that the metrics should be extracted, but it is no longer necessary\.
 
 ```
 x-amzn-logs-format: json/emf
@@ -37,10 +37,6 @@ public class EmbeddedMetricsExample {
 
                 CloudWatchLogsClient logsClient = CloudWatchLogsClient.builder().region(Region.of(regionId)).build();
 
-                // A sequence token is required to put a log event in an existing stream.
-                // Look up the stream to find its sequence token.
-                String sequenceToken = getNextSequenceToken(logsClient, logGroupName, logStreamName);
-
                 // Build a JSON log using the EmbeddedMetricFormat.
                 long timestamp = System.currentTimeMillis();
                 String message = "{" +
@@ -50,7 +46,7 @@ public class EmbeddedMetricsExample {
                                 "      {" +
                                 "        \"Namespace\": \"MyApp\"," +
                                 "        \"Dimensions\": [[\"Operation\"], [\"Operation\", \"Cell\"]]," +
-                                "        \"Metrics\": [{ \"Name\": \"ProcessingLatency\", \"Unit\": \"Milliseconds\" }]" +
+                                "        \"Metrics\": [{ \"Name\": \"ProcessingLatency\", \"Unit\": \"Milliseconds\", \"StorageResolution\": 60 }]" +
                                 "      }" +
                                 "    ]" +
                                 "  }," +
@@ -65,13 +61,9 @@ public class EmbeddedMetricsExample {
 
                 // Specify the request parameters.
                 PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder()
-                        .overrideConfiguration(builder ->
-                                // provide the log-format header of json/emf
-                                builder.headers(Collections.singletonMap("x-amzn-logs-format",  Collections.singletonList("json/emf"))))
                         .logEvents(Collections.singletonList(inputLogEvent))
                         .logGroupName(logGroupName)
                         .logStreamName(logStreamName)
-                        .sequenceToken(sequenceToken)
                         .build();
 
                 logsClient.putLogEvents(putLogEventsRequest);
@@ -79,17 +71,8 @@ public class EmbeddedMetricsExample {
                 System.out.println("Successfully put CloudWatch log event");
         }
 
-        private static String getNextSequenceToken(CloudWatchLogsClient logsClient, String logGroupName, String logStreamName) {
-                DescribeLogStreamsRequest logStreamRequest = DescribeLogStreamsRequest.builder()
-                        .logGroupName(logGroupName)
-                        .logStreamNamePrefix(logStreamName)
-                        .build();
-
-                DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
-
-                // Assume that a single stream is returned since a specific stream name was
-                // specified in the previous request.
-                return describeLogStreamsResponse.logStreams().get(0).uploadSequenceToken();
-        }
 }
 ```
+
+**Note**  
+ With the embedded metric format, you can track the processing of your EMF logs by metrics that are published in the `AWS/Logs` namespace of your account\. These can be used to track failed metric generation from EMF, as well as whether failures happen due to parsing or validation\. For more details see [Monitoring with CloudWatch metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html)\. 

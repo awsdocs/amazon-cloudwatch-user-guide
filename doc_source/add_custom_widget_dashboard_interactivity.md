@@ -3,7 +3,7 @@
 Even though JavaScript is not allowed, there are other ways to allow interactivity with the returned HTML\.
 + Any element in the returned HTML can be tagged with special configuration in a `<cwdb-action>` tag, which can display information in pop\-ups, ask for confirmation on clicks, and call any Lambda function when that element is chosen\. For example, you can define buttons that call any AWS API using a Lambda function\. The returned HTML can be set to either replace the existing Lambda widget's content, or display inside a modal\.
 + The returned HTML can include links that open new consoles, open other customer pages, or load other dashboards\.
-+ The HTML can include the `title` attribute for an element, which gives additional information if the user pauses on that element\.
++ The HTML can include the `title` attribute for an element, which gives additional information if the user hovers over that element\.
 + The element can include CSS selectors, such as `:hover`, which can invoke animations or other CSS effects\. You can also show or hide elements in the page\.
 
 ## <cwdb\-action> definition and usage<a name="add_custom_widget_dashboard_cwdb"></a>

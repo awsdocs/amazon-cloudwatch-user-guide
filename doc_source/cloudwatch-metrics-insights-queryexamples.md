@@ -1,8 +1,5 @@
 # Metrics Insights sample queries<a name="cloudwatch-metrics-insights-queryexamples"></a>
 
-****  
-CloudWatch Metrics Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\.
-
 This section contains examples of useful CloudWatch Metrics Insights queries that you can copy and use directly or copy and modify in query editor\. Some of these examples are already available in the console, and you can access them by choosing **Add query** in the **Metrics** view\.
 
 ## Application Load Balancer examples<a name="cloudwatch-metrics-insights-queryexamples-applicationloadbalancer"></a>

@@ -1,8 +1,8 @@
-# Ingesting high\-cardinality logs and generating metrics with CloudWatch embedded metric format<a name="CloudWatch_Embedded_Metric_Format"></a>
+# Ingest high\-cardinality logs to generate metrics with CloudWatch embedded metric format<a name="CloudWatch_Embedded_Metric_Format"></a>
 
 The CloudWatch embedded metric format enables you to ingest complex high\-cardinality application data in the form of logs and to generate actionable metrics from them\. You can embed custom metrics alongside detailed log event data, and CloudWatch automatically extracts the custom metrics so that you can visualize and alarm on them, for real\-time incident detection\. Additionally, the detailed log events associated with the extracted metrics can be queried using CloudWatch Logs Insights to provide deep insights into the root causes of operational events\. 
 
-Embedded metric format helps you to generate actionable custom metrics from ephemeral resources such as Lambda functions and containers\. By using the embedded metric format to send logs from these ephemeral resources, you can now easily create custom metrics without having to instrument or maintain separate code, while gaining powerful analytical capabilities on your log data\.
+Embedded metric format helps you generate actionable custom metrics from ephemeral resources such as Lambda functions and containers\. By using the embedded metric format to send logs from these ephemeral resources, you can now easily create custom metrics without having to instrument or maintain separate code, while gaining powerful analytical capabilities on your log data\.
 
 When using the embedded metric format, you can generate your logs using a client library— for more information, see [Using the client libraries to generate embedded metric format logs](CloudWatch_Embedded_Metric_Format_Libraries.md)\. Alternatively, you can manually construct the logs and submit them using the PutLogEvents API or the CloudWatch agent\.
 
@@ -14,3 +14,4 @@ Be careful when configuring your metric extraction as it impacts your custom met
 **Topics**
 + [Generating logs using the embedded metric format](CloudWatch_Embedded_Metric_Format_Generation.md)
 + [Viewing your metrics and logs in the console](CloudWatch_Embedded_Metric_Format_View.md)
++ [Setting alarms on metrics created with embedded metric format](CloudWatch_Embedded_Metric_Format_Alarms.md)

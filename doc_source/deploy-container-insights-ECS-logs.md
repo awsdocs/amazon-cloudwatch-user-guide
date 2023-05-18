@@ -1,4 +1,4 @@
-# Set up Firelens to send logs to CloudWatch Logs<a name="deploy-container-insights-ECS-logs"></a>
+# Set up FireLens to send logs to CloudWatch Logs<a name="deploy-container-insights-ECS-logs"></a>
 
 FireLens for Amazon ECS enables you to use task definition parameters to route logs to Amazon CloudWatch Logs for log storage and analytics\. FireLens works with [Fluent Bit](https://fluentbit.io/) and [Fluentd](https://www.fluentd.org/)\. We provide an AWS for Fluent Bit image, or you can use your own Fluent Bit or Fluentd image\. Creating Amazon ECS task definitions with a FireLens configuration is supported using the AWS SDKs, AWS CLI, and AWS Management Console\. For more information about CloudWatch Logs, see [ What is CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)\.
 
@@ -12,7 +12,7 @@ To create a task definition that uses a FireLens configuration, see [ Creating a
 
 The following task definition example demonstrates how to specify a log configuration that forwards logs to a CloudWatch Logs log group\. For more information, see [What Is Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`\. You can also specify the task ID as the log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
+In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`\. You can also specify the task ID as the log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/mainline/README.md)\.
 
 ```
 {

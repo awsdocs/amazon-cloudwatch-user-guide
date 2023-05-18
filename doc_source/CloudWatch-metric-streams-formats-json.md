@@ -23,10 +23,13 @@ The following is an example of the format\. In this example, the JSON is formatt
         "count": 3.0,
         "sum": 20.0,
         "max": 18.0,
-        "min": 0.0
+        "min": 0.0,
+        "p99": 17.56,
+        "p99.9": 17.8764,
+        "TM(25%:75%)": 16.43
     },
     "unit": "Seconds"
-}\n
+}
 ```
 
 ## Which AWS Glue schema should I use for JSON output format?<a name="CloudWatch-metric-streams-format-glue"></a>
@@ -66,7 +69,7 @@ The following is an example of a JSON representation of the `StorageDescriptor` 
     },
     {
       "Name": "value",
-      "Type": "struct<min:double,max:double,count:double,sum:double>"
+      "Type": "struct<min:double,max:double,count:double,sum:double,p99:double,p99.9:double>"
     },
     {
       "Name": "unit",

@@ -76,6 +76,12 @@ You can also download a README file about the latest changes to the agent, and a
 
    This command also works from within PowerShell\. For more information about MSI command options, see [Command\-Line Options](https://docs.microsoft.com/en-us/windows/desktop/Msi/command-line-options) in the Microsoft Windows documentation\.
 
+   If you downloaded a PKG package on a macOS server, change to the directory containing the package and enter the following:
+
+   ```
+   sudo installer -pkg ./amazon-cloudwatch-agent.pkg -target /
+   ```
+
 ## Create and modify the agent configuration file<a name="CW-Agent-Instance-Create-Configuration-File-first"></a>
 
 After you have downloaded the CloudWatch agent, you must create the configuration file before you start the agent on any servers\. For more information, see [Create the CloudWatch agent configuration file](create-cloudwatch-agent-configuration-file.md)\.

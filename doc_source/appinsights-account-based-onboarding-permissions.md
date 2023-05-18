@@ -4,7 +4,9 @@ If you want to onboard all of the resources in your account, and you choose not 
 
 ```
 "ec2:DescribeInstances" 
+"ec2:DescribeNatGateways"
 "ec2:DescribeVolumes"
+"ec2:DescribeVPCs"
 "rds:DescribeDBInstances"
 "rds:DescribeDBClusters"
 "sqs:ListQueues"
@@ -23,4 +25,13 @@ If you want to onboard all of the resources in your account, and you choose not 
 "eks:ListClusters"
 "eks:ListNodegroups"
 "fsx:DescribeFileSystems"
+"route53:ListHealthChecks"
+"route53:ListHostedZones"
+"route53:ListQueryLoggingConfigs"
+"route53resolver:ListFirewallRuleGroups"
+"route53resolver:ListFirewallRuleGroupAssociations"
+"route53resolver:ListResolverEndpoints"
+"route53resolver:ListResolverQueryLogsConfigs"
+"route53resolver:ListResolverQueryLogsConfigAssociation"
+"logs:DescribeLogGroups"
 ```

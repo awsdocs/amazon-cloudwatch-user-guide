@@ -6,6 +6,8 @@ To see a service map, you must have installed AWS X\-Ray and completed the other
 
 You must also be signed in to an account that has the `AWSXrayReadOnlyAccess` managed policy, as well as permissions that enable you to view the CloudWatch console\. For more information, see [How AWS X\-Ray Works with IAM](https://docs.aws.amazon.com/xray/latest/devguide/security_iam_service-with-iam.html) and [Using Amazon CloudWatch dashboards](CloudWatch_Dashboards.md)\.
 
+If you are signed in to an account set up as a monitoring account in CloudWatch cross\-account observability, the service maps that you view includes nodes for the source accounts linked to this monitoring account\. For more information, see [CloudWatch cross\-account observability](CloudWatch-Unified-Cross-Account.md)\.
+
 **To begin using the service map**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
@@ -20,6 +22,8 @@ You must also be signed in to an account that has the `AWSXrayReadOnlyAccess` ma
    + The entry point to your nodes is shown on the left as a "Client\." A "Client" represents both web server traffic and traced API operation requests\.
    + A node outlined partially in red, orange, or purple has issues\. Some traced requests to these nodes have faults, errors, or throttling\. The percentage of the color outline indicates the percentage of traced requests that are having issues\.
    + If a node has a triangle with an exclamation point next to it, at least one CloudWatch alarm related to that node is in alarm state\.
+
+1. If this is a monitoring account, by default the map includes nodes for all source accounts as well as the monitoring account\. To filter the map by account, choose **Filters** from the upper left and select the accounts that you want to focus on\. Once an account filter is applied, service nodes from accounts that don't match the current filter are grayed out\. 
 
 1. By default, the data in the map is for the most recent 6\-hour time window\. To change the timeframe of the window, use the controls at the upper right of the screen\. The time range to be shown can be up to 6 hours, and can be as much as 30 days in the past\.
 
@@ -37,7 +41,7 @@ You must also be signed in to an account that has the `AWSXrayReadOnlyAccess` ma
 
    For more information about this view, see the following procedures\. 
 
-1. To view the service map as a table, choose **List view** near the top of the screen\. In this view, you can filter and sort the nodes and alarms that are displayed on the map\.
+1. To view the service map as a table, choose **List view** near the top of the screen\. In this view, you can filter and sort the nodes and alarms that are displayed on the map\. If you are in a monitoring account, you can filter by account ID or account label\.
 
 1. To see a dashboard with metrics for a specific node, select the node and then choose **View dashboard** near the bottom of the screen\.
 
@@ -55,4 +59,6 @@ You must also be signed in to an account that has the `AWSXrayReadOnlyAccess` ma
 
 1. To view traces related to the service, choose **View traces**\.
 
-   The console switches to the **Traces** view, focused on the service that you are investigating\. For more information, see [Using the traces view in ServiceLens](servicelens_service_map_traces.md)\.
+   The console switches to the **Traces** view, focused on the service that you are investigating\. 
+
+   The **Traces** page supports querying by account ID or account label\. To get started, enter a query that includes one or more account IDs\. You can refine your query by choosing **Account** from **Refine query by**, selecting one or more account IDs from the list, and then choosing **Add to query** to modify the query at the top of the page\.

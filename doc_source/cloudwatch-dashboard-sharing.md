@@ -11,11 +11,17 @@ When you share dashboards, you can designate who can view the dashboard in three
 + Share a single dashboard publicly, so that anyone who has the link can view the dashboard\.
 + Share all the CloudWatch dashboards in your account and specify a third\-party single sign\-on \(SSO\) provider for dashboard access\. All users who are members of this SSO provider's list can access all the dashboards in the account\. To enable this, you integrate the SSO provider with Amazon Cognito\. The SSO provider must support Security Assertion Markup Language \(SAML\)\. For more information about Amazon Cognito, see [ What is Amazon Cognito?](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html)
 
+**Important**  
+Do not modify resource names and identifiers that are created by the dashboard sharing process\. This includes Amazon Cognito and IAM resources\. Modifying these resources can cause unexpected and incorrect functionality of shared dashboards\.
+
+**Note**  
+If you share a dashboard that has metric widgets with alarm annotations, the people that you share the dashboard with will not see those widgets\. They will instead see a blank widget with text saying that the widget is not available\. You will still see metric widgets with alarm annotations when you view the dashboard yourself\.
+
 ## Permissions required to share a dashboard<a name="share-cloudwatch-permissions-required"></a>
 
-To be able to share dashboards using any of the following methods and to see which dashboards have already been shared, you must be logged on to an IAM user or IAM role that has certain permissions\.
+To be able to share dashboards using any of the following methods and to see which dashboards have already been shared, you must be signed on as a user or with an IAM role that has certain permissions\.
 
-To be able to share dashboards, your IAM user or IAM role must include the permissions included in the following policy statement:
+To be able to share dashboards, your user or IAM role must include the permissions included in the following policy statement:
 
 ```
 {
@@ -53,7 +59,7 @@ To be able to share dashboards, your IAM user or IAM role must include the permi
 }
 ```
 
-To be able to see which dashboards are shared, but not be able to share dashboards, your IAM user or IAM role can include a policy statement similar to the following:
+To be able to see which dashboards are shared, but not be able to share dashboards, a user or an IAM role can include a policy statement similar to the following:
 
 ```
 {

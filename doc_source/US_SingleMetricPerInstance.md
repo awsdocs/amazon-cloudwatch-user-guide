@@ -1,4 +1,4 @@
-# Getting statistics for a specific resource<a name="US_SingleMetricPerInstance"></a>
+# Get statistics for a specific resource<a name="US_SingleMetricPerInstance"></a>
 
 The following example shows you how to determine the maximum CPU utilization of a specific EC2 instance\.
 

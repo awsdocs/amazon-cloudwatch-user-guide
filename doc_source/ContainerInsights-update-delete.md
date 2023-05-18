@@ -4,4 +4,4 @@ Use the steps in these sections to update your CloudWatch agent container image,
 
 **Topics**
 + [Updating the CloudWatch agent container image](ContainerInsights-update-image.md)
-+ [Deleting the CloudWatch agent and FluentD for Container Insights](ContainerInsights-delete-agent.md)
++ [Deleting the CloudWatch agent and Fluentd for Container Insights](ContainerInsights-delete-agent.md)

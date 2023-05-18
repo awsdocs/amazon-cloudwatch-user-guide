@@ -10,7 +10,7 @@ You can choose to enable live data for a whole dashboard, or for individual widg
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
 1. To permanently turn live data on or off for all widgets on the dashboard, do the following:
 
@@ -27,7 +27,7 @@ You can choose to enable live data for a whole dashboard, or for individual widg
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Dashboards** and select a dashboard\.
+1. In the navigation pane, choose **Dashboards**, and then choose a dashboard\.
 
 1. Select a widget, and choose **Actions**, **Edit**\.
 

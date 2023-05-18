@@ -6,7 +6,7 @@ The CloudWatch agent is available as a package in Amazon Linux 2\. If you are us
 sudo yum install amazon-cloudwatch-agent
 ```
 
-On all supported operating systems, you can download and install the CloudWatch agent using either the command line with an Amazon S3 download link, using SSM, or using an AWS CloudFormation template\.
+On all supported operating systems including Linux and Windows Server, you can download and install the CloudWatch agent using either the command line with an Amazon S3 download link, using Amazon EC2 Systems Manager, or using an AWS CloudFormation template\. See the following sections for details\.
 
 **Topics**
 + [Installing the CloudWatch agent using the command line](installing-cloudwatch-agent-commandline.md)

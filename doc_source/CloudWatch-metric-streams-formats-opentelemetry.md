@@ -9,7 +9,7 @@ While metric streams is in general availability, the OpenTelemetry format 0\.7\.
 
 A Kinesis record can contain one or more `ExportMetricsServiceRequest` OpenTelemetry data structures\. Each data structure starts with a header with an `UnsignedVarInt32` indicating the record length in bytes\. Each `ExportMetricsServiceRequest` may contain data from multiple metrics at once\.
 
-The following is a string representation of the message of the `ExportMetricsServiceRequest` OpenTelemetry data structure\. OpenTelemetry serializes the use of the Google Protocol Buffers binary protocol, which is not human\-readable\.
+The following is a string representation of the message of the `ExportMetricsServiceRequest` OpenTelemetry data structure\. OpenTelemetry serializes the Google Protocol Buffers binary protocol, and this is not human\-readable\.
 
 ```
 resource_metrics {
@@ -63,6 +63,14 @@ resource_metrics {
           sum: 1.0
           quantile_values {
             quantile: 0.0
+            value: 1.0
+          }
+          quantile_values {
+            quantile: 0.95
+            value: 1.0
+          }          
+          quantile_values {
+            quantile: 0.99
             value: 1.0
           }
           quantile_values {

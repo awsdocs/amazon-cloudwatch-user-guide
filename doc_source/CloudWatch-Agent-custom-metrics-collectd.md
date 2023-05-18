@@ -55,7 +55,7 @@ The following is an example of the collectd section of the agent configuration f
 
 ## Viewing collectd metrics imported by the CloudWatch agent<a name="CloudWatch-view-collectd-metrics"></a>
 
-After importing collectd metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view collectd metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
+After importing collectd metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view collectd metrics as a time series graph\. For more information about setting alarms, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
 **To view collectd metrics in the CloudWatch console**
 

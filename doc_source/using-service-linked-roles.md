@@ -56,7 +56,7 @@ The **AWSServiceRoleForCloudWatchCrossAccount** service\-linked role trusts the 
 
 ## Creating a service\-linked role for CloudWatch<a name="create-service-linked-role"></a>
 
-You do not need to manually create any of these service\-linked roles\. The first time you create an alarm in the AWS Management Console, the IAM CLI, or the IAM API, CloudWatch creates AWSServiceRoleForCloudWatchEvents and AWSServiceRoleForCloudWatchAlarms\_ActionSSM for you\. The first time When you first enable an account to be a monitoring account for cross\-account cross\-Region functionality, CloudWatch creates **AWSServiceRoleForCloudWatchCrossAccount** for you\. 
+You do not need to manually create any of these service\-linked roles\. The first time you create an alarm in the AWS Management Console, the IAM CLI, or the IAM API, CloudWatch creates AWSServiceRoleForCloudWatchEvents and **AWSServiceRoleForCloudWatchAlarms\_ActionSSM** for you\. When you first enable an account to be a monitoring account for cross\-account cross\-Region functionality, CloudWatch creates **AWSServiceRoleForCloudWatchCrossAccount** for you\. 
 
 For more information, see [Creating a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#create-service-linked-role) in the *IAM User Guide*\.
 
@@ -196,4 +196,4 @@ View details about updates to AWS managed policies for CloudWatch since this ser
 | Change | Description | Date | 
 | --- | --- | --- | 
 |  [ AWSServiceRoleForCloudWatchAlarms\_ActionSSMIncidents](#service-linked-role-permissions-incident-manager) – New service\-linked role  |  CloudWatch added a new service\-linked role to allow CloudWatch to create incidents in AWS Systems Manager Incident Manager\.  | April 26, 2021 | 
-|  CloudWatch started tracking changes  |  CloudWatch started tracking changes for its service linked roles\.  | April 26, 2021 | 
+|  CloudWatch started tracking changes  |  CloudWatch started tracking changes for its service\-linked roles\.  | April 26, 2021 | 

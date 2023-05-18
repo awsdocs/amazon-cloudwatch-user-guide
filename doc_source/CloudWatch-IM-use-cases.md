@@ -1,0 +1,13 @@
+# Amazon CloudWatch Internet Monitor example use cases<a name="CloudWatch-IM-use-cases"></a>
+
+In this section, we describe several specific examples of how you can use the capabilities that Amazon CloudWatch Internet Monitor offers, to help you monitor your application and improve your users' experience\. Summaries of several specific examples follow, together with links to blog posts with more details\.
+
+**Set up alerts for events that impact your users, and decide on actions to take**  
+You can use Internet Monitor to get insights into average internet performance metrics over time, and about issues \(events\) by city\-network \(location and ASN, typically internet service provider or ISP\)\. Using Internet Monitor, you can identify the events that are impacting end user experience for applications hosted by Amazon CloudFront, Amazon WorkSpaces directories, or Amazon Virtual Private Cloud \(VPCs\)\.  
+After you create a monitor, you have several options for how to be alerted about Internet Monitor health events, including alarms based on CloudWatch Alarms using event metrics or Amazon EventBridge rules to filter for health events\. You can choose different options for notifications or actions based on alarms, including, for example, AWS SMS notifications or updates to a CloudWatch log group\.  
+To see an example with detailed guidance, see the following blog post: [ Introducing Amazon CloudWatch Internet Monitor](http://aws.amazon.com/blogs/networking-and-content-delivery/introducing-amazon-cloudwatch-internet-monitor/)\.
+
+**Pinpoint latency and improve TTFB to improve multiplayer gameplay experience in global cloud gaming apps**  
+Use Internet Monitor to help you quickly pinpoint where game players are experiencing latency issues globally, and provide insights into improving performance\. By identifying where the most players currently have the slowest time to first byte \(TTFB\), you know how where to target your latency\-reduction efforts, to make your biggest player base happier\.  
+Now, when you're ready to deploy the next EC2 server for your game, choose the AWS Region that Internet Monitor suggests will lower TTFB in the area with the high latency and large group of players\.   
+For details about setting up and using Internet Monitor for this use case, see the following blog post: [ Using Amazon CloudWatch Internet Monitor for a Better Gaming Experience](http://aws.amazon.com/blogs/gametech/using-cloudwatch-internet-monitor-for-a-better-gaming-experience/)\.

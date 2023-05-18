@@ -1,6 +1,8 @@
 # Modify experiment traffic<a name="CloudWatch-Evidently-modifyexperimenttraffic"></a>
 
-You can modify the traffic allocation for an experiment at any time, including while the experiment is ongoing\. If you modify the traffic of an ongoing experiment, we recommend that you only increase the traffic allocation, so that you don't introduce bias\.
+You can modify the sampling rate for an experiment at any time, including while the experiment is ongoing\. However, you can't update the treatment weights after an experiment is running\. Therefore, you can change the total traffic exposed to the experiment after an experiment is running, but not the relative allocation to each treatment\. If you modify the traffic of an ongoing experiment, we recommend that you only increase the traffic allocation, so that you don't introduce bias\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/evidently_experiment_split.png)
 
 **To modify the traffic allocation for an experiment**
 

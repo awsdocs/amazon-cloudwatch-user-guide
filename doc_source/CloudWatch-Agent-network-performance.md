@@ -13,6 +13,7 @@ The following table lists these network performance metrics enabled by the ENA a
 | --- | --- | 
 |  Name on Linux servers: `bw_in_allowance_exceeded` Name on Windows servers: `Aggregate inbound BW allowance exceeded`  |  The number of packets queued and/or dropped because the inbound aggregate bandwidth exceeded the maximum for the instance\.\. This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](#CloudWatch-Agent-network-performance) Unit: None  | 
 |   Name on Linux servers: `bw_out_allowance_exceeded` Name on Windows servers: `Aggregate outbound BW allowance exceeded` |  The number of packets queued and/or dropped because the outbound aggregate bandwidth exceeded the maximum for the instance\. This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](#CloudWatch-Agent-network-performance) Unit: None  | 
+|  Name on Linux servers:`conntrack_allowance_available`  |  Reports the number of tracked connections that can be established by the instance before hitting the Connections Tracked allowance of that instance type\. This metric is available only on Nitro\-based EC2 instances using the Linux driver for Elastic Network Adapter \(ENA\) starting from version 2\.8\.1 This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](#CloudWatch-Agent-network-performance) Unit: None  | 
 |  Name on Linux servers:`conntrack_allowance_exceeded` Name on Windows servers: `Connection tracking allowance exceeded` |  The number of packets dropped because connection tracking exceeded the maximum for the instance and new connections could not be established\. This can result in packet loss for traffic to or from the instance\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](#CloudWatch-Agent-network-performance) Unit: None  | 
 |  Name on Linux servers: `linklocal_allowance_exceeded` Name on Windows servers: `Link local packet rate allowance exceeded`  |  The number of packets dropped because the PPS of the traffic to local proxy services exceeded the maximum for the network interface\. This impacts traffic to the DNS service, the Instance Metadata Service, and the Amazon Time Sync Service\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](#CloudWatch-Agent-network-performance) Unit: None  | 
 |  Name on Linux servers: `pps_allowance_exceeded` Name on Windows servers: `PPS allowance exceeded` |  The number of packets queued and/or dropped because the bidirectional PPS exceeded the maximum for the instance\.  This metric is collected only if you have listed it in the `ethtool` subsection of the `metrics_collected` section of the CloudWatch agent configuration file\. For more information, see [Collect network performance metrics](#CloudWatch-Agent-network-performance) Unit: None  | 
@@ -57,16 +58,47 @@ For more information about the CloudWatch agent configuration file, see [ Manual
           "linklocal_allowance_exceeded",
           "pps_allowance_exceeded"
          ]
-      }   
+      }
+   }
+}
+```
+
+## Windows setup<a name="CloudWatch-Agent-network-performance-Windows"></a>
+
+On Windows servers, the network performance metrics are available through Windows Performance Counters, which the CloudWatch agent already collects metrics from\. So you do not need a plugin to collect these metrics from Windows servers\.
+
+The following is a sample configuration file to collect network performance metrics from Windows\. For more information about editing the CloudWatch agent configuration file, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
+
+```
+{
+    "metrics": {
+        "append_dimensions": {
+            "InstanceId": "${aws:InstanceId}"
+        },
+        "metrics_collected": {
+            "ENA Packets Shaping": {
+                "measurement": [
+                    "Aggregate inbound BW allowance exceeded",
+                    "Aggregate outbound BW allowance exceeded",
+                    "Connection tracking allowance exceeded",
+                    "Link local packet rate allowance exceeded",
+                    "PPS allowance exceeded"
+                ],
+                "metrics_collection_interval": 60,
+                "resources": [
+                    "*"
+                ]
+            }
+        }
     }
- }
+}
 ```
 
 ## Viewing network performance metrics<a name="CloudWatch-view-ENA-metrics"></a>
 
-After importing network performance metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view ethtool metrics as a time series graph\. For more information about setting alarms, see [Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
+After importing network performance metrics into CloudWatch, you can view these metrics as time series graphs, and create alarms that can watch these metrics and notify you if they breach a threshold that you specify\. The following procedure shows how to view ethtool metrics as a time series graph\. For more information about setting alarms, see [ Using Amazon CloudWatch alarms](AlarmThatSendsEmail.md)\.
 
-Because all of these metrics are aggregate counters, you can use CloudWatch metric math functions such as `RATE(METRICS())` to calculate the rate for these metrics in graphs or use them to set alarms\. For more information about metric math functions, see [Using metric math](using-metric-math.md)\.
+Because all of these metrics are aggregate counters, you can use CloudWatch metric math functions such as `RATE(METRICS())` to calculate the rate for these metrics in graphs or use them to set alarms\. For more information about metric math functions, see [Use metric math](using-metric-math.md)\.
 
 **To view network performance metrics in the CloudWatch console**
 

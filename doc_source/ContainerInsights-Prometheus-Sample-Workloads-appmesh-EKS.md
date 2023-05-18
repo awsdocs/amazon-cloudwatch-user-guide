@@ -16,7 +16,7 @@ To install the App Mesh Kubernetes controller, follow the instructions in [App M
 
 **To use a sample App Mesh application to test Container Insights**
 
-1. Install the application using these instructions: [https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-http-headers](https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-http-headers)\. 
+1. Install the application using these instructions: [https://github.com/aws/aws-app-mesh-examples/tree/main/walkthroughs/howto-k8s-http-headers](https://github.com/aws/aws-app-mesh-examples/tree/main/walkthroughs/howto-k8s-http-headers)\. 
 
 1. Launch a curler pod to generate traffic:
 

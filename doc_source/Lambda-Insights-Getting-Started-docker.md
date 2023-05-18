@@ -8,6 +8,9 @@ RUN curl -O https://lambda-insights-extension.s3-ap-northeast-1.amazonaws.com/am
     rm -f lambda-insights-extension.rpm
 ```
 
+**Note**  
+The Lambda Insights agent is supported only on Lambda runtimes that use Amazon Linux 2\.
+
 After you create your Lambda function, assign the **CloudWatchLambdaInsightsExecutionRolePolicy** IAM policy to the function's execution role, and Lambda Insights is enabled on the container image\-based Lambda function\.
 
 **Note**  

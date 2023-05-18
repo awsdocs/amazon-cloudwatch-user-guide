@@ -4,11 +4,17 @@ After you have created the agent configuration file that you want and created an
 
 ## Download the CloudWatch agent package using an S3 download link<a name="download-CloudWatch-Agent-on-EC2-Instance-commandline-fleet"></a>
 
-You need to install the agent on each server where you will run the agent\. The CloudWatch agent is available as a package in Amazon Linux 2\. If you are using this operating system, you can install the package by entering the following command\. You must also make sure that the IAM role attached to the instance has the **CloudWatchAgentServerPolicy** attached\. For more information, see ﻿[Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)﻿\.
+You need to install the agent on each server where you will run the agent\.
+
+**Amazon Linux 2**
+
+The CloudWatch agent is available as a package in Amazon Linux 2\. If you are using this operating system, you can install the package by entering the following command\. You must also make sure that the IAM role attached to the instance has the **CloudWatchAgentServerPolicy** attached\. For more information, see [Create IAM roles to use with the CloudWatch agent on Amazon EC2 instances](create-iam-roles-for-cloudwatch-agent.md#create-iam-roles-for-cloudwatch-agent-roles)﻿\.
 
 ```
 sudo yum install amazon-cloudwatch-agent
 ```
+
+**All operating systems**
 
 On all supported operating systems, you can download and install the CloudWatch agent using the command line with an Amazon S3 download link as described in the following steps\.
 
@@ -70,15 +76,9 @@ For each download link, there is a general link as well as links for each Region
 
    This command also works from within PowerShell\. For more information about MSI command options, see [Command\-Line Options](https://docs.microsoft.com/en-us/windows/desktop/Msi/command-line-options) in the Microsoft Windows documentation\.
 
-   If you downloaded a PKG package on a macOS server, change to the directory containing the package and enter the following:
-
-   ```
-   sudo installer -pkg ./amazon-cloudwatch-agent.pkg -target /
-   ```
-
 ## \(Installing on an EC2 instance\) Attaching an IAM role<a name="install-CloudWatch-Agent-iam_permissions-first"></a>
 
-To enable the CloudWatch agent to send data from the instance, you must attach an IAM role to the instance\. The role to attach is **CloudWatchAgentServerRole**\.
+To enable the CloudWatch agent to send data from the instance, you must attach an IAM role to the instance\. The role to attach is **CloudWatchAgentServerRole**\. You should have created this role previously\. For more information see [Create IAM roles and users for use with CloudWatch agent](create-iam-roles-for-cloudwatch-agent-commandline.md)\.
 
 For more information on attaching an IAM role to an instance, see [Attaching an IAM Role to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -116,9 +116,9 @@ The following is an example of using the `aws configure` command to create a nam
 Your Amazon EC2 instances must have outbound internet access to send data to CloudWatch or CloudWatch Logs\. For more information about how to configure internet access, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
 The endpoints and ports to configure on your proxy are as follows:
-+ If you're using the agent to collect metrics, you must whitelist the CloudWatch endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch](https://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region) in the *Amazon Web Services General Reference*\. 
-+ If you're using the agent to collect logs, you must whitelist the CloudWatch Logs endpoints for the appropriate Regions\. These endpoints are listed in [Amazon CloudWatch Logs](https://docs.aws.amazon.com/general/latest/gr/rande.html#cwl_region) in the *Amazon Web Services General Reference*\. 
-+ If you're using Systems Manager to install the agent or Parameter Store to store your configuration file, you must whitelist the Systems Manager endpoints for the appropriate Regions\. These endpoints are listed in [AWS Systems Manager](https://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) in the *Amazon Web Services General Reference*\. 
++ If you're using the agent to collect metrics, you must add the CloudWatch endpoints for the appropriate Regions to the allow list\. These endpoints are listed in [ Amazon CloudWatch endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/cw_region.html)\.
++ If you're using the agent to collect logs, you must add the CloudWatch Logs endpoints for the appropriate Regions to the allow list\. These endpoints are listed in [ Amazon CloudWatch Logs endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/cwl_region.html)\. 
++ If you're using Systems Manager to install the agent or Parameter Store to store your configuration file, you must add the Systems Manager endpoints for the appropriate Regions to the allow list\. These endpoints are listed in [AWS Systems Manager endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ssm.html)\.
 
 ## \(Optional\) Modify the common configuration for proxy or Region information<a name="CloudWatch-Agent-profile-instance-first"></a>
 

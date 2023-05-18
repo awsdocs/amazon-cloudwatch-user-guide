@@ -7,6 +7,35 @@ Alternatively, if you plan to create your CloudWatch alarm using the AWS Managem
 **Note**  
 When you create an Amazon SNS topic, you choose to make it a *standard topic* or a *FIFO topic*\. CloudWatch guarantees the publication of all alarm notifications to both types of topics\. However, even if you use a FIFO topic, in rare cases CloudWatch sends the notifications to the topic out of order\. If you use a FIFO topic, the alarm sets the message group ID of the alarm notifications to be a hash of the ARN of the alarm\.
 
+**Preventing confused deputy issues**
+
+To prevent cross\-service confused deputy security issues, we recommend that you use the `aws:SourceArn` and `aws:SourceAccount` global condition keys in the Amazon SNS resource policy that grants permission to CloudWatch to access your Amazon SNS resources\.
+
+The following example resource policy uses the `aws:SourceArn` condition key to narrow the `SNS:Publish` permission to be used only by CloudWatch alarms in the specified account\.
+
+```
+{
+    "Statement": [{
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "cloudwatch.amazonaws.com"
+        },
+        "Action": "SNS:Publish",
+        "Resource": "arn:aws:sns:us-east-2:444455556666:MyTopic",
+        "Condition": {
+            "ArnLike": {
+                "aws:SourceArn": "arn:aws:cloudwatch:us-east-2:111122223333:alarm:*"
+            },
+            "StringEquals": {
+                "aws:SourceAccount": "111122223333"
+            }
+        }
+    }]
+}
+```
+
+If an alarm ARN includes any non\-ASCII characters, use only the `aws:SourceAccount` global condition key to limit the permissions\.
+
 ## Setting up an Amazon SNS topic using the AWS Management Console<a name="set-up-sns-topic-console"></a>
 
 First, create a topic, then subscribe to it\. You can optionally publish a test message to the topic\.

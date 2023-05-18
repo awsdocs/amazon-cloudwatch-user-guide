@@ -1,0 +1,23 @@
+# Tracking real\-time performance and availability in Amazon CloudWatch Internet Monitor \(Overview tab\)<a name="CloudWatch-IM-overview"></a>
+
+Use the **Overview** tab in the CloudWatch console, under Internet Monitor, to get a high\-level view of performance and availability for the traffic that your monitor tracks\. The tab also displays an internet traffic overview map, with traffic clusters that can help you visualize your application's global traffic, and the location and impact of health events\.
+
+**Health scores**  
+The **Health scores** graph shows you performance and availability information for your global traffic\. AWS has substantial historical data about internet performance and availability for network traffic between geographic locations for different ASNs and AWS services\. Internet Monitor uses the connectivity data that AWS has captured from its global networking footprint to calculate a baseline of performance and availability for internet traffic\. This is the same data that we use at AWS to monitor our own internet uptime and availability\.  
+With those measurements as a baseline, Internet Monitor can detect when the performance and availability for your application has dropped, compared to the baseline\. To make it easier to see those drops, we report that information to you as a performance score and an availability score\. For more information, see [Viewing log files with CloudWatch tools](CloudWatch-IM-view-cw-tools.md)\.  
+The **Health scores** graph includes health events that occurred during a time period that you choose\. When there's a health event, you see a drop in the performance or availability line on the graph\. If you select the event, you see more details and bands appear on the graph, with date and time information showing how long the event lasted\.  
+You can also look at these metrics by accessing the log files directly for each data point\. In the **Actions** menu, choose **View CloudWatch Logs**\.
+
+**Internet traffic overview**  
+The **Internet traffic overview** map shows you the internet traffic and health events that are specific to the locations and ASNs where your users access your application from\. The countries that are gray on the map are those that include traffic for your application\.   
+Each circle on the map indicates a health event in an area, for a time period that you select\. Internet Monitor creates health events when it detects a problem \(at a specific threshold\) with connectivity between one of your resources hosted in AWS and a city\-network where a customer is using your application\. Choosing a circle on the map displays more details about the health event for that location\. In addition, for clusters that have health events, you can see detailed information in the **Health events** table below the map\.   
+Note that Internet Monitor creates health events in a monitor when it determines that an event has significant global impact on your application\. If there haven't been any health events that have exceeded 5% impact on traffic for client locations in the time period that you've selected, the map is blank\. For more information, see [When AWS creates and resolves health events](CloudWatch-IM-inside-internet-monitor.md#IMHealthEventStartStop)\.
+
+**Health events**  
+The **Health events** table lists client locations that have been affected by health events, along with information about the events\. The following columns are included in the table\.      
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html)
+If you choose one of the client locations in the **Health events** table, you can see more details about the health event at that location\. For example, you can see when the event started, when it ended, and the local traffic impact\.
+
+**Network path visualization**  
+Impairment analysis that is complete has a full network path under **Network path visualization**\. The full path shows you each node along the network path for your application for the health event, between the AWS location and the client, for a client\-location pair\.  
+If Internet Monitor determines the cause of an impairment, it's marked with a dashed red circle\. Impairments can be caused by ASNs, typically internet service providers \(ISPs\), or the cause can be AWS\. If there were multiple causes for an impairment, multiple nodes are circled\.

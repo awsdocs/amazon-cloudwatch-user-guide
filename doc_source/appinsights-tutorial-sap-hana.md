@@ -21,10 +21,15 @@ CloudWatch Application Insights supports the deployment of AWS resources for the
 + **SAP HANA database on multiple Amazon EC2 instances** — SAP HANA in a multi\-node, scale\-out architecture\.
 + **Cross\-AZ SAP HANA database high availability setup** — SAP HANA with high availability configured across two Availability Zones using SUSE/RHEL clustering\.
 
+**Note**  
+CloudWatch Application Insights supports only single SID HANA environments\. If multiple HANA SIDs are attached, monitoring will be set up for only the first detected SID\.
+
 ## Supported operating systems<a name="appinsights-tutorial-sap-hana-supported-os"></a>
 
 CloudWatch Application Insights for SAP HANA supports x86\-64 architecture on the following operating systems:
-+ SUSE Linux 15
++ SuSE Linux 12 SP4 For SAP
++ SuSE Linux 12 SP5 For SAP
++ SuSE Linux 15
 + SuSE Linux 15 SP1
 + SuSE Linux 15 SP2
 + SuSE Linux 15 For SAP
@@ -48,7 +53,10 @@ CloudWatch Application Insights for SAP HANA provides the following features:
 
 You must perform the following prerequisites to configure an SAP HANA database with CloudWatch Application Insights:
 + **SAP HANA** — Install a running and reachable SAP HANA database 2\.0 SPS05 on an Amazon EC2 instance\.
-+ **SAP HANA database user** — Run the following SQL commands to create a user with monitoring roles\.
++ **SAP HANA database user** — A database user with monitoring roles must be created in the SYSTEM database and all tenants\. 
+
+**Example**  
+The following SQL commands create a user with monitoring roles\.
 
   ```
   su - <sid>adm
@@ -58,13 +66,15 @@ You must perform the following prerequisites to configure an SAP HANA database w
   GRANT MONITORING TO CW_HANADB_EXPORTER_ROLE;
   GRANT CW_HANADB_EXPORTER_ROLE TO CW_HANADB_EXPORTER_USER;
   ```
-+ **Python 3\.6** — Install Python 3\.6 or later versions on your operating system\. If Python is not detected on your operating system, Python 3\.8 will be installed\. 
++ **Python 3\.6** — Install Python 3\.6 or later versions on your operating system\. Use the latest release of Python\. If Python is not detected on your operating system, Python 3\.8 will be installed\. 
+
+  See [installation examples](#install)\. 
 + **Pip3** — Install the installer program, pip3, on your operating system\. If pip3 is not detected on your operating system, it will be installed\.
-+ **Amazon CloudWatch agent** — Make sure that you are not running a preexisting Amazon CloudWatch agent on your Amazon EC2 instance\.
++ **Amazon CloudWatch agent** — Make sure that you are not running a preexisting CloudWatch agent on your Amazon EC2 instance\. If you have CloudWatch agent installed, make sure to remove the configuration of the resources you are using in CloudWatch Application Insights from the existing CloudWatch agent configuration file to avoid a merge conflict\. For more information, see [ Manually create or edit the CloudWatch agent configuration file](CloudWatch-Agent-Configuration-File-Details.md)\.
 + **AWS Systems Manager enablement** — Install SSM Agent on your instances, and the instances must be enabled for SSM\. For information about how to install the SSM agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
 + **Amazon EC2 instance roles** — You must attach the following Amazon EC2 instance roles to configure your database\.
   + You must attach the `AmazonSSMManagedInstanceCore` role to enable Systems Manager\. For more information, see [AWS Systems Manager identity\-based policy examples](https://docs.aws.amazon.com/systems-manager/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html)\.
-  + You must attach the `CloudWatchAgentServerPolicy` to enable instance metrics and logs to be emitted through CloudWatch\. For more information, see [Create IAM Roles and Users for Use With CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)\.
+  + You must attach the `CloudWatchAgentServerPolicy` to enable instance metrics and logs to be emitted through CloudWatch\. For more information, see [Create IAM roles and users for use with CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)\.
   + You must attach the following IAM inline policy to the Amazon EC2 instance role to read the password stored in AWS Secrets Manager\. For more information about inline policies, see [Inline policies ](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *AWS Identity and Access Management User Guide*\.
 
     ```
@@ -82,15 +92,32 @@ You must perform the following prerequisites to configure an SAP HANA database w
         ]
     }
     ```
-+ **AWS resource groups** — You must create a resource group that includes all of the associated AWS resources used by your application stack to onboard your applications to CloudWatch Application Insights\. This includes Amazon EC2 instances and Amazon EBS volumes running your SAP HANA database\.
-+ **IAM permissions** — For non\-admin users, you must create an AWS Identity and Access Management \(IAM\) policy that allows Application Insights to create a service\-linked role, and attach it to your user identity\. For steps to attach the policy, see [IAM policy](appinsights-iam.md)\.
++ **AWS resource groups** — You must create a resource group that includes all of the associated AWS resources used by your application stack to onboard your applications to CloudWatch Application Insights\. This includes Amazon EC2 instances and Amazon EBS volumes running your SAP HANA database\. If there are multiple databases per account, we recommend that you create one resource group that includes the AWS resources for each SAP HANA database system\. 
++ **IAM permissions** — For non\-admin users:
+  +  You must create an AWS Identity and Access Management \(IAM\) policy that allows Application Insights to create a service\-linked role, and attach it to your user identity\. For steps to attach the policy, see [IAM policy](appinsights-iam.md)\.
+  + The user must have permission to create a secret in AWS Secrets Manager to store the database user credentials\. For more information, see [Example: Permission to create secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#auth-and-access_examples_create)\.
+
+    ```
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "secretsmanager:CreateSecret"
+          ],
+          "Resource": "arn:aws:secretsmanager:*:*:secret:ApplicationInsights-*"
+        }
+      ]
+    }
+    ```
 + **Service\-linked role** — Application Insights uses AWS Identity and Access Management \(IAM\) service\-linked roles\. A service\-linked role is created for you when you create your first Application Insights application in the Application Insights console\. For more information, see [Using service\-linked roles for CloudWatch Application Insights](CHAP_using-service-linked-roles-appinsights.md)\.
 
 ## Set up your SAP HANA database for monitoring<a name="appinsights-tutorial-sap-hana-set-up"></a>
 
- To set up monitoring for your SAP HANA database, perform the following steps\. 
+Use the following steps to set up monitoring for your SAP HANA database
 
-1. Navigate to the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
+1. Open the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
 
 1. From the left navigation pane, under **Insights**, choose **Application Insights**\.
 
@@ -102,7 +129,7 @@ You must perform the following prerequisites to configure an SAP HANA database w
 
 1. Under **Integrate with AWS Systems Manager OpsCenter**, select the check box next to **Generate AWS Systems Manager OpsCenter OpsItems for remedial actions** to view and get notifications when problems are detected for the selected applications\. To track the operations that are performed to resolve operational work items, called OpsItems, that are related to your AWS resources, provide an SNS topic ARN\. 
 
-1. You can optionally enter tags to help you identify and organize your resources\. CloudWatch Application Insights supports both tag\-based and AWS CloudFormation\-based resource groups, with the exception of Application Auto Scaling groups\. For more information, see [Tag Editor](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html) in the *AWS Resource Groups and Tags User Guide*\. 
+1. You can optionally enter tags to help you identify and organize your resources\. CloudWatch Application Insights supports both tag\-based and AWS CloudFormation stack\-based resource groups, with the exception of Application Auto Scaling groups\. For more information, see [Tag Editor](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html) in the *AWS Resource Groups and Tags User Guide*\. 
 
 1. Choose **Next** to continue to set up monitoring\.
 
@@ -120,7 +147,7 @@ You must perform the following prerequisites to configure an SAP HANA database w
 
 You can manage user credentials, metrics, and log paths for your SAP HANA database by performing the following steps:
 
-1. Navigate to the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
+1. Open the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
 
 1. From the left navigation pane, under **Insights**, choose **Application Insights**\.
 
@@ -144,7 +171,7 @@ CloudWatch Application Insights automatically creates a Amazon CloudWatch metric
 
 To edit an alarm for a single metric, perform the following steps:
 
-1. Navigate to the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
+1. Open the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
 
 1. In the left navigation pane, choose **Alarms**>**All alarms**\.
 
@@ -164,11 +191,11 @@ To edit an alarm for a single metric, perform the following steps:
 
 1. Under **Additional configuration** edit the following parameters\.
 
-   1. Under **Datapoints to alarm**, specify the number of data points, or evaluation periods, that must be in the `ALARM` state to initiate the alarm\. When the two values match, an alarm is created that enters `ALARM` state if the designated number of consecutive periods are exceeded\. To create an `m` out of `n` alarm, specify a lower value for the first data point than for the second\. For more information about evaluating alarms, see [Evaluating an alarm\.](https://docs.aws.amazon.com/AmazonCloudWatch/monitoring/AlarmThatSendsEmail.html#alarm-evaluation)\.
+   1. Under **Datapoints to alarm**, specify the number of data points, or evaluation periods, that must be in the `ALARM` state to initiate the alarm\. When the two values match, an alarm is created that enters `ALARM` state if the designated number of consecutive periods are exceeded\. To create an `m` out of `n` alarm, specify a lower value for the first data point than for the second\. For more information about evaluating alarms, see [Evaluating an alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation)\.
 
-   1. Under **Missing data treatment**, choose the behavior of the alarm when some data points are missing\. For more information about missing data treatment, see [Configuring how CloudWatch alarms treat missing data](https://docs.aws.amazon.com/AmazonCloudWatch/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data)\.
+   1. Under **Missing data treatment**, choose the behavior of the alarm when some data points are missing\. For more information about missing data treatment, see [Configuring how CloudWatch alarms treat missing data](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data)\.
 
-   1. If the alarm uses a percentile as the monitored statistic, a **Percentiles with low samples** box appears\. Choose whether to evaluate or ignore cases with low sample rates\. If you choose **ignore \(maintain alarm state\)**, the current alarm state is always maintained when the sample size is too low\. For more information about percentiles with low samples, see [Percentile\-based CloudWatch alarms and low data samples](AlarmThatSendsEmail.md#percentiles-with-low-samples) \.
+   1. If the alarm uses a percentile as the monitored statistic, a **Percentiles with low samples** box appears\. Choose whether to evaluate or ignore cases with low sample rates\. If you choose **ignore \(maintain alarm state\)**, the current alarm state is always maintained when the sample size is too low\. For more information about percentiles with low samples, see [Percentile\-based CloudWatch alarms and low data samples](AlarmThatSendsEmail.md#percentiles-with-low-samples)\.
 
 1. Choose **Next**\.
 
@@ -253,7 +280,7 @@ This section provides steps to help you resolve common errors returned by the Ap
 **No SAP metrics or alarms appear after the onboarding process\.**  
 **Error returned**: In AWS Systems Manager Run command, the `AWS-ConfigureAWSPackage` failed\. 
 
-The output shows the following error:
+**The output shows the following error:**
 
 ```
 Unable to find a host with system database, for more info rerun using -v
@@ -262,3 +289,41 @@ Unable to find a host with system database, for more info rerun using -v
 ![\[Log group showing out of memory.\]](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/images/app-insights-no-sap-metrics-2.png)
 
 **Resolution**: The user name and password may be incorrect\. Verify that the user name and password are valid, and rerun the onboarding process\.
+
+**The output shows the following installation errors:**
+
+```
+ERROR: Can not execute `setup.py` since setuptools is not available in the build environment.
+```
+
+or
+
+```
+[SSL: CERTIFICATE_VERIFY_FAILED]
+```
+
+**Resolution**: Install Python using one of the following example SUSE Linux commands:
+
+Example 1
+
+```
+sudo zypper install -y python36
+```
+
+Example 2
+
+[Install the latest version of Python 3\.8](https://www.python.org/downloads/)\.
+
+```
+wget https://www.python.org/ftp/python/3.8.<LATEST_RELEASE>/Python-3.8.<LATEST_RELEASE>.tgz
+tar xf Python-3.*
+cd Python-3.*/
+sudo zypper install make gcc-c++ gcc automake autoconf libtool
+sudo zypper install zlib-devel
+sudo zypper install libopenssl-devel libffi-devel
+./configure --with-ensurepip=install 
+sudo make
+sudo make install
+sudo su 
+python3.8 -m pip install --upgrade pip setuptools wheel
+```

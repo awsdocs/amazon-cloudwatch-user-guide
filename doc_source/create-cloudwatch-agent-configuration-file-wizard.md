@@ -4,6 +4,7 @@ The agent configuration file wizard, `amazon-cloudwatch-agent-config-wizard`, as
 + Are you installing the agent on an Amazon EC2 instance or an on\-premises server?
 + Is the server running Linux or Windows Server?
 + Do you want the agent to also send log files to CloudWatch Logs? If so, do you have an existing CloudWatch Logs agent configuration file? If yes, the CloudWatch agent can use this file to determine the logs to collect from the server\.
++ If the agent will send log files to CloudWatch Logs, what retention period do you want for those log files? The default value of `-1` sets the log items to never expire\.
 + If you're going to collect metrics from the server, do you want to monitor one of the default sets of metrics or customize the list of metrics that you collect?
 + Do you want to collect custom metrics from your applications or services, using `StatsD` or `collectd`?
 + Are you migrating from an existing SSM Agent?
@@ -56,6 +57,9 @@ Parameter Store supports parameters in Standard and Advanced tiers\. These param
 
 **Amazon EC2 instances running Windows Server**
 
+**Note**  
+The metric names listed in this table display how the metric appears when viewed in the console\. The actual metric name might not include the first word\. For example, the actual metric name for `LogicalDisk % Free Space` is just `% Free Space`\.
+
 
 | Detail level | Metrics included | 
 | --- | --- | 
@@ -64,6 +68,9 @@ Parameter Store supports parameters in Standard and Advanced tiers\. These param
 |  **Advanced** |  **Memory:** `Memory % Committed Bytes In Use` **Paging:** `Paging File % Usage` **Processor:** `Processor % Idle Time`, `Processor % Interrupt Time`, `Processor % User Time` **LogicalDisk:** `LogicalDisk % Free Space` **PhysicalDisk:** `PhysicalDisk % Disk Time`, `PhysicalDisk Disk Write Bytes/sec`, `PhysicalDisk Disk Read Bytes/sec`, `PhysicalDisk Disk Writes/sec`, `PhysicalDisk Disk Reads/sec` **TCP:** `TCPv4 Connections Established`, `TCPv6 Connections Established`  | 
 
 **On\-premises server running Windows Server**
+
+**Note**  
+The metric names listed in this table display how the metric appears when viewed in the console\. The actual metric name might not include the first word\. For example, the actual metric name for `LogicalDisk % Free Space` is just `% Free Space`\.
 
 
 | Detail level | Metrics included | 
@@ -87,6 +94,7 @@ Parameter Store supports parameters in Standard and Advanced tiers\. These param
    ```
    cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
    ```
+
    ```
    .\amazon-cloudwatch-agent-config-wizard.exe
    ```

@@ -13,7 +13,7 @@ The RUM web client is open source\. For more information, see [CloudWatch RUM we
 **Performance considerations**
 
 This section discusses the performance considerations of using CloudWatch RUM\.
-+ **Load performance impact**— The CloudWatch RUM web client is loaded into your web application asynchronously from a content delivery network \(CDN\)\. It does not block the application’s load process\. CloudWatch RUM is designed for there to be no detectable impact to the application’s load time\.
++ **Load performance impact**— The CloudWatch RUM web client can be installed in your web application as a JavaScript module, or loaded into your web application asynchronously from a content delivery network \(CDN\)\. It does not block the application’s load process\. CloudWatch RUM is designed for there to be no perceptible impact to the application’s load time\.
 + **Runtime impact**— The RUM web client performs processing to record and dispatch RUM data to the CloudWatch RUM service\. Because events are infrequent and the amount of processing is small, CloudWatch RUM is designed for there to be no detectable impact to the application’s performance\.
 + **Network impact**— The RUM web client periodically sends data to the CloudWatch RUM service\. Data is dispatched at regular intervals while the application is running, and also immediately before the browser unloads the application\. Data sent immediately before the browser unloads the application are sent as beacons, which, are designed to have no detectable impact on the application’s unload time\.
 
@@ -38,8 +38,13 @@ CloudWatch RUM is currently available in the following Regions:
 **Topics**
 + [IAM policies to use CloudWatch RUM](CloudWatch-RUM-permissions.md)
 + [Set up an application to use CloudWatch RUM](CloudWatch-RUM-get-started.md)
++ [Configuring the CloudWatch RUM web client](CloudWatch-RUM-configure-client.md)
++ [Regionalization](CloudWatch-RUM-Regionalization.md)
++ [Use page groups](CloudWatch-RUM-page-groups.md)
++ [Specify custom metadata](CloudWatch-RUM-custom-metadata.md)
++ [Send custom events](CloudWatch-RUM-custom-events.md)
 + [Viewing the CloudWatch RUM dashboard](CloudWatch-RUM-view-data.md)
-+ [Configuring the CloudWatch RUM web client with CDN installation](CloudWatch-RUM-configure-client.md)
++ [CloudWatch metrics that you can collect with CloudWatch RUM](CloudWatch-RUM-metrics.md)
 + [Data protection and data privacy with CloudWatch RUM](CloudWatch-RUM-privacy.md)
 + [Information collected by the CloudWatch RUM web client](CloudWatch-RUM-datacollected.md)
 + [Manage your applications that use CloudWatch RUM](CloudWatch-RUM-manage.md)

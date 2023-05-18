@@ -1,4 +1,4 @@
-# Publishing custom metrics<a name="publishingMetrics"></a>
+# Publish custom metrics<a name="publishingMetrics"></a>
 
 You can publish your own metrics to CloudWatch using the AWS CLI or an API\. You can view statistical graphs of your published metrics with the AWS Management Console\.
 
@@ -6,10 +6,11 @@ You can publish your own metrics to CloudWatch using the AWS CLI or an API\. You
 
 **Topics**
 + [High\-resolution metrics](#high-resolution-metrics)
-+ [Using dimensions](#usingDimensions)
-+ [Publishing single data points](#publishingDataPoints)
-+ [Publishing statistic sets](#publishingDataPoints1)
-+ [Publishing the value zero](#publishingZero)
++ [Use dimensions](#usingDimensions)
++ [Publish single data points](#publishingDataPoints)
++ [Publish statistic sets](#publishingDataPoints1)
++ [Publish the value zero](#publishingZero)
++ [Stop publishing metrics](#CloudWatch-Stop-Publishing-Metrics)
 
 ## High\-resolution metrics<a name="high-resolution-metrics"></a>
 
@@ -23,9 +24,9 @@ High\-resolution metrics can give you more immediate insight into your applicati
 
 If you set an alarm on a high\-resolution metric, you can specify a high\-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds\. There is a higher charge for high\-resolution alarms with a period of 10 or 30 seconds\.
 
-## Using dimensions<a name="usingDimensions"></a>
+## Use dimensions<a name="usingDimensions"></a>
 
-In custom metrics, the `--dimensions` parameter is common\. A dimension further clarifies what the metric is and what data it stores\. You can have up to 10 dimensions in one metric, and each dimension is defined by a name and value pair\.
+In custom metrics, the `--dimensions` parameter is common\. A dimension further clarifies what the metric is and what data it stores\. You can have up to 30 dimensions assigned to one metric, and each dimension is defined by a name and value pair\.
 
 How you specify a dimension is different when you use different commands\. With [put\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html), you specify each dimension as *MyName*=*MyValue*, and with [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) or [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) you use the format `Name=`*MyName*, `Value=`*MyValue*\. For example, the following command publishes a `Buffers` metric with two dimensions named `InstanceId` and `InstanceType`\.
 
@@ -47,7 +48,7 @@ aws cloudwatch get-metric-statistics --metric-name BucketSizeBytes --start-time 
 
 To see what dimensions are defined for a metric, use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
 
-## Publishing single data points<a name="publishingDataPoints"></a>
+## Publish single data points<a name="publishingDataPoints"></a>
 
 To publish a single data point for a new or existing metric, use the [put\-metric\-data](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-data.html) command with one value and time stamp\. For example, the following actions each publish one data point\.
 
@@ -67,8 +68,8 @@ Although you can publish data points with time stamps as granular as one\-thousa
 You can use the get\-metric\-statistics command to retrieve statistics based on the data points that you published\.
 
 ```
-aws cloudwatch get-metric-statistics --namespace MyService --metric-name PageViewCount \ 
---statistics "Sum" "Maximum" "Minimum" "Average" "SampleCount" \ 
+aws cloudwatch get-metric-statistics --namespace MyService --metric-name PageViewCount \
+--statistics "Sum" "Maximum" "Minimum" "Average" "SampleCount" \
 --start-time 2016-10-20T12:00:00.000Z --end-time 2016-10-20T12:05:00.000Z --period 60
 ```
 
@@ -91,7 +92,7 @@ The following is example output\.
 }
 ```
 
-## Publishing statistic sets<a name="publishingDataPoints1"></a>
+## Publish statistic sets<a name="publishingDataPoints1"></a>
 
 You can aggregate your data before you publish to CloudWatch\. When you have multiple data points per minute, aggregating data minimizes the number of calls to put\-metric\-data\. For example, instead of calling put\-metric\-data multiple times for three data points that are within 3 seconds of each other, you can aggregate the data into a statistic set that you publish with one call, using the `--statistic-values` parameter\.
 
@@ -103,8 +104,12 @@ CloudWatch needs raw data points to calculate percentiles\. If you publish data 
 + The `SampleCount` of the statistic set is 1
 + The `Minimum` and the `Maximum` of the statistic set are equal
 
-## Publishing the value zero<a name="publishingZero"></a>
+## Publish the value zero<a name="publishingZero"></a>
 
  When your data is more sporadic and you have periods that have no associated data, you can choose to publish the value zero \(`0`\) for that period or no value at all\. If you use periodic calls to `PutMetricData` to monitor the health of your application, you might want to publish zero instead of no value\. For example, you can set a CloudWatch alarm to notify you if your application fails to publish metrics every five minutes\. You want such an application to publish zeros for periods with no associated data\. 
 
  You might also publish zeros if you want to track the total number of data points or if you want statistics such as minimum and average to include data points with the value 0\. 
+
+## Stop publishing metrics<a name="CloudWatch-Stop-Publishing-Metrics"></a>
+
+To stop publishing custom metrics to CloudWatch, change your application's or service's code to stop using **PutMetricData**\. CloudWatch doesn't pull metrics from applications, it only receives what is pushed to it, so to stop publishing your metrics you must stop them at the source\.

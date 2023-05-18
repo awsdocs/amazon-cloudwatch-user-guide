@@ -1,6 +1,6 @@
 # IAM policy<a name="appinsights-iam"></a>
 
-To use CloudWatch Application Insights, you must create an [Identity and Access Management \(IAM\) policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) and attach it to your IAM user identity\. The IAM policy defines the user permissions\.
+To use CloudWatch Application Insights, you must create an [AWS Identity and Access Management \(IAM\) policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) and attach it to your user, group, or role\. For more information about users, groups, and roles, see [IAM Identities \(users, user groups, and roles\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)\. The IAM policy defines the user permissions\.
 
 **To create an IAM policy using the console**  
 To create an IAM policy using the IAM console, perform the following steps\.
@@ -37,9 +37,9 @@ To create an IAM policy using the IAM console, perform the following steps\.
 
 1. Select **Create Policy**\.
 
-1. Select **Users** from the left navigation pane\.
+1. In the left navigation pane, select **User groups**, **Users**, or **Roles**\.
 
-1. Select the **User name** of the user to which you would like to attach the policy\.
+1. Select the name of the user group, user, or role to which you would like to attach the policy\.
 
 1. Select **Add permissions**\.
 

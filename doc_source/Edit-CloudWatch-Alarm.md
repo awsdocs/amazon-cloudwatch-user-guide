@@ -2,15 +2,19 @@
 
 You can edit or delete an existing alarm\.
 
+You can't change the name of an existing alarm\. You can copy an alarm and give the new alarm a different name\. To copy an alarm, select the check box next to the alarm name in the alarm list and choose **Action**, **Copy**\.
+
 **To edit an alarm**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Alarms**\.
+1. In the navigation pane, choose **Alarms**, **All Alarms**\.
 
 1. Choose the name of the alarm\.
 
-1. Choose **Edit**\.
+1. To add or remove tags, choose the **Tags** tab and then choose **Manage tags**\.
+
+1. To edit other parts of the alarm, choose **Actions**, **Edit**\.
 
    The **Specify metric and conditions** page appears, showing a graph and other information about the metric and statistic that you selected\.
 
