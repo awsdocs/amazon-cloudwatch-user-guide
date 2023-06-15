@@ -1,9 +1,0 @@
-# Pricing for Amazon CloudWatch Internet Monitor<a name="CloudWatch-InternetMonitor.pricing"></a>
-
-With Amazon CloudWatch Internet Monitor, there are no upfront costs or long\-term commitments\. Pricing for Internet Monitor has two components: a per monitored resource fee and a per city\-network fee\. A *city\-network* is the location where clients access your application resources from and the network \(ASN, such as an internet service provider or ISP\) that clients access the resources through\.
-
-You choose a percentage of traffic to monitor when you create a monitor\. To help control your bill, you can also set a limit for the maximum number of city\-networks to monitor\. You can update the percentage of traffic to monitor or the maximum city\-networks limit at any time by editing your monitor\. The first 100 city\-networks \(across all monitors per account\) are included\. After that, you only pay for the actual additional number of city\-networks that you monitor, up to the maximum number\.
-
-For example, a large global company could choose to monitor 100% of its internet\-facing traffic, and set a city\-networks maximum of 50,000, for one monitor with one resource\. Assuming the traffic reached 50,000 city\-networks, that portion of its bill would be around 2,700 USD/month\. For more information, see [Choosing a city\-network maximum limit](IMCityNetworksMaximum.md)\.
-
-You can try out different options with the pricing calculator\. To explore pricing options, on the [Pricing calculator for CloudWatch page](https://calculator.aws/#/addService/CloudWatch), scroll down to Internet Monitor\. For more information about pricing, see the [Amazon CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/) page\. 
